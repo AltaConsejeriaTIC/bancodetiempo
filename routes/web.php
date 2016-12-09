@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/loginRedes/{proveedor?}', 'AutenticacionRedesController@login');
+Route::get('/callback/{proveedor?}', 'AutenticacionRedesController@callback');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
