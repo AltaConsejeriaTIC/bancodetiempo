@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\CuentasRedesServicio;
 
 use Socialite;
+use Illuminate\Support\Facades\Redirect;
 
 class AutenticacionRedesController extends Controller
 {
@@ -25,10 +26,22 @@ class AutenticacionRedesController extends Controller
 	
 	public function callback(CuentasRedesServicio $servicio)
 	{
-		$usuario = $servicio->crearObtenerUsuario(Socialite::driver('facebook')->user());
 		
-		auth()->login($usuario);
+		$datos_proveedor = Socialite::driver('facebook')->user();
 		
-		return redirect()->to('/home');
+		$usuario = $servicio->crearObtenerUsuario($datos_proveedor);
+		
+		if ($usuario !== false){
+			
+			auth()->login($usuario);
+			
+			return redirect()->to('/home');
+			
+		}else{
+			
+			return Redirect::route("register", array('nombre' => $datos_proveedor->getName(), 'email' => $datos_proveedor->getEmail(), 'avatar' => $datos_proveedor->getAvatar()));
+			
+		}
+		
 	}
 }
