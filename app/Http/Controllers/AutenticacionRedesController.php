@@ -50,7 +50,7 @@ class AutenticacionRedesController extends Controller
 			case  "google":
 			
 				$datos_proveedor = Socialite::driver('google')->user();
-				print_r($datos_proveedor);die();
+				
 			break;
 			
 			case  "linkedin":
