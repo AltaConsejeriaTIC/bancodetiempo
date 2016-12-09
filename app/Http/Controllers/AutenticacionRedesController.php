@@ -20,14 +20,47 @@ class AutenticacionRedesController extends Controller
 				return Socialite::driver('facebook')->redirect();
 				
 			break;
+			
+			case "google":
+					
+				return Socialite::driver('google')->redirect();
+			
+			break;
+			
+			case "linkedin":
+					
+				return Socialite::driver('linkedin')->redirect();
+					
+			break;
+			
 		}
 		
 	}
 	
-	public function callback(CuentasRedesServicio $servicio)
+	public function callback($proveedor = "", CuentasRedesServicio $servicio)
 	{
-		
-		$datos_proveedor = Socialite::driver('facebook')->user();
+		switch ($proveedor){
+			
+			case  "facebook":
+				
+				$datos_proveedor = Socialite::driver('facebook')->user();
+				
+			break;
+			
+			case  "google":
+			
+				$datos_proveedor = Socialite::driver('google')->user();
+				print_r($datos_proveedor);die();
+			break;
+			
+			case  "linkedin":
+					
+				$datos_proveedor = Socialite::driver('linkedin')->user();
+			
+			break;
+				
+			
+		}		
 		
 		$usuario = $servicio->crearObtenerUsuario($datos_proveedor);
 		

@@ -12,7 +12,11 @@
                 	
                 	<br>
                 	
-                	<a class="facebook-login" href="loginRedes/google">LOGIN GOOGLE</a>
+                	<a class="google-login" href="loginRedes/google">LOGIN GOOGLE</a>
+                	
+                	<br>
+                	
+                	<a class="linkedin-login" href="loginRedes/linkedin">LOGIN LINKEDIN</a>
                 		
                 	
                 
