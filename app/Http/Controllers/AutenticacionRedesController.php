@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\CuentasRedesServicio;
+use Laravel\Socialite\Contracts\User as ProviderUser;
+
+use App\CuentasRedes as redes;
 
 use Socialite;
 use Illuminate\Support\Facades\Redirect;
 
 class AutenticacionRedesController extends Controller
 {
+	
+	/**
+     * ccdaza
+     * create 12/12/16
+     * modification 12/12/16
+	 * @param string $proveedor
+	 * @return void
+	 */
 	public function login($proveedor = '')
 	{
 		switch ($proveedor){
@@ -37,44 +47,57 @@ class AutenticacionRedesController extends Controller
 		
 	}
 	
-	public function callback($proveedor = "", CuentasRedesServicio $servicio)
+	/**
+     * ccdaza
+     * create 12/12/16
+     * modification 12/12/16
+	 * @param string $provider
+	 */
+	public function callback($provider = "")
 	{
-		switch ($proveedor){
+				
+		switch ($provider){
 			
 			case  "facebook":
 				
-				$datos_proveedor = Socialite::driver('facebook')->user();
+				$providerData = Socialite::driver('facebook')->user();
 				
 			break;
 			
 			case  "google":
 			
-				$datos_proveedor = Socialite::driver('google')->user();
+				$providerData = Socialite::driver('google')->user();
 				
 			break;
 			
 			case  "linkedin":
 					
-				$datos_proveedor = Socialite::driver('linkedin')->user();
+				$providerData = Socialite::driver('linkedin')->user();
 			
 			break;
 				
 			
-		}		
+		}
 		
-		$usuario = $servicio->crearObtenerUsuario($datos_proveedor);
+		$redes = new redes();
 		
-		if ($usuario !== false){
+		$redes->iniciar($providerData);
+		
+		
+		if($redes->existsUser()){
 			
-			auth()->login($usuario);
-			
-			return redirect()->to('/home');
+			auth()->login($redes->getUser());  
+						
+			return Redirect::route("home");
 			
 		}else{
 			
-			return Redirect::route("register", array('nombre' => $datos_proveedor->getName(), 'email' => $datos_proveedor->getEmail(), 'avatar' => $datos_proveedor->getAvatar()));
+			return Redirect::route("register", array('nombre' => $providerData->getName(), 'email' => $providerData->getEmail(), 'avatar' => $providerData->getAvatar()));
+				
 			
 		}
+		
+		
 		
 	}
 }
