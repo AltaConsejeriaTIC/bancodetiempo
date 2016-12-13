@@ -15,6 +15,9 @@ class CreateNetworkAccountsTable extends Migration
     {
         Schema::create('network_accounts', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('provider_id');
+            $table->string('provider');
             $table->timestamps();
         });
     }
