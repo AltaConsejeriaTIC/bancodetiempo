@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class NetworkAccounts extends Model
 {
-	protected  $fillable = ['user_id', 'proveedor_id', 'proveedor'];
+	protected  $fillable = ['user_id', 'provider_id', 'provider'];
 	private $account;
 	
 	public function start($providerData){
