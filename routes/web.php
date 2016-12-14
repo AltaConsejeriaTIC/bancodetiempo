@@ -21,3 +21,6 @@ Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+//Route Admin Panel
+Route::get('/admin', 'AdminController@index');
