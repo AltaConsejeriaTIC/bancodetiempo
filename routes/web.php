@@ -22,6 +22,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/register', 'NetworkAccountsController@login');
+
+Route::post('/register/createUser', 'NetworkAccountsController@createUser');
+
 Route::get('profile', 'Profile\ProfileController@showProfile');
 
 //Route Admin Panel

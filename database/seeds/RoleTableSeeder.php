@@ -6,7 +6,7 @@ use Styde\Seeder\Seeder;
 
 class RoleTableSeeder extends Seeder
 {
-    protected $total = 1;
+    protected $total = 2;
 
     public function getModel()
     {
@@ -14,10 +14,19 @@ class RoleTableSeeder extends Seeder
     }
 
     public function getDummyData(Generator $faker, array $custom = [])
-    {
+    {        
         return [
-            'role' => 'Admin',                                     
+                                              
         ];        
-    }
+    }   
 
+    public function run()
+    {
+        $this->create([
+            'role' => 'Admin',
+        ]);
+        $this->create([
+            'role' => 'User',
+        ]);
+    }
 }

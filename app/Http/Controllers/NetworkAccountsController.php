@@ -9,18 +9,60 @@ use Socialite;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\NetworkAccounts;
 
+use App\User;
+
+
 class NetworkAccountsController extends Controller
 {
 	public function login($provider = ''){
 	
 		if(!$provider || $provider == ''){
-			return Redirect::route("login", array('message' => "Error en la autenticación"));
+			
+			return Redirect::route("login");
+			
 		}
 	
 		$function = "redirect".ucwords($provider);
 	
 		return $this->$function();
 	
+	}
+	
+	public function createUser(Request $request){
+		
+		
+		$account = new NetworkAccounts([
+				'provider_user_id' => $request->input('provider_id'),
+				'provider' => $request->input('provider')
+		]);
+		
+		$user = User::whereEmail($request->input('email'))->first();
+		
+		if (!$user) {
+		
+			$user = User::create([
+					'email' => $request->input('email'),
+					'first_name' => $request->input('firstName'),
+					'last_name' => $request->input('lastName'),
+					'avatar' => $request->input('avatar'),
+					'state' => 1,
+					'gender' => $request->input('gender'),
+					'birthDate' => $request->input('birthday'),
+					'aboutMe' => $request->input("aboutMe"),
+					'address' => $request->input('address'),
+					'website' => $request->input('website'),
+					'role_id' => 1
+			]);
+		}
+		
+		$account->user()->associate($user);
+		$account->save();
+		
+		auth()->login($user);
+		
+		Redirect::route("/");
+		
+		
 	}
 	
 	public function callback($provider = ""){
@@ -88,6 +130,7 @@ class NetworkAccountsController extends Controller
 				"birthday" =>  isset($providerData->getRaw()["birthday"]) ? $providerData->getRaw()["birthday"] : "",
 				"gender" =>  isset($providerData->getRaw()["gender"]) ? $providerData->getRaw()["gender"] : "",
 				"id" =>  $providerData->getId(),
+				"provider" => "facebook",
 				"avatar" => $providerData->getAvatar()
 	
 		];
@@ -107,6 +150,7 @@ class NetworkAccountsController extends Controller
 				"birthday" =>  "",
 				"gender" =>  isset($providerData->getRaw()["gender"]) ? $providerData->getRaw()["gender"] : "",
 				"id" =>  $providerData->getId(),
+				"provider" => "google",
 				"avatar" => $providerData->getAvatar()
 	
 		];
@@ -126,6 +170,7 @@ class NetworkAccountsController extends Controller
 				"birthday" =>  isset($providerData->getRaw()["birthday"]) ? $providerData->getRaw()["birthday"] : "",
 				"gender" =>  isset($providerData->getRaw()["gender"]) ? $providerData->getRaw()["gender"] : "",
 				"id" =>  $providerData->getId(),
+				"provider" => "linkedin",
 				"avatar" => $providerData->getAvatar()
 	
 		];
