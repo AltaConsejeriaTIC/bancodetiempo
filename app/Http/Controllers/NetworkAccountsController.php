@@ -80,13 +80,13 @@ class NetworkAccountsController extends Controller
 		$providerData = Socialite::driver("facebook")->fields([
 				'first_name', 'last_name', 'email', 'gender', 'birthday'
 		])->user();
-	
+		
 		$newProviderData = [
-				"first_name" => $providerData->getRaw()["first_name"],
-				"last_name" =>  $providerData->getRaw()["last_name"],
+				"first_name" => isset($providerData->getRaw()["first_name"]) ? $providerData->getRaw()["first_name"] : "",
+				"last_name" =>  isset($providerData->getRaw()["last_name"]) ? $providerData->getRaw()["last_name"] : "",
 				"email" =>  $providerData->getEmail(),
-				"birthday" =>  $providerData->getRaw()["birthday"],
-				"gender" =>  $providerData->getRaw()["gender"],
+				"birthday" =>  isset($providerData->getRaw()["birthday"]) ? $providerData->getRaw()["birthday"] : "",
+				"gender" =>  isset($providerData->getRaw()["gender"]) ? $providerData->getRaw()["gender"] : "",
 				"id" =>  $providerData->getId(),
 				"avatar" => $providerData->getAvatar()
 	
@@ -101,11 +101,11 @@ class NetworkAccountsController extends Controller
 		$providerData = Socialite::driver("google")->user();
 	
 		$newProviderData = [
-				"first_name" => $providerData->getRaw()["name"]["givenName"],
-				"last_name" =>  $providerData->getRaw()["name"]["familyName"],
+				"first_name" => isset($providerData->getRaw()["name"]["givenName"]) ? $providerData->getRaw()["name"]["givenName"] : "",
+				"last_name" =>  isset($providerData->getRaw()["name"]["familyName"]) ? $providerData->getRaw()["name"]["familyName"] : "",
 				"email" =>  $providerData->getEmail(),
 				"birthday" =>  "",
-				"gender" =>  $providerData->getRaw()["gender"],
+				"gender" =>  isset($providerData->getRaw()["gender"]) ? $providerData->getRaw()["gender"] : "",
 				"id" =>  $providerData->getId(),
 				"avatar" => $providerData->getAvatar()
 	
@@ -120,11 +120,11 @@ class NetworkAccountsController extends Controller
 		$providerData = Socialite::driver("linkedin")->user();
 	
 		$newProviderData = [
-				"first_name" => $providerData->getRaw()["firstName"],
-				"last_name" =>  $providerData->getRaw()["lastName"],
+				"first_name" => isset($providerData->getRaw()["firstName"]) ? $providerData->getRaw()["firstName"] : "",
+				"last_name" =>  isset($providerData->getRaw()["lastName"]) ? $providerData->getRaw()["lastName"] : "",
 				"email" =>  $providerData->getEmail(),
-				"birthday" =>  "",
-				"gender" =>  "",
+				"birthday" =>  isset($providerData->getRaw()["birthday"]) ? $providerData->getRaw()["birthday"] : "",
+				"gender" =>  isset($providerData->getRaw()["gender"]) ? $providerData->getRaw()["gender"] : "",
 				"id" =>  $providerData->getId(),
 				"avatar" => $providerData->getAvatar()
 	
