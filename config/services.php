@@ -40,9 +40,9 @@ return [
 		'redirect' => env('CALLBACK_URL'),
 	],
 	'google' => [
-		'client_id'     => "976477239659-1icagpc3a64akkne3tfk9nq7ip8u425c.apps.googleusercontent.com",
-		'client_secret' => "BOp8JnJUkEGv7eRw-oa5-K_T",
-		'redirect'      => "http://bancodetiempo.com/callback/google"
+		'client_id'     => env('GOOGLE_ID'),
+		'client_secret' => env('GOOGLE_SECRET'),
+		'redirect'      => env('GOOGLE_REDIRECT')
 	],
 	'linkedin' => [
 			'client_id' => env('LINKEDIN_KEY'),

@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/loginRedes/{proveedor?}', 'AutenticacionRedesController@login');
-Route::get('/callback/{proveedor?}', 'AutenticacionRedesController@callback');
+Route::get('/loginRedes/{proveedor?}', 'NetworkAccountsController@login');
+Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
 
 Auth::routes();
 
