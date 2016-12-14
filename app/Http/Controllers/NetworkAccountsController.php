@@ -11,7 +11,6 @@ use App\Models\NetworkAccounts;
 
 use App\User;
 
-
 class NetworkAccountsController extends Controller
 {
 	public function login($provider = ''){
@@ -39,7 +38,7 @@ class NetworkAccountsController extends Controller
 		$user = User::whereEmail($request->input('email'))->first();
 		
 		if (!$user) {
-		
+			
 			$user = User::create([
 					'email' => $request->input('email'),
 					'first_name' => $request->input('firstName'),
