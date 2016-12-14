@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -54,8 +56,11 @@
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
+                            	
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                
+                                	<img src="{{ Auth::user()->avatar }}" alt="MeAvatar" class="meAvatar"/>
+                                    {{ Auth::user()->first_name . " " . Auth::user()->last_name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class NetworkAccounts extends Model
 {
@@ -10,11 +11,9 @@ class NetworkAccounts extends Model
 	private $account;
 	
 	public function start($providerData){
-		 
-		$this->account = NetworkAccounts::whereProvider('facebook')
-		->whereProviderId($providerData["id"])
-		->first();
-		 
+		 		
+		$this->account = User::whereEmail($providerData['email'])->first();
+		
 	}
 	
 	public function user(){

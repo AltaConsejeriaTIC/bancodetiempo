@@ -31,7 +31,7 @@ class NetworkAccountsController extends Controller
 		
 		
 		$account = new NetworkAccounts([
-				'provider_user_id' => $request->input('provider_id'),
+				'provider_id' => $request->input('provider_id'),
 				'provider' => $request->input('provider')
 		]);
 		
@@ -44,13 +44,13 @@ class NetworkAccountsController extends Controller
 					'first_name' => $request->input('firstName'),
 					'last_name' => $request->input('lastName'),
 					'avatar' => $request->input('avatar'),
-					'state' => 1,
+					'state' => true,
 					'gender' => $request->input('gender'),
 					'birthDate' => $request->input('birthday'),
 					'aboutMe' => $request->input("aboutMe"),
 					'address' => $request->input('address'),
 					'website' => $request->input('website'),
-					'role_id' => 1
+					'role_id' => 2
 			]);
 		}
 		
@@ -59,7 +59,7 @@ class NetworkAccountsController extends Controller
 		
 		auth()->login($user);
 		
-		Redirect::route("/");
+		return Redirect::to("home");
 		
 		
 	}
@@ -82,7 +82,7 @@ class NetworkAccountsController extends Controller
 				
 			auth()->login($networkAccounts->getUser());
 	
-			return Redirect::route("home");
+			return Redirect::to("home");
 				
 		}else{
 				
