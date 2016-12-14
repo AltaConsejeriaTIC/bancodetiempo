@@ -21,3 +21,4 @@ Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('profile', 'Profile\ProfileController@showProfile');
