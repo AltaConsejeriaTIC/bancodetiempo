@@ -22,5 +22,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('profile', 'Profile\ProfileController@showProfile');
+
 //Route Admin Panel
 Route::get('/admin', 'AdminController@index');
