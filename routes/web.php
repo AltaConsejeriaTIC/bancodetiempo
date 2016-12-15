@@ -27,8 +27,15 @@ Route::get('/register', 'NetworkAccountsController@login');
 Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 
 Route::get('profile', 'Profile\ProfileController@showProfile');
+Route::get('profile/edit', 'Profile\ProfileController@editProfile');
 
 //Route Admin Panel
+
 Route::resource('admin','AdminController');
 Route::get('homeAdmin', 'AdminController@homeAdmin');
 Route::post('persona/show', ['as' => 'admin/show', 'uses'=>'AdminController@show']);
+
+Route::get('/service', 'ServiceController@index');
+
+
+
