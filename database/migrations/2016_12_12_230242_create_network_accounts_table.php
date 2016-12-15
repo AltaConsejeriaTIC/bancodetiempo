@@ -17,7 +17,7 @@ class CreateNetworkAccountsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('provider_id');
-            $table->string('provider');
+            $table->string('provider'); 
             $table->timestamps();
         });
     }
