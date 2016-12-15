@@ -13,14 +13,14 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware('serviceNull');;
+});
 
 Route::get('/loginRedes/{proveedor?}', 'NetworkAccountsController@login');
 Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->middleware('serviceNull');
+Route::get('/home', 'HomeController@index');
 
 Route::get('/register', 'NetworkAccountsController@login');
 
