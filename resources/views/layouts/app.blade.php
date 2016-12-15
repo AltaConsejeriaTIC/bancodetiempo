@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Tiempo X Tiempo') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -59,12 +59,14 @@
                             	
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 
-                                	<img src="{{ Auth::user()->avatar }}" alt="MeAvatar" class="meAvatar"/>
+                                	<img src="{{ Auth::user()->avatar }}" alt="MeAvatar" style="border-radius:10px; heigth:40px; width:60px;"/>
                                     {{ Auth::user()->first_name . " " . Auth::user()->last_name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                    
+                    	                <a href="{{ url('profile') }}">Perfil</a>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
