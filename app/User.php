@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Service;
+use App\Models\Roles;
 
 class User extends Authenticatable
 {
@@ -26,4 +28,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function services(){
+
+    	return $this->hasMany(Service::class);
+   	
+    }
+    
+    public function roles(){
+    	
+    	return $this->belongsTo(Roles::class);
+    	
+    }
+
+
 }

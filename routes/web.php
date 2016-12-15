@@ -20,7 +20,7 @@ Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->middleware('serviceNull');
 
 Route::get('/register', 'NetworkAccountsController@login');
 
@@ -34,4 +34,8 @@ Route::get('profile/edit', 'Profile\ProfileController@editProfile');
 //Route Admin Panel
 Route::get('/admin', 'AdminController@index');
 
-Route::get('/service', 'ServiceController@index');
+Route::get('/service', 'ServiceController@index')->middleware('auth');
+
+Route::post('/service/save', 'ServiceController@create')->middleware('auth');
+
+Route::get('/service/edit/{serviceid}', 'ServiceController@edit')->middleware('auth');

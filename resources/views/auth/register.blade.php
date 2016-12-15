@@ -14,9 +14,9 @@
 
 						<div class="avatar">
 						
-							<img src="{{ $providerData['avatar'] }}" alt="avatar" />
+							<img src="{{ $providerData['avatar'] }}{{ old('avatar') }}" alt="avatar" />
 						
-							<input type="hidden" value="{{ $providerData['avatar'] }}" name="avatar">
+							<input type="hidden" value="{{ $providerData['avatar'] }}{{ old('avatar') }}" name="avatar">
 						
 						</div>
 
@@ -145,8 +145,8 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            	<input type="hidden" name="provider_id" value="{{ $providerData['id'] }}" />
-                            	<input type="hidden" name="provider" value="{{ $providerData['provider'] }}" />
+                            	<input type="hidden" name="provider_id" value="{{ old('provider_id') }}{{ $providerData['id'] }}" />
+                            	<input type="hidden" name="provider" value="{{ old('provider') }}" />
                                 <button type="submit" class="btn btn-primary">
                                     Registro
                                 </button>
