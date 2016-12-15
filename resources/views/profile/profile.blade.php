@@ -12,8 +12,6 @@
                     <div class="fb-profile-text">
                         <h1>Eli Gurierres</h1>
                         <p>Artista plastica</p>
-                
-                
                 </div>
             </div>
         </div>
