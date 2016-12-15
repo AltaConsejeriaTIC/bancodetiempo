@@ -29,4 +29,6 @@ Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 Route::get('profile', 'Profile\ProfileController@showProfile');
 
 //Route Admin Panel
-Route::get('/admin', 'AdminController@index');
+Route::resource('admin','AdminController');
+Route::get('homeAdmin', 'AdminController@homeAdmin');
+Route::post('persona/show', ['as' => 'admin/show', 'uses'=>'AdminController@show']);
