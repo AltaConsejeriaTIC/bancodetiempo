@@ -77,10 +77,7 @@
                 <div class="title m-b-md">
                     Banco de Tiempo
                 </div>
-
-                <div class="links">
-                    	<a class="btn btn-primary" href="{{ url('profile') }}">Perfil</a>
-                </div>
+       
             </div>
         </div>
     </body>
