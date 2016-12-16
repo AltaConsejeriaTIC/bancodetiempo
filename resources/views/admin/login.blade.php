@@ -1,4 +1,4 @@
-@extends('layouts.appAdmin')
+@extends('layouts.layoutLogin')
 
 @section('content')
 	<div class="container">
@@ -39,11 +39,16 @@
 
               <div class="form-group">
                 <div class="col-md-8 col-md-offset-4">
+                  <!--
                   <button type="submit" class="btn btn-raised btn-primary">
                       Iniciar Sesión
                   </button>
+                  -->
+                  <a class="btn btn-raised btn-primary" href="/homeAdmin">Iniciar Sesión</a>
                 </div>
               </div>
+
+
             </form>
           </div>
         </div>
