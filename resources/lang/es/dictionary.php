@@ -8,6 +8,10 @@ return [
 	'save' => 'Guardar',
 	'virtuality' => 'Virtual',
 	'cover' => 'Portada',
-	'category' => 'Categoria'
-		
+	'category' => 'Categoria',
+	'gender' =>	'G&eacute;nero',
+	'state'	=>	'Estado',
+	'birthDate' => 'Fecha de nacimiento',
+	'aboutMe'	=> 'Acerca de mi',
+	'address'	=>	'Direcci&oacute;n'
 ];
