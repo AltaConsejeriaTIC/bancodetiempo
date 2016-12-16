@@ -21,11 +21,11 @@ class ServiceController extends Controller
    
    public function edit($serviceId = 0){
    
-   	$categories = Category::all();
+   		$categories = Category::all();
    	
-   	$service = Service::whereId($serviceId)->whereUserId(Auth::user()->id)->first();
+   		$service = Service::whereId($serviceId)->whereUserId(Auth::user()->id)->first();
    	
-   	return view('services/service', compact('categories', 'service'));
+   		return view('services/service', compact('categories', 'service'));
    
    }
  

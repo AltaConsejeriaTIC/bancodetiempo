@@ -96,7 +96,7 @@
                             
                            		
                                 <select name="category" required>
-                                	<option>------</option>
+                                	<option value="">------</option>
                                 	@foreach($categories as $category)
                                 		
                                 		<option value="{{$category->id}}" {{isset($service->category_id) && $service->category_id == $category->id ? 'selected' : ''}} > {{$category->category}} </option>
