@@ -10,12 +10,12 @@
           	<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
               {{ csrf_field() }}
                   @if ($errors->has('email'))
-                    <span class="help-block">
+                    <span class="alert alert-dismissible alert-warning">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
                   @endif
                   @if ($errors->has('password'))
-                      <span class="help-block">
+                      <span class="alert alert-dismissible alert-warning">
                           <strong>{{ $errors->first('password') }}</strong>
                       </span>
                   @endif

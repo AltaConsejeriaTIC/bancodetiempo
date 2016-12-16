@@ -33,7 +33,9 @@ Route::get('profile/edit', 'Profile\ProfileController@editProfile');
 
 Route::resource('admin','AdminController');
 Route::get('homeAdmin', 'AdminController@homeAdmin');
-Route::post('persona/show', ['as' => 'admin/show', 'uses'=>'AdminController@show']);
+Route::get('homeAdminUser', 'AdminController@homeAdminUser');
+Route::post('admin/show', ['as' => 'admin/show', 'uses'=>'AdminController@show']);
+Route::put('homeAdmin/update', ['as' => 'homeAdmin/update', 'uses'=>'AdminController@update']);
 
 //Mod Service
 
