@@ -35,12 +35,13 @@ Route::resource('admin','AdminController');
 Route::get('homeAdmin', 'AdminController@homeAdmin');
 Route::post('persona/show', ['as' => 'admin/show', 'uses'=>'AdminController@show']);
 
+//Mod Service
+
 Route::get('/service', 'ServiceController@index')->middleware('auth');
 
 Route::post('/service/save', 'ServiceController@create')->middleware('auth');
 
-Route::get('/service/edit/{serviceid}', 'ServiceController@edit')->middleware('auth');
+Route::put('/service/save', 'ServiceController@update')->middleware('auth');
 
-Route::get('/service', 'ServiceController@index');
-
+Route::get('/service/{serviceid}', 'ServiceController@showService')->middleware('auth');
 

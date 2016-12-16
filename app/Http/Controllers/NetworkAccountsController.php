@@ -47,7 +47,7 @@ class NetworkAccountsController extends Controller
 					'avatar' => $request->input('avatar'),
 					'state' => true,
 					'gender' => $request->input('gender'),
-					'birthDate' => $request->input('birthday'),
+					'birthDate' => date("Y-m-d", strtotime($request->input('birthdate'))),
 					'aboutMe' => $request->input("aboutMe"),
 					'address' => $request->input('address'),
 					'website' => $request->input('website'),

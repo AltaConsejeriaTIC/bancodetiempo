@@ -8,16 +8,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Mi oferta</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/service/save') }}" enctype="multipart/form-data">
+                	{!! Form::open(['url' => '/service/save', 'method' => $method, 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'role' => 'form']) !!}
                         {{ csrf_field() }}
 
-
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">{{ trans('dictionary.title') }}</label>
+                            {{ Form::label('name', trans('dictionary.title'), ['class' => 'col-md-4 control-label', 'id' => 'name']) }}
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}{{isset($service->name) ? $service->name : ''}}" required autofocus>
-
+                               
+                               {{ Form::text('name', isset($service->name) ? $service->name : "", ['class' => 'form-control', 'required']) }}
+                               
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -28,10 +28,10 @@
                         
                         
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-4 control-label">{{ trans('dictionary.description') }}</label>
+                             {{ Form::label('description', trans('dictionary.description'), ['class' => 'col-md-4 control-label']) }}
 
                             <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}{{isset($service->description) ? $service->description : ''}}" required>
+                                {{ Form::textarea('description', isset($service->description) ? $service->description : "", ['class' => 'form-control', 'required']) }}
 
                                 @if ($errors->has('description'))
                                     <span class="help-block">
@@ -42,10 +42,10 @@
                         </div>
                         
                         <div class="form-group{{ $errors->has('value') ? ' has-error' : '' }}">
-                            <label for="value" class="col-md-4 control-label">{{ trans('dictionary.value') }}</label>
+                             {{ Form::label('value', trans('dictionary.value'), ['class' => 'col-md-4 control-label']) }}
 
                             <div class="col-md-6">
-                                <input id="value" type="text" class="form-control" name="value" value="{{ old('value') }}{{isset($service->value) ? $service->value : ''}}" required>
+                                {{ Form::number('value', isset($service->value) ? $service->value : "", ['class' => 'form-control', 'required']) }}
 
                                 @if ($errors->has('value'))
                                     <span class="help-block">
@@ -56,10 +56,10 @@
                         </div>
                         
                         <div class="form-group{{ $errors->has('virtuality') ? ' has-error' : '' }}">
-                            <label for="virtuality" class="col-md-4 control-label">{{ trans('dictionary.virtuality') }}</label>
+                             {{ Form::label('virtuality', trans('dictionary.virtuality'), ['class' => 'col-md-4 control-label']) }}
 
                             <div class="col-md-6">
-                                <input id="virtuality" type="checkbox" class="" name="virtuality" value="1" {{isset($service->virtuality) && $service->virtuality == 1 ? 'selected' : ''}}>
+                                {{ Form::checkbox('virtuality', isset($service->virtuality) ? $service->virtuality : "") }}
 
                                 @if ($errors->has('virtuality'))
                                     <span class="help-block">
@@ -71,15 +71,15 @@
                         
                                                 
                         <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-                            <label for="image" class="col-md-4 control-label">{{ trans('dictionary.cover') }}</label>
+                            {{ Form::label('image', trans('dictionary.cover'), ['class' => 'col-md-4 control-label']) }}
 
                             <div class="col-md-6">
                             
                             
-                            	<img src="{{isset($service->image) ? '/images/services/'.$service->image : ''}}"  {{isset($service->image) ? '' : 'class=hidden'}}>
-                            	
+                            	<img src="{{isset($service->image) ? '/images/services/'.$service->image : ''}}"  {{isset($service->image) ? '' : 'class=hidden'}}>                            	
                             
-                                <input id="image" type="file" class="" name="image" value="">
+                            	                          
+                                {{ Form::file('image', '') }}
 
                                 @if ($errors->has('image'))
                                     <span class="help-block">
@@ -90,19 +90,12 @@
                         </div>
                         
                         <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
-                            <label for="category" class="col-md-4 control-label">{{ trans('dictionary.category') }}</label>
+                            {{ Form::label('category', trans('dictionary.category'), ['class' => 'col-md-4 control-label']) }}
 
                             <div class="col-md-6">
                             
-                           		
-                                <select name="category" required>
-                                	<option value="">------</option>
-                                	@foreach($categories as $category)
-                                		
-                                		<option value="{{$category->id}}" {{isset($service->category_id) && $service->category_id == $category->id ? 'selected' : ''}} > {{$category->category}} </option>
-                                		
-                                	@endforeach
-                                </select>
+
+                                {{ Form::select('category', $selectedCategories , isset($service->category_id) ? $service->category_id : null, ['class' => 'form-control', 'required', 'placeholder' => '-----']) }}
 
                                 @if ($errors->has('category'))
                                     <span class="help-block">
@@ -114,7 +107,8 @@
                        
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-
+								{{ Form::hidden('serviceId', isset($service->id) ? $service->id : "") }}
+								
                                 <button type="submit" class="btn btn-primary">
                                     {{ trans('dictionary.save') }}
                                 </button>
