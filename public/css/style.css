@@ -78,6 +78,7 @@ div#index-banner > div.section {
     width: 290px;
     display: block;
     background-size: 100% 100%;
+    margin-bottom: 10px;
 }
 
 .registroFacebook{
@@ -105,7 +106,7 @@ div#index-banner > div.section {
 
 .medium {
     position: relative;
-    top: 150px;
+    margin-top: 150px;
 }
 
 .fondo {
@@ -150,6 +151,16 @@ div#index-banner > div.section {
 	
 }
 
+li.dropdown a {
+    color: #333 !important;
+}
+
+ nav .brand-logo{
+ 
+ 	color:#fff !important;
+ 	
+ }
+
 div#temasInteres > label {
     display: block;
     border: 1px solid #fff;
@@ -157,6 +168,7 @@ div#temasInteres > label {
     height: 70px;
     padding: 25px 10px;
     text-align: left;
+    margin: 10px;
 }
 
 @media only screen and (min-width: 993px){
