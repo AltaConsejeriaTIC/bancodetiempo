@@ -20,7 +20,7 @@ Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->middleware('serviceNull');
 
 Route::get('/register', 'NetworkAccountsController@login');
 
@@ -29,9 +29,21 @@ Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 Route::get('profile', 'Profile\ProfileController@showProfile');
 Route::get('profile/edit', 'Profile\ProfileController@editProfile');
 
-
-
 //Route Admin Panel
-Route::get('/admin', 'AdminController@index');
 
-Route::get('/service', 'ServiceController@index');
+Route::resource('admin','AdminController');
+Route::get('homeAdmin', 'AdminController@homeAdmin');
+Route::get('homeAdminUser', 'AdminController@homeAdminUser');
+Route::post('admin/show', ['as' => 'admin/show', 'uses'=>'AdminController@show']);
+Route::put('homeAdmin/update', ['as' => 'homeAdmin/update', 'uses'=>'AdminController@update']);
+
+//Mod Service
+
+Route::get('/service', 'ServiceController@index')->middleware('auth');
+
+Route::post('/service/save', 'ServiceController@create')->middleware('auth');
+
+Route::put('/service/save', 'ServiceController@update')->middleware('auth');
+
+Route::get('/service/{serviceid}', 'ServiceController@showService')->middleware('auth');
+
