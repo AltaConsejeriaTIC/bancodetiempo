@@ -55,15 +55,15 @@
                             </div>
                         </div>
                         
-                        <div class="form-group{{ $errors->has('virtuality') ? ' has-error' : '' }}">
-                             {{ Form::label('virtuality', trans('dictionary.virtuality'), ['class' => 'col-md-4 control-label']) }}
+                        <div class="form-group{{ $errors->has('virtually') ? ' has-error' : '' }}">
+                             {{ Form::label('virtually', trans('dictionary.virtuality'), ['class' => 'col-md-4 control-label']) }}
 
                             <div class="col-md-6">
-                                {{ Form::checkbox('virtuality', isset($service->virtuality) ? $service->virtuality : "") }}
+                                {{ Form::checkbox('virtually', 1, isset($service->virtually) ? $service->virtually : "") }}
 
-                                @if ($errors->has('virtuality'))
+                                @if ($errors->has('virtually'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('virtuality') }}</strong>
+                                        <strong>{{ $errors->first('virtually') }}</strong>
                                     </span>
                                 @endif
                             </div>
