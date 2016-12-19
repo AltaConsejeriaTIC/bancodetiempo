@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\NetworkAccounts;
 
 use App\User;
+use Illuminate\Support\Facades\Input;
 
 class NetworkAccountsController extends Controller
 {
@@ -29,7 +30,7 @@ class NetworkAccountsController extends Controller
 	
 	public function createUser(Request $request){
 		
-		
+			
 		$account = new NetworkAccounts([
 				'provider_id' => $request->input('provider_id'),
 				'provider' => $request->input('provider')
@@ -46,7 +47,7 @@ class NetworkAccountsController extends Controller
 					'avatar' => $request->input('avatar'),
 					'state' => true,
 					'gender' => $request->input('gender'),
-					'birthDate' => $request->input('birthday'),
+					'birthDate' => date("Y-m-d", strtotime($request->input('birthdate'))),
 					'aboutMe' => $request->input("aboutMe"),
 					'address' => $request->input('address'),
 					'website' => $request->input('website'),
@@ -59,14 +60,14 @@ class NetworkAccountsController extends Controller
 		
 		auth()->login($user);
 		
-		return Redirect::to("home");
+		return Redirect::to("service");
 		
 		
 	}
 	
 	public function callback($provider = ""){
 	
-		if(!$provider || $provider == ''){
+		if(!$provider || $provider == '' || Input::get("error")){
 			return Redirect::route("login", array('message' => "Error en la autenticación"));
 		}
 	
@@ -117,7 +118,7 @@ class NetworkAccountsController extends Controller
 	}
 	
 	private function getProviderDataFacebook(){
-	
+			
 		$providerData = Socialite::driver("facebook")->fields([
 				'first_name', 'last_name', 'email', 'gender', 'birthday'
 		])->user();
