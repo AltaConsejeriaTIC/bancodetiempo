@@ -44,12 +44,14 @@
                         
 	                        <div class="col-md-6">
 	                        
-	                        	<label class="radio-inline">
-							  		<input type="radio" name="gender" id="gender" value="male" required> Hombre
-								</label>
-								<label class="radio-inline">
-								  	<input type="radio" name="gender" id="gender" value="female" required> Mujer
-								</label>
+	                        	{{ Form::radio('gender', 'male', $user->gender == 'male' ? true : false ,['id' => 'man']) }}
+							
+								{{ Form::label('man', 'Hombre', ['class' => 'col-md-4 control-label']) }}
+								
+								
+								{{ Form::radio('gender', 'female', $user->gender == 'female' ? true : false ,['id' => 'woman']) }}
+							
+								{{ Form::label('woman', 'Mujer', ['class' => 'col-md-4 control-label']) }}
 								
 								@if ($errors->has('gender'))
                                     <span class="help-block">

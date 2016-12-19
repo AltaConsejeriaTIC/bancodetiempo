@@ -137,6 +137,12 @@ div#index-banner > div.section {
     height: 100%;
 }
 
+
+
+nav li.dropdown {
+    float: right;
+}
+
 #temasInteres {
     display: table;
     margin-bottom: 20px;
