@@ -13,5 +13,9 @@ return [
 	'state'	=>	'Estado',
 	'birthDate' => 'Fecha de nacimiento',
 	'aboutMe'	=> 'Acerca de mi',
-	'address'	=>	'Direcci&oacute;n'
+	'address'	=>	'Direcci&oacute;n',
+	'login' => 'Ingresar',
+	'registrationMessage' => 'Unete a nuestro banco de tiempo a traves de tu red social favorita',
+	'website'	=>	'Sitio web',
+	'email'		=> 'E-mail'
 ];

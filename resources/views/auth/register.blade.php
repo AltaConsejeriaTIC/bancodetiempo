@@ -1,16 +1,55 @@
 @extends('layouts.app')
 
 @section('content')
+<div class='fondo'>
+	<div></div>
+	<img src="{{ asset('images/banner2.jpg') }}" alt="" />
+</div>
 
+<style>
+input[type="text"]{
+	
+	color:#fff !important
+	
+}
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register/createUser') }}">
+                <div class="panel-body medium">
+                
+                	{!! Form::open(['url' => '/register/createUser', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'role' => 'form']) !!}
                         {{ csrf_field() }}
 
+						<div id="temasInteres">
+						
+													
+							{{ Form::checkbox('interests[]', 'Arte y dise&ntilde;o', false,['id' => 'Art']) }}
+							
+							{{ Form::label('Art', 'Arte y dise&ntilde;o', ['class' => 'col-md-4 control-label']) }}
+							
+							{{ Form::checkbox('interests[]', 'Negocios', false,['id' => 'business']) }}
+							
+							{{ Form::label('business', 'Negocios', ['class' => 'col-md-4 control-label']) }}
+							
+							{{ Form::checkbox('interests[]', 'Educacion', false,['id' => 'education']) }}
+							
+							{{ Form::label('education', 'Educacion', ['class' => 'col-md-4 control-label']) }}
+							
+							{{ Form::checkbox('interests[]', 'Fitness', false,['id' => 'fitness']) }}
+							
+							{{ Form::label('fitness', 'Fitness', ['class' => 'col-md-4 control-label']) }}
+							
+							{{ Form::checkbox('interests[]', 'Hogar', false,['id' => 'home']) }}
+							
+							{{ Form::label('home', 'Hogar', ['class' => 'col-md-4 control-label']) }}
+							
+							{{ Form::checkbox('interests[]', 'Tecnologia', false,['id' => 'tecnology']) }}
+							
+							{{ Form::label('tecnology', 'Tecnologia', ['class' => 'col-md-4 control-label']) }}
+						
+						</div>
 
 						<div class="avatar">
 						
@@ -54,12 +93,14 @@
                         
 	                        <div class="col-md-6">
 	                        
-	                        	<label class="radio-inline">
-							  		<input type="radio" name="gender" id="gender" value="male" required> Hombre
-								</label>
-								<label class="radio-inline">
-								  	<input type="radio" name="gender" id="gender" value="female" required> Mujer
-								</label>
+	                        	{{ Form::radio('gender', 'male', '' ,['id' => 'man']) }}
+							
+								{{ Form::label('man', 'Hombre', ['class' => 'col-md-4 control-label']) }}
+								
+								
+								{{ Form::radio('gender', 'female', '' ,['id' => 'woman']) }}
+							
+								{{ Form::label('woman', 'Mujer', ['class' => 'col-md-4 control-label']) }}
 								
 								@if ($errors->has('gender'))
                                     <span class="help-block">

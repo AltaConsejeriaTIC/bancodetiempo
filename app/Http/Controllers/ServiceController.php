@@ -66,7 +66,7 @@ class ServiceController extends Controller
    				'name' => $request->input('name'),
    				'description' => $request->input('description'),
    				'value' => $request->input('value'),
-   				'virtuality' => $request->input('virtuality'),
+   				'virtually' => $request->input('virtually'),
    				'category_id' => $request->input('category')
    		]);
    		
@@ -98,7 +98,7 @@ class ServiceController extends Controller
    				'name' => $request->input('name'), 
    				'description' => $request->input('description'),
    				'value' => $request->input('value'),
-   				'virtuality' => $request->input('virtuality'),
+   				'virtually' => $request->input('virtually'),
    				'image' => $image,
    				'user_id' => Auth::user()->id,
    				'category_id' => $request->input('category')
