@@ -11,21 +11,23 @@
                     <img align="left"  style="margin:30px; border-radius:80px;" src="{{ Auth::user()->avatar }}" alt="Profile image example"/>
                     <div class="fb-profile-text">
                         <h1>{{$user->first_name." ".$user->last_name}}</h1>
-                        <label for="address" class="col-md-4 control-label">Email</label>
+                        
+                        <label for="email" class="col-md-4 control-label">{{ trans('dictionary.email') }}</label>
                         <p>{{$user->email}}</p>
-                        <label for="address" class="col-md-4 control-label">Estado</label>
+                        <label for="address" class="col-md-4 control-label">{{ trans('dictionary.state') }}</label>
                         <p>{{$user->state}}</p>
-                        <label for="address" class="col-md-4 control-label">Genero</label>
+                        <label for="gender" class="col-md-4 control-label">{{ trans('dictionary.gender') }}</label>
                         <p>{{$user->gender}}</p>
-                        <label for="address" class="col-md-4 control-label">Fecha de Nacimiento</label>
+                        <label for="birthDate" class="col-md-4 control-label">{{ trans('dictionary.birthDate') }}</label>
                         <p>{{$user->birthDate}}</p>
-                        <label for="address" class="col-md-4 control-label">Direccion</label>
+                        <HR> 
+                        <label for="address" class="col-md-4 control-label">{{ trans('dictionary.address') }}</label>
                         <p>{{$user->address}}</p>
-                        <label for="address" class="col-md-4 control-label">Acerca de mi</label>
+                        <label for="aboutMe" class="col-md-4 control-label">{{ trans('dictionary.aboutMe') }}</label>
                         <p>{{$user->aboutMe}}</p>
-                        <label for="address" class="col-md-4 control-label">Webside</label>
+                        <label for="website" class="col-md-4 control-label">{{ trans('dictionary.website') }}</label>
                         <p>{{$user->website}}</p>
-                       <a href="{{ url('profile/edit') }}">Editar</a>
+                       <a href="{{ url('profile/edit') }}">        Editar</a>
                 </div>
             </div>
         </div>
