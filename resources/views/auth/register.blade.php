@@ -20,7 +20,7 @@ input[type="text"]{
                 <div class="panel-body medium">
                 
                 	{!! Form::open(['url' => '/register/createUser', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'role' => 'form']) !!}
-                        {{ csrf_field() }}
+                        
 
 						<div id="temasInteres">
 						
@@ -53,18 +53,20 @@ input[type="text"]{
 
 						<div class="avatar">
 						
-							<img src="{{ $providerData['avatar'] }}{{ old('avatar') }}" alt="avatar" />
+							<img src="{{ $providerData['avatar'] }}{{ old('avatar') }}" alt="avatar" class='avatar'/>
 						
-							<input type="hidden" value="{{ $providerData['avatar'] }}{{ old('avatar') }}" name="avatar">
+							{{ Form::hidden('avatar', $providerData['avatar'] ) }}
 						
 						</div>
 
                         <div class="form-group{{ $errors->has('firstName') ? ' has-error' : '' }}">
-                            <label for="firstName" class="col-md-4 control-label">Nombre</label>
+                            
+                            {{ Form::label('firstName', trans('dictionary.firstName'), ['class' => 'col-md-4 control-label'] ) }}
 
                             <div class="col-md-6">
-                                <input id="firstName" type="text" class="form-control" name="firstName" value="{{ old('firstName') }}{{  $providerData['first_name']  }}" required autofocus>
-
+                            
+                            	{{ Form::text('firstName', $providerData['first_name'], ['class' => 'form-control', 'required', 'autofocus' ]) }}
+                               
                                 @if ($errors->has('firstName'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('firstName') }}</strong>
@@ -74,11 +76,11 @@ input[type="text"]{
                         </div>
                         
                         <div class="form-group{{ $errors->has('lastName') ? ' has-error' : '' }}">
-                            <label for="lastName" class="col-md-4 control-label">Apellido</label>
+                            {{ Form::label('firstName', trans('dictionary.lastName'), ['class' => 'col-md-4 control-label'] ) }}
 
                             <div class="col-md-6">
-                                <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}{{  $providerData['last_name']  }}" required autofocus>
-
+                                {{ Form::text('lastName', $providerData['last_name'], ['class' => 'form-control', 'required', 'autofocus' ]) }}
+                               
                                 @if ($errors->has('lastName'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('lastName') }}</strong>
@@ -89,7 +91,7 @@ input[type="text"]{
                         
                         <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                         
-                        	<label for="gender" class="col-md-4 control-label">Genero</label>
+                        	{{ Form::label('gender', trans('dictionary.gender'), ['class' => 'col-md-4 control-label'] ) }}
                         
 	                        <div class="col-md-6">
 	                        
@@ -114,24 +116,24 @@ input[type="text"]{
                         
                          <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
                          
-                         	<label for="birthdate" class="col-md-4 control-label">Fecha de nacimiento</label>
+                         	{{ Form::label('birthdate', trans('dictionary.birthDate'), ['class' => 'col-md-4 control-label'] ) }}
                          
-                         	<div class="col-md-6">               
-                         		
-                         	
-                         		<input type="datetime" id="birthdate" name="birthdate" class="form-control datepicker" value="{{ old('birthdate')}}{{  $providerData['birthday']  }}" required/>
-                         		
+                         	<div class="col-md-6">  
+                         	             
+                         		{{ Form::text('birthdate', $providerData['birthdate'], ['class' => 'form-control datepicker', 'id' => 'birthdate', 'required' ]) }}
+                                                        	
                          	</div>
                          
                          </div>
                         
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
+                            {{ Form::label('email', trans('dictionary.email'), ['class' => 'col-md-4 control-label'] ) }}
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}{{  $providerData['email']  }}" required>
-
+                                
+								{{ Form::text('email', $providerData['email'], ['class' => 'form-control', 'id' => 'email', 'required' ]) }}
+                                
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -141,11 +143,11 @@ input[type="text"]{
                         </div>
                         
                         <div class="form-group{{ $errors->has('aboutMe') ? ' has-error' : '' }}">
-                            <label for="aboutMe" class="col-md-4 control-label">Acerca de mi</label>
+                           {{ Form::label('aboutMe', trans('dictionary.aboutMe'), ['class' => 'col-md-4 control-label'] ) }}
 
                             <div class="col-md-6">
-                                <textarea id="aboutMe" class="form-control" name="aboutMe"  required>{{ old('aboutMe') }}</textarea>
-
+                            	{{ Form::textarea('aboutMe', '', ['class' => 'form-control', 'id' => 'aboutMe', 'required' ]) }}
+                                
                                 @if ($errors->has('aboutMe'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('aboutMe') }}</strong>
@@ -155,10 +157,10 @@ input[type="text"]{
                         </div>
                         
                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Direccion</label>
+                            {{ Form::label('address', trans('dictionary.address'), ['class' => 'col-md-4 control-label'] ) }}
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+                            	{{ Form::text('address', '', ['class' => 'form-control', 'id' => 'address', 'required' ]) }}
 
                                 @if ($errors->has('address'))
                                     <span class="help-block">
@@ -169,10 +171,10 @@ input[type="text"]{
                         </div>
                         
                         <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
-                            <label for="website" class="col-md-4 control-label">Sitio Web</label>
+                            {{ Form::label('siteweb', trans('dictionary.website'), ['class' => 'col-md-4 control-label'] ) }}
 
                             <div class="col-md-6">
-                                <input id="website" type="text" class="form-control" name="website" value="{{ old('website') }}">
+                                {{ Form::text('website', '', ['class' => 'form-control', 'id' => 'siteweb' ]) }}
 
                                 @if ($errors->has('website'))
                                     <span class="help-block">
@@ -186,10 +188,10 @@ input[type="text"]{
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            	<input type="hidden" name="provider_id" value="{{ old('provider_id') }}{{ $providerData['id'] }}" />
-                            	<input type="hidden" name="provider" value="{{ old('provider') }}" />
+                            	{{ Form::hidden('provider_id', $providerData['id']) }}
+                            	{{ Form::hidden('provider', $provider) }}
                                 <button type="submit" class="btn btn-primary">
-                                    Registro
+                                    {{ trans('dictionary.register') }} 
                                 </button>
                             </div>
                         </div>

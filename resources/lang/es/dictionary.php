@@ -17,5 +17,8 @@ return [
 	'login' => 'Ingresar',
 	'registrationMessage' => 'Unete a nuestro banco de tiempo a traves de tu red social favorita',
 	'website'	=>	'Sitio web',
-	'email'		=> 'E-mail'
+	'email'		=> 'E-mail',
+	'firstName'  => 'Nombre',
+	'lastname' => 'Apellido',
+	'register' => 'Registro'
 ];

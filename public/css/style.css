@@ -177,6 +177,15 @@ div#temasInteres > label {
     margin: 10px;
 }
 
+img.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    margin: 40px auto;
+}
+
 @media only screen and (min-width: 993px){
 	
 	div#index-banner {

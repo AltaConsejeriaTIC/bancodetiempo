@@ -78,7 +78,7 @@ class NetworkAccountsController extends Controller
 		$networkAccounts = new NetworkAccounts();
 	
 		$networkAccounts->start($providerData);
-	
+		
 		if($networkAccounts->existsUser()){
 				
 			auth()->login($networkAccounts->getUser());
@@ -87,7 +87,7 @@ class NetworkAccountsController extends Controller
 				
 		}else{
 				
-			return view("auth/register", compact('providerData'));
+			return view("auth/register", compact('providerData', 'provider'));
 	
 		}
 	
@@ -127,11 +127,11 @@ class NetworkAccountsController extends Controller
 				"first_name" => isset($providerData->getRaw()["first_name"]) ? $providerData->getRaw()["first_name"] : "",
 				"last_name" =>  isset($providerData->getRaw()["last_name"]) ? $providerData->getRaw()["last_name"] : "",
 				"email" =>  $providerData->getEmail(),
-				"birthday" =>  isset($providerData->getRaw()["birthday"]) ? $providerData->getRaw()["birthday"] : "",
+				"birthdate" =>  isset($providerData->getRaw()["birthday"]) ? $providerData->getRaw()["birthday"] : "",
 				"gender" =>  isset($providerData->getRaw()["gender"]) ? $providerData->getRaw()["gender"] : "",
 				"id" =>  $providerData->getId(),
 				"provider" => "facebook",
-				"avatar" => $providerData->getAvatar()
+				"avatar" => $providerData->avatar_original
 	
 		];
 	
@@ -142,16 +142,16 @@ class NetworkAccountsController extends Controller
 	private function getProviderDataGoogle(){
 	
 		$providerData = Socialite::driver("google")->user();
-	
+		
 		$newProviderData = [
 				"first_name" => isset($providerData->getRaw()["name"]["givenName"]) ? $providerData->getRaw()["name"]["givenName"] : "",
 				"last_name" =>  isset($providerData->getRaw()["name"]["familyName"]) ? $providerData->getRaw()["name"]["familyName"] : "",
 				"email" =>  $providerData->getEmail(),
-				"birthday" =>  "",
+				"birthdate" =>  "",
 				"gender" =>  isset($providerData->getRaw()["gender"]) ? $providerData->getRaw()["gender"] : "",
 				"id" =>  $providerData->getId(),
 				"provider" => "google",
-				"avatar" => $providerData->getAvatar()
+				"avatar" => $providerData->avatar_original
 	
 		];
 	
@@ -162,16 +162,16 @@ class NetworkAccountsController extends Controller
 	private function getProviderDataLinkedin(){
 	
 		$providerData = Socialite::driver("linkedin")->user();
-	
+		
 		$newProviderData = [
 				"first_name" => isset($providerData->getRaw()["firstName"]) ? $providerData->getRaw()["firstName"] : "",
 				"last_name" =>  isset($providerData->getRaw()["lastName"]) ? $providerData->getRaw()["lastName"] : "",
 				"email" =>  $providerData->getEmail(),
-				"birthday" =>  isset($providerData->getRaw()["birthday"]) ? $providerData->getRaw()["birthday"] : "",
+				"birthdate" =>  isset($providerData->getRaw()["birthday"]) ? $providerData->getRaw()["birthday"] : "",
 				"gender" =>  isset($providerData->getRaw()["gender"]) ? $providerData->getRaw()["gender"] : "",
 				"id" =>  $providerData->getId(),
 				"provider" => "linkedin",
-				"avatar" => $providerData->getAvatar()
+				"avatar" => $providerData->avatar_original
 	
 		];
 			
