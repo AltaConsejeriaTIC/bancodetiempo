@@ -1,81 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body  medium">
-                
-                	<a class="facebook-login" href="loginRedes/facebook">LOGIN FACEBOOK</a>
-                	
-                	<br>
-                	
-                	<a class="google-login" href="loginRedes/google">LOGIN GOOGLE</a>
-                	
-                	<br>
-                	
-                	<a class="linkedin-login" href="loginRedes/linkedin">LOGIN LINKEDIN</a>
-                		
-                	
-                
-                    <!--<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
+<div id="index-banner" class="parallax-container">
+	<div class="section no-pad-bot">
+	      <div class="container">
+	        	<div class="botonesLogin">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+	        	<p>Iniciar sesión</p>
+	        	<a href="{{ url('loginRedes/facebook') }}" class="registroFacebook"></a>
+	        	<a href="{{ url('loginRedes/google') }}" class="registroGoogle"></a>
+	        	<a href="{{ url('loginRedes/linkedin') }}" class="registroLinkedin"></a>
+						<div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>  -->
-                </div>
-            </div>
-        </div>
-    </div>
+						</div>
+	        	</div>
+	      </div>
+	</div>
+	<div class="banner"><img src="{{asset('images/banner.jpg')}}" alt="Unsplashed background img 1"></div>
 </div>
 @endsection

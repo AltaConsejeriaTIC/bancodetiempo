@@ -9,7 +9,7 @@
                 <div class="panel-body  medium">
                 	{!! Form::open(['url' => '/service/save', 'method' => $method, 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'role' => 'form']) !!}
                         {{ csrf_field() }}
-
+ .,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             {{ Form::label('name', trans('dictionary.title'), ['class' => 'col-md-4 control-label', 'id' => 'name']) }}
 

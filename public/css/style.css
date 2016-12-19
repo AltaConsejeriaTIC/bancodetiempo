@@ -1,17 +1,17 @@
 .profileImg
-{	
-	width: 20%;  
-  margin-top: 2%;  
+{
+	width: 20%;
+  margin-top: 2%;
   margin-bottom: 2%;
   margin-left: 40%;
   border-radius: 60%;
 }
 
-.titleContent 
-{     
-	font-size: 200%;     
-	font-weight: bold;     
-	margin: 1%; 
+.titleContent
+{
+	font-size: 200%;
+	font-weight: bold;
+	margin: 1%;
 }
 
 .subTitle
@@ -39,12 +39,12 @@ nav {
     right: 0;
     bottom: 0;
     z-index: -1;
-	
+
 }
 
 .banner img{
 	max-width:100%;
-	max-height:100%;	
+	max-height:100%;
 	min-width:100%;
 	min-height:100%;
 }
@@ -80,23 +80,44 @@ div#index-banner > div.section {
     background-size: 100% 100%;
     margin-bottom: 10px;
 }
+.botonesLogin {
+    width: 290px;
+    top: 350px;
+    position: relative;
+    margin: auto;
+}
+.botonesLogin p {
+		font-size: 18pt;
+		font-family: sans-serif;
+		font-weight: bold;
+		color: white;
+		margin: auto;
+		padding: 15px;
+	}
 
+.botonesLogin > a {
+    height: 40px;
+    width: 290px;
+    display: block;
+    background-size: 100% 100%;
+    margin-bottom: 10px;
+}
 .registroFacebook{
-	
+
 	background:url('../images/facebookRegistro.png');
-	
+
 }
 
 .registroGoogle{
-	
+
 	background:url('../images/googleRegistro.png');
-	
+
 }
 
 .registroLinkedin{
-	
+
 	background:url('../images/linkedinRegistro.png');
-	
+
 }
 
 .panel {
@@ -116,16 +137,16 @@ div#index-banner > div.section {
     z-index: 0;
     width: 100%;
     height: 100%;
-    
+
 }
 
 .fondo > img{
-	
+
 	max-width:100%;
 	max-height:100%;
 	min-width:100%;
 	min-height:100%;
-	
+
 }
 
 .fondo > div {
@@ -151,10 +172,10 @@ nav li.dropdown {
 }
 
 [type="checkbox"]:checked + label{
-	
+
 	background: #fff;
 	color: #2C3E50;
-	
+
 }
 
 li.dropdown a {
@@ -162,9 +183,9 @@ li.dropdown a {
 }
 
  nav .brand-logo{
- 
+
  	color:#fff !important;
- 	
+
  }
 
 div#temasInteres > label {
@@ -187,15 +208,15 @@ img.avatar {
 }
 
 @media only screen and (min-width: 993px){
-	
+
 	div#index-banner {
 	    height: 1024px;
 	}
-	
+
 	.container {
 	    width: 78%;
 	}
-	
+
 	a#logo-container {
 	    text-transform: uppercase;
 	    max-width: 340px;
@@ -204,31 +225,31 @@ img.avatar {
 	    margin-top: 40px;
 	    font-size: 25px;
 	}
-	
+
 	.brand-logo i {
 	    font-size: 67px !important;
 	}
-	
+
 	nav{
-	
+
 		 height: 120px;
 		 z-index: 10;
-	
+
 	}
-	
+
 }
 
 @media only screen and (max-width: 450px){
 
-	
+
 	div#index-banner {
 	    height: 600px;
 	}
-	
+
 	.brand-logo i {
 	    font-size: 45px !important;
 	}
-	
+
 	a#logo-container {
 	        text-transform: uppercase;
     max-width: 623px;
@@ -237,14 +258,14 @@ img.avatar {
     margin-top: 40px;
     font-size: 18px;
 	}
-	
+
 	nav{
-	
+
 		 height: 120px;
 		 z-index: 10;
-	
+
 	}
-	
+
 	.botonesRegistro {
 	    width: 290px;
 	    top: 200px;
@@ -254,6 +275,6 @@ img.avatar {
 	    -webkit-transform: translateX(-50%);
 	    transform: translateX(-50%);
 	}
-	
-	
+
+
 }
