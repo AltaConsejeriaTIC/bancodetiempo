@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Service extends Model
 {
 	protected  $fillable = ['name', 'description', 'value', 'virtually', 'image', 'user_id', 'category_id'];
@@ -17,7 +18,7 @@ class Service extends Model
 	
 	public function category(){
 		
-		return $this->belongsTo(Category::class);
+		return $this->belongsTo("App\Models\Category");
 		
 	}
 }

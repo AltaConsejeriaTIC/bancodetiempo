@@ -37,7 +37,7 @@
             <div class="navbar-header">          
               <!-- Branding Image -->
               <a class="navbar-brand" href="{{ url('/admin') }}">
-                Panel de Administración
+                Banco de Tiempo
               </a>
             </div>
           </div>

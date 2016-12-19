@@ -17,10 +17,10 @@
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Bootstrap Material Design -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-material-design.min.css">
-    <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-material-design.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
     <!-- Custom styles -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -45,8 +45,8 @@
               </button>
 
               <!-- Branding Image -->
-              <a class="navbar-brand" href="{{ url('/admin') }}">
-                Panel de Administración
+              <a class="navbar-brand" href="{{ url('/homeAdmin') }}">
+                Banco de Tiempo
               </a>
             </div>
 
@@ -90,9 +90,9 @@
     </div>
 
     <!-- Scripts -->    
-    <script src="js/app.js"></script>       
-    <script src="js/material.min.js"></script>   
-    <script src="js/ripples.min.js"></script>   
-    <script src="js/script.js"></script>        
+    <script src="{{ asset('/js/app.js') }}"></script>       
+    <script src="{{ asset('/js/material.min.js') }}"></script>   
+    <script src="{{ asset('/js/ripples.min.js') }}"></script>   
+    <script src="{{ asset('/js/script.js') }}"></script>        
 </body>
 </html>
