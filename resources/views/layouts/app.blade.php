@@ -29,10 +29,39 @@
   <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+
+
   <nav class="" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo"><i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
-      <a class="loginBt" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
+      
+      @if (Auth::guest())
+          <a class="loginBt" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
+     @else
+       	<li class="dropdown">
+                                 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                 
+             		{{ Auth::user()->first_name . " " . Auth::user()->last_name }} <span class="caret"></span>
+                
+ 				</a>
+  
+              <ul class="dropdown-menu" role="menu">
+                    <li>
+                                     
+                    	 <a href="{{ url('profile') }}">Perfil</a>
+                        <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                             Logout
+                        </a>
+ 
+ 						<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                   </li>
+              </ul>
+        </li>
+  @endif
+     
     </div>
   </nav>
 
@@ -83,6 +112,7 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/materialize.js') }}"></script>
   <script src="{{ asset('js/init.js') }}"></script>
 

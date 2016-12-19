@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
-                <div class="panel-body">
+                <div class="panel-body  medium">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('profile/update') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('firstName') ? ' has-error' : '' }}">
@@ -44,12 +44,14 @@
                         
 	                        <div class="col-md-6">
 	                        
-	                        	<label class="radio-inline">
-							  		<input type="radio" name="gender" id="gender" value="male" required> Hombre
-								</label>
-								<label class="radio-inline">
-								  	<input type="radio" name="gender" id="gender" value="female" required> Mujer
-								</label>
+	                        	{{ Form::radio('gender', 'male', $user->gender == 'male' ? true : false ,['id' => 'man']) }}
+							
+								{{ Form::label('man', 'Hombre', ['class' => 'col-md-4 control-label']) }}
+								
+								
+								{{ Form::radio('gender', 'female', $user->gender == 'female' ? true : false ,['id' => 'woman']) }}
+							
+								{{ Form::label('woman', 'Mujer', ['class' => 'col-md-4 control-label']) }}
 								
 								@if ($errors->has('gender'))
                                     <span class="help-block">

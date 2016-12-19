@@ -5,6 +5,14 @@
 	<div></div>
 	<img src="{{ asset('images/banner2.jpg') }}" alt="" />
 </div>
+
+<style>
+input[type="text"]{
+	
+	color:#fff !important
+	
+}
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -85,12 +93,14 @@
                         
 	                        <div class="col-md-6">
 	                        
-	                        	<label class="radio-inline">
-							  		<input type="radio" name="gender" id="gender" value="male" required> Hombre
-								</label>
-								<label class="radio-inline">
-								  	<input type="radio" name="gender" id="gender" value="female" required> Mujer
-								</label>
+	                        	{{ Form::radio('gender', 'male', '' ,['id' => 'man']) }}
+							
+								{{ Form::label('man', 'Hombre', ['class' => 'col-md-4 control-label']) }}
+								
+								
+								{{ Form::radio('gender', 'female', '' ,['id' => 'woman']) }}
+							
+								{{ Form::label('woman', 'Mujer', ['class' => 'col-md-4 control-label']) }}
 								
 								@if ($errors->has('gender'))
                                     <span class="help-block">

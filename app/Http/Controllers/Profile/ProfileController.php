@@ -22,7 +22,7 @@ class ProfileController extends Controller
     }
    public function showEditProfile()
     {
-		$user = Auth::user();
+		$user = User::find(Auth::User()->id);
         return view('profile/edit', compact('user'));
         
     }
@@ -33,7 +33,7 @@ class ProfileController extends Controller
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
 		$user->gender = $request->input('gender');
-		$user->birthDate = $request->input('birthday');
+		$user->birthDate = date("Y-m-d", strtotime($request->input('birthdate')));
 		$user->aboutMe = $request->input("aboutMe");
 		$user->address = $request->input('address');
 		$user->website = $request->input('website');
