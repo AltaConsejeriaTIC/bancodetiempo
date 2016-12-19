@@ -13,5 +13,7 @@ return [
 	'state'	=>	'Estado',
 	'birthDate' => 'Fecha de nacimiento',
 	'aboutMe'	=> 'Acerca de mi',
-	'address'	=>	'Direcci&oacute;n'
+	'address'	=>	'Direcci&oacute;n',
+	'website'	=>	'Sitio web',
+	'email'		=> 'E-mail'
 ];
