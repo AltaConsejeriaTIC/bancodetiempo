@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 class="modal-title titleContent">Registrar Usuario Administrador</h4>
       </div>
-      {!! Form::open(['route' => 'admin.store', 'method'=> 'post'])!!}
+      {!! Form::open(['route' => 'adminUser.store', 'method'=> 'post'])!!}
 				<div class="modal-body">									
 					<div class="row">
 						<div class="form-group col-md-10">
@@ -21,7 +21,7 @@
             <div class="form-group col-md-10">
               <label for="email">E-Mail</label>
               <input id="email" type="email" class="form-control" name="email" required >               
-            </div>
+            </div>           
 					  
 				  </div>
 				<div class="modal-footer">					
