@@ -16,6 +16,6 @@
 	        	</div>
 	      </div>
 	</div>
-	<div class="banner"><img src="{{asset('images/banner.jpg')}}" alt="Unsplashed background img 1"></div>
+	<div class="homeSection1"><img src="{{asset('images/banner.jpg')}}" alt="Unsplashed background img 1"></div>
 </div>
 @endsection

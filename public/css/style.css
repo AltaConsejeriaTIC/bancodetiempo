@@ -1,53 +1,41 @@
-.profileImg
-{
-	width: 20%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  margin-left: 40%;
-  border-radius: 60%;
+header {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: center;
+  background-image: url(../images/banner.jpg);
+  text-align: center;
+  color: white;
 }
-
-.titleContent
-{
-	font-size: 200%;
-	font-weight: bold;
-	margin: 1%;
+header .header-content {
+  position: relative;
+  text-align: center;
+  padding: 40px 15px 100px;
+  width: 100%;
 }
-
-.subTitle
-{
-	text-align: center;
-}
-
-.modalPanel
-{
-	margin: 2%;
-}
-
-nav {
-	background-color:transparent !important;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  box-shadow: 0px 0px 0px !important;
-}
-
-.banner{
-	position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
+.headerSection1{
+			margin-left: -50%;
 
 }
 
-.banner img{
-	max-width:100%;
-	max-height:100%;
-	min-width:100%;
-	min-height:100%;
-}
+
+a#logo-container {
+  	    text-transform: uppercase;
+  	    max-width: 340px;
+  	    white-space: normal;
+  	    line-height: 30px;
+  	    margin-top: 40px;
+  	    font-size: 25px;
+				color:white;
+  	}
+
+  	.brand-logo i {
+  	    font-size: 67px !important;
+  	}
 
 a.loginBt {
     float: right;
@@ -55,17 +43,11 @@ a.loginBt {
     font-size: 20px;
 }
 
-div#index-banner > div.section {
-    height: 100%;
-    background: rgba(52, 69, 84, 0.7);
-}
-
 .botonesRegistro {
     width: 290px;
     top: 350px;
-    position: relative;
     right: 100px;
-    float: right;
+		margin-left: 65%;
 }
 
 .botonesRegistro > p {
@@ -117,164 +99,5 @@ div#index-banner > div.section {
 .registroLinkedin{
 
 	background:url('../images/linkedinRegistro.png');
-
-}
-
-.panel {
-    background-color: transparent;
-    border: 0px;
-}
-
-.medium {
-    position: relative;
-    margin-top: 150px;
-}
-
-.fondo {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-
-}
-
-.fondo > img{
-
-	max-width:100%;
-	max-height:100%;
-	min-width:100%;
-	min-height:100%;
-
-}
-
-.fondo > div {
-    background: rgba(52, 69, 84, 0.7);
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-}
-
-
-
-nav li.dropdown {
-    float: right;
-}
-
-#temasInteres {
-    display: table;
-    margin-bottom: 20px;
-    width: 100%;
-    height: 100%;
-}
-
-[type="checkbox"]:checked + label{
-
-	background: #fff;
-	color: #2C3E50;
-
-}
-
-li.dropdown a {
-    color: #333 !important;
-}
-
- nav .brand-logo{
-
- 	color:#fff !important;
-
- }
-
-div#temasInteres > label {
-    display: block;
-    border: 1px solid #fff;
-    width: 214px;
-    height: 70px;
-    padding: 25px 10px;
-    text-align: left;
-    margin: 10px;
-}
-
-img.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    display: block;
-    position: relative;
-    margin: 40px auto;
-}
-
-@media only screen and (min-width: 993px){
-
-	div#index-banner {
-	    height: 1024px;
-	}
-
-	.container {
-	    width: 78%;
-	}
-
-	a#logo-container {
-	    text-transform: uppercase;
-	    max-width: 340px;
-	    white-space: normal;
-	    line-height: 30px;
-	    margin-top: 40px;
-	    font-size: 25px;
-	}
-
-	.brand-logo i {
-	    font-size: 67px !important;
-	}
-
-	nav{
-
-		 height: 120px;
-		 z-index: 10;
-
-	}
-
-}
-
-@media only screen and (max-width: 450px){
-
-
-	div#index-banner {
-	    height: 600px;
-	}
-
-	.brand-logo i {
-	    font-size: 45px !important;
-	}
-
-	a#logo-container {
-	        text-transform: uppercase;
-    max-width: 623px;
-    white-space: normal;
-    line-height: 21px;
-    margin-top: 40px;
-    font-size: 18px;
-	}
-
-	nav{
-
-		 height: 120px;
-		 z-index: 10;
-
-	}
-
-	.botonesRegistro {
-	    width: 290px;
-	    top: 200px;
-	    position: relative;
-	    float: initial;
-	    left: 50%;
-	    -webkit-transform: translateX(-50%);
-	    transform: translateX(-50%);
-	}
-
 
 }
