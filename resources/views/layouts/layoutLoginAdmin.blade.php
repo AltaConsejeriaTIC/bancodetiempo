@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-material-design.min.css">
     <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
     <!-- Custom styles -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/styleAdmin.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>

@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-material-design.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
     <!-- Custom styles -->
-    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/styleAdmin.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -46,7 +46,7 @@
 
               <!-- Branding Image -->
               <a class="navbar-brand" href="{{ url('/homeAdmin') }}">
-                Banco de Tiempo
+                Banco de Tiempo de Bogotá
               </a>
             </div>
 
