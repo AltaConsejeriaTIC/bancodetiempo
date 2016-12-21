@@ -3,18 +3,20 @@
 
 @section('content')
 
-    <header>
+ <header>
         <div class="header-content">
-            <div class="header-content-inner">
-              <div class="homeSection1 ">
-                <div class="headerSection1 ">
-
-                  <a id="logo-container" href="#" class="brand-logo"><i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
-      
+                <div class="headerSection1 row">
+                  <a class="col-md-9" id="logo-container" href="#" class="brand-logo"><i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
+                  <a class="loginBt col-md-3" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
                 </div>
-                <div class="bodySection1 ">
-
-                  <div class="botonesRegistro">
+                <div class="bodySection1 row">
+                 <div class="botonesRegistro col-md-6">
+                    <p>{{ trans('dictionary.registrationMessage') }}</p>
+                    <a href="{{ url('loginRedes/facebook') }}" class="registroFacebook"></a>
+                    <a href="{{ url('loginRedes/google') }}" class="registroGoogle"></a>
+                    <a href="{{ url('loginRedes/linkedin') }}" class="registroLinkedin"></a>
+                  </div>
+                  <div class="botonesRegistro col-md-6">
                     <p>{{ trans('dictionary.registrationMessage') }}</p>
                     <a href="{{ url('loginRedes/facebook') }}" class="registroFacebook"></a>
                     <a href="{{ url('loginRedes/google') }}" class="registroGoogle"></a>
@@ -23,12 +25,11 @@
                 </div>
                 <div class="footerSection1 ">
                   <p>descubre - aprende - enseña - comparte</p>
-
-                </div>
                 </div>
             </div>
-        </div>
-    </header>
+
+    </div>
+</header>
 
     <section class="bg-primary" id="about">
         <div class="container">
