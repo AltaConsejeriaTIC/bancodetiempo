@@ -24,7 +24,7 @@
 					<div class="panel-heading"><h3>Administrar Categorias</h3></div>
 					<div class="panel-body">
 						<p>Sección para Gestionar categorias a las que pertenecen los servicios que ofrece el sistema.</p>
-		  			<p><a class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
+		  			<p><a href="/homeAdminCategory" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
 					</div>
 				</div>
 			</div>

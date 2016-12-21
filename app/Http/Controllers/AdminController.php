@@ -15,7 +15,7 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function AdminLogin()
     {
       return view('admin/login');
     }
@@ -133,16 +133,4 @@ class AdminController extends Controller
       {
       }              
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-       
-    }
-
 }

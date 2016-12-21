@@ -35,11 +35,17 @@ Route::post('profile/update', ['as' => 'profile/update', 'uses'=>'Profile\Profil
 
 //Route Admin Panel
 
-Route::resource('admin','AdminController');
+Route::get('admin','AdminController@AdminLogin');
 Route::get('homeAdmin', 'AdminController@homeAdmin');
 Route::get('homeAdminUser', 'AdminController@homeAdminUser');
-Route::post('admin/show', ['as' => 'admin/show', 'uses'=>'AdminController@show']);
-Route::put('homeAdmin/update', ['as' => 'homeAdmin/update', 'uses'=>'AdminController@update']);
+
+Route::resource('adminUser', 'AdminController');
+Route::post('adminUser/show', ['as' => 'adminUser/show', 'uses'=>'AdminController@show']);
+Route::put('adminUser/update', ['as' => 'adminUser/update', 'uses'=>'AdminController@update']);
+
+Route::resource('homeAdminCategory', 'CategoryController');
+Route::post('homeAdminCategory/show', ['as' => 'homeAdminCategory/show', 'uses'=>'CategoryController@show']);
+Route::put('homeAdminCategory/update', ['as' => 'homeAdminCategory/update', 'uses'=>'CategoryController@update']);
 
 //Mod Service
 

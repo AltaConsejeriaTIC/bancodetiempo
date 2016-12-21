@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 class="modal-title titleContent">Actualizar Usuario</h4>
       </div>
-      {!!Form::model($user, ['route' => 'homeAdmin/update', 'method'=> 'put'])!!}
+      {!!Form::model($user, ['route' => 'adminUser/update', 'method'=> 'put'])!!}
 				<div class="modal-body">									
 					<div class="row">            
             {!!Form::hidden('id', $user->id)!!}

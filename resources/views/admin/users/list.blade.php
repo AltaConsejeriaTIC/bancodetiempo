@@ -8,7 +8,7 @@
 					<div class="panel-heading"><h2>Lista de Usuarios Registrados en el Sistema</h2></div>
 					<div class="panel-body">
 						@include('partial.errors')
-						{!! Form::open(['route' => 'admin/show', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}           
+						{!! Form::open(['route' => 'adminUser/show', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}           
 							<div class="form-group">
 								<label>Nombre</label>
 								<input type="text" class="form-control" name="name" >
