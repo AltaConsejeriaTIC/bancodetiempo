@@ -1,3 +1,13 @@
+@import url('footer.css');
+
+@import url('nav.css');
+
+section {
+    position: relative;
+    padding-top:50px;
+    padding-bottom:50px;
+}
+
 header {
   position: relative;
   width: 100%;
@@ -17,50 +27,116 @@ header .header-content {
   padding: 40px 15px 100px;
   width: 100%;
 }
-.headerSection1{
 
+.white-text{
 
+	color : #fff;
+	
 }
 
-
-a#logo-container {
-  	    text-transform: uppercase;
-  	    max-width: 340px;
-  	    white-space: normal;
-  	    line-height: 30px;
-  	    margin-top: 40px;
-  	    font-size: 25px;
-		color:white;
-  	}
-
-  	.brand-logo i {
-  	    font-size: 67px !important;
-  	}
-
-a.loginBt {
-    float: right;
-    margin-top: 40px;
-    font-size: 20px;
-    color:white;
+.text-second-color{
+	
+	color:#2c3e50;
+	
 }
 
-.botonesRegistro {
-    width: 290px;
-
+.white-bk{
+	
+	background-color:#fff;
+	
 }
+
+.second-color-bk{
+	
+	background-color:#2c3e50;
+	
+}
+
+.service {
+    height: 250px;
+    padding: 10px;
+}
+
+.service > div {
+    border: 1px solid #333;
+    height: 100%;
+    display: block;
+}
+
+.mTop-50{
+	
+	margin-top:50px;
+	
+}
+
+.mTop-100{
+	
+	margin-top:100px;
+	
+}
+
+.mTop-150{
+	
+	margin-top:150px;
+	
+}
+
+.mTop-200{
+	
+	margin-top:200px;
+	
+}
+
+.mTop-250{
+	
+	margin-top:250px;
+	
+}
+
+.mTop-300{
+	
+	margin-top:300px;
+	
+}
+
+.mTop-350{
+	
+	margin-top:350px;
+	
+}
+
+.fondo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.fondo img {
+    height: 100%;
+    right: 0px;
+    position: absolute;
+    min-width: 100%;
+}
+
+.fondo > .telon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba(59, 76, 93, 0.5);
+    width: 100%;
+    height: 100%;
+    
+    
+}
+
 
 .botonesRegistro > p {
     color: #fff;
     font-size: 18px;
 }
 
-.botonesRegistro > a {
-    height: 40px;
-    width: 290px;
-    display: block;
-    background-size: 100% 100%;
-    margin-bottom: 10px;
-}
 .botonesLogin {
     width: 290px;
     top: 350px;
@@ -86,17 +162,48 @@ a.loginBt {
 .registroFacebook{
 
 	background:url('../images/facebookRegistro.png');
-
+	 height: 50px;
+    width: 100%;
+    display: block;
+    background-size: 100% 100%;
+    margin-bottom: 10px;
 }
 
 .registroGoogle{
 
 	background:url('../images/googleRegistro.png');
-
+	 height: 50px;
+    width: 100%;
+    display: block;
+    background-size: 100% 100%;
+    margin-bottom: 10px;
 }
 
 .registroLinkedin{
 
 	background:url('../images/linkedinRegistro.png');
-
+	 height: 50px;
+    width: 100%;
+    display: block;
+    background-size: 100% 100%;
+    margin-bottom: 10px;
 }
+
+.banner{
+	
+	height:1024px;
+	
+	padding-top: 25%;
+	
+}
+
+@media (max-width: 768px){
+	
+	.banner{
+		
+		height:724px;
+		
+	}
+	
+}
+
