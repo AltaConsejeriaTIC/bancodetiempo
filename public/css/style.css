@@ -31,25 +31,25 @@ header .header-content {
 .white-text{
 
 	color : #fff;
-	
+
 }
 
 .text-second-color{
-	
+
 	color:#2c3e50;
-	
+
 }
 
 .white-bk{
-	
+
 	background-color:#fff;
-	
+
 }
 
 .second-color-bk{
-	
+
 	background-color:#2c3e50;
-	
+
 }
 
 .service {
@@ -64,45 +64,45 @@ header .header-content {
 }
 
 .mTop-50{
-	
+
 	margin-top:50px;
-	
+
 }
 
 .mTop-100{
-	
+
 	margin-top:100px;
-	
+
 }
 
 .mTop-150{
-	
+
 	margin-top:150px;
-	
+
 }
 
 .mTop-200{
-	
+
 	margin-top:200px;
-	
+
 }
 
 .mTop-250{
-	
+
 	margin-top:250px;
-	
+
 }
 
 .mTop-300{
-	
+
 	margin-top:300px;
-	
+
 }
 
 .mTop-350{
-	
+
 	margin-top:350px;
-	
+
 }
 
 .fondo {
@@ -127,8 +127,8 @@ header .header-content {
     background: rgba(59, 76, 93, 0.5);
     width: 100%;
     height: 100%;
-    
-    
+
+
 }
 
 
@@ -190,11 +190,11 @@ header .header-content {
 }
 
 .banner{
-	
+
 	height:1024px;
-	
+
 	padding-top: 25%;
-	
+
 }
 
 #temasInteres label {
@@ -204,12 +204,7 @@ header .header-content {
 }
 
 @media (max-width: 768px){
-	
 	.banner{
-		
 		height:724px;
-		
 	}
-	
 }
-
