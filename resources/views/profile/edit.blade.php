@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link href="{{ asset('/css/styleUser.css') }}" rel="stylesheet">
 @section('content')
 
 <div class="container">
@@ -10,6 +10,14 @@
                 <div class="panel-body  medium">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('profile/update') }}">
                         {{ csrf_field() }}
+                        <svg class="imageProfileMedium center-block" viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
+                              <image  xlink:href="{{ Auth::user()->avatar }}" x="-25" width="150" height="100" />
+                            </pattern>
+                          </defs>
+                          <polygon id="hex" points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/>
+                        </svg>
                         <div class="form-group{{ $errors->has('firstName') ? ' has-error' : '' }}">
                             <label for="firstName" class="col-md-4 control-label">Nombre</label>
 
@@ -46,18 +54,18 @@
 
 	                        	{{ Form::radio('gender', 'male', $user->gender == 'male' ? true : false ,['id' => 'man']) }}
 
-								{{ Form::label('man', 'Hombre', ['class' => 'col-md-4 control-label']) }}
+            								{{ Form::label('man', 'Hombre', ['class' => 'col-md-4 control-label']) }}
 
 
-								{{ Form::radio('gender', 'female', $user->gender == 'female' ? true : false ,['id' => 'woman']) }}
+            								{{ Form::radio('gender', 'female', $user->gender == 'female' ? true : false ,['id' => 'woman']) }}
 
-								{{ Form::label('woman', 'Mujer', ['class' => 'col-md-4 control-label']) }}
+            								{{ Form::label('woman', 'Mujer', ['class' => 'col-md-4 control-label']) }}
 
-								@if ($errors->has('gender'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('gender') }}</strong>
-                                    </span>
-                                @endif
+            								@if ($errors->has('gender'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('gender') }}</strong>
+                              </span>
+                            @endif
 
 							</div>
 
