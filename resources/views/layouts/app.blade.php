@@ -35,11 +35,11 @@
 <body>
 
   @yield('content')
-  
-  
-  	
+
+
+
   @include('footer')
-  
+
 </body>
 
         <!--  Scripts-->
