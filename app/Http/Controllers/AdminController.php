@@ -39,7 +39,7 @@ class AdminController extends Controller
 
     public function homeAdminUser()
     {
-      $users = User::orderBy('created_at','desc')->paginate(6);        
+      $users = User::orderBy('created_at','desc')->paginate(6);      
       return view('admin/users/list',compact('users'));
     }    
 

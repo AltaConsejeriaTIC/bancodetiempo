@@ -43,7 +43,7 @@
 						        	<td>{{ $user->last_name }}</td>
 						        	<td>{{ $user->email }}</td>
 						        	<td>{{ $user->state == 1 ? 'Activo' : 'Inactivo' }}</td>
-						        	<td>{{ $user->role_id == 1 ? 'Administrador' : 'Usuarios'}}</td>
+						        	<td>{{ $user->role->category }}</td>
 						        	<td>{{ $user->created_at }}</td>
 						        	<td>{{ $user->updated_at }}</td>
 						        	<td>
@@ -58,7 +58,7 @@
 						  </table>						
 						</div>						
 						@include('admin/users/new')
-						<div class="col-md-12 pagination">             
+						<div class="col-md-12 pagination pg-bluegrey">             
 							{!! $users->render() !!}         
 						</div>
 					</div>
