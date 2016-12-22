@@ -26,7 +26,7 @@
 
             <div class="form-group col-md-10">
               {!! Form::label('state','Estado')!!}
-              {!!Form::select("state", [''=> $user->state == 1 ? 'Activo' : 'Inactivo','1'=>'Activo', '0'=>'Inactivo'], null, ['class' => 'form-control'])!!}
+              {!!Form::select('state_id', $states, null, ['class' => 'form-control', 'required' => 'required'])!!}              
             </div>
             					  
 				  </div>

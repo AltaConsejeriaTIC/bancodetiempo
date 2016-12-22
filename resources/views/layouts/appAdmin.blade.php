@@ -45,7 +45,7 @@
               </button>
 
               <!-- Branding Image -->
-              <a class="navbar-brand" href="{{ url('/homeAdmin') }}">
+              <a class="navbar-brand titleNav" href="{{ url('/homeAdmin') }}">
                 Banco de Tiempo de Bogotá
               </a>
             </div>

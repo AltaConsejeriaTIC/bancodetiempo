@@ -36,8 +36,8 @@
           <div class="container">
             <div class="navbar-header">          
               <!-- Branding Image -->
-              <a class="navbar-brand" href="{{ url('/admin') }}">
-                Banco de Tiempo
+              <a class="navbar-brand titleNav" href="{{ url('/admin') }}">
+                Banco de Tiempo de Bogotá
               </a>
             </div>
           </div>

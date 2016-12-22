@@ -29,13 +29,12 @@ class UserTableSeeder extends Seeder
           'first_name' => 'Admin',
           'last_name' => 'Admin',            
           'email' => 'admin@admin.com',            
-          'password'  => bcrypt('admin123'),
-          'state' => 1,
+          'password'  => bcrypt('admin123'),          
           'gender' => '',
           'birthDate' => null,
           'aboutMe' => null,
           'address' => null,
-          'website' => null,
+          'state_id' => 1,
           'role_id' => 1,
       ]); 
 
@@ -46,12 +45,11 @@ class UserTableSeeder extends Seeder
               'last_name' => $faker->lastName,            
               'email' => $faker->email,            
               'password'  => bcrypt('secret'),
-              'state' => 1,
+              'state_id' => 1,
               'gender' => $faker->randomElement(['Masculino','Femenino']),
               'birthDate' => $faker->date($format = 'Y-m-d', $max = 'now'),
               'aboutMe' => null,
-              'address' => $faker->address,
-              'website' => $faker->url,
+              'address' => $faker->address,             
               'role_id' => 2,
           ]);
       }        
