@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\User;
 use Illuminate\Support\Facades\Input;
+use App\Models\Category;
+use App\Models\InterestUser;
 
 
 class ProfileController extends Controller
@@ -44,9 +46,26 @@ class ProfileController extends Controller
 	}
 	
 	public function showFromInterest(){
-				
 		
-		return view('profile/interest');
+		$categories = Category::all('id', 'category');
+		
+		return view('profile/interest', compact('categories'));
+		
+	}
+	
+	public function saveInterest(Request $request){
+		
+		foreach($request->get('interets') as $interets){
+			
+			InterestUser::create([
+					'user_id' => Auth::User()->id,
+					'category_id' => $interets
+			]);
+			
+		}
+		
+		return redirect("/profile");
+		
 		
 	}
 

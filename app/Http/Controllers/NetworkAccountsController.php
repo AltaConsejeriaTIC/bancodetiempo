@@ -46,7 +46,7 @@ class NetworkAccountsController extends Controller
 					'first_name' => $providerData['first_name'],
 					'last_name' => $providerData['last_name'],
 					'avatar' => $providerData['avatar'],
-					'state' => true,
+					'state_id' => 1,
 					'gender' => $providerData['gender'],
 					'birthDate' => date("Y-m-d", strtotime($providerData['birthdate'])),
 					'role_id' => 2
@@ -87,7 +87,7 @@ class NetworkAccountsController extends Controller
 				
 			if($this->createUser($providerData)){
 				
-				return redirect('/porifile/intesets');
+				return redirect('/profile/interest');
 				
 			}
 	

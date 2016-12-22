@@ -28,7 +28,9 @@ Route::get('/register', 'NetworkAccountsController@login');
 
 Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 
-Route::get("/porifile/intesets", 'Profile\ProfileController@showFromInterest');
+Route::get("/profile/interest", 'Profile\ProfileController@showFromInterest');
+
+Route::post("/profile/interest", 'Profile\ProfileController@saveInterest');
 
 // Route Profile
 Route::get('profile', 'Profile\ProfileController@showProfile');
