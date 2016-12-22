@@ -6,15 +6,14 @@
 
 			<div class='row'>
 
-				<a id="logo-container" href="/" class="brand-logo"><i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
-	      <a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
+				<a class="col-md-3 col-sm-4 col-xs-8" id="logo-container" href="/" class="brand-logo"><i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
+	            <a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
 
 			</div>
 
 		</div>
 
-	 </nav>
-
+ 	 </nav>
 @elseif($type == 2)
 
 <!--Navbar-->
