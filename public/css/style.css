@@ -197,6 +197,12 @@ header .header-content {
 	
 }
 
+#temasInteres label {
+    text-align: left !important;
+    padding: 25px;
+    border: 1px solid #fff;
+}
+
 @media (max-width: 768px){
 	
 	.banner{

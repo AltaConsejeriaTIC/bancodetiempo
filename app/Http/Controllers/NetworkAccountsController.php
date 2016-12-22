@@ -11,6 +11,7 @@ use App\Models\NetworkAccounts;
 
 use App\User;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Cookie;
 
 class NetworkAccountsController extends Controller
 {
@@ -28,29 +29,26 @@ class NetworkAccountsController extends Controller
 	
 	}
 	
-	public function createUser(Request $request){
+	public function createUser($providerData){
 		
 			
 		$account = new NetworkAccounts([
-				'provider_id' => $request->input('provider_id'),
-				'provider' => $request->input('provider')
+				'provider_id' => $providerData['id'],
+				'provider' => $providerData['provider']
 		]);
 		
-		$user = User::whereEmail($request->input('email'))->first();
+		$user = User::whereEmail($providerData['email'])->first();
 		
 		if (!$user) {
 			
 			$user = User::create([
-					'email' => $request->input('email'),
-					'first_name' => $request->input('firstName'),
-					'last_name' => $request->input('lastName'),
-					'avatar' => $request->input('avatar'),
+					'email' => $providerData['email'],
+					'first_name' => $providerData['first_name'],
+					'last_name' => $providerData['last_name'],
+					'avatar' => $providerData['avatar'],
 					'state' => true,
-					'gender' => $request->input('gender'),
-					'birthDate' => date("Y-m-d", strtotime($request->input('birthdate'))),
-					'aboutMe' => $request->input("aboutMe"),
-					'address' => $request->input('address'),
-					'website' => $request->input('website'),
+					'gender' => $providerData['gender'],
+					'birthDate' => date("Y-m-d", strtotime($providerData['birthdate'])),
 					'role_id' => 2
 			]);
 		}
@@ -60,7 +58,7 @@ class NetworkAccountsController extends Controller
 		
 		auth()->login($user);
 		
-		return Redirect::to("service");
+		return true;
 		
 		
 	}
@@ -87,7 +85,11 @@ class NetworkAccountsController extends Controller
 				
 		}else{
 				
-			return view("auth/register", compact('providerData', 'provider'));
+			if($this->createUser($providerData)){
+				
+				return redirect('/porifile/intesets');
+				
+			}
 	
 		}
 	

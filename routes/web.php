@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Profile\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +28,7 @@ Route::get('/register', 'NetworkAccountsController@login');
 
 Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 
+Route::get("/porifile/intesets", 'Profile\ProfileController@showFromInterest');
 
 // Route Profile
 Route::get('profile', 'Profile\ProfileController@showProfile');

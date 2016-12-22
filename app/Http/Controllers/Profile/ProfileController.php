@@ -42,6 +42,12 @@ class ProfileController extends Controller
 		return Redirect::to("profile");		
 		
 	}
-
+	
+	public function showFromInterest(){
+				
+		
+		return view('profile/interest');
+		
+	}
 
 }
