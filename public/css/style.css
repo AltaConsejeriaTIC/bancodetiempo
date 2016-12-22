@@ -18,7 +18,7 @@ header .header-content {
   width: 100%;
 }
 .headerSection1{
-			margin-left: -50%;
+
 
 }
 
@@ -30,7 +30,7 @@ a#logo-container {
   	    line-height: 30px;
   	    margin-top: 40px;
   	    font-size: 25px;
-				color:white;
+		color:white;
   	}
 
   	.brand-logo i {
@@ -41,13 +41,12 @@ a.loginBt {
     float: right;
     margin-top: 40px;
     font-size: 20px;
+    color:white;
 }
 
 .botonesRegistro {
     width: 290px;
-    top: 350px;
-    right: 100px;
-		margin-left: 65%;
+
 }
 
 .botonesRegistro > p {
