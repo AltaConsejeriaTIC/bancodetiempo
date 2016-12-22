@@ -1,0 +1,26 @@
+@CHARSET "ISO-8859-1";
+
+.nav1 {
+    background-color: transparent !important;
+    position: absolute;
+    width: 100%;
+    padding-top: 25px;
+    padding-bottom:25px;
+    top: 0px;
+    left: 0px;
+}
+
+.nav1 a{
+	
+	color: #fff;
+	
+}
+
+#logo-container {
+    font-size: 22px;
+}
+
+#logo-container i {
+    font-size: 50px;
+    float: left;
+}

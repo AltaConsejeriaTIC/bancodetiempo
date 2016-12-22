@@ -33,15 +33,18 @@
 </head>
 
 <body>
+
   @yield('content')
+  
+  
+  	
+  @include('footer')
+  
 </body>
-<footer>
-  @yield('footer')
-</footer>
+
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/materialize.js') }}"></script>
-        <script src="{{ asset('js/init.js') }}"></script>
 
 </html>
