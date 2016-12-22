@@ -20,6 +20,11 @@ class CreateAlterAllTables extends Migration
                 ->references('id')
                 ->on('roles')
                 ->onUpdate('cascade');
+
+          $table->foreign('state_id')
+                ->references('id')
+                ->on('states')
+                ->onUpdate('cascade');      
         });
 
         // Foreign key Table network_accounts
@@ -39,9 +44,9 @@ class CreateAlterAllTables extends Migration
                 ->on('users')
                 ->onUpdate('cascade');
 
-          $table->foreign('category_id')
+          $table->foreign('state_id')
                 ->references('id')
-                ->on('categories')
+                ->on('states')
                 ->onUpdate('cascade');      
         });
 
@@ -59,6 +64,19 @@ class CreateAlterAllTables extends Migration
                 ->onUpdate('cascade');      
         });
 
+        // Foreign key Table categories_services
+        Schema::table('categories_services', function($table)
+        {
+          $table->foreign('service_id')
+                ->references('id')
+                ->on('services')
+                ->onUpdate('cascade');
+
+          $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onUpdate('cascade');      
+        });
 
     }
 

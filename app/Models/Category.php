@@ -7,7 +7,7 @@ use App\Models\Service;
 
 class Category extends Model
 {
-	protected $table = 'categories';
+	protected  $fillable = ['category']; 
 	
 	public function services(){
 		

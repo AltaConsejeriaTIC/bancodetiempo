@@ -1,16 +1,16 @@
 <?php
 
-use App\Models\Role;
+use App\Models\State;
 use Faker\Generator;
 use Styde\Seeder\Seeder;
 
-class RoleTableSeeder extends Seeder
+class StateTableSeeder extends Seeder
 {
     protected $total = 2;
 
     public function getModel()
     {
-        return new Role();
+        return new State();
     }
 
     public function getDummyData(Generator $faker, array $custom = [])
@@ -23,10 +23,13 @@ class RoleTableSeeder extends Seeder
     public function run()
     {
         $this->create([
-            'role' => 'Administrador',
+            'state' => 'Activo',
         ]);
         $this->create([
-            'role' => 'User',
+            'state' => 'Inactivo',
+        ]);
+        $this->create([
+            'state' => 'Bloqueado',
         ]);
     }
 }

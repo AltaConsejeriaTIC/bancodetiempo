@@ -7,7 +7,7 @@ use App\User;
 
 class Role extends Model
 {
-    protected  $fillable = ['category'];   
+    protected  $fillable = ['role'];   
     
     public function users()
     {    	

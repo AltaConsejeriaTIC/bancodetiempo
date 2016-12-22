@@ -19,9 +19,10 @@ class CreateServicesTable extends Migration
             $table->string('description');
             $table->integer('value');
             $table->boolean('virtually')->nullable();
+            $table->boolean('presently')->nullable();
             $table->string('image');
             $table->integer('user_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->integer('state_id')->unsigned();
             $table->timestamps();
         });
     }

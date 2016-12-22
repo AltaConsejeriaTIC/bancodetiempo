@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Models\State;
 use Session;
 
 class AdminController extends Controller
@@ -39,8 +40,9 @@ class AdminController extends Controller
 
     public function homeAdminUser()
     {
-      $users = User::orderBy('created_at','desc')->paginate(6);      
-      return view('admin/users/list',compact('users'));
+      $users = User::orderBy('created_at','desc')->paginate(6);   
+      $states = State::pluck('state','id');      
+      return view('admin/users/list',compact('users','states'));
     }    
 
     /**
@@ -61,7 +63,7 @@ class AdminController extends Controller
           $user->last_name = $request->last_name;
           $user->email = $request->email;
           $user->password = bcrypt('secret');
-          $user->state = 1;
+          $user->state_id = 1;
           $user->role_id = 1;
 
           if ($user->save()) 
@@ -116,7 +118,7 @@ class AdminController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->password = bcrypt('secret');
-        $user->state = $request->state;        
+        $user->state_id = $request->state_id;        
 
         if ($user->save()) 
         {                     

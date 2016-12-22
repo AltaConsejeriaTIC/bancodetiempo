@@ -26,7 +26,7 @@
               </div>
               <div class="col-md-6">
                 <label>Estado</label>
-                <p>{{ $user->state == 1 ? 'Activo' : 'Inactivo' }}</p>
+                <p>{{ $user->state_id == 1 ? 'Activo' : 'Inactivo' }}</p>
               </div>
               <div class="col-md-6">
                 <label>Genero</label>
@@ -47,11 +47,7 @@
               <div class="col-md-12">
                 <label>Acerca de mi</label>
                 <p>{{$user->aboutMe ?  : 'Sin Información'}}</p>
-              </div>
-              <div class="col-md-12">
-                <label>Webside</label>
-                <p>{{$user->website ?  : 'Sin Información'}}</p>               
-              </div>
+              </div>              
             </div>
           </div>
         </div>
