@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Editar Perfil</div>
                 <div class="panel-body  medium">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('profile/update') }}">
                         {{ csrf_field() }}
@@ -23,7 +23,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                         <div class="form-group{{ $errors->has('lastName') ? ' has-error' : '' }}">
                             <label for="lastName" class="col-md-4 control-label">Apellido</label>
 
@@ -37,42 +37,42 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                           <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                        
+
                             <label for="gender" class="col-md-4 control-label">{{ trans('dictionary.gender') }}</label>
-                        
+
 	                        <div class="col-md-6">
-	                        
+
 	                        	{{ Form::radio('gender', 'male', $user->gender == 'male' ? true : false ,['id' => 'man']) }}
-							
+
 								{{ Form::label('man', 'Hombre', ['class' => 'col-md-4 control-label']) }}
-								
-								
+
+
 								{{ Form::radio('gender', 'female', $user->gender == 'female' ? true : false ,['id' => 'woman']) }}
-							
+
 								{{ Form::label('woman', 'Mujer', ['class' => 'col-md-4 control-label']) }}
-								
+
 								@if ($errors->has('gender'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('gender') }}</strong>
                                     </span>
                                 @endif
-								
+
 							</div>
-                        
+
                         </div>
-                        
+
                          <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
-                         
+
                          	<label for="birthdate" class="col-md-4 control-label">Fecha de nacimiento</label>
-                         
-                         	<div class="col-md-6">               
-                         		
-                         	
-                         		<input type="datetime" id="birthdate" name="birthdate" class="form-control datepicker" value="{{$user->birthDate}}" required/>                		
-                         	</div>                    
-                         </div>                                     
+
+                         	<div class="col-md-6">
+
+
+                         		<input type="datetime" id="birthdate" name="birthdate" class="form-control datepicker" value="{{$user->birthDate}}" required/>
+                         	</div>
+                         </div>
                         <div class="form-group{{ $errors->has('aboutMe') ? ' has-error' : '' }}">
                             <label for="aboutMe" class="col-md-4 control-label">Acerca de mi</label>
 
@@ -85,7 +85,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                             <label for="address" class="col-md-4 control-label">{{ trans('dictionary.address') }}</label>
 
@@ -99,7 +99,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                         <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
                             <label for="website" class="col-md-4 control-label">{{ trans('dictionary.website') }}</label>
 
