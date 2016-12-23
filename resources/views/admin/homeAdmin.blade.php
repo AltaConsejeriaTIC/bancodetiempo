@@ -12,7 +12,7 @@
   		</div>
 			<div class="col-md-6">	
 				<div class="panel panel-default">
-					<div class="panel-heading"><h3>Administrar Usarios</h3></div>
+					<div class="panel-heading"><h3>Administrar Usuarios</h3></div>
 					<div class="panel-body">
 						<p>Sección para Gestionar los usuarios registrados en el sistema.(Administradores o Usuarios de la comunidad.)</p>
 		  			<p><a href="/homeAdminUser" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>		
