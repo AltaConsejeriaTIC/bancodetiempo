@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use App\Models\CategoriesService;
 
 class ServiceController extends Controller
 {	
@@ -20,11 +21,13 @@ class ServiceController extends Controller
    		foreach ($categories as $category){
    			
    			$selectedCategories[$category['id']] = $category['category'];   			
-   		}   		
+   		}  
+   		
+   		$user = Auth::User();
    		
    		$method = 'post';
    		
-   		return view('services/formService', compact('selectedCategories', 'method'));
+   		return view('services/formService', compact('selectedCategories', 'method', 'user'));
    	
    }   
    
@@ -51,9 +54,11 @@ class ServiceController extends Controller
    			
    		}  	
    		
+   		$user = Auth::User();
+   		
    		$method = 'put';
    		
-   		return view('services/formService', compact('selectedCategories', 'service', 'method'));
+   		return view('services/formService', compact('selectedCategories', 'service', 'method', 'user'));
    
    }
    
@@ -89,24 +94,31 @@ class ServiceController extends Controller
    				'description' => 'required',
    				'value' => 'required|numeric|min:1',
    				'image' => 'required',
-   				'category' => 'required|numeric|min:1'
+   				'category' => 'required'
    		]);
-   		
+   	   		
    		$image = $this->uploadCover($request->file('image'));
    		
-   		$service = Service::create([
+   		$idService = Service::create([
    				'name' => $request->input('name'), 
    				'description' => $request->input('description'),
    				'value' => $request->input('value'),
    				'virtually' => $request->input('virtually'),
    				'image' => $image,
    				'user_id' => Auth::user()->id,
-   				'category_id' => $request->input('category')
-   		]);
+   				'state_id' => 1
+   		])->getKey();
    		
-   		$service->save();
+   		foreach ($request->input('category') as $category){
+   			
+   			CategoriesService::create([
+   					'category_id' => $category,
+   					'service_id' => $idService
+   			]);
+   			
+   		}
    		
-   		return redirect('service/'.$service->id);
+   		return redirect('service/'.$idService);
    	
    }
    
@@ -118,9 +130,9 @@ class ServiceController extends Controller
    			
    		}
    		
-   		$imageName = 'img' . rand(00000,99999) . '.' . $file->getClientOriginalExtension();
+   		$imageName = 'img' .Auth::User()->id. '.' . $file->getClientOriginalExtension();
    		
-   		$file->move(base_path() . '/public/images/services/', $imageName);
+   		$file->move(base_path() . '/public/resources/user/user_'.Auth::User()->id.'/services', $imageName);
    	
    		return $imageName;
    	

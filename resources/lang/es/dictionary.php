@@ -20,5 +20,9 @@ return [
 	'email'		=> 'E-mail',
 	'firstName'  => 'Nombre',
 	'lastname' => 'Apellido',
-	'register' => 'Registro'
+	'register' => 'Registro',
+	'titleServiceFrom' => 'Qu&eacute; deseas ofrecer',
+	'text1ServiceFrom' => 'Si no sabes que compartir',
+	'labelTest' => 'Haz nuestro test',
+	'presently' => 'Presencial'
 ];
