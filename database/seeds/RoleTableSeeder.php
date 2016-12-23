@@ -26,7 +26,7 @@ class RoleTableSeeder extends Seeder
             'role' => 'Administrador',
         ]);
         $this->create([
-            'role' => 'User',
+            'role' => 'Usuario',
         ]);
     }
 }

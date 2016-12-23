@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Service;
+use App\Models\State;
 use App\Models\Role;
 
 class User extends Authenticatable
@@ -29,10 +30,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function services(){
-
-    	return $this->hasMany('App\Models\Service');
-   	
+    public function services()
+    {
+       	return $this->hasMany('App\Models\Service');   	
     }
     
     public function role()
@@ -40,5 +40,8 @@ class User extends Authenticatable
     	return $this->belongsTo(Role::class);    	
     }
 
-
+    public function state()
+    {
+      return $this->belongsTo(State::class);
+    }
 }

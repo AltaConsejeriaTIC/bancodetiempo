@@ -41,9 +41,9 @@
 						        <tr>
 						        	<td>{{ $user->first_name }}</td>
 						        	<td>{{ $user->last_name }}</td>
-						        	<td>{{ $user->email }}</td>
-						        	<td>{{ $user->state_id == 1 ? 'Activo' : 'Inactivo' }}</td>
-						        	<td>{{ $user->role_id == 1 ? 'Administrador' : 'Usuarios'}}</td>
+						        	<td>{{ $user->email }}</td>						        	
+						        	<td>{{ $user->state->state }}</td>
+						        	<td>{{ $user->role->role }}</td>
 						        	<td>{{ $user->created_at }}</td>
 						        	<td>{{ $user->updated_at }}</td>
 						        	<td>
