@@ -28,3 +28,14 @@ svg.imageProfileSmall{
   height: 200px  !important;
   width:  100%!important;
 }
+.titleService p{
+  margin: 10px;
+  color: teal;
+  font-weight: bold;
+  text-align: center;
+  font-size: 18pt;
+
+}
+.descriptioService p {
+  font-family: sans-serif;
+}

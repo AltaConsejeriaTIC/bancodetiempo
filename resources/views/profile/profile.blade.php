@@ -43,17 +43,30 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Mis Servicios</div>
                 <div class="panel-body">
-                @foreach($user->services as $service)
+                @foreach($user->services as $key=>$service)
+
                     <div class="col-md-6">
                       <div class="photoService">
-                          <image  src="{{$service->image}}" /> 
-
+                          <image  src="{{$service->image}}" />
                       </div>
                       <div class="contentService">
+                        <div class="titleService">
+                        <p>
                           {{$service->name}}
-                          {{$service->description}}
+                        </p>
+                        </div>
+                        <div class="descriptioService">
+                          <p>
+                            {{$service->description}}
+                          </p>
+                        </div>
                       </div>
                     </div>
+                    @if($key%2!=0)
+                        <div class="clearfix">
+
+                        </div>
+                    @endif
                   @endforeach
               </div>
         </div>
