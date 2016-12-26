@@ -16,14 +16,19 @@ class RedirectIfNotService
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-    	
-    	if(Auth::user()->id && Service::whereUserId(Auth::user()->id)->first()){
-    		
-    		return $next($request);
-    		
-    	}
-    	
-    	return redirect('/service');
+    {           
+        if(Auth::user()->role_id == 1)
+        {           
+           return redirect('/homeAdmin');          
+        }        	
+    	if(Auth::user()->id && Service::whereUserId(Auth::user()->id)->first() && Auth::user()->role_id == 2)
+        {    		
+    	   return $next($request);    		
+    	}    	
+        else
+        {  
+    	   return redirect('/service');
+        }
+
     }
 }

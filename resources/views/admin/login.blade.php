@@ -7,7 +7,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Inciar Sesión</div>
           <div class="panel-body">
-          	<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+          	<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}" novalidate="novalidate">
               {{ csrf_field() }}
                   @if ($errors->has('email'))
                     <span class="alert alert-dismissible alert-warning">
@@ -24,7 +24,6 @@
 
                 <div class="col-md-6">
                   <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
                 </div>
               </div>
 
@@ -33,18 +32,17 @@
 
                 <div class="col-md-6">
                   <input id="password" type="password" class="form-control" name="password" required>
-
                 </div>
               </div>           
 
               <div class="form-group">
                 <div class="col-md-8 col-md-offset-4">
-                  <!--
+                  
                   <button type="submit" class="btn btn-raised btn-primary">
                       Iniciar Sesión
                   </button>
-                  -->
-                  <a class="btn btn-raised btn-primary" href="/homeAdmin">Iniciar Sesión</a>
+                  
+                  <!-- <a class="btn btn-raised btn-primary" href="/homeAdmin">Iniciar Sesión</a> -->
                 </div>
               </div>
 
