@@ -8,6 +8,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Editar Perfil</div>
                 <div class="panel-body  medium">
+
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('profile/update') }}">
                         {{ csrf_field() }}
 

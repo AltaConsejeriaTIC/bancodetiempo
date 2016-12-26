@@ -29,15 +29,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     public function services()
     {
-       	return $this->hasMany('App\Models\Service');   	
+       	return $this->hasMany(Service::class);   	
     }
-    
+
     public function role()
-    {    	
-    	return $this->belongsTo(Role::class);    	
+    {
+    	return $this->belongsTo(Role::class);
     }
 
     public function state()
