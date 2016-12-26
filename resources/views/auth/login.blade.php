@@ -12,7 +12,7 @@
 		<div class="telon"></div>
 	
 	</div>
-	
+	<div class='clearfix mTop-250 visible-lg visible-md'><br></div>
 	<div class="container">
 	
 		<article class='row'>
