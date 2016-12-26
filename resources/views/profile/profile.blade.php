@@ -23,8 +23,8 @@
                     <div class="fb-profile-text">
                         <label for="email"  >{{ trans('dictionary.email') }}</label>
                         <p  >{{$user->email}}</p>
-                        <label for="address"  >{{ trans('dictionary.state') }}</label>
-                        <p class=" control-label" >{{$user->state}}</p>
+                    <!--    <label for="address"  >{{ trans('dictionary.state') }}</label>
+                        <p class=" control-label" >{{$user->state}}</p> -->
                         <label for="gender"  >{{ trans('dictionary.gender') }}</label>
                         <p class=" control-label" >{{$user->gender}}</p>
                         <label for="birthDate"  >{{ trans('dictionary.birthDate') }}</label>
