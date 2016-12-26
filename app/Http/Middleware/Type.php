@@ -29,8 +29,7 @@ abstract class Type
    * @return mixed
    */
   public function handle($request, Closure $next)
-  {
-    
+  {    
     if($this->auth->user()->role_id != $this->getType()) {
 
       $this->auth->logout();

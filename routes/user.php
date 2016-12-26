@@ -14,7 +14,5 @@ Route::post("/profile/interest", 'Profile\ProfileController@saveInterest');
 
 //Mod Service
 
-Route::get('/service', 'ServiceController@index');
-Route::post('/service/save', 'ServiceController@create');
 Route::get('/service/{serviceid}', 'ServiceController@showService');
 Route::put('/service/save/{id}', 'ServiceController@update');
