@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
-	protected  $fillable = ['name', 'description', 'value', 'virtually', 'image', 'user_id', 'category_id', 'state_id'];
+	protected  $fillable = ['name', 'description', 'value', 'virtually', 'presently', 'image', 'user_id', 'category_id', 'state_id'];
 	
 	
 	public function user(){
@@ -16,9 +16,20 @@ class Service extends Model
 		
 	}
 	
-	public function category(){
+	public function categories(){
 		
-		return $this->belongsTo("App\Models\Category");
+		return $this->hasMany(CategoriesService::class);
 		
 	}
+	
+	public function setImageAttribute($value){
+		
+		if(!empty($value) && $value !=  ''){
+			
+			$this->attributes['image'] = $value;
+			
+		}
+		
+	}
+	
 }

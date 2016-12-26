@@ -16,5 +16,5 @@ Route::post("/profile/interest", 'Profile\ProfileController@saveInterest');
 
 Route::get('/service', 'ServiceController@index');
 Route::post('/service/save', 'ServiceController@create');
-Route::put('/service/save', 'ServiceController@update');
 Route::get('/service/{serviceid}', 'ServiceController@showService');
+Route::put('/service/save/{id}', 'ServiceController@update');

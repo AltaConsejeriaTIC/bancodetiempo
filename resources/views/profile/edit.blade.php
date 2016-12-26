@@ -8,8 +8,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Editar Perfil</div>
                 <div class="panel-body  medium">
+
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('profile/update') }}">
                         {{ csrf_field() }}
+
+
                         <svg class="imageProfileMedium center-block" viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
                           <defs>
                             <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
@@ -46,30 +50,6 @@
                             </div>
                         </div>
 
-                          <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-
-                            <label for="gender" class="col-md-4 control-label">{{ trans('dictionary.gender') }}</label>
-
-	                        <div class="col-md-6">
-
-	                        	{{ Form::radio('gender', 'male', $user->gender == 'male' ? true : false ,['id' => 'man']) }}
-
-            								{{ Form::label('man', 'Hombre', ['class' => 'col-md-4 control-label']) }}
-
-
-            								{{ Form::radio('gender', 'female', $user->gender == 'female' ? true : false ,['id' => 'woman']) }}
-
-            								{{ Form::label('woman', 'Mujer', ['class' => 'col-md-4 control-label']) }}
-
-            								@if ($errors->has('gender'))
-                              <span class="help-block">
-                                  <strong>{{ $errors->first('gender') }}</strong>
-                              </span>
-                            @endif
-
-							</div>
-
-                        </div>
 
                          <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
 
@@ -108,19 +88,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
-                            <label for="website" class="col-md-4 control-label">{{ trans('dictionary.website') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="website" type="text" class="form-control" name="website" value="{{$user->website}}">
-
-                                @if ($errors->has('website'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('website') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
 
                         <div class="form-group">

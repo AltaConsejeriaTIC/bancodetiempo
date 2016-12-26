@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use App\Models\CategoriesService;
+use PhpParser\Node\Expr\Print_;
 
 class ServiceController extends Controller
 {	
@@ -17,124 +18,130 @@ class ServiceController extends Controller
    		$categories = Category::all('id', 'category');
    		
    		$selectedCategories = [];
-   		
-   		foreach ($categories as $category){
-   			
-   			$selectedCategories[$category['id']] = $category['category'];   			
-   		}  
-   		
-   		$user = Auth::User();
-   		
+   		   		   		
    		$method = 'post';
    		
-   		return view('services/formService', compact('selectedCategories', 'method', 'user'));
+   		return view('services/formService', compact('categories', 'method'));
    	
    }   
    
-   public function showService($serviceId = 0){
+   public function showService($serviceId){
    
 	   	$categories = Category::all('id', 'category');
-	   	 
-	   	$selectedCategories = [];
-	   	 
-	   	foreach ($categories as $category){
-	   	
-	   		$selectedCategories[$category['id']] = $category['category'];
-	   	}
-   	
-   		$service = Service::find($serviceId);
+  	
+   		$service = Service::findOrFail($serviceId);
    		
-   		if(is_null($service)){
-   			
-   			return redirect('service');
-   			
-   		}elseif ($service->user_id != Auth::user()->id){
+   		if ($service->user_id != Auth::user()->id){
    			
    			return view('services/service', compact('service'));
    			
-   		}  	
+   		} 
    		
-   		$user = Auth::User();
+   		foreach ($service->categories as $selected){   			
+   			$categories->find($selected->category_id)->setAttribute("selected", "selected");			
+   		}
    		
    		$method = 'put';
    		
-   		return view('services/formService', compact('selectedCategories', 'service', 'method', 'user'));
+   		return view('services/formService', compact('categories', 'service', 'method'));
    
    }
    
-   public function update(Request $request){
- 
-   		   		
-   		$image = $this->uploadCover($request->file('image'));
-   		
-   		$service = Service::find($request->input('serviceId'))->update([
-   				'name' => $request->input('name'),
+   public function update($id, Request $request){ 
+   		   	
+	   	$this->validate($request, [
+	   			'name' => 'required|max:100',
+	   			'description' => 'required|max:250|min:50',
+	   			'value' => 'required|max:10|min:1',
+	   			'virtually' => 'required_without:presently',
+	   			'presently' => 'required_without:virtually',
+	   			'image' => 'image'
+	   	]);
+   	
+   		$service = Service::find($id);
+   	
+   		$service->update([
+   				'name' => $request->input('name'), 
    				'description' => $request->input('description'),
    				'value' => $request->input('value'),
    				'virtually' => $request->input('virtually'),
-   				'category_id' => $request->input('category')
+   				'presently' => $request->input('presently'),
    		]);
    		
-   		if($image){
-   			$service = Service::find($request->input('serviceId'))->update([
-   					
-   					'image' => $image
-   					
-   			]);
-   		}
+   		$this->uploadCover($request->file('image'), $service);
    		
-   		return redirect('service/'.$request->input('serviceId'));
+   		$this->updateCategoriesService($request->input('category'), $service);
+   		
+   		return redirect('service/'.$service->id);
    	
    }
  
    public function create(Request $request){
    	
-   		$this->validate($request, [
-   				'name' => 'required',
-   				'description' => 'required',
-   				'value' => 'required|numeric|min:1',
-   				'image' => 'required',
-   				'category' => 'required'
-   		]);
-   	   		
-   		$image = $this->uploadCover($request->file('image'));
-   		
-   		$idService = Service::create([
+	   	$this->validate($request, [
+	   			'name' => 'required|max:100',
+	   			'description' => 'required|max:250|min:50',
+	   			'value' => 'required|max:10|min:1',
+	   			'virtually' => 'required_without:presently',
+	   			'presently' => 'required_without:virtually',
+	   			'image' => 'required|image'
+	   	]);
+   	
+   		$service = Service::create([
    				'name' => $request->input('name'), 
    				'description' => $request->input('description'),
    				'value' => $request->input('value'),
    				'virtually' => $request->input('virtually'),
-   				'image' => $image,
+   				'presently' => $request->input('presently'),
    				'user_id' => Auth::user()->id,
+   				'image' => 'resources/default.jpg',
    				'state_id' => 1
-   		])->getKey();
+   		]);
    		
-   		foreach ($request->input('category') as $category){
-   			
-   			CategoriesService::create([
-   					'category_id' => $category,
-   					'service_id' => $idService
-   			]);
-   			
-   		}
+   		$this->uploadCover($request->file('image'), $service);
    		
-   		return redirect('service/'.$idService);
+   		$this->updateCategoriesService($request->input('category'), $service);
+   		
+   		return redirect('service/'.$service->id);
    	
    }
    
-   public function  uploadCover($file){
+   public function  uploadCover($file, $service){
    	
-   		if(!$file){
-   			
-   			return false;
-   			
+   		if(!$file){   			
+   			return false;   			
    		}
    		
-   		$imageName = 'img' .Auth::User()->id. '.' . $file->getClientOriginalExtension();
+   		$imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
    		
-   		$file->move(base_path() . '/public/resources/user/user_'.Auth::User()->id.'/services', $imageName);
+   		$pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
+   		
+   		$file->move(base_path() . '/public/' . $pathImage, $imageName);
    	
-   		return $imageName;
+   		Service::find($service->id)->update([
+   			'image' => $pathImage . $imageName   				
+   		]);
+   		
+   		return $pathImage . $imageName;
+   	
+   }
+   
+   public function updateCategoriesService($categories, $service){
+   		
+   		$serviceCategory = CategoriesService::where('service_id', $service->id);
+   		
+   		if($serviceCategory){
+   			$serviceCategory->delete();
+   		}
+   		  		
+	   	foreach ($categories as $category){
+	   	
+	   		CategoriesService::create([
+	   				'category_id' => $category,
+	   				'service_id' => $service->id
+	   		]);
+	   	
+	   	}
    	
    }
    

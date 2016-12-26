@@ -23,8 +23,8 @@
                     <div class="fb-profile-text">
                         <label for="email"  >{{ trans('dictionary.email') }}</label>
                         <p  >{{$user->email}}</p>
-                        <label for="address"  >{{ trans('dictionary.state') }}</label>
-                        <p class=" control-label" >{{$user->state}}</p>
+                    <!--    <label for="address"  >{{ trans('dictionary.state') }}</label>
+                        <p class=" control-label" >{{$user->state}}</p> -->
                         <label for="gender"  >{{ trans('dictionary.gender') }}</label>
                         <p class=" control-label" >{{$user->gender}}</p>
                         <label for="birthDate"  >{{ trans('dictionary.birthDate') }}</label>
@@ -33,15 +33,32 @@
                         <p class=" control-label" >{{$user->address}}</p>
                         <label for="aboutMe"  >{{ trans('dictionary.aboutMe') }}</label>
                         <p class=" control-label" >{{$user->aboutMe}}</p>
-                        <label for="website"  >{{ trans('dictionary.website') }}</label>
-                        <p class=" control-label" >{{$user->website}}</p>
                        <a href="{{ url('profile/edit') }}">   Editar</a>
 
 	            </div>
 	        	</div>
 	    	</div>
-		</div>
+        	</div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Mis Servicios</div>
+                <div class="panel-body">
+                @foreach($user->services as $service)
+                    <div class="col-md-6">
+                      <div class="photoService">
+                          <image  src="{{$service->image}}" /> 
 
+                      </div>
+                      <div class="contentService">
+                          {{$service->name}}
+                          {{$service->description}}
+                      </div>
+                    </div>
+                  @endforeach
+              </div>
+        </div>
+		</div>
 	</div>
+
 </div>
 @endsection

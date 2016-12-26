@@ -24,20 +24,20 @@ class User extends Authenticatable
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var array 
      */
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     public function services()
     {
-       	return $this->hasMany('App\Models\Service');   	
+       	return $this->hasMany(Service::class);   	
     }
-    
+
     public function role()
-    {    	
-    	return $this->belongsTo(Role::class);    	
+    {
+    	return $this->belongsTo(Role::class);
     }
 
     public function state()
