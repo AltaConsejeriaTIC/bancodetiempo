@@ -25,7 +25,7 @@
 					 <svg class="col-xs-4 col-xs-offset-4 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2" viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
                       <defs>
                         <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
-                          <image  xlink:href="{{ $user->avatar }}" x="-25" width="150" height="100" />
+                          <image  xlink:href="{{ Auth::user()->avatar }}" x="-25" width="150" height="100" />
                         </pattern>
                       </defs>
                       <polygon id="hex" points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/>
@@ -33,7 +33,7 @@
 				</div>
 				
 				<div class='row'>
-					<h3 class='white-text col-xs-4 col-xs-offset-4 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2' style='text-transform:capitalize'>{{ $user->first_name . " " . $user->last_name }}</h3>
+					<h3 class='white-text col-xs-4 col-xs-offset-4 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2' style='text-transform:capitalize'>{{ Auth::user()->first_name . " " . Auth::user()->last_name }}</h3>
 				</div>
 				
 			</div>
@@ -64,7 +64,26 @@
            		 	
            </div>
            <br><br><br>
-           {!! Form::open(['url' => '/service/save', 'method' => $method, 'enctype' => 'multipart/form-data', 'class' => 'form-bt row', 'role' => 'form']) !!}
+           
+           
+			
+           @if(!empty($errors->all()))
+           	
+           		<div class='alert alert-dismissible alert-warning'>
+           
+				   @foreach ($errors->all() as $error)
+				      <div>{{ $error }}</div>
+				   @endforeach
+			  
+			  </div>
+			  
+			@endif
+           
+           
+           
+           
+           
+           {!! Form::open(['url' => ['/service/save', isset($service->id) ? $service->id : ""], 'method' => $method, 'enctype' => 'multipart/form-data', 'class' => 'form-bt row', 'role' => 'form']) !!}
            <div class='row'>
            
            		<div class="{{ $errors->has('name') ? ' has-error' : '' }} col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
@@ -93,7 +112,7 @@
 		           	
 		           		<div>
 		           		
-		           			<img src="{{isset($service->image) ? '/images/services/'.$service->image : ''}}" >
+		           			<img src="{{isset($service->image) ? '/'.$service->image : ''}}" >
 		           		                       
 	                		{{ Form::file('image', '') }}
 		           		
@@ -136,7 +155,7 @@
 	        
 	        	<div class="{{ $errors->has('description') ? ' has-error' : '' }} col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
 	           	          
-		            {{ Form::textarea('description', isset($service->description) ? $service->description : "", ['class' => 'form-bt col-xs-12', 'required']) }}
+		            {{ Form::textarea('disponiblilidad', isset($service->description) ? $service->description : "", ['class' => 'form-bt col-xs-12', 'required']) }}
 		            
 		        </div>
 	        
@@ -145,9 +164,19 @@
 	        <div class='row'>
 	        
 	        	<div class="{{ $errors->has('description') ? ' has-error' : '' }} col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-	           	          
-		            {{ Form::select('category[]', $selectedCategories , isset($service->category_id) ? $service->category_id : null, ['class' => 'form-control', 'required', 'multiple']) }}
-           
+	           	    
+	           	    <select name='category[]' multiple required class='form-bt col-xs-12'>
+	           	    	
+	           	    	@foreach($categories as $category)
+	           	    	
+	           	    		<option value='{{ $category->id }}' @if(old('category')){{ in_array($category->id, old('category')) ? "selected" : "" }}@endif {{ $category->selected }}>
+	           	    			{{ $category->category }}
+	           	    		</option>
+	           	    	
+	           	    	@endforeach
+	           	    
+	           	    </select>      
+		            
 		        </div>
 	        
 	        </div>

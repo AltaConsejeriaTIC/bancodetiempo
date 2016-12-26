@@ -58,7 +58,7 @@ Route::get('/service', 'ServiceController@index')->middleware('auth');
 
 Route::post('/service/save', 'ServiceController@create')->middleware('auth');
 
-Route::put('/service/save', 'ServiceController@update')->middleware('auth');
+Route::put('/service/save/{id}', 'ServiceController@update')->middleware('auth');
 
 Route::get('/service/{serviceid}', 'ServiceController@showService')->middleware('auth');
 
