@@ -25,6 +25,6 @@ svg.imageProfileSmall{
 }
 
 .photoService img{
-  height: 300px !important;
-  widows: 300px !important;
+  height: 200px  !important;
+  width:  100%!important;
 }
