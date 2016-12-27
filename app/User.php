@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Service;
 use App\Models\State;
 use App\Models\Role;
+use App\Models\InterestUser;
 
 class User extends Authenticatable
 {
@@ -38,6 +39,12 @@ class User extends Authenticatable
     public function role()
     {
     	return $this->belongsTo(Role::class);
+    }
+    
+    public function interests(){
+    	
+    	return $this->hasMany(InterestUser::class);
+    	
     }
 
     public function state()

@@ -4,14 +4,27 @@
 
 
 @section('content')
-<div class='fondo'>
-</div>
+
+
 
 <div class="row">
     <div class="panel panel-default">
          <div class="panel-body medium">
 			<div class="container">
-                	{!! Form::open(['url' => 'profile/update', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+					
+					 @if(!empty($errors->all()))
+           	
+					     <div class='alert alert-dismissible alert-warning'>
+					           
+							@foreach ($errors->all() as $error)
+								<div>{{ $error }}</div>
+							@endforeach
+								  
+						</div>
+						
+					@endif
+			
+                	{!! Form::open(['url' => 'profile/update', 'method' => 'put', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
 						<div class="row">
 								 <svg class="col-xs-4 col-xs-offset-4 col-sm-8 col-sm-offset-2 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5" viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +82,7 @@
 
                          	{{ Form::label('birthdate', trans('dictionary.birthDate'), ['class' => 'col-md-4 control-label'] ) }}
 
-                         	{{ Form::text('birthdate', $user->birthDate, ['class' => 'form-bt col-md-6', 'id' => 'birthdate', 'required' ]) }}
+                         	{{ Form::date('birthdate', $user->birthDate, ['class' => 'form-bt col-md-6', 'id' => 'birthdate', 'required' ]) }}
 
 
                         </div>

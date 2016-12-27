@@ -8,9 +8,6 @@ Route::get('profile/edit', 'Profile\ProfileController@ShowEditProfile');
 
 //Route::put('profile/edit','Profile\ProfileController@editProfile');
 Route::post('profile/update', ['as' => 'profile/update', 'uses'=>'Profile\ProfileController@editProfile']);
-Route::get("/profile/interest", 'Profile\ProfileController@showFromInterest');
-Route::post("/profile/interest", 'Profile\ProfileController@saveInterest');
-
 
 //Mod Service
 
