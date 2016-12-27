@@ -16,8 +16,7 @@ class RedirectIfAuthenticated
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
-    {        
-        
+    {   
         if (Auth::guard($guard)->check() && Auth::user()->role_id == 1) 
         {            
             return redirect('/homeAdmin');

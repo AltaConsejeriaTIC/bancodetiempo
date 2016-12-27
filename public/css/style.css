@@ -4,6 +4,8 @@
 
 @import url('styleForms.css');
 
+@import url('modal.css');
+
 section {
     position: relative;
     padding-top:50px;

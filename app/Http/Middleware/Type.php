@@ -30,15 +30,18 @@ abstract class Type
    */
   public function handle($request, Closure $next)
   {    
-    if($this->auth->user()->role_id != $this->getType()) {
-
+    if($this->auth->user()->role_id != $this->getType() || $this->auth->user()->state_id == 3) 
+    {
       $this->auth->logout();
 
-      if ($request->ajax()) {
+      if ($request->ajax()) 
+      {
           return response('Unauthorized.', 401);
-      } else {
-          Session::flash('message-error', 'No tiene permisos para el recurso solicitado');
-          return redirect()->to('admin');
+      } 
+      else 
+      {
+          Session::flash('error', 'No tiene permisos para el recurso solicitado o su usuario se encuentre Bloqueado');
+          return redirect()->back();
       }
     }
 

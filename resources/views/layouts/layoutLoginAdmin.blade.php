@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
     <!-- Custom styles -->
     <link href="css/styleAdmin.css" rel="stylesheet">
+    <link href="css/modal.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -52,5 +53,6 @@
     <script src="js/material.min.js"></script>   
     <script src="js/ripples.min.js"></script>   
     <script src="js/script.js"></script>        
+    <script src="js/modal.js"></script>   
 </body>
 </html>

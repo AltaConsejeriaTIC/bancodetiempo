@@ -1,24 +1,17 @@
 @extends('layouts.layoutLoginAdmin')
 
 @section('content')
-	<div class="container">
+  <div class="container">
     <div class="row">
       <div class="col-md-9 col-md-offset-1">
         <div class="panel panel-default">
           <div class="panel-heading">Inciar Sesión</div>
           <div class="panel-body">
-          	<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}" novalidate="novalidate">
+            @include('partial.errors')
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}" novalidate="novalidate">
+              
               {{ csrf_field() }}
-                  @if ($errors->has('email'))
-                    <span class="alert alert-dismissible alert-warning">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                  @endif
-                  @if ($errors->has('password'))
-                      <span class="alert alert-dismissible alert-warning">
-                          <strong>{{ $errors->first('password') }}</strong>
-                      </span>
-                  @endif
+              
               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email" class="col-md-4 control-label">E-Mail</label>
 

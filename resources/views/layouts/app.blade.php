@@ -33,11 +33,11 @@
 </head>
 
 <body>
-
+  
+  <div class="col-md-4">
+    @include('partial.errors')   
+  </div>
   @yield('content')
-
-
-
   @include('footer')
 
 </body>
@@ -46,5 +46,6 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/materialize.js') }}"></script>
+        <script src="js/modal.js"></script>        
 
 </html>
