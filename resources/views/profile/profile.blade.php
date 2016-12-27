@@ -52,7 +52,7 @@
                       <div class="contentService">
                         <div class="titleService">
                         <p>
-                          {{$service->name}}
+                            <a href='{{url("/service",["serviceid" => $service->id]) }}'> {{$service->name}}</a>
                         </p>
                         </div>
                         <div class="descriptioService">
