@@ -34,10 +34,12 @@
 
 <body>
   
-  <div class="col-md-4">
-    @include('partial.errors')   
+  <div class="row">
+      <div class=" col-md-4">
+        @include('partial.errorsUser')   
+      </div>
   </div>
-  @yield('content')
+  @yield('content')  
   @include('footer')
 
 </body>

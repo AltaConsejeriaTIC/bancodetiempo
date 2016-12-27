@@ -40,7 +40,7 @@ abstract class Type
       } 
       else 
       {
-          Session::flash('error', 'No tiene permisos para el recurso solicitado o su usuario se encuentre Bloqueado');
+          Session::flash('errorLogin', 'No tiene permisos para el recurso solicitado o su usuario se encuentre Bloqueado');
           return redirect()->back();
       }
     }
