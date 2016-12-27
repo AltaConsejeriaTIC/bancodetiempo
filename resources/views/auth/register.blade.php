@@ -4,193 +4,127 @@
 
 
 @section('content')
-<div class='fondo'>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-body medium">
-
-                	{!! Form::open(['url' => '/register/createUser', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
 
+
+<div class="row">
+    <div class="panel panel-default">
+         <div class="panel-body medium">
+			<div class="container">
+					
+					 @if(!empty($errors->all()))
+           	
+					     <div class='alert alert-dismissible alert-warning'>
+					           
+							@foreach ($errors->all() as $error)
+								<div>{{ $error }}</div>
+							@endforeach
+								  
+						</div>
 						
+					@endif
+			
+                	{!! Form::open(['url' => 'profile/update', 'method' => 'put', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
-						<div class="avatar">
+						<div class="row">
+								 <svg class="col-xs-4 col-xs-offset-4 col-sm-8 col-sm-offset-2 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5" viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+			                      <defs>
+			                        <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
+			                          <image  xlink:href="{{ Auth::user()->avatar }}" x="-25" width="150" height="100" />
+			                        </pattern>
+			                      </defs>
+			                      <polygon id="hex" points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/>
+			                    </svg>
 
-							<img src="{{ $providerData['avatar'] }}{{ old('avatar') }}" alt="avatar" class='avatar'/>
-
-							{{ Form::hidden('avatar', $providerData['avatar'] ) }}
+							{{ Form::hidden('avatar', $user->avatar ) }}
 
 						</div>
-
-                        <div class="form-group{{ $errors->has('firstName') ? ' has-error' : '' }}">
+						<br>
+                        <div class='row'>
 
                             {{ Form::label('firstName', trans('dictionary.firstName'), ['class' => 'col-md-4 control-label'] ) }}
 
-                            <div class="col-md-6">
-
-                            	{{ Form::text('firstName', $providerData['first_name'], ['class' => 'form-control', 'required', 'autofocus' ]) }}
-
-                                @if ($errors->has('firstName'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('firstName') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            {{ Form::text('firstName', $user->first_name, ['class' => 'form-bt col-md-6', 'required', 'autofocus' ]) }}
+                            
                         </div>
-
-                        <div class="form-group{{ $errors->has('lastName') ? ' has-error' : '' }}">
-                            {{ Form::label('firstName', trans('dictionary.lastName'), ['class' => 'col-md-4 control-label'] ) }}
-
-                            <div class="col-md-6">
-                                {{ Form::text('lastName', $providerData['last_name'], ['class' => 'form-control', 'required', 'autofocus' ]) }}
-
-                                @if ($errors->has('lastName'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('lastName') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+						<br>
+                        <div class='row'>
+                            {{ Form::label('firstName', trans('dictionary.lastname'), ['class' => 'col-md-4 control-label'] ) }}
+                            
+                            {{ Form::text('lastName', $user->last_name, ['class' => 'form-bt  col-md-6', 'required', 'autofocus' ]) }}
+                            
                         </div>
-
-                        <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+						<br>
+                        <div class='row'>
 
                         	{{ Form::label('gender', trans('dictionary.gender'), ['class' => 'col-md-4 control-label'] ) }}
 
-	                        <div class="col-md-6">
-
-	                        	{{ Form::radio('gender', 'male', '' ,['id' => 'man']) }}
-
-								{{ Form::label('man', 'Hombre', ['class' => 'col-md-4 control-label']) }}
-
-
-								{{ Form::radio('gender', 'female', '' ,['id' => 'woman']) }}
-
-								{{ Form::label('woman', 'Mujer', ['class' => 'col-md-4 control-label']) }}
-
-								@if ($errors->has('gender'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('gender') }}</strong>
-                                    </span>
-                                @endif
+	                        <div class="col-md-4">
+								
+								<div class='row'>
+								
+		                        	{{ Form::radio('gender', 'male', $user->gender == 'male' ,['id' => 'man', 'class'=>'form-bt col-md-0']) }}
+	
+									{{ Form::label('man', 'Hombre', ['class' => 'col-md-3 col-md-offset-2']) }}
+	
+	
+									{{ Form::radio('gender', 'female', $user->gender == 'female' ,['id' => 'woman', 'class'=>'form-bt  col-md-0']) }}
+	
+									{{ Form::label('woman', 'Mujer', ['class' => 'col-md-3 col-md-offset-2']) }}
+								
+								</div>
 
 							</div>
 
                         </div>
-
-                         <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
+						<br>
+                        <div class='row'>
 
                          	{{ Form::label('birthdate', trans('dictionary.birthDate'), ['class' => 'col-md-4 control-label'] ) }}
 
-                         	<div class="col-md-6">
-
-                         		{{ Form::text('birthdate', $providerData['birthdate'], ['class' => 'form-control datepicker', 'id' => 'birthdate', 'required' ]) }}
-
-                         	</div>
-
-                         </div>
+                         	{{ Form::date('birthdate', $user->birthDate, ['class' => 'form-bt col-md-6', 'id' => 'birthdate', 'required' ]) }}
 
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        </div>
+						<br>
+                        <div class='row'>
+                        
                             {{ Form::label('email', trans('dictionary.email'), ['class' => 'col-md-4 control-label'] ) }}
 
-                            <div class="col-md-6">
+							{{ Form::email('email', $user->email, ['class' => 'form-bt col-md-6', 'id' => 'email', 'readonly' ]) }}
 
-								{{ Form::text('email', $providerData['email'], ['class' => 'form-control', 'id' => 'email', 'required' ]) }}
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('aboutMe') ? ' has-error' : '' }}">
+						<br>
+                        <div class='row'>
+                        
                            {{ Form::label('aboutMe', trans('dictionary.aboutMe'), ['class' => 'col-md-4 control-label'] ) }}
-
-                            <div class="col-md-6">
-                            	{{ Form::textarea('aboutMe', '', ['class' => 'form-control', 'id' => 'aboutMe', 'required' ]) }}
-
-                                @if ($errors->has('aboutMe'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('aboutMe') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            
+                           {{ Form::textarea('aboutMe', '', ['class' => 'form-bt col-md-6', 'id' => 'aboutMe', 'required' ]) }}
+                            
                         </div>
-
-                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+						<br>
+                        <div class='row'>
+                        
                             {{ Form::label('address', trans('dictionary.address'), ['class' => 'col-md-4 control-label'] ) }}
+                            
+                            {{ Form::text('address', '', ['class' => 'form-bt col-md-6', 'id' => 'address', 'required' ]) }}
 
-                            <div class="col-md-6">
-                            	{{ Form::text('address', '', ['class' => 'form-control', 'id' => 'address', 'required' ]) }}
-
-                                @if ($errors->has('address'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
-                            {{ Form::label('siteweb', trans('dictionary.website'), ['class' => 'col-md-4 control-label'] ) }}
-
-                            <div class="col-md-6">
-                                {{ Form::text('website', '', ['class' => 'form-control', 'id' => 'siteweb' ]) }}
-
-                                @if ($errors->has('website'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('website') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            	{{ Form::hidden('provider_id', $providerData['id']) }}
-                            	{{ Form::hidden('provider', $provider) }}
+
                                 <button type="submit" class="btn btn-primary">
                                     {{ trans('dictionary.register') }}
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
 </div>
-<link href="{{ asset('jqueryUi/jquery-ui.css') }}" rel="stylesheet">
-<script src="{{ asset('jqueryUi/jquery.js') }}"></script>
-<script src="{{ asset('jqueryUi/jquery-ui.js') }}"></script>
-<script>
-
-jQuery( ".datepicker" ).datepicker({
-	inline: true,
-	changeMonth: true,
-    changeYear: true,
-    yearRange: "1930:{{ date('Y') }}"
-});
-
-
-// Hover states on the static widgets
-jQuery( "#dialog-link, #icons li" ).hover(
-	function() {
-		jQuery( this ).addClass( "ui-state-hover" );
-	},
-	function() {
-		jQuery( this ).removeClass( "ui-state-hover" );
-	}
-);
-</script>
 
 
 @endsection

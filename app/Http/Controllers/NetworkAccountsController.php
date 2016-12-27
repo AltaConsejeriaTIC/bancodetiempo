@@ -11,7 +11,7 @@ use App\Models\NetworkAccounts;
 
 use App\User;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
 
 class NetworkAccountsController extends Controller
 {
@@ -27,6 +27,14 @@ class NetworkAccountsController extends Controller
 	
 		return $this->$function();
 	
+	}
+	
+	public function showFrom(){
+		
+		$user = User::findOrFail(Auth::user()->id);
+		
+		return view('auth/register', compact('user'));
+		
 	}
 	
 	public function createUser($providerData){
@@ -58,12 +66,11 @@ class NetworkAccountsController extends Controller
 		
 		auth()->login($user);
 		
-		return true;
-		
+		return true;		
 		
 	}
 	
-	public function callback($provider = ""){
+	public function callback($provider){
 	
 		if(!$provider || $provider == '' || Input::get("error")){
 			return Redirect::route("login", array('message' => "Error en la autenticación"));
@@ -87,7 +94,7 @@ class NetworkAccountsController extends Controller
 				
 			if($this->createUser($providerData)){
 				
-				return redirect('/profile/interest');
+				return redirect('register');
 				
 			}
 	

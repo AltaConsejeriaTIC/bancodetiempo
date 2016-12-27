@@ -31,6 +31,13 @@ class ProfileController extends Controller
 
    public function editProfile(Request $request){
 
+	   	$this->validate($request, [
+	   			'firstName' => 'required|alpha',
+	   			'lastName' => 'required|alpha',
+	   			'birthdate' => 'required|date',
+	   			'aboutMe' => 'required|min:50|max:250'
+	   	]);
+   		
 	 	$user = Auth::user ();
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
@@ -38,8 +45,16 @@ class ProfileController extends Controller
 		$user->aboutMe = $request->input("aboutMe");
 		$user->address = $request->input('address');
 		$user->save();
-
-		return Redirect::to("profile");
+		
+		if(!empty($user->interests->all())){
+			
+			return Redirect::to("profile");
+		
+		}else{
+			
+			return Redirect::to("/profile/interest");
+			
+		}
 
 	}
 
