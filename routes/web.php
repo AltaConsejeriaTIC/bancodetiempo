@@ -21,7 +21,7 @@ Route::get('/loginRedes/{proveedor?}', 'NetworkAccountsController@login');
 Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
 
 Auth::routes();
-Route::get('/register', 'NetworkAccountsController@login');
+Route::get('/register', 'NetworkAccountsController@showFrom');
 Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 
 //Route Access Admin Panel
