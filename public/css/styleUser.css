@@ -19,15 +19,26 @@ svg.imageProfileSmall{
   stroke-width:0.5;
   stroke:teal;
 }
+.panel-heading p{
+  font-family: cursive;
+  font-size: 18px;
+  color: teal;
+
+}
+.panel-heading a{
+  left: 24%;
+  margin: 0px;
+}
+.photoService img{
+  height: 200px  !important;
+  width:  100%!important;
+}
 
 .contentService{
 
 }
 
-.photoService img{
-  height: 200px  !important;
-  width:  100%!important;
-}
+
 
 .titleService p{
   margin: 10px;
