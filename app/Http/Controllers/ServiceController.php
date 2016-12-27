@@ -72,7 +72,7 @@ class ServiceController extends Controller
    		
    		$this->updateCategoriesService($request->input('category'), $service);
    		
-   		return redirect('service/'.$service->id);
+   		return redirect('profile');
    	
    }
  
