@@ -42,8 +42,7 @@ class ProfileController extends Controller
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = date("Y-m-d", strtotime($request->input('birthdate')));
-		$user->aboutMe = $request->input("aboutMe");
-		$user->address = $request->input('address');
+		$user->aboutMe = $request->input("aboutMe");		
 		$user->save();
 		
 		if(!empty($user->interests->all())){

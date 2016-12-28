@@ -24,15 +24,11 @@
                       </div>
                     <div class="fb-profile-text">
                         <label for="email"  >{{ trans('dictionary.email') }}</label>
-                        <p  >{{$user->email}}</p>
-                    <!--    <label for="address"  >{{ trans('dictionary.state') }}</label>
-                        <p class=" control-label" >{{$user->state}}</p> -->
+                        <p  >{{$user->email}}</p>                   
                         <label for="gender"  >{{ trans('dictionary.gender') }}</label>
                         <p class=" control-label" >{{$user->gender}}</p>
                         <label for="birthDate"  >{{ trans('dictionary.birthDate') }}</label>
-                        <p class=" control-label" >{{$user->birthDate}}</p>
-                        <label for="address"  >{{ trans('dictionary.address') }}</label>
-                        <p class=" control-label" >{{$user->address}}</p>
+                        <p class=" control-label" >{{$user->birthDate}}</p>                        
                         <label for="aboutMe"  >{{ trans('dictionary.aboutMe') }}</label>
                         <p class=" control-label" >{{$user->aboutMe}}</p>
                        <a href="{{ url('profile/edit') }}" class="btn btn-raised btn-primary col-md-12">   Editar</a>
