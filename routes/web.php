@@ -14,7 +14,11 @@ use App\Http\Controllers\Profile\ProfileController;
 */
 
 Route::get('/', function () {
+  if(\Auth::user()->id){
+    return redirect('/home');
+  }else{
     return view('welcome');
+  }
 });
 
 Route::get('/loginRedes/{proveedor?}', 'NetworkAccountsController@login');
