@@ -7,7 +7,9 @@
     <div class="row">
         <div class="col-md-4">
             <div class="panel panel-default">
-                <div class="panel-heading">Mi Perfil</div>
+                <div class="panel-heading"><p>
+                  Mi Perfil
+                </p></div>
                 <div class="panel-body">
                  <div>
                     <svg class="imageProfileMedium center-block" viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -41,8 +43,18 @@
         	</div>
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Mis Servicios</div>
-                <div class="panel-body">
+                <div class="panel-heading">
+                  <div class="row">
+                    <p class="col-md-6">
+                    Mis Servicios
+                  </p>
+                  <div class="col-md-6">
+                      <a class="btn btn-raised btn-success" href="{{ url('/service') }}">Nuevo servicio</a>
+                  </div>
+
+                  </div>
+                </div>
+                <div class="panel-body ">
                 @foreach($user->services as $key=>$service)
 
                     <div class="col-md-6">
@@ -52,7 +64,7 @@
                       <div class="contentService">
                         <div class="titleService">
                         <p>
-                          {{$service->name}}
+                            <a href='{{url("/service",["serviceid" => $service->id]) }}'> {{$service->name}}</a>
                         </p>
                         </div>
                         <div class="descriptioService">
