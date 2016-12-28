@@ -263,6 +263,20 @@ header .header-content {
 	
 }
 
+#logo-container {
+    font-size: 15px;
+    color: #fff;
+    text-decoration: none;
+    padding-top:15px;
+}
+
+#logo-container span{
+	
+	margin-top:10px;
+	display: block;
+	
+}
+
 @media (max-width: 768px){
 	.banner{
 		height:724px;

@@ -6,7 +6,8 @@
 
 			<div class='row'>
 
-				<a class="col-md-3 col-sm-4 col-xs-8" id="logo-container" href="/" class="brand-logo"><i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
+				<a class="col-md-3 col-sm-4 col-xs-8 brand-logo" id="logo-container" href="/" >
+					<i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
 	            <a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
 
 			</div>
@@ -19,20 +20,26 @@
 <!--Navbar-->
 	<nav class="navbar navbar-default navbar-static-top nav2">
 		<div class="container">
-			<div class="navbar-header">
-
-				<!-- Collapsed Hamburger -->
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-					<span class="sr-only">Toggle Navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-
-				<!-- Branding Image -->
-					<a class:"logoApp" id="logo-container" href="{{url('/home') }}" class="brand-logo"><i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
-
+			<div class="row">
+			
+				<a id="logo-container" href="{{url('/home') }}" class="brand-logo col-md-2 col-sm-4 col-xs-8">
+					<i class="material-icons">fiber_manual_record</i>
+					<span>{{ config('app.name', 'Tiempo X Tiempo') }}</span>					 
+				</a>
+			
+				<ul id='options-container'>
+				
+					<li><i class='material-icons'>access_time</i></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					
+				</ul>	
+			
 			</div>
+			
+			
+			
 
 			<div class="collapse navbar-collapse" id="app-navbar-collapse">
 				<!-- Left Side Of Navbar -->
