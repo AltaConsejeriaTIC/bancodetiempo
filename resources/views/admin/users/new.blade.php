@@ -10,17 +10,17 @@
 					<div class="row">
 						<div class="form-group col-md-10">
               <label for="first_name">Nombres</label>
-              <input id="first_name" type="text" class="form-control" name="first_name" required autofocus>               
+              <input id="first_name" type="text" class="form-control" name="first_name" value="{{old('first_name')}}" required autofocus>               
             </div>
 
             <div class="form-group col-md-10">
               <label for="last_name">Apellidos</label>
-              <input id="last_name" type="text" class="form-control" name="last_name" required >               
+              <input id="last_name" type="text" class="form-control" name="last_name" value="{{old('last_name')}}" required >               
             </div>
 
             <div class="form-group col-md-10">
               <label for="email">E-Mail</label>
-              <input id="email" type="email" class="form-control" name="email" required >               
+              <input id="email" type="email" class="form-control" name="email" value="{{old('email')}}" required >               
             </div>           
 					  
 				  </div>

@@ -10,7 +10,7 @@
 					<div class="row">
 						<div class="form-group col-md-10">
               <label for="category">Categoría</label>
-              <input id="category" type="text" class="form-control" name="category" required autofocus>               
+              <input id="category" type="text" class="form-control" name="category" value="{{ old('category') }}" required autofocus>               
             </div>
 
             <div class="form-group col-md-10">

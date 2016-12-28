@@ -33,13 +33,15 @@ class CategoryController extends Controller
         
         if(!$ifexistCategory) 
         {
-        	$rules = ['image' => 'required|image'];      
+        	$rules = [
+                    'category' => 'required|min:3|alpha_spaces',
+                    'image' => 'required|image'
+                   ];      
 		      $validator = Validator::make($request->all(), $rules);
 		      
 		      if ($validator->fails())
-		      {
-		      	Session::flash('error', 'Debe Seleccionar un archivo tipo Imágen');
-            return redirect()->back();
+		      {           
+		      	return redirect()->back()->withInput()->withErrors($validator->errors());
 		      }
           else
         	{
@@ -94,15 +96,16 @@ class CategoryController extends Controller
     public function update(Request $request)
     {
       try 
-      {        
-        
-        $rules = ['image' => 'image'];      
+      {                
+        $rules = [
+                    'category' => 'required|min:3|alpha_spaces'                    
+                 ];  
+
 	      $validator = Validator::make($request->all(), $rules);
 	      
 	      if ($validator->fails())
 	      {
-	      	Session::flash('error', 'Debe Seleccionar un archivo tipo');
-          return redirect()->back();
+	      	return redirect()->back()->withInput()->withErrors($validator->errors());
 	      }
         else
       	{

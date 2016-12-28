@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\State;
 use Session;
+use Validator;
 
 class AdminController extends Controller
 {
@@ -58,19 +59,34 @@ class AdminController extends Controller
         
         if(!$ifexistUser) 
         {
-          $user = new User;
-          $user->first_name = $request->first_name;
-          $user->last_name = $request->last_name;
-          $user->email = $request->email;
-          $user->password = bcrypt('secret');
-          $user->state_id = 1;
-          $user->role_id = 1;
+          $rules = [
+                    'first_name' => 'required|min:3|alpha_spaces',
+                    'last_name' => 'required|min:3|alpha_spaces',
+                    'email' => 'required|email'
+                   ];  
 
-          if ($user->save()) 
-          {                     
-            Session::flash('success', '¡El Usuario con E-Mail '.$request->email.' Se Registro con Exito!');
-            return redirect('homeAdminUser');                 
-          }    
+          $validator = Validator::make($request->all(), $rules);
+          
+          if ($validator->fails())
+          {           
+            return redirect()->back()->withInput()->withErrors($validator->errors());
+          }
+          else
+          {
+            $user = new User;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+            $user->password = bcrypt('secret');
+            $user->state_id = 1;
+            $user->role_id = 1;
+
+            if ($user->save()) 
+            {                     
+              Session::flash('success', '¡El Usuario con E-Mail '.$request->email.' Se Registro con Exito!');
+              return redirect('homeAdminUser');                 
+            }    
+          }          
         }         
         else 
         {                 
@@ -112,24 +128,39 @@ class AdminController extends Controller
     public function update(Request $request)
     {
       try 
-      {        
-        $user = User::find($request->id);
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->password = bcrypt('secret');
-        $user->state_id = $request->state_id;        
+      { 
+        $rules = [
+                    'first_name' => 'required|min:3|alpha_spaces',
+                    'last_name' => 'required|min:3|alpha_spaces',
+                    'email' => 'required|email'
+                 ];  
 
-        if ($user->save()) 
-        {                     
-          Session::flash('success', '¡El Usuario con E-Mail '.$request->email.' Se Actualizó con Exito!');
-          return redirect('homeAdminUser');                 
+        $validator = Validator::make($request->all(), $rules);
+        
+        if ($validator->fails())
+        {           
+          return redirect()->back()->withInput()->withErrors($validator->errors());
         }
         else
         {
-          Session::flash('error', '¡El Usuario con E-Mail '.$request->email.' NO se Actualizó!');
-          return redirect('homeAdminUser');                   
-        }
+          $user = User::find($request->id);
+          $user->first_name = $request->first_name;
+          $user->last_name = $request->last_name;
+          $user->email = $request->email;
+          $user->password = bcrypt('secret');
+          $user->state_id = $request->state_id;        
+
+          if ($user->save()) 
+          {                     
+            Session::flash('success', '¡El Usuario con E-Mail '.$request->email.' Se Actualizó con Exito!');
+            return redirect('homeAdminUser');                 
+          }
+          else
+          {
+            Session::flash('error', '¡El Usuario con E-Mail '.$request->email.' NO se Actualizó!');
+            return redirect('homeAdminUser');                   
+          }
+        }        
       } 
       catch (Exception $e) 
       {
