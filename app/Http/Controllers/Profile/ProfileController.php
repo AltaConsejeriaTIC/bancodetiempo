@@ -32,8 +32,8 @@ class ProfileController extends Controller
    public function editProfile(Request $request){
 
 	   	$this->validate($request, [
-	   			'firstName' => 'required|alpha',
-	   			'lastName' => 'required|alpha',
+	   			'firstName' => 'required|min:3|alpha_spaces',
+	   			'lastName' => 'required|min:3|alpha_spaces',
 	   			'birthdate' => 'required|date',
 	   			'aboutMe' => 'required|min:50|max:250'
 	   	]);
