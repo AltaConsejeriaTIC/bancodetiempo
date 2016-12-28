@@ -1,3 +1,8 @@
+  @if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissable">{{ Session::get('error') }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+  @endif
   @if (Session::has('errorLogin'))  
     <div class="overlay-container">
       <div class="window-container zoomin panel panel-default">        
@@ -15,6 +20,7 @@
       </div>
   @endif
   @if($errors->any())
+  
       <div class="alert alert-danger alert-dismissable" role="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <p> Corrija Los Siguientes Errores:</p>
