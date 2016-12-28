@@ -14,7 +14,7 @@ use App\Http\Controllers\Profile\ProfileController;
 */
 
 Route::get('/', function () {
-  if(\Auth::user()->id){
+  if(\Auth::user()){
     return redirect('/home');
   }else{
     return view('welcome');
