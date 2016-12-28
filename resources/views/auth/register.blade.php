@@ -101,15 +101,7 @@
                             
                            {{ Form::textarea('aboutMe', '', ['class' => 'form-bt col-md-6', 'id' => 'aboutMe', 'required' ]) }}
                             
-                        </div>
-						<br>
-                        <div class='row'>
-                        
-                            {{ Form::label('address', trans('dictionary.address'), ['class' => 'col-md-4 control-label'] ) }}
-                            
-                            {{ Form::text('address', '', ['class' => 'form-bt col-md-6', 'id' => 'address', 'required' ]) }}
-
-                        </div>
+                        </div>						
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
