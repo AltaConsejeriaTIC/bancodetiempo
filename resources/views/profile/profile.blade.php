@@ -54,6 +54,7 @@
 
                   </div>
                 </div>
+                @include('partial.errors')
                 <div class="panel-body ">
                 @foreach($user->services as $key=>$service)
 
