@@ -52,7 +52,7 @@ class ServiceController extends Controller
 	   	$this->validate($request, [
 	   			'name' => 'required|max:100',
 	   			'description' => 'required|max:250|min:50',
-	   			'value' => 'required|max:10|min:1',
+	   			'value' => 'required|numeric|min:1|max:10',
 	   			'virtually' => 'required_without:presently',
 	   			'presently' => 'required_without:virtually',
 	   			'image' => 'image'
@@ -81,7 +81,7 @@ class ServiceController extends Controller
 	   	$this->validate($request, [
 	   			'name' => 'required|max:100',
 	   			'description' => 'required|max:250|min:50',
-	   			'value' => 'required|max:10|min:1',
+	   			'value' => 'required|numeric|min:1|max:10',
 	   			'virtually' => 'required_without:presently',
 	   			'presently' => 'required_without:virtually',
 	   			'image' => 'required|image'

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 <link href="{{ asset('/css/styleUser.css') }}" rel="stylesheet">
-@section('content')
 
+@section('content')
+@include('nav',array('type' => 2))
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
