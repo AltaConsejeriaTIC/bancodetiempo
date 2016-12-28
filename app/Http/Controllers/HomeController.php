@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+    	$allSevices = Service::where("user_id" , "!=", Auth::user()->id);
+    	
+    	dd($allSevices);
+    	
         return view('home');
     }
 
