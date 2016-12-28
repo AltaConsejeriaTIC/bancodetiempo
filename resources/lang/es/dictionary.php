@@ -1,7 +1,7 @@
 <?php
 
 return [
-	
+
 	'title' => 'Titulo',
 	'description' => 'Descripci&oacute;n',
 	'value' => 'Valor',
@@ -24,5 +24,6 @@ return [
 	'titleServiceFrom' => 'Qu&eacute; deseas ofrecer',
 	'text1ServiceFrom' => 'Si no sabes que compartir',
 	'labelTest' => 'Haz nuestro test',
-	'presently' => 'Presencial'
+	'presently' => 'Presencial',
+	'delete' => 'Borrar'
 ];

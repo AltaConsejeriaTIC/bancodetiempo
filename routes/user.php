@@ -12,4 +12,5 @@ Route::post('profile/update', ['as' => 'profile/update', 'uses'=>'Profile\Profil
 //Mod Service
 
 Route::get('/service/{serviceid}', 'ServiceController@showService');
+Route::get('/serviceDelete/{serviceid}', 'ServiceController@deleteService');
 Route::put('/service/save/{id}', 'ServiceController@update');

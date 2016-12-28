@@ -34,7 +34,7 @@
 	   <article class='row'>
 
 			<h3 class='col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 white-text visible-xs'>- descrubre<br> - aprende<br> - ense�a<br> - comparte</h3>
-			<h2 class='col-md-12 col-sm-12 text-center white-text hidden-xs'>descrubre - aprende - ense�a - comparte</h2>
+			<h2 class='col-md-12 col-sm-12 text-center white-text hidden-xs'>Descrubre - Aprende - Ense&ntilde;a - Comparte</h2>
 
 	   </article>
 
