@@ -35,7 +35,8 @@
                         <p class=" control-label" >{{$user->address}}</p>
                         <label for="aboutMe"  >{{ trans('dictionary.aboutMe') }}</label>
                         <p class=" control-label" >{{$user->aboutMe}}</p>
-                       <a href="{{ url('profile/edit') }}">   Editar</a>
+                       <a href="{{ url('profile/edit') }}" class="btn btn-raised btn-primary col-md-12">   Editar</a>
+                       <a href="{{ url('#') }}" class="btn btn-raised btn-plus col-md-12">   Desactivar Cuenta</a>
 
 	            </div>
 	        	</div>
