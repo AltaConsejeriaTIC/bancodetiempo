@@ -25,9 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-    	$allSevices = Service::where("user_id" , "!=", Auth::user()->id)->andWhere("state_id", 1)->get();
+    	$allSevices = Service::where("user_id" , "!=", Auth::user()->id)->get();
     	    	
-        return view('home');
+        return view('home', compact('allServices'));
     }
 
 }
