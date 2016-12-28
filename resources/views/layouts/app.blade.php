@@ -34,7 +34,7 @@
 
 <body>
   
-  <div class="row">
+  <div class="row content-error">
       <div class=" col-md-4">
         @include('partial.errorsUser')   
       </div>
