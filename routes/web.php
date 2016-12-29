@@ -35,5 +35,6 @@ Route::get('/service', 'ServiceController@index')->middleware('auth');
 Route::post('/service/save', 'ServiceController@create')->middleware('auth');
 
 Route::put('profile/update', 'Profile\ProfileController@editProfile');
+Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
 Route::get("/profile/interest", 'Profile\ProfileController@showFromInterest');
 Route::post("/profile/interest", 'Profile\ProfileController@saveInterest');
