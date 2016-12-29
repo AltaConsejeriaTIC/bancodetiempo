@@ -7,17 +7,10 @@
     <div class="row">
         <div class="col-md-3 col-xs-1">
           @include('partial.imageProfile')
-                    <div class="fb-profile-text">
-                        <label for="email"  >{{ trans('dictionary.email') }}</label>
-                        <p  >{{$user->email}}</p>
-                        <label for="gender"  >{{ trans('dictionary.gender') }}</label>
-                        <p class=" control-label" >{{$user->gender}}</p>
-                        <label for="birthDate"  >{{ trans('dictionary.birthDate') }}</label>
-                        <p class=" control-label" >{{$user->birthDate}}</p>
-                        <label for="aboutMe"  >{{ trans('dictionary.aboutMe') }}</label>
-                        <p class=" control-label" >{{$user->aboutMe}}</p>
-                       <a href="{{ url('profile/edit') }}" class="btn btn-raised btn-primary col-md-12">   Editar</a>
-                       <a href="{{ url('#') }}" class="btn btn-raised btn-plus col-md-12">   Desactivar Cuenta</a>
+            <div class="userName">{{$user->first_name." ".$user->last_name}}</div>
+            <div class="aboutMe">{{$user->aboutMe}}</div>
+            <a href="{{ url('profile/edit') }}" class="btn btn-raised btn-primary col-md-12">   Editar</a>
+            <a href="{{ url('#') }}" class="btn btn-raised btn-plus col-md-12">   Desactivar Cuenta</a>
 	            </div>
 	    	</div>
         	</div>

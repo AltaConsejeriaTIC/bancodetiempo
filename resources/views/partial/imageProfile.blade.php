@@ -7,5 +7,4 @@
      </defs>
      <polygon id="hex" points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/>
    </svg>
-     <h1 >{{$user->first_name." ".$user->last_name}}</h1>
 </div>

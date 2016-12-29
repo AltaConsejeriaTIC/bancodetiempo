@@ -3,7 +3,7 @@
 @import url('nav.css');
 
 svg.imageProfileMedium{
-  width:45%;
+  width:126px;
   margin:0 auto;
 }
 svg.imageProfileSmall{
@@ -33,11 +33,6 @@ svg.imageProfileSmall{
   height: 200px  !important;
   width:  100%!important;
 }
-
-.contentService{
-
-}
-
 
 
 .titleService p{

@@ -11,7 +11,9 @@ section {
     padding-top:50px;
     padding-bottom:50px;
 }
-
+body{
+  background-color: white;
+}
 header {
   position: relative;
   width: 100%;
@@ -389,27 +391,27 @@ header .header-content {
 }
 
 #temasInteres input[type="checkbox"]:checked+label{
-	
+
 	color:#2c3e50;
 	background-color:#fff;
-	
+
 }
 
 .submit{
-	
+
 	background-color:#2c3e50;
 	border: 0px;
 	padding:10px;
 	color:#fff;
 	border-radius:5px;
-	
+
 }
 
 
 @media (max-width: 768px){
 	.banner{
 		height:724px;
-	}	
+	}
 }
 
 @media (max-width: 450px){
