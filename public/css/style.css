@@ -161,7 +161,8 @@ header .header-content {
     width: 322px;
     max-height: 330px;
     height:330px;
-    margin:auto;
+    margin:10px auto;
+    background-color:#dedede;
 }
 
 .service-box span.category {
@@ -179,9 +180,13 @@ header .header-content {
     overflow: hidden;
     height: 142px;
     width: 100%;
-    position: absolute;
-    top: 0%;
-    left: 0%;
+    position: relative;
+}
+
+.service-box .content {
+    position: relative;
+    margin: 0px 15px;
+    height: 188px;
 }
 
 .service-box .cover > img {
@@ -199,10 +204,9 @@ header .header-content {
 }
 
 .service-box .title {
-    position: absolute;
-    top: 142px;
-    margin: 0px;
-    left: 35%;
+    position: relative;
+    margin-top: 0px;
+    margin-left: 100px;
 }
 
 .mTop-50{

@@ -25,6 +25,13 @@ class UserTableSeeder extends Seeder
       
       $faker = Faker\Factory::create('es_ES');
 
+      $avatar = array(
+      		'https://upload.wikimedia.org/wikipedia/commons/6/65/Kruse_CNDLS_Profile.png',
+      		'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Sherman_Profile.png/602px-Sherman_Profile.png',
+      		'http://media.istockphoto.com/photos/profile-portrait-of-young-blond-woman-picture-id521816664?k=6&m=521816664&s=170667a&w=0&h=h246AFq6IUUdlcyNcIUv1FPM0Q1jH6EGO8O7TfLjb6o=',
+      		'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'
+      );
+      
       $this->create([
           'first_name' => 'Admin',
           'last_name' => 'Admin',            
@@ -45,8 +52,10 @@ class UserTableSeeder extends Seeder
               'email' => $faker->email,            
               'password'  => bcrypt('secret'),
               'state_id' => 1,
+          	  'avatar' => $faker->randomElement($avatar),
               'gender' => $faker->randomElement(['Masculino','Femenino']),
               'birthDate' => $faker->date($format = 'Y-m-d', $max = 'now'),
+          	  'ranking' => $faker->numberBetween(1, 5),
               'aboutMe' => null,              
               'role_id' => 2,
           ]);
