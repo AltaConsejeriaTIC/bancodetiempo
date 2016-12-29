@@ -22,8 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('gender')->nullable();
             $table->date('birthDate')->nullable();
-            $table->string('aboutMe')->nullable();
-            $table->string('address')->nullable();
+            $table->string('aboutMe')->nullable();            
             $table->string('credits')->nullable();
             $table->integer('ranking')->nullable();
             $table->integer('role_id')->unsigned();

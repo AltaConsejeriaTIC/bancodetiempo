@@ -32,8 +32,7 @@ class UserTableSeeder extends Seeder
           'password'  => bcrypt('admin123'),          
           'gender' => '',
           'birthDate' => null,
-          'aboutMe' => null,
-          'address' => null,
+          'aboutMe' => null,          
           'state_id' => 1,
           'role_id' => 1,
       ]); 
@@ -48,8 +47,7 @@ class UserTableSeeder extends Seeder
               'state_id' => 1,
               'gender' => $faker->randomElement(['Masculino','Femenino']),
               'birthDate' => $faker->date($format = 'Y-m-d', $max = 'now'),
-              'aboutMe' => null,
-              'address' => $faker->address,             
+              'aboutMe' => null,              
               'role_id' => 2,
           ]);
       }        
