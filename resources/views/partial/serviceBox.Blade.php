@@ -22,16 +22,30 @@
  
 		<h3 class='title titulo2'>{{$service->name}}</h3>
  
-		<p class='parrafo2'>{{$service->description}}</p>
+		<p class='parrafo2'>{{str_limit($service->description, 100)}}</p>
  
 		<div class='ranking'>
-
-			@for($cont = 1 ; $cont <= $service->user->ranking ; $cont++)
+						
+			@for($cont = 1 ; $cont <= 5 ; $cont++)
+				
+				@if($cont <= $service->user->ranking)
+					<span class='material-icons parrafo1'>grade</span>
+				@else
+					<span class='material-icons parrafo6 star'>fiber_manual_record</span>
+				@endif
 			
-				<span class='star'></span>
-			
-			@endfor
+			@endfor			
 
+		</div>
+		
+		<div class='tags'>
+		
+			<span class='boton7'>numero 1</span>
+			
+			<span class='boton7'>numero 2</span>
+			
+			<span class='boton7'>numero 3</span>
+		
 		</div>
 	 
 	</div>
