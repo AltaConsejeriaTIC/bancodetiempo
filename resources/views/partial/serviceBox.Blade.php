@@ -40,11 +40,11 @@
 		
 		<div class='tags'>
 		
-			<span class='boton7'>numero 1</span>
+			<a class='boton7'>numero 1</a>
 			
-			<span class='boton7'>numero 2</span>
+			<a class='boton7'>numero 2</a>
 			
-			<span class='boton7'>numero 3</span>
+			<a class='boton7'>numero 3</a>
 		
 		</div>
 	 

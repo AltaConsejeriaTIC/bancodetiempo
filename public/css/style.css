@@ -245,8 +245,9 @@ header .header-content {
 	
 }
 
-.service-box .tags > span {
+.service-box .tags > a {
     margin: 0px 5px;
+    text-decaration:none;
 }
 
 .mTop-50{
