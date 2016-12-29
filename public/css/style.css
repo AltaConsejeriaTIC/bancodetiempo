@@ -32,6 +32,101 @@ header .header-content {
   width: 100%;
 }
 
+.titulo1{
+	font-weight:bold;
+	font-size:20px;
+	color:#2c3e50;
+}
+
+.titulo2{
+	font-weight:bold;
+	font-size:30px;
+	color:#2c3e50;
+}
+
+.boton1{
+	font-size:16px;
+	color:#fff;
+	background-color:#2c3e50;
+	padding:16px 10px;
+	width:322px;
+	border-radius:4px;
+}
+
+.boton2{
+	font-size:16px;
+	color:#fff;
+	background-color:#2c3e50;
+	padding:16px 10px;
+	width:322px;
+	border-radius:4px;
+}
+
+.boton3{
+	font-size:16px;
+	color:#fff;
+	background-color:#818993;
+	padding:16px 10px;
+	width:322px;
+	border-radius:4px;
+}
+
+.boton4{
+	font-size:16px;
+	color:#fff;
+	padding:16px 25px;
+	width:138px;
+	border:1px solid #fff;
+	border-radius:4px;
+}
+
+.boton5{
+	font-size:16px;
+	color:#fff;
+	padding:16px 25px;
+	width:138px;
+	border-radius:4px;
+}
+
+.boton6{
+	font-size:18px;
+	color:#fff;
+	padding:16px 25px;
+	width:322px;
+}
+
+.boton7{
+	font-size:16px;
+	color:#fff;
+	padding:4px;
+	border-radius:4px;
+	border:solid 1px #9a9a9a;
+}
+
+.boton8{
+	font-size:16px;
+	color:#818993;
+	padding:16px 10px;
+	width:322px;
+	border-radius:4px;
+	border:solid 1px #818993;
+}
+
+.parrafo1{
+	font-size:18px;
+	color:#2c3e50;
+}
+
+.parrafo2{
+	font-size:16px;
+	color:#2c3e50;
+}
+
+.parrafo3{
+	font-size:16px;
+	color:#2c3e50;
+}
+
 .white-text{
 
 	color : #fff;
@@ -61,10 +156,53 @@ header .header-content {
     padding: 10px;
 }
 
-.service > div {
-    border: 1px solid #333;
-    height: 100%;
-    display: block;
+.service-box {
+    position: relative;
+    width: 322px;
+    max-height: 330px;
+    height:330px;
+    margin:auto;
+}
+
+.service-box span.category {
+    background: #2c3e50;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    z-index: 10;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.service-box .cover {
+    overflow: hidden;
+    height: 142px;
+    width: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+.service-box .cover > img {
+    width: 100%;
+    top: -25%;
+    position: absolute;
+    left: 0px;
+}
+
+.service-box .avatar {
+    position: absolute;
+    width: 25%;
+    top: 100px;
+    left: 5%;
+}
+
+.service-box .title {
+    position: absolute;
+    top: 142px;
+    margin: 0px;
+    left: 35%;
 }
 
 .mTop-50{

@@ -56,3 +56,9 @@
 	text-align: center;
 	color: black;
 }
+
+.content-error
+{
+	margin-right: 0px !important;
+  margin-left: 0px !important;
+}
