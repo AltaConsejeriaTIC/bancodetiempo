@@ -48,6 +48,12 @@ class CreateAlterAllTables extends Migration
                 ->references('id')
                 ->on('states')
                 ->onUpdate('cascade');      
+
+          $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onUpdate('cascade');
+                
         });
 
         // Foreign key Table interest_users

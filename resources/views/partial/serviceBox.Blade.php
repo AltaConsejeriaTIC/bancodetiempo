@@ -1,6 +1,6 @@
 <div class='service-box'>
  
-	<span class='category'>Categoria</span>
+	<span class='category'>{{$service->category->category}}</span>
  
 	<div class="cover">
  
@@ -25,16 +25,20 @@
 		<p class='parrafo2'>{{str_limit($service->description, 100)}}</p>
  
 		<div class='ranking'>
-						
-			@for($cont = 1 ; $cont <= 5 ; $cont++)
-				
-				@if($cont <= $service->user->ranking)
-					<span class='material-icons parrafo1'>grade</span>
-				@else
-					<span class='material-icons parrafo6 star'>fiber_manual_record</span>
-				@endif
 			
-			@endfor			
+			<div>
+			
+				@for($cont = 1 ; $cont <= 5 ; $cont++)
+				
+					@if($cont <= $service->user->ranking)
+						<span class='material-icons parrafo1'>grade</span>
+					@else
+						<span class='material-icons parrafo6 star'>fiber_manual_record</span>
+					@endif
+				
+				@endfor	
+			
+			</div>		
 
 		</div>
 		

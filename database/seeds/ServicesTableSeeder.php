@@ -43,6 +43,7 @@ class ServicesTableSeeder extends Seeder
 					'virtually'  => $faker->numberBetween(1,8),
 					'presently' => 1,
 					'image' => $faker->randomElement($fotos),
+					'category_id' => $faker->numberBetween(1,5),
 					'user_id' => $faker->numberBetween(2,15),
 					'state_id' => $faker->numberBetween(1,2),
 			]);

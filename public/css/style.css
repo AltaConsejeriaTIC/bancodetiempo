@@ -131,8 +131,8 @@ header .header-content {
 }
 
 .parrafo3{
-	font-size:16px;
-	color:#2c3e50;
+	font-size:16px !important;
+	color:#2c3e50 !important;
 }
 
 .parrafo6{
@@ -171,7 +171,7 @@ header .header-content {
 
 .service-box {
     position: relative;
-    width: 100%;
+    width: 322px;
     max-height: 330px;
     height:330px;
     margin:10px auto;
@@ -224,32 +224,52 @@ header .header-content {
 }
 
 .service-box .ranking {
-    width: 100%;
-    display: block;
+    display: table;
     overflow: hidden;
     height: 24px;
     margin-bottom: 10px;
 }
 
-.service-box .ranking > span {
-    display: block;
-    float: left;
-    margin: 0px 5px;
-    width: 24px;
-    height: 24px;
+.service-box .ranking > div {
+    display: table-row;
 }
 
-
-
-.service-box .ranking .star{
-	
-	margin-top: 7px;
-	
+.service-box .ranking > div > span {
+    display: table-cell;
+    padding: 0px 5px;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
 }
 
 .service-box .tags > a {
     margin: 0px 5px;
     text-decaration:none;
+}
+
+.service-box .content > p {
+    overflow: hidden;
+    display: block;
+    height: 65px;
+}
+ul.nav.nav-pills > li{
+	
+	margin-right: 15px;
+}
+
+ul.nav.nav-pills > li > a {
+    background: transparent;
+    padding: 0px 0px 5px 0px !important;
+}
+
+ul.nav.nav-pills > li.active, ul.nav.nav-pills > li:hover {
+    border-bottom: 2px solid #2c3e50;
+    font-weight: bold;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+	background: transparent;
+	color:#2c3e50;
 }
 
 .mTop-50{
@@ -446,6 +466,12 @@ header .header-content {
 	color:#fff;
 	border-radius:5px;
 
+}
+
+@media (min-width: 1200px){
+	.container {
+	    width: 1024px;
+	}
 }
 
 

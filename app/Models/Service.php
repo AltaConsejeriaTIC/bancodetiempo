@@ -23,6 +23,12 @@ class Service extends Model
 		
 	}
 	
+	public function category(){
+		
+		return $this->belongsTo(Category::class);
+		
+	}
+	
 	public function setImageAttribute($value){
 		
 		if(!empty($value) && $value !=  ''){
