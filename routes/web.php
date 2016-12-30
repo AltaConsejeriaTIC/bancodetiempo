@@ -13,13 +13,7 @@ use App\Http\Controllers\Profile\ProfileController;
 |
 */
 
-Route::get('/', function () {
-  if(\Auth::user()){
-    return redirect('/home');
-  }else{
-    return view('welcome');
-  }
-});
+Route::get('/', 'HomeController@indexNotRegister');
 
 Route::get('/loginRedes/{proveedor?}', 'NetworkAccountsController@login');
 Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');

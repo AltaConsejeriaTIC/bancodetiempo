@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -33,6 +33,19 @@ class HomeController extends Controller
     	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
     	
         return view('home', compact('allServices', 'recommendedServices'));
+    }
+    
+    public function indexNotRegister(){
+    	
+    	if(Auth::user()){
+    		return redirect('/home');
+    	}else{
+    		
+    		$lastServices = Service::where('state_id' , 1)->orderBy('id', 'desc')->limit(6)->get();
+    		    		
+    		return view('welcome', compact('lastServices'));
+    	}
+    	
     }
     
     public function getInterestsUser(){
