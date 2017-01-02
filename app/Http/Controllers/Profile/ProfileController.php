@@ -28,6 +28,30 @@ class ProfileController extends Controller
         return view('profile/edit', compact('user'));
 
     }
+//====================== Photo User ==================================
+
+
+public function  updatePhoto(Request $request){
+
+        $file = $request->file('image');
+     		if(!$file){
+     			return false;
+     		}
+     		$imageName = 'img' . Auth::User()->id . '-' . $file->getClientOriginalExtension();
+
+     		$pathImage = 'resources/user/user_'. Auth::User()->id;
+
+     		$file->move(base_path() . '/public/' . $pathImage, $imageName);
+
+     		User::find(Auth::User()->id)->update([
+     			'avatar' => $pathImage . $imageName
+     		]);
+
+     		return $pathImage . $imageName;
+
+     }
+
+//=====================================================================
 
    public function editProfile(Request $request){
 
@@ -37,22 +61,22 @@ class ProfileController extends Controller
 	   			'birthdate' => 'required|date',
 	   			'aboutMe' => 'required|min:50|max:250'
 	   	]);
-   		
+
 	 	$user = Auth::user ();
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = date("Y-m-d", strtotime($request->input('birthdate')));
-		$user->aboutMe = $request->input("aboutMe");		
+		$user->aboutMe = $request->input("aboutMe");
 		$user->save();
-		
+
 		if(!empty($user->interests->all())){
-			
+
 			return Redirect::to("profile");
-		
+
 		}else{
-			
+
 			return Redirect::to("/profile/interest");
-			
+
 		}
 
 	}

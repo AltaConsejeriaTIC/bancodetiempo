@@ -86,12 +86,13 @@ class ServiceController extends Controller
    				'value' => $request->input('value'),
    				'virtually' => $request->input('virtually'),
    				'presently' => $request->input('presently'),
+   				'category_id' => $request->input('category'),
    		]);
 
    		$this->uploadCover($request->file('image'), $service);
-
-   		$this->updateCategoriesService($request->input('category'), $service);
-			Session::flash('success','Has actualizado correctamente tu servicio');
+   		
+		Session::flash('success','Has actualizado correctamente tu servicio');
+		
    		return redirect('profile');
 
    }
@@ -115,13 +116,14 @@ class ServiceController extends Controller
    				'presently' => $request->input('presently'),
    				'user_id' => Auth::user()->id,
    				'image' => 'resources/default.jpg',
+   				'category_id' => $request->input('category'),
    				'state_id' => 1
    		]);
 
    		$this->uploadCover($request->file('image'), $service);
 
-   		$this->updateCategoriesService($request->input('category'), $service);
-			Session::flash('success','Has actualizado correctamente tu servicio');
+		Session::flash('success','Has actualizado correctamente tu servicio');
+		
    		return redirect('profile');
 
    }

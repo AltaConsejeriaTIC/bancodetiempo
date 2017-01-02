@@ -10,11 +10,6 @@
                 <div class="panel-heading">Editar Perfil</div>
                 <div class="panel-body  medium">
 
-
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('profile/update') }}">
-                        {{ csrf_field() }}
-
-
                         <svg class="imageProfileMedium center-block" viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
                           <defs>
                             <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
@@ -23,11 +18,26 @@
                           </defs>
                           <polygon id="hex" points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/>
                         </svg>
+                        <div>
+
+
+	                      {!! Form::open(['url' => 'profile/updatePhoto', 'method' => 'put', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+
+
+                              {{ Form::file('image', '') }}
+
+
+                        {!! Form::close()!!}
+
+                        </div>
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('profile/update') }}">
+                            {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('firstName') ? ' has-error' : '' }}">
                             <label for="firstName" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
                                 <input id="firstName" type="text" class="form-control" name="firstName" value="{{$user->first_name}}" required autofocus>
+
 
                                 @if ($errors->has('firstName'))
                                     <span class="help-block">

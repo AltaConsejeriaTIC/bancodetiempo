@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 
 class Service extends Model
@@ -19,6 +20,12 @@ class Service extends Model
 	public function categories(){
 		
 		return $this->hasMany(CategoriesService::class);
+		
+	}
+	
+	public function category(){
+		
+		return $this->belongsTo(Category::class);
 		
 	}
 	

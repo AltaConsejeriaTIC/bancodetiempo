@@ -73,30 +73,20 @@
 
 	<div class="container">
 
-		<h2 class='col-md-12 text-second-color text-center'>SERVICIOS DESTACADOS</h2>
-
-	<article class='row'>
-
-		<div class="service col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0  col-xs-10 col-xs-offset-1">
-			<div></div>
-		</div>
-		<div class="service col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0  col-xs-10 col-xs-offset-1">
-			<div></div>
-		</div>
-		<div class="service col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-			<div></div>
-		</div>
-		<div class="service col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-10 hidden-xs col-xs-offset-1">
-			<div></div>
-		</div>
-		<div class="service col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-10 hidden-xs col-xs-offset-1">
-			<div></div>
-		</div>
-		<div class="service col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-10 hidden-xs col-xs-offset-1">
-			<div></div>
-		</div>
-
-	</article>
+		<article class='row'>
+	
+			@foreach($lastServices as $key => $service)
+		          
+		          <div class='col-md-4 col-xs-12 col-sm-6'>
+			          	
+			          @include('partial/serviceBox', array("service" => $service))
+			          		          	
+		          </div>
+		          
+		    @endforeach
+			
+	
+		</article>
 
 	</div>
 

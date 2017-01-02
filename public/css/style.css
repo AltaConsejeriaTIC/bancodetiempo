@@ -4,14 +4,20 @@
 
 @import url('styleForms.css');
 
-@import url('modal.css');
+body{
+	
+	background-color:#fff !important;
+	
+}
 
 section {
     position: relative;
     padding-top:50px;
     padding-bottom:50px;
 }
-
+body{
+  background-color: white;
+}
 header {
   position: relative;
   width: 100%;
@@ -30,6 +36,106 @@ header .header-content {
   text-align: center;
   padding: 40px 15px 100px;
   width: 100%;
+}
+
+.titulo1{
+	font-weight:bold;
+	font-size:20px;
+	color:#2c3e50;
+}
+
+.titulo2{
+	font-weight:bold;
+	font-size:30px;
+	color:#2c3e50;
+}
+
+.boton1{
+	font-size:16px;
+	color:#fff;
+	background-color:#2c3e50;
+	padding:16px 10px;
+	width:322px;
+	border-radius:4px;
+}
+
+.boton2{
+	font-size:16px;
+	color:#fff;
+	background-color:#2c3e50;
+	padding:16px 10px;
+	width:322px;
+	border-radius:4px;
+}
+
+.boton3{
+	font-size:16px;
+	color:#fff;
+	background-color:#818993;
+	padding:16px 10px;
+	width:322px;
+	border-radius:4px;
+}
+
+.boton4{
+	font-size:16px;
+	color:#fff;
+	padding:16px 25px;
+	width:138px;
+	border:1px solid #fff;
+	border-radius:4px;
+}
+
+.boton5{
+	font-size:16px;
+	color:#fff;
+	padding:16px 25px;
+	width:138px;
+	border-radius:4px;
+}
+
+.boton6{
+	font-size:18px;
+	color:#fff;
+	padding:16px 25px;
+	width:322px;
+}
+
+.boton7{
+	font-size:16px;
+	color:#9a9a9a;
+	padding:4px;
+	border-radius:4px;
+	border:solid 1px #9a9a9a;
+}
+
+.boton8{
+	font-size:16px;
+	color:#818993;
+	padding:16px 10px;
+	width:322px;
+	border-radius:4px;
+	border:solid 1px #818993;
+}
+
+.parrafo1{
+	font-size:18px;
+	color:#2c3e50;
+}
+
+.parrafo2{
+	font-size:16px;
+	color:#2c3e50;
+}
+
+.parrafo3{
+	font-size:16px !important;
+	color:#2c3e50 !important;
+}
+
+.parrafo6{
+	font-size:12px !important;
+	color:#2c3e50;
 }
 
 .white-text{
@@ -61,10 +167,107 @@ header .header-content {
     padding: 10px;
 }
 
-.service > div {
-    border: 1px solid #333;
-    height: 100%;
+.service-box {
+    position: relative;
+    width: 322px;
+    max-height: 330px;
+    height:330px;
+    margin:10px auto;
+    background-color:#dedede;
+    border: 0.25px solid #a0a0a0;
+}
+
+.service-box span.category {
+    background: #2c3e50;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    z-index: 10;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.service-box .cover {
+    overflow: hidden;
+    height: 142px;
+    width: 100%;
+    position: relative;
+}
+
+.service-box .content {
+    position: relative;
+    margin: 0px 15px;
+    height: 188px;
+}
+
+.service-box .cover > img {
+    width: 100%;
+    top: -25%;
+    position: absolute;
+    left: 0px;
+}
+
+.service-box .avatar {
+    position: absolute;
+    width: 25%;
+    top: 100px;
+    left: 5%;
+}
+
+.service-box .title {
+    position: relative;
+    margin-top: 0px;
+    margin-left: 100px;
+}
+
+.service-box .ranking {
+    display: table;
+    overflow: hidden;
+    height: 24px;
+    margin-bottom: 10px;
+}
+
+.service-box .ranking > div {
+    display: table-row;
+}
+
+.service-box .ranking > div > span {
+    display: table-cell;
+    padding: 0px 5px;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.service-box .tags > a {
+    margin: 0px 5px;
+    text-decaration:none;
+}
+
+.service-box .content > p {
+    overflow: hidden;
     display: block;
+    height: 65px;
+}
+ul.nav.nav-pills > li{
+	
+	margin-right: 15px;
+}
+
+ul.nav.nav-pills > li > a {
+    background: transparent;
+    padding: 0px 0px 5px 0px !important;
+}
+
+ul.nav.nav-pills > li.active, ul.nav.nav-pills > li:hover {
+    border-bottom: 2px solid #2c3e50;
+    font-weight: bold;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+	background: transparent;
+	color:#2c3e50;
 }
 
 .mTop-50{
@@ -247,27 +450,33 @@ header .header-content {
 }
 
 #temasInteres input[type="checkbox"]:checked+label{
-	
+
 	color:#2c3e50;
 	background-color:#fff;
-	
+
 }
 
 .submit{
-	
+
 	background-color:#2c3e50;
 	border: 0px;
 	padding:10px;
 	color:#fff;
 	border-radius:5px;
-	
+
+}
+
+@media (min-width: 1200px){
+	.container {
+	    width: 1024px;
+	}
 }
 
 
 @media (max-width: 768px){
 	.banner{
 		height:724px;
-	}	
+	}
 }
 
 @media (max-width: 450px){
@@ -282,3 +491,5 @@ header .header-content {
 	    left: -65%;
 	}
 }
+
+@import url('modal.css');

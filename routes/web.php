@@ -13,13 +13,7 @@ use App\Http\Controllers\Profile\ProfileController;
 |
 */
 
-Route::get('/', function () {
-  if(\Auth::user()){
-    return redirect('/home');
-  }else{
-    return view('welcome');
-  }
-});
+Route::get('/', 'HomeController@indexNotRegister');
 
 Route::get('/loginRedes/{proveedor?}', 'NetworkAccountsController@login');
 Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
@@ -35,5 +29,6 @@ Route::get('/service', 'ServiceController@index')->middleware('auth');
 Route::post('/service/save', 'ServiceController@create')->middleware('auth');
 
 Route::put('profile/update', 'Profile\ProfileController@editProfile');
+Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
 Route::get("/profile/interest", 'Profile\ProfileController@showFromInterest');
 Route::post("/profile/interest", 'Profile\ProfileController@saveInterest');
