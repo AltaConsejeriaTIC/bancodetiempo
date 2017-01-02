@@ -5,7 +5,7 @@ use Styde\Seeder\BaseSeeder;
 class DatabaseSeeder extends BaseSeeder
 {
     protected $truncate = array(
-        'states','roles','users', 'categories', 'Services'
+        'states','roles','users', 'categories', 'services'
     );
  
     protected $seeders = array(
