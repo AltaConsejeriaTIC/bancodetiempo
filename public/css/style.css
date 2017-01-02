@@ -121,6 +121,7 @@ header .header-content {
 
 .parrafo1{
 	font-size:18px;
+	word-wrap: break-word;
 	color:#2c3e50;
 }
 
