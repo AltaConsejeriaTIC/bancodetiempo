@@ -1,5 +1,5 @@
 //script modal window for errors
-
+/*
 $(document).ready(function() {
 	
 		
@@ -19,3 +19,26 @@ $(document).ready(function() {
 	});
 	
 });
+*/
+// register modal component Vue.js
+
+Vue.component('modal', {
+  template: '#modal-template-vue',
+  props: {
+    show: {
+      type: Boolean,
+      required: true,
+      twoWay: true    
+    }
+  }
+})
+
+// start app
+new Vue({
+  el: '#app',
+  data: 
+  {
+  	name: 'HOlass',
+    showModal: false
+  }
+})

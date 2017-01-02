@@ -7,25 +7,24 @@
     <div class="row">
         <div class="col-md-4 col-xs-1 dataUser">
           @include('partial.imageProfile')
-            <div class='ranking rankingProfile'>
-              <div>
-                  @for($cont = 1 ; $cont <= 5 ; $cont++)
+          <div class='ranking rankingProfile'>
+            <div>
+              @for($cont = 1 ; $cont <= 5 ; $cont++)
 
-                    @if($cont <= $user->ranking)
-                      <span class='material-icons parrafo1'>grade</span>
-                    @else
-                      <span class='material-icons parrafo6'>fiber_manual_record</span>
-                    @endif
+                @if($cont <= $user->ranking)
+                  <span class='material-icons parrafo1'>grade</span>
+                @else
+                  <span class='material-icons parrafo6'>fiber_manual_record</span>
+                @endif
 
-                  @endfor
-                </div>
-        		</div>
-            <div class="userName titulo1">{{$user->first_name." ".$user->last_name}}</div>
-            <div class="aboutMe parrafo1">{{$user->aboutMe}}</div>
-            <a href="{{ url('profile/edit') }}" class="col-md-12 editProfile">Editar</a>
-            <a href="{{ url('#') }}" class="col-md-12 deleteProfile">   Desactivar Cuenta</a>
-	            </div>
-
+              @endfor
+            </div>  
+      		</div>
+          <div class="userName titulo1">{{$user->first_name." ".$user->last_name}}</div>
+          <div class="aboutMe parrafo1">{{$user->aboutMe}}</div>
+          <a href="{{ url('profile/edit') }}" class="col-md-12 editProfile">Editar</a>
+          @include('profile.deactivateAccount')                     
+	      </div>
 
         <div class="col-md-8 col-xs-1">
             <div class="">
