@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Middleware;
-
-use Closure;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
 
-class RedirectIfNotService
+use Closure;
+
+class UserServiceMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,18 +16,14 @@ class RedirectIfNotService
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {    
-        if(Auth::user()->role_id == 1)
+    {
+         if(Auth::user()->role_id == 1)
         {           
            return redirect('/homeAdmin');          
         }           
         if(Auth::user()->role_id == 2)
-        {                  
-           if(Service::whereUserId(Auth::user()->id)->first())            
-    	       return $next($request);    		
-                   	   
-           return redirect('/service');
+        {              
+           return $next($request);
         }
-
     }
 }

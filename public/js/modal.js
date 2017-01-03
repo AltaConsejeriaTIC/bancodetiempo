@@ -23,22 +23,20 @@ $(document).ready(function() {
 // register modal component Vue.js
 
 Vue.component('modal', {
-  template: '#modal-template-vue',
-  props: {
-    show: {
-      type: Boolean,
-      required: true,
-      twoWay: true    
+  template: '#modal-template',
+  props: ['show'],
+  methods: {
+    savePost: function () {
+      // Insert AJAX call here...
+      this.show = false;
     }
   }
-})
+});
 
-// start app
 new Vue({
-  el: '#app',
-  data: 
-  {
-  	name: 'HOlass',
+  el: 'body',
+  data: {
+  	name: "hola",
     showModal: false
   }
-})
+});

@@ -55,5 +55,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'user' => \App\Http\Middleware\UserMiddleware::class,        
         'serviceNull' => \App\Http\Middleware\RedirectIfNotService::class,
+        'userService' => \App\Http\Middleware\UserServiceMiddleware::class,
+        
     ];
 }

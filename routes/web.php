@@ -25,8 +25,6 @@ Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 //Route Access Admin Panel
 Route::get('admin','AdminController@AdminLogin')->middleware('guest');;
 
-Route::get('/service', 'ServiceController@index')->middleware('auth');
-Route::post('/service/save', 'ServiceController@create')->middleware('auth');
 
 Route::put('profile/update', 'Profile\ProfileController@editProfile');
 Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');

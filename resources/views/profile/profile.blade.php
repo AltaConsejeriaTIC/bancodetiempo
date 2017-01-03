@@ -24,6 +24,8 @@
           <div class="aboutMe parrafo1">{{$user->aboutMe}}</div>
           <a href="{{ url('profile/edit') }}" class="col-md-12 editProfile">Editar</a>
           @include('profile.deactivateAccount')                     
+          <hr>
+            <pre> @{{ $data | json }} </pre>     
 	      </div>
 
         <div class="col-md-8 col-xs-1">

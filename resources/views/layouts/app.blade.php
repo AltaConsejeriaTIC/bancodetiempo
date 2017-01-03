@@ -22,16 +22,17 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
         <!-- Custom styles -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
         <!-- Fonts -->
        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Scripts -->
+        <script src="{{ asset('js/vue.js') }}"></script>   
+        <script src="{{ asset('js/modal.js') }}"></script>   
         <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
             ]); ?>
         </script>
-        <script src="{{ asset('js/vue.js') }}"></script>   
-        <script src="{{ asset('js/modal.js') }}"></script>   
     </head>
 
     <body>
@@ -47,7 +48,7 @@
     </body>
 
     <!--  Scripts-->
-         
+            
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>        

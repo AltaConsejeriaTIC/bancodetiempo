@@ -38,6 +38,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
         $this->mapAdminRoutes();
         $this->mapUserRoutes();
+        $this->mapUserServiceRoutes();
     }
 
     /**
@@ -88,6 +89,16 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,            
         ], function ($router) {
             require base_path('routes/user.php');
+        });
+    }
+
+    protected function mapUserServiceRoutes()
+    {
+        Route::group([
+            'middleware' => ['web','auth','userService'],
+            'namespace' => $this->namespace,            
+        ], function ($router) {
+            require base_path('routes/service.php');
         });
     }
 }
