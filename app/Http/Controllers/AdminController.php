@@ -8,6 +8,7 @@ use App\User;
 use App\Models\State;
 use Session;
 use Validator;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -166,4 +167,58 @@ class AdminController extends Controller
       {
       }              
     }
+
+    /**
+     * Redirect View Change Password User Admin.          
+    */
+
+    public function changePassword()
+    {
+      return view('admin/changePasswordAdmin'); 
+    }
+
+    /**
+     * Method Change Password User Admin.          
+    */
+    public function changePasswordAdmin(Request $request)
+    {     
+      $rules = [
+                'last_password' => 'required|min:6',
+                'new_password' => 'required|min:6',
+                'confirm_password' => 'required|min:6'
+              ];  
+
+      $validator = Validator::make($request->all(), $rules);
+      
+      if ($validator->fails())
+      {           
+        return redirect()->back()->withInput()->withErrors($validator->errors());
+      }
+      else
+      {
+
+        $user = User::find(\Auth::user()->id);        
+        
+        if (hash::check($request->last_password, $user->password)) 
+        {
+          if ($request->new_password == $request->confirm_password) 
+          {
+              $user->password = bcrypt($request->new_password);              
+              $user->save();
+              \Session::flash('success', 'Contraseña Actualizada Satisfactoriamente');
+              return redirect('homeAdmin');
+          } else {
+              \Session::flash('error', 'Las contraseñas no coinciden');
+          }
+        } 
+        else 
+        {
+            \Session::flash('error', 'La contraseña suministrada no es la correcta');
+        }
+        
+
+        return redirect('changePassword');
+      }
+    }
+
 }

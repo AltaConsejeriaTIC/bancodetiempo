@@ -25,7 +25,7 @@
 					  
 				  </div>
 				<div class="modal-footer">					
-					<button type="submit" class="btn btn-raised btn-success"><i class="material-icons">done_all</i></button>					
+					<button type="submit" class="btn btn-raised btn-success" title="Guardar"><i class="material-icons">done_all</i></button>					
 				</div>
 				</div>
 			{!! Form::close()!!}
