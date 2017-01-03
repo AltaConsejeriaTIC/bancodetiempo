@@ -33,7 +33,7 @@
 	   <div class='clearfix mTop-250 hidden-xs hidden-sm hidden-lg'><br></div>
 	   <article class='row'>
 
-			<h3 class='col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 white-text visible-xs'>- descrubre<br> - aprende<br> - ense�a<br> - comparte</h3>
+			<h3 class='col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 white-text visible-xs'>- descrubre<br> - aprende<br> - ense&ntilde;a<br> - comparte</h3>
 			<h2 class='col-md-12 col-sm-12 text-center white-text hidden-xs'>Descrubre - Aprende - Ense&ntilde;a - Comparte</h2>
 
 	   </article>
@@ -74,18 +74,18 @@
 	<div class="container">
 
 		<article class='row'>
-	
+
 			@foreach($lastServices as $key => $service)
-		          
+
 		          <div class='col-md-4 col-xs-12 col-sm-6'>
-			          	
+
 			          @include('partial/serviceBox', array("service" => $service))
-			          		          	
+
 		          </div>
-		          
+
 		    @endforeach
-			
-	
+
+
 		</article>
 
 	</div>

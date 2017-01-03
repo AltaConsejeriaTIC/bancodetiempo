@@ -8,8 +8,14 @@
 
 				<a class="col-md-3 col-sm-4 col-xs-8 brand-logo" id="logo-container" href="/" >
 					<i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
+							@if((Auth::guest()))
 	            <a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
-
+							@elseif((!Auth::guest()))
+							<a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+							<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+									{{ csrf_field() }}
+							</form>
+							@endif
 			</div>
 
 		</div>
@@ -21,14 +27,14 @@
 	<nav class="navbar navbar-default navbar-static-top nav2">
 		<div class="container">
 			<div class="row">
-			
+
 				<a id="logo-container" href="{{url('/home') }}" class="brand-logo col-md-2 col-sm-4 col-xs-5">
 					<i class="material-icons">fiber_manual_record</i>
-					<span>{{ config('app.name', 'Tiempo X Tiempo') }}</span>					 
+					<span>{{ config('app.name', 'Tiempo X Tiempo') }}</span>
 				</a>
-			
+
 				<ul id='options-container'  class="col-md-4 col-md-offset-6 col-sm-5 col-sm-offset-3 col-xs-7">
-				
+
 					<li><i class='material-icons'>access_time</i></li>
 					<li><i class='material-icons'>wb_incandescent</i></li>
 					<li><i class='material-icons'>mail</i></li>
@@ -58,9 +64,9 @@
 							</ul>
 						@endif
 					</li>
-					
-				</ul>	
-			
+
+				</ul>
+
 			</div>
 		</div>
 	</nav>

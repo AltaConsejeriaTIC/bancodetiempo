@@ -67,7 +67,9 @@ public function  updatePhoto(Request $request){
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = date("Y-m-d", strtotime($request->input('birthdate')));
 		$user->aboutMe = $request->input("aboutMe");
-		$user->save();
+    
+    $user->privacy_policy = $request->input('privacy_policy');
+    $user->save();
 
 		if(!empty($user->interests->all())){
 

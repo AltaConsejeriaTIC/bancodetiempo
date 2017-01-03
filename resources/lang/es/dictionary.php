@@ -25,5 +25,6 @@ return [
 	'text1ServiceFrom' => 'Si no sabes que compartir',
 	'labelTest' => 'Haz nuestro test',
 	'presently' => 'Presencial',
-	'delete' => 'Borrar'
+	'delete' => 'Borrar',
+	'privacy_policy' => 'términos y condiciones'
 ];
