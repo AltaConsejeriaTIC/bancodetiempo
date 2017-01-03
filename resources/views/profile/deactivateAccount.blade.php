@@ -1,38 +1,42 @@
-<!-- template for the modal Deactivate Account -->
-	<script type="x/template" id="modal-template">
-	  <div class="modal-mask" v-show="show" transition="modal">
-	    <div class="modal-wrapper">
-	      <div class="modal-container">
-	        <div class="modal-header">
-	          <slot name="header">
-	            <h3>Desactivar Cuenta</h3>
-	          </slot>
-	        </div>
-	        
-	        <div class="modal-body">
-	          <slot name="body">
-	            Contenido...
-	          </slot>
-	        </div>
 
-	        <div class="modal-footer">
-	          <slot name="footer">
-	            default footer
-	            <button class="modal-default-button"
-	              @click="show = false">
-	              Cancelar
-	            </button>
-	          </slot>
-	        </div>
+@verbatim
+	<!-- template for the modal component -->
+	<template id="modal-template">
+	  <div class="modal-mask" v-show="show" transition="modal">
+	      <div class="modal-container">
+
+	          <div class="modal-header">
+	              <h3>New Post</h3>
+	          </div>
+
+	          <div class="modal-body">
+	              <label class="form-label">
+	                  Title
+	                  <input class="form-control">
+	              </label>
+	              <label class="form-label">
+	                  Body
+	                  <textarea rows="5" class="form-control"></textarea>
+	              </label>
+	          </div>
+
+	          <div class="modal-footer text-right">
+	              <button class="modal-default-button" @click="savePost()">
+	                  Save
+	              </button>
+	          </div>
 	      </div>
-	    </div>
 	  </div>
-	</script>
+	</template>
+@endverbatim
 
 	<div id="app">
-    <button id="show-modal" class="col-md-12 deleteProfile" @click="showModal = true">Desactivar Cuenta</button>
+    <button id="show-modal" class="col-md-12 deleteProfile" @@click="showModal = true">Desactivar Cuenta</button>
+    @{{name}}
     <!-- use the modal component, pass in the prop -->
-    <modal :show.sync="showModal">
+    @verbatim
+	    <modal :show.sync="showModal">
 
-    </modal>
-  </div> 
+	    </modal>
+    @endverbatim
+	</div> 
