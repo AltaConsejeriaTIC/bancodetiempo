@@ -49,7 +49,7 @@
     </div>
 
     <!-- Scripts -->    
-    <script src="js/app.js"></script>       
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
     <script src="js/material.min.js"></script>   
     <script src="js/ripples.min.js"></script>   
     <script src="js/script.js"></script>        

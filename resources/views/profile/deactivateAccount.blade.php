@@ -1,42 +1,60 @@
+<!-- template for the modal component -->
+<script type="x/template" id="modal-template">
+  <div class="modal-mask" v-show="show" transition="modal">
+    <div class="modal-wrapper">
+      <div class="modal-container">
 
-@verbatim
-	<!-- template for the modal component -->
-	<template id="modal-template">
-	  <div class="modal-mask" v-show="show" transition="modal">
-	      <div class="modal-container">
+        <div class="modal-header">
+          <slot name="header">
+            default header
+          </slot>
+        </div>
+        
+        <div class="modal-body">
+          
+            Esta realmente
+            sdasas sdasas sada 
+            as Desactivard sada
+            asdsadsa
+            as Desactivardasa
+            sadsad
+            asdsadsaasdsa
+            btn-dangersadsa
+            btn-dangersadsasad
+            sadasads
+            asdsadsaasdsadsa
+            btn-dangersadsasadad
+            sadasadssa
+            btn-dangersadsasadadad
+            sadasadssasa
+            btn-dangersadsasadadadad
+            sadasadssasasa
+            vm.$delete(key)
+          
+        </div>
 
-	          <div class="modal-header">
-	              <h3>New Post</h3>
-	          </div>
+        <div class="modal-footer">          
+        	<div class="col-md-6">
+	        	<button class="modal-default-button btn btn-raised btn-success"
+	            @click="">
+	            Si
+	          </button>
+        	</div>
+        	<div class="col-md-6">
+	          <button class="modal-default-button btn btn-raised btn-danger"
+	            @click="show = false">
+	            No
+	          </button>          
+	        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
 
-	          <div class="modal-body">
-	              <label class="form-label">
-	                  Title
-	                  <input class="form-control">
-	              </label>
-	              <label class="form-label">
-	                  Body
-	                  <textarea rows="5" class="form-control"></textarea>
-	              </label>
-	          </div>
 
-	          <div class="modal-footer text-right">
-	              <button class="modal-default-button" @click="savePost()">
-	                  Save
-	              </button>
-	          </div>
-	      </div>
-	  </div>
-	</template>
-@endverbatim
-
-	<div id="app">
-    <button id="show-modal" class="col-md-12 deleteProfile" @@click="showModal = true">Desactivar Cuenta</button>
-    @{{name}}
-    <!-- use the modal component, pass in the prop -->
-    @verbatim
-	    <modal :show.sync="showModal">
-
-	    </modal>
-    @endverbatim
-	</div> 
+<div id="app">
+  <button id="show-modal" @click="showModal = true" class="col-md-12 deleteProfile">Desactivar Cuenta</button>  
+  <modal :show.sync="showModal">
+  </modal>
+</div>
