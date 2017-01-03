@@ -5,9 +5,9 @@
 @import url('styleForms.css');
 
 body{
-	
+
 	background-color:#fff !important;
-	
+
 }
 
 section {
@@ -40,13 +40,14 @@ header .header-content {
 
 .titulo1{
 	font-weight:bold;
-	font-size:20px;
+	font-size:30px;
 	color:#2c3e50;
 }
 
 .titulo2{
+	margin-top: 12px !important;
 	font-weight:bold;
-	font-size:30px;
+	font-size:20px;
 	color:#2c3e50;
 }
 
@@ -120,6 +121,7 @@ header .header-content {
 
 .parrafo1{
 	font-size:18px;
+	word-wrap: break-word;
 	color:#2c3e50;
 }
 
@@ -251,7 +253,7 @@ header .header-content {
     height: 65px;
 }
 ul.nav.nav-pills > li{
-	
+
 	margin-right: 15px;
 }
 
