@@ -153,7 +153,7 @@
 
                            {{ Form::label('privacy_policy', trans('dictionary.privacy_policy'), ['class' => 'col-md-4 control-label'] ) }}
 
-                          {{ Form::checkbox('privacy_policy','1',false, ['class' => 'checkbox-material', 'id' => 'privacy_policy','required']) }}
+                          {{ Form::checkbox('privacy_policy','1',false, ['class' => 'checkbox-material', 'id' => 'privacy_policy', 'required' ]) }}
 
 
                         </div>
