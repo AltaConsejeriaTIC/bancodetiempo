@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Input;
 use App\Models\Category;
 use App\Models\InterestUser;
+use App\Models\Service;
 
 
 class ProfileController extends Controller
@@ -106,17 +107,26 @@ public function  updatePhoto(Request $request){
 
 	}
 
-//====================== Deactive Account User ======================================
+//====================== Deactivate Account User ======================================
 
 	public function deactivateAccount()
-	{					
+	{	
+		//Deactivate User
 		$user = User::find(Auth::User()->id);
 		$user->state_id = 2;
+
+		//Deactivate Services
+		$idservice = Service::select('id')->whereUserId(Auth::User()->id)->first();
+		$service = Service::find($idservice->id);		
+		$service->state_id = 2;
+
 		$user->save();
+		$service->save();		
 		Auth::logout();
+
 		return "true";
 	}	
 
-//====================== End Deactive Account User ==================================	
+//====================== End Deactivate Account User ==================================	
 	
 }

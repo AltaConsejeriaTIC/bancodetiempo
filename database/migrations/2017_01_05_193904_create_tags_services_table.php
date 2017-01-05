@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesServicesTable extends Migration
+class CreateTagsServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCategoriesServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories_services', function (Blueprint $table) {
+        Schema::create('tags_services', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
             $table->integer('service_id')->unsigned();
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateCategoriesServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories_services');
+        Schema::dropIfExists('tags_services');
     }
 }

@@ -70,17 +70,17 @@ class CreateAlterAllTables extends Migration
                 ->onUpdate('cascade');      
         });
 
-        // Foreign key Table categories_services
-        Schema::table('categories_services', function($table)
+        // Foreign key Table tags_services 
+        Schema::table('tags_services', function($table)
         {
           $table->foreign('service_id')
                 ->references('id')
                 ->on('services')
                 ->onUpdate('cascade');
 
-          $table->foreign('category_id')
+          $table->foreign('tag_id')
                 ->references('id')
-                ->on('categories')
+                ->on('tags')
                 ->onUpdate('cascade');      
         });
 
