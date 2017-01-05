@@ -44,6 +44,5 @@
   <modal :show.sync="showModal">
 
   </modal>
-  <hr>
-      <pre> @{{ $data | json }} </pre> 
+  
 </div>
