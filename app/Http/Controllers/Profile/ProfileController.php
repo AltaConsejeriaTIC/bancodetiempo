@@ -109,9 +109,9 @@ public function  updatePhoto(Request $request){
 
 //====================== Deactive Account User ======================================
 
-	public function deactiveAccount()
+	public function deactivateAccount()
 	{
-		
+		dd('Ingreso al Metodo');
 	}	
 
 //====================== End Deactive Account User ==================================	

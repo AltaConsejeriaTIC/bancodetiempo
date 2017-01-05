@@ -29,18 +29,37 @@ Vue.component('modal', {
       required: true,
       twoWay: true    
     }
+  },
+
+  methods: {
+  	deactivateAccount: function(){
+  		var token = $('#token').val();
+  		$.ajax({
+  			url: 'deactivateAccount',
+  			method: 'POST',
+  			headers: {
+                'X-CSRF-TOKEN': token
+            },
+  			dataType: 'json',
+  			success: function(data){
+  				if(data.success)
+  				{
+  					alert('Sisas');
+  				}
+  			},
+  			error: function(){
+
+  			}
+
+  		});
+  	}
   }
 })
 
 // start app
 new Vue({
   el: '#app',
-  data: {
+  data: {  	
     showModal: false
-  },
-  methods: {
-  	deactivateAccount: function(){
-  		alert('Hola');
-  	}
-  }
+  }  
 })

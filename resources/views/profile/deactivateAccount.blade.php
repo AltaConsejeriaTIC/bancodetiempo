@@ -22,14 +22,16 @@
 
         <div class="modal-footer">          
         	<div class="col-md-12">
-	        	<button class="modal-default-button btn btn-raised btn-success"
-	            @click="deactivateAccount()">
-	            Si
-	          </button>
-            <button class="modal-default-button btn btn-raised btn-danger"
-              @click="show = false">
-              No
-            </button>
+            <form @submit.prevent="deactivateAccount">
+              <input type="hidden" name="token" id="token" value="{{ csrf_token() }}" >
+  	        	<button class="modal-default-button btn btn-raised btn-success">
+  	            Si
+  	          </button>
+              <button class="modal-default-button btn btn-raised btn-danger"
+                @click="show = false">
+                No
+              </button>
+            </form>
         	</div>           	
         </div>
       </div>
@@ -37,8 +39,11 @@
   </div>
 </script>
 
-<div id="app">
+<div id="app">  
   <button id="show-modal" @click="showModal = true" class="col-md-12 deleteProfile">Desactivar Cuenta</button>  
   <modal :show.sync="showModal">
+
   </modal>
+  <hr>
+      <pre> @{{ $data | json }} </pre> 
 </div>
