@@ -59,7 +59,8 @@ public function  updatePhoto(Request $request){
 	   			'firstName' => 'required|min:3|alpha_spaces',
 	   			'lastName' => 'required|min:3|alpha_spaces',
 	   			'birthdate' => 'required|date',
-	   			'aboutMe' => 'required|min:50|max:250'
+	   			'aboutMe' => 'required|min:50|max:250',
+          'privacy_policy' => 'required'
 	   	]);
 
 	 	$user = Auth::user ();
