@@ -22,7 +22,7 @@ $(document).ready(function() {
 */
 // register modal component Vue.js
 Vue.component('modal', {
-  template: '#modal-template',
+  template: '#modal-template-deactivate',
   props: {
     show: {
       type: Boolean,
@@ -37,5 +37,10 @@ new Vue({
   el: '#app',
   data: {
     showModal: false
+  },
+  methods: {
+  	deactivateAccount: function(){
+  		alert('Hola');
+  	}
   }
 })

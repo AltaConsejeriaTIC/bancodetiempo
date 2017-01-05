@@ -106,4 +106,13 @@ public function  updatePhoto(Request $request){
 
 	}
 
+//====================== Deactive Account User ======================================
+
+	public function deactiveAccount()
+	{
+		
+	}	
+
+//====================== End Deactive Account User ==================================	
+	
 }
