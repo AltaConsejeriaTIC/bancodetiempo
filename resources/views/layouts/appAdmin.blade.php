@@ -103,6 +103,7 @@
     </div>
 
     <!-- Scripts -->    
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
     <script src="{{ asset('/js/material.min.js') }}"></script>   
     <script src="{{ asset('/js/ripples.min.js') }}"></script>   

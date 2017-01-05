@@ -81,6 +81,7 @@ class AdminController extends Controller
             $user->password = bcrypt('secret');
             $user->state_id = 1;
             $user->role_id = 1;
+            $user->privacy_policy = 1;
 
             if ($user->save()) 
             {                     

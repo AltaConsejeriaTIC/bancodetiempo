@@ -26,6 +26,7 @@
         <!-- Fonts -->
        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="{{ asset('js/vue.js') }}"></script>   
            
         <script>
@@ -48,9 +49,8 @@
     </body>
 
     <!--  Scripts-->
-    <script src="{{ asset('js/modal.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
     <script src="{{ asset('js/materialize.js') }}"></script>        
+    <script src="{{ url('js/modal.js') }}"></script>    
 
 </html>
