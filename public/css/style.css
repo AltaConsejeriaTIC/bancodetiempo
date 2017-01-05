@@ -493,3 +493,7 @@ ul.nav.nav-pills > li.active, ul.nav.nav-pills > li:hover {
 	    left: -65%;
 	}
 }
+
+.content-error{
+    display: inline-block;
+}

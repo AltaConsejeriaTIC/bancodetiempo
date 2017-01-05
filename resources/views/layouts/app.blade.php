@@ -38,12 +38,9 @@
 
     <body id="app">
       
-      <div class="row content-error">
-          <div class=" col-md-4">
-            @include('partial.errorsUser')   
-          </div>
-      </div>
-      @yield('content')  
+      
+
+      @yield('content')        
       @include('footer')
 
     </body>

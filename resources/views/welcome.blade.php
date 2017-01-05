@@ -16,7 +16,11 @@
 	<div class="container">
 
 		<article class='row'>
-
+			<div class="row ">
+          <div class=" col-md-4">
+            @include('partial.errorsUser')   
+          </div>
+      </div>
 			<div class="col-md-4 col-md-offset-1 col-sm-6 col-md-offset-0 col-xs-12">
 	                 <div style='height: 250px'></div>
 	        </div>
