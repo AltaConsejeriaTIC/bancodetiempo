@@ -35,7 +35,7 @@
         </script>
     </head>
 
-    <body>
+    <body id="app">
       
       <div class="row content-error">
           <div class=" col-md-4">

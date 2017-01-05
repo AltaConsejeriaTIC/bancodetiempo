@@ -45,6 +45,8 @@ abstract class Type
       }
     }
 
+    $this->auth->user()->state_id = 1;
+    $this->auth->user()->save();
     return $next($request);
 
   }

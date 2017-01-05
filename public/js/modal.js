@@ -42,14 +42,14 @@ Vue.component('modal', {
             },
   			dataType: 'json',
   			success: function(data){
-  				if(data.success)
+  				if(data)
   				{
-  					alert('Sisas');
+  					window.location.href = "/";
   				}
   			},
-  			error: function(){
-
-  			}
+  			error: function(data) {
+          alert("Error!!");
+        }
 
   		});
   	}

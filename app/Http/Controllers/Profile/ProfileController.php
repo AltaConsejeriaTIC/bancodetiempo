@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Profile;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\User;
@@ -24,8 +23,8 @@ class ProfileController extends Controller
     }
    public function showEditProfile()
     {
-		$user = User::find(Auth::User()->id);
-        return view('profile/edit', compact('user'));
+			$user = User::find(Auth::User()->id);
+      return view('profile/edit', compact('user'));
 
     }
 //====================== Photo User ==================================
@@ -110,8 +109,12 @@ public function  updatePhoto(Request $request){
 //====================== Deactive Account User ======================================
 
 	public function deactivateAccount()
-	{
-		dd('Ingreso al Metodo');
+	{					
+		$user = User::find(Auth::User()->id);
+		$user->state_id = 2;
+		$user->save();
+		Auth::logout();
+		return "true";
 	}	
 
 //====================== End Deactive Account User ==================================	

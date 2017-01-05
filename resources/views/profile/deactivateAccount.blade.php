@@ -28,7 +28,7 @@
   	            Si
   	          </button>
               <button class="modal-default-button btn btn-raised btn-danger"
-                @click="show = false">
+                @click.prevent="show = false">
                 No
               </button>
             </form>
@@ -39,7 +39,7 @@
   </div>
 </script>
 
-<div id="app">  
+<div>  
   <button id="show-modal" @click="showModal = true" class="col-md-12 deleteProfile">Desactivar Cuenta</button>  
   <modal :show.sync="showModal">
 
