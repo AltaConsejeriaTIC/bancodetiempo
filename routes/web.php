@@ -19,14 +19,16 @@ Route::get('/loginRedes/{proveedor?}', 'NetworkAccountsController@login');
 Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
 
 Auth::routes();
-Route::get('/register', 'NetworkAccountsController@showFrom');
-Route::post('/register/createUser', 'NetworkAccountsController@createUser');
+
 
 //Route Access Admin Panel
-Route::get('admin','AdminController@AdminLogin')->middleware('guest');;
+Route::get('admin','AdminController@AdminLogin')->middleware('guest');
 
+
+Route::get('/register', 'NetworkAccountsController@showFrom')->middleware('register');
+Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 
 Route::put('profile/update', 'Profile\ProfileController@editProfile');
 Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
-Route::get("/profile/interest", 'Profile\ProfileController@showFromInterest');
+Route::get("/profile/interest", 'Profile\ProfileController@showFromInterest')->middleware('register');
 Route::post("/profile/interest", 'Profile\ProfileController@saveInterest');

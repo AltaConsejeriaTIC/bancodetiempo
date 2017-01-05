@@ -84,11 +84,15 @@ class NetworkAccountsController extends Controller
 
 		$networkAccounts->start($providerData);
 
-		if($networkAccounts->existsUser()){
+		if($networkAccounts->existsUser())
+		{
 
 			auth()->login($networkAccounts->getUser());
-
-			return Redirect::to("home");
+			
+			if(auth()->user()->privacy_policy == 0)
+				return redirect('register');
+			else
+				return Redirect::to("home");
 
 		}else{
 
