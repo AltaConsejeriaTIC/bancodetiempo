@@ -4,35 +4,41 @@
     <div class="modal-wrapper">
       <div class="modal-container">
 
+        <div>
+          <button type="button" @click.prevent="show = false" class="close" data-dismiss="alert">&times;</button>
+        </div>
+
         <div class="modal-header">          
-            <h1 class="titulo1">Desactivar tu Cuenta </h1>
+            <h1 class="titulo1">¡Lamentamos que te vayas! </h1>
         </div>
         
         <div class="modal-body">
 
-          <p class="parrafo1">
-            Al desactivar tu cuenta, se inhabilitará tu nombre y perfil completo, com también no serán visibles tus fotos, ofertas y temas de interés del contenido que hayas compartido.
+          <p class="parrafo2">
+            Recuerda que puedes volver cuando lo  desees. Tu información permanecerá intacta.
           </p>          
 
-          <p class="parrafo1">
-            ¿ Estás seguro de inhabilitar tu Cuenta ?
-          </p>          
+          <p class="parrafo2">
+            ¿Podrías contarnos el motivo de tu decisión? <span class="opcional">(Opcional)</span>
+          </p> 
 
-        </div>
-
-        <div class="modal-footer">          
-        	<div class="col-md-12">
+          
+            <textarea class="form-bt col-md-12" rows="8"  name="justification"></textarea>
+          
             <form @submit.prevent="deactivateAccount">
-              <input type="hidden" name="token" id="token" value="{{ csrf_token() }}" >
-  	        	<button class="modal-default-button btn btn-raised btn-success">
-  	            Si
-  	          </button>
-              <button class="modal-default-button btn btn-raised btn-danger"
-                @click.prevent="show = false">
-                No
-              </button>
+            <div class="">
+              <input type="hidden" name="token" id="token" value="{{ csrf_token() }}" >              
+                <button class="col-md-12 deleteProfile modal-default-button-success">
+                  Desactivar Cuenta
+                </button>
+                <button class="col-md-12 editProfile modal-default-button-close"
+                  @click.prevent="show = false">
+                  Cancelar
+                </button>
+            </div>              
             </form>
-        	</div>           	
+        </div>
+        <div class="modal-footer">
         </div>
       </div>
     </div>
@@ -40,7 +46,7 @@
 </script>
 
 <div>  
-  <button id="show-modal" @click="showModal = true" class="col-md-12 deleteProfile">Desactivar Cuenta</button>  
+  <a id="show-modal" @click="showModal = true" class="col-md-12 deleteProfile">Desactivar Cuenta</a>  
   <modal :show.sync="showModal">
 
   </modal>

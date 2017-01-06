@@ -1,4 +1,11 @@
 /* Styles Window Modal with vue.js*/
+
+.modal-header
+{
+  padding: 10px 20px 0 0;
+  border-bottom: none;
+}
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -17,28 +24,42 @@
 }
 
 .modal-container {
-  width: 60%;
-  margin: 0px auto;
-  text-align: justify; 
-  padding: 20px 30px;
+  width: 32%;
+  margin: 0px auto;  
+  padding: 11px 19px;
   background-color: #fff;
-  border-radius: 4%;
+  border-radius: 1%;
   box-shadow: 0 20pxx 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
 
 .modal-body {
-  margin: 20px 0;
+  margin-right: 10px 0 0 10px;
+  text-align: left;
+  padding: 0;
 }
 
-.modal-default-button {  
-  text-transform: none;
-  vertical-align: inherit;
+.modal-default-button-success 
+{  
+  margin: 15px 0 0 0;
+  background-color: #fff;
 }
 
-modal-footer{
-  float: right;
+.modal-default-button-close 
+{  
+  margin: 10px 0 40px 0;
+}
+
+.modal-footer
+{  
+  padding: 0;
+  border: none;
+}
+
+button.close 
+{
+  padding: 0;
 }
 
 /*
