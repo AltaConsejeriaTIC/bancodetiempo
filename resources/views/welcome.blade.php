@@ -18,7 +18,7 @@
 		<article class='row'>
 			<div class="row ">
           <div class=" col-md-4">
-            @include('partial.errorsUser')   
+            @include('partial.errorsUser')
           </div>
       </div>
 			<div class="col-md-4 col-md-offset-1 col-sm-6 col-md-offset-0 col-xs-12">
@@ -50,33 +50,10 @@
 
 
 
-<section >
-
-	<div class="container">
-
-		<h2 class='col-md-12 col-sm-12 col-xs-12 text-second-color text-center'>!VIVE NUEVAS EXPERIENCIAS</h2>
-
-		<article class='row'>
-
-			<div class='col-md-4 col-md-offset-1 col-sm-4  col-xs-12'></div>
-
-			<div class='col-md-6 col-sm-8  col-xs-12'>
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis unde neque in nisi ea accusamus accusantium dolores fuga natus tenetur maiores nam eveniet ad quo commodi suscipit qui at. Odio.</p>
-
-			</div>
-
-		</article>
-
-	</div>
-
-
-</section>
-
 <section class='white-bk'>
 
 	<div class="container">
-
+		<p class="titulo1">Ofertas Recientes</p>
 		<article class='row'>
 
 			@foreach($lastServices as $key => $service)
