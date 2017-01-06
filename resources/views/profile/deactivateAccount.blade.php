@@ -23,7 +23,7 @@
           </p> 
 
           
-            <textarea class="form-bt col-md-12" rows="8"  name="justification"></textarea>
+            <textarea class="form-bt col-md-12" rows="8"  name="justification" placeholder="Ej. Tengo poco tiempo, no lo encuentro útil, tengo otra cuenta, otro..."></textarea>
           
             <form @submit.prevent="deactivateAccount">
             <div class="">
