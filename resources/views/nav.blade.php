@@ -56,7 +56,7 @@
 							<ul class="dropdown-menu" role="menu">
 									<li>
 										<a href="{{ url('profile') }}">Perfil</a>
-										<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+										<a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
 										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 												{{ csrf_field() }}
 										</form>
