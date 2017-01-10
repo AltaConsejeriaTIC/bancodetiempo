@@ -6,16 +6,14 @@
 			<div class='row'>
 				<div class="col-md-6">					
 					<a href="/" >
-						<i class="material-icons icon-logo">fiber_manual_record</i>
-							<h1 id="logo-container">BANCO DE TIEMPO</h1> 
-							<h1 id="logo-container1">DE BOGOTÁ</h1>
+						<img src="images/logo.png" alt="Logo" />
 					</a>
 				</div>
 				@if((Auth::guest()))
-	        <div class="col-md-6" id="container-nav-buttons">	            	
-	          <a class="button5" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
-	          <a class="button4" href="#">Registrarse</a>
-	        </div>
+			        <div class="col-md-6" id="container-nav-buttons">	            	
+			          <a class="button5" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
+			          <a class="button4" href="#">Registrarse</a>
+			        </div>
 				@elseif((!Auth::guest()))
 					<a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
 					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -26,6 +24,7 @@
 		</div>
 
  	 </nav>
+ 	 
 @elseif($type == 2)
 
 <!--Navbar-->
