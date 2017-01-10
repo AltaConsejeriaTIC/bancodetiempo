@@ -22,12 +22,10 @@
 	          </div>
 	      </div>
 				<div class="col-md-4 col-md-offset-1 col-sm-6 col-md-offset-0 col-xs-12">
-		                 <div style='height: 250px'></div>
-		        </div>
+		      <div style='height: 250px'></div>
+		    </div>			   
 
-			    <div class="botonesRegistro col-md-4 col-md-offset-2  col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-			      @include('auth.login')
-			   </div>
+			  @include('auth.login')
 
 			</article>
 		   <div class='clearfix mTop-50 hidden-xs hidden-md'><br></div>
