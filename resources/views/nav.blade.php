@@ -3,21 +3,26 @@
 	<nav class='navbar navbar-default navbar-static-top nav1'>
 
 		<div class="container">
-
 			<div class='row'>
-
-				<a class="col-md-3 col-sm-4 col-xs-8 brand-logo" id="logo-container" href="/" >
-					<i class="material-icons">fiber_manual_record</i>{{ config('app.name', 'Tiempo X Tiempo') }}</a>
-							@if((Auth::guest()))
-	            <a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
-							@elseif((!Auth::guest()))
-							<a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
-							<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-									{{ csrf_field() }}
-							</form>
-							@endif
+				<div class="col-md-6">					
+					<a href="/" >
+						<i class="material-icons icon-logo">fiber_manual_record</i>
+							<h1 id="logo-container">BANCO DE TIEMPO</h1> 
+							<h1 id="logo-container1">DE BOGOTÁ</h1>
+					</a>
+				</div>
+				@if((Auth::guest()))
+	        <div class="col-md-6" id="container-nav-buttons">	            	
+	          <a class="button5" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
+	          <a class="button4" href="#">Registrarse</a>
+	        </div>
+				@elseif((!Auth::guest()))
+					<a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+							{{ csrf_field() }}
+					</form>
+				@endif
 			</div>
-
 		</div>
 
  	 </nav>

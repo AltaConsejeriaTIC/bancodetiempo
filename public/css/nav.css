@@ -81,18 +81,30 @@
 
 
 #logo-container {
-      color: white;
-    font-size: 22px;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 4%;
 }
 
-#logo-container i {
-    font-size: 50px;
+#logo-container1 {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: -1%;
+}
+
+#container-nav-buttons {
+	margin-top: 4%;
+}
+
+.icon-logo {
+    font-size: 90px !important;
     float: left;
 }
 
 .iconprofile {
     float: left;
-
 }
 
 @media (max-width: 450px){
