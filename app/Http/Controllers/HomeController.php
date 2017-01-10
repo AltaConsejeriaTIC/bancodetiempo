@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
     	$interestsUser = $this->getInterestsUser();
     	
-    	$allServices = Service::where("user_id" , "!=", Auth::user()->id)->where('state_id' , 1)->get();
+    	$allServices = Service::where("user_id" , "!=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
     	
     	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
     	
@@ -41,7 +41,7 @@ class HomeController extends Controller
     		return redirect('/home');
     	}else{
     		
-    		$lastServices = Service::where('state_id' , 1)->orderBy('id', 'desc')->limit(6)->get();
+    		$lastServices = Service::where('state_id' , 1)->orderBy('id', 'desc')->limit(6)->get()->where('user.state_id', 1);
     		    		
     		return view('welcome', compact('lastServices'));
     	}
