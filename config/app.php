@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Banco de tiempo de bogota',
+    'name' => 'BANCO DE TIEMPO DE BOGOTÁ',
 
     /*
     |--------------------------------------------------------------------------
