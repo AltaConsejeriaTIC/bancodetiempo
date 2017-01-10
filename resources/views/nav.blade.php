@@ -4,17 +4,17 @@
 
 		<div class="container">
 			<div class='row'>
-				<div class="col-md-6">					
+				<div class="col-md-6">
 					<a href="/" >
 						<i class="material-icons icon-logo">fiber_manual_record</i>
-							<h1 id="logo-container">BANCO DE TIEMPO</h1> 
+							<h1 id="logo-container">BANCO DE TIEMPO</h1>
 							<h1 id="logo-container1">DE BOGOTÁ</h1>
 					</a>
 				</div>
 				@if((Auth::guest()))
-	        <div class="col-md-6" id="container-nav-buttons">	    
-	        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
-	        	<button id="show-modal" @click="showModal = true" class="button4">Registrarse</button>          		          
+	        <div class="col-md-6" id="container-nav-buttons">
+	        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>
+	        	<button id="show-modal" @click="showModal = true" class="button4">Registrarse</button>
 	        </div>
 				@elseif((!Auth::guest()))
 					<a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
@@ -34,8 +34,6 @@
 			<div class="row">
 
 				<a id="logo-container" href="{{url('/home') }}" class="brand-logo col-md-2 col-sm-4 col-xs-5">
-					<i class="material-icons">fiber_manual_record</i>
-					<span>{{ config('app.name', 'Tiempo X Tiempo') }}</span>
 				</a>
 
 				<ul id='options-container'  class="col-md-4 col-md-offset-6 col-sm-5 col-sm-offset-3 col-xs-7">
