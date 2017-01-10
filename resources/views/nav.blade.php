@@ -12,9 +12,9 @@
 					</a>
 				</div>
 				@if((Auth::guest()))
-	        <div class="col-md-6" id="container-nav-buttons">	            	
-	          <a class="button5" href="{{ url('login') }}">{{ trans('dictionary.login') }}</a>
-	          <a class="button4" href="#">Registrarse</a>
+	        <div class="col-md-6" id="container-nav-buttons">	    
+	        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
+	        	<button id="show-modal" @click="showModal = true" class="button4">Registrarse</button>          		          
 	        </div>
 				@elseif((!Auth::guest()))
 					<a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
