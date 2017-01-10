@@ -2,89 +2,78 @@
 
 @section('content')
 
-	@include('nav', array('type'=>1))
+	@include('nav', array('type' => 1))	
 
-	<section class='banner'>
-
-		<div class='fondo'>
-
-			<img src="images/banner.jpg"/>
-			<div class="telon"></div>
-
-		</div>
-		<div class='clearfix mTop-250 visible-lg visible-md'><br></div>
+	<section class='bannerHome row'>
+		<div class='cap'></div>
 		<div class="container">
-
-			<article class='row'>
-				<div class="row ">
-	          <div class=" col-md-4">
-	            @include('partial.errorsUser')
-	          </div>
-	      </div>
-				<div class="col-md-4 col-md-offset-1 col-sm-6 col-md-offset-0 col-xs-12">
-		      <div style='height: 250px'></div>
-		    </div>			   
-
-			  @include('auth.login')
-
+		
+			<article class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0'>
+				
+				<div class='row'>
+				
+					<div class='col-xs-5 col-sm-4 col-md-4'>
+						@include('partial/imageProfile', array('cover' => 'images/foto_camila.jpg', 'id' => 'foto_camila', 'border' => '#fff', 'borderSize' => '3px'))
+					</div>
+					<div class='col-xs-7 col-sm-5 col-md-5'>
+						<h4 class='title3'>Camila (Abogada)</h4>
+						<p class='paragraph7'>Recibió una hora de cuentería de Juan</p>
+					</div>
+					
+				</div>
+				<div class='row'>
+				
+					<div class='col-xs-5 col-sm-4 col-md-4'>
+						@include('partial/imageProfile', array('cover' => 'images/foto_juan.jpg', 'id' => 'foto_juan', 'border' => '#fff', 'borderSize' => '3px'))
+					</div>
+					<div class='col-xs-7 col-sm-5 col-md-5'>
+						<h4 class='title3'>Juan (Cuentero)</h4>
+						<p class='paragraph7'>Obtuvo una asesoría en derecho penal de Camila</p>
+					</div>
+					
+				</div>
+				
 			</article>
-		   <div class='clearfix mTop-50 hidden-xs hidden-md'><br></div>
-		   <div class='clearfix mTop-250 hidden-xs hidden-sm hidden-lg'><br></div>
-		   <article class='row'>
-
-				<h3 class='col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 white-text visible-xs'>- descrubre<br> - aprende<br> - enseña<br> - comparte</h3>
-				<h2 class='col-md-12 col-sm-12 text-center white-text hidden-xs'>Descrubre - Aprende - Enseña - Comparte</h2>
-
-		   </article>
-
-
-		</div>
-
-
-	</section>
-
-
-
-	<section class='white-bk'>
-
-		<div class="container">
-			<p class="titulo1">Ofertas Recientes</p>
-			<article class='row'>
-
-				@foreach($lastServices as $key => $service)
-
-			          <div class='col-md-4 col-xs-12 col-sm-6'>
-
-				          @include('partial/serviceBox', array("service" => $service))
-
-			          </div>
-
-			    @endforeach
-
-
+			<article class='col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1'>
+				
+				<div class="row">
+					<h1 class='title1 text-white'>¿Para qué el dinero si puedes usar tu tiempo?</h1>
+				</div>
+				
+				<div class="row space40">
+					<p class="paragraph1 text-white not-padding col-xs-10" >Invierte tus habilidades para obtener lo que otros ofrecen</p>
+				</div>
+				
+				<div class="row space40">
+					<button class='button1 background-active-color col-xs-12 col-md-12'>Regístrate para empezar</button>
+				</div>
+			
 			</article>
-
 		</div>
-
 	</section>
 
 	<section>
-
 		<div class="container">
-
-			<h2  class='col-md-12 col-sm-12 col-xs-12 text-second-color text-center'>UNETE</h2>
-			<h4 class='col-md-12 col-sm-12 col-xs-12  text-second-color text-center'>Comienza a ser parte de nuestra gran comunidad</h4>
-
-			<article class='row col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0  col-xs-10 col-xs-offset-1 '>
-
-				<div class="col-md-4 text-center col-md-offset-0  col-sm-6 col-sm-offset-3 "><a href="" class='registroFacebook'></a></div>
-				<div class="col-md-4 text-center col-md-offset-0  col-sm-6 col-sm-offset-3 "><a href="" class='registroGoogle'></a></div>
-				<div class="col-md-4 text-center col-md-offset-0  col-sm-6 col-sm-offset-3 "><a href="" class='registroLinkedin'></a></div>
-
-			</article>
-
-		</div>
-
+		
+			<h2 class='title1 text-center'>Ofertas Recientes</h2>
+		 
+		 	<article class='space40'>
+		 		
+		 		@foreach($lastServices as $key => $service)
+		
+					<div class='col-md-4 col-xs-12 col-sm-6'>
+						@include('partial/serviceBox', array("service" => $service))
+					</div>
+			
+				@endforeach
+		 	
+		 	</article>
+	 	
+	 	</div>
+		
+	
 	</section>
+
+		
 
 @endsection

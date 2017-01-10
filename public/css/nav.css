@@ -79,34 +79,6 @@
     margin-right: 0px;
 }
 
-
-#logo-container {
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: 4%;
-}
-
-#logo-container1 {
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: -1%;
-}
-
-#container-nav-buttons {
-	margin-top: 4%;
-}
-
-.icon-logo {
-    font-size: 90px !important;
-    float: left;
-}
-
-.iconprofile {
-    float: left;
-}
-
 @media (max-width: 450px){
 	.nav2 #options-container > li {
 	    margin-right: 5px;
@@ -124,11 +96,6 @@
 
 	.nav2 .iconProfile {
 	    margin-top: 4px;
-	}
-
-	#logo-container i {
-	    font-size: 40px;
-	    float: left;
 	}
 
 	.nav2 #logo-container {

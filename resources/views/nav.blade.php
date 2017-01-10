@@ -4,6 +4,7 @@
 
 		<div class="container">
 			<div class='row'>
+<<<<<<< HEAD
 				<div class="col-md-6">
 					<a href="/" >
 						<i class="material-icons icon-logo">fiber_manual_record</i>
@@ -16,8 +17,20 @@
 	        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>
 	        	<button id="show-modal" @click="showModal = true" class="button4">Registrarse</button>
 	        </div>
+=======
+				<div class="col-xs-7 col-sm-3 col-md-3">					
+					<a href="/" >
+						<img src="images/logo.png" alt="Logo" />
+					</a>
+				</div>
+				@if((Auth::guest()))
+			        <div class="col-xs-5 col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5" id="container-nav-buttons">	    
+			        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
+			        	<button id="show-modal" @click="showModal = true" class="button4 hidden-xs">Registrarse</button>          		          
+			        </div>
+>>>>>>> f0bbabaa68cf1e20101b83cb60c6ab4184fc0f50
 				@elseif((!Auth::guest()))
-					<a class="loginBt col-md-3 col-md-offset-6  col-sm-3 col-sm-offset-5 col-xs-3 col-xs-offset-1" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+					<a class="col-xs-5 col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
 					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
 					</form>
@@ -26,6 +39,7 @@
 		</div>
 
  	 </nav>
+ 	 
 @elseif($type == 2)
 
 <!--Navbar-->
