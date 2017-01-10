@@ -56,7 +56,7 @@
     	<div class="container">
     		<div class="row">
 
-           		<h2 class='text-second-color col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4'>�{{ trans('dictionary.titleServiceFrom') }}?</h2>
+           		<h2 class='text-second-color col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4'>{{ trans('dictionary.titleServiceFrom') }}</h2>
            		<br><br><br><br>
            		<p class='text-second-color col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4'>{{ trans('dictionary.text1ServiceFrom') }}</p>
 
