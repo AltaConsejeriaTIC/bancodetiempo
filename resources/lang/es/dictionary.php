@@ -15,7 +15,7 @@ return [
 	'aboutMe'	=> 'Acerca de mi',
 	'address'	=>	'Dirección',
 	'login' => 'Iniciar Sesión',
-	'registrationMessage' => 'Unete a nuestro banco de tiempo a traves de tu red social favorita',
+	'registrationMessage' => 'Regístrate y comienza a ser parte de nuestra gran comunidad.',
 	'website'	=>	'Sitio web',
 	'email'		=> 'E-mail',
 	'firstName'  => 'Nombre',

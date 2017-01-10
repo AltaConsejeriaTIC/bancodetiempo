@@ -56,6 +56,17 @@ Vue.component('modal', {
   }
 })
 
+Vue.component('modal', {
+  template: '#modal-template-login',
+  props: {
+    show: {
+      type: Boolean,
+      required: true,
+      twoWay: true    
+    }
+  },  
+})
+
 // start app
 new Vue({
   el: '#app',
