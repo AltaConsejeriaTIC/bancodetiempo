@@ -86,21 +86,28 @@
 		<div class="container">
 				
 				<div class='row'>
-					<h2 class='title1 text-white text-center col-xs-12'>¡Únete!</h2>
+					<h2 class='title1 text-white text-center col-xs-12 col-md-12'>¡Únete!</h2>
 				</div>
 				
 				<div class='row'>
-					<p class='paragraph2 text-white col-xs-12'>Regístrate y comienza a ser parte de nuestra gran comunidad</p>
+					<p class='paragraph2 text-white col-xs-12 col-md-4 col-md-offset-4'>Regístrate y comienza a ser parte de nuestra gran comunidad</p>
 				</div>
 				
 				<div class="row">
-					<div class="col-xs-12 buttonRed glyphicon glyphicon-plus social social-facebook">Regístrate con Facebook <i class='material-icons'>facebook</i></div>
+					<div class="col-xs-12">
+						<button class="col-xs-12 col-md-4 col-md-offset-4 button6 social-button facebook">Regístrate con Facebook <i class="fa fa-facebook"></i></button>
+					</div>
+					
 				</div>
 				<div class="row">
-					<div class="col-xs-12 buttonRed">Regístrate con Google</div>
+					<div class="col-xs-12">
+						<button class="col-xs-12 col-md-4 col-md-offset-4 button6 social-button google">Regístrate con Google <i class="fa fa-google"></i></button>
+					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 buttonRed">Regístrate con Linkedin</div>
+					<div class="col-xs-12">
+						<button class="col-xs-12 col-md-4 col-md-offset-4 button6 social-button linkedin">Regístrate con Linkedin <i class="fa fa-linkedin"></i></button>
+					</div>
 				</div>
 				
 		</div>
