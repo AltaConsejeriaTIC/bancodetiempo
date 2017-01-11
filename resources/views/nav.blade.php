@@ -4,6 +4,20 @@
 
 		<div class="container">
 			<div class='row'>
+<<<<<<< HEAD
+				<div class="col-md-6">
+					<a href="/" >
+						<i class="material-icons icon-logo">fiber_manual_record</i>
+							<h1 id="logo-container">BANCO DE TIEMPO</h1>
+							<h1 id="logo-container1">DE BOGOTÁ</h1>
+					</a>
+				</div>
+				@if((Auth::guest()))
+	        <div class="col-md-6" id="container-nav-buttons">
+	        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>
+	        	<button id="show-modal" @click="showModal = true" class="button4">Registrarse</button>
+	        </div>
+=======
 				<div class="col-xs-7 col-sm-3 col-md-3">					
 					<a href="/" >
 						<img src="images/logo.png" alt="Logo" />
@@ -14,6 +28,7 @@
 			        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
 			        	<button id="show-modal" @click="showModal = true" class="button4 hidden-xs">Registrarse</button>          		          
 			        </div>
+>>>>>>> f0bbabaa68cf1e20101b83cb60c6ab4184fc0f50
 				@elseif((!Auth::guest()))
 					<a class="col-xs-5 col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
 					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -33,8 +48,6 @@
 			<div class="row">
 
 				<a id="logo-container" href="{{url('/home') }}" class="brand-logo col-md-2 col-sm-4 col-xs-5">
-					<i class="material-icons">fiber_manual_record</i>
-					<span>{{ config('app.name', 'Tiempo X Tiempo') }}</span>
 				</a>
 
 				<ul id='options-container'  class="col-md-4 col-md-offset-6 col-sm-5 col-sm-offset-3 col-xs-7">
