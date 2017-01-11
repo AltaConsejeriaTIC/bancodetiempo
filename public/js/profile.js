@@ -1,14 +1,15 @@
 // start app
-new Vue({
-  el: '#app',
+var profile = new Vue({
+  el: '#profile',
   data: {
     name: "",
-    gender: ""
+    gender: "",
+    avatar: "",
   },
 
   methods: {
   	singUp: function(){
   		alert("Hola " + this.name);
-  	}
+  	},
   }
 })

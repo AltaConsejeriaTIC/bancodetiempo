@@ -5,13 +5,13 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-7 col-sm-3 col-md-3 ">					
+				<div class="col-xs-7 col-sm-4 col-md-3 ">					
 					<a href="/" >
 						<img src="images/logo.png" alt="Logo" />
 					</a>
 				</div>
 				@if((Auth::guest()))
-			        <div class="col-xs-5 col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5" id="container-nav-buttons">	    
+			        <div class="col-xs-5 col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-5" id="container-nav-buttons">	    
 			        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
 			        	<button id="show-modal" @click="showModal = true" class="button4 hidden-xs">Registrarse</button>          		          
 			        </div>

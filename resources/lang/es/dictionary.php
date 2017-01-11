@@ -19,7 +19,7 @@ return [
 	'website'	=>	'Sitio web',
 	'email'		=> 'E-mail',
 	'firstName'  => 'Nombre',
-	'lastname' => 'Apellido',
+	'lastName' => 'Apellido',
 	'register' => 'Registro',
 	'titleServiceFrom' => 'Qué deseas ofrecer',
 	'text1ServiceFrom' => 'Si no sabes que compartir',
