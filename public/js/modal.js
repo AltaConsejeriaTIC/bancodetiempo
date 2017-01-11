@@ -1,6 +1,6 @@
 // register modal component Vue.js
 Vue.component('modal', {
-  template: '#modal-template-deactivate',
+  template: '#modal-template',
   props: {
     show: {
       type: Boolean,
@@ -28,21 +28,9 @@ Vue.component('modal', {
   			error: function(data) {
           alert("Error!!");
         }
-
   		});
   	}
   }
-})
-
-Vue.component('modal', {
-  template: '#modal-template-login',
-  props: {
-    show: {
-      type: Boolean,
-      required: true,
-      twoWay: true    
-    }
-  },  
 })
 
 // start app
