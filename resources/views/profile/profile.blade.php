@@ -2,10 +2,10 @@
 <link href="{{ asset('/css/styleUser.css') }}" rel="stylesheet">
 
 @section('content')
- @include('nav',array('type' => 2))
-<div class="container">
-    <div class="row">
-       <template v-if="editable==false">
+  @include('nav',array('type' => 2))
+  <div class="container">
+    <div class="row col-md-8">
+      <template v-if="editable==false">
          <div class="col-md-4 col-xs-1 dataUser">
            <div class="col-md-12 col-xs-6">
 
@@ -24,10 +24,10 @@
            </div>
            <div class="userName titulo1">{{$user->first_name." ".$user->last_name}}</div>
            <div class="aboutMe paragraph1">{{$user->aboutMe}}</div>
-           <input type="checkbox" id='activeEdit' v-model="editable"  >
+           <input type="checkbox" id='activeEdit' v-model="editable">
            <label for='activeEdit' class="col-md-12 editProfile">Editar</label>
-            @include('profile.deactivateAccount')
-        </template>
+      </template>
+      @include('profile.deactivateAccount')
         <!-- ***************************Editable************************************************-->
         <div v-show="editable==true">
           <div  class="col-md-4 col-xs-1 dataUser">
@@ -74,32 +74,32 @@
           </div>
         </div>
      </div>
-
-        <div class="col-md-8 col-xs-1">
-            <div class="">
-                <div class="">
-                  <div class="row">
-                    <p class="col-md-6">
-                    Mis Servicios
-                  </p>
-                  <div class="col-md-6">
-                      <a class="btn btn-raised btn-success" href="{{ url('/service') }}">Nuevo servicio</a>
-                  </div>
-                  </div>
-
-                </div>
-                @include('partial.errors')
+     <div class="row col-md-4">
+      <div class="col-md-8 col-xs-1">
+          <div class="">
+              <div class="">
                 <div class="row">
-                @foreach($user->services as $key=>$service)
-                <div class="col-md-6 col-xs-1">
-                    @include('partial.serviceBox', array('service'=>$service))
+                  <p class="col-md-6">
+                  Mis Servicios
+                </p>
+                <div class="col-md-6">
+                    <a class="btn btn-raised btn-success" href="{{ url('/service') }}">Nuevo servicio</a>
                 </div>
-                  @endforeach
+                </div>
+
               </div>
+              @include('partial.errors')
+              <div class="row">
+              @foreach($user->services as $key=>$service)
+              <div class="col-md-6 col-xs-1">
+                  @include('partial.serviceBox', array('service'=>$service))
+              </div>
+                @endforeach
             </div>
-		    </div>
+          </div>
+      </div>
+      </div>
     </div>
 	</div>
-<script src="{{ asset('js/vue.js') }}"></script>
-<script src="{{ url('js/profile.js') }}"></script>
+
 @endsection

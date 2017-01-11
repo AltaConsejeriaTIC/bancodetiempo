@@ -1,5 +1,5 @@
 <!-- template for the modal component -->
-<script type="x/template" id="modal-template-deactivate">
+<script type="x/template" id="modal-template">
   <div class="modal-mask" v-show="show" transition="modal">
     <div class="modal-wrapper">
       <div class="modal-container">
@@ -45,7 +45,7 @@
 </script>
 
 <div>
-  <a id="show-modal" @click="showModal = true" class="col-md-12 deleteProfile">Desactivar Cuenta</a>
+  <button id="show-modal" @click="showModal = true" class="col-md-12 deleteProfile modal-default-button-success">Desactivar Cuenta</button>
   <modal :show.sync="showModal">
 
   </modal>
