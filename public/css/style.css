@@ -201,6 +201,8 @@ Banner Home
 */
 .bannerHome{
 	background: url(../images/banner.jpg);
+	background-size: 130% auto;
+    background-position: 100% 30%;
 }
 
 
@@ -289,6 +291,15 @@ Service box
     overflow: hidden;
     display: block;
     height: 65px;
+}
+
+/*
+Box register home
+*/
+.boxRegister{
+	background: url(../images/banner2.jpg);
+	background-size: 130% auto;
+    background-position: 100% 30%;
 }
 
 

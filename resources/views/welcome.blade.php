@@ -61,16 +61,49 @@
 		 		
 		 		@foreach($lastServices as $key => $service)
 		
-					<div class='col-md-4 col-xs-12 col-sm-6'>
+					<div class='col-md-4 col-xs-12 col-sm-6 not-padding'>
 						@include('partial/serviceBox', array("service" => $service))
 					</div>
 			
 				@endforeach
 		 	
+		 		<div class="col-xs-12 col-md-4 col-md-offset-4 not-padding">
+		 			<button class='button1 background-active-color col-xs-12 col-md-12'>Explorar más ofertas</button>
+		 		</div>		 			
+		 	
 		 	</article>
+		 	
+		 	
 	 	
 	 	</div>
 		
+	
+	</section>
+	
+	<section class='boxRegister row'>
+		<div class="cap"></div>
+	
+		<div class="container">
+				
+				<div class='row'>
+					<h2 class='title1 text-white text-center col-xs-12'>¡Únete!</h2>
+				</div>
+				
+				<div class='row'>
+					<p class='paragraph2 text-white col-xs-12'>Regístrate y comienza a ser parte de nuestra gran comunidad</p>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 buttonRed glyphicon glyphicon-plus social social-facebook">Regístrate con Facebook <i class='material-icons'>facebook</i></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 buttonRed">Regístrate con Google</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 buttonRed">Regístrate con Linkedin</div>
+				</div>
+				
+		</div>
 	
 	</section>
 
