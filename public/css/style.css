@@ -207,6 +207,10 @@ RedesSociales
 	text-align:left;
 }
 
+.social-button:hover, .social-button:focus{
+	color:#fff;
+}
+
 .social-button >i {
     float: right;
 }
@@ -225,6 +229,15 @@ Banner Home
 */
 .bannerHome{
 	background: url(../images/banner.jpg);
+	background-size: 130% auto;
+    background-position: 100% 30%;
+}
+
+/*
+Banner Register
+*/
+.bannerRegister{
+	background: url(../images/banner3.jpg);
 	background-size: 130% auto;
     background-position: 100% 30%;
 }
@@ -355,6 +368,13 @@ Media Querys
 	    background-size: 480% auto;
     	background-position: 65% 25%;
     	padding-top: 120px;
+	}
+	
+	.bannerRegister {
+	    height: 450px;
+	    background-size: auto 100%;
+	    background-position: 50% 25%;
+	    padding-top: 160px;
 	}
 	
 	.boxRegister {

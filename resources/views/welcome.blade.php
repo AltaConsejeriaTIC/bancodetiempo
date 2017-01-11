@@ -95,18 +95,18 @@
 				
 				<div class="row">
 					<div class="col-xs-12">
-						<button class="col-xs-12 col-md-4 col-md-offset-4 button6 social-button facebook">Regístrate con Facebook <i class="fa fa-facebook"></i></button>
+						<a href="{{ url('loginRedes/facebook') }}" class="col-xs-12 col-md-4 col-md-offset-4 button6 social-button facebook">Regístrate con Facebook <i class="fa fa-facebook"></i></a>
 					</div>
 					
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<button class="col-xs-12 col-md-4 col-md-offset-4 button6 social-button google">Regístrate con Google <i class="fa fa-google"></i></button>
+						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-md-4 col-md-offset-4 button6 social-button google">Regístrate con Google <i class="fa fa-google"></i></a>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<button class="col-xs-12 col-md-4 col-md-offset-4 button6 social-button linkedin">Regístrate con Linkedin <i class="fa fa-linkedin"></i></button>
+						<a href="{{ url('loginRedes/linkedin') }}"  class="col-xs-12 col-md-4 col-md-offset-4 button6 social-button linkedin">Regístrate con Linkedin <i class="fa fa-linkedin"></i></a>
 					</div>
 				</div>
 				

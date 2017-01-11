@@ -5,7 +5,7 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-7 col-sm-3 col-md-3">					
+				<div class="col-xs-7 col-sm-3 col-md-3 ">					
 					<a href="/" >
 						<img src="images/logo.png" alt="Logo" />
 					</a>
