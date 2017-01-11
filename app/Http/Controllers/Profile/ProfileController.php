@@ -31,7 +31,7 @@ class ProfileController extends Controller
 //====================== Photo User ==================================
 
 
-public function  updatePhoto(Request $request){
+public function  editProfilePicture(Request $request){
 
         $file = $request->file('image');
      		if(!$file){
@@ -110,23 +110,23 @@ public function  updatePhoto(Request $request){
 //====================== Deactivate Account User ======================================
 
 	public function deactivateAccount()
-	{	
+	{
 		//Deactivate User
 		$user = User::find(Auth::User()->id);
 		$user->state_id = 2;
 
 		//Deactivate Services
 		$idservice = Service::select('id')->whereUserId(Auth::User()->id)->first();
-		$service = Service::find($idservice->id);		
+		$service = Service::find($idservice->id);
 		$service->state_id = 2;
 
 		$user->save();
-		$service->save();		
+		$service->save();
 		Auth::logout();
 
 		return "true";
-	}	
+	}
 
-//====================== End Deactivate Account User ==================================	
-	
+//====================== End Deactivate Account User ==================================
+
 }
