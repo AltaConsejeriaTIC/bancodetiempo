@@ -37,40 +37,23 @@
                 <input type="file" @change="onFileChange">
                 </div>
                 <div v-else>
-                  <img :src="image" />
-                  <button @click="removeImage">Remove image</button>
+                  <div class="col-md-12 col-xs-6">
+                <svg class="imageProfileMedium center-block" viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                   <defs>
+                     <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
+                       <image  :xlink:href="image" x="-25" width="150" height="100" />
+                     </pattern>
+                   </defs>
+                   <polygon id="hex" points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/>
+                </svg>
+              </div>
+                  <input type="file" @change="onFileChange">
                 </div>
 
 
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('profile/update') }}">
-                {{ csrf_field() }}
-            <div class="form-group{{ $errors->has('firstName') ? ' has-error' : '' }}">
-                <label for="firstName" class="col-md-4 control-label">Nombre</label>
-                <div class="col-md-6">
-                    <input id="firstName" type="text" class="form-control" name="firstName" value="{{$user->first_name}}" required autofocus>
-                </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('lastName') ? ' has-error' : '' }}">
-                <label for="lastName" class="col-md-4 control-label">Apellido</label>
-                <div class="col-md-6">
-                    <input id="lastName" type="text" class="form-control" name="lastName"  value="{{$user->last_name}}"  required autofocus>
-                </div>
-            </div>
-            <div class="form-group{{ $errors->has('aboutMe') ? ' has-error' : '' }}">
-                <label for="aboutMe" class="col-md-4 control-label">Acerca de mi</label>
-
-                <div class="col-md-6">
-                    <textarea id="aboutMe" class="form-control" name="aboutMe"  required>{{$user->aboutMe}}</textarea>
-                    @if ($errors->has('aboutMe'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('aboutMe') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
             <input type="checkbox" id='activeEdit' v-model="editable"  >
-            <label for='activeEdit' class="col-md-12 cancel">Cancelar cambios</label>
+            <label for='activeEdit'  @click="removeImage" class="col-md-12 cancel">Cancelar cambios</label>
           </div>
         </div>
      </div>

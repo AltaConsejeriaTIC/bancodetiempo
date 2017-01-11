@@ -2,14 +2,6 @@
 
 @import url('nav.css');
 
-svg.imageProfileMedium{
-  width:60%;
-  margin:0 auto;
-}
-svg.imageProfileSmall{
-  width:10%;
-  margin:0 auto;
-}
 #hex{
   stroke-width:2;
   stroke: teal;
