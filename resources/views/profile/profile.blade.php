@@ -26,7 +26,7 @@
            <div class="aboutMe paragraph1">{{$user->aboutMe}}</div>
            <input type="checkbox" id='activeEdit' v-model="editable">
            <label for='activeEdit' class="col-md-12 editProfile">Editar</label>
-      </tem plate>
+      </template>
       @include('profile.deactivateAccount')
         <!-- ***************************Editable************************************************-->
         <div v-show="editable==true">
