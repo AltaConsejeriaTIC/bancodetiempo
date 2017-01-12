@@ -37,13 +37,14 @@
     </head>
 
     <body id="app">
-      @yield('content')        
-      @include('footer')
+
+        @yield('content')        
+        @include('footer')
     </body>
 
     <!--  Scripts-->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
     <script src="{{ asset('js/materialize.js') }}"></script>        
-    <script src="{{ url('js/script-forms.js') }}"></script>    
+    <script src="{{ asset('js/script-forms.js') }}"></script>    
 
 </html>
