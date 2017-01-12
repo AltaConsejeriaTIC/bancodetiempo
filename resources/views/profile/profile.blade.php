@@ -1,50 +1,11 @@
 @extends('layouts.app')
 <link href="{{ asset('/css/styleUser.css') }}" rel="stylesheet">
 @section('content')
-<<<<<<< HEAD
-  @include('nav',array('type' => 2))
-  <div class="container">
-    <div class="row col-md-8">
-      <template v-if="editable==false">
-         <div class="col-md-4 col-xs-1 dataUser">
-           <div class="col-md-12 col-xs-6">
-
-           @include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px'))
-         </div>
-           <div class='ranking rankingProfile'>
-             <div>
-               @for($cont = 1 ; $cont <= 5 ; $cont++)
-                 @if($cont <= $user->ranking)
-                   <span class='material-icons parrafo1'>grade</span>
-                 @else
-                   <span class='material-icons parrafo6'>fiber_manual_record</span>
-                 @endif
-               @endfor
-             </div>
-           </div>
-           <div class="userName titulo1">{{$user->first_name." ".$user->last_name}}</div>
-           <div class="aboutMe paragraph1">{{$user->aboutMe}}</div>
-           <input type="checkbox" id='activeEdit' v-model="editable">
-           <label for='activeEdit' class="col-md-12 editProfile">Editar</label>
-
-      </template>
-         @include('profile.deactivateAccount')
-        <!-- ***************************Editable************************************************-->
-        <div v-show="editable==true">
-          <div  class="col-md-4 col-xs-1 dataUser">
-
-            <div v-if="!image"  class="col-md-12 col-xs-6">
-                @include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px'))
-                <input type="file" @change="onFileChange">
-                </div>
-                <div v-else>
-=======
     @include('nav',array('type' => 2))
     <div class="container">
         <div class="row col-md-6" id="profile">
             <template v-if="editable==false">
                 <div class="col-md-4 col-xs-1 dataUser">
->>>>>>> 955024bd6b0a6103f38a8b20b28cde8afcff4b15
                   <div class="col-md-12 col-xs-6">
                     @include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px'))
                   </div>
@@ -64,23 +25,6 @@
                   <input type="checkbox" id='activeEdit' v-model="editable">
                   <label for='activeEdit' class="col-md-12 editProfile">Editar</label>
                 </div>
-<<<<<<< HEAD
-            <input type="checkbox" id='activeEdit' v-model="editable"  >
-            <label for='activeEdit'  @click="removeImage" class="col-md-12 cancel">Cancelar cambios</label>
-          </div>
-        </div>
-     </div>
-     <div class="row col-md-4">
-      <div class="col-md-8 col-xs-1">
-          <div class="">
-              <div class="">
-                <div class="row">
-                  <p class="col-md-6">
-                  Mis Servicios
-                </p>
-                <div class="col-md-6">
-                    <a class="btn btn-raised btn-success" href="{{ url('/service') }}">Nuevo servicio</a>
-=======
             </template>
           
             <!-- ***************************Editable************************************************-->
@@ -105,20 +49,23 @@
                     </div>
                     <input type="checkbox" id='activeEdit' v-model="editable"  >
                     <label for='activeEdit'  @click="removeImage" class="col-md-12 cancel">Cancelar cambios</label>
->>>>>>> 955024bd6b0a6103f38a8b20b28cde8afcff4b15
                 </div>
             </div>
         </div>    
         <div class="row col-md-6">
-            <div class="col-md-8 col-xs-1">
+            <div class="col-md-12 col-xs-1">
                 <div class="">
                     <div class="">
                         <div class="row">
-                            <p class="col-md-6">
-                                Mis Servicios
+                            <p class="title1 col-md-6">
+                                Mis ofertas
                             </p>
                             <div class="col-md-6">
-                                <a class="btn btn-raised btn-success" href="{{ url('/service') }}">Nuevo servicio</a>
+                              <!-- <a class="btn btn-raised btn-success" href="{{ url('/service') }}">Añadir un ofrecimiento</a> -->
+                              <button id="show-modal" @click="showModal = true" class="btn btn-raised btn-success">Añadir un ofrecimiento</button>
+                              <modal :show.sync="showModal">
+
+                              </modal>
                             </div>
                         </div>
                     </div>
