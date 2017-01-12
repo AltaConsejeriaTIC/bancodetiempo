@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row col-md-6" id="profile">
             <template v-if="editable==false">
-                <div class="col-md-4 col-xs-1 dataUser">
+                <div class="col-md-8 col-xs-1 dataUser">
                   <div class="col-md-12 col-xs-6">
                     @include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px'))
                   </div>
@@ -29,10 +29,11 @@
           
             <!-- ***************************Editable************************************************-->
             <div v-show="editable==true">
-                <div class="col-md-4 col-xs-1 dataUser">
+                <div class="col-md-8 col-xs-1 dataUser">
                     <div v-if="!image"  class="col-md-12 col-xs-6">
                         @include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px'))
-                        <input type="file" @change="onFileChange">
+                        <input type="file" id='avatar' @change="onFileChange"  value='{{$user->avatar}}' />
+                        <label for='avatar' class='button1 col-xs-12 text-center'>Cambiar Foto</label>
                     </div>
                     <div v-else>
                         <div class="col-md-12 col-xs-6">
@@ -45,14 +46,15 @@
                              <polygon id="hex" points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"></polygon>
                           </svg>
                         </div>
-                        <input type="file" @change="onFileChange">
+                        <input type="file" id='avatar' value='{{$user->avatar}}' />
+                        <label for='avatar' @change="onFileChange" class='button1 col-xs-12 text-center'>Cambiar Foto</label>
                     </div>
                     <input type="checkbox" id='activeEdit' v-model="editable"  >
                     <label for='activeEdit'  @click="removeImage" class="col-md-12 cancel">Cancelar cambios</label>
                 </div>
             </div>
-        </div>    
-
+        </div>
+        <!-- ***************************Ofertas************************************************-->
         <div class="row col-md-6" id="new">
             <div class="col-md-12 col-xs-1">
                 <div class="">
