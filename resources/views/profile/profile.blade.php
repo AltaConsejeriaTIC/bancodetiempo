@@ -52,16 +52,17 @@
                 </div>
             </div>
         </div>    
-        <div class="row col-md-6">
-            <div class="col-md-8 col-xs-1">
+        
+        <div class="row col-md-6" id="new">
+            <div class="col-md-12 col-xs-1">
                 <div class="">
                     <div class="">
                         <div class="row">
-                            <p class="col-md-6">
-                                Mis Servicios
+                            <p class="title1 col-md-6">
+                                Mis ofertas
                             </p>
                             <div class="col-md-6">
-                                <a class="btn btn-raised btn-success" href="{{ url('/service') }}">Nuevo servicio</a>
+                                @include('services.new')                                
                             </div>
                         </div>
                     </div>
@@ -81,4 +82,5 @@
         </div>    
     </div>
     <script src="{{ asset('js/profile.js') }}"></script>    
+    <script src="{{ asset('js/new.js') }}"></script>
 @endsection
