@@ -26,8 +26,9 @@
            <div class="aboutMe paragraph1">{{$user->aboutMe}}</div>
            <input type="checkbox" id='activeEdit' v-model="editable">
            <label for='activeEdit' class="col-md-12 editProfile">Editar</label>
+
       </template>
-      @include('profile.deactivateAccount')
+         @include('profile.deactivateAccount')
         <!-- ***************************Editable************************************************-->
         <div v-show="editable==true">
           <div  class="col-md-4 col-xs-1 dataUser">
@@ -49,9 +50,6 @@
               </div>
                   <input type="file" @change="onFileChange">
                 </div>
-
-
-
             <input type="checkbox" id='activeEdit' v-model="editable"  >
             <label for='activeEdit'  @click="removeImage" class="col-md-12 cancel">Cancelar cambios</label>
           </div>
