@@ -28,10 +28,21 @@
                     <textarea class="col-md-12" rows="5" name="descriptionService" placeholder="Ej. Ofrezco una clase de una hora de Yoga para principantes, podemos acordar un lugar de encuentro cercano al Parque de la 93. Puedo los Lunes y Miércoles de 6:00 am a 7:00 am."></textarea>                    
                 </div>
                 <div class="row">
-                    <label for="nameService" class="paragraph2">Foto de la oferta</label><span class="opcional"> (Opcional)</span>
+                    <label for="imageService" class="paragraph2">Foto de la oferta</label><span class="opcional"> (Opcional)</span>
                 </div>
                 <div class="row">
                     <input type="file" name="imageService" class="col-md-12">
+                </div>
+                <div class="row">
+                    <label class="paragraph2">Modalidad</label>
+                </div>
+                <div class="row">
+                    <input type="checkbox" name="modalityServiceVirtual" class="col-md-12 square">
+                    <label for="modalityService" class="paragraph2">Virtal</label>
+                </div>
+                <div class="row">
+                    <input type="checkbox" name="modalityServicePresently" class="col-md-12 square">
+                    <label for="modalityService" class="paragraph2">Presencial</label>
                 </div>
 
                 <div class="row">

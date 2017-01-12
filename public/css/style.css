@@ -265,6 +265,7 @@ Service box
     margin:10px auto;
     background-color:#dedede;
     border: 0.25px solid #a0a0a0;
+    max-width: 100%;
 }
 
 .service-box span.category {
@@ -354,11 +355,14 @@ Box register home
 /*
 Media Querys
 */
-@media (min-width: 1200px){
+@media (min-width: 1024px){
 	.container {
 	    width: 1024px;
 	}
 	.bannerHome{
+		padding-top: 120px;
+	}
+	.bannerRegister{
 		padding-top: 120px;
 	}
 	.space40{
@@ -371,21 +375,24 @@ Media Querys
 	.bannerHome{
 		padding-top: 120px;
 	}
+	.bannerRegister {
+	    background-size: 145% auto;
+	    background-position: 55% 30%;
+	    padding-top: 100px;
+	}
+	
 }
 
 @media (max-width: 450px){
 	.bannerHome {
-	    height: 600px;
 	    background-size: 480% auto;
     	background-position: 65% 25%;
     	padding-top: 120px;
 	}
 	
 	.bannerRegister {
-	    height: 450px;
 	    background-size: auto 100%;
 	    background-position: 50% 25%;
-	    padding-top: 160px;
 	}
 	
 	.boxRegister {
@@ -394,13 +401,18 @@ Media Querys
 	}
 	
 	.button5 {
-    	font-size: 13px ;
+    	font-size: 13px !important;
 	}
+	
+	.button7 {
+    	font-size: 14px;
+	}
+	
 	.title3{
-		font-size: 17px;
+		font-size: 17px !important;
 		margin: 0;
 	}
 	.paragraph7{
-		font-size: 17px;
+		font-size: 17px !important;
 	}
 }

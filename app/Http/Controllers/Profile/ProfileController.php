@@ -19,8 +19,7 @@ class ProfileController extends Controller
     {
         $user = User::find(auth::user()->id);
         return view('profile/profile', compact('user'));
-
-
+        
     }
    public function showEditProfile()
     {

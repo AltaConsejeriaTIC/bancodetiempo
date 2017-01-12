@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>    
-        
+
         <div class="row col-md-6" id="new">
             <div class="col-md-12 col-xs-1">
                 <div class="">
