@@ -17,8 +17,9 @@ class ProfileController extends Controller
 {
    public function showProfile()
     {
+    		$categories = Category::all();
         $user = User::find(auth::user()->id);
-        return view('profile/profile', compact('user'));
+        return view('profile/profile', compact('user','categories'));
         
     }
    public function showEditProfile()

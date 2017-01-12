@@ -13,13 +13,12 @@
             </div>
 
             <div class="modal-body">                
-              <form @submit.prevent="" class="form-custom">
-                <input type="hidden" name="token" id="token" value="{{ csrf_token() }}" >
+              {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-custom']) !!}                
                 <div class="row">
                     <label for="nameService" class="paragraph2">Nombre de la oferta</label>
                 </div>
                 <div class="row">
-                    <input type="text" name="nameService" value="" class="col-md-12">
+                    <input type="text" name="nameService" value="" class="col-md-12" placeholder="Nombre de la oferta">
                 </div>
                 <div class="row">
                     <label for="descriptionService" class="paragraph2">Descripción de la oferta</label>
@@ -36,27 +35,63 @@
                 <div class="row">
                     <label class="paragraph2">Modalidad</label>
                 </div>
-                <div class="row">
-                    <input type="checkbox" name="modalityServiceVirtual" class="col-md-12 square">
-                    <label for="modalityService" class="paragraph2">Virtal</label>
+                <div class="row col-md-6">
+                    <input type="checkbox" name="modalityServiceVirtual" class="square">
+                    <label for="modalityService" class="">Virtal</label>
                 </div>
-                <div class="row">
-                    <input type="checkbox" name="modalityServicePresently" class="col-md-12 square">
-                    <label for="modalityService" class="paragraph2">Presencial</label>
+                <div class="row col-md-6">
+                    <input type="checkbox" name="modalityServicePresently" class="square">
+                    <label for="modalityService" class="">Presencial</label>
                 </div>
 
                 <div class="row">
-                    <button class="col-md-12 button1">
+                    <label class="paragraph2">Valor del servicio</label>
+                </div>
+
+                <div class="row col-md-6">
+                    <input type="radio" name="valueService" class=""> 1 Hora                    
+                </div>
+                <div class="row col-md-6">
+                    <input type="radio" name="valueService" class=""> 2 Horas                    
+                </div>
+                <div class="row col-md-6">
+                    <input type="radio" name="valueService" class=""> 3 Horas                    
+                </div>
+                <div class="row col-md-6">
+                    <input type="radio" name="valueService" class=""> 4 Horas                    
+                </div>
+                <div class="row">
+                    <label for="categoryService" class="paragraph2 col-md-12">Categoría</label>
+                </div>
+                <div class="row">
+                    <select name='categoryService' class='col-md-12'>
+                        <option value="">Seleccione una Categoría....</option>
+                        @foreach($categories as $category)
+                            <option value='{{ $category->id }}' @if(old('category')){{ $category->id == old('category') ? "selected" : "" }}@endif {{ $category->selected }}>
+                                {{ $category->category }}
+                            </option>
+                        @endforeach
+                    </select>                    
+                </div>
+                <div class="row">
+                    <label for="tagService" class="paragraph2">Palabras clave</label><span class="opcional"> (Opcional)</span>
+                </div>
+                <div class="row">
+                    <input type="text" name="tagService" class="col-md-12" placeholder="Ej. Diseño, papel...">
+                </div>
+
+                <div class="row">
+                    <button type="submit" class="col-md-12 button1">
                       Publicar oferta
                     </button>
                 </div>
                 <div class="row">    
-                    <button class="col-md-12 button1 background-active-color"
+                    <button class="col-md-12 button1 deleteProfile background-active-color"
                       @click.prevent="show = false">
                       Cancelar
                     </button>
                 </div>
-              </form>
+              {!! Form::close() !!}
             </div>
             <div class="modal-footer">
             </div>
