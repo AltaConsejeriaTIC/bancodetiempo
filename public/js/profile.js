@@ -1,11 +1,11 @@
 // start app
 new Vue({
-  el: '#app',
+  el: '#profile',
   data: {
     editable: "",
     image: ''
   },
-  methods: {
+   methods: {
     onFileChange(e) {
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length)
@@ -24,6 +24,6 @@ new Vue({
     },
     removeImage: function (e) {
       this.image = '';
-    },
+    }
   }
 })

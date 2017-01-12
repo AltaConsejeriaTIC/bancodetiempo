@@ -49,7 +49,7 @@ public function  editProfilePicture(Request $request){
 
      		return $pathImage . $imageName;
 
-     }
+}
 
 //=====================================================================
 

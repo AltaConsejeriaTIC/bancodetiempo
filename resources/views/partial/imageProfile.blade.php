@@ -1,6 +1,6 @@
-<svg viewbox="0 0 100 100" version="1.1">
+<svg viewbox="0 0 100 100" version="1.1" >
 	<defs>
-       <pattern id="img_{{$id}}" patternUnits="userSpaceOnUse" width="100" height="100">
+       <pattern id="img_{{$id}}"  patternUnits="userSpaceOnUse" width="100" height="100">
          <image  xlink:href="{{$cover}}" x="-25" width="150" height="100" />
        </pattern>
      </defs>

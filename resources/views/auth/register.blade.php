@@ -33,122 +33,133 @@
 	</div>
 </section>
 
-<section>
+<section class='row' id='profile'>
 	
 	<div class="container">
 	
-		<div class='row'>
+		<article class='col-xs-12'>
 		
-			
-			
-		</div>
-		
-		
-	</div>
-
-</section>
-
-
-
-<section class='banner2'>
-
-	<div class='fondo'>
-
-		<img src="{{ asset('images/banner3.jpg') }}" alt="" />
-		<div class="telon"></div>
-
-	</div>
-
-	<div class="container">
-
-		<div class="row">
-			<div class='clearfix mTop-50 visible-xs'></div>
-			<div class='clearfix mTop-100 visible-sm'></div>
-			<div class='clearfix mTop-100 visible-md visible-lg'></div>
-			<div class='col-xs-12 col-sm-3 col-md-4 col-lg-4'></div>
-			<div class='white-text col-xs-12 col-sm-6  col-md-4 col-lg-4'>
-
-				<h3 class="white-text titulo1">¡Gracias por vincular tu cuenta!</h3>
-
-				<p class="white-text parrafo1">Completa todos los datos de tu perfil
-					para continuar con el registro. Puedes cambiar esta información
-					ahora o más adelante.</p>
-
+			<div class='row'>		
+				<div class='col-xs-6 col-xs-offset-3'>
+					<div class="col-xs-12">
+						@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id))
+						<input type="hidden" v-model='avatar' value='{{Auth::user()->avatar}}' />
+						
+					</div>				
+				</div>	
 			</div>
-			<div class='col-xs-12 col-sm-3  col-md-4 col-lg-4'></div>
-
-		</div>
-
-	</div>
-
-</section>
-<!-- ************************content*************************************** -->
-<div class="container">
-	<div class="row">
-		<div class="col-md-1 col-xs-1 col-md-offset-1 picture"></div>
-
-		<div class="col-md-2 col-xs-1 col-md-offset-2">
-			<div class="container">
-				@if(!empty($errors->all()))
-				<div class='alert alert-dismissible alert-warning'>
-					@foreach ($errors->all() as $error)
-					<div>{{ $error }}</div>
-					@endforeach
+			<div class="row">
+				<div class='col-xs-6 col-xs-offset-3'>
+					<input type="file" name='avatar' id='avatar' class='hidden'/>
+					<label for='avatar' class='button1 col-xs-12 text-center'>Cambiar Foto</label>
 				</div>
-				@endif {!! Form::open(['url' => 'profile/update', 'method' => 'put',
-				'enctype' => 'multipart/form-data', 'class' => 'col-md-4', 'role' =>
-				'form']) !!}
-				<div class='row'>{{ Form::label('firstName',
-					trans('dictionary.firstName'), ['class' => 'control-label
-					form-control '] ) }} {{ Form::text('firstName', $user->first_name,
-					['class' => 'form-bt form-control', 'required', 'autofocus' ]) }}</div>
-				<div class='row'>{{ Form::label('firstName',
-					trans('dictionary.lastname'), ['class' => 'control-label
-					form-control'] ) }} {{ Form::text('lastName', $user->last_name,
-					['class' => 'form-bt form-control ', 'required', 'autofocus' ]) }}
-
+			</div>
+			<div class="row">
+				<div class='col-xs-6 col-xs-offset-3'>
+					<h2 class='title1 text-center col-xs-12'>{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
 				</div>
-				<div class='row'>
+			</div>
+		
+		</article>
 
-					{{ Form::label('gender', trans('dictionary.gender'), ['class' =>
-					'control-label form-control'] ) }}
-
-					<div class='row'>{{ Form::radio('gender', 'male', $user->gender ==
-						'male' ,['id' => 'man', 'class'=>'']) }} {{ Form::label('man',
-						'Hombre', ['class' => '']) }} {{ Form::radio('gender', 'female',
-						$user->gender == 'female' ,['id' => 'woman', 'class'=>'']) }} {{
-						Form::label('woman', 'Mujer', ['class' => '']) }}</div>
-
+		<article class="col-xs-12">
+		
+			{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'class' => 'col-md-4', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
+			
+				<div class="row">
+					{{ Form::label('firstName',	trans('dictionary.firstName'), ['class' => 'paragraph2'] ) }}
+					<i class="fa fa-check-circle done" v-if='validateFirstname'></i>
+					@{{validateFirstname}}
 				</div>
-				<div class='row'>{{ Form::label('birthdate',
-					trans('dictionary.birthDate'), ['class' => 'control-label
-					form-control'] ) }} {{ Form::date('birthdate', $user->birthDate,
-					['class' => 'form-bt form-control', 'id' => 'birthdate', 'required'
-					]) }}</div>
-
-				<div class='row'>{{ Form::label('aboutMe',
-					trans('dictionary.aboutMe'), ['class' => ' control-label
-					form-control'] ) }} {{ Form::textarea('aboutMe', '', ['class' =>
-					'form-bt form-control', 'id' => 'aboutMe', 'required' ]) }}</div>
-				<div class='row'>{{ Form::label('privacy_policy',
-					trans('dictionary.privacy_policy'), ['class' => ' control-label
-					form-control'] ) }} {{ Form::checkbox('privacy_policy','1',false,
-					['class' => 'checkbox-material', 'id' => 'privacy_policy',
-					'required' ]) }}</div>
-
-				<div class="form-group col-md-12">
-					<div class=" col-md-offset-4">
-						<button type="submit" class="btn btn-primary">{{
-							trans('dictionary.register') }}</button>
+				
+				<div class="row">
+					{{ Form::text('firstName', $user->first_name, ['required', 'autofocus', 'placeholder' => 'Nombre del usuario', 'class' => 'col-xs-12', 'v-model="firstName"']) }}
+				</div>	
+				
+				<div class="row">
+					{{ Form::label('lastName',	trans('dictionary.lastName'), ['class' => 'paragraph2'] ) }} 
+					<i class="fa fa-check-circle done" v-if=''></i>
+				</div>
+				
+				<div class="row">
+					{{ Form::text('lastName', $user->last_name, ['required', 'placeholder' => 'Apellido del usuario', 'class' => 'col-xs-12', 'v-model' => 'lastName']) }}
+				</div>	
+				
+				<div class="row">
+					{{ Form::label('gender', trans('dictionary.gender'), ['class' => 'paragraph2'] ) }} 
+					<i class="fa fa-check-circle done" v-if='validateGender'></i>
+				</div>
+				
+				<div class="row">
+					<div class='col-xs-1'>
+						{{ Form::radio('gender', 'male', $user->gender == 'male' ,['id' => 'man', 'class'=>'square', 'v-model' => 'gender']) }}
 					</div>
-
-					{!! Form::close() !!}
+					<div class='col-xs-3'>
+						{{ Form::label('man', 'Hombre', ['class' => '']) }}
+					</div>				
+					
+					<div class='col-xs-1'>
+						{{ Form::radio('gender', 'female',	$user->gender == 'female' ,['id' => 'woman', 'class'=>'square', 'v-model' => 'gender']) }} 
+					</div>
+					<div class='col-xs-3'>
+						{{ Form::label('woman', 'Mujer', ['class' => '']) }}
+					</div>					
 				</div>
-			</div>
-		</div>
+				
+				<div class="row">
+					{{ Form::label('birthdate',	trans('dictionary.lastName'), ['class' => 'paragraph2'] ) }}
+					<i class="fa fa-check-circle done" v-if='validateDate'></i> 
+				</div>
+				
+				<div class="row">
+					
+					<div class='not-padding col-xs-4'>
+						{{ Form::selectRange('day', 1, 31, '', array('placeholder' => 'Dia', 'class' => 'col-xs-11', 'v-model' => 'day')) }}
+					</div>
+					
+					<div class="not-padding col-xs-4">
+						{{ Form::selectRange('mounth', 1, 12, '', array('placeholder' => 'Mes', 'class' => 'col-xs-11', 'v-model' => 'mounth')) }}
+					</div>
+					
+					<div class="not-padding col-xs-4">
+						{{ Form::selectYear('year', 1950, 2015, '', array('placeholder' => 'Año', 'class' => 'col-xs-11', 'v-model' => 'year')) }}
+					</div>
+				</div>
+				
+				<div class="row">
+					{{ Form::label('aboutMe',	trans('dictionary.aboutMe'), ['class' => 'paragraph2'] ) }} 
+					<i class="fa fa-check-circle done" v-if='validateAboutMe'></i>
+				</div>
+				
+				<div class="row">
+					{{ Form::textarea('aboutMe', '', ['size' => '30x4', 'placeholder' => trans('dictionary.aboutMe'), 'class' => 'col-xs-12', 'v-model' => 'aboutMe']) }}
+				</div>	
+				
+								
+				<div class="row">
+					<div class='col-xs-1'>
+						{{ Form::checkbox('terms', '1' , '' ,['id' => 'terms', 'class'=>'square']) }}
+					</div>
+					<div class='col-xs-10'>
+						<label for="terms">Aceptar los <a href="">términos y condiciones</a> de la plataforma</label>
+					</div>
+				</div>
+				
+				<div class="row">
+				
+					{{ Form::submit('Siguiente', array('class' => 'button1 col-xs-12')) }}
+				
+				</div>
+				
+			{!! Form::close() !!}
+		
+		</article>
+	
+		
 	</div>
-</div>
 
-
+</section>
+<script src="{{ url('js/register.js') }}"></script> 
+ 
 
 @endsection

@@ -24,6 +24,7 @@
     <link href="css/modal.css" rel="stylesheet">
 
     <!-- Scripts -->
+    <script src="{{ asset('js/vue.js') }}"></script>   
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -49,10 +50,11 @@
     </div>
 
     <!-- Scripts -->    
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
     <script src="js/material.min.js"></script>   
     <script src="js/ripples.min.js"></script>   
-    <script src="js/script.js"></script>        
-    <script src="js/modal.js"></script>   
+    <script src="{{ asset('/js/script.js') }}"></script>  
+    <script src="{{ asset('/js/modal.js') }}"></script>   
 </body>
 </html>
