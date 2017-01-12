@@ -1,5 +1,5 @@
 @extends('layouts.app') @section('content')
-<script src="{{ url('js/register.js') }}"></script> 
+
 <nav class='navbar navbar-default navbar-static-top nav1'>
 
 	<div class="container">
@@ -159,7 +159,7 @@
 	</div>
 
 </section>
-
+<script src="{{ url('js/register.js') }}"></script> 
  
 
 @endsection

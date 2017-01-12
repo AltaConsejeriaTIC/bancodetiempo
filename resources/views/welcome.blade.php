@@ -2,8 +2,10 @@
 
 @section('content')
 
-	@include('nav', array('type' => 1))	
-	@include('auth.login')
+	<div id="app">
+		@include('nav', array('type' => 1))	
+		@include('auth.login')
+	
 
 	<section class='bannerHome row'>
 		<div class='cap'></div>
@@ -115,6 +117,6 @@
 	
 	</section>
 
-		
+</div>		
 
 @endsection
