@@ -36,8 +36,7 @@
         </script>
     </head>
 
-    <body id="app">
-
+    <body>    
         @yield('content')        
         @include('footer')
     </body>
