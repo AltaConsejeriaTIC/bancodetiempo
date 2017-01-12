@@ -49,8 +49,7 @@
 				</div>	
 			</div>
 			<div class="row">
-				<div class='col-xs-6 col-xs-offset-3'>
-					<input type="file" name='avatar' id='avatar' class='hidden'/>
+				<div class='col-xs-6 col-xs-offset-3'>					
 					<label for='avatar' class='button1 col-xs-12 text-center'>Cambiar Foto</label>
 				</div>
 			</div>
@@ -65,20 +64,20 @@
 		<article class="col-xs-12">
 		
 			{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'class' => 'col-md-4', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
-			
+				<input type="file" name='avatar' id='avatar' class='hidden'/>
 				<div class="row">
 					{{ Form::label('firstName',	trans('dictionary.firstName'), ['class' => 'paragraph2'] ) }}
-					<i class="fa fa-check-circle done" v-if='validateFirstname'></i>
-					@{{validateFirstname}}
+					<i class="fa fa-check-circle done" v-if='validateFirstName'></i>
+					<p>@{{c}}</p>
 				</div>
 				
 				<div class="row">
-					{{ Form::text('firstName', $user->first_name, ['required', 'autofocus', 'placeholder' => 'Nombre del usuario', 'class' => 'col-xs-12', 'v-model="firstName"']) }}
+					{{ Form::text('firstName', $user->first_name, ['required', 'autofocus', 'placeholder' => 'Nombre del usuario', 'class' => 'col-xs-12', 'v-model' => "firstName"]) }}
 				</div>	
 				
 				<div class="row">
 					{{ Form::label('lastName',	trans('dictionary.lastName'), ['class' => 'paragraph2'] ) }} 
-					<i class="fa fa-check-circle done" v-if=''></i>
+					<i class="fa fa-check-circle done" v-if='validateLastName'></i>
 				</div>
 				
 				<div class="row">
@@ -107,7 +106,7 @@
 				</div>
 				
 				<div class="row">
-					{{ Form::label('birthdate',	trans('dictionary.lastName'), ['class' => 'paragraph2'] ) }}
+					{{ Form::label('birthdate',	trans('dictionary.birthDate'), ['class' => 'paragraph2'] ) }}
 					<i class="fa fa-check-circle done" v-if='validateDate'></i> 
 				</div>
 				
@@ -131,14 +130,15 @@
 					<i class="fa fa-check-circle done" v-if='validateAboutMe'></i>
 				</div>
 				
-				<div class="row">
-					{{ Form::textarea('aboutMe', '', ['size' => '30x4', 'placeholder' => trans('dictionary.aboutMe'), 'class' => 'col-xs-12', 'v-model' => 'aboutMe']) }}
+				<div class="row">					
+					<textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" @keyUp='countCharacters' max='250'></textarea>
+					<label for='aboutMe'>@{{totalChar}}</label>
 				</div>	
 				
 								
 				<div class="row">
 					<div class='col-xs-1'>
-						{{ Form::checkbox('terms', '1' , '' ,['id' => 'terms', 'class'=>'square']) }}
+						{{ Form::checkbox('terms', '1' , '' ,['id' => 'terms', 'class'=>'square', 'v-model' => 'terms']) }}
 					</div>
 					<div class='col-xs-10'>
 						<label for="terms">Aceptar los <a href="">términos y condiciones</a> de la plataforma</label>
@@ -147,7 +147,7 @@
 				
 				<div class="row">
 				
-					{{ Form::submit('Siguiente', array('class' => 'button1 col-xs-12')) }}
+					<input type="submit" value='Siguiente' class='button1 col-xs-12' :class='{inactive : validateAll}' />
 				
 				</div>
 				
@@ -159,7 +159,7 @@
 	</div>
 
 </section>
-<script src="{{ url('js/register.js') }}"></script> 
- 
+
+ <script src="{{ url('js/register.js') }}"></script> 
 
 @endsection
