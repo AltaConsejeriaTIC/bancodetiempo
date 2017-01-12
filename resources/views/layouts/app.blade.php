@@ -44,6 +44,6 @@
     <!--  Scripts-->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
     <script src="{{ asset('js/materialize.js') }}"></script>        
-    <script src="{{ url('js/modal.js') }}"></script>    
+    <script src="{{ url('js/script-forms.js') }}"></script>    
 
 </html>

@@ -51,7 +51,7 @@ class UserTableSeeder extends Seeder
               'first_name' => $faker->firstName,
               'last_name' => $faker->lastName,            
               'email' => $faker->email,            
-              'password'  => bcrypt('secret'),
+              'password'  => null,
               'state_id' => 1,
           	  'avatar' => $faker->randomElement($avatar),
               'gender' => $faker->randomElement(['Masculino','Femenino']),

@@ -4,7 +4,7 @@
 @section('content')
   @include('nav',array('type' => 2))
   <div class="container">
-    <div class="row col-md-8">
+    <div class="row col-md-6">
       <template v-if="editable==false">
          <div class="col-md-4 col-xs-1 dataUser">
            <div class="col-md-12 col-xs-6">
@@ -26,7 +26,7 @@
            <div class="aboutMe paragraph1">{{$user->aboutMe}}</div>
            <input type="checkbox" id='activeEdit' v-model="editable">
            <label for='activeEdit' class="col-md-12 editProfile">Editar</label>
-      </template>
+      </tem plate>
       @include('profile.deactivateAccount')
         <!-- ***************************Editable************************************************-->
         <div v-show="editable==true">
@@ -57,7 +57,7 @@
           </div>
         </div>
      </div>
-     <div class="row col-md-4">
+     <div class="row col-md-6">
       <div class="col-md-8 col-xs-1">
           <div class="">
               <div class="">
