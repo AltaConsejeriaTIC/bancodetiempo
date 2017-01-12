@@ -54,7 +54,7 @@
 		</div>
 			
 		<div class="not-padding col-xs-4">
-			{{ Form::selectYear('year', 1950, 2015, '', array('placeholder' => 'Año', 'class' => 'col-xs-11', 'v-model' => 'year')) }}
+			{{ Form::selectYear('year', 1950, 2015, '', array('placeholder' => 'AÃ±o', 'class' => 'col-xs-11', 'v-model' => 'year')) }}
 		</div>
 	</div>
 	
@@ -74,7 +74,7 @@
 			{{ Form::checkbox('terms', '1' , '' ,['id' => 'terms', 'class'=>'square', 'v-model' => 'terms']) }}
 		</div>
 		<div class='col-xs-10'>
-			<label for="terms">Aceptar los <a href="">términos y condiciones</a> de la plataforma</label>
+			<label for="terms">Aceptar los <a href="">tÃ©rminos y condiciones</a> de la plataforma</label>
 		</div>
 	</div>
 	

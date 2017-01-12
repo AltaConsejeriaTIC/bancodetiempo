@@ -53,22 +53,25 @@ public function  editProfilePicture(Request $request){
 //=====================================================================
 
    public function editProfile(Request $request){
-
+		
 	   	$this->validate($request, [
 	   			'firstName' => 'required|min:3|alpha_spaces',
 	   			'lastName' => 'required|min:3|alpha_spaces',
-	   			'birthdate' => 'required|date',
+	   			'gender' => 'required',
 	   			'aboutMe' => 'required|min:50|max:250',
-          'privacy_policy' => 'required'
+          		'terms' => 'required'
 	   	]);
 
+	   	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
+	   	
 	 	$user = Auth::user ();
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
-		$user->birthDate = date("Y-m-d", strtotime($request->input('birthdate')));
+		$user->birthDate = $birthdate;
 		$user->aboutMe = $request->input("aboutMe");
-    $user->privacy_policy = $request->input('privacy_policy');
-    $user->save();
+	    $user->privacy_policy = $request->input('terms');
+	    $user->gender = $request->input('gender');
+	    $user->save();
 
 		if(!empty($user->interests->all())){
 
