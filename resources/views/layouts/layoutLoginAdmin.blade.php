@@ -55,6 +55,6 @@
     <script src="js/material.min.js"></script>   
     <script src="js/ripples.min.js"></script>   
     <script src="{{ asset('/js/script.js') }}"></script>  
-    <script src="js/script-forms.js"></script>   
+    <script src="{{ asset('/js/modal.js') }}"></script>   
 </body>
 </html>
