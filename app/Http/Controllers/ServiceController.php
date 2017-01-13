@@ -99,7 +99,7 @@ class ServiceController extends Controller
 
    public function create(Request $request){
 
-         dd($request->all());
+         
 	   	$this->validate($request, [
 	   			'name' => 'required|max:100',
 	   			'description' => 'required|max:250|min:50',
