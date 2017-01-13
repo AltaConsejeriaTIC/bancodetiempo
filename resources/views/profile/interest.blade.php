@@ -6,18 +6,18 @@
 	<div class="container">
 		<div class='row'>
 
-			<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-3 ">
+			<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-0 ">
 				<a href="/"> <img src="{{ asset('images/logo.png') }}" alt="Logo" />
 				</a>
 			</div>
 		@if((Auth::guest()))
-			<div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-5" id="container-nav-buttons">	    
+			<div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-2 col-md-offset-7" id="container-nav-buttons">	    
 			     <button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
 			     <button id="show-modal" @click="showModal = true" class="button4 hidden-xs">Registrarse</button>          		          
 			</div>
 
 		@elseif((!Auth::guest()))
-			<a class="hidden-xs col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar SesiÃ³n</a>
+			<a class="hidden-xs col-sm-4 col-sm-offset-5 col-md-2 col-md-offset-7" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
 			<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 				{{ csrf_field() }}
 			</form>
