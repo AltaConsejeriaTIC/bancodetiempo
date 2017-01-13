@@ -61,7 +61,6 @@ var Register = new Vue({
 	},
 	methods: {		
 		countCharacters: function(){
-			console.log("press");
         	this.totalChar = this.maxChar - this.aboutMe.length;
         }
 	}

@@ -43,18 +43,18 @@
 		{{ Form::label('birthdate',	trans('dictionary.birthDate'), ['class' => 'paragraph2'] ) }}
 		<i class="fa fa-check-circle done" v-if='validateDate'></i>
 	</div>
-	
+
 	<div class="row">		
 		<div class='not-padding col-xs-4'>
-			{{ Form::selectRange('day', 1, 31, '', array('placeholder' => 'Dia', 'class' => 'col-xs-11', 'v-model' => 'day')) }}
+			{{ Form::selectRange('day', 1, 31, date('d', strtotime($user->birthDate)), array('placeholder' => 'Dia', 'class' => 'col-xs-11', 'v-model' => 'day')) }}
 		</div>
 			
 		<div class="not-padding col-xs-4">
-			{{ Form::selectRange('mounth', 1, 12, '', array('placeholder' => 'Mes', 'class' => 'col-xs-11', 'v-model' => 'mounth')) }}
+			{{ Form::selectRange('mounth', 1, 12, date('m', strtotime($user->birthDate)), array('placeholder' => 'Mes', 'class' => 'col-xs-11', 'v-model' => 'mounth')) }}
 		</div>
 			
 		<div class="not-padding col-xs-4">
-			{{ Form::selectYear('year', 1950, 2015, '', array('placeholder' => 'Año', 'class' => 'col-xs-11', 'v-model' => 'year')) }}
+			{{ Form::selectYear('year', 1950, 2015, date('Y', strtotime($user->birthDate)), array('placeholder' => 'Año', 'class' => 'col-xs-11', 'v-model' => 'year')) }}
 		</div>
 	</div>
 	
@@ -64,7 +64,7 @@
 	</div>
 	
 	<div class="row">
-		<textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" @keyUp='countCharacters' max='250'></textarea>
+		<textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" @keyUp='countCharacters'>{{ old('aboutMe') }}{{ $user->aboutMe }}</textarea>
 		<label for='aboutMe'>@{{totalChar}}</label>
 	</div>
 	
@@ -80,7 +80,7 @@
 	
 	<div class="row">
 	
-		<input type="submit" value='Siguiente' class='button1 col-xs-12' :class='{inactive : validateAll}' />
+		<input type="submit" value='Siguiente' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' />
 	
 	</div>
 

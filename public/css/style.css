@@ -48,10 +48,6 @@ header .header-content {
 img{
 	max-width:100%;
 }
-
-textarea{
-	resize: none;
-}
 /*
 Titles
 */
@@ -153,7 +149,7 @@ Buttons
 }
 
 .button1.inactive{
-	background: #818993;
+	background-color: #818993 !important;
 	pointer-events: none;
 }
 /*
@@ -259,6 +255,15 @@ Banner Register
     background-position: 100% 30%;
 }
 
+/*
+Banner interest
+*/
+.bannerInterest{
+	position:relative !important;
+	background: url(../images/banner2.jpg);
+	background-size: 130% auto;
+    background-position: 100% 30%;
+}
 
 /*
 Service box

@@ -7,7 +7,7 @@
 
 				<div class="col-xs-6 col-sm-4 col-md-3 ">					
 					<a href="/" >
-						<img src="images/logo.png" alt="Logo" />
+						<img src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
 				</div>
 				@if((Auth::guest()))

@@ -1,5 +1,5 @@
 @extends('layouts.app') @section('content')
-{{print_r($errors)}}
+
 <nav class='navbar navbar-default navbar-static-top nav1'>
 
 	<div class="container">

@@ -1,30 +1,48 @@
 @extends('layouts.app')
 @section('content')
 
-@include('nav', array('type'=>1)) 
+<nav class='navbar-default navbar-static-top nav1 bannerInterest'>
 
-<section class='banner'>
+	<div class="container">
+		<div class='row'>
 
-	<div class='fondo'>
-	
-		<img src="{{ asset('images/banner2.jpg') }}" alt="" />
-		<div class="telon"></div>
-	
+			<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-3 ">
+				<a href="/"> <img src="{{ asset('images/logo.png') }}" alt="Logo" />
+				</a>
+			</div>
+
+		</div>
 	</div>
+
+</nav>
+<section class='row'>
 	
 	<div class="container">
+		
+		<article class="col-xs-12">
+		
+			<div class="row">
+		
+				<h2 class='title1 col-xs-12'>¿Cuáles son tus intereses?</h2>
+			
+			</div>
+			<div class="row">
+				<p class="paragraph1 col-xs-12">Elige <strong>tres</strong> categorías de interés para sugerirte ofertas.</p>
+			</div>
+			<div class="row"></div>
+		
+		</article>
+		
+		
 	
-		{!! Form::open(['url' => '/profile/interest', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal  col-md-8 col-md-offset-2', 'role' => 'form']) !!}
-		
-		<div class='clearfix mTop-50 visible-xs visible-sm'></div>
-		
-		<div class='clearfix mTop-250 visible-md  visible-lg'><br></div>
-		
+	
+		{!! Form::open(['url' => '/profile/interest', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-custom col-xs-12', 'role' => 'form']) !!}
+				
 		<div id="temasInteres" class='row'>
 				
 				@foreach($categories as $i => $category)
 					
-					<div class='col-xs-10 col-xs-offset-1 col-sm-5 {{ ($i % 2) == 0 ? "col-sm-offset-2" : "col-sm-offset-0" }} col-md-4 col-md-offset-0 col-lg-4 col-lg-offset-0'>
+					<div class=''>
 						
 						<div>
 						
@@ -41,7 +59,7 @@
 
 		</div>
 		
-		{{ Form::submit('Enviar', ['class' => 'col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-3 submit']) }}
+		{{ Form::submit('Enviar', ['class' => '']) }}
 		
 		{!! Form::close() !!}
 
