@@ -33,11 +33,13 @@ class ProfileController extends Controller
 
 public function  editProfilePicture(Request $request){
 
-        $file = $request->file('image');
+
+        $file = $request->file('avatar');
      		if(!$file){
+
      			return false;
      		}
-     		$imageName = 'img' . Auth::User()->id . '-' . $file->getClientOriginalExtension();
+     		$imageName = 'img' . Auth::User()->id . '.' . $file->getClientOriginalExtension();
 
      		$pathImage = 'resources/user/user_'. Auth::User()->id;
 
@@ -46,8 +48,7 @@ public function  editProfilePicture(Request $request){
      		User::find(Auth::User()->id)->update([
      			'avatar' => $pathImage . $imageName
      		]);
-
-     		return $pathImage . $imageName;
+     		return $pathImage .'/'. $imageName;
 
 }
 
@@ -66,6 +67,7 @@ public function  editProfilePicture(Request $request){
 	   	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
 	   	
 	 	$user = Auth::user ();
+        $user->avatar = $this->editProfilePicture($request);
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = $birthdate;
