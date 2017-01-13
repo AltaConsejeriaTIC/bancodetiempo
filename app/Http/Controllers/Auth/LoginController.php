@@ -45,4 +45,9 @@ class LoginController extends Controller
             $this->username() => 'required|email', 'password' => 'required',
         ]);
     }
+
+    public function showLoginForm()
+    {
+        return redirect('/');
+    }
 }
