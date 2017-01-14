@@ -1,19 +1,6 @@
 @extends('layouts.app') @section('content')
 
-<nav class='navbar navbar-default navbar-static-top nav1'>
-
-	<div class="container">
-		<div class='row'>
-
-			<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-3 ">
-				<a href="/"> <img src="images/logo.png" alt="Logo" />
-				</a>
-			</div>
-
-		</div>
-	</div>
-
-</nav>
+@include('nav', array('type' => 1))
 
 <section class='bannerRegister row'>
 	<div class="container">

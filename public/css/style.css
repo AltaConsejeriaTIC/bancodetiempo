@@ -405,6 +405,10 @@ Media Querys
 	    background-size: auto 100%;
 	    background-position: 50% 25%;
 	}
+	.bannerInterest{
+		background-size: 215% auto;
+    	background-position: 45% 40%;
+	}
 	
 	.boxRegister {
 	    background-size: 350% auto;

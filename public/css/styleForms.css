@@ -64,7 +64,9 @@ textarea.countCharacters + label {
 	border: 1px solid #1162A5;
 
 }
-
+/*
+checkbox square
+*/
 .form-custom input[type="checkbox"].square:before {
     content: "";
     height: 20px;
@@ -84,4 +86,33 @@ textarea.countCharacters + label {
 	color:#1162A5;
 	border: 1px solid #1162A5;
 
+}
+
+/*
+checkbox boxCheck
+*/
+input[type=checkbox].boxCheck {
+    display: none;
+}
+
+input[type=checkbox].boxCheck + label {
+    width: 100%;
+    display: block;
+    padding: 25px 20px;
+    color: #2c3e50;
+    border: solid 1px #2c3e50;
+    margin: 5px 0px;
+}
+
+input[type=checkbox].boxCheck + label i {
+    margin-right: 10px;
+}
+
+input[type=checkbox].boxCheck:checked + label {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+input[type=checkbox].boxCheck:checked + label i {
+    color:#fff;
 }

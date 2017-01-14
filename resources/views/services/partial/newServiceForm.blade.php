@@ -21,11 +21,11 @@
         <label class="paragraph2">Modalidad</label>
     </div>
     <div class="row col-md-6">
-        <input type="checkbox" name="modalityServiceVirtual" class="square">
+        <input type="checkbox" name="modalityServiceVirtually" class="square" value="1">
         <label for="modalityService" class="">Virtal</label>
     </div>
     <div class="row col-md-6">
-        <input type="checkbox" name="modalityServicePresently" class="square">
+        <input type="checkbox" name="modalityServicePresently" class="square" value="1">
         <label for="modalityService" class="">Presencial</label>
     </div>
 

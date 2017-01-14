@@ -17,7 +17,7 @@
 				</div>			
 				<div class="row">
 					<div class='col-xs-6 col-xs-offset-3  col-sm-10 col-sm-offset-1'>
-						<h2 class='title1 text-center col-xs-12'>{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
+						<h2 class='title3 text-center col-xs-12'>{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
 					</div>
 				</div>		
 			</article>				
@@ -50,7 +50,11 @@
 			<article class="col-xs-12 col-sm-4 col-md-4">	
 				<div class="row">
 					@include('partial.errors')
-                	<h1 class="title1 text-center">Añadir oferta</h1>
+                	<h1 class="title1">¿Qué deseas ofrecer?</h1>
+            	</div>		
+            	<div class="row">					
+                	<h1 class="paragraph1">Si no sabes qué compartir,</h1>
+                	<a href="#">realiza nuestro test</a>
             	</div>		
 				@include("services/partial/newServiceForm")
 			</article>			
