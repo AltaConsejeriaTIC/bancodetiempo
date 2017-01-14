@@ -99,15 +99,18 @@ class ServiceController extends Controller
 
    public function create(Request $request){
 
+         $this->validate($request, [
+               'nameService' => 'required|max:100',
+               'descriptionService' => 'required|max:250|min:50',
+               'valueService' => 'required|numeric|min:1|max:10',
+               'modalityServiceVirtual' => 'required_without:presently',
+               'modalityServicePresently' => 'required_without:virtually',
+               'categoryService' => 'required',
+               'tagService' => 'required',
+               'imageService' => 'required|image'
+         ]);
+         
          dd($request->all());
-	   	$this->validate($request, [
-	   			'name' => 'required|max:100',
-	   			'description' => 'required|max:250|min:50',
-	   			'value' => 'required|numeric|min:1|max:10',
-	   			'virtually' => 'required_without:presently',
-	   			'presently' => 'required_without:virtually',
-	   			'image' => 'required|image'
-	   	]);
 
    		$service = Service::create([
    				'name' => $request->input('name'),

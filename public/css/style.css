@@ -427,3 +427,13 @@ Media Querys
 		font-size: 17px !important;
 	}
 }
+
+/*
+Banner First Service
+*/
+
+.bannerService{
+    background: url(../images/banner4.jpg);
+    background-size: 130% auto;
+    background-position: 100% 30%;
+}
