@@ -44,7 +44,7 @@ textarea.countCharacters + label {
 	border-color: #2D496B !important;
 }
 
-.form-custom input[type="radio"].square:before {
+.form-custom input[type="radio"].square::before {
     content: "";
     height: 20px;
     display: block;
@@ -58,7 +58,7 @@ textarea.countCharacters + label {
     transition:all 1s;
 }
 
-.form-custom input[type="radio"].square:checked:before {
+.form-custom input[type="radio"].square:checked::before {
 	content: "done";
 	color:#1162A5;
 	border: 1px solid #1162A5;
