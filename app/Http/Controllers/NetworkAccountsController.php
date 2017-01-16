@@ -12,6 +12,7 @@ use App\Models\NetworkAccounts;
 use App\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use JavaScript;
 
 class NetworkAccountsController extends Controller
 {
@@ -32,6 +33,14 @@ class NetworkAccountsController extends Controller
 	public function showFrom(){
 
 		$user = User::findOrFail(Auth::user()->id);
+
+		JavaScript::put([
+			'userJs'=> $user,
+			'dayJs' => date("d",strtotime($user->birthDate)),
+			'mounthJs' => date("m",strtotime($user->birthDate)),
+			'yearJs' => date("Y",strtotime($user->birthDate)),
+
+		]);
 
 		return view('auth/register', compact('user'));
 

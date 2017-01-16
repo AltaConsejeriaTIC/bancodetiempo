@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Input;
 use App\Models\Category;
 use App\Models\InterestUser;
 use App\Models\Service;
-
+use JavaScript;
 
 class ProfileController extends Controller
 {
@@ -19,6 +19,15 @@ class ProfileController extends Controller
     {
     		$categories = Category::all();
         $user = User::find(auth::user()->id);
+
+        JavaScript::put([
+					'userJs'=> $user,
+					'dayJs' => date("d",strtotime($user->birthDate)),
+					'mounthJs' => date("m",strtotime($user->birthDate)),
+					'yearJs' => date("Y",strtotime($user->birthDate)),
+
+				]);
+
         return view('profile/profile', compact('user','categories'));
         
     }
@@ -67,14 +76,14 @@ public function  editProfilePicture(Request $request){
 	   	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
 	   	
 	 	$user = Auth::user ();
-        $user->avatar = $this->editProfilePicture($request);
+    $user->avatar = $this->editProfilePicture($request);
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = $birthdate;
 		$user->aboutMe = $request->input("aboutMe");
-	    $user->privacy_policy = $request->input('terms');
-	    $user->gender = $request->input('gender');
-	    $user->save();
+	  $user->privacy_policy = $request->input('terms');
+	  $user->gender = $request->input('gender');
+	  $user->save();
 
 		if(!empty($user->interests->all())){
 

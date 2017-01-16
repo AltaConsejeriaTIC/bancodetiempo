@@ -55,7 +55,7 @@
             </div>
 
             <div class="row">
-                {{ Form::text('firstName', $user->first_name, ['required', 'autofocus', 'placeholder' => 'Nombre del usuario', 'class' => 'col-xs-12', 'v-model' => "firstName"]) }}
+                {{ Form::text('firstName', null, ['required', 'autofocus', 'placeholder' => 'Nombre del usuario', 'class' => 'col-xs-12', 'v-model' => "firstName"]) }}
             </div>
 
             <div class="row">
@@ -168,7 +168,7 @@
             @include('profile.deactivateAccount')
         </div>
     </div>
-    <script src="{{ asset('js/profile.js') }}"></script>
-    <script src="{{ asset('js/new.js') }}"></script>
-    <script src="{{ asset('js/register.js') }}"></script>
+    <script src="{{ asset('/js/components/profile.js') }}"></script>
+    <!-- <script src="{{ asset('/js/components/new.js') }}"></script> -->
+    <!-- <script src="{{ asset('/js/components/register.js') }}"></script> -->
 @endsection

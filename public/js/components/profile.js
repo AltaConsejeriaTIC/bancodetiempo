@@ -2,6 +2,14 @@
 new Vue({
   el: '#profile',
   data: {
+    firstName : windowvar.userJs["first_name"],
+    lastName : windowvar.userJs["last_name"],
+    gender: windowvar.userJs["gender"],
+    day: parseInt(windowvar.dayJs),
+    mounth: parseInt(windowvar.mounthJs),
+    year: parseInt(windowvar.yearJs),
+    aboutMe: windowvar.userJs["aboutMe"],
+    terms: false,
     editable: "",
     image: ''
   },

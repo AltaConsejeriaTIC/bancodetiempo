@@ -182,6 +182,7 @@ return [
         Styde\Seeder\SeederServiceProvider::class,
         //Provider Component Laravel Collective
         Collective\Html\HtmlServiceProvider::class,
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
 
     ],
 
@@ -232,7 +233,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
     	'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class
+        'Html' => Collective\Html\HtmlFacade::class,
+        'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class
 
     ],
 

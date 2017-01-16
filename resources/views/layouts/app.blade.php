@@ -37,13 +37,14 @@
     </head>
 
     <body>    
+        @include('prependvarjs')
         @yield('content')        
         @include('footer')
     </body>
 
     <!--  Scripts-->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
-    <script src="{{ asset('js/materialize.js') }}"></script>        
-    <script src="{{ asset('js/modal.js') }}"></script>    
+    <script src="{{ asset('js/materialize.min.js') }}"></script>        
+    <script src="{{ asset('js/components/modal.js') }}"></script>    
 
 </html>
