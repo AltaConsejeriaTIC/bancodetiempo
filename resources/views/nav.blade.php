@@ -1,11 +1,10 @@
 @if($type == 1)
 
 	<nav class='navbar navbar-default navbar-static-top nav1'>
-
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-0">					
+				<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-0">
 					<a href="/" >
 						<img src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
@@ -15,7 +14,6 @@
 			        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
 			        	<button id="show-modal" @click="showModal = true" class="button4 hidden-xs">Registrarse</button>          		          
 			        </div>
-
 				@elseif((!Auth::guest()))
 					<a class="hidden-xs col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5  text-right" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
 					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

@@ -36,11 +36,11 @@
                     <label class="paragraph2">Modalidad</label>
                 </div>
                 <div class="row col-md-6">
-                    <input type="checkbox" name="modalityServiceVirtual" class="square">
+                    <input type="checkbox" name="modalityServiceVirtually" class="square" value="1">
                     <label for="modalityService" class="">Virtal</label>
                 </div>
                 <div class="row col-md-6">
-                    <input type="checkbox" name="modalityServicePresently" class="square">
+                    <input type="checkbox" name="modalityServicePresently" class="square" value="1">
                     <label for="modalityService" class="">Presencial</label>
                 </div>
 
@@ -49,16 +49,16 @@
                 </div>
 
                 <div class="row col-md-6">
-                    <input type="radio" name="valueService" class=""> 1 Hora                    
+                    <input type="radio" name="valueService" class="" value="1"> 1 Hora                    
                 </div>
                 <div class="row col-md-6">
-                    <input type="radio" name="valueService" class=""> 2 Horas                    
+                    <input type="radio" name="valueService" class="" value="2"> 2 Horas                    
                 </div>
                 <div class="row col-md-6">
-                    <input type="radio" name="valueService" class=""> 3 Horas                    
+                    <input type="radio" name="valueService" class="" value="3"> 3 Horas                    
                 </div>
                 <div class="row col-md-6">
-                    <input type="radio" name="valueService" class=""> 4 Horas                    
+                    <input type="radio" name="valueService" class="" value="4"> 4 Horas                    
                 </div>
                 <div class="row">
                     <label for="categoryService" class="paragraph2 col-md-12">Categoría</label>
