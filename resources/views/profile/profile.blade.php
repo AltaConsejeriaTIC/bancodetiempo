@@ -168,7 +168,7 @@
             @include('profile.deactivateAccount')
         </div>
     </div>
-    <script src="{{ asset('js/profile.js') }}"></script>
-    <script src="{{ asset('js/new.js') }}"></script>
-    <script src="{{ asset('js/register.js') }}"></script>
+    <script src="{{ asset('js/components/profile.js') }}"></script>
+    <script src="{{ asset('js/components/new.js') }}"></script>
+    <script src="{{ asset('js/components/register.js') }}"></script>
 @endsection

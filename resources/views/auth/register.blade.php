@@ -59,6 +59,6 @@
 
 </section>
 
- <script src="{{ url('js/register.js') }}"></script> 
+ <script src="{{ url('js/components/register.js') }}"></script> 
 
 @endsection
