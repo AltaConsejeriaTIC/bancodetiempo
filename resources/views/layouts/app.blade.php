@@ -26,8 +26,7 @@
         <!-- Fonts -->
        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Scripts -->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="{{ asset('js/vue.js') }}"></script>   
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>       
            
         <script>
             window.Laravel = <?php echo json_encode([
@@ -45,6 +44,6 @@
     <!--  Scripts-->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
     <script src="{{ asset('js/materialize.min.js') }}"></script>        
-    <script src="{{ asset('js/components/modal.js') }}"></script>    
+    <script src="{{ asset('js/app.js') }}"></script>    
 
 </html>

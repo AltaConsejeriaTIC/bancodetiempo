@@ -13,8 +13,12 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('modal', require('./components/modal.vue'));
 
-const app = new Vue({
-    el: '#app'
-});
+// Object Vue
+new Vue({
+  el: '#app',
+  data: {  	
+    showModal: false    
+  }  
+})
