@@ -237,6 +237,12 @@ Helpers
 .background-active-color{
 	background-color:#2c9e36 !important;
 }
+.relative{
+	position:relative !important;
+}
+.fixed{
+	position:fixed !important;
+}
 .space{
 	display: block;
     clear: both;

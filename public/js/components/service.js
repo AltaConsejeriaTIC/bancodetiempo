@@ -5,6 +5,9 @@ var service = new Vue({
 		serviceName: '',
 		description: '',
 		category:'',
+		modalityServiceVirtually : '',
+		modalityServicePresently: '',
+		valueService: '',
 		expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
 	},
 	methods: {
@@ -29,5 +32,49 @@ var service = new Vue({
 			return string;
 		}	    
 	  }
+	},
+	computed: {
+		validateName: function() {
+            if(this.serviceName != "" && this.serviceName.length >= 3 && this.expr.test(this.serviceName)){
+            	return true;
+            }else{
+            	return false;
+            }
+        },
+        validateDescription: function() {
+            if(this.description != "" && this.description.length >= 50){
+            	return true;
+            }else{
+            	return false;
+            }
+        },
+        validateModality: function() {
+            if(this.modalityServiceVirtually == 1 || this.modalityServicePresently == 1){
+            	return true;
+            }else{
+            	return false;
+            }
+        },
+        validateValueService: function() {
+            if(this.valueService != ''){
+            	return true;
+            }else{
+            	return false;
+            }
+        },
+        validateCategory: function() {
+            if(this.category != ''){
+            	return true;
+            }else{
+            	return false;
+            }
+        },
+        validateAll: function() {
+            if(this.validateName && this.validateDescription && this.validateModality && this.validateValueService && this.validateCategory){
+            	return false;
+            }else{
+            	return true;
+            }
+        },
 	}
 })

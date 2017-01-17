@@ -24,17 +24,13 @@
 	</div>
 	
 	<div class="row">
-		<div class='col-xs-1'>
+		<div class='col-xs-6'>
 			{{ Form::radio('gender', 'male', $user->gender == 'male' ,['id' => 'man', 'class'=>'square', 'v-model' => 'gender']) }}
-		</div>
-		<div class='col-xs-3'>
 			{{ Form::label('man', 'Hombre', ['class' => '']) }}
 		</div>
-		<div class='col-xs-1'></div>
-		<div class='col-xs-1'>
+
+		<div class='col-xs-6'>
 			{{ Form::radio('gender', 'female',	$user->gender == 'female' ,['id' => 'woman', 'class'=>'square', 'v-model' => 'gender']) }}
-		</div>
-		<div class='col-xs-3'>
 			{{ Form::label('woman', 'Mujer', ['class' => '']) }}
 		</div>
 	</div>
@@ -70,10 +66,8 @@
 	
 	
 	<div class="row">
-		<div class='col-xs-1'>
+		<div class='col-xs-12'>
 			{{ Form::checkbox('terms', '1' , '' ,['id' => 'terms', 'class'=>'square', 'v-model' => 'terms']) }}
-		</div>
-		<div class='col-xs-10'>
 			<label for="terms">Aceptar los <a href="">términos y condiciones</a> de la plataforma</label>
 		</div>
 	</div>
