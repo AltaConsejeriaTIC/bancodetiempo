@@ -48,6 +48,71 @@ class ServicesTableSeeder extends Seeder
 					'state_id' => $faker->numberBetween(1,2),
 			]);
 		}
-		 
+        $this->create([
+            'name' => 'Prácticas de Ingles',
+            'description' => 'Ofrezco una hora de práctica de Inglés para aquellas personas que quieran mejorar su nivel de Inglés mediante la práctica. La sesión puede realizarse de forma virtual o presencial.',
+            'value' => 1,
+            'virtually'  => 1,
+            'presently' => 1,
+            'image' => 'resources/user/user_18/services/img18-16.jpg',
+            'category_id' => 1,
+            'user_id' => 18,
+            'state_id' => 1,
+        ]);
+        $this->create([
+            'name' => 'Tipografía para no gráficos',
+            'description' => 'Taller para todos aquellos profesionales relacionados con la imagen, el diseño, la arquitectura, las artes, interesados y curiosos. Algunos conceptos básicos de tipografía #SirveParaLaVidaCotidiana',
+            'value' => 2,
+            'virtually'  => 0,
+            'presently' => 1,
+            'image' => 'resources/user/user_19/services/img19-17.jpg',
+            'category_id' => 1,
+            'user_id' => 19,
+            'state_id' => 1,
+        ]);
+        $this->create([
+            'name' => 'visita guiada a la costa colombiana',
+            'description' => 'Ofrezco una visita guiada a la costa colombiana, el interesado debe cubrir los costos de ida y regreso, estadía y hospedaje.',
+            'value' => 4,
+            'virtually'  => 1,
+            'presently' => 1,
+            'image' => 'resources/user/user_20/services/img20-18.jpg',
+            'category_id' => 1,
+            'user_id' => 20,
+            'state_id' => 1,
+        ]);
+        $this->create([
+            'name' => 'Prácticas de Ingles',
+            'description' => 'Ofrezco una hora de práctica de Inglés para aquellas personas que quieran mejorar su nivel de Inglés mediante la práctica. La sesión puede realizarse de forma virtual o presencial.',
+            'value' => 2,
+            'virtually'  => 0,
+            'presently' => 1,
+            'image' => 'resources/user/user_18/services/img18-16.jpg',
+            'category_id' => 1,
+            'user_id' => 21,
+            'state_id' => 1,
+        ]);
+        $this->create([
+            'name' => 'Tipografía para no gráficos',
+            'description' => 'Taller para todos aquellos profesionales relacionados con la imagen, el diseño, la arquitectura, las artes, interesados y curiosos. Algunos conceptos básicos de tipografía #SirveParaLaVidaCotidiana',
+            'value' => 3,
+            'virtually'  => 1,
+            'presently' => 1,
+            'image' => 'resources/user/user_19/services/img19-17.jpg',
+            'category_id' => 1,
+            'user_id' => 17,
+            'state_id' => 1,
+        ]);
+        $this->create([
+            'name' => 'visita guiada a la costa colombiana',
+            'description' => 'Ofrezco una visita guiada a la costa colombiana, el interesado debe cubrir los costos de ida y regreso, estadía y hospedaje.',
+            'value' => 4,
+            'virtually'  => 1,
+            'presently' => 1,
+            'image' => 'resources/user/user_20/services/img20-18.jpg',
+            'category_id' => 1,
+            'user_id' => 18,
+            'state_id' => 1,
+        ]);
 	}
 }
