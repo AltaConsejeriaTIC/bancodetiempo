@@ -56,6 +56,7 @@ Titles
 	font-weight: bold;
 	font-size: 30px;
 	color: #2c3e50;
+	word-wrap: break-word;
 }
 
 .title2{
@@ -63,12 +64,14 @@ Titles
 	font-weight:bold;
 	font-size:20px;
 	color:#2c3e50;
+	word-wrap: break-word;
 }
 .title3{
 	font-family: Roboto;
 	font-size: 20px;
 	font-weight: Bold;
 	color: #fff;
+	word-wrap: break-word;
 }
 
 /*
@@ -347,6 +350,7 @@ Service box
     height: 142px;
     width: 100%;
     position: relative;
+    background: #fff;
 }
 
 .service-box .content {
@@ -373,6 +377,7 @@ Service box
     position: relative;
     margin-top: 0px;
     margin-left: 100px;
+    min-height: 20px;
 }
 
 .service-box .ranking {

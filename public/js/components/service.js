@@ -1,7 +1,10 @@
 var service = new Vue({
-	el : "#form",
+	el : "#service",
 	data: {
 		image:'',
+		serviceName: '',
+		description: '',
+		category:'',
 		expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
 	},
 	methods: {
@@ -17,5 +20,14 @@ var service = new Vue({
 			 };
 			reader.readAsDataURL(files[0]);
 		},
+	},	  
+	filters: {
+	  truncate: function(string, value) {
+		if(string.length > value){
+			return string.substring(0, value) + '...';
+		}else{
+			return string;
+		}	    
+	  }
 	}
 })

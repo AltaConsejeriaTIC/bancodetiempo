@@ -1,4 +1,4 @@
-@if($service)
+@if(isset($service))
 	<div class='service-box'>
 	 
 		<span class='category'>{{$service->category->category}}</span>

@@ -3,13 +3,13 @@
         <label for="nameService" class="paragraph2">Nombre de la oferta</label>
     </div>
     <div class="row">
-        <input type="text" name="nameService" value="" class="col-xs-12 col-sm-12 col-md-12" placeholder="Nombre de la oferta">
+        <input type="text" name="nameService" value="" class="col-xs-12 col-sm-12 col-md-12" placeholder="Nombre de la oferta" v-model='serviceName'>
     </div>
     <div class="row">
         <label for="descriptionService" class="paragraph2">Descripción de la oferta</label>
     </div>
     <div class="row">
-        <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12" rows="5" name="descriptionService" id='descriptionService' placeholder="Ej. Ofrezco una clase de una hora de Yoga para principantes, podemos acordar un lugar de encuentro cercano al Parque de la 93. Puedo los Lunes y Miércoles de 6:00 am a 7:00 am."></textarea>                    
+        <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12" rows="5" name="descriptionService" id='descriptionService' v-model='description' placeholder="Ej. Ofrezco una clase de una hora de Yoga para principantes, podemos acordar un lugar de encuentro cercano al Parque de la 93. Puedo los Lunes y Miércoles de 6:00 am a 7:00 am."></textarea>                    
     	<label for="descriptionService">250</label>
     </div>
     <div class="row">
@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 " id='cover' @change='previewPhoto'>
-        <label for="cover" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : image!=''}" :style="{ backgroundImage: 'url(' + image + ')' }">Sube una foto</label>
+        <label for="cover" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : image!='', 'load' : image!=''}" :style="{ backgroundImage: 'url(' + image + ')' }"><span>Sube una foto</span></label>
     </div>
     <div class="row">
         <label class="paragraph2">Modalidad</label>
@@ -62,7 +62,7 @@
         <label for="categoryService" class="paragraph2">Categoría</label>
     </div>
     <div class="row">
-        <select name='categoryService' class='col-xs-12  col-sm-12'>
+        <select name='categoryService' class='col-xs-12  col-sm-12' v-model='category'>
             <option value="">Seleccione una Categoría....</option>
             @foreach($categories as $category)
                 <option value='{{ $category->id }}' @if(old('category')){{ $category->id == old('category') ? "selected" : "" }}@endif {{ $category->selected }}>
