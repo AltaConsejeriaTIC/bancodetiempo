@@ -16,7 +16,7 @@ class RoleTableSeeder extends Seeder
     public function getDummyData(Generator $faker, array $custom = [])
     {        
         return [
-                                              
+
         ];        
     }   
 
