@@ -34,18 +34,18 @@ class UserTableSeeder extends Seeder
       
       $this->create([
           'first_name' => 'Admin',
-          'last_name' => 'Admin',            
-          'email' => 'admin@admin.com',            
-          'password'  => bcrypt('admin123'),          
+          'last_name' => 'Admin',
+          'email' => 'admin@admin.com',
+          'password'  => bcrypt('admin123'),
           'gender' => '',
           'birthDate' => null,
-          'aboutMe' => null,          
+          'aboutMe' => null,
           'state_id' => 1,
           'role_id' => 1,
           'privacy_policy' => 1,
-      ]); 
+      ]);
 
-      for ($i=0; $i < 15; $i++) 
+        for ($i=0; $i < 15; $i++)
       {
           $this->create([
               'first_name' => $faker->firstName,
@@ -60,6 +60,71 @@ class UserTableSeeder extends Seeder
               'aboutMe' => null,              
               'role_id' => 2,
           ]);
-      }        
+      }
+        $this->create([
+            'first_name' => 'Anderson',
+            'last_name' => 'Osorio',
+            'email' => 'akod55@hotmail.es',
+            'avatar'=>'https://graph.facebook.com/v2.8/10209912283758203/picture?width=1920',
+            'password'  => null,
+            'gender' => 'male',
+            'birthDate' => null,
+            'aboutMe' => 'Viajo en el tiempo si quieres un paseo victoriano llama no lo dudes y disfruta una aventura',
+            'state_id' => 1,
+            'role_id' => 2,
+            'privacy_policy' => 1,
+        ]);
+        $this->create([
+            'first_name' => 'Joe',
+            'last_name' => 'Rojas',
+            'email' => 'joerojasgomez@hotmail.com',
+            'avatar' => 'https://graph.facebook.com/v2.8/1922079684681419/picture?width=1920',
+            'password' => null,
+            'gender' => 'male',
+            'birthDate' => null,
+            'aboutMe' => 'Diseñador Grafico apasionado por la Fotografia el Diseño UI UX la animacion y la actuacion Me encanta el cine el teatro la musica y montar bici',
+            'state_id' => 1,
+            'role_id' => 2,
+            'privacy_policy' => 1,
+        ]);
+        $this->create([
+        'first_name' => 'Alejandro',
+        'last_name' => 'Salas',
+        'email' => 'alejandro.salas.prada@gmail.com',
+        'avatar' => 'https://graph.facebook.com/v2.8/10207859332388759/picture?width=1920',
+        'password'  => null,
+        'gender' => 'male',
+        'birthDate' => null,
+        'aboutMe' => 'Soy estudiante de diseno gráfico de la Universidad Nacional de Colombia Me gusta la fotografía',
+        'state_id' => 1,
+        'role_id' => 2,
+        'privacy_policy' => 1,
+    ]);
+        $this->create([
+            'first_name' => 'Dayana',
+            'last_name' => 'Alejo',
+            'email' => 'vanessalejo@yahoo.es',
+            'avatar' => 'https://graph.facebook.com/v2.8/1374168195947226/picture?width=1920',
+            'password'  => null,
+            'gender' => 'female',
+            'birthDate' => null,
+            'aboutMe' =>'Hola mi nombre es dayana tengo 24 años y quiero participar en esta plataforma',
+            'state_id' => 1,
+            'role_id' => 2,
+            'privacy_policy' => 1,
+        ]);
+        $this->create([
+            'first_name' => 'Andrea',
+            'last_name' => 'Bertieri',
+            'email' => 'andreita_b912@hotmail.com',
+            'avatar' => 'https://graph.facebook.com/v2.8/661440967350649/picture?width=1920',
+            'password'  => null,
+            'gender' => 'female',
+            'birthDate' => null,
+            'aboutMe' => 'sdsas dfdfdf dfndj fnd difjidjf nfmgkjnfign dfjd fjd f dufnd mfbsdjbfjdn ',
+            'state_id' => 1,
+            'role_id' => 2,
+            'privacy_policy' => 1,
+        ]);
     }
 }

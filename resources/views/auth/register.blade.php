@@ -56,7 +56,12 @@
 	</div>
 
 </section>
+<<<<<<< HEAD
  
 <script src="{{ url('js/components/register.js') }}"></script> 
+=======
+
+ <script src="{{ url('js/components/register.js') }}"></script> 
+>>>>>>> b84cb1cf21afdbd1f76d31833b5770a873241109
 
 @endsection

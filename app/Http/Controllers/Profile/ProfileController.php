@@ -55,7 +55,7 @@ public function  editProfilePicture(Request $request){
      		$file->move(base_path() . '/public/' . $pathImage, $imageName);
 
      		User::find(Auth::User()->id)->update([
-     			'avatar' => $pathImage . $imageName
+     			'avatar' => $pathImage .'/'. $imageName
      		]);
      		return $pathImage .'/'. $imageName;
 
@@ -64,7 +64,7 @@ public function  editProfilePicture(Request $request){
 //=====================================================================
 
    public function editProfile(Request $request){
-		
+
 	   	$this->validate($request, [
 	   			'firstName' => 'required|min:3|alpha_spaces',
 	   			'lastName' => 'required|min:3|alpha_spaces',
@@ -74,9 +74,15 @@ public function  editProfilePicture(Request $request){
 	   	]);
 
 	   	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
-	   	
+	   	$picture=$this->editProfilePicture($request);
 	 	$user = Auth::user ();
+<<<<<<< HEAD
     $user->avatar = $this->editProfilePicture($request);
+=======
+	 	if($picture !==false){
+            $user->avatar = $picture;
+        }
+>>>>>>> b84cb1cf21afdbd1f76d31833b5770a873241109
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = $birthdate;

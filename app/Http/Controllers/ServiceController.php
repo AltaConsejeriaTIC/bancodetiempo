@@ -106,8 +106,6 @@ class ServiceController extends Controller
             'modalityServiceVirtually' => 'required_without:modalityServicePresently',
             'modalityServicePresently' => 'required_without:modalityServiceVirtually',
             'categoryService' => 'required',
-            'tagService' => 'required',
-            'imageService' => 'required|image'
       ]);
 
 		$service = Service::create([

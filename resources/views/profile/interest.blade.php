@@ -67,6 +67,6 @@
 
 </section>
 
- <script src="{{ url('js/interest.js') }}"></script> 
+ <script src="{{ url('js/components/interest.js') }}"></script> 
 
 @endsection
