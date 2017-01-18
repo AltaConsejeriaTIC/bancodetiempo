@@ -12,7 +12,8 @@ var Register = new Vue({
 		expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
 		exprNum: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*$'),
 		maxChar : 250,
-		totalChar: 250
+		totalChar: 250,
+		image:''
 	}, 
 	computed: {
 		validateFirstName: function() {
@@ -44,7 +45,7 @@ var Register = new Vue({
             }
         },
         validateAboutMe: function() {
-            if(this.aboutMe != "" && this.aboutMe.length >= 50 && this.aboutMe.length <= 250 && this.exprNum.test(this.aboutMe)){
+            if(this.aboutMe != "" && this.aboutMe.length >= 50 && this.aboutMe.length <= 250){
             	return true;
             }else{
             	return false;
@@ -62,6 +63,31 @@ var Register = new Vue({
 	methods: {		
 		countCharacters: function(){
         	this.totalChar = this.maxChar - this.aboutMe.length;
-        }
+        },
+        previewPhoto(e) {
+			var image = new Image();
+		    var reader = new FileReader();
+			var files = e.target.files || e.dataTransfer.files;
+		    if (!files.length)
+		        return;
+		    
+		     reader.onload = (e) => {
+			      this.image = e.target.result;
+			 };
+			reader.readAsDataURL(files[0]);
+		},
+		
+	},
+	watch:{
+		image:function(val){
+			Avatar.av = val;
+		}
+	}
+})
+
+var Avatar = new Vue({
+	el: "#profilePhoto",
+	data: {
+		av: avatar
 	}
 })

@@ -1,5 +1,5 @@
 {!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'class' => 'col-md-4', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
-	<input type="file" name='avatar' id='avatar' class='hidden'/>
+	<input type="file" name='avatar' id='avatar' class='hidden' @change='previewPhoto'/>
 	<div class="row">
 		{{ Form::label('firstName',	trans('dictionary.firstName'), ['class' => 'paragraph2'] ) }}
 		<i class="fa fa-check-circle done" v-if='validateFirstName'></i>	

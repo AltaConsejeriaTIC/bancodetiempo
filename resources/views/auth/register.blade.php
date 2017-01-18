@@ -28,10 +28,11 @@
 		
 			<div class='row'>		
 				<div class='col-xs-6 col-xs-offset-3 col-sm-8 col-sm-offset-2'>
-					<div class="col-xs-12">
-						@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id))
-						<input type="hidden" v-model='avatar' value='{{Auth::user()->avatar}}' />
-						
+					<div class="col-xs-12" id='profilePhoto'>
+						@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'extra' => array('image' => ':xlink:href=av')))					
+						<script>
+							var avatar =  '{{Auth::user()->avatar}}'
+						</script>
 					</div>				
 				</div>	
 			</div>
@@ -41,7 +42,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class='col-xs-6 col-xs-offset-3  col-sm-10 col-sm-offset-1'>
+				<div class='col-xs-8 col-xs-offset-2  col-sm-10 col-sm-offset-1'>
 					<h2 class='title1 text-center col-xs-12'>{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
 				</div>
 			</div>
