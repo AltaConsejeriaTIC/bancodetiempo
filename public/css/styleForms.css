@@ -213,3 +213,24 @@ input[type=checkbox].boxCheck:checked + label i {
     font-size: 30px;
     
 }
+
+input.filter {
+    height: 35px;
+    border: none;
+    border-radius: 4px;
+    padding-left:30px;
+    color: #2c3e50;
+}
+
+input.filter + label {
+    position: relative;
+    top: -30px;
+    font-size: 25px;
+    left: 5px;
+    color: #2c3e50;
+}
+
+input.filter::-webkit-input-placeholder { 
+	 font-weight: bold;
+	
+}
