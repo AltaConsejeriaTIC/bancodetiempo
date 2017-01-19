@@ -74,6 +74,9 @@
         data: function () {
             return helpers.ProfileUser().data;
         },
+        computed: function () {
+            return helpers.ProfileUser().computed;
+        },
         mounted() {
             console.log('Component ready.');            
         },         
