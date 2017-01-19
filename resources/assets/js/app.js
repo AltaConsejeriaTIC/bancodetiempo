@@ -6,7 +6,6 @@ Vue.component('modal', require('./components/Modal.vue'));
 var app = new Vue({
     el: '#app',    
     data:{
-    	showModal: false
-        
+    	showModal: false        
     }
 });
