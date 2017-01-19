@@ -35,7 +35,7 @@ class NetworkAccountsController extends Controller
 		$user = User::findOrFail(Auth::user()->id);
 
 		JavaScript::put([
-			'userJs'=> $user,
+			'userJs'=> $user,			
 			'dayJs' => date("d",strtotime($user->birthDate)),
 			'mounthJs' => date("m",strtotime($user->birthDate)),
 			'yearJs' => date("Y",strtotime($user->birthDate)),
@@ -66,6 +66,7 @@ class NetworkAccountsController extends Controller
 					'state_id' => 1,
 					'gender' => $providerData['gender'],
 					'birthDate' => date("Y-m-d", strtotime($providerData['birthdate'])),
+					'aboutMe' => '',
 					'role_id' => 2
 			]);
 		}

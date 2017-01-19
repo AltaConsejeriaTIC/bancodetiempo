@@ -1,6 +1,6 @@
 <template>
     <article class="col-xs-12 col-sm-4 col-md-4">
-        <form action="profile/update" method="put" enctype="multipart/form-data" class="col-md-4 form-custom" role="form" id="form">
+        <form action="profile/update" method="put" enctype="multipart/form-data" class="col-md-12 form-custom">
             <input type="file" name='avatar' id='avatar' class='hidden'/>
             <div class="row">
                 <label for="firstName" class="paragraph2">Nombre</label>                
