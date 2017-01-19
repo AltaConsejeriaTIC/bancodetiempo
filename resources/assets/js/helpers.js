@@ -39,64 +39,69 @@ var ModalActivate = {
 	 }  
 }
 
-var ProfileUser = {
-	data:{
-		firstName : '',
-		lastName : '',
-		gender: '',
-		day: '',
-		mounth: '',
-		year: '',
-		aboutMe: '',
-		terms: false,
-		expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
-		maxChar : 250,
-		totalChar: 250,
-		image:''
-	},
-	computed: {
-		validateFirstName: function() {
+function ProfileUser(){
+    
+    var ProfileUser = {
+    data:{
+        firstName : '',
+        lastName : '',
+        gender: '',
+        day: '',
+        mounth: '',
+        year: '',
+        aboutMe: '',
+        terms: false,
+        expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
+        maxChar : 250,
+        totalChar: 250,
+        image:''
+    },
+    computed: {
+        validateFirstName: function() {
             if(this.firstName != "" && this.firstName.length >= 3 && this.expr.test(this.firstName)){
-            	return true;
+                return true;
             }else{
-            	return false;
+                return false;
             }
         },
         validateLastName: function() {
             if(this.lastName != "" && this.lastName.length >= 3 && this.expr.test(this.lastName)){
-            	return true;
+                return true;
             }else{
-            	return false;
+                return false;
             }
         },
         validateGender: function(){
-        	if(this.gender != "" && (this.gender == 'male' || this.gender == 'female')){
-            	return true;
+            if(this.gender != "" && (this.gender == 'male' || this.gender == 'female')){
+                return true;
             }else{
-            	return false;
+                return false;
             }
         },
         validateDate: function(){
-        	if((this.day != "" && this.day > 0) && (this.mounth != "" && this.mounth > 0) && (this.year != "" && this.year > 0)){
-            	return true;
+            if((this.day != "" && this.day > 0) && (this.mounth != "" && this.mounth > 0) && (this.year != "" && this.year > 0)){
+                return true;
             }else{
-            	return false;
+                return false;
             }
         },
         validateAboutMe: function() {
             if(this.aboutMe != "" && this.aboutMe.length >= 50 && this.aboutMe.length <= 250){
-            	return true;
+                return true;
             }else{
-            	return false;
+                return false;
             }
         },
         validateAll: function() {
             if(this.validateFirstName && this.validateLastName && this.validateGender && this.validateDate && this.validateAboutMe && this.terms){
-            	return false;
+                return false;
             }else{
-            	return true;
+                return true;
             }
         },
         
-	}
+    }
+}
+    return ProfileUser;
+
 } 

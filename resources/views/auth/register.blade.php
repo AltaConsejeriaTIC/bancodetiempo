@@ -47,9 +47,7 @@
 	            </div>
 	        </article>
 
-	        <article class="col-xs-12 col-sm-4 col-md-4">
-	            @include("partial/registerForm")
-	        </article>
+	        <register></register>
 	    </div>
 	</section>
 
