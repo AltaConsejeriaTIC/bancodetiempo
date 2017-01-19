@@ -64,7 +64,7 @@ public function  editProfilePicture(Request $request){
 //=====================================================================
 
    public function editProfile(Request $request){
-
+		
 	   	$this->validate($request, [
 	   			'firstName' => 'required|min:3|alpha_spaces',
 	   			'lastName' => 'required|min:3|alpha_spaces',

@@ -1,6 +1,6 @@
 // modal component Vue.js
-Vue.component('modal', {
-  template: '#modal-template-new',
+var Modal = Vue.component('modal', {
+  template: '#modal-template',
   props: {
     show: {
       type: Boolean,
@@ -12,12 +12,4 @@ Vue.component('modal', {
   methods: {
   	
   }
-})
-
-// start app
-new Vue({
-  el: '#new',
-  data: {  	
-    showModal: false    
-  }  
 })

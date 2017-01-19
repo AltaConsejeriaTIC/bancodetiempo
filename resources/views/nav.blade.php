@@ -28,50 +28,81 @@
 @elseif($type == 2)
 
 <!--Navbar-->
-	<nav class="navbar navbar-default navbar-static-top nav2">
+	<nav class='navbar navbar-default navbar-static-top nav2'>
 		<div class="container">
-			<div class="row">
+			<div class='row'>
 
-				<a id="logo-container" href="{{url('/home') }}" class="brand-logo col-md-2 col-sm-4 col-xs-5">
-				</a>
-
-				<ul id='options-container'  class="col-md-4 col-md-offset-6 col-sm-5 col-sm-offset-3 col-xs-7">
-
-					<li><i class='material-icons'>access_time</i></li>
-					<li><i class='material-icons'>wb_incandescent</i></li>
-					<li><i class='material-icons'>mail</i></li>
-					<li class="dropdown">
-						@if (!Auth::guest())
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								<svg class=""  viewbox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-										<defs>
-											<pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
-												<image  xlink:href="{{ Auth::user()->avatar }}" x="-25" width="150" height="100" />
-											</pattern>
-										</defs>
-									<polygon id="hex" stroke='#fff !important' points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/>
-								</svg>
-								<div class="iconProfile">
-									{{ Auth::user()->first_name}}
-								</div>
-							</a>
-							<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="{{ url('profile') }}">Perfil</a>
-										<a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
-										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-												{{ csrf_field() }}
-										</form>
-									</li>
-							</ul>
-						@endif
-					</li>
-
-				</ul>
-
+				<div class="col-xs-7 col-sm-4 col-md-2">
+					<a href="/" >
+						<img src="{{ asset('images/logo.png') }}" alt="Logo" />
+					</a>
+				</div>
+				<div class='hidden-xs hidden-sm col-md-4'>
+					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentras personas, habilidades y más'>
+					<label for="filter1" class=' fa fa-search'></label>
+				</div>
+				
+				<div class="hidden-xs col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-1 not-padding text-right">
+					<div class="flex-center">
+						<div class="col-lg-6 col-md-10 col-sm-10 not-padding text-left">
+							<i class="fa fa-clock-o not-padding icon-nav text-center col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2"></i>
+							<p class="paragraph4 not-padding  col-md-7 col-sm-7">Bolsa de tiempo:<br>8 Horas</p>
+						</div>
+						<div class="col-md-2 col-sm-2 not-padding ">
+							<i class="fa fa-envelope icon-nav notification"><span>2</span></i>
+						</div>
+						<div class="col-md-5 col-sm-5 hidden-xs hidden-sm hidden-md text-center">
+							<a href="" class="button9">Nueva oferta</a>				
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class='col-xs-5 col-sm-5 col-sm-3 col-md-2 text-right dropdown'>
+					<a class='dropdown-toggle flex-center' data-toggle="dropdown">
+						<div class="col-xs-4 col-xs-offset-2 not-padding">
+							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '5px'))
+						</div>
+						<div class='col-xs-6 not-padding'>
+							<span class='col-xs-12 not-padding paragraph4'>{{Auth::user()->first_name}} <i class='fa fa-angle-down'></i></span>	
+						</div>					
+						
+						<ul class="dropdown-menu">	
+						    <li>
+						    	<a href="{{ url('profile') }}">Perfil</a>
+						    </li>
+						    <li>
+						    	<a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+							</li>
+						</ul>
+					</a>
+				</div>
+				
 			</div>
+			
+			<div class='row visible-xs'>
+			
+				<div class='flex-center'>
+					<div class=' col-xs-7 '>
+						<i class='fa fa-clock-o not-padding icon-nav text-center col-xs-3'></i>
+						<p class='paragraph4 not-padding  col-xs-7'>Bolsa de tiempo:<br>8 Horas</p>
+					</div>
+					<div class='col-xs-1 not-padding '>
+						<i class="fa fa-envelope icon-nav notification"><span>2</span></i>
+					</div>
+					<div class='col-xs-4 text-center not-padding '>
+						<a href='' class='button9'>Nueva oferta</a>				
+					</div>
+				</div>
+			
+			</div>
+			
 		</div>
-	</nav>
+
+ 	 </nav>
+ 	 
+ 	 
 <!--/.Navbar-->
 
 

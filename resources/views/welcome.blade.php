@@ -2,7 +2,7 @@
 
 @section('content')
 					
-	<modal v-if="showModal" @@close="showModal = false">
+	<modal v-if="this.showModal" @@close="showModal = false">
 	</modal>
 	
 	@include('nav', array('type' => 1))	

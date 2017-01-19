@@ -4,7 +4,7 @@
             <div class="modal-wrapper">
               <div class="modal-container">
                 <div>
-                  <button type="button" @click.prevent="show = false" class="close" data-dismiss="alert">&times;</button>
+                  <button type="button" @click.prevent="closeModal" class="close" data-dismiss="alert">&times;</button>
                 </div>
                 <div class="modal-header">
                     <h1 class="title1">Inicia sesión </h1>
@@ -38,18 +38,17 @@
     </transition>
 </template>
 <script>
-    export default{     
-        props: {
-          show: {
-            type: Boolean,
-            required: true,
-            twoWay: true    
-          }
-        },
+    export default{  
         data: function () {
-            return {
-                showModal: false              
+          return {           
+            showModalsss: false
             }
+        },
+        methods:{
+          closeModal: function () {
+            console.log("llego");
+            showModal = false;
+          }
         },
         mounted() {
             console.log('Component ready.')
