@@ -7,11 +7,6 @@ var app = new Vue({
     el: '#app',    
     data:{
     	showModal: false
-    },
-    methods:{
-      closeModal: function () {
-        console.log("llego al app");
-        showModal = false;
-      }
-    }   
+        
+    }
 });

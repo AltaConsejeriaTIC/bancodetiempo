@@ -1,10 +1,10 @@
 <template>
-    <transition name="modal">
-        <div class="modal-mask">
+    <transition name="modal" >
+        <div class="modal-mask" >
             <div class="modal-wrapper">
               <div class="modal-container">
                 <div>
-                  <button type="button" @click.prevent="closeModal" class="close" data-dismiss="alert">&times;</button>
+                  <button type="button" @click="$emit('close')" class="close" data-dismiss="alert">&times;</button>
                 </div>
                 <div class="modal-header">
                     <h1 class="title1">Inicia sesión </h1>
@@ -37,21 +37,11 @@
         </div>
     </transition>
 </template>
-<script>
-    export default{  
-        data: function () {
-          return {           
-            showModalsss: false
-            }
-        },
-        methods:{
-          closeModal: function () {
-            console.log("llego");
-            showModal = false;
-          }
-        },
+<script >
+    export default{
+
         mounted() {
             console.log('Component ready.')
-        }
+         }
     }
 </script>

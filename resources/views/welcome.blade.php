@@ -49,7 +49,7 @@
 				
 				<div class="row space40">
 
-					<button id="show-modal" @@click="showModal = true" class='button1 background-active-color col-xs-12 col-md-12'>Regístrate para empezar</button>
+					<button id="show-modal"  @@click="showModal = true" class='button1 background-active-color col-xs-12 col-md-12'>Regístrate para empezar</button>
 				</div>
 			
 			</article>
