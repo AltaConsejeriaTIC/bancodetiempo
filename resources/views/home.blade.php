@@ -4,6 +4,9 @@
 @include('nav',array('type' => 2))
 
 <div class="container">
+	<category >
+	</category>
+
     <ul  class="nav nav-pills">
 		<li class="active">
         	<a  href="#filterAll" data-toggle="tab" class='parrafo3'>Todos</a>
@@ -31,7 +34,7 @@
 		<div class="tab-pane" id="filterRecommended">
 			<div class='row'>
 		        @foreach($recommendedServices as $key => $service)
-		          
+
 		          <div class='col-md-4 col-xs-12 col-sm-6'>
 			          	
 			          @include('partial/serviceBox', array("service" => $service))
