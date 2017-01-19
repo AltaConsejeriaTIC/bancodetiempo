@@ -37,18 +37,15 @@
 
     <body>    
         @include('prependvarjs')
-        @yield('content')        
+        <div id="app">
+            @yield('content')        
+        </div>
         @include('footer')
     </body>
 
     <!--  Scripts-->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
-<<<<<<< HEAD
-    <script src="{{ asset('js/materialize.min.js') }}"></script>        
-    <script src="{{ asset('js/app.js') }}"></script>    
-=======
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>         
     <script src="{{ asset('js/materialize.js') }}"></script>        
-    <script src="{{ asset('js/components/modal.js') }}"></script>    
->>>>>>> b84cb1cf21afdbd1f76d31833b5770a873241109
-
+    <script src="{{ asset('js/app.js') }}"></script>       
+    
 </html>

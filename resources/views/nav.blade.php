@@ -11,8 +11,8 @@
 				</div>
 				@if((Auth::guest()))
 			        <div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-5  text-right" id="container-nav-buttons">	    
-			        	<button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
-			        	<button id="show-modal" @click="showModal = true" class="button4 hidden-xs">Registrarse</button>          		          
+			        	<button id="show-modal" @@click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
+			        	<button id="show-modal" @@click="showModal = true" class="button4 hidden-xs">Registrarse</button>          		          
 			        </div>
 				@elseif((!Auth::guest()))
 					<a class="hidden-xs col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5  text-right" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>

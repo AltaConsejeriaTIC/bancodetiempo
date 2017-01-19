@@ -25,7 +25,6 @@
 	</div>
 	
 	<div class="row">
-<<<<<<< HEAD
 		<div class='col-xs-1'>
 			{{ Form::radio('gender', 'male', null ,['id' => 'man', 'class'=>'square', 'v-model' => 'gender']) }}
 		</div>
@@ -37,15 +36,6 @@
 			{{ Form::radio('gender', 'female',	null ,['id' => 'woman', 'class'=>'square', 'v-model' => 'gender']) }}
 		</div>
 		<div class='col-xs-3'>
-=======
-		<div class='col-xs-6'>
-			{{ Form::radio('gender', 'male', $user->gender == 'male' ,['id' => 'man', 'class'=>'square', 'v-model' => 'gender']) }}
-			{{ Form::label('man', 'Hombre', ['class' => '']) }}
-		</div>
-
-		<div class='col-xs-6'>
-			{{ Form::radio('gender', 'female',	$user->gender == 'female' ,['id' => 'woman', 'class'=>'square', 'v-model' => 'gender']) }}
->>>>>>> b84cb1cf21afdbd1f76d31833b5770a873241109
 			{{ Form::label('woman', 'Mujer', ['class' => '']) }}
 		</div>
 	</div>

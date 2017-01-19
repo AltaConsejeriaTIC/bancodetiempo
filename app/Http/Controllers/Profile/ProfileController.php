@@ -76,20 +76,16 @@ public function  editProfilePicture(Request $request){
 	   	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
 	   	$picture=$this->editProfilePicture($request);
 	 	$user = Auth::user ();
-<<<<<<< HEAD
-    $user->avatar = $this->editProfilePicture($request);
-=======
 	 	if($picture !==false){
             $user->avatar = $picture;
         }
->>>>>>> b84cb1cf21afdbd1f76d31833b5770a873241109
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = $birthdate;
 		$user->aboutMe = $request->input("aboutMe");
-	  $user->privacy_policy = $request->input('terms');
-	  $user->gender = $request->input('gender');
-	  $user->save();
+	    $user->privacy_policy = $request->input('terms');
+	    $user->gender = $request->input('gender');
+	    $user->save();
 
 		if(!empty($user->interests->all())){
 
@@ -102,7 +98,7 @@ public function  editProfilePicture(Request $request){
 		}
 
 	}
-
+	
 	public function showFromInterest(){
 
 		$categories = Category::all('id', 'category');

@@ -1,11 +1,11 @@
-@extends('layouts.app')
+	@extends('layouts.app')
 
 @section('content')
-
-	<div id="app">
-		@include('nav', array('type' => 1))	
-		@include('auth.login')
+					
+	<modal v-if="showModal" @@close="showModal = false">
+	</modal>
 	
+	@include('nav', array('type' => 1))	
 
 	<section class='bannerHome row'>
 		<div class='cap'></div>
@@ -48,7 +48,8 @@
 				</div>
 				
 				<div class="row space40">
-					<button id="show-modal" @click="showModal = true" class='button1 background-active-color col-xs-12 col-md-12'>Regístrate para empezar</button>
+
+					<button id="show-modal" @@click="showModal = true" class='button1 background-active-color col-xs-12 col-md-12'>Regístrate para empezar</button>
 				</div>
 			
 			</article>
@@ -117,6 +118,6 @@
 	
 	</section>
 
-</div>		
+
 
 @endsection
