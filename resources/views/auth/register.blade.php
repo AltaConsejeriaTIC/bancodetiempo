@@ -59,7 +59,7 @@
 	</div>
 
 </section>
-
- <script src="{{ url('js/components/register.js') }}"></script> 
+<script src="{{ asset('js/components/helpers.js') }}"></script>
+<script src="{{ url('js/components/register.js') }}"></script> 
 
 @endsection

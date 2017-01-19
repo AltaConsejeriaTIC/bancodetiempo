@@ -65,16 +65,17 @@
 	</div>
 	
 	
-	<div class="row">
+	<div class="row @if(isset($edit)) hidden @endif">
 		<div class='col-xs-12'>
-			{{ Form::checkbox('terms', '1' , '' ,['id' => 'terms', 'class'=>'square', 'v-model' => 'terms']) }}
+			{{ Form::checkbox('terms', '1' , $user->privacy_policy ,['id' => 'terms', 'class'=>'square', 'v-model' => 'terms']) }}
 			<label for="terms">Aceptar los <a href="">términos y condiciones</a> de la plataforma</label>
 		</div>
 	</div>
 	
+	
 	<div class="row">
 	
-		<input type="submit" value='Siguiente' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' />
+		<input type="submit" value='@if(isset($edit)) Guardar Cambios @else Siguiente @endif' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' />
 	
 	</div>
 

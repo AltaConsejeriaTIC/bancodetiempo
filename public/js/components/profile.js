@@ -1,29 +1,18 @@
-// start app
-new Vue({
+var Profile = new Vue({
   el: '#profile',
-  data: {
-    editable: "",
-    image: ''
+  data: {   
+    type:'show',
+    type2:'hidden'
   },
-   methods: {
-    onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      if (!files.length)
-        return;
-      this.createImage(files[0]);
+  mixins: [Helpers, ProfileUser, ModalDesactive],
+  methods: {
+    edit(){
+    	this.type = 'hidden'
+    	this.type2 = 'show'
     },
-    createImage(file) {
-      var image = new Image();
-      var reader = new FileReader();
-      var vm = this;
-
-      reader.onload = (e) => {
-        vm.image = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    },
-    removeImage: function (e) {
-      this.image = '';
+    cancel(){    	
+    	this.type = 'show'
+    	this.type2 = 'hidden'
     }
   }
 })
