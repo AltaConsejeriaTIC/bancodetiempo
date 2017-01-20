@@ -6,6 +6,7 @@ Vue.component('category', require('./components/CategorySearch.vue'));
 Vue.component('interest', require('./components/Interest.vue'));
 
 var app = new Vue({
+
     el: '#app',    
     data:{
     	showModal: false,

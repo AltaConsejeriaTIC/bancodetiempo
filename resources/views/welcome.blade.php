@@ -1,7 +1,9 @@
 	@extends('layouts.app')
 
 @section('content')
-					
+	<script>
+	  var avatar =  '{{Auth::user()->avatar}}'
+	</script>
 	<modal v-if="this.showModal" @@close="showModal = false">
 	</modal>
 	

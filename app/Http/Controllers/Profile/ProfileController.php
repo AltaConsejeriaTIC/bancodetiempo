@@ -72,7 +72,7 @@ public function  editProfilePicture(Request $request){
 	 			'aboutMe' => 'required|min:50|max:250',
 	      'terms' => 'required'
 	 	]);
-	 	dd($request->all());
+	 	
 	 	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
 	 	$picture=$this->editProfilePicture($request);
 	 	$user = Auth::user ();
