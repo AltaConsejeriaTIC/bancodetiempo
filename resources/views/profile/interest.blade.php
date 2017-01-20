@@ -35,8 +35,8 @@
 		
 			<div class="row">
 		
-				<h2 class='title1 col-xs-12'>¿Cuáles son tus intereses? <i class="fa fa-check-circle done" v-if='this.totalInterest >= 3'></i></h2>
-			
+				<h2 class='title1 col-xs-12'>¿Cuáles son tus intereses? <i class="fa fa-check-circle done" v-if='this.interest >= 3'></i></h2>
+				
 			</div>
 			<div class="row">
 				<p class="paragraph1 col-xs-12">Elige <strong>tres</strong> categorías de interés para sugerirte ofertas.</p>
@@ -45,11 +45,8 @@
 			{!! Form::open(['url' => '/profile/interest', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-custom row', 'role' => 'form']) !!}
 											
 					@foreach($categories as $i => $category)
-						<div class='col-xs-12 col-md-4'>
-							{{ Form::checkbox('interets[]', $category->id, false, ['id' => str_replace(" ", "", $category->category), 'class' => 'boxCheck', '@click' => 'addInterest('.$i.')']) }}								
-							<label for="{{ str_replace(' ', '', $category->category) }}"><i class='fa fa-circle'></i>{{ $category->category }}</label>					
-						</div>	
-					@endforeach
+						<interest val='{{$category->id}}' title='{{$category->category}}'></interest>	
+					@endforeach					
 				
 				<div class='crearfix'></div>
 		
