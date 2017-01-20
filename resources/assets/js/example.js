@@ -14,7 +14,12 @@ module.exports = {
                 exprNum: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*$'),
                 maxChar : 250,
                 totalChar: 250
-            },
+            }
+        }
+        return profile;
+    },
+    ValidateUser: function () {
+        var validate = {
             computed: {
                 validateFirstName: function() {
                     if(this.firstName != "" && this.firstName.length >= 3 && this.expr.test(this.firstName)){
@@ -57,10 +62,9 @@ module.exports = {
                     }else{
                         return true;
                     }
-                },
-                
+                },                
             }
         }
-        return profile;
+        return validate;
     }
 }

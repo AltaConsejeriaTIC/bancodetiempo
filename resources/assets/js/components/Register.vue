@@ -64,6 +64,17 @@
                 <label for='aboutMe'>{{totalChar}}</label>
             </div>
 
+            <div class="row">
+                <div class='col-xs-12'>
+                    <input type="checkbox" name="terms" v-model="terms" class="square" id="terms">                    
+                    <label for="terms">Aceptar los <a href="">términos y condiciones</a> de la plataforma</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value='Guardar Cambios' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' />
+            </div>
+
         </form>
     </article>
 </template>
@@ -73,12 +84,10 @@
     export default {
         data: function () {
             return helpers.ProfileUser().data;
-        },
-        computed: function () {
-            return helpers.ProfileUser().computed;
-        },
+        },        
+        mixins: [helpers.ValidateUser()],
         mounted() {
-            console.log('Component ready.');            
+            console.log(helpers.ValidateUser());            
         },         
     }
 </script>
