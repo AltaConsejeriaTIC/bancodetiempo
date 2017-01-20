@@ -5,9 +5,8 @@ Vue.component('register', require('./components/Register.vue'));
 Vue.component('category', require('./components/CategorySearch.vue'));
 
 var app = new Vue({
-    el: '#app',    
-    data:{
-    	showModal: false
-
-}}
-);
+	    el: '#app',    
+	    data:{
+	    	showModal: false
+			}
+		});

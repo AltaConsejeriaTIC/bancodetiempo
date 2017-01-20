@@ -1,7 +1,7 @@
 <template>
     <article class="col-xs-12 col-sm-4 col-md-4">
         
-            <input type="file" name='avatar' id='avatar' class='hidden'/>
+            <input type="file" name='avatar' id='avatar' class='hidden' @change="previewPhoto"/>
             <div class="row">
                 <label for="firstName" class="paragraph2">Nombre</label>                
                 <i class="fa fa-check-circle done" v-if='validateFirstName'></i>    
@@ -40,17 +40,17 @@
             <div class="row">       
                 <div class='not-padding col-xs-4'>
                     <select name="day" placeholder="Día" class="col-xs-11" v-model="day">                        
-                        <option value="1">1</option>
+                        <option v-for="op in arrayDay" :value="op">{{op}}</option>
                     </select>                    
                 </div>                    
                 <div class="not-padding col-xs-4">
                     <select name="mounth" placeholder="Mes" class="col-xs-11" v-model="mounth">                        
-                        <option value="1">1</option>
+                        <option v-for="op in arrayMounth" :value="op">{{op}}</option>
                     </select>
                 </div>                    
                 <div class="not-padding col-xs-4">
                     <select name="year" placeholder="Año" class="col-xs-11" v-model="year">                        
-                        <option value="1970">1970</option>
+                        <option v-for="op in arrayYear" :value="op">{{op}}</option>
                     </select>
                 </div>
             </div>
@@ -66,7 +66,7 @@
 
             <div class="row">
                 <div class='col-xs-12'>
-                    <input type="checkbox" name="terms" v-model="terms" class="square" id="terms">                    
+                    <input type="checkbox" name="terms" v-model="terms" class="square" id="terms" value="1">                    
                     <label for="terms">Aceptar los <a href="">términos y condiciones</a> de la plataforma</label>
                 </div>
             </div>
@@ -83,9 +83,8 @@
         data: function () {
             return helpers.ProfileUser().data;
         },        
-        mixins: [helpers.ValidateUser()],
+        mixins: [helpers.ValidateUser(),helpers.Helpers()],
         mounted() {
-            console.log(helpers.ValidateUser());            
-        },         
-    }
+            console.log(helpers.Helpers());
+        },    }
 </script>

@@ -1,3 +1,28 @@
+
+var optionDay = new Array();
+for(var i = 1; i <= 31; i++)
+{
+    optionDay.push(i);
+}
+var optionMounth = new Array();
+for(var i = 1; i <= 12; i++)
+{
+    optionMounth.push(i);
+}
+var optionYear = new Array();
+var fecha = new Date();
+var currentYear = fecha.getFullYear();
+
+currentYear = currentYear - 18;
+
+for(var i = 1950; i <= currentYear; i++)
+{
+    optionYear.push(i);
+}
+
+var Vue = require('vue');
+
+
 module.exports = {
     ProfileUser: function () {
         var profile = {
@@ -13,7 +38,11 @@ module.exports = {
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
                 exprNum: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*$'),
                 maxChar : 250,
-                totalChar: 250
+                arrayDay: optionDay,
+                arrayMounth: optionMounth,
+                arrayYear: optionYear,
+                totalChar: 250,
+                image: ''
             }
         }
         return profile;
@@ -66,5 +95,39 @@ module.exports = {
             }
         }
         return validate;
+    },
+    Helpers: function () {
+        var Helpers = {
+                methods:{
+                    countCharacters: function(){
+                        this.totalChar = this.maxChar - this.aboutMe.length;
+                    },
+                    previewPhoto(e) {
+                        var image = new Image();
+                        var reader = new FileReader();
+                        var files = e.target.files || e.dataTransfer.files;
+                        if (!files.length)
+                            return;
+                        
+                         reader.onload = (e) => {
+                              this.image = e.target.result;
+                         };
+                        reader.readAsDataURL(files[0]);
+                    },
+                },
+                watch:{
+                    image:function(val){
+                        Avatar.av = val;
+                    }
+                }
+            }
+        return Helpers;
     }
 }
+
+var Avatar = new Vue({
+    el: "#profilePhoto",
+    data: {
+        av: avatar
+    }
+})
