@@ -47,7 +47,11 @@
 	            </div>
 	        </article>
 
-	        <register></register>
+	        {!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'class' => 'col-md-4', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
+	        	<register>					    
+	        	</register>
+					{!! Form::close() !!}
+
 	    </div>
 	</section>
 

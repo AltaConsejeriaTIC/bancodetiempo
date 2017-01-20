@@ -63,29 +63,29 @@ public function  editProfilePicture(Request $request){
 
 //=====================================================================
 
-   public function editProfile(Request $request){
-		
-	   	$this->validate($request, [
-	   			'firstName' => 'required|min:3|alpha_spaces',
-	   			'lastName' => 'required|min:3|alpha_spaces',
-	   			'gender' => 'required',
-	   			'aboutMe' => 'required|min:50|max:250',
-          		'terms' => 'required'
-	   	]);
+	public function editProfile(Request $request){
 
-	   	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
-	   	$picture=$this->editProfilePicture($request);
+	 	$this->validate($request, [
+	 			'firstName' => 'required|min:3|alpha_spaces',
+	 			'lastName' => 'required|min:3|alpha_spaces',
+	 			'gender' => 'required',
+	 			'aboutMe' => 'required|min:50|max:250',
+	      'terms' => 'required'
+	 	]);
+	 	dd($request->all());
+	 	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
+	 	$picture=$this->editProfilePicture($request);
 	 	$user = Auth::user ();
 	 	if($picture !==false){
-            $user->avatar = $picture;
-        }
+	          $user->avatar = $picture;
+	      }
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = $birthdate;
 		$user->aboutMe = $request->input("aboutMe");
-	    $user->privacy_policy = $request->input('terms');
-	    $user->gender = $request->input('gender');
-	    $user->save();
+	  $user->privacy_policy = $request->input('terms');
+	  $user->gender = $request->input('gender');
+	  $user->save();
 
 		if(!empty($user->interests->all())){
 

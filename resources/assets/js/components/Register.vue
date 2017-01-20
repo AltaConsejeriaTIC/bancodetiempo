@@ -1,6 +1,6 @@
 <template>
     <article class="col-xs-12 col-sm-4 col-md-4">
-        <form action="profile/update" method="put" enctype="multipart/form-data" class="col-md-12 form-custom">
+        
             <input type="file" name='avatar' id='avatar' class='hidden'/>
             <div class="row">
                 <label for="firstName" class="paragraph2">Nombre</label>                
@@ -39,18 +39,21 @@
             </div>         
             <div class="row">       
                 <div class='not-padding col-xs-4'>
-                    <select name="day" placeholder="Día" class="col-xs-11" v-model="day">                        
-                        
-                    </select>                    
+                    <select name="day" class="col-xs-11" v-model="day">
+                      <option>A</option>
+                      <option>B</option>
+                      <option>C</option>
+                    </select>
+                    <label>Selected: {{ day }}</label>
                 </div>                    
                 <div class="not-padding col-xs-4">
                     <select name="mounth" placeholder="Mes" class="col-xs-11" v-model="mounth">                        
-                        
+                        <option value="1">1</option>
                     </select>
                 </div>                    
                 <div class="not-padding col-xs-4">
                     <select name="year" placeholder="Año" class="col-xs-11" v-model="year">                        
-                        
+                        <option value="1970">1970</option>
                     </select>
                 </div>
             </div>
@@ -74,8 +77,6 @@
             <div class="row">
                 <input type="submit" value='Guardar Cambios' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' />
             </div>
-
-        </form>
     </article>
 </template>
 <script>
