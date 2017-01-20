@@ -39,12 +39,9 @@
             </div>         
             <div class="row">       
                 <div class='not-padding col-xs-4'>
-                    <select name="day" class="col-xs-11" v-model="day">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
-                    </select>
-                    <label>Selected: {{ day }}</label>
+                    <select name="day" placeholder="Día" class="col-xs-11" v-model="day">                        
+                        <option value="1">1</option>
+                    </select>                    
                 </div>                    
                 <div class="not-padding col-xs-4">
                     <select name="mounth" placeholder="Mes" class="col-xs-11" v-model="mounth">                        
@@ -80,7 +77,7 @@
     </article>
 </template>
 <script>
-    var helpers = require('./../example');
+    var helpers = require('./../helpers');
 
     export default {
         data: function () {
