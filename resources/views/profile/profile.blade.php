@@ -38,12 +38,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="title1">Mis Ofertas</h2>
-                        <newservice v-if="this.showModal" @@close="showModal = false">
+                        <newservice v-if="this.showModal1" @@close="showModal1 = false">
                             <template>
                                 @include('services.partial.newServiceForm')
                             </template>
                         </newservice>
-                        <button id="show-modal" @click="showModal = true" class="col-xs-12 button10 background-white">Publicar nueva oferta</button>
+                        <button id="show-modal" @click="showModal1 = true" class="col-xs-12 button10 background-white">Publicar nueva oferta</button>
                     </div>               
                 </div>
             </article>
