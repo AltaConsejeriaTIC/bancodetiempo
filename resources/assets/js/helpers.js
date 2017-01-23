@@ -128,6 +128,6 @@ module.exports = {
 var Avatar = new Vue({
     el: "#profilePhoto",
     data: {
-        av: avatar
+        av: ""
     }
 })

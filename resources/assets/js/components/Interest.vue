@@ -20,16 +20,14 @@ export default {
 	 	check: function(val){
 	 		
 	 		if(val){	 			
-				this.$parent.setMyData('interest', this.$parent.getMyData('interest')+1)
+				this.$parent.myData = this.$parent.myData+1;
 	 		}else{
-				this.$parent.setMyData('interest', this.$parent.getMyData('interest')-1)
+				this.$parent.myData = this.$parent.myData-1;
 	 		}
-			
 		}
 	},
 	mounted() {
-		this.$parent.setMyData('interest', 0); 
-		console.log(this.$parent.getMyData('showModal'));		                
+		this.$parent.myData = 0;	                
     }
 }
 
