@@ -4,7 +4,7 @@
 
 .form-custom input[type='text'], .form-custom textarea{
 	
-	font-family: roboto;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 16px !important;
 	color: #2c3e50 !important;
 	padding: 10px 12px;
@@ -20,7 +20,7 @@
 }
 
 .form-custom input[type='text']::-webkit-input-placeholder, .form-custom textarea::-webkit-input-placeholder { 
-  	color: #2c3e50 !important;
+  	color: #90a1b5; !important;
 }
 
 textarea.countCharacters + label {
@@ -31,7 +31,7 @@ textarea.countCharacters + label {
 }
 
 .form-custom select{
-	font-family: roboto;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	color: #2c3e50;
 	padding: 10px 12px;
@@ -176,7 +176,7 @@ input[type=checkbox].boxCheck:checked + label i {
 }
 
 .form-custom input[type='file'].boxPhoto1 + label {
-   	font-family: roboto;
+   	font-family: 'Open Sans', sans-serif;
 	font-size: 16px !important;	
 	padding: 50px 12px;
 	border: solid 1px #2c3e50;

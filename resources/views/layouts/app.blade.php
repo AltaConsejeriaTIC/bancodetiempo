@@ -10,8 +10,8 @@
 
         <title>Banco de Tiempo Bogotá</title>
 
-        <!-- Material Design fonts-->
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <!-- Fonts-->
+        <link rel="stylesheet" type="text/css" href="{{asset('/css/fonts.css')}}">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
 
         <!-- Bootstrap -->
@@ -20,11 +20,11 @@
         <!-- Bootstrap Material Design-->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-material-design.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
+       
         <!-- Custom styles -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
-        <!-- Fonts -->
-       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+       
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>       
            

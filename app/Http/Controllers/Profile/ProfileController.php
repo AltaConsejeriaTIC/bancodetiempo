@@ -140,7 +140,7 @@ public function  editProfilePicture(Request $request){
 		$service->save();
 		Auth::logout();
 
-		return "true";
+		return redirect("/");
 	}
 
 //====================== End Deactivate Account User ==================================

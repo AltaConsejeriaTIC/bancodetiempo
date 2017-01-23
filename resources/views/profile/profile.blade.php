@@ -5,85 +5,65 @@
     @include('nav',array('type' => 2))
     
     <section class="row">
-    	<div class="container">
-    		<article class='col-xs-12' id='profile'>
-    			
-    			<div class="row">
-    			
-    				<div class="col-xs-6 col-xs-offset-3" id='profilePhoto'>
-                        @include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=av')))
-                        <script>
-    							var avatar =  '{{Auth::user()->avatar}}'
-    					</script>
-                     </div>
-    						
-    			</div>
-    			<div class='side' :class='type'>
-    				<div class="row">
-    				
-    					<div class='ranking text-center col-xs-8 col-xs-offset-2 '>
-    	                    <div>
-    	                      @for($cont = 1 ; $cont <= 5 ; $cont++)
-    	                        @if($cont <= $user->ranking)
-    	                          <span class='material-icons paragraph1'>grade</span>
-    	                        @else
-    	                          <span class='material-icons paragraph6'>fiber_manual_record</span>
-    	                        @endif
-    	                      @endfor
-    	                    </div>
-    	                </div>
-    				
-    				</div>
-    				
-    				<div class="row">
-    					<div class="col-xs-12">
-    						<h2 class="title1">{{$user->first_name." ".$user->last_name}}</h2>
-    					</div>				 
-    				</div>
-    				
-    				<div class="row">
-    					<div class="col-xs-12">
-    						<p class='paragraph1'>{{$user->aboutMe}}</p>
-    					</div>
-    				</div>
-    				
-    				<div class="row">
-    					<div class="button1 background-active-color text-center col-xs-12" @click='edit'>Editar Perfil</div>				
-    				</div>
-    				<div style='height:10px;'></div>
-    				<div class="row">
-    					@include('profile/deactivateAccount')
-    				</div>
-    			</div>
-    			<div class="side" :class='type2'>
-    				<div class="row">
-    				
-    					<div class="col-xs-8 col-xs-offset-2 text-center">
-    					
-    						<label for="avatar" class='button1 background-active-color'>Cambiar Foto</label>
-    						
-    					</div>
-    				
-    				</div>
-    				@include('partial/registerForm', array('edit' => true))
-    				
-    				<div class="row">
-    					<div class="button10 background-white text-center" @click='cancel'>Cancelar cambios</div>
-    				</div>
-    				
-    			</div>
-    			
-    		</article>
-    		
-    		<article class='col-xs-12'>
-    			
-    		</article>
-    		
+        <div class="container">
+            <article class='col-md-4'>   	
+                <div class="row">                
+                    <div class="col-xs-6 col-xs-offset-3">
+                        Foto Perfil
+                    </div>                            
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="title1">{{$user->first_name." ".$user->last_name}}</h2>
+                    </div>               
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class='paragraph4'>{{$user->aboutMe}}</p>
+                    </div>
+                </div>                
+                <div class="row">
+                    <button class="col-xs-12 button1 background-active-color text-center">Editar Perfil</button>               
+                </div>
+                <div class="space10"></div>
+                <div class="row">
+                    {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+                        <input type="hidden" name="token" value="{{ csrf_token() }}">                    
+                        <deactivate v-if="this.showModal" @@close="showModal = false"></deactivate>
+                    {!! Form::close() !!}
+                    <button id="show-modal" @click="showModal = true" class="col-xs-12 button10 background-white">Desactivar Cuenta</button>                    
+                </div>
+            </article>
+            <article class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title1">Mis Ofertas</h2>
+                        <newservice v-if="this.showModal" @@close="showModal = false">
+                            <template>
+                                @include('services.partial.newServiceForm')
+                            </template>
+                        </newservice>
+                        <button id="show-modal" @click="showModal = true" class="col-xs-12 button10 background-white">Publicar nueva oferta</button>
+                    </div>               
+                </div>
+            </article>
+            <article class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="title1">Mis Ofertas</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="title1">Mis Ofertas</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="title1">Mis Ofertas</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="title1">Mis Ofertas</h2>
+                    </div>
+                </div>
+            </article>
     	</div>
     </section>  
-     
-    <script src="{{ asset('js/components/helpers.js') }}"></script>
-    <script src="{{ asset('js/components/new.js') }}"></script> 
-    <script src="{{ asset('js/components/profile.js') }}"></script>
 
 @endsection

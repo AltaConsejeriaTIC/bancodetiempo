@@ -1,4 +1,5 @@
-{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}                
+{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+
     <div class="row">
         <label for="nameService" class="paragraph2">Nombre de la oferta</label> <i class="fa fa-check-circle done" v-if='validateName'></i>
     </div>
