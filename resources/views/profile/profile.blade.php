@@ -49,18 +49,11 @@
             </article>
             <article class="col-md-8">
                 <div class="row">
-                    <div class="col-md-6">
-                        <h2 class="title1">Mis Ofertas</h2>
-                    </div>
-                    <div class="col-md-6">
-                        <h2 class="title1">Mis Ofertas</h2>
-                    </div>
-                    <div class="col-md-6">
-                        <h2 class="title1">Mis Ofertas</h2>
-                    </div>
-                    <div class="col-md-6">
-                        <h2 class="title1">Mis Ofertas</h2>
-                    </div>
+                    @foreach($services as $key => $service)                  
+                      <div class='col-md-4 col-xs-12 col-sm-6'>                            
+                          @include('partial/serviceBox', array("service" => $service))                                            
+                      </div>                      
+                    @endforeach                    
                 </div>
             </article>
     	</div>

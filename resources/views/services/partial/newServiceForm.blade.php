@@ -46,17 +46,17 @@
     	</div>
         <div class="col-xs-6 col-sm-6">
         	{{ Form::radio('valueService', 2, '' ,['id' => 'time2', 'class'=>'circle', 'v-model' => 'valueService']) }}
-			{{ Form::label('time2', '2 Hora') }}
+			{{ Form::label('time2', '2 Horas') }}
         </div>                 
     </div>
     <div class="row">
         <div class="col-xs-6 col-sm-6">
     		{{ Form::radio('valueService', 4, '' ,['id' => 'time3', 'class'=>'circle', 'v-model' => 'valueService']) }}
-			{{ Form::label('time3', '4 Hora') }}
+			{{ Form::label('time3', '4 Horas') }}
     	</div>
         <div class="col-xs-6 col-sm-6">
         	{{ Form::radio('valueService', 8, '' ,['id' => 'time4', 'class'=>'circle', 'v-model' => 'valueService']) }}
-			{{ Form::label('time4', '8 Hora') }}
+			{{ Form::label('time4', '8 Horas') }}
         </div>                  
     </div>
     <div class="row">
