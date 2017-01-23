@@ -1,7 +1,5 @@
 <template>
     <article class="col-xs-12 col-sm-4 col-md-4">
-        
-            <input type="file" name='avatar' id='avatar' class='hidden' @change="previewPhoto"/>
             <div class="row">
                 <label for="firstName" class="paragraph2">Nombre</label>                
                 <i class="fa fa-check-circle done" v-if='validateFirstName'></i>    
@@ -61,7 +59,7 @@
             </div>
             <div class="row">
                 <textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" ></textarea>
-                <label for='aboutMe'>{{totalChar}}</label>
+                <label for='aboutMe'>{{this.$parent.myData.totalChar}}</label>
             </div>
 
             <div class="row">
@@ -83,8 +81,10 @@
         data: function () {
             return helpers.ProfileUser().data;
         },        
-        mixins: [helpers.ValidateUser(),helpers.Helpers()],
+        mixins: [helpers.ValidateUser()],
         mounted() {
-            console.log(helpers.Helpers());
-        },    }
+            this.$parent.setMyData('totalChar', 250)
+            this.$parent.setMyData('maxChar', 250)
+        },    
+    }
 </script>
