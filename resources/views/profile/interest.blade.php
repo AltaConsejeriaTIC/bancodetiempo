@@ -35,7 +35,7 @@
 		
 			<div class="row">
 		
-				<h2 class='title1 col-xs-12'>¿Cuáles son tus intereses? <i class="fa fa-check-circle done" v-if='this.interest >= 3'></i></h2>
+				<h2 class='title1 col-xs-12'>¿Cuáles son tus intereses? <i class="fa fa-check-circle done" v-if='myData >= 3'></i></h2>
 				
 			</div>
 			<div class="row">
@@ -51,7 +51,7 @@
 				<div class='crearfix'></div>
 		
 				<div class="space40 col-xs-12 col-md-6 col-md-offset-3">
-					{{ Form::submit('Enviar', ['class' => 'button1 background-active-color col-xs-12', ':class' => '{inactive: this.totalInterest < 3}']) }}
+					{{ Form::submit('Enviar', ['class' => 'button1 background-active-color col-xs-12', ':class' => '{inactive: this.myData < 3}']) }}
 				</div>			
 		
 			{!! Form::close() !!}
@@ -64,6 +64,5 @@
 
 </section>
 
- <script src="{{ url('js/components/interest.js') }}"></script> 
 
 @endsection

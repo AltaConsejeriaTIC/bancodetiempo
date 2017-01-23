@@ -64,7 +64,7 @@
 							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '5px'))
 						</div>
 						<div class='col-xs-6 not-padding'>
-							<span class='col-xs-12 not-padding paragraph4'>{{Auth::user()->first_name}} <i class='fa fa-angle-down'></i></span>	
+							<span class='col-xs-12 not-padding paragraph4'>{{Auth::user()->first_name}}<i class='fa fa-angle-down'></i></span>	
 						</div>					
 						
 						<ul class="dropdown-menu">	
