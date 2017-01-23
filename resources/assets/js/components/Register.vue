@@ -58,7 +58,7 @@
                 <i class="fa fa-check-circle done" v-if='validateAboutMe'></i>
             </div>
             <div class="row">
-                <textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" ></textarea>
+                <textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" @upKey='this.$parent.countCharacters'></textarea>
                 <label for='aboutMe'>{{this.$parent.myData.totalChar}}</label>
             </div>
 

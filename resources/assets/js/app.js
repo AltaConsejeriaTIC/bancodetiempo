@@ -25,7 +25,6 @@ var app = new Vue({
     },
     mounted(){
     	
-    	Vue.set(this.myData, 'b', 2)
     	
     }
 });
