@@ -75,7 +75,7 @@ class ServiceController extends Controller
 	   			'value' => 'required|numeric|min:1|max:10',
 	   			'virtually' => 'required_without:presently',
 	   			'presently' => 'required_without:virtually',
-	   			'image' => 'image'
+	   			'image' => 'image|max:2000'
 	   	]);
 
    		$service = Service::find($id);

@@ -15,6 +15,7 @@ use App\Http\Controllers\Profile\ProfileController;
 
 Route::get('/', 'HomeController@indexNotRegister');
 Route::get('/terms', 'TermsController@index');
+Route::get('/test', 'TestController@index');
 
 Route::get('/loginRedes/{proveedor?}', 'NetworkAccountsController@login');
 Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
