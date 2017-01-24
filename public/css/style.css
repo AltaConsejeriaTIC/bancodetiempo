@@ -27,19 +27,7 @@ section.row {
     margin-left: auto;
     margin-right: auto;
 }
-header {
-  position: relative;
-  width: 100%;
-  min-height: auto;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  background-position: center;
-  background-image: url(../images/banner.jpg);
-  text-align: center;
-  color: white;
-}
+
 header .header-content {
   position: relative;
   text-align: center;
@@ -347,7 +335,7 @@ RedesSociales
 Banner Home
 */
 .bannerHome{
-	background: url(../images/banner.jpg);
+	background: url(../images/banner.png);
 	background-size: 130% auto;
     background-position: 100% 30%;
 }
