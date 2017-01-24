@@ -1,9 +1,7 @@
-	@extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
-	<script>
-	  var avatar =  '@{{Auth::user()->avatar}}'
-	</script>
+
 	<modal v-if="this.showModal" @@close="showModal = false">
 	</modal>
 	
@@ -50,7 +48,6 @@
 				</div>
 				
 				<div class="row space40">
-
 					<button id="show-modal"  @@click="showModal = true" class='button1 background-active-color col-xs-12 col-md-12'>Regístrate para empezar</button>
 				</div>
 			

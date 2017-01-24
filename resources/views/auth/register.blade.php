@@ -24,12 +24,16 @@
 	        <article class='col-xs-12 col-sm-4 col-md-4'>
 	            <div class='row'>
 	                <div class='col-xs-6 col-xs-offset-3 col-sm-8 col-sm-offset-2'>
-	                    <div class="col-xs-12" id='profilePhoto'>
-	                        @include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'extra' => array('image' => ':xlink:href=av')))                 
-	                        <script>
-	                            var avatar =  '{{Auth::user()->avatar}}'
-	                        </script>
-	                    </div>                
+	                    <div class="col-xs-12" >
+	                    
+	                    	<avatar :cover='myData.cover'>
+		                    	
+		                    		<template scope="props">
+		                    			@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
+	                        		</template>
+	                        	
+	                        </avatar>
+	                     </div>              
 	                </div>    
 
 	            </div>
@@ -48,9 +52,12 @@
 	        </article>
 
 	        {!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'class' => 'col-md-4', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
+	        	
+	        	<input type="file" name='avatar' id='avatar' class='hidden' @change="previewPhoto"/>
 	        	<register>					    
 	        	</register>
-					{!! Form::close() !!}
+			
+			{!! Form::close() !!}
 
 	    </div>
 	</section>

@@ -19,6 +19,7 @@ class ProfileController extends Controller
     {
     		$categories = Category::all();
         $user = User::find(auth::user()->id);
+        $services = Service::where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
 
         JavaScript::put([
 					'userJs'=> $user,
@@ -26,9 +27,9 @@ class ProfileController extends Controller
 					'mounthJs' => date("m",strtotime($user->birthDate)),
 					'yearJs' => date("Y",strtotime($user->birthDate)),
 
-				]);
+				]);				
 
-        return view('profile/profile', compact('user','categories'));
+        return view('profile/profile', compact('user','categories','services'));
         
     }
    public function showEditProfile()
@@ -140,7 +141,7 @@ public function  editProfilePicture(Request $request){
 		$service->save();
 		Auth::logout();
 
-		return "true";
+		return redirect("/");
 	}
 
 //====================== End Deactivate Account User ==================================

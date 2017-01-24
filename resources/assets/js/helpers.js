@@ -37,12 +37,10 @@ module.exports = {
                 terms: false,
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
                 exprNum: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*$'),
-                maxChar : 250,
                 arrayDay: optionDay,
                 arrayMounth: optionMounth,
                 arrayYear: optionYear,
-                totalChar: 250,
-                image: ''
+                
             }
         }
         return profile;
@@ -100,7 +98,8 @@ module.exports = {
         var Helpers = {
                 methods:{
                     countCharacters: function(){
-                        this.totalChar = this.maxChar - this.aboutMe.length;
+                    	var totalChar = this.$parent.myData.maxChar - this.aboutMe.length
+                        this.put('totalChar', totalChar)
                     },
                     previewPhoto(e) {
                         var image = new Image();
@@ -110,24 +109,13 @@ module.exports = {
                             return;
                         
                          reader.onload = (e) => {
-                              this.image = e.target.result;
+                              this.myData.cover = e.target.result
                          };
                         reader.readAsDataURL(files[0]);
                     },
-                },
-                watch:{
-                    image:function(val){
-                        Avatar.av = val;
-                    }
                 }
             }
         return Helpers;
     }
 }
 
-var Avatar = new Vue({
-    el: "#profilePhoto",
-    data: {
-        av: ""
-    }
-})
