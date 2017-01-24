@@ -98,9 +98,8 @@ module.exports = {
         var Helpers = {
                 methods:{
                     countCharacters: function(){
-                    	console.log('val')
-                    	var totalChar = this.$parent.myData.maxChar - this.aboutMe.length
-                        this.put('totalChar', totalChar)
+                    	var totalChar = this.myData.maxChar - this.myData.aboutMe.length                    	
+                        this.putMyData('totalChar', totalChar)
                     },
                     previewPhoto(e) {
                         var image = new Image();

@@ -12,6 +12,7 @@
 
 body{
 	background-color:#fff !important;
+	font-family: 'Open Sans', sans-serif;
 }
 a{
 	text-decoration: none !important;
@@ -53,9 +54,14 @@ Titles
 */
 
 .title1{
-	font-weight: bold;
-	font-size: 30px;
-	color: #2c3e50;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 28px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #001738;
 	word-wrap: break-word;
 }
 
@@ -67,7 +73,7 @@ Titles
 	word-wrap: break-word;
 }
 .title3{
-	font-family: Roboto;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 20px;
 	font-weight: Bold;
 	color: #fff;
@@ -79,12 +85,11 @@ Buttons
 */
 
 .button1{
-	font-family: roboto;
-	font-size:16px;
-	color:#fff;
-	background-color:#2c3e50;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;  
+  color: #ffffff;
 	padding: 10px 12px;
-	border-radius:4px;
+	border-radius: 4px;  
 	border:none;
 }
 
@@ -151,7 +156,7 @@ Buttons
 }
 
 .button9{
-	font-family: roboto;
+	font-family: 'Open Sans', sans-serif;
 	font-size:14px;
 	color:#2c3e50;
 	background-color:#fff;
@@ -161,13 +166,12 @@ Buttons
 }
 
 .button10{
-	font-family: roboto;
-	font-size:14px;
-	color:#a69f9f;
-	background-color:#fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #a69f9f;	
 	padding: 8px 9px;
-	border:1px solid #a69f9f;
-	border-radius:4px;
+	border: 1px solid #a69f9f;
+	border-radius: 4px;
 }
 
 .button1.inactive{
@@ -177,16 +181,17 @@ Buttons
 /*
 Paragraphs
 */
-.paragraph1{
+.paragraph1 {
 	font-size:18px !important;
 	word-wrap: break-word;
 	color:#2c3e50 !important;    
 }
 
-.paragraph2{
-	font-size:16px !important;
-	color:#2c3e50 !important; 
-    word-wrap: break-word;  
+.paragraph2 {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px !important;
+	color: #2c3e50 !important; 
+  word-wrap: break-word;  
 }
 
 .paragraph3{
@@ -196,9 +201,14 @@ Paragraphs
 }
 
 .paragraph4{
-	font-size:14px !important;
-	color:#fff !important;
-    word-wrap: break-word;
+	font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  text-align: left;
+  color: #001738;
 }
 
 .paragraph6{
@@ -207,7 +217,7 @@ Paragraphs
     word-wrap: break-word;
 }
 .paragraph7{
-	font-family: Roboto;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 20px !important;
 	color: #fff !important;
 	word-wrap: break-word;
@@ -241,7 +251,8 @@ Helpers
 	font-weight: bold;
 }
 
-.text-opacity{
+.text-opacity {
+	font-style: italic;
 	opacity:0.5;
 }
 
@@ -260,7 +271,7 @@ Helpers
 	margin-bottom:0px !important;
 }
 .background-active-color{
-	background-color:#2c9e36 !important;
+	background-color: #0f6784 !important;
 }
 .background-white{
 	background-color:#fff !important;
@@ -283,9 +294,15 @@ Helpers
 
 .space{
 	display: block;
-    clear: both;
-    height: 40px;
-    width: 100%;
+  clear: both;
+  height: 40px;
+  width: 100%;
+}
+.space10{
+	display: block;
+  clear: both;
+  height: 10px;
+  width: 100%;
 }
 .cap {
     background-color: rgba(33, 53, 70, 0.5);

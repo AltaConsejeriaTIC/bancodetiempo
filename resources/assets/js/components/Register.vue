@@ -58,7 +58,7 @@
                 <i class="fa fa-check-circle done" v-if='validateAboutMe'></i>
             </div>
             <div class="row">
-                <textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" @upKey='this.$parent.countCharacters'></textarea>
+                <textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" @keyup='this.$parent.countCharacters'></textarea>
                 <label for='aboutMe'>{{this.$parent.myData.totalChar}}</label>
             </div>
 
@@ -85,6 +85,12 @@
         mounted() {
             this.$parent.setMyData('totalChar', 250)
             this.$parent.setMyData('maxChar', 250)
-        },    
+            this.$parent.setMyData('aboutMe', '')
+        },
+        watch:{
+        	aboutMe:function(val){
+        		this.$parent.putMyData('aboutMe', val)
+        	}
+        }    
     }
 </script>

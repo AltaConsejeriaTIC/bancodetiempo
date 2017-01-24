@@ -40,7 +40,7 @@
 
 	            <div class="row">
 	                <div class='col-xs-6 col-xs-offset-3  col-sm-8 col-sm-offset-2'>                  
-	                    <label for='avatar' class='button1 col-xs-12 text-center'>Cambiar Foto</label>
+	                    <label for='avatar' class='button1 background-active-color col-xs-12 text-center'>Cambiar Foto</label>
 	                </div>
 	            </div>
 

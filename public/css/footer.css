@@ -2,10 +2,11 @@
 
 footer{
 	
-	background:#2c3e50;
+	background-color: #0a475b;  
 	color: #fff;
-	padding-top:15px;
-	padding-bottom:15px;
+	padding-top:64px;
+	padding-bottom:61px;
+
 }
 
 footer ul{
