@@ -22,3 +22,17 @@
     </div>
   </transition>
 </template>
+<script>
+    var helpers = require('./../helpers');
+
+    export default {
+        data: function () {
+            
+        },        
+        mixins: [helpers.ValidateUser()],
+        mounted() {
+            this.$parent.setMyData('totalChar', 250)
+            this.$parent.setMyData('maxChar', 250)
+        },    
+    }
+</script>
