@@ -36,9 +36,9 @@ class NetworkAccountsController extends Controller
 
 		JavaScript::put([
 			'userJs'=> $user,			
-			'dayJs' => date("d",strtotime($user->birthDate)),
-			'mounthJs' => date("m",strtotime($user->birthDate)),
-			'yearJs' => date("Y",strtotime($user->birthDate)),
+			'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
+			'mounthJs' => is_null($user->birthDate) ? "0" :  date("m",strtotime($user->birthDate)),
+			'yearJs' => is_null($user->birthDate) ? "0" :  date("Y",strtotime($user->birthDate)),
 
 		]);
 
@@ -55,7 +55,7 @@ class NetworkAccountsController extends Controller
 		]);
 
 		$user = User::whereEmail($providerData['email'])->first();
-
+		
 		if (!$user) {
 
 			$user = User::create([
@@ -65,7 +65,7 @@ class NetworkAccountsController extends Controller
 					'avatar' => $providerData['avatar'],
 					'state_id' => 1,
 					'gender' => $providerData['gender'],
-					'birthDate' => date("Y-m-d", strtotime($providerData['birthdate'])),
+					'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
 					'aboutMe' => '',
 					'role_id' => 2
 			]);

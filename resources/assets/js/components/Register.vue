@@ -1,5 +1,5 @@
 <template>
-    <article class="col-xs-12 col-sm-4 col-md-4">
+    <article class="col-xs-12 col-sm-12 col-md-12">
             <div class="row">
                 <label for="firstName" class="paragraph2">Nombre</label>                
                 <i class="fa fa-check-circle done" v-if='validateFirstName'></i>    
@@ -37,20 +37,24 @@
             </div>         
             <div class="row">       
                 <div class='not-padding col-xs-4'>
-                    <select name="day" placeholder="Día" class="col-xs-11" v-model="day">                        
+                    <select name="day" placeholder="Día" class="col-xs-11" v-model="day"> 
+                    	<option value='0'>Día</option>                       
                         <option v-for="op in arrayDay" :value="op">{{op}}</option>
                     </select>                    
                 </div>                    
                 <div class="not-padding col-xs-4">
-                    <select name="mounth" placeholder="Mes" class="col-xs-11" v-model="mounth">                        
+                    <select name="mounth" placeholder="Mes" class="col-xs-11" v-model="mounth">   
+                    	<option value='0'>Mes</option>                     
                         <option v-for="op in arrayMounth" :value="op">{{op}}</option>
                     </select>
                 </div>                    
                 <div class="not-padding col-xs-4">
-                    <select name="year" placeholder="Año" class="col-xs-11" v-model="year">                        
+                    <select name="year" placeholder="Año" class="col-xs-11" v-model="year"> 
+                    	<option value='0'>Año</option>                       
                         <option v-for="op in arrayYear" :value="op">{{op}}</option>
                     </select>
                 </div>
+                <input type='hidden' name='birthDate' :value='birthDate'>
             </div>
 
             <div class="row">
@@ -58,14 +62,14 @@
                 <i class="fa fa-check-circle done" v-if='validateAboutMe'></i>
             </div>
             <div class="row">
-                <textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" @keyup='this.$parent.countCharacters'></textarea>
+                <textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" ></textarea>
                 <label for='aboutMe'>{{this.$parent.myData.totalChar}}</label>
             </div>
 
             <div class="row">
                 <div class='col-xs-12'>
                     <input type="checkbox" name="terms" v-model="terms" class="square" id="terms" value="1">                    
-                    <label for="terms">Aceptar los <a href="">términos y condiciones</a> de la plataforma</label>
+                    <label for="terms">Aceptar los <a href="terms">términos y condiciones</a> de la plataforma</label>
                 </div>
             </div>
 
@@ -82,15 +86,14 @@
             return helpers.ProfileUser().data;
         },        
         mixins: [helpers.ValidateUser()],
+        computed: {
+        	birthDate: function(){
+        		return this.year+"-"+this.mounth+"-"+this.day;s
+        	}
+        },
         mounted() {
             this.$parent.setMyData('totalChar', 250)
             this.$parent.setMyData('maxChar', 250)
-            this.$parent.setMyData('aboutMe', '')
-        },
-        watch:{
-        	aboutMe:function(val){
-        		this.$parent.putMyData('aboutMe', val)
-        	}
-        }    
+        },    
     }
 </script>

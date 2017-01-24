@@ -1,4 +1,3 @@
-
 var optionDay = new Array();
 for(var i = 1; i <= 31; i++)
 {
@@ -40,7 +39,7 @@ module.exports = {
                 arrayDay: optionDay,
                 arrayMounth: optionMounth,
                 arrayYear: optionYear,
-                
+                birthDate: ""
             }
         }
         return profile;
@@ -98,6 +97,7 @@ module.exports = {
         var Helpers = {
                 methods:{
                     countCharacters: function(){
+                    	console.log("esta escribiendo");
                     	var totalChar = this.myData.maxChar - this.myData.aboutMe.length                    	
                         this.putMyData('totalChar', totalChar)
                     },
@@ -113,6 +113,9 @@ module.exports = {
                          };
                         reader.readAsDataURL(files[0]);
                     },
+                    enviar:function(){
+                    	alert('si envio')
+                    }
                 }
             }
         return Helpers;

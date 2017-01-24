@@ -19,12 +19,12 @@ class ProfileController extends Controller
     {
     		$categories = Category::all();
         $user = User::find(auth::user()->id);
-
+		
         JavaScript::put([
 					'userJs'=> $user,
-					'dayJs' => date("d",strtotime($user->birthDate)),
-					'mounthJs' => date("m",strtotime($user->birthDate)),
-					'yearJs' => date("Y",strtotime($user->birthDate)),
+					'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
+					'mounthJs' => is_null($user->birthDate) ? "0" :  date("m",strtotime($user->birthDate)),
+					'yearJs' => is_null($user->birthDate) ? "0" :  date("Y",strtotime($user->birthDate)),
 
 				]);
 
@@ -70,7 +70,8 @@ public function  editProfilePicture(Request $request){
 	 			'lastName' => 'required|min:3|alpha_spaces',
 	 			'gender' => 'required',
 	 			'aboutMe' => 'required|min:50|max:250',
-	      'terms' => 'required'
+	      		'terms' => 'required',
+	 			'image' => 'image|max:2000'
 	 	]);
 	 	
 	 	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
