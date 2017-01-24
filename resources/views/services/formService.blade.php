@@ -117,7 +117,7 @@
             	</div>		
             	<div class="row col-xs-12">					
                 	<p class="paragraph1 text-bold text-opacity not-margin-y">Si no sabes qué compartir,</p>
-                	<a href="#" class='link2'>realiza nuestro test</a>
+                	<a href="/test" class='link2'>realiza nuestro test</a>
             	</div>
             	<div class='space'></div>
             	<div class="row col-sm-12">

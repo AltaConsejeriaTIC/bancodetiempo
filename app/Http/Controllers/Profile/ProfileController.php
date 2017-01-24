@@ -74,7 +74,8 @@ public function  editProfilePicture(Request $request){
 	 			'aboutMe' => 'required|min:50|max:250',
 	      		'terms' => 'required',
 	 			'image' => 'image|max:2000',
-	 			'birthDate' => 'adult'
+	 			'avatar' => 'max:2000|image'
+
 	 	]);
 	 	
 	 	

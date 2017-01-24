@@ -23,7 +23,7 @@
 						<p class='paragraph7'>Recibió una hora de cuentería de Juan</p>
 					</div>
 					
-				</div>
+				</div>|
 				<div class='row'>
 				
 					<div class='col-xs-5 col-sm-4 col-md-4'>
