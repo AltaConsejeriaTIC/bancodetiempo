@@ -22,6 +22,17 @@ class AppServiceProvider extends ServiceProvider
             return preg_match('/^[\pL\s]+$/u', $value); 
 
         });
+        
+        Validator::extend('adult', function ($attribute, $value) {
+        	
+        	$hoy = date("Y-m-d");
+        	$birth = date($value);
+        	$diff = $hoy-$birth;
+        	
+        	return $diff >= 18 ? true : false;
+        	
+        });
+        
     }
 
     /**

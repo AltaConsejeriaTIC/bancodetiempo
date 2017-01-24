@@ -73,10 +73,11 @@ public function  editProfilePicture(Request $request){
 	 			'gender' => 'required',
 	 			'aboutMe' => 'required|min:50|max:250',
 	      		'terms' => 'required',
-	 			'image' => 'image|max:2000'
+	 			'image' => 'image|max:2000',
+	 			'birthDate' => 'adult'
 	 	]);
 	 	
-	 	$birthdate = $request->input('year')."-".$request->input('mounth')."-".$request->input('day');
+	 	
 	 	$picture=$this->editProfilePicture($request);
 	 	$user = Auth::user ();
 	 	if($picture !==false){
@@ -84,11 +85,11 @@ public function  editProfilePicture(Request $request){
 	      }
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
-		$user->birthDate = $birthdate;
+		$user->birthDate = $request->input('birthDate');
 		$user->aboutMe = $request->input("aboutMe");
-	  $user->privacy_policy = $request->input('terms');
-	  $user->gender = $request->input('gender');
-	  $user->save();
+	  	$user->privacy_policy = $request->input('terms');
+	  	$user->gender = $request->input('gender');
+	  	$user->save();
 
 		if(!empty($user->interests->all())){
 

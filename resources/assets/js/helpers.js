@@ -24,6 +24,12 @@ var Vue = require('vue');
 
 module.exports = {
     ProfileUser: function () {
+    	
+    	var terms = false;
+    	if(windowvar.userJs["privacy_policy"] == 1){
+    		terms = true
+    	}
+    	
         var profile = {
             data:{
                 firstName : windowvar.userJs["first_name"],
@@ -33,13 +39,12 @@ module.exports = {
                 mounth: parseInt(windowvar.mounthJs),
                 year: parseInt(windowvar.yearJs),
                 aboutMe: windowvar.userJs["aboutMe"],
-                terms: false,
+                terms: terms,
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
                 exprNum: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*$'),
                 arrayDay: optionDay,
                 arrayMounth: optionMounth,
-                arrayYear: optionYear,
-                birthDate: ""
+                arrayYear: optionYear
             }
         }
         return profile;
@@ -97,7 +102,7 @@ module.exports = {
         var Helpers = {
                 methods:{
                     countCharacters: function(){
-                    	console.log("esta escribiendo");
+                    	
                     	var totalChar = this.myData.maxChar - this.myData.aboutMe.length                    	
                         this.putMyData('totalChar', totalChar)
                     },
@@ -111,14 +116,33 @@ module.exports = {
                          reader.onload = (e) => {
                               this.myData.cover = e.target.result
                          };
+                         
                         reader.readAsDataURL(files[0]);
-                    },
-                    enviar:function(){
-                    	alert('si envio')
                     }
                 }
             }
         return Helpers;
+    },
+    animationSide: function () {
+        var animation = {
+        		data:function(){
+        			return {
+        				edit:false,
+        				noEdit:true
+        			}
+        		},
+                methods:{
+                    showEdit:function(){
+                    	this.edit = true;
+                    	this.noEdit = false;
+                    },
+                    hiddenEdit:function(){
+                    	this.edit = false;
+                    	this.noEdit = true;
+                    }
+                }
+            }
+        return animation;
     }
 }
 
