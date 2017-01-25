@@ -39,12 +39,7 @@ class NetworkAccountsTableSeeder extends Seeder
             'user_id' => '20',
             'provider_id' => '1374168195947226',
             'provider'=>'facebook',
-        ]);
-        $this->create([
-            'user_id' => '21',
-            'provider_id' => '661440967350649',
-            'provider'=>'facebook',
-        ]);
+        ]);        
     }
 
 
