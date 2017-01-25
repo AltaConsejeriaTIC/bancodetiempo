@@ -100,31 +100,18 @@ class UserTableSeeder extends Seeder
         'role_id' => 2,
         'privacy_policy' => 1,
     ]);
-        $this->create([
-            'first_name' => 'Dayana',
-            'last_name' => 'Alejo',
-            'email' => 'vanessalejo@yahoo.es',
-            'avatar' => 'https://graph.facebook.com/v2.8/1374168195947226/picture?width=1920',
-            'password'  => null,
-            'gender' => 'female',
-            'birthDate' => null,
-            'aboutMe' =>'Hola mi nombre es dayana tengo 24 años y quiero participar en esta plataforma',
-            'state_id' => 1,
-            'role_id' => 2,
-            'privacy_policy' => 1,
-        ]);
-        $this->create([
-            'first_name' => 'Andrea',
-            'last_name' => 'Bertieri',
-            'email' => 'andreita_b912@hotmail.com',
-            'avatar' => 'https://graph.facebook.com/v2.8/661440967350649/picture?width=1920',
-            'password'  => null,
-            'gender' => 'female',
-            'birthDate' => null,
-            'aboutMe' => 'sdsas dfdfdf dfndj fnd difjidjf nfmgkjnfign dfjd fjd f dufnd mfbsdjbfjdn ',
-            'state_id' => 1,
-            'role_id' => 2,
-            'privacy_policy' => 1,
-        ]);
+    $this->create([
+        'first_name' => 'Dayana',
+        'last_name' => 'Alejo',
+        'email' => 'vanessalejo@yahoo.es',
+        'avatar' => 'https://graph.facebook.com/v2.8/1374168195947226/picture?width=1920',
+        'password'  => null,
+        'gender' => 'female',
+        'birthDate' => null,
+        'aboutMe' =>'Hola mi nombre es dayana tengo 24 años y quiero participar en esta plataforma',
+        'state_id' => 1,
+        'role_id' => 2,
+        'privacy_policy' => 1,
+    ]);       
     }
 }
