@@ -4,8 +4,6 @@
 @include('nav',array('type' => 2))
 
 <div class="container">
-	<category >
-	</category>
 
     <ul  class="nav nav-pills">
 		<li class="active">
