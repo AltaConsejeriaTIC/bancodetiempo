@@ -63,7 +63,7 @@
 	<section>
 		<div class="container">
 		
-			<h2 class='title1 text-center'>Ofertas Recientes</h2>
+			<h2 class='title1 text-center'>OFERTAS RECIENTES</h2>
 		 
 		 	<article class='space40'>
 		 		
@@ -90,7 +90,7 @@
 	
 	<section class='boxRegister row'>
 		<div class="cap"></div>
-	
+
 		<div class="container">
 				
 				<div class='row'>
@@ -102,19 +102,17 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-xs-12">
-						<a href="{{ url('loginRedes/facebook') }}" class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 button6 social-button facebook">Regístrate con Facebook <i class="fa fa-facebook"></i></a>
+					<div class="col-xs-12 col-md-4" >
+						<a href="{{ url('loginRedes/facebook') }}" class="col-xs-12 col-sm-12 col-md-12 button6 social-button facebook">Regístrate con Facebook <i class="fa fa-facebook"></i></a>
 					</div>
-					
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 button6 social-button google">Regístrate con Google <i class="fa fa-google"></i></a>
+
+
+					<div class="col-xs-12 col-md-4" >
+						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button google">Regístrate con Google <i class="fa fa-google"></i></a>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<a href="{{ url('loginRedes/linkedin') }}"  class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 button6 social-button linkedin">Regístrate con Linkedin <i class="fa fa-linkedin"></i></a>
+
+					<div class="col-xs-12 col-md-4" >
+						<a href="{{ url('loginRedes/linkedin') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button linkedin">Regístrate con Linkedin <i class="fa fa-linkedin"></i></a>
 					</div>
 				</div>
 				
