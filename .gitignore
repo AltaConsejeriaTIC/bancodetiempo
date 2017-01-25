@@ -3,6 +3,7 @@
 /vendor
 /.idea
 /public/resources/user
+/public/js/app.js
 Homestead.json
 Homestead.yaml
 .env
