@@ -143,6 +143,20 @@ module.exports = {
                 }
             }
         return animation;
+    },
+    Service: function () {
+        var service = {
+            data: {
+                image:'',
+                serviceName: 'HOolasss',
+                description: '',
+                category:'',
+                modalityServiceVirtually : '',
+                modalityServicePresently: '',
+                valueService: '',
+                expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
+            }                      
+        }
+        return service;
     }
 }
-

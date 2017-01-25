@@ -3,8 +3,8 @@
     <div class="row">
         <label for="nameService" class="paragraph2">Nombre de la oferta</label> <i class="fa fa-check-circle done" v-if='validateName'></i>
     </div>
-    <div class="row">
-    	{{ Form::text('nameService', '', ['autofocus', 'placeholder' => 'Nombre de la oferta', 'class' => 'col-xs-12 col-sm-12 col-md-12', 'v-model' => "serviceName"]) }}
+    <div class="row">        
+    	{{ Form::text('serviceName','', ['autofocus', 'placeholder' => 'Nombre de la oferta', 'class' => 'col-xs-12 col-sm-12 col-md-12', 'v-model' => "serviceName"]) }}
     </div>
     <div class="row">
         <label for="descriptionService" class="paragraph2">Descripción de la oferta</label> <i class="fa fa-check-circle done" v-if='validateDescription'></i>
