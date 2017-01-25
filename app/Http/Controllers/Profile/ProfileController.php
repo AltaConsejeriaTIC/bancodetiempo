@@ -27,7 +27,7 @@ class ProfileController extends Controller
 					'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
 					'mounthJs' => is_null($user->birthDate) ? "0" :  date("m",strtotime($user->birthDate)),
 					'yearJs' => is_null($user->birthDate) ? "0" :  date("Y",strtotime($user->birthDate)),
-
+					'categoriesJs' => $categories,
 				]);				
 
         return view('profile/profile', compact('user','categories','services'));

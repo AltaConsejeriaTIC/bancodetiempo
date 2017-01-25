@@ -98,9 +98,9 @@ class ServiceController extends Controller
    }
 
    public function create(Request $request){
-
+      
       $this->validate($request, [
-            'nameService' => 'required|max:100',
+            'serviceName' => 'required|max:100',
             'descriptionService' => 'required|max:250|min:50',
             'valueService' => 'required|numeric|min:1|max:10',
             'modalityServiceVirtually' => 'required_without:modalityServicePresently',
@@ -109,7 +109,7 @@ class ServiceController extends Controller
       ]);
 
 		$service = Service::create([
-				'name' => $request->input('nameService'),
+				'name' => $request->input('serviceName'),
 				'description' => $request->input('descriptionService'),
 				'value' => $request->input('valueService'),
 				'virtually' => $request->input('modalityServiceVirtually'),
