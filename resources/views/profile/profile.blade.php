@@ -49,11 +49,10 @@
                		</div>
                		
                		{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
-						<input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
-			        	<register  profile='1'>	
-			        					    
-			        	</register>
-			        {!! Form::close() !!}
+						        <input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
+			        	    <register  profile='1'>				        					    
+			        	    </register>		             
+                  {!! Form::close() !!}
 			        <button class="col-xs-12 button10 background-white text-center"  @click='hiddenEdit'>Cancelar</button>  
                	</div>
             </article>
@@ -64,7 +63,10 @@
                         {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
                           <newservice v-if="this.showModal1" @close="showModal1 = false"></newservice>
                         {!! Form::close() !!}
-                        <button id="show-modal" @click="showModal1 = true" class="col-xs-12 button10 background-white">Publicar nueva oferta</button>
+                        <button id="show-modal" @click="showModal1 = true" class="col-xs-12 buttonService background-white">
+                          <i class="fa fa-plus-square icons" aria-hidden="true"></i>
+                          <p>Publicar nueva oferta</p>
+                        </button>
                     </div>               
                 </div>
             </article>

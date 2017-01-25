@@ -3,8 +3,8 @@
         <div class="modal-mask" >
             <div class="modal-wrapper">
               <div class="modal-container">
-                <div>
-                  <button type="button" @click="$emit('close')" class="close" data-dismiss="alert">&times;</button>
+                <div class="close-modal">
+                  <button type="button" @click="$emit('close')" class="close circle-shape" data-dismiss="alert">&times;</button>
                 </div>
                 <div class="modal-header">
                     <h1 class="title1">Inicia sesión </h1>

@@ -4,8 +4,8 @@
       <div class="modal-wrapper">
         <div class="modal-container">
 
-            <div>
-              <button type="button" @click="$emit('close')" class="close" data-dismiss="alert">&times;</button>
+            <div class="close-modal">
+              <button @click="$emit('close')" class="close circle-shape" data-dismiss="alert">&times;</button>
             </div>
 
             <div class="row modal-header">
@@ -17,13 +17,13 @@
                     <label for="serviceName" class="paragraph2">Nombre de la oferta</label> <i class="fa fa-check-circle done" v-if='validateName'></i>
                 </div>
                 <div class="row"> 
-                    <input type="text" name="serviceName" autofocus placeholder="Nombre de la oferta" class="col-xs-12 col-sm-12 col-md-12" v-model="serviceName">
+                    <input type="text" name="serviceName" autofocus placeholder="Ej. Clase de Inglés, Asesoría penal…" class="col-xs-12 col-sm-12 col-md-12" v-model="serviceName">
                 </div>
                 <div class="row">
                     <label for="descriptionService" class="paragraph2">Descripción de la oferta</label> <i class="fa fa-check-circle done" v-if='validateDescription'></i>
                 </div>
                 <div class="row">
-                    <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12" rows="5" name="descriptionService" id='descriptionService' v-model='description' placeholder="Ej. Ofrezco una clase de una hora de Yoga para principantes, podemos acordar un lugar de encuentro cercano al Parque de la 93. Puedo los Lunes y Miércoles de 6:00 am a 7:00 am."></textarea>                    
+                    <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12" rows="5" name="descriptionService" id='descriptionService' v-model='description' placeholder="Ej. Ofrezco una hora de una clase de Yoga para principiantes. Podemos acordar un lugar de encuentro cercano al campus de Universidad Nacional. Puedo realizar la sesión los lunes o los miércoles de 6:00 am a 7:00 pm."></textarea>                    
                     <label for="descriptionService">250</label>
                 </div>
                 <div class="row">
@@ -52,21 +52,21 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-6">
                         <input type="radio" name="valueService" value="1" id="time1" class="circle" v-model="valueService">
-                        <label for="time1">1 Hora</label>                        
+                        <label for="time1">1 Lache</label>                        
                     </div>
                     <div class="col-xs-6 col-sm-6">
                         <input type="radio" name="valueService" value="2" id="time2" class="circle" v-model="valueService">
-                        <label for="time2">2 Horas</label>                        
+                        <label for="time2">2 Laches</label>                        
                     </div>                 
                 </div>
                 <div class="row">
                     <div class="col-xs-6 col-sm-6">
                         <input type="radio" name="valueService" value="4" id="time3" class="circle" v-model="valueService">
-                        <label for="time3">4 Horas</label>                        
+                        <label for="time3">4 Laches</label>                        
                     </div>
                     <div class="col-xs-6 col-sm-6">
                         <input type="radio" name="valueService" value="8" id="time4" class="circle" v-model="valueService">
-                        <label for="time4">8 Horas</label>                        
+                        <label for="time4">8 Laches</label>                        
                     </div>                  
                 </div>
                 <div class="row">
@@ -79,10 +79,10 @@
                     </select>                    
                 </div>
                 <div class="row">
-                    <label for="tagService" class="paragraph2">Palabras clave</label>
+                    <label for="tagService" class="paragraph2">Palabras clave</label><span class="text-opacity"> (Opcional)</span>
                 </div>
                 <div class="row">
-                    <input type="text" name="tagService" class="col-xs-12  col-sm-12" placeholder="Ej. Diseño, papel...">
+                    <input type="text" name="tagService" class="col-xs-12  col-sm-12" placeholder="Ej. #EstiloDeVida, #JuegosDeMesa, #Collar">
                 </div>
 
                 <div class="row">
@@ -90,6 +90,10 @@
                       Publicar oferta
                     </button>
                 </div>
+                <div class="row">
+                    <button  class="col-xs-12 button10 background-white text-center"  @click.prevent="$emit('close')">Cancelar</button> 
+                </div>
+                
             </div>
             <div class="modal-footer">
             </div>

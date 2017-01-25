@@ -109,7 +109,6 @@ Buttons
 	background: none;
 }
 
-
 .button5 {
 	font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -163,8 +162,16 @@ Buttons
 	font-size: 18px;
 	color: #a69f9f;	
 	padding: 8px 9px;
-	border: 1px solid #a69f9f;
+	border: solid 1px #0f6784;
 	border-radius: 4px;
+}
+
+.buttonService{  
+  height: 140px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: solid 1px #9ca2a9;
+  color: #90a1b5;
 }
 
 .button1.inactive{
@@ -614,3 +621,20 @@ Animations
     opacity: 0;
 }
 
+.icons:before{	
+	font-size: 25px;
+  background-color: #f2f5f6;
+}
+
+.circle-shape{
+	border: 2px solid #b8bbb8 !important;
+	border-radius: 51%;
+	width: 30px;
+	height: 30px;
+	padding: 0 1px 1px 1px !important;
+}
+.close-modal{
+  margin-right: -20px;
+  margin-top: -23px;
+  margin-bottom: 22px;
+}

@@ -3,8 +3,8 @@
     <div class="modal-mask" >
       <div class="modal-wrapper">
         <div class="modal-container">
-          <div class="col-md-1 col-md-offset-11">
-            <button type="button" @click="$emit('close')" class="close" data-dismiss="alert">&times;</button>
+          <div class="close-modal">
+            <button type="button" @click="$emit('close')" class="close circle-shape" data-dismiss="alert">&times;</button>
           </div>
 					
 					<div class="row">
