@@ -391,8 +391,8 @@ Service box
 .service-box {
     position: relative;
     width: 322px;
-    max-height: 330px;
-    height:330px;
+    max-height: 430px;
+    height: 430px;
     margin:10px auto;
     background-color:#dedede;
     border: 0.25px solid #a0a0a0;

@@ -19,30 +19,16 @@
 			<p class='paragraph2'>{{str_limit($service->description, 100)}}</p>
 	 
 			<div class='ranking'>
-				
-				<div>
-				
-					@for($cont = 1 ; $cont <= 5 ; $cont++)
-					
-						@if($cont <= $service->user->ranking)
-							<span class='material-icons paragraph1'>grade</span>
-						@else
-							<span class='material-icons paragraph6 star'>fiber_manual_record</span>
-						@endif
-					
-					@endfor	
-				
-				</div>		
 
 			</div>
 			
 			<div class='tags'>
 			
-				<a class='button7'>numero 1</a>
+				<a class='button7'>#tag 1</a>
 				
-				<a class='button7'>numero 2</a>
+				<a class='button7'>#tag 2</a>
 				
-				<a class='button7'>numero 3</a>
+				<a class='button7'>#tag 3</a>
 			
 			</div>
 		 
