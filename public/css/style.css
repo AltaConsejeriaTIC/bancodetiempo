@@ -258,6 +258,9 @@ Helpers
 	margin-top:0px !important;
 	margin-bottom:0px !important;
 }
+.background-active-green-color{
+	background-color: #2cba36 !important;
+}
 .background-active-color{
 	background-color: #0f6784 !important;
 }

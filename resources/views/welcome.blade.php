@@ -40,7 +40,7 @@
 			<article class='col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1'>
 				
 				<div class="row">
-					<h1 class='title1 text-white'>¿Para qué el dinero si puedes usar tu tiempo?</h1>
+					<h1 class='title1 text-white'>¿PARA QUÉ EL DINERO SI PUEDES USAR TU TIEMPO?</h1>
 				</div>
 				
 				<div class="row space40">
@@ -48,7 +48,7 @@
 				</div>
 				
 				<div class="row space40">
-					<button id="show-modal"  @@click="showModal = true" class='button1 background-active-color col-xs-12 col-md-12'>Regístrate para empezar</button>
+					<button id="show-modal"  @@click="showModal = true" class='button1 background-active-green-color col-xs-12 col-md-12'>Regístrate para empezar</button>
 				</div>
 			
 			</article>
