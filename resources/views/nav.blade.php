@@ -46,7 +46,7 @@
 					<div class="flex-center">
 						<div class="col-lg-6 col-md-10 col-sm-10 not-padding text-left">
 							<i class="fa fa-clock-o not-padding icon-nav text-center col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2"></i>
-							<p class="paragraph4 not-padding  col-md-7 col-sm-7">Bolsa de tiempo:<br>8 Horas</p>
+							<p class="paragraph4 not-padding  col-md-7 col-sm-7 text-white">Bolsa de tiempo:<br>8 Horas</p>
 						</div>
 						<div class="col-md-2 col-sm-2 not-padding ">
 							<i class="fa fa-envelope icon-nav notification"><span>2</span></i>
@@ -64,7 +64,7 @@
 							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '5px'))
 						</div>
 						<div class='col-xs-6 not-padding'>
-							<span class='col-xs-12 not-padding paragraph4'>{{Auth::user()->first_name}}<i class='fa fa-angle-down'></i></span>	
+							<span class='col-xs-12 not-padding paragraph4  text-white'>{{Auth::user()->first_name}}<i class='fa fa-angle-down'></i></span>	
 						</div>					
 						
 						<ul class="dropdown-menu">	

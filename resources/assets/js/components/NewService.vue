@@ -25,14 +25,15 @@
 <script>
     var helpers = require('./../helpers');
 
-    export default {
-        data: function () {
-            
-        },        
-        mixins: [helpers.ValidateUser()],
+    export default {       
+         data: function () {
+            return helpers.Service().data;
+        }, 
+        mixins: [],
         mounted() {
-            this.$parent.setMyData('totalChar', 250)
-            this.$parent.setMyData('maxChar', 250)
+            this.$parent.setMyData('totalChar', 250);
+            this.$parent.setMyData('maxChar', 250);
+            console.log(helpers.Service().data);
         },    
     }
 </script>

@@ -62,11 +62,11 @@
                 <i class="fa fa-check-circle done" v-if='validateAboutMe'></i>
             </div>
             <div class="row">
-                <textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" ></textarea>
+                <textarea placeholder="Acerca de mi" class="col-xs-12 countCharacters" name="aboutMe" rows="4" id="aboutMe" v-model="aboutMe" @keyup='this.$parent.countCharacters'></textarea>
                 <label for='aboutMe'>{{this.$parent.myData.totalChar}}</label>
             </div>
-
-            <div class="row">
+			
+            <div class="row" v-show='this.profile == 0'>
                 <div class='col-xs-12'>
                     <input type="checkbox" name="terms" v-model="terms" class="square" id="terms" value="1">                    
                     <label for="terms">Aceptar los <a href="terms">términos y condiciones</a> de la plataforma</label>
@@ -74,7 +74,10 @@
             </div>
 
             <div class="row">
-                <input type="submit" value='Guardar Cambios' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' />
+                <input type="submit" value='Guardar Cambios' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' v-if='profile == 0'/>
+                
+                <input type="submit" value='Actualizar' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' v-if='profile == 1'/>
+                
             </div>
     </article>
 </template>
@@ -84,16 +87,23 @@
     export default {
         data: function () {
             return helpers.ProfileUser().data;
-        },        
+        },
+        props:['profile'],        
         mixins: [helpers.ValidateUser()],
         computed: {
         	birthDate: function(){
-        		return this.year+"-"+this.mounth+"-"+this.day;s
+        		return this.year+"-"+this.mounth+"-"+this.day;
+        	}
+        },
+        watch:{
+        	aboutMe:function(val){
+        		this.$parent.putMyData('aboutMe', this.aboutMe)
         	}
         },
         mounted() {
             this.$parent.setMyData('totalChar', 250)
             this.$parent.setMyData('maxChar', 250)
+            this.$parent.setMyData('aboutMe', this.aboutMe)
         },    
     }
 </script>

@@ -54,7 +54,7 @@
 	        <article class='col-md-4'>
 	        	{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
 					<input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
-		        	<register>	
+		        	<register profile='0'>	
 		        					    
 		        	</register>
 		        {!! Form::close() !!}
