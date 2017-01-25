@@ -61,11 +61,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="title1">Mis Ofertas</h2>
-                        <newservice v-if="this.showModal1" @close="showModal1 = false">
-                            <template>
-                                @include('services.partial.newServiceForm')
-                            </template>
-                        </newservice>
+                        {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+                          <newservice v-if="this.showModal1" @close="showModal1 = false"></newservice>
+                        {!! Form::close() !!}
                         <button id="show-modal" @click="showModal1 = true" class="col-xs-12 button10 background-white">Publicar nueva oferta</button>
                     </div>               
                 </div>
