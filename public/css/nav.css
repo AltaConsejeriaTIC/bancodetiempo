@@ -22,7 +22,9 @@
     padding-bottom: 5px;
 }
 
-
+.icon-bar{
+    height: 30px;
+}
 @media (max-width: 450px){
 	
 

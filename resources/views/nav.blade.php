@@ -34,7 +34,7 @@
 
 				<div class="col-xs-7 col-sm-4 col-md-2">
 					<a href="/" >
-						<img src="{{ asset('images/logo.png') }}" alt="Logo" />
+						<img class="icon-bar" src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
 				</div>
 				<div class='hidden-xs hidden-sm col-md-4'>
