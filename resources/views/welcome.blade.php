@@ -98,7 +98,7 @@
 				</div>
 				
 				<div class='row'>
-					<p class='paragraph2 text-white col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4'>Regístrate y comienza a ser parte de nuestra gran comunidad</p>
+					<p class='paragraph2 text-white col-xs-12 col-sm-12 col-md-12 text-center'>Regístrate y comienza a ser parte de nuestra gran comunidad</p>
 				</div>
 				
 				<div class="row">
@@ -108,7 +108,7 @@
 
 
 					<div class="col-xs-12 col-md-4" >
-						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button google">Regístrate con Google <i class="fa fa-google"></i></a>
+						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button google"> Regístrate con          Google  <i class="fa fa-google"></i></a>
 					</div>
 
 					<div class="col-xs-12 col-md-4" >

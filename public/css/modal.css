@@ -5,6 +5,22 @@
   padding: 10px 20px 0 0;
   border-bottom: none;
 }
+.modal-header-welcome
+{
+  padding: 10px 20px 0 0;
+  border-bottom: none;
+  text-align: center;
+}
+.modal-body-welcome {
+  margin-right: 10px 0 0 10px;
+  text-align: center;
+}
+.modal-button-center{
+  display: block;
+  margin: auto;
+  width: 85%;
+  margin-right
+}
 
 .modal-mask {
   position: fixed;
@@ -24,7 +40,7 @@
 }
 
 .modal-container {
-  width: 25%;
+  width: 420px;
   margin: auto;  
   padding: 40px 44px 33px 43px;
   background-color: #fff;
@@ -41,6 +57,7 @@
   text-align: left;
   padding: 0;
 }
+
 
 .modal-default-button-success 
 {  
