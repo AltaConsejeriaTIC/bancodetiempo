@@ -61,12 +61,12 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-6 col-sm-6">
-                        <input type="radio" name="valueService" value="4" id="time3" class="circle" v-model="valueService">
-                        <label for="time3">4 Laches</label>                        
+                        <input type="radio" name="valueService" value="3" id="time3" class="circle" v-model="valueService">
+                        <label for="time3">3 Laches</label>                        
                     </div>
                     <div class="col-xs-6 col-sm-6">
-                        <input type="radio" name="valueService" value="8" id="time4" class="circle" v-model="valueService">
-                        <label for="time4">8 Laches</label>                        
+                        <input type="radio" name="valueService" value="4" id="time4" class="circle" v-model="valueService">
+                        <label for="time4">4 Laches</label>                        
                     </div>                  
                 </div>
                 <div class="row">
