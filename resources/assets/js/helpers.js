@@ -155,6 +155,7 @@ module.exports = {
                 modalityServicePresently: '',
                 valueService: '',
                 categories: windowvar.categoriesJs,
+                avatar: windowvar.avatarJs,
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
             }                      
         }
@@ -208,5 +209,38 @@ module.exports = {
             }
         }
         return validate;        
+    },
+    MethodsService: function () {
+        var methodsService = {
+            methods: {
+                previewPhoto(e) {
+                    var image = new Image();
+                    var reader = new FileReader();
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+                    
+                     reader.onload = (e) => {
+                          this.image = e.target.result;
+                     };
+                    reader.readAsDataURL(files[0]);
+                },
+            }
+        }
+        return methodsService;
+    },
+    Filters: function() {
+        var filters = {
+            filters: {
+              truncate: function(string, value) {
+                if(string.length > value){
+                    return string.substring(0, value) + '...';
+                }else{
+                    return string;
+                }       
+              }
+            }
+        }
+        return filters;
     }
 }

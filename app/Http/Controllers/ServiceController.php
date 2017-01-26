@@ -10,17 +10,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use App\Models\CategoriesService;
 use PhpParser\Node\Expr\Print_;
+use JavaScript;
 
 class ServiceController extends Controller
 {
 
    public function index(){
 
-   		$categories = Category::all('id', 'category');
-
+   		$categories = Category::all();
    		$selectedCategories = [];
-
    		$method = 'post';
+         JavaScript::put([               
+               'categoriesJs' => $categories,
+               'avatarJs' => Auth::user()->avatar,
+            ]);   
 
    		return view('services/formService', compact('categories', 'method'));
 
