@@ -149,12 +149,12 @@ module.exports = {
             data: {
                 imageService:'',
                 serviceName: '',
-                description: '',
+                descriptionService: '',
                 category:'',
                 modalityServiceVirtually : '',
                 modalityServicePresently: '',
                 valueService: '',
-                categories: windowvar.categoriesJs,
+                categories: windowvar.categoriesJs,                
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
             }                      
         }
@@ -171,7 +171,7 @@ module.exports = {
                     }
                 },
                 validateDescription: function() {
-                    if(this.description != "" && this.description.length >= 50){
+                    if(this.descriptionService != "" && this.descriptionService.length >= 50){
                         return true;
                     }else{
                         return false;
@@ -208,5 +208,38 @@ module.exports = {
             }
         }
         return validate;        
+    },
+    MethodsService: function () {
+        var methodsService = {
+            methods: {
+                previewPhotoService(e) {
+                    var image = new Image();
+                    var reader = new FileReader();
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+                    
+                     reader.onload = (e) => {
+                          this.imageService = e.target.result;
+                     };
+                    reader.readAsDataURL(files[0]);
+                },
+            }
+        }
+        return methodsService;
+    },
+    Filters: function() {
+        var filters = {
+            filters: {
+              truncate: function(string, value) {
+                if(string.length > value){
+                    return string.substring(0, value) + '...';
+                }else{
+                    return string;
+                }       
+              }
+            }
+        }
+        return filters;
     }
 }

@@ -6,14 +6,13 @@
     
     <section class="row">
         <div class="container">
-            <article class='col-md-4'>   	
+            <article class='col-md-4 col-xs-12 col-sm-6'>   	
                 <div class="row">                
                     <div class="col-xs-6 col-xs-offset-3">
                         <avatar :cover='myData.cover'>
 		                    <template scope="props">
 		                    	@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
-	                        </template>
-	                        	
+	                        </template>	                        	
 	                     </avatar>
                     </div>                            
                 </div>
@@ -56,7 +55,7 @@
 			        <button class="col-xs-12 button10 background-white text-center"  @click='hiddenEdit'>Cancelar</button>  
                	</div>
             </article>
-            <article class="col-md-4">
+            <article class="col-md-4 col-xs-12 col-sm-6">
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="title1">Mis Ofertas</h2>

@@ -101,7 +101,7 @@ Radio circle
 }
 
 .form-custom input[type="radio"].circle:checked + label:before {
-	content: "\f00c";
+	content: "\f111";
 	color:#1162A5;
 	border: 1px solid #1162A5;
 

@@ -8,6 +8,7 @@ Vue.component('interest', require('./components/Interest.vue'));
 Vue.component('deactivate', require('./components/DeactivateAccount.vue'));
 Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('avatar', require('./components/ImageProfile.vue'));
+Vue.component('firstservice', require('./components/FirstService.vue'));
 
 var app = new Vue({
 
@@ -17,7 +18,7 @@ var app = new Vue({
         showModal1: false,
     	myData : {}
     },
-    mixins: [helpers.Helpers(), helpers.animationSide()],
+    mixins: [helpers.Helpers(), helpers.animationSide(),helpers.Filters()],
     methods:{
     	setMyData($var, $val){
     		Vue.set(this.myData, $var, $val)

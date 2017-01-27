@@ -15,21 +15,24 @@
 		<div class="content">
 	 
 			<h3 class='title title2'>{{$service->name}}</h3>
-	 
-			<p class='paragraph2'>{{str_limit($service->description, 100)}}</p>
-	 
-			<div class='ranking'>
-
+	 		
+	 		<div class='ranking'>											
+				<div>											
+					@for($cont = 1 ; $cont <= 5 ; $cont++)												
+						@if($cont <= Auth::user()->ranking)
+							<span class='material-icons paragraph8'>grade</span>
+						@else
+							<span class='material-icons paragraph8 star'>fiber_manual_record</span>
+						@endif												
+					@endfor												
+				</div>		
 			</div>
-			
-			<div class='tags'>
-			
-				<a class='button7'>#tag 1</a>
-				
-				<a class='button7'>#tag 2</a>
-				
-				<a class='button7'>#tag 3</a>
-			
+			<div class="space15">										
+			</div>			
+			<p class='paragraph2'>{{str_limit($service->description, 100)}}</p>
+
+			<div class='tags'>										
+				<a class='button7'>#Palabraclave</a>				
 			</div>
 		 
 		</div>
