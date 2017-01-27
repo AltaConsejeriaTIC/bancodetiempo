@@ -76,10 +76,7 @@
         <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" :class='{inactive:validateAll}'>
           Publicar oferta
         </button>
-    </div>
-    <div class="row">
-        <button  class="col-xs-12 button10 background-white text-center"  @click.prevent="$emit('close')">Cancelar</button> 
-    </div>
+    </div>    
 	</div>
 </template>
 <script>
