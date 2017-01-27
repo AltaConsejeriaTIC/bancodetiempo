@@ -22,7 +22,7 @@ class ServiceController extends Controller
    		$method = 'post';
          JavaScript::put([               
                'categoriesJs' => $categories,
-               'avatarJs' => Auth::user()->avatar,
+               'userJs' => Auth::user(),
             ]);   
 
    		return view('services/formService', compact('categories', 'method'));

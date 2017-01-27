@@ -149,13 +149,12 @@ module.exports = {
             data: {
                 imageService:'',
                 serviceName: '',
-                description: '',
+                descriptionService: '',
                 category:'',
                 modalityServiceVirtually : '',
                 modalityServicePresently: '',
                 valueService: '',
-                categories: windowvar.categoriesJs,
-                avatar: windowvar.avatarJs,
+                categories: windowvar.categoriesJs,                
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
             }                      
         }
@@ -172,7 +171,7 @@ module.exports = {
                     }
                 },
                 validateDescription: function() {
-                    if(this.description != "" && this.description.length >= 50){
+                    if(this.descriptionService != "" && this.descriptionService.length >= 50){
                         return true;
                     }else{
                         return false;
@@ -213,7 +212,7 @@ module.exports = {
     MethodsService: function () {
         var methodsService = {
             methods: {
-                previewPhoto(e) {
+                previewPhotoService(e) {
                     var image = new Image();
                     var reader = new FileReader();
                     var files = e.target.files || e.dataTransfer.files;
@@ -221,7 +220,7 @@ module.exports = {
                         return;
                     
                      reader.onload = (e) => {
-                          this.image = e.target.result;
+                          this.imageService = e.target.result;
                      };
                     reader.readAsDataURL(files[0]);
                 },

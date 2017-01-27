@@ -10,15 +10,15 @@
         <label for="descriptionService" class="paragraph2">Descripción de la oferta</label> <i class="fa fa-check-circle done" v-if='validateDescription'></i>
     </div>
     <div class="row">
-        <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12" rows="5" name="descriptionService" id='descriptionService' v-model='description' placeholder="Ej. Ofrezco una hora de una clase de Yoga para principiantes. Podemos acordar un lugar de encuentro cercano al campus de Universidad Nacional. Puedo realizar la sesión los lunes o los miércoles de 6:00 am a 7:00 pm."></textarea>                    
+        <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12" rows="5" name="descriptionService" id='descriptionService' v-model='descriptionService' placeholder="Ej. Ofrezco una hora de una clase de Yoga para principiantes. Podemos acordar un lugar de encuentro cercano al campus de Universidad Nacional. Puedo realizar la sesión los lunes o los miércoles de 6:00 am a 7:00 pm."></textarea>                    
         <label for="descriptionService">250</label>
     </div>
     <div class="row">
         <label for="imageService" class="paragraph2">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>
     </div>
-    <div class="row">
-        <input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 " id='cover' @change='previewPhoto'>
-        <label for="cover" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : image!='', 'load' : image!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
+    <div class="row">    		
+        <input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 " id='imageService' @change='previewPhotoService'>
+        <label for="imageService" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : imageService!='', 'load' : imageService!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
     </div>
     <div class="row">
         <label class="paragraph2">Modalidad</label> <i class="fa fa-check-circle done" v-if='validateModality'></i>
@@ -89,10 +89,27 @@
          data: function () {
             return helpers.Service().data;
         }, 
-        mixins: [helpers.Helpers(),helpers.ValidateService(),helpers.MethodsService(),helpers.Filters()],
-        mounted() {
+        mixins: [helpers.Helpers(),helpers.ValidateService(),helpers.MethodsService()],
+        mounted() {        		
             this.$parent.setMyData('totalChar', 250);
-            this.$parent.setMyData('maxChar', 250);                
-        },    
+            this.$parent.setMyData('maxChar', 250);
+            this.$parent.setMyData('imageService', 'https://graph.facebook.com/v2.8/1580452388635747/picture?width=1920');
+            this.$parent.setMyData('serviceName', 'Titulo de la oferta');
+            this.$parent.setMyData('descriptionService', 'Descripción de la oferta');
+        },            
+	      watch : {
+	        category : function (value) {        	        						 	
+	          this.$parent.setMyData('category', value);
+	        },
+	        imageService: function (value){
+	        	this.$parent.setMyData('imageService', value);
+	        },
+	        serviceName: function (value){
+	        	this.$parent.setMyData('serviceName', value);
+	        },
+	        descriptionService: function (value){
+	        	this.$parent.setMyData('descriptionService', value);
+	        }
+	      }
     }
 </script>

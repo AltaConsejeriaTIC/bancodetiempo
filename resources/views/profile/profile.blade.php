@@ -12,8 +12,7 @@
                         <avatar :cover='myData.cover'>
 		                    <template scope="props">
 		                    	@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
-	                        </template>
-	                        	
+	                        </template>	                        	
 	                     </avatar>
                     </div>                            
                 </div>

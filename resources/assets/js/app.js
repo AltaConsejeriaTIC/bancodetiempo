@@ -18,7 +18,7 @@ var app = new Vue({
         showModal1: false,
     	myData : {}
     },
-    mixins: [helpers.Helpers(), helpers.animationSide()],
+    mixins: [helpers.Helpers(), helpers.animationSide(),helpers.Filters()],
     methods:{
     	setMyData($var, $val){
     		Vue.set(this.myData, $var, $val)
