@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
         'user' => \App\Http\Middleware\UserMiddleware::class,        
         'serviceNull' => \App\Http\Middleware\RedirectIfNotService::class,
         'userService' => \App\Http\Middleware\UserServiceMiddleware::class,        
-        'register' => \App\Http\Middleware\RegisterMiddleware::class,        
+        'register' => \App\Http\Middleware\RegisterMiddleware::class,
+        'PendientRegister' => \App\Http\Middleware\PendientRegisterMiddleware::class,
     ];
 }

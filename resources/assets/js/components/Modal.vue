@@ -7,7 +7,7 @@
                   <button type="button" @click="$emit('close')" class="close circle-shape" data-dismiss="alert">&times;</button>
                 </div>
                 <div class="modal-header-welcome">
-                    <h1 class="title1">Inicia sesión </h1>
+                    <h1 class="title1">¡Ingresa!</h1>
                 </div>
                 <div class="modal-body-welcome">
                   <p class="paragraph2">

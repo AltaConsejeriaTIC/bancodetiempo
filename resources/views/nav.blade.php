@@ -101,8 +101,36 @@
 		</div>
 
  	 </nav>
- 	 
- 	 
+
+@elseif($type == 3)
+
+	<!--Navbar-->
+	<nav class='navbar navbar-default navbar-static-top nav2'>
+		<div class="container">
+			<div class='row'>
+
+				<div class="col-xs-7 col-sm-4 col-md-2">
+					<a href="/" >
+						<img class="icon-bar" src="{{ asset('images/logo.png') }}" alt="Logo" />
+					</a>
+				</div>
+				<div class='hidden-xs hidden-sm col-md-4'>
+					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentras personas, habilidades y más'>
+					<label for="filter1" class=' fa fa-search'></label>
+				</div>
+
+				<div class="text-right" id="container-nav-buttons">
+					<button id="show-modal" @@click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>
+					<button id="show-modal" @@click="showModal = true" class="button4 hidden-xs">Registrarse</button>
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+	</nav>
 <!--/.Navbar-->
 
 

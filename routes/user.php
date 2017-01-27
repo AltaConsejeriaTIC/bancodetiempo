@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->middleware('PendientRegister');
 
 // Route Profile
 Route::get('profile', 'Profile\ProfileController@showProfile');

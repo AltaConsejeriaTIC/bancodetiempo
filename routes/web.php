@@ -14,6 +14,7 @@ use App\Http\Controllers\Profile\ProfileController;
 */
 
 Route::get('/', 'HomeController@indexNotRegister');
+Route::get('/guest', 'GuestHomeController@index');
 Route::get('/terms', 'TermsController@index');
 Route::get('/test', 'TestController@index');
 

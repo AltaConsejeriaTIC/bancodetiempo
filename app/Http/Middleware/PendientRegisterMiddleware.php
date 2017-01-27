@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RegisterMiddleware
+class PendientRegisterMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,13 @@ class RegisterMiddleware
      */
     
     public function handle($request, Closure $next)
-    {      
-        if(Auth::user()->role_id == 1)
-        {         
-       return redirect('/homeAdmin');
+    {
+        if(Auth::user()->role_id == 2)
+        {
+            if(Auth::user()->privacy_policy == 0){
+                return redirect('/guest');
+            }
+
 }
 return $next($request);
 }
