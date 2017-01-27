@@ -6,7 +6,7 @@
     
     <section class="row">
         <div class="container">
-            <article class='col-md-4'>   	
+            <article class='col-md-4 col-xs-12 col-sm-6'>   	
                 <div class="row">                
                     <div class="col-xs-6 col-xs-offset-3">
                         <avatar :cover='myData.cover'>
@@ -55,7 +55,7 @@
 			        <button class="col-xs-12 button10 background-white text-center"  @click='hiddenEdit'>Cancelar</button>  
                	</div>
             </article>
-            <article class="col-md-4">
+            <article class="col-md-4 col-xs-12 col-sm-6">
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="title1">Mis Ofertas</h2>
