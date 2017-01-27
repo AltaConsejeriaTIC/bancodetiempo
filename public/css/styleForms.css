@@ -16,7 +16,7 @@
 
 .form-custom input[type='text']:focus, .form-custom input[type='text']:hover, .form-custom textarea:hover, .form-custom textarea:focus{
 	color: #1164bb !important;
-	border-color: #2D496B !important;
+	border-color: #2D496B;
 }
 
 .form-custom input[type='text']::-webkit-input-placeholder, .form-custom textarea::-webkit-input-placeholder { 
@@ -233,4 +233,14 @@ input.filter + label {
 input.filter::-webkit-input-placeholder { 
 	 font-weight: bold;
 	
+}
+
+input.error, textarea.error, select.error {
+    border:1px solid red !important;
+    border-color:red !important;
+}
+
+input.error:hover, textarea.error:hover, select.error:hover {
+    border:1px solid red !important;
+    border-color:red !important;
 }

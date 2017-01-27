@@ -19,7 +19,7 @@
 	 		<div class='ranking'>											
 				<div>											
 					@for($cont = 1 ; $cont <= 5 ; $cont++)												
-						@if($cont <= Auth::user()->ranking)
+						@if($cont <= $service->user->ranking)
 							<span class='material-icons paragraph8'>grade</span>
 						@else
 							<span class='material-icons paragraph8 star'>fiber_manual_record</span>

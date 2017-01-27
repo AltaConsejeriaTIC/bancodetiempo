@@ -1,11 +1,12 @@
 <template>
     <article class="col-xs-12 col-sm-12 col-md-12">
             <div class="row">
-                <label for="firstName" class="paragraph2">Nombre</label>                
-                <i class="fa fa-check-circle done" v-if='validateFirstName'></i>    
+                <label for="firstName" class="paragraph2">Nombre</label>  
             </div>
-            <div class="row">       
-                <input type="text" name="firstName" required autofocus placeholder="Nombre del usuario" class="col-xs-12" v-model="firstName">
+            <div class="row"> 
+            	      
+                <input type="text" name="firstName" required autofocus placeholder="Nombre del usuario" class="col-xs-12" v-model="firstName" v-validation='["required", "min:3", "max:25", "onlyChar"]'>
+            	
             </div>
 
             <div class="row">

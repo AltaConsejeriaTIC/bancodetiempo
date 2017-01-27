@@ -9,6 +9,8 @@ Vue.component('deactivate', require('./components/DeactivateAccount.vue'));
 Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('avatar', require('./components/ImageProfile.vue'));
 Vue.component('firstservice', require('./components/FirstService.vue'));
+//directives
+Vue.directive('validation', require('./components/validations.vue'));
 
 var app = new Vue({
 
