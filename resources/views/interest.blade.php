@@ -42,7 +42,7 @@
 				<p class="paragraph1 col-xs-12">Elige <strong>tres</strong> categorías de interés para sugerirte ofertas.</p>
 			</div>
 			
-			{!! Form::open(['url' => '/profile/interest', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-custom row', 'role' => 'form']) !!}
+			{!! Form::open(['url' => '/interest', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-custom row', 'role' => 'form']) !!}
 											
 					@foreach($categories as $i => $category)
 						<interest val='{{$category->id}}' title='{{$category->category}}'></interest>	

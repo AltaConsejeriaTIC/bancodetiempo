@@ -33,6 +33,6 @@ Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 
 Route::put('profile/update', 'Profile\ProfileController@editProfile');
 Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
-Route::get("/profile/interest", 'Profile\ProfileController@showFromInterest')->middleware('register');
-Route::post("/profile/interest", 'Profile\ProfileController@saveInterest');
+Route::get("/interest", 'Profile\ProfileController@showFromInterest')->middleware('register');
+Route::post("/interest", 'Profile\ProfileController@saveInterest');
 

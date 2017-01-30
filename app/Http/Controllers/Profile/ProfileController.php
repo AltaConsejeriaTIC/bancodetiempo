@@ -98,7 +98,7 @@ public function  editProfilePicture(Request $request){
 
 		}else{
 
-			return Redirect::to("/profile/interest");
+			return Redirect::to("/interest");
 
 		}
 
@@ -108,7 +108,7 @@ public function  editProfilePicture(Request $request){
 
 		$categories = Category::all('id', 'category');
 
-		return view('profile/interest', compact('categories'));
+		return view('/interest', compact('categories'));
 
 	}
 

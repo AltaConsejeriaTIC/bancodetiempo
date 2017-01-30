@@ -2,7 +2,7 @@
 
 Route::get('/home', 'HomeController@index');
 
-// Route Profile->middleware('PendientRegister');
+// Route Profile
 Route::get('profile', 'Profile\ProfileController@showProfile');
 Route::get('profile/edit', 'Profile\ProfileController@ShowEditProfile');
 
