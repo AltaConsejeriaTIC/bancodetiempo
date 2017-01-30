@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
-
+use App\Models\InterestUser;
 class RedirectIfNotService
 {
     /**
@@ -22,12 +22,18 @@ class RedirectIfNotService
            return redirect('/homeAdmin');
         }
         if(Auth::user()->role_id == 2)
-        {         
-          if(Service::whereUserId(Auth::user()->id)->first())
+        {
+            if (Auth::user()->privacy_policy == 1) {
+                if(InterestUser::whereUserId(Auth::user()->id)->count()>3) {
+                    if (Service::whereUserId(Auth::user()->id)->first()) {
+                        return $next($request);
+                    }
+                    return redirect('/service');
+                }
+                return redirect('profile/interest');
+            }
+            return redirect('/register');
 
-    	       return $next($request);
-
-           return redirect('/service');
         }
 
     }
