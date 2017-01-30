@@ -54,9 +54,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'user' => \App\Http\Middleware\UserMiddleware::class,        
-        'serviceNull' => \App\Http\Middleware\RedirectIfNotService::class,
+        'IncompleteRegister' => \App\Http\Middleware\IncompleteRegisterMiddleware::class,
         'userService' => \App\Http\Middleware\UserServiceMiddleware::class,        
         'register' => \App\Http\Middleware\RegisterMiddleware::class,
-        'PendientRegister' => \App\Http\Middleware\PendientRegisterMiddleware::class,
     ];
 }
