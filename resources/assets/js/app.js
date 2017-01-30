@@ -10,7 +10,8 @@ Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('avatar', require('./components/ImageProfile.vue'));
 Vue.component('firstservice', require('./components/FirstService.vue'));
 //directives
-Vue.directive('validation', require('./components/validations.vue'));
+Vue.directive('validationText', require('./components/validationsText.vue'));
+Vue.directive('validationDate', require('./components/validationsDate.vue'));
 
 var app = new Vue({
 

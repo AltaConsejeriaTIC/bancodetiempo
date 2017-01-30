@@ -235,6 +235,40 @@ input.filter::-webkit-input-placeholder {
 	
 }
 
+.validation {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.validation span {
+    position: absolute;
+    right: 5%;
+	top: 15px;
+}
+
+.validation > input[type="text"], .validation > textarea {
+    width: 100%;
+}
+
+.validation > .fa-check{
+	color:#2cba36;
+}
+
+.validation > .fa-remove{
+	color:#ae3a38;
+}
+
+.validation > .msg {
+    color: #ae3a38;
+    padding: 10px 5px;
+    font-size: 14px;
+}
+
+.validation > .msg br {
+    line-height: 30px;
+}
+
 input.error, textarea.error, select.error {
     border:1px solid red !important;
     border-color:red !important;

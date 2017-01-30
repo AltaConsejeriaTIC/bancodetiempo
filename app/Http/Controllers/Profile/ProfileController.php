@@ -114,8 +114,12 @@ public function  editProfilePicture(Request $request){
 
 	public function saveInterest(Request $request){
 
+		$interestAct = InterestUser::where('user_id', Auth::User()->id);
+			
+		$interestAct->delete();
+		
 		foreach($request->get('interets') as $interets){
-
+			
 			InterestUser::create([
 					'user_id' => Auth::User()->id,
 					'category_id' => $interets
