@@ -6,7 +6,7 @@
      		parent : vnode.context.$root,
      		validation : 0,
      		validationMsg : [],
-     		value : "",
+     		value : b.value,
      		year : b.value.split("-")[0],
      		mounth : b.value.split("-")[1],
      		day : b.value.split("-")[2],
@@ -90,7 +90,6 @@
  			}, 
 			min : function (min){
 				var hoy = new Date() 
-				console.log(hoy.getUTCDate())
 				if(el.children[2].value >= hoy.getFullYear()-min){
 					if(el.children[2].value == hoy.getFullYear()-min && el.children[1].value >= hoy.getMonth()+1){
 						
@@ -121,7 +120,8 @@
 			 	el.children[3].innerHTML = "";
 			 	el.children[3].classList.add("hidden") 			 	
 			 	if(it.validation > 0){
-			 		it.parent.setMyData('validation', false)
+			 		
+			 		el.setAttribute('validation', 'false')
 			 		el.children[0].classList.add("error")
 			 		el.children[1].classList.add("error")
 			 		el.children[2].classList.add("error")
@@ -130,17 +130,21 @@
 			 			el.children[3].innerHTML += it.validationMsg[msg]+"<br>"
 			 		}			 		
 			 	}else{
-			 		it.parent.setMyData('validation', true)
+			 		el.setAttribute('validation', 'true')
+			 		
 			 		el.children[0].classList.remove("error")
 			 		el.children[1].classList.remove("error")
 			 		el.children[2].classList.remove("error")
 			 		
 			 	}
+			 	it.parent.validation()
 			}			
 		}
 			 	
 		eval('it.init_'+b.arg+'()');
 		it.addEvent('change');
+		it.validate();
+		it.sendResponse();
 		  
      }
  }

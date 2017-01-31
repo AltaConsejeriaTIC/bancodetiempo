@@ -51,48 +51,13 @@ module.exports = {
     },
     ValidateUser: function () {
         var validate = {
-            computed: {
-                validateFirstName: function() {
-                    if(this.firstName != "" && this.firstName.length >= 3 && this.expr.test(this.firstName)){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
-                validateLastName: function() {
-                    if(this.lastName != "" && this.lastName.length >= 3 && this.expr.test(this.lastName)){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
-                validateGender: function(){
-                    if(this.gender != "" && (this.gender == 'male' || this.gender == 'female')){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
-                validateDate: function(){
-                    if((this.day != "" && this.day > 0) && (this.mounth != "" && this.mounth > 0) && (this.year != "" && this.year > 0)){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
-                validateAboutMe: function() {
-                    if(this.aboutMe != "" && this.aboutMe.length >= 50 && this.aboutMe.length <= 250){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
+            methods: {
                 validateAll: function() {
-                    if(this.validateFirstName && this.validateLastName && this.validateGender && this.validateDate && this.validateAboutMe && this.terms){
-                        return false;
-                    }else{
-                        return true;
+                	var v = ''
+                    for(var elem = 0; elem < app.getElementsByClassName('validate').length; elem++){
+                    	v += app.getElementsByClassName('validate')[elem].getAttribute('validate')
                     }
+                	return v;
                 },                
             }
         }
@@ -118,6 +83,18 @@ module.exports = {
                          };
                          
                         reader.readAsDataURL(files[0]);
+                    },
+                    validation:function (){
+                    	var v = 0
+                    	if(this.$el.getElementsByClassName('validation').length == 0){v=1}
+                        for(var elem = 0; elem < this.$root.$el.getElementsByClassName('validation').length; elem++){
+                            console.log(this.$el.getElementsByClassName('validation')[elem].getAttribute('validation'))	
+                            if(this.$el.getElementsByClassName('validation')[elem].getAttribute('validation') == 'false'){
+                            	v+=1;
+                            }
+                        }
+                    	this.myData.validation = v;
+                        	
                     }
                 }
             }

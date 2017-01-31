@@ -6,19 +6,21 @@
      		parent : vnode.context.$root,
      		validation : 0,
      		validationMsg : [],
-     		value : "",
+     		value : b.value,
      		expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
 			init_text:function(){
 				el.classList.add("validation")
 				el.innerHTML += '<input type="text" value="'+b.value+'" name="'+b.expression+'" class="'+el.dataset.inputclass+'" />';
 				el.innerHTML += '<span class="fa"></span>';
 				el.innerHTML += '<p class="msg hidden"></p>';
+				it.addEvent('keyup');
 			},
 			init_textarea:function(){
 				el.classList.add("validation")
 				el.innerHTML += '<textarea name="'+b.expression+'" class="'+el.dataset.inputclass+'" rows="'+el.dataset.rows+'">'+b.value+'</textarea>';
 				el.innerHTML += '<span class="fa hidden"></span>';
 				el.innerHTML += '<p class="msg hidden"></p>';
+				it.addEvent('keyup');
 			},
 			addEvent:function(event){
 				el.children[0].addEventListener(event, function () {	
@@ -72,9 +74,11 @@
 			}, 
 			sendResponse : function (){
 			 	el.children[2].innerHTML = "";
-			 	el.children[2].classList.add("hidden") 			 	
+			 	el.children[2].classList.add("hidden") 	
 			 	if(it.validation > 0){
-			 		it.parent.setMyData('validation', false)
+			 		
+			 		el.setAttribute('validation', 'false')
+			 		el.children[0].classList.remove("done")
 			 		el.children[0].classList.add("error")
 			 		el.children[1].classList.add("fa-remove")
 			 		el.children[1].classList.remove("fa-check") 
@@ -83,17 +87,20 @@
 			 			el.children[2].innerHTML += it.validationMsg[msg]+"<br>"
 			 		}			 		
 			 	}else{
-			 		it.parent.setMyData('validation', true)
+			 		el.setAttribute('validation', 'true')
 			 		el.children[0].classList.remove("error")
+			 		el.children[0].classList.add("done")
 			 		el.children[1].classList.remove("fa-remove")
 			 		el.children[1].classList.add("fa-check")
 			 		
 			 	}
+			 	it.parent.validation()
 			}			
 		}
 			 	
 		eval('it.init_'+b.arg+'()');
-		it.addEvent('keyup');
+     	it.validate();
+		it.sendResponse();
 		  
      }
  }

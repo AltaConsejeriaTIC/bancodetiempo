@@ -269,12 +269,21 @@ input.filter::-webkit-input-placeholder {
     line-height: 30px;
 }
 
-input.error, textarea.error, select.error {
-    border:1px solid red !important;
-    border-color:red !important;
+.validation > input.error, .validation >  textarea.error, .validation >  select.error {
+    border:1px solid #ae3a38 !important;
+    border-color:#ae3a38 !important;
 }
 
-input.error:hover, textarea.error:hover, select.error:hover {
-    border:1px solid red !important;
-    border-color:red !important;
+.validation > input.error:hover, textarea.error:hover, select.error:hover {
+    border:1px solid #ae3a38 !important;
+    border-color:#ae3a38 !important;
+}
+
+.validation > .form-custom input[type="radio"].square:checked + label:before{
+	border-color:#2cba36;
+}
+
+.validation > input.done, .validation > textarea.done, .validation > select.done {
+    border:1px solid #2cba36 !important;
+    border-color:#2cba36 !important;
 }

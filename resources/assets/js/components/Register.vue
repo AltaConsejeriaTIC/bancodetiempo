@@ -19,14 +19,9 @@
                 <label for="gender" class="paragraph2">Género</label>        
             </div>            
             <div class="row">
-                <div class='col-xs-6'>
-                    <input type="radio" name="gender" value="male" id="man" class="square" v-model="gender">
-                    <label for="man" class="paragraph2">Hombre</label>                    
-                </div>                                
-                <div class='col-xs-6'>
-                    <input type="radio" name="gender" value="female" id="woman" class="square" v-model="gender">
-                    <label for="woman" class="paragraph2">Mujer</label>
-                </div>                
+                <div class='col-xs-12'>
+                    <div v-validationOptions:radio.required='gender' data-name='gender' data-options='{"Hombre" : "male", "Mujer" : "female", "Indeterminado" : "indeterminate"}' data-inputclass='square' class='col-xs-12 not-padding'></div>                   
+                </div>                                               
             </div>   
 
             <div class="row">
@@ -48,15 +43,15 @@
 			
             <div class="row" v-show='this.profile == 0'>
                 <div class='col-xs-12'>
-                    <input type="checkbox" name="terms" v-model="terms" class="square" id="terms" value="1">                    
-                    <label for="terms">Aceptar los <a href="terms">términos y condiciones</a> de la plataforma</label>
+                    <div v-validationOptions:checkbox.required='terms' data-name='terms' data-options='{"terms" : "1"}' data-label='true' data-labeltext='{"terms" : "Aceptar los <a href=terms>términos y condiciones</a> de la plataforma"}' data-inputclass='square' class='col-xs-12 not-padding'></div>                    
+                    
                 </div>
             </div>
 
             <div class="row">
-                <input type="submit" value='Guardar Cambios' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' v-if='profile == 0'/>
+                <input type="submit" value='Guardar Cambios' class='button1 col-xs-12 background-active-color' :class='{inactive : this.$parent.myData.validation > 0}' v-if='profile == 0'/>
                 
-                <input type="submit" value='Actualizar' class='button1 col-xs-12 background-active-color' :class='{inactive : validateAll}' v-if='profile == 1'/>
+                <input type="submit" value='Actualizar' class='button1 col-xs-12 background-active-color' :class='{inactive : this.$parent.myData.validation > 0}' v-if='profile == 1'/>
                 
             </div>
     </article>
@@ -84,6 +79,7 @@
             this.$parent.setMyData('totalChar', 250)
             this.$parent.setMyData('maxChar', 250)
             this.$parent.setMyData('aboutMe', this.aboutMe)
+            this.$parent.validation()
         },    
     }
 </script>
