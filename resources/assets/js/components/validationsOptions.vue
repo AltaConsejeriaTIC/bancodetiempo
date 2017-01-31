@@ -52,6 +52,24 @@
 				it.addEvent('click');
 				it.boxMsg = el.getElementsByClassName('msg')
 			},
+			init_select:function(){
+				el.classList.add("validation")
+				var select = '<select>'
+				for(var o in it.options){
+					var check = ""
+					if(it.options[o]==it.value){check = 'checked'}
+						
+					select += '<option value="'+it.options[o]+'">'+it.options[o]+'</option>';
+					
+					
+				}
+				
+				select += '</select>';
+				el.innerHTML += select
+				el.innerHTML += '<p class="msg hidden"></p>';
+				it.addEvent('click');
+				it.boxMsg = el.getElementsByClassName('msg')
+			},
 			addEvent:function(event){
 				for(var e = 0 ; e < el.getElementsByTagName('input').length ; e++){
 					
