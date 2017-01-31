@@ -63,7 +63,7 @@ class NetworkAccountsController extends Controller
 					'first_name' => $providerData['first_name'],
 					'last_name' => $providerData['last_name'],
 					'avatar' => $providerData['avatar'],
-					'state_id' => 1,
+					'state_id' => 4,
 					'gender' => $providerData['gender'],
 					'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
 					'aboutMe' => '',

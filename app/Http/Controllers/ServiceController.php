@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use Session;
 use App\Models\Category;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use App\Models\CategoriesService;
@@ -123,6 +124,10 @@ class ServiceController extends Controller
 				'category_id' => $request->input('categoryService'),            
 				'state_id' => 1
 		]);
+
+      $user = User::find(Auth::user()->id);
+      $user->state_id = 4;
+      $user->save();
 
 		$this->uploadCover($request->file('imageService'), $service);
 

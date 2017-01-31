@@ -394,6 +394,7 @@ Banner First Service
     background: url(../images/banner4.jpg);
     background-size: 130% auto;
     background-position: 100% 30%;
+    height: 450px;
 }
 
 /*
@@ -403,8 +404,8 @@ Service box
     position: relative;
     width: 322px;
     max-height: 430px;
-    height: 430px;
-    margin:10px auto;
+    height: 410px;
+    margin: 10px auto;
     background-color:#dedede;
     border: 0.25px solid #a0a0a0;
     max-width: 100%;
