@@ -31,5 +31,8 @@ class StateTableSeeder extends Seeder
         $this->create([
             'state' => 'Bloqueado',
         ]);
+        $this->create([
+            'state' => 'Pendiente',
+        ]);
     }
 }
