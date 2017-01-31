@@ -441,8 +441,7 @@ Service box
 }
 
 .service-box .cover > img {
-    width: 100%;
-    top: -25%;
+    width: 100%;    
     position: absolute;
     left: 0px;
 }
