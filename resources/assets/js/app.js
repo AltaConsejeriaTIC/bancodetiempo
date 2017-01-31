@@ -12,6 +12,7 @@ Vue.component('firstservice', require('./components/FirstService.vue'));
 //directives
 Vue.directive('validationText', require('./components/validationsText.vue'));
 Vue.directive('validationDate', require('./components/validationsDate.vue'));
+Vue.directive('validationOptions', require('./components/validationsOptions.vue'));
 
 var app = new Vue({
 
@@ -19,7 +20,7 @@ var app = new Vue({
     data:{
     	showModal: false,
         showModal1: false,
-    	myData : {}
+    	myData : {'validation' : 1}
     },
     mixins: [helpers.Helpers(), helpers.animationSide(),helpers.Filters()],
     methods:{

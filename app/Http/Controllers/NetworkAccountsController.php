@@ -60,6 +60,7 @@ class NetworkAccountsController extends Controller
 
 			$user = User::create([
 					'email' => $providerData['email'],
+					'email2' => $providerData['email'],
 					'first_name' => $providerData['first_name'],
 					'last_name' => $providerData['last_name'],
 					'avatar' => $providerData['avatar'],

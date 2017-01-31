@@ -333,10 +333,6 @@ Helpers
     height: 100%;
 }
 
-.done{
-	color:#2c9c36 !important;
-	font-size:18px;
-}
 
 /*
 RedesSociales
@@ -442,8 +438,7 @@ Service box
 }
 
 .service-box .cover > img {
-    width: 100%;
-    top: -25%;
+    width: 100%;    
     position: absolute;
     left: 0px;
 }
