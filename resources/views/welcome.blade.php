@@ -94,7 +94,7 @@
 		<div class="container">
 				
 				<div class='row'>
-					<h2 class='title1 text-white text-center col-xs-12 col-md-12'>¡Únete!</h2>
+					<h2 class='title1 text-white text-center col-xs-12 col-md-12'>¡ÚNETE!</h2>
 				</div>
 				
 				<div class='row'>
@@ -105,7 +105,6 @@
 					<div class="col-xs-12 col-md-4" >
 						<a href="{{ url('loginRedes/facebook') }}" class="col-xs-12 col-sm-12 col-md-12 button6 social-button facebook">Regístrate con Facebook <i class="fa fa-facebook"></i></a>
 					</div>
-
 
 					<div class="col-xs-12 col-md-4" >
 						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button google"> Regístrate con          Google  <i class="fa fa-google"></i></a>

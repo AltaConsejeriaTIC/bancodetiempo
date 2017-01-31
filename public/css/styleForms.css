@@ -215,10 +215,11 @@ input[type=checkbox].boxCheck:checked + label i {
 }
 
 input.filter {
-    height: 35px;
+    height: 36px;
     border: none;
+    width: 332px;
     border-radius: 4px;
-    padding-left:30px;
+    padding-left: 30px;
     color: #2c3e50;
 }
 
