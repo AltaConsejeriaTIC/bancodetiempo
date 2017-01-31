@@ -90,7 +90,7 @@
         mounted() {        		
             this.$parent.setMyData('totalChar', 250);
             this.$parent.setMyData('maxChar', 250);
-            this.$parent.setMyData('imageService', 'https://graph.facebook.com/v2.8/1580452388635747/picture?width=1920');
+            this.$parent.setMyData('imageService', 'images/previewService.jpg');
             this.$parent.setMyData('serviceName', 'Titulo de la oferta');
             this.$parent.setMyData('descriptionService', 'Descripción de la oferta');
         },            

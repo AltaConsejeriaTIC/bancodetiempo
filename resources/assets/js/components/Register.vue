@@ -16,6 +16,13 @@
             </div>
 
             <div class="row">
+                <label for="lastName" class="paragraph2" >Correo electrónico de contacto</label>          
+            </div>
+            <div class="row">       
+                <div v-validationText:text.required.email='email2' data-name='email2' data-inputclass='t' class='col-xs-12 not-padding'></div>  
+            </div>
+
+            <div class="row">
                 <label for="gender" class="paragraph2">Género</label>        
             </div>            
             <div class="row">
@@ -27,7 +34,6 @@
 
             <div class="row">
                 <label for="birthdate" class="paragraph2">Fecha de nacimiento</label>                
-                
             </div>         
             <div class="row">       
                 <div v-validationDate:date.required.min:18='birthDate' data-name='fecha de nacimiento' class='col-xs-12 not-padding'></div>
@@ -76,7 +82,7 @@
         		this.$parent.putMyData('aboutMe', this.aboutMe)
         	}
         },
-        mounted() {
+        mounted() {            
             this.$parent.setMyData('totalChar', 250)
             this.$parent.setMyData('maxChar', 250)
             this.$parent.setMyData('aboutMe', this.aboutMe)

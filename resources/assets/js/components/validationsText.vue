@@ -8,6 +8,7 @@
      		validationMsg : [],
      		value : b.value,
      		expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
+     		exprEmail: new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i),
 			init_text:function(){
 				el.classList.add("validation")
 				el.innerHTML += '<input type="text" value="'+b.value+'" name="'+b.expression+'" class="'+el.dataset.inputclass+'" />';
@@ -71,7 +72,13 @@
 			 		it.validationMsg.push("El "+el.dataset.name+" no debe contener números, caracteres especiales o signos de puntuación.");
 			 	}
 			 	
-			}, 
+			},
+			email : function(){				
+			 	if(!it.exprEmail.test(it.value)){
+			 		it.validation += 1;
+			 		it.validationMsg.push("El formato del correo electrónico no es válido.");
+			 	}
+			},
 			sendResponse : function (){
 			 	el.children[2].innerHTML = "";
 			 	el.children[2].classList.add("hidden") 	

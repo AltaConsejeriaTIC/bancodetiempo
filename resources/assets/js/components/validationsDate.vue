@@ -11,8 +11,7 @@
      		mounth : b.value.split("-")[1],
      		day : b.value.split("-")[2],
      		expr : new RegExp('^[0-9]{2,4}-[0-9]{1,2}-[0-9]{1,2}$'),
-     		init_date:function(){
-     			console.log()
+     		init_date:function(){     			
 				el.classList.add("validation")
 				var day = '<select name="day" class="col-xs-3"><option value="">Dia</option>';
 				for(var d = 1 ; d <= 31;d++){

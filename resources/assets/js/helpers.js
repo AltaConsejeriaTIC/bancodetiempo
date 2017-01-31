@@ -39,6 +39,8 @@ module.exports = {
                 mounth: parseInt(windowvar.mounthJs),
                 year: parseInt(windowvar.yearJs),
                 aboutMe: windowvar.userJs["aboutMe"],
+                email: windowvar.userJs["email"],
+                email2: windowvar.userJs["email2"],
                 terms: terms,
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
                 exprNum: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*$'),
@@ -87,8 +89,7 @@ module.exports = {
                     validation:function (){
                     	var v = 0
                     	if(this.$el.getElementsByClassName('validation').length == 0){v=1}
-                        for(var elem = 0; elem < this.$root.$el.getElementsByClassName('validation').length; elem++){
-                            console.log(this.$el.getElementsByClassName('validation')[elem].getAttribute('validation'))	
+                        for(var elem = 0; elem < this.$root.$el.getElementsByClassName('validation').length; elem++){                            
                             if(this.$el.getElementsByClassName('validation')[elem].getAttribute('validation') == 'false'){
                             	v+=1;
                             }
