@@ -73,7 +73,7 @@
                 <div class="row">
                     @foreach($services as $key => $service)                  
                       <div class='col-md-6 col-xs-12 col-sm-6'>                            
-                          @include('partial/serviceBox', array("service" => $service))                                            
+                          @include('partial/serviceBox', array("service" => $service, "edit" => "1"))                                            
                       </div>                      
                     @endforeach                    
                 </div>

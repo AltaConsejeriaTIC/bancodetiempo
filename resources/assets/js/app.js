@@ -9,6 +9,7 @@ Vue.component('deactivate', require('./components/DeactivateAccount.vue'));
 Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('avatar', require('./components/ImageProfile.vue'));
 Vue.component('firstservice', require('./components/FirstService.vue'));
+Vue.component('editservice', require('./components/EditService.vue'));
 //directives
 Vue.directive('validationText', require('./components/validationsText.vue'));
 Vue.directive('validationDate', require('./components/validationsDate.vue'));
@@ -20,6 +21,7 @@ var app = new Vue({
     data:{
     	showModal: false,
         showModal1: false,
+        showModal2: false,
     	myData : {'validation' : 1}
     },
     mixins: [helpers.Helpers(), helpers.animationSide(),helpers.Filters()],
