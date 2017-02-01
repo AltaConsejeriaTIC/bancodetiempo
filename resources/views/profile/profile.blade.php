@@ -79,9 +79,7 @@
                       </div>                      
                     @endforeach                    
                 </div>
-            </article>
-
-	          
+            </article>	          
     	</div>
     </section>  
 

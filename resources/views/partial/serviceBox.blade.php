@@ -2,10 +2,11 @@
 	<div class='service-box'>
 		
 
-	@if(isset($edit))
-	
-		<editservice v-if="this.showModal2" @close="showModal1 = false"></editservice>
-		<button id="show-modal" @click="showModal2 = true" class="icons-button"><i class="fa fa-pencil"></i></button>		
+	@if(isset($edit))		
+		<button class="icons-button" data-toggle="modal" data-target="#EditService"><i class="fa fa-pencil"></i></button>		
+		{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+			<editservice></editservice>		
+		{!!Form::close()!!}
 	@endif
 		<span class='category'>{{$service->category->category}}</span>
 	 
