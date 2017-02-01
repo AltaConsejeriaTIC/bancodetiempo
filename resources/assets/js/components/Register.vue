@@ -27,7 +27,8 @@
             </div>            
             <div class="row">
                 <div class='col-xs-12'>
-                    <div v-validationOptions:radio.required='gender' data-name='gender' data-options='{"Hombre" : "male", "Mujer" : "female", "Indeterminado" : "indeterminate"}' data-inputclass='square' class='col-xs-12 not-padding'></div>                   
+                    <div v-validationOptions:radio.required='gender' data-name='gender' data-options='{"Hombre" : "male", "Mujer" : "female", "Indeterminado" : "indeterminate"}' data-inputclass='square' class='col-xs-12 not-padding'></div>  
+                    
                 </div>                                               
             </div>   
 
