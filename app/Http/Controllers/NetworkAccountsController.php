@@ -13,6 +13,7 @@ use App\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use JavaScript;
+use Illuminate\Support\Facades\Session;
 
 class NetworkAccountsController extends Controller
 {
@@ -34,6 +35,8 @@ class NetworkAccountsController extends Controller
 
 		$user = User::findOrFail(Auth::user()->id);
 
+		Session::put('registerPass1', 'actual');
+		
 		JavaScript::put([
 			'userJs'=> $user,			
 			'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
@@ -77,6 +80,8 @@ class NetworkAccountsController extends Controller
 
 		auth()->login($user);
 
+		
+		
 		return true;
 
 	}

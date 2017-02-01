@@ -1,6 +1,3 @@
-.form-custom .row{
-	margin-bottom: 12px;
-}
 
 .form-custom input[type='text'], .form-custom textarea{
 	
@@ -62,7 +59,7 @@ Radio square
     height: 20px;
     border: 1px solid #bdbdbd;
     float: left;
-    margin-right: 15px;
+    margin-right: 5px;
     border-radius: 4px;
     font-size: 12px;
     padding: 2px 3px;
@@ -94,7 +91,7 @@ Radio circle
     height: 20px;
     border: 1px solid #bdbdbd;
     float: left;
-    margin-right: 15px;
+    margin-right: 5px;
     border-radius: 50%;
     font-size: 12px;
     padding: 2px 3px;
@@ -129,7 +126,7 @@ checkbox square
     height: 20px;
     border: 1px solid #bdbdbd;
     float: left;
-    margin-right: 15px;
+    margin-right: 5px;
     border-radius: 4px;
     font-size: 12px;
     padding: 2px 3px;
@@ -153,9 +150,11 @@ input[type=checkbox].boxCheck + label {
     width: 100%;
     display: block;
     padding: 25px 20px;
-    color: #2c3e50;
-    border: solid 1px #2c3e50;
+    color: #0f6784;
+    border: solid 1px #0f6784;
     margin: 5px 0px;
+	font-weight: bold;
+	background:#fff;
 }
 
 input[type=checkbox].boxCheck + label i {
@@ -163,7 +162,7 @@ input[type=checkbox].boxCheck + label i {
 }
 
 input[type=checkbox].boxCheck:checked + label {
-    background-color: #2c3e50;
+    background-color: #0f6784;
     color: #fff;
 }
 
@@ -240,6 +239,7 @@ input.filter::-webkit-input-placeholder {
     position: relative;
     display: block;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .validation span {
@@ -262,8 +262,9 @@ input.filter::-webkit-input-placeholder {
 
 .validation > .msg {
     color: #ae3a38;
-    padding: 10px 5px;
+    padding: 10px 5px 0px 5px;
     font-size: 14px;
+    margin-bottom: 0px;
 }
 
 .validation > .msg br {

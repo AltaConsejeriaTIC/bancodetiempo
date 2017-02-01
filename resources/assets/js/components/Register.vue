@@ -1,51 +1,55 @@
 <template>
-    <article class="col-xs-12 col-sm-12 col-md-12">
+    <article class="col-xs-10 col-xs-offset-1 col-sm-12 col-md-12">
             <div class="row">
-                <label for="firstName" class="paragraph2">Nombre</label>  
+                <label for="firstName" class="paragraph10">Nombre</label>  
             </div>
             <div class="row"> 
-				<div v-validationText:text.required.min:3.max:25.onlyChar='firstName' data-name='nombre' class='col-xs-12 not-padding'></div>
-				    
+				<div v-validationText:text.required.min:3.max:25.onlyChar='firstName' data-name='nombre' data-placeholder="Nombre" class='col-xs-12 not-padding'></div>
+				
             </div>
 
             <div class="row">
-                <label for="lastName" class="paragraph2">Apellido</label>          
+                <label for="lastName" class="paragraph10">Apellido</label>          
             </div>
             <div class="row">       
-                <div v-validationText:text.required.min:3.max:25.onlyChar='lastName' data-name='apellido' data-inputclass='t' class='col-xs-12 not-padding'></div>  
+                <div v-validationText:text.required.min:3.max:25.onlyChar='lastName' data-name='apellido' data-placeholder="Apellido" data-inputclass='t' class='col-xs-12 not-padding'></div>  
+                
             </div>
 
             <div class="row">
-                <label for="lastName" class="paragraph2" >Correo electrónico de contacto</label>          
+                <label for="lastName" class="paragraph10" >Correo electrónico</label>          
             </div>
             <div class="row">       
                 <div v-validationText:text.required.email='email2' data-name='email2' data-inputclass='t' class='col-xs-12 not-padding'></div>  
+                
             </div>
 
             <div class="row">
-                <label for="gender" class="paragraph2">Género</label>        
+                <label for="gender" class="paragraph10">Género</label>        
             </div>            
             <div class="row">
-                <div class='col-xs-12'>
-                    <div v-validationOptions:radio.required='gender' data-name='gender' data-options='{"Hombre" : "male", "Mujer" : "female", "Indeterminado" : "indeterminate"}' data-inputclass='square' class='col-xs-12 not-padding'></div>  
-                    
-                </div>                                               
+                
+            	<div v-validationOptions:radio.required='gender' data-name='gender' data-options='{"Hombre" : "male", "Mujer" : "female", "Indeterminado" : "indeterminate"}' data-inputclass='square' class='col-xs-12 not-padding'></div>  
+            	
+                                                             
             </div>   
 
             <div class="row">
-                <label for="birthdate" class="paragraph2">Fecha de nacimiento</label>                
+                <label for="birthdate" class="paragraph10">Fecha de nacimiento</label>                
             </div>         
             <div class="row">       
                 <div v-validationDate:date.required.min:18='birthDate' data-name='fecha de nacimiento' class='col-xs-12 not-padding'></div>
+                
                 <input type='hidden' name='birthDate' :value='birthDate'>
             </div>
 
             <div class="row">
-                <label for="aboutMe" class="paragraph2">Acerca de mi</label>
+                <label for="aboutMe" class="paragraph10">Acerca de mi</label>
                 
             </div>
             <div class="row">
-                <div v-validationText:textarea.required.min:50.max:250='aboutMe' data-name='acerca de mi' data-rows='5' class='col-xs-12 not-padding'></div>  
+                <div v-validationText:textarea.required.min:50.max:250='aboutMe' data-name='acerca de mi' data-rows='5' data-placeholder='Ej. ¡Hola! Soy diseñador gráfico, tengo 25 años. Me encanta la fotografía, el teatro, el cine y la música…' class='col-xs-12 not-padding'></div> 
+                
             </div>
 			
             <div class="row" v-show='this.profile == 0'>
@@ -56,7 +60,7 @@
             </div>
 
             <div class="row">
-                <input type="submit" value='Guardar Cambios' class='button1 col-xs-12 background-active-color' :class='{inactive : this.$parent.myData.validation > 0}' v-if='profile == 0'/>
+                <input type="submit" value='Siguiente' class='button1 col-xs-12 background-active-color' :class='{inactive : this.$parent.myData.validation > 0}' v-if='profile == 0'/>
                 
                 <input type="submit" value='Actualizar' class='button1 col-xs-12 background-active-color' :class='{inactive : this.$parent.myData.validation > 0}' v-if='profile == 1'/>
                 

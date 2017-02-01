@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class='profilePhoto'>
 		<slot :cover="cover"></slot>
 	</div>
 </template>

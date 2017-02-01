@@ -26,6 +26,8 @@ class ServiceController extends Controller
                'userJs' => Auth::user(),
             ]);   
 
+         Session::put('registerPass3', 'actual');
+         
    		return view('services/formService', compact('categories', 'method'));
 
    }
@@ -65,6 +67,8 @@ class ServiceController extends Controller
    			$categories->find($selected->category_id)->setAttribute("selected", "selected");
    		}
 
+   		
+   		
    		$method = 'put';
 
    		return view('services/formService', compact('categories', 'service', 'method'));
@@ -132,7 +136,7 @@ class ServiceController extends Controller
 		$this->uploadCover($request->file('imageService'), $service);
 
 		Session::flash('success','Has creado correctamente tu servicio');
-		
+		Session::put('registerPass3', 'done');
   		return redirect('profile');
 
    }

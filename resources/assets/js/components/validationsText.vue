@@ -11,14 +11,14 @@
      		exprEmail: new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i),
 			init_text:function(){
 				el.classList.add("validation")
-				el.innerHTML += '<input type="text" value="'+b.value+'" name="'+b.expression+'" class="'+el.dataset.inputclass+'" />';
+				el.innerHTML += '<input type="text" value="'+b.value+'" name="'+b.expression+'" class="'+el.dataset.inputclass+'" placeholder="'+el.dataset.placeholder+'" />';
 				el.innerHTML += '<span class="fa"></span>';
 				el.innerHTML += '<p class="msg hidden"></p>';
 				it.addEvent('keyup');
 			},
 			init_textarea:function(){
 				el.classList.add("validation")
-				el.innerHTML += '<textarea name="'+b.expression+'" class="'+el.dataset.inputclass+'" rows="'+el.dataset.rows+'">'+b.value+'</textarea>';
+				el.innerHTML += '<textarea name="'+b.expression+'" class="'+el.dataset.inputclass+'" rows="'+el.dataset.rows+'"  placeholder="'+el.dataset.placeholder+'">'+b.value+'</textarea>';
 				el.innerHTML += '<span class="fa hidden"></span>';
 				el.innerHTML += '<p class="msg hidden"></p>';
 				it.addEvent('keyup');

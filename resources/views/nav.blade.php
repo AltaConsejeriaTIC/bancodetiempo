@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-0">
+				<div class="col-xs-9  col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-0">
 					<a href="/" >
 						<img src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
@@ -16,6 +16,7 @@
 			        </div>
 				@elseif((!Auth::guest()))
 					<a class="hidden-xs col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5  text-right" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+					<a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1' href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></a>
 					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
 					</form>

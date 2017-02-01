@@ -197,7 +197,7 @@ Paragraphs
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px !important;
 	color: #2c3e50 !important; 
-  word-wrap: break-word;  
+	word-wrap: break-word;  
 }
 
 .paragraph3{
@@ -233,7 +233,11 @@ Paragraphs
 		color:#2c3e50 !important;
   	word-wrap: break-word;
 	}
-
+.paragraph10{
+	font-size:14px !important;
+	color:#90a1b5 !important;
+	word-wrap:break-word;
+}
 /*
 Links
 */
@@ -258,6 +262,7 @@ Helpers
 	color:#fff !important;
 }
 
+
 .text-bold{
 	font-weight: bold;
 }
@@ -269,7 +274,9 @@ Helpers
 
 .not-padding{
 	padding:0px !important;
-	margin: 0px !important;
+}
+.not-padding-bottom{
+	padding-bottom:0px !important;
 }
 .not-margin{
 	margin: 0px !important;
@@ -281,6 +288,12 @@ Helpers
 .not-margin-y{
 	margin-top:0px !important;
 	margin-bottom:0px !important;
+}
+.not-margin-top{
+	margin-top:0px !important;
+}
+.margin-auto{
+	margin:auto !important;
 }
 .background-active-green-color{
 	background-color: #2cba36 !important;
@@ -333,6 +346,62 @@ Helpers
     height: 100%;
 }
 
+.passNum {
+    border: 1px solid #90a1b5;
+    width: 25px;
+    display: block;
+    height: 25px;
+    border-radius: 50%;
+    padding-top: 2px;
+    color: #90a1b5;
+    font-weight: bold;
+    position: relative;
+    margin: auto;
+    font-size: 12px;
+}
+
+.pass, .pass > span, .pass > p, .pass > a, .pass > span:before{
+	
+	color: #90a1b5;
+	cursor:pointer
+}
+
+.passActive > span {
+    border-color: #0f6784;
+    color: #fff;
+    background: #0f6784;
+}
+
+.passDone > span {
+    border-color: #2cba36;
+    color: #fff;
+    background: #2cba36;
+    text-indent: -1000px;
+}
+
+.passDone > span:before {
+    content: "\f00c";
+    display: block;
+    text-indent: initial;
+    font-family: FontAwesome;
+    color: #fff;
+    font-weight: 100;
+    padding-top: 2px;
+}
+
+.passActive > p{
+	color: #0f6784;
+}
+
+.passSpace:before {
+    content: "";
+    display: block;
+    width: 30px;
+    border-top: 2px solid #90a1b5;
+    top: 13px;
+    position: relative;
+    margin: auto;
+}
 
 /*
 RedesSociales

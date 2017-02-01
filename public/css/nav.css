@@ -10,9 +10,17 @@
     left: 0px;
 }
 
+.nav1 img{
+	max-width:100%;
+}
+
 .nav1 a{
   font-size: 16px;
 	color: #fff;
+}
+
+.nav1 .icon {
+    font-size: 28px;
 }
 
 /* --------------------bar user login---------------------*/
@@ -20,6 +28,10 @@
     background-color: #001738 !important;
     padding-top: 10px;
     padding-bottom: 5px;
+}
+
+.nav2 img{
+	max-width:100%;
 }
 
 .iconbar2{
