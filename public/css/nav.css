@@ -38,9 +38,42 @@
 	    max-width:90%;
 	}
 }
+
+input.filter {
+    height: 36px;
+    border: none;
+    width: 284px;
+    border-radius: 4px;
+    padding-left: 30px;
+    color: #2c3e50;
+}
+
+input.filter + label {
+    position: relative;
+    top: -27px;
+    left: 10px;
+    font-size: 14px !important;
+    color: #b7bab7 !important;
+}
+
+input.filter::-webkit-input-placeholder {
+    color: #b7bab7;
+    font-size: 12px !important;
+}
+.newservice{
+    height: 36px;
+    width: 154px;
+}
+.iconmenu{
+    padding-left:10px;
+    font-size: 24px !important;
+}
+.bolsa-de-tiempo{
+    padding-left:28px;
+}
 .moneda{
-    height: 30px;
-    width:30px;
+    height: 25px;
+    width:25px;
 }
 .textpadding{
     padding-left: 5px;

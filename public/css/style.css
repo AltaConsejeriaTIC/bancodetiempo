@@ -4,7 +4,7 @@
 @import url('font-awesome.css');
 /*-----------------Fonts--------------------*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-/*-----------------Fonts--------------------*/
+
 *{
 	transition:all 0.7s;
 }
@@ -253,7 +253,9 @@ Links
 /*
 Helpers
 */
-
+.icon-nav{
+	font-size: 25px;
+}
 .text-white{
 	color:#fff !important;
 }
@@ -303,9 +305,7 @@ Helpers
 	align-items:center;
 }
 
-.icon-nav{
-	font-size: 35px;
-}
+
 
 .space{
 	display: block;
@@ -505,7 +505,8 @@ Box register home
 notificacion icon
 */
 .notification {
-    position: relative;
+	position: relative;
+	right: 38px;
 }
 
 .notification > span {
@@ -619,11 +620,8 @@ Media Querys
 		font-size: 17px !important;
 	}
 
-	.paragraph8{
+	.paragraph8 {
 		font-size: 8px !important;
-	}
-	.icon-nav{
-		font-size: 25px;
 	}
 	
 }
@@ -665,3 +663,4 @@ Animations
   padding: 10px 15px;
   border-radius: 5px;
 }
+/*-----------------Imports--------------------*/

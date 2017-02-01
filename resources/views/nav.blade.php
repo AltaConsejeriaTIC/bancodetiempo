@@ -37,22 +37,24 @@
 						<img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" />
 					</a>
 				</div>
-				<div class='hidden-xs hidden-sm col-md-4'>
-					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentras personas, habilidades y más'>
-					<label for="filter1" class=' fa fa-search'></label>
+				<div class='hidden-xs hidden-sm col-md-3'>
+					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentras personas, habilidades y más ... '>
+					<label for="filter1" class=" fa fa-search "></label>
 				</div>
 				
-				<div class="hidden-xs col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-1 not-padding text-right">
+				<div class="hidden-xs col-md-5 col-md-offset-0 col-sm-4 col-sm-offset-1 not-padding not-margin text-right">
 					<div class="flex-center">
-						<div class="col-lg-6 col-md-10 col-sm-10 not-padding text-left">
-							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-3 col-sm-offset-3 col-md- col-md-offset-2"></image>
-							<p class="paragraph4 textpadding col-md-9 col-sm-7 text-white">Bolsa de tiempo:<br>8 Horas</p>
+						<div class="col-md-8 col-sm-8 not-margin bolsa-de-tiempo text-left">
+							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-2"></image>
+							<p class="paragraph4 textpadding col-md-10 col-sm-7 text-white">Bolsa de tiempo:<br>8 Horas</p>
 						</div>
 						<div class="col-md-2 col-sm-2 not-padding ">
 							<i class="fa fa-envelope icon-nav notification"><span>2</span></i>
 						</div>
 						<div class="col-md-5 col-sm-5 hidden-xs hidden-sm hidden-md text-center">
-							<a href="" class="button9">Nueva oferta</a>				
+							<button id="show-modal" @click="showModal1 = true" class="button9 newservice">
+							<p>Nueva oferta</p>
+							</button>
 						</div>
 					</div>
 					
@@ -63,8 +65,8 @@
 						<div class="col-xs-3 col-xs-offset-2 not-padding">
 							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '1px'))
 						</div>
-						<div class='col-xs-4 not-padding'>
-							<span class='col-xs-12 not-padding paragraph4  text-white'>{{Auth::user()->first_name}}<i class='fa fa-angle-down'></i></span>	
+						<div class='col-xs-9 not-padding'>
+							<span class='col-xs-12 not-padding paragraph4  text-white'>{{Auth::user()->first_name}}<i class=' iconmenu fa fa-angle-down'></i></span>
 						</div>					
 						
 						<ul class="dropdown-menu">	

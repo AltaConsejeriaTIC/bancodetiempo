@@ -214,27 +214,6 @@ input[type=checkbox].boxCheck:checked + label i {
     
 }
 
-input.filter {
-    height: 36px;
-    border: none;
-    width: 332px;
-    border-radius: 4px;
-    padding-left: 30px;
-    color: #2c3e50;
-}
-
-input.filter + label {
-    position: relative;
-    top: -30px;
-    font-size: 25px;
-    left: 5px;
-    color: #2c3e50;
-}
-
-input.filter::-webkit-input-placeholder { 
-	 font-weight: bold;
-	
-}
 
 .validation {
     position: relative;
