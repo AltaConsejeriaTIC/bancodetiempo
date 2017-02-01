@@ -1,6 +1,12 @@
 @if(isset($service))
 	<div class='service-box'>
-	 
+		
+
+	@if(isset($edit))
+	
+		<editservice v-if="this.showModal2" @close="showModal1 = false"></editservice>
+		<button id="show-modal" @click="showModal2 = true" class="icons-button"><i class="fa fa-pencil"></i></button>		
+	@endif
 		<span class='category'>{{$service->category->category}}</span>
 	 
 		<div class="cover">

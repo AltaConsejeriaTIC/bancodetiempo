@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link href="{{ asset('/css/styleUser.css') }}" rel="stylesheet">
 @section('content')
 	<modal v-if="this.showModal" @@close="showModal = false">
 	</modal>
@@ -20,7 +19,7 @@
 
 						<div class='col-md-4 col-xs-12 col-sm-6'>
 
-							@include('partial/serviceBox', array("service" => $service))
+							@include('partial/serviceBox', array("service" => $service, "edit" => "0"))  
 
 						</div>
 

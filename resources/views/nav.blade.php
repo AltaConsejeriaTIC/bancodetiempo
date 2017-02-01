@@ -34,7 +34,7 @@
 
 				<div class="col-xs-7 col-sm-4 col-md-2">
 					<a href="/" >
-						<img class="icon-bar" src="{{ asset('images/logo.png') }}" alt="Logo" />
+						<img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" />
 					</a>
 				</div>
 				<div class='hidden-xs hidden-sm col-md-4'>
@@ -45,8 +45,8 @@
 				<div class="hidden-xs col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-1 not-padding text-right">
 					<div class="flex-center">
 						<div class="col-lg-6 col-md-10 col-sm-10 not-padding text-left">
-							<i class="fa fa-clock-o not-padding icon-nav text-center col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2"></i>
-							<p class="paragraph4 not-padding  col-md-7 col-sm-7 text-white">Bolsa de tiempo:<br>8 Horas</p>
+							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-3 col-sm-offset-3 col-md- col-md-offset-2"></image>
+							<p class="paragraph4 textpadding col-md-9 col-sm-7 text-white">Bolsa de tiempo:<br>8 Horas</p>
 						</div>
 						<div class="col-md-2 col-sm-2 not-padding ">
 							<i class="fa fa-envelope icon-nav notification"><span>2</span></i>
@@ -60,10 +60,10 @@
 				
 				<div class='col-xs-5 col-sm-5 col-sm-3 col-md-2 text-right dropdown'>
 					<a class='dropdown-toggle flex-center' data-toggle="dropdown">
-						<div class="col-xs-4 col-xs-offset-2 not-padding">
-							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '5px'))
+						<div class="col-xs-3 col-xs-offset-2 not-padding">
+							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '1px'))
 						</div>
-						<div class='col-xs-6 not-padding'>
+						<div class='col-xs-4 not-padding'>
 							<span class='col-xs-12 not-padding paragraph4  text-white'>{{Auth::user()->first_name}}<i class='fa fa-angle-down'></i></span>	
 						</div>					
 						
@@ -111,7 +111,7 @@
 
 				<div class="col-xs-7 col-sm-4 col-md-2">
 					<a href="/" >
-						<img class="icon-bar" src="{{ asset('images/logo.png') }}" alt="Logo" />
+						<img class="icon-bar" src="{{ asset('images/logo2.png') }}" alt="Logo" />
 					</a>
 				</div>
 				<div class='hidden-xs hidden-sm col-md-4'>
@@ -121,7 +121,7 @@
 
 				<div class="text-right" id="container-nav-buttons">
 					<button id="show-modal" @@click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>
-					<button id="show-modal" @@click="showModal = true" class="button4 hidden-xs">Registrarse</button>
+					<button id="show-modal" @@click="showModal = true" class="button9 buttonStart hidden-xs">Registrarse</button>
 				</div>
 
 			</div>
