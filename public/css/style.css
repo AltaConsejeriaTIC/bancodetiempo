@@ -10,7 +10,7 @@
 }
 
 body{
-	background-color:#fff !important;
+	background-color:#f2f5f6 !important;
 	font-family: 'Open Sans', sans-serif;
 }
 a{
@@ -371,9 +371,7 @@ Banner Home
 Banner Register
 */
 .bannerRegister{
-	background: url(../images/banner3.jpg);
-	background-size: 130% auto;
-    background-position: 100% 30%;
+	background: url(../images/banner.png);
 }
 
 /*
