@@ -10,7 +10,7 @@
 				<div class='row'>		
 					<div class='col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3'>
 						<div class="col-xs-12 col-sm-12">
-							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id))							
+							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#0f6784', 'borderSize' => '3px'))							
 						</div>				
 					</div>	
 				</div>			
@@ -35,6 +35,14 @@
 		</div>
 	</section>
 
+<section  id='pass' class='not-padding-bottom'>
+		<div class="container">
+			<div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
+				@include('partial/pass', array("pass1" => Illuminate\Support\Facades\Session::get('registerPass1'), "pass2" => Illuminate\Support\Facades\Session::get('registerPass2'), "pass3" => Illuminate\Support\Facades\Session::get('registerPass3')))
+				
+			</div>
+		</div>
+</section>
 	 
 		<section class='row' id='service'>	
 			<div class="container">	
@@ -48,7 +56,7 @@
 						</div>	
 					</div>			
 					<div class="row">
-						<div class='not-padding col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3'>
+						<div class='not-padding col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
 							<h2 class='title1 text-center col-xs-12 col-sm-12'>{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
 						</div>
 					</div>		
@@ -96,9 +104,9 @@
 				</article>
 
 				<article class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0">	
-					<div class="row col-xs-12">					
-	          <h1 class="paragraph1 text-bold">¿Qué deseas ofrecer?</h1>
-	        </div>		
+					<div class="col-xs-12">					
+						<h1 class="title1 text-bold text-center not-margin-top">¿Qué deseas ofrecer?</h1>
+			        </div>		
 	      	<div class="row col-xs-12">					
 	          	<p class="paragraph1 text-bold text-opacity not-margin-y">Si no sabes qué compartir,</p>
 	          	<a href="/test" class='link2'>realiza nuestro test</a>

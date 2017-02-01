@@ -2,65 +2,74 @@
 
 @section('content')
 
-	@include('nav', array('type' => 1))
+@include('nav', array('type' => 1))
 
 	<section class='bannerRegister row'>
 	    <div class="container">
 	        <div class='row'>
 	            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	                <h2 class='title1 text-white col-xs-10 col-sm-12 col-md-12'>¡Gracias por vincular tu cuenta!</h2>
+	                <h2 class='title1 not-padding text-white col-xs-12 col-sm-12 col-md-12'>¡Gracias por vincular tu cuenta!</h2>
 	            </div>
 	        </div>
+	        <div class="space"></div>
 	        <div class="row">
 	            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	                <p class="paragraph1 text-white col-xs-12 col-sm-12 col-md-12">Completa todos los datos de tu perfil para continuar con el registro. <br>Puedes cambiar esta información ahora o más adelante</p>
+	                <p class="paragraph2 not-padding text-white col-xs-12 col-sm-12 col-md-12">Actualiza los datos de tu perfil para continuar con el registro.<br>Recuerda que puedes modificar esta información cuando lo desees.</p>
 	            </div>
 	        </div>
+	        <div class="space"></div>
+	        <div class="space"></div>
 	    </div>
+	</section>
+	
+	<section  id='pass' class='not-padding-bottom'>
+		<div class="container">
+			<div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
+				@include('partial/pass', array("pass1" => Illuminate\Support\Facades\Session::get('registerPass1'), "pass2" => Illuminate\Support\Facades\Session::get('registerPass2'), "pass3" => Illuminate\Support\Facades\Session::get('registerPass3')))
+				
+			</div>
+		</div>
 	</section>
 
 	<section class='row' id='profile'>
 	    <div class="container">
-	        <article class='col-xs-12 col-sm-4 col-md-4'>
-	            <div class='row'>
-	                <div class='col-xs-6 col-xs-offset-3 col-sm-8 col-sm-offset-2'>
-	                    <div class="col-xs-12" >
-	                    
-	                    	<avatar :cover='myData.cover'>
-		                    	
-		                    		<template scope="props">
-		                    			@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
-	                        		</template>
-	                        	
-	                        </avatar>
-	                     </div>              
-	                </div>    
-
-	            </div>
-
-	            <div class="row">
-	                <div class='col-xs-6 col-xs-offset-3  col-sm-8 col-sm-offset-2'>                  
-	                    <label for='avatar' class='button1 background-active-color col-xs-12 text-center'>Cambiar Foto</label>
-	                </div>
-	            </div>
-
-	            <div class="row">
-	                <div class='col-xs-8 col-xs-offset-2  col-sm-10 col-sm-offset-1'>
-	                    <h2 class='title1 text-center col-xs-12'>{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
-	                </div>
-	            </div>
-	        </article>
-
-	        <article class='col-md-4'>
-	        	{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
-					<input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
-		        	<register profile='0'>	
-		        					    
-		        	</register>
-		        {!! Form::close() !!}
-			</article>
+	    	<div class='row'>
+		        <article class='col-xs-12 col-sm-4 col-md-4'>
+		            <div class='row'>
+		                <div class='col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2'>
+		                    <div class="col-xs-12" >
+		                    
+		                    	<avatar :cover='myData.cover'>
+			                    	
+			                    		<template scope="props">
+			                    			@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#0f6784', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
+		                        		</template>
+		                        	
+		                        </avatar>
+		                     </div>              
+		                </div>    
+	
+		            </div>
+					<div class="space"></div>
+		            <div class="row">
+		                <div class='col-xs-8 col-xs-offset-2  col-sm-8 col-sm-offset-2'>                  
+		                    <label for='avatar' class='button1 background-active-color col-xs-12 text-center'>Actualizar Foto</label>
+		                </div>
+		            </div>
+	
+		            
+		        </article>
+	
+		        <article class='col-md-4 not-padding'>
+		        	{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
+						<input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
+			        	<register profile='0'>	
+			        					    
+			        	</register>
+			        {!! Form::close() !!}
+				</article>
 			
-
+			</div>
 	    </div>
 	</section>
 

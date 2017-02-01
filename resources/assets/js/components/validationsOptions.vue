@@ -25,7 +25,7 @@
 						if(!(o in it.labeltext)){
 							it.labeltext[o] = o 
 						}
-						el.innerHTML += '<label for="'+o+'">'+it.labeltext[o]+'</label>'
+						el.innerHTML += '<label for="'+o+'" class="paragraph10">'+it.labeltext[o]+'&nbsp;&nbsp;&nbsp;&nbsp;</label>'
 					}
 					
 				}
@@ -45,7 +45,7 @@
 						if(!(o in it.labeltext)){
 							it.labeltext[o] = o 
 						}
-						el.innerHTML += '<label for="'+o+'">'+it.labeltext[o]+'</label>'
+						el.innerHTML += '<label for="'+o+'">'+it.labeltext[o]+' </label>'
 					}
 				}
 				el.innerHTML += '<p class="msg hidden"></p>';

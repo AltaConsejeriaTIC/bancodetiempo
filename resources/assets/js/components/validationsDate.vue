@@ -13,34 +13,34 @@
      		expr : new RegExp('^[0-9]{2,4}-[0-9]{1,2}-[0-9]{1,2}$'),
      		init_date:function(){     			
 				el.classList.add("validation")
-				var day = '<select name="day" class="col-xs-3"><option value="">Dia</option>';
+				var day = '<select name="day" ><option value="">Dia</option>';
 				for(var d = 1 ; d <= 31;d++){
 					var check = '';
 					if(it.day==d){check='selected'}
 					day += '<option value="'+d+'" '+check+'>'+d+'</option>';
 				}
-				day += '</select> &nbsp;';
-				el.innerHTML += day;
+				day += '</select>';
+				el.innerHTML += day+" &nbsp;&nbsp;";
 				
-				var mounth = '<select name="mounth" class="col-xs-4"><option value="">Mes</option>';
+				var mounth = '<select name="mounth"><option value="">Mes</option>';
 				for(var m = 1 ; m <= 12;m++){
 					var check = '';
 					if(it.mounth==m){check='selected'}
 					mounth += '<option value="'+m+'" '+check+'>'+m+'</option>';
 				}
-				mounth += '</select> &nbsp;';
-				el.innerHTML += mounth;
+				mounth += '</select>';
+				el.innerHTML += mounth+" &nbsp;&nbsp;";
 				
 				var date = new Date();
 				var yearC = date.getFullYear();
-				var year = '<select name="year" class="col-xs-4"><option value="">Año</option>';
+				var year = '<select name="year"><option value="">Año</option>';
 				for(var y = (yearC-100) ; y <= yearC;y++){
 					var check = '';
 					if(it.year==y){check='selected'}
 					year += '<option value="'+y+'" '+check+'>'+y+'</option>';
 				}
-				year += '</select> &nbsp;';
-				el.innerHTML += year;
+				year += '</select>';
+				el.innerHTML += year+" &nbsp;&nbsp;";
 				
 				
 				el.innerHTML += '<p class="msg hidden"></p>';
@@ -121,6 +121,9 @@
 			 	if(it.validation > 0){
 			 		
 			 		el.setAttribute('validation', 'false')
+			 		el.children[0].classList.remove("add")
+			 		el.children[1].classList.remove("add")
+			 		el.children[2].classList.remove("add")
 			 		el.children[0].classList.add("error")
 			 		el.children[1].classList.add("error")
 			 		el.children[2].classList.add("error")
@@ -130,7 +133,9 @@
 			 		}			 		
 			 	}else{
 			 		el.setAttribute('validation', 'true')
-			 		
+			 		el.children[0].classList.add("done")
+			 		el.children[1].classList.add("done")
+			 		el.children[2].classList.add("done")
 			 		el.children[0].classList.remove("error")
 			 		el.children[1].classList.remove("error")
 			 		el.children[2].classList.remove("error")

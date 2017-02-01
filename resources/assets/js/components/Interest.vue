@@ -1,7 +1,7 @@
 <template>
 	<div class='col-xs-12 col-md-4'>
 		<input type='checkbox' name='interets[]' :value='val' :id='titleShort' class='boxCheck' v-model='check'>
-		<label :for='titleShort'><i class='fa fa-circle'></i>{{title}}</label>
+		<label :for='titleShort' class='text-center'>{{title}}</label>
 		
 	</div>
 		

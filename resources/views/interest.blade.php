@@ -1,32 +1,21 @@
 @extends('layouts.app')
 @section('content')
 
-<nav class='navbar-default navbar-static-top nav1 bannerInterest'>
-	<div class="cap"></div>
-	<div class="container">
-		<div class='row'>
+@include('nav', array('type' => 1))
 
-			<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-0 ">
-				<a href="/"> <img src="{{ asset('images/logo.png') }}" alt="Logo" />
-				</a>
+<section class='bannerRegister row'>
+	 
+</section>
+
+<section  id='pass' class='not-padding-bottom'>
+		<div class="container">
+			<div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
+				@include('partial/pass', array("pass1" => Illuminate\Support\Facades\Session::get('registerPass1'), "pass2" => Illuminate\Support\Facades\Session::get('registerPass2'), "pass3" => Illuminate\Support\Facades\Session::get('registerPass3')))
+				
 			</div>
-		@if((Auth::guest()))
-			<div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-2 col-md-offset-7" id="container-nav-buttons">	    
-			     <button id="show-modal" @click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
-			     <button id="show-modal" @click="showModal = true" class="button4 hidden-xs">Registrarse</button>          		          
-			</div>
-
-		@elseif((!Auth::guest()))
-			<a class="hidden-xs col-sm-4 col-sm-offset-5 col-md-2 col-md-offset-7" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
-			<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-				{{ csrf_field() }}
-			</form>
-		@endif
-
 		</div>
-	</div>
+</section>
 
-</nav>
 <section class='row'>
 	
 	<div class="container">
@@ -35,23 +24,26 @@
 		
 			<div class="row">
 		
-				<h2 class='title1 col-xs-12'>¿Cuáles son tus intereses? <i class="fa fa-check-circle done" v-if='myData >= 3'></i></h2>
+				<h2 class='title1 col-xs-12'>¿Cuáles son tus intereses? </h2>
 				
 			</div>
 			<div class="row">
 				<p class="paragraph1 col-xs-12">Elige <strong>tres</strong> categorías de interés para sugerirte ofertas.</p>
 			</div>
 			
-			{!! Form::open(['url' => '/interest', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-custom row', 'role' => 'form']) !!}
+			{!! Form::open(['url' => '/interest', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-custom row validation', 'role' => 'form']) !!}
 											
 					@foreach($categories as $i => $category)
 						<interest val='{{$category->id}}' title='{{$category->category}}'></interest>	
 					@endforeach					
 				
 				<div class='crearfix'></div>
-		
-				<div class="space40 col-xs-12 col-md-6 col-md-offset-3">
-					{{ Form::submit('Enviar', ['class' => 'button1 background-active-color col-xs-12', ':class' => '{inactive: this.myData < 3}']) }}
+				<p class="msg col-xs-11 " v-if='myData < 3'>Recuerda que debes seleccionar al menos tres categorías  para continuar con el proceso de registro.</p>
+				
+				<div class="space"></div>
+				
+				<div class="col-xs-12 col-md-6 col-md-offset-3">
+					{{ Form::submit('Siguiente', ['class' => 'button1 background-active-color col-xs-12', ':class' => '{inactive: this.myData < 3}']) }}
 				</div>			
 		
 			{!! Form::close() !!}

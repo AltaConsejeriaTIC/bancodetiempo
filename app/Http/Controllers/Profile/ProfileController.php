@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\InterestUser;
 use App\Models\Service;
 use JavaScript;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
@@ -88,11 +89,13 @@ public function  editProfilePicture(Request $request){
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = $request->input('birthDate');
 		$user->aboutMe = $request->input("aboutMe");
-  	$user->privacy_policy = $request->input('terms');
-  	$user->gender = $request->input('gender');
-  	$user->email2 = $request->input('email2');
-  	$user->save();
+	  	$user->privacy_policy = $request->input('terms');
+	  	$user->gender = $request->input('gender');
+	  	$user->email2 = $request->input('email2');
+	  	$user->save();
 
+	  	Session::put('registerPass1', 'done');
+	  	
 		if(!empty($user->interests->all())){
 
 			return Redirect::to("profile");
@@ -109,6 +112,8 @@ public function  editProfilePicture(Request $request){
 
 		$categories = Category::all('id', 'category');
 
+		Session::put('registerPass2', 'actual');
+		
 		return view('/interest', compact('categories'));
 
 	}
@@ -127,7 +132,7 @@ public function  editProfilePicture(Request $request){
 			]);
 
 		}
-
+		Session::put('registerPass2', 'done');
 		return redirect("/service");
 
 

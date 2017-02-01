@@ -74,16 +74,32 @@ module.exports = {
                         this.putMyData('totalChar', totalChar)
                     },
                     previewPhoto(e) {
+                    	this.$el.getElementsByClassName('profilePhoto')[0].classList.add('validation');
+                    	this.$el.getElementsByClassName('profilePhoto')[0].setAttribute('validation', 'true');
                         var image = new Image();
                         var reader = new FileReader();
                         var files = e.target.files || e.dataTransfer.files;
-                        if (!files.length)
+                        if (!files.length){
                             return;
-                        
+                        }
+                        console.log(files)
+                        if(files[0].size > 2000000){
+                        	this.$el.getElementsByClassName('profilePhoto')[0].setAttribute('validation', 'false');
+                        	this.$el.getElementsByClassName('profilePhoto')[0].innerHTML += '<p class="msg">El peso màximo de la imagen debe ser de 3 Megas.</p>'
+                        	this.validation();
+                        	return;
+                        }
                          reader.onload = (e) => {
-                              this.myData.cover = e.target.result
+                        	 this.$el.getElementsByClassName('profilePhoto')[0].setAttribute('validation', 'true');
+                        	 console.log(this.$el.getElementsByClassName('profilePhoto')[0].getElementsByClassName("msg"))
+                        	 if(this.$el.getElementsByClassName('profilePhoto')[0].getElementsByClassName("msg").length > 0){
+                        		 this.$el.getElementsByClassName('profilePhoto')[0].getElementsByClassName("msg")[0].remove()
+                        	 }
+                        	 console.log(e.target.result)
+                             this.myData.cover = e.target.result
+                             this.validation();
                          };
-                         
+                        
                         reader.readAsDataURL(files[0]);
                     },
                     validation:function (){
