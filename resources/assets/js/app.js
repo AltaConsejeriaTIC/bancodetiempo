@@ -20,8 +20,7 @@ var app = new Vue({
     el: '#app',    
     data:{
     	showModal: false,
-        showModal1: false,
-        showModal2: false,
+        showModal1: false,        
     	myData : {'validation' : 1}
     },
     mixins: [helpers.Helpers(), helpers.animationSide(),helpers.Filters()],
@@ -31,10 +30,10 @@ var app = new Vue({
     	},
     	putMyData($var, $val){
     		this.myData[$var] = $val
-    	}
+    	}        
     },
-    mounted(){
-    	
+    mounted(){   	
     	
     }
+    
 });
