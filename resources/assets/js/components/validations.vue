@@ -6,8 +6,10 @@ var eventForTag = {
 		"INPUT[type='password']":"keyup",
 		"INPUT[type='email']":"keyup",
 		"INPUT[type='hidden']":"change",
-		"INPUT[type='radio']":"click",
-		"INPUT[type='checkbox']":"click",
+		"INPUT[type='radio']":"change",
+		"INPUT[type='checkbox']":"change",
+		"SELECT":"change",
+		"TEXTAREA":"keyup",
 }
 		
 var _functionElement = {};
@@ -42,7 +44,7 @@ function getFunctionElement(element){
 
 function errorsRadio(el, errors){
 	name = el.getAttribute('name')
-	radios = el.parentNode.querySelectorAll('[name="'+name+'"]')
+	var radios = parent.querySelectorAll('[name="'+name+'"]')
 	var validation = true
 	if(errors > 0){validation = false}
 	for(var r = 0; r < radios.length; r++){
@@ -52,7 +54,7 @@ function errorsRadio(el, errors){
 
 function errorsCheckbox(el, errors){
 	name = el.getAttribute('depend')
-	checkbox = el.parentNode.querySelectorAll('[name="'+name+'"]')
+	var checkbox = parent.querySelectorAll('[name="'+name+'"]')
 	var validation = true
 	if(errors > 0){validation = false}
 	for(var c = 0; c < checkbox.length; c++){
@@ -62,29 +64,38 @@ function errorsCheckbox(el, errors){
 }
 
 function required(el){
-
+	
 	var error = 0;
-	if(el.value == "" || el.value == 0 || (el.getAttribute('type') == 'checkbox' && el.checked == false)){
+	if(el.value == "" || el.value == 0 || (el.getAttribute('type') == 'checkbox' && !el.checked) ||  (el.getAttribute('type') == 'radio' && !el.checked)){
 		error = 1;
+		showErrorsBox(el, "required")
+	}else{
+		hiddenErrorsBox(el, "required")
 	}
 	return error;
-
+	
 }
 
 function requiredIf(depend, el){
 	var error = 0;
-	elDepend = el.parentNode.querySelectorAll('[name="'+depend+'"]')
+	var elDepend = parent.querySelectorAll('[name="'+depend+'"]')
 	if(elDepend[0].checked && !el.checked){
 		error = 1;
+		showErrorsBox(el, "requiredIf")
+	}else{
+		hiddenErrorsBox(el, "requiredIf")
 	}
 	return error;
 }
 
 function requiredIfNot(depend, el){
 	var error = 0;
-	elDepend = el.parentNode.querySelectorAll('[name="'+depend+'"]')
+	var elDepend = parent.querySelectorAll('[name="'+depend+'"]')
 	if(!elDepend[0].checked && !el.checked ){
 		error = 1;
+		showErrorsBox(el, "requiredIf")
+	}else{
+		hiddenErrorsBox(el, "requiredIf")
 	}
 	return error;
 }
@@ -92,62 +103,83 @@ function requiredIfNot(depend, el){
 function onlyChar (el){
 	var error = 0;
 	var expresion = new RegExp('^[^ 0-9][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$');
-
-	if(!expresion.test(el.value)){
-		error = 1;
+	
+ 	if(!expresion.test(el.value)){
+ 		error = 1;
+ 		showErrorsBox(el, "onlyChar")
+	}else{
+		hiddenErrorsBox(el, "onlyChar")
 	}
-	return error;
-
+ 	return error;
+ 	
 }
 
 function onlyNumber (el){
 	var error = 0;
 	var expresion = new RegExp('^[0-9]*$');
-
-	if(!expresion.test(el.value)){
-		error = 1;
+	
+ 	if(!expresion.test(el.value)){
+ 		error = 1;
+ 		showErrorsBox(el, "onlyNumber")
+	}else{
+		hiddenErrorsBox(el, "onlyNumber")
 	}
-	return error;
-
+ 	return error;
+ 	
 }
 
 function min (min, el){
 	var error = 0;
 	if(el.getAttribute('type') == "number"){
 		if(parseInt(el.value) < min){
-			var error = 1;
+	 		var error = 1;
+	 		showErrorsBox(el, "min")
+		}else{
+			hiddenErrorsBox(el, "min")
 		}
 	}else{
 		if(el.value.length < min){
-			var error = 1;
+	 		var error = 1;
+	 		showErrorsBox(el, "min")
+		}else{
+			hiddenErrorsBox(el, "min")
 		}
 	}	 	
-	return error;
+ 	return error;
 }
 
 function max (max, el){
 	var error = 0;
 	if(el.getAttribute('type') == "number"){
 		if(parseInt(el.value) > max){
-			var error = 1;
+	 		var error = 1;
+	 		showErrorsBox(el, "max")
+		}else{
+			hiddenErrorsBox(el, "max")
 		}
 	}else{
 		if(el.value.length > max){
-			var error = 1;
+	 		var error = 1;
+	 		showErrorsBox(el, "max")
+		}else{
+			hiddenErrorsBox(el, "max")
 		}
 	}
-	return error;
+ 	return error;
 }
 
 function email(value){
 	var error = 0;
 	var expresion = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-
-	if(!expresion.test(value)){
-		error = 1;
+	
+ 	if(!expresion.test(value)){
+ 		error = 1;
+ 		showErrorsBox(el, "email")
+	}else{
+		hiddenErrorsBox(el, "email")
 	}
-	return error;
-
+ 	return error;
+ 	
 }
 
 function addEventElements(element){
@@ -171,6 +203,8 @@ function validateInit(element){
 	var event = new CustomEvent(eventElement, {});
 	element.dispatchEvent(event, true);
 	
+	hiddenErrorsBox(element)
+	
 }
 function validateAll(){
 	var elements = parent.getElementsByClassName('validation');
@@ -179,7 +213,7 @@ function validateAll(){
 	for (var obj = 0; obj < elements.length; obj++){
 		if(elements[obj].getAttribute('validation') == "false"){
 				errors += 1;
-			}
+		}
 	}
 	
 	var senders = parent.querySelectorAll('[type="submit"]');
@@ -198,6 +232,40 @@ function validateAll(){
 	
 }
 
+function hiddenErrorsBox(element, error){
+	var boxErrors = parent.querySelectorAll('[errors="'+element.getAttribute('name')+'"]')
+	if(boxErrors.length){
+		var hidden = 0;
+		var allChildrens = boxErrors[0].children
+		var childrens = ''
+		if(error === undefined){
+			childrens = allChildrens
+		}else{
+			childrens = boxErrors[0].querySelectorAll('[error="'+error+'"]');
+		}
+		
+		for(var child = 0; child < childrens.length; child++){
+			hidden += 1;
+			childrens[child].style.display = "none"
+		}
+		
+		if(hidden == allChildrens.length){
+			boxErrors[0].style.display = "none"
+		}
+	}
+}
+
+function showErrorsBox(element, error){
+	var boxErrors = parent.querySelectorAll('[errors="'+element.getAttribute('name')+'"]')
+	if(boxErrors.length){
+		boxErrors[0].style.display = "block"
+		var childrens = boxErrors[0].querySelectorAll('[error="'+error+'"]');
+		for(var child = 0; child < childrens.length; child++){
+			childrens[child].style.display = "block"
+		}
+	}
+}
+
 var parent;
 
 
@@ -208,7 +276,7 @@ export default {
 		
 		var elements = el.getElementsByClassName('validation');
 		
-		for (var obj = 0; obj < elements.length; obj++){
+		for (var obj = 0; obj < elements.length; obj++){	
 			addEventElements(elements[obj])	
 			validateInit(elements[obj])
 		}

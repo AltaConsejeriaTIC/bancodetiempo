@@ -1,70 +1,86 @@
 <template>
-<div v-validation=''>
+<div v-validation:msg=''>
 	<div class="row col-sm-12">
 		<div class="row">
-        <label for="serviceName" class="paragraph10">Nombre de la oferta</label>
+        <label for="serviceName" class="paragraph10">Nombre de la oferta (Max. 50 caracteres)</label>
     </div>
     <div class="row"> 
-        <input type="text" name="serviceName" autofocus placeholder="Ej. Clase de Inglés, Asesoría penal…" class="col-xs-12 col-sm-12 col-md-12 validation" v-model="serviceName" data-validations='["required"]'>
+        <input type="text" name="serviceName" autofocus placeholder="Ej. Clase de Inglés, Asesoría penal…" class="col-xs-12 col-sm-12 col-md-12 validation" v-model="serviceName" data-validations='["required", "min:3", "max:30"]'>
+        <div class="msg" errors='serviceName'>
+        	<p error='required'>Este campo es obligatorio.</p>
+        	<p error='min'>Este campo debe ser mínimo de 3 caracteres.</p>
+        	<p error='max'>Este campo debe ser máximo de 50 caracteres.</p>
+        </div>
     </div>
     <div class="row">
-        <label for="descriptionService" class="paragraph10">Descripción de la oferta</label> <i class="fa fa-check-circle done" v-if='validateDescription'></i>
+        <label for="descriptionService" class="paragraph10">Descripción de la oferta</label>
     </div>
     <div class="row">
-        <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12" rows="5" name="descriptionService" id='descriptionService' v-model='descriptionService' placeholder="Ej. Ofrezco una hora de una clase de Yoga para principiantes. Podemos acordar un lugar de encuentro cercano al campus de Universidad Nacional. Puedo realizar la sesión los lunes o los miércoles de 6:00 am a 7:00 pm."></textarea>                    
-        <label for="descriptionService">250</label>
+        <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12 validation" rows="8" name="descriptionService" id='descriptionService' v-model='descriptionService' placeholder="Ej. Ofrezco una hora de una clase de Yoga para principiantes. Podemos acordar un lugar de encuentro cercano al campus de Universidad Nacional. Puedo realizar la sesión los lunes o los miércoles de 6:00 am a 7:00 pm."  data-validations='["required", "min:50", "max:250"]'></textarea>                    
+        <div class="msg" errors='descriptionService'>
+	    	<p error='required'>Este campo es obligatorio.</p>
+	    	<p error='min'>Este campo debe ser mínimo de 50 caracteres.</p>
+	    	<p error='max'>Este campo debe ser máximo de 250 caracteres.</p>
+	    </div>
     </div>
+   
     <div class="row">
-        <label for="imageService" class="paragraph10">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>
-    </div>
-    <div class="row">    		
-        <input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 " id='imageService' @change='previewPhotoService'>
-        <label for="imageService" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : imageService!='', 'load' : imageService!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
-    </div>
-    <div class="row">
-        <label class="paragraph10">Modalidad</label> <i class="fa fa-check-circle done" v-if='validateModality'></i>
+        <label class="paragraph10">Modalidad</label>
     </div>
     <div class="row">                
         <div class="col-xs-6 col-sm-6 not-padding ">
-            <input type="checkbox" name="modalityServiceVirtually" value="1" id="modalityServiceVirtually" class="square" v-model="modalityServiceVirtually">
+            <input type="checkbox" name="modalityServiceVirtually" value="1" id="modalityServiceVirtually" class="square validation" v-model="modalityServiceVirtually" data-validations='["requiredIfNot:modalityServicePresently"]'>
             <label for="modalityServiceVirtually">Virtual</label>                        
         </div>
         <div class="col-xs-6 col-sm-6 not-padding ">
-            <input type="checkbox" name="modalityServicePresently" value="1" id="modalityServicePresently" class="square" v-model="modalityServicePresently">
+            <input type="checkbox" name="modalityServicePresently" value="1" id="modalityServicePresently" class="square validation" v-model="modalityServicePresently" data-validations='["requiredIfNot:modalityServiceVirtually"]'>
             <label for="modalityServicePresently">Presencial</label>                        
         </div>        
     </div>
     <div class="row">
-        <label class="paragraph10">Valor del servicio</label> <i class="fa fa-check-circle done" v-if='validateValueService'></i>
+	    <div class="msg" errors='modalityServicePresently'>
+			<p error='requiredIfNot'>Debes seleccionar una opción.</p>
+		</div>
+    </div>
+    <div class="row">
+        <label class="paragraph10">Valor del servicio</label>
     </div>
     <div class="row">
         <div class="col-xs-6 col-sm-6">
-            <input type="radio" name="valueService" value="1" id="time1" class="circle" v-model="valueService">
+            <input type="radio" name="valueService" value="1" id="time1" class="circle validation" v-model="valueService" data-validations='["required"]'>
             <label for="time1">1 Lache</label>                        
         </div>
         <div class="col-xs-6 col-sm-6">
-            <input type="radio" name="valueService" value="2" id="time2" class="circle" v-model="valueService">
+            <input type="radio" name="valueService" value="2" id="time2" class="circle validation" v-model="valueService" data-validations='["required"]'>
             <label for="time2">2 Laches</label>                        
         </div>                 
     </div>
     <div class="row">
         <div class="col-xs-6 col-sm-6">
-            <input type="radio" name="valueService" value="3" id="time3" class="circle" v-model="valueService">
+            <input type="radio" name="valueService" value="3" id="time3" class="circle validation" v-model="valueService" data-validations='["required"]'>
             <label for="time3">3 Laches</label>                        
         </div>
         <div class="col-xs-6 col-sm-6">
-            <input type="radio" name="valueService" value="4" id="time4" class="circle" v-model="valueService">
+            <input type="radio" name="valueService" value="4" id="time4" class="circle validation" v-model="valueService" data-validations='["required"]'>
             <label for="time4">4 Laches</label>                        
         </div>                  
     </div>
     <div class="row">
-        <label for="categoryService" class="paragraph10">Categoría</label> <i class="fa fa-check-circle done" v-if='validateCategory'></i>
+	    <div class="msg" errors='valueService'>
+			<p error='required'>Debes seleccionar el valor de tu servicio.</p>
+		</div>
+	</div>
+    <div class="row">
+        <label for="categoryService" class="paragraph10">Categoría</label>
     </div>
     <div class="row">
-        <select name='categoryService' class='col-xs-12  col-sm-12' v-model='category'>
+        <select name='categoryService' class='col-xs-12  col-sm-12 validation' v-model='category'  data-validations='["required"]'>
             <option value="">Seleccione una Categoría....</option>
             <option v-for="op in this.categories" :value="op.id">{{op.category}}</option>
-        </select>                    
+        </select> 
+        <div class="msg" errors='categoryService'>
+			<p error='required'>Debes seleccionar una categoría.</p>
+		</div>
     </div>
     <div class="row">
         <label for="tagService" class="paragraph10">Palabras clave</label><span class="text-opacity"> (Opcional)</span>
@@ -72,9 +88,16 @@
     <div class="row">
         <input type="text" name="tagService" class="col-xs-12  col-sm-12" placeholder="Ej. #EstiloDeVida, #JuegosDeMesa, #Collar">
     </div>
-
     <div class="row">
-        <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" :class='{inactive:validateAll}'>
+	    <label for="imageService" class="paragraph10">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>
+	</div>
+	<div class="row">    		
+	    <input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 " id='imageService' @change='previewPhotoService'>
+	    <label for="imageService" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : imageService!='', 'load' : imageService!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
+	</div>
+    <div class='space'></div>
+    <div class="row">
+        <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
           Publicar oferta
         </button>
     </div>    
