@@ -22,13 +22,14 @@ class ProfileController extends Controller
         $user = User::find(auth::user()->id);
 
         $services = Service::where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
-
+        
         JavaScript::put([
 					'userJs'=> $user,
 					'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
 					'mounthJs' => is_null($user->birthDate) ? "0" :  date("m",strtotime($user->birthDate)),
 					'yearJs' => is_null($user->birthDate) ? "0" :  date("Y",strtotime($user->birthDate)),
 					'categoriesJs' => $categories,
+					'servicesJs' => $services,
 				]);				
 
         return view('profile/profile', compact('user','categories','services'));
