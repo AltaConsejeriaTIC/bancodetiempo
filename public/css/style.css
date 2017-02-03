@@ -722,14 +722,20 @@ Animations
   margin-bottom: 22px;
 }
 
+.icons-button-content{
+	top: 2%;
+	position: absolute;  
+}
+
 .icons-button{
 	background: #2c3e50;
-  position: absolute;
-  top: 2%;
-  margin-left: 3%;
+  margin-right: 5px;
+  position: relative;
+  float: left;
+  border: 1px;
   z-index: 10;
   color: #fff;
-  padding: 10px 15px;
+  padding: 4px 9px;
   border-radius: 5px;
 }
 /*-----------------Imports--------------------*/

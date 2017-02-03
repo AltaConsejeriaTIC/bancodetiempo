@@ -116,8 +116,7 @@ class ServiceController extends Controller
             'categoryService' => 'required',
             'imageService' => 'image|max:2000'
       ]);
-
-      $categorie = Category::find($request->input('categoryService'));
+      
 
 		$service = Service::create([
 				'name' => $request->input('serviceName'),
@@ -126,7 +125,7 @@ class ServiceController extends Controller
 				'virtually' => $request->input('modalityServiceVirtually'),
 				'presently' => $request->input('modalityServicePresently'),
 				'user_id' => Auth::user()->id,
-				'image' => 'resources/categories/'.$categorie->image,
+				'image' => 'resources/categories/category-profile.png',
 				'category_id' => $request->input('categoryService'),            
 				'state_id' => 1
 		]);
@@ -135,8 +134,7 @@ class ServiceController extends Controller
       $user->state_id = 4;
       $user->save();
 
-      if($request->input('imageService'))
-         $this->uploadCover($request->file('imageService'), $service); 
+      $this->uploadCover($request->file('imageService'), $service); 
            
 
 		Session::flash('success','Has creado correctamente tu servicio');
@@ -146,16 +144,19 @@ class ServiceController extends Controller
    }
 
    public function  uploadCover($file, $service){
+         
+         $pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
+         
+         if(!$file){
+            $categorie = Category::find($service->category_id);
+            Service::find($service->id)->update([
+               'image' => $pathImage . $service->image
+            ]);
+            return false;
+         }
 
-   		if(!$file){
-   			return false;
-   		}
-
-   		$imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
-
-   		$pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
-
-   		$file->move(base_path() . '/public/' . $pathImage, $imageName);
+         $imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
+     		$file->move(base_path() . '/public/' . $pathImage, $imageName);
 
    		Service::find($service->id)->update([
    			'image' => $pathImage . $imageName

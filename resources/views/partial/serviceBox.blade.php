@@ -1,10 +1,14 @@
 @if(isset($service))
 	<div class='service-box'>	
 		@if(isset($edit))		
-			<button class="icons-button" data-toggle="modal" data-target="#EditService{{$service->id}}"><i class="fa fa-pencil"></i></button>		
+			<div class="col-md-5 icons-button-content">				
+				<button class="icons-button" data-toggle="modal" data-target="#EditService{{$service->id}}"><i class="fa fa-pencil"></i></button>					
+				<button class="icons-button" data-toggle="modal" data-target="#DeleteService{{$service->id}}"><i class="fa fa-trash-o"></i></button>						
+			</div>
 			{!! Form::model($service, ['url' => ['service/save', $service->id], 'method' => 'put', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
 				<editservice name="EditService{{$service->id}}" id="{{$service->id}}"></editservice>		
 			{!!Form::close()!!}
+
 		@endif
 			<span class='category'>{{$service->category->category}}</span>		 
 			<div class="cover">		 
