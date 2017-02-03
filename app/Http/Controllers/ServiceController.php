@@ -19,12 +19,14 @@ class ServiceController extends Controller
    public function index(){
 
    		$categories = Category::all();
+        $user = User::find(auth::user()->id);
    		$selectedCategories = [];
    		$method = 'post';
-         JavaScript::put([               
+         JavaScript::put([
+               'userJs'=> $user,
                'categoriesJs' => $categories,
-               'userJs' => Auth::user(),
-            ]);   
+             ]);
+
 
          Session::put('registerPass3', 'actual');
          
@@ -53,25 +55,22 @@ class ServiceController extends Controller
 
    public function showService($serviceId){
 
-	   	$categories = Category::all('id', 'category');
+       $categories = Category::all('id', 'category');
+       $service = Service::findOrFail($serviceId);
+       $user = User::find($service->user_id);
 
-   		$service = Service::findOrFail($serviceId);
-
+       JavaScript::put([
+           'userJs'=> $user,
+           'categoriesJs' => $categories,
+       ]);
    		if ($service->user_id != Auth::user()->id){
-
-   			return view('services/service', compact('service'));
-
+   			return view('services/service', compact('categories', 'service', 'method' ,'user'));
    		}
-
    		foreach ($service->categories as $selected){
    			$categories->find($selected->category_id)->setAttribute("selected", "selected");
    		}
-
-   		
-   		
    		$method = 'put';
-
-   		return view('services/formService', compact('categories', 'service', 'method'));
+   		return view('services/formService', compact('categories', 'service', 'method' ,'user'));
 
    }
 

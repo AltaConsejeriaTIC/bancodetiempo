@@ -9,20 +9,19 @@
 		{!!Form::close()!!}
 	@endif
 		<span class='category'>{{$service->category->category}}</span>
-	 
+		<a href="service/{{$service->id}}">
 		<div class="cover">
-	 
-			<img src="{{$service->image}}" alt="" />
-	 
-		</div>
-	 
+
+				<img src="{{$service->image}}" alt="" />
+
+			</div>
+		</a>
 		<div class='avatar'>
 			@include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#fff', 'borderSize' => '2px'))
 		</div>
+		<a href="service/{{$service->id}}">
 		<div class="content">
-	 
 			<h3 class='title title2'>{{$service->name}}</h3>
-	 		
 	 		<div class='ranking'>											
 				<div>											
 					@for($cont = 1 ; $cont <= 5 ; $cont++)												
@@ -43,6 +42,6 @@
 			</div>
 		 
 		</div>
-
+		</a>
 	</div>
 @endif

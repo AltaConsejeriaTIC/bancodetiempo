@@ -18,7 +18,7 @@ class ProfileController extends Controller
 {
    public function showProfile()
     {
-    		$categories = Category::all();
+    	$categories = Category::all();
         $user = User::find(auth::user()->id);
 
         $services = Service::where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
