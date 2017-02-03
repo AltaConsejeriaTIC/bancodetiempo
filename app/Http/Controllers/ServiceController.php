@@ -117,6 +117,8 @@ class ServiceController extends Controller
             'imageService' => 'image|max:2000'
       ]);
 
+      $categorie = Category::find($request->input('categoryService'));
+
 		$service = Service::create([
 				'name' => $request->input('serviceName'),
 				'description' => $request->input('descriptionService'),
@@ -124,7 +126,7 @@ class ServiceController extends Controller
 				'virtually' => $request->input('modalityServiceVirtually'),
 				'presently' => $request->input('modalityServicePresently'),
 				'user_id' => Auth::user()->id,
-				'image' => 'resources/default.jpg',
+				'image' => 'resources/categories/'.$categorie->image,
 				'category_id' => $request->input('categoryService'),            
 				'state_id' => 1
 		]);
@@ -133,7 +135,9 @@ class ServiceController extends Controller
       $user->state_id = 4;
       $user->save();
 
-		$this->uploadCover($request->file('imageService'), $service);
+      if($request->input('imageService'))
+         $this->uploadCover($request->file('imageService'), $service); 
+           
 
 		Session::flash('success','Has creado correctamente tu servicio');
 		Session::put('registerPass3', 'done');
