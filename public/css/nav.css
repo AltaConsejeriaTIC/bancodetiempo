@@ -30,9 +30,6 @@
     padding-bottom: 5px;
 }
 
-.nav2 img{
-	max-width:100%;
-}
 
 .iconbar2{
     padding-right: 20px;
@@ -74,10 +71,11 @@ input.filter::-webkit-input-placeholder {
 }
 .newservice{
     height: 36px;
-    width: 154px;
+    width: 114px;
 }
 .iconmenu{
-    padding-left:10px;
+    padding-left: 10px !important;
+    color: white;
     font-size: 24px !important;
 }
 .bolsa-de-tiempo{
@@ -93,4 +91,16 @@ input.filter::-webkit-input-placeholder {
 .buttonStart{
     height: 42px;
     width: 154px;
+}
+.padding-top{
+    padding-top: 8px;
+}
+.icon-profile svg {
+    height: 54px !important;
+}
+.menu{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 8px;
+    text-align: left;
 }
