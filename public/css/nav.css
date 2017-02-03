@@ -30,9 +30,6 @@
     padding-bottom: 5px;
 }
 
-.nav2 img{
-	max-width:100%;
-}
 
 .iconbar2{
     padding-right: 20px;
@@ -93,4 +90,7 @@ input.filter::-webkit-input-placeholder {
 .buttonStart{
     height: 42px;
     width: 154px;
+}
+.padding-top{
+    padding-top: 8px;
 }

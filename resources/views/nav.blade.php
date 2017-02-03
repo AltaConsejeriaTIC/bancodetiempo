@@ -33,20 +33,20 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-7 col-sm-4 col-md-2">
+				<div class="col-xs-7 col-sm-4 padding-top col-md-2">
 					<a href="/" >
 						<img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" />
 					</a>
 				</div>
-				<div class='hidden-xs hidden-sm col-md-3'>
+				<div class='hidden-xs hidden-sm padding-top col-md-3'>
 					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentras personas, habilidades y más ... '>
 					<label for="filter1" class=" fa fa-search "></label>
 				</div>
 				
-				<div class="hidden-xs col-md-5 col-md-offset-0 col-sm-4 col-sm-offset-1 not-padding not-margin text-right">
+				<div class="hidden-xs col-md-5 col-md-offset-0 padding-topcol-sm-4 col-sm-offset-1 not-padding not-margin text-right">
 					<div class="flex-center">
-						<div class="col-md-8 col-sm-8 not-margin bolsa-de-tiempo text-left">
-							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-2"></image>
+						<div class="col-md-8 col-sm-8 padding-top not-margin bolsa-de-tiempo text-left">
+							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
 							<p class="paragraph4 textpadding col-md-10 col-sm-7 text-white">Bolsa de tiempo:<br>8 Horas</p>
 						</div>
 						<div class="col-md-2 col-sm-2 not-padding ">
