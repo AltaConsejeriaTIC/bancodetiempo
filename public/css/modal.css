@@ -1,9 +1,29 @@
 /* Styles Window Modal with vue.js*/
 
+.modal-box
+{
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-content-box
+{
+  position: relative;
+  height: 93%;
+  width: 420px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 2% auto;
+}
+
 .modal-header
 {
-  padding: 10px 20px 0 0;
+  padding: 10px 0 0 0 !important;
   border-bottom: none;
+  margin-right: -19px;
+  margin-top: -9px;
 }
 .modal-header-welcome
 {
@@ -35,14 +55,13 @@
 }
 
 .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  position: relative;  
 }
 
 .modal-container {
   width: 420px;
   margin: auto;  
-  padding: 40px 44px 33px 43px;
+  padding: 11px 44px 33px 43px;
   background-color: #fff;
   border-radius: 1%;
   box-shadow: 0 20pxx 8px rgba(0, 0, 0, .33);
@@ -53,9 +72,8 @@
 }
 
 .modal-body {
-  margin-right: 10px 0 0 10px;
-  text-align: left;
-  padding: 0;
+  margin: 0;
+  text-align: left;  
 }
 
 
