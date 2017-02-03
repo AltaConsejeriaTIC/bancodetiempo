@@ -121,10 +121,14 @@
             this.$parent.setMyData('imageService', 'images/previewService.jpg');
             this.$parent.setMyData('serviceName', 'Titulo de la oferta');
             this.$parent.setMyData('descriptionService', 'Descripción de la oferta');
-        },            
+        },
 	      watch : {
-	        category : function (value) {        	        						 	
-	          this.$parent.setMyData('category', value);
+	        category : function (value) { 
+	        	if(value != ''){
+	        		var cat = this.categories[value-1].category;
+	        		this.$parent.setMyData('category', cat);
+	        	}
+	          
 	        },
 	        imageService: function (value){
 	        	this.$parent.setMyData('imageService', value);
