@@ -16,6 +16,7 @@ Vue.directive('validationText', require('./components/validationsText.vue'));
 Vue.directive('validationDate', require('./components/validationsDate.vue'));
 Vue.directive('validationOptions', require('./components/validationsOptions.vue'));
 
+
 var app = new Vue({
 
     el: '#app',    
@@ -34,7 +35,34 @@ var app = new Vue({
     	}        
     },
     mounted(){   	
-    	
+    	scrollFixed()
     }
     
 });
+
+
+function scrollFixed(){
+	var top = 0;
+	document.body.onscroll = scrollChange
+	elemScroll = document.getElementsByClassName('scrollFixed');
+	for(var e = 0; e < elemScroll.length; e++){
+		elemScroll[e].style.top = top+"px"
+		elemScroll[e].style.margin = "-150px 0px 0px 0px";
+	}
+	
+	
+}
+
+function scrollChange(){
+	var top = 0;
+	var scrollTop = document.body.scrollTop
+	if(scrollTop > 200){
+		top = (scrollTop-200)
+		if(top < 750){
+			for(var e = 0; e < elemScroll.length; e++){
+				elemScroll[e].style.top = top+"px"
+			}
+		}
+		
+	}
+}

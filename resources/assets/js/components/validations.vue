@@ -37,7 +37,8 @@ function getFunctionElement(element){
 	"errorsCheckbox(this, errors)"+
 	"}else{"+
 	"if(errors>0){this.setAttribute('validation', 'false')}else{this.setAttribute('validation', 'true')}"+
-	"}"
+	"}"+
+	"validateAll();"
 	
 	_functionElement.method = function(){eval(functionElement)}
 }
@@ -93,9 +94,9 @@ function requiredIfNot(depend, el){
 	var elDepend = parent.querySelectorAll('[name="'+depend+'"]')
 	if(!elDepend[0].checked && !el.checked ){
 		error = 1;
-		showErrorsBox(el, "requiredIf")
+		showErrorsBox(el, "requiredIfNot")
 	}else{
-		hiddenErrorsBox(el, "requiredIf")
+		hiddenErrorsBox(el, "requiredIfNot")
 	}
 	return error;
 }
@@ -215,7 +216,6 @@ function validateAll(){
 				errors += 1;
 		}
 	}
-	
 	var senders = parent.querySelectorAll('[type="submit"]');
 	if(errors > 0){
 		for (var send = 0; send < senders.length; send++){
