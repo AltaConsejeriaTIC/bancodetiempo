@@ -213,39 +213,90 @@ input[type=checkbox].boxCheck:checked + label i {
     
 }
 
-.form-custom > .msg {
+.form-custom  .msg {
+    color: #ae3a38;
+    padding: 10px 5px 0px 5px;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+.form-custom .serviceForm *[validation="false"], .form-custom input[type="radio"][validation="false"] + label:before, .form-custom input[type="checkbox"][validation="false"] + label:before{
+	border:1px solid #ae3a38 !important;
+    border-color:#ae3a38 !important;
+}
+
+.form-custom .serviceForm *[validation="true"], .form-custom input[type="radio"][validation="true"] + label:before, .form-custom input[type="checkbox"][validation="true"] + label:before{
+	border:1px solid #2cba36 !important;
+    border-color:#2cba36 !important;
+}
+
+
+
+.form-custom > .msg br {
+    line-height: 30px;
+}
+
+.form-custom  .serviceForm input, .form-custom  .serviceForm textarea, .form-custom  .serviceForm  select{
+	position: relative;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 20px;
+    width:100%;
+}
+
+
+/**/
+
+.validation {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.validation span {
+    position: absolute;
+    right: 5%;
+	top: 15px;
+}
+
+.validation > input[type="text"], .validation > textarea {
+    width: 100%;
+}
+
+.validation > .fa-check{
+	color:#2cba36;
+}
+
+.validation > .fa-remove{
+	color:#ae3a38;
+}
+
+.validation > .msg {
     color: #ae3a38;
     padding: 10px 5px 0px 5px;
     font-size: 14px;
     margin-bottom: 0px;
 }
 
-.form-custom > .msg br {
+.validation > .msg br {
     line-height: 30px;
 }
 
-.form-custom  input, .form-custom  textarea, .form-custom  select{
-	position: relative;
-    display: block;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-.form-custom > input.error, .form-custom >  textarea.error, .form-custom > select.error {
+.validation > input.error, .validation >  textarea.error, .validation >  select.error {
     border:1px solid #ae3a38 !important;
     border-color:#ae3a38 !important;
 }
 
-.form-custom > input.error:hover, .form-custom > textarea.error:hover, .form-custom > select.error:hover {
+.validation > input.error:hover, textarea.error:hover, select.error:hover {
     border:1px solid #ae3a38 !important;
     border-color:#ae3a38 !important;
 }
 
-.form-custom > input[type="radio"].square:checked + label:before{
+.validation > .form-custom input[type="radio"].square:checked + label:before{
 	border-color:#2cba36;
 }
 
-.form-custom > input.done, .form-custom > textarea.done, .form-custom > select.done {
+.validation > input.done, .validation > textarea.done, .validation > select.done {
     border:1px solid #2cba36 !important;
     border-color:#2cba36 !important;
 }

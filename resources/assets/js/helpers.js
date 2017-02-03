@@ -149,6 +149,7 @@ module.exports = {
                 modalityServicePresently: '',
                 valueService: '',
                 categories: windowvar.categoriesJs,                
+                services: windowvar.servicesJs,                
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
             }                      
         }
@@ -237,3 +238,4 @@ module.exports = {
         return filters;
     }
 }
+

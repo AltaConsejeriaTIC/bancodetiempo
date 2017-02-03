@@ -318,7 +318,9 @@ Helpers
 	align-items:center;
 }
 
-
+.not-overflow{
+	overflow:initial !important;
+}
 
 .space{
 	display: block;

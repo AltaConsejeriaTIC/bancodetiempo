@@ -44,7 +44,7 @@
 		</div>
 </section>
 	 
-		<section class='row' id='service'>	
+		<section class='row not-overflow' id='service'>	
 			<div class="container">	
 				<div class='row'>
 					<article class='visible-xs visible-sm col-xs-12'>	
@@ -63,7 +63,7 @@
 					</article>	
 					
 					<article class='hidden-xs hidden-sm col-md-4 relative not-padding'>			
-						<div class='fixed'>
+						<div class='relative scrollFixed'>
 							<div class='relative col-md-12 not-padding'>
 								<div class='service-box'>		 
 									<span class='category'>@{{myData.category}}</span>
@@ -119,4 +119,6 @@
 				</div>		
 			</div>
 		</section>
+		
+		
 @endsection

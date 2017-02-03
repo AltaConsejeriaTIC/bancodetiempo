@@ -35,7 +35,7 @@
         </script>
     </head>
 
-    <body>    
+    <body >    
         @include('prependvarjs')
         <div id="app">
             @yield('content')        
