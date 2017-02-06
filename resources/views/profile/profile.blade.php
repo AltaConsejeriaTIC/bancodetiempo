@@ -35,9 +35,9 @@
 		                <div class="row">
 		                    {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
 		                        <input type="hidden" name="token" value="{{ csrf_token() }}">                    
-		                        <deactivate v-if="this.showModal" @@close="showModal = false"></deactivate>
+		                        <deactivate></deactivate>
 		                    {!! Form::close() !!}
-		                    <button id="show-modal" @click="showModal = true" class="col-xs-12 button10 background-white">Desactivar Cuenta</button>                    
+		                    <button class="col-xs-12 button10 background-white" data-toggle="modal" data-target="#deactivate">Desactivar Cuenta</button>                    
 		                </div>
 	                </div>
 	               

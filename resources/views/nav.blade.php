@@ -1,4 +1,4 @@
-<modal v-if="this.showModal" @@close="showModal = false">
+<modal>
 </modal>
 
 @if($type == 1)
@@ -14,8 +14,8 @@
 				</div>
 				@if((Auth::guest()))
 			        <div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-5  text-right" id="container-nav-buttons">	    
-			        	<button id="show-modal" @@click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>          	
-			        	<button id="show-modal" @@click="showModal = true" class="button4 hidden-xs">Registrarse</button>          		          
+			        	<button class="button5" data-toggle="modal" data-target="#login">{{ trans('dictionary.login') }}</button>          	
+			        	<button class="button4 hidden-xs" data-toggle="modal" data-target="#login">Registrarse</button>          		          
 			        </div>
 				@elseif((!Auth::guest()))
 					<a class="hidden-xs col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5  text-right" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
@@ -56,9 +56,9 @@
 							<i class="fa fa-envelope icon-nav notification"><span>2</span></i>
 						</div>
 						<div class="col-md-4 col-sm-4 not-padding hidden-xs hidden-sm hidden-md text-center">
-							<button id="show-modal" @click="showModal1 = true" class="button9 newservice">
+							<!--<button id="show-modal" @click="showModal1 = true" class="button9 newservice">
 							<p>Nueva oferta</p>
-							</button>
+							</button>-->
 						</div>
 					</div>
 					
@@ -124,10 +124,9 @@
 					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentras personas, habilidades y más ... '>
 					<label for="filter1" class=" fa fa-search "></label>
 				</div>
-
 				<div class="text-right" id="container-nav-buttons">
-					<button id="show-modal" @@click="showModal = true" class="button5">{{ trans('dictionary.login') }}</button>
-					<button id="show-modal" @@click="showModal = true" class="button9 buttonStart hidden-xs">Registrarse</button>
+					<button class="button5" data-toggle="modal" data-target="#login">{{ trans('dictionary.login') }}</button>
+					<button class="button9 buttonStart hidden-xs" data-toggle="modal" data-target="#login">Registrarse</button>
 				</div>
 
 			</div>
