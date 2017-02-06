@@ -38,7 +38,7 @@
                 <label for="birthdate" class="paragraph10">Fecha de nacimiento</label>                
             </div>         
             <div class="row not-margin">       
-                <div v-validationDate:date.required.min:18='birthDate' data-name='fecha de nacimiento' class='col-xs-12 not-padding'></div>
+            	<datepicker></datepicker>
                 
                 <input type='hidden' name='birthDate' :value='birthDate'>
             </div>
@@ -69,7 +69,8 @@
 </template>
 <script>
     var helpers = require('./../helpers');
-
+    
+    		
     export default {
         data: function () {
             return helpers.ProfileUser().data;

@@ -44,7 +44,7 @@ var app = new Vue({
 function scrollFixed(){
 	var top = 0;
 	document.body.onscroll = scrollChange
-	elemScroll = document.getElementsByClassName('scrollFixed');
+	var elemScroll = document.getElementsByClassName('scrollFixed');
 	for(var e = 0; e < elemScroll.length; e++){
 		elemScroll[e].style.top = top+"px"
 		elemScroll[e].style.margin = "-150px 0px 0px 0px";
@@ -56,6 +56,7 @@ function scrollFixed(){
 function scrollChange(){
 	var top = 0;
 	var scrollTop = document.body.scrollTop
+	var elemScroll = document.getElementsByClassName('scrollFixed');
 	if(scrollTop > 200){
 		top = (scrollTop-200)
 		if(top < 750){

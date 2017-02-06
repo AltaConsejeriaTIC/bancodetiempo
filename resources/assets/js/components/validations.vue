@@ -188,7 +188,7 @@ function addEventElements(element){
 	if(tag == "INPUT"){
 		tag = tag+"[type='"+element.getAttribute('type')+"']"
 	}
-	event = eventForTag[tag];
+	var event = eventForTag[tag];
 	getFunctionElement(element)
 
 	element.addEventListener(event, _functionElement.method)
