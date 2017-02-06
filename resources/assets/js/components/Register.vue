@@ -4,7 +4,7 @@
                 <label for="firstName" class="paragraph10">Nombre</label>  
             </div>
             <div class="row not-margin"> 
-				<div v-validationText:text.required.min:3.max:25.onlyChar='firstName' data-name='nombre' data-placeholder="Nombre" class='col-xs-12 not-padding'></div>
+				<div v-validationText:text.required.min:3.max:25.onlyChar='firstName' data-name='nombre' data-placeholder="Nombre" class='col-xs-12 not-padding' maxlength="50"></div>
 				
             </div>
 

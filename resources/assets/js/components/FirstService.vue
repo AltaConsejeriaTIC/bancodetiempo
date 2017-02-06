@@ -5,7 +5,7 @@
 				<label for="serviceName" class="paragraph10">Nombre de la oferta (Max. 50 caracteres)</label>
 			</div>
 			<div class="row"> 
-				<input type="text" name="serviceName" autofocus placeholder="Ej. Clase de Inglés, Asesoría penal…" class="col-xs-12 col-sm-12 col-md-12 validation" v-model="serviceName" data-validations='["required", "min:3", "max:30"]'>
+				<input type="text" name="serviceName" autofocus placeholder="Ej. Clase de Inglés, Asesoría penal…" class="col-xs-12 col-sm-12 col-md-12 validation" v-model="serviceName"   maxlength="50" data-validations='["required", "min:3", "max:50"]'>
 				<div class="msg" errors='serviceName'>
 					<p error='required'>Este campo es obligatorio.</p>
 					<p error='min'>Este campo debe ser mínimo de 3 caracteres.</p>
@@ -134,7 +134,12 @@
 	        	this.$parent.setMyData('imageService', value);
 	        },
 	        serviceName: function (value){
-	        	this.$parent.setMyData('serviceName', value);
+	        	if(value.length > 30){
+	        		this.$parent.setMyData('serviceName', value.substring(0, 30)+"...");
+	        	}else{
+	        		this.$parent.setMyData('serviceName', value);
+	        	}
+	        	
 	        },
 	        descriptionService: function (value){
 	        	this.$parent.setMyData('descriptionService', value);
