@@ -71,9 +71,11 @@
 							<div class="col-xs-12">
 								<p class='paragraph4'>¿Te interesa esta oferta?</p>
 							</div>
-							<div class="col-xs-12 ">
-								<button class='col-xs-12 button1 background-active-color'>Comunicate con {{$user->first_name}}</button>
-							</div>
+							@if($service->user_id != Auth::user()->id)
+								<div class="col-xs-12 ">
+									<button class='col-xs-12 button1 background-active-color'>Comunicate con {{$user->first_name}}</button>
+								</div>
+							@endif
 						</div>
 					</div>
 

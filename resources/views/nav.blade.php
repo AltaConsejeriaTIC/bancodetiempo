@@ -1,8 +1,5 @@
 <modal>
 </modal>
-{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
-  <newservice></newservice>
-{!! Form::close() !!}
 @if($type == 1)
 
 	<nav class='navbar navbar-default navbar-static-top nav1'>

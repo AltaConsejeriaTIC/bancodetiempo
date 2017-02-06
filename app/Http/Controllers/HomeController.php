@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use JavaScript;
 use App\Models\Category;
 
 class HomeController extends Controller
@@ -34,6 +35,12 @@ class HomeController extends Controller
     	$allServices = Service::where("user_id" , "!=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
     	
     	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
+
+        $categoriesAll = Category::all();
+
+        JavaScript::put([                    
+                    'categoriesJs' => $categories,                    
+                ]); 
     	
         return view('home', compact('allServices', 'recommendedServices', 'categories'));
     }
