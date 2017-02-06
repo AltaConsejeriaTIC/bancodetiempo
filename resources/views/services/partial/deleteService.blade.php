@@ -47,14 +47,12 @@
 	        <div class="modal-container">
 	          <div class="modal-header">
 	            <button type="button" class="close circle-shape" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	          </div>
-						
+	          </div>						
 						<div class="row">
 							<div class='col-xs-12'>
 								<div class="row">
 									<h1 class="title1 col-xs-12 text-center">No puedes eliminar tu oferta </h1>
-								</div>
-								
+								</div>								
 								<div class="row">
 									<p class="text-center paragraph2">
 								    Debes tener al menos una oferta registrada. 

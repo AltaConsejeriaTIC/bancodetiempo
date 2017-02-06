@@ -1,6 +1,8 @@
 <modal>
 </modal>
-
+{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+  <newservice></newservice>
+{!! Form::close() !!}
 @if($type == 1)
 
 	<nav class='navbar navbar-default navbar-static-top nav1'>
@@ -56,9 +58,9 @@
 							<i class="fa fa-envelope icon-nav notification"><span>2</span></i>
 						</div>
 						<div class="col-md-4 col-sm-4 not-padding hidden-xs hidden-sm hidden-md text-center">
-							<!--<button id="show-modal" @click="showModal1 = true" class="button9 newservice">
+							<button class="button9 newservice" data-toggle="modal" data-target="#NewService">
 							<p>Nueva oferta</p>
-							</button>-->
+							</button>							 
 						</div>
 					</div>
 					
@@ -98,7 +100,7 @@
 						<i class="fa fa-envelope icon-nav notification"><span>2</span></i>
 					</div>
 					<div class='col-xs-4 text-center not-padding '>
-						<a href='' class='button9'>Nueva oferta</a>				
+						<a href='#' class='button9'>Nueva oferta</a>				
 					</div>
 				</div>
 			
