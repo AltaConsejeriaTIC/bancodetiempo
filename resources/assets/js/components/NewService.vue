@@ -89,7 +89,7 @@
                                 </button>
                             </div>
                             <div class="row">
-                                <button  class="col-xs-12 button10 background-white text-center"  @click.prevent="$emit('close')">Cancelar</button> 
+                                <button  class="col-xs-12 button10 background-white text-center" data-dismiss="modal" aria-label="Close">Cancelar</button> 
                             </div>                
                         </div>
                         <div class="modal-footer">
