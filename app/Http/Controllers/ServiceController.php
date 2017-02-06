@@ -19,12 +19,14 @@ class ServiceController extends Controller
    public function index(){
 
    		$categories = Category::all();
+        $user = User::find(auth::user()->id);
    		$selectedCategories = [];
    		$method = 'post';
-         JavaScript::put([               
+         JavaScript::put([
+               'userJs'=> $user,
                'categoriesJs' => $categories,
-               'userJs' => Auth::user(),
-            ]);   
+             ]);
+
 
          Session::put('registerPass3', 'actual');
          
@@ -53,25 +55,22 @@ class ServiceController extends Controller
 
    public function showService($serviceId){
 
-	   	$categories = Category::all('id', 'category');
+       $categories = Category::all('id', 'category');
+       $service = Service::findOrFail($serviceId);
+       $user = User::find($service->user_id);
 
-   		$service = Service::findOrFail($serviceId);
-
+       JavaScript::put([
+           'userJs'=> $user,
+           'categoriesJs' => $categories,
+       ]);
    		if ($service->user_id != Auth::user()->id){
-
-   			return view('services/service', compact('service'));
-
+   			return view('services/service', compact('categories', 'service', 'method' ,'user'));
    		}
-
    		foreach ($service->categories as $selected){
    			$categories->find($selected->category_id)->setAttribute("selected", "selected");
    		}
-
-   		
-   		
    		$method = 'put';
-
-   		return view('services/formService', compact('categories', 'service', 'method'));
+   		return view('services/formService', compact('categories', 'service', 'method' ,'user'));
 
    }
 
@@ -116,8 +115,7 @@ class ServiceController extends Controller
             'categoryService' => 'required',
             'imageService' => 'image|max:2000'
       ]);
-
-      $categorie = Category::find($request->input('categoryService'));
+      
 
 		$service = Service::create([
 				'name' => $request->input('serviceName'),
@@ -126,7 +124,7 @@ class ServiceController extends Controller
 				'virtually' => $request->input('modalityServiceVirtually'),
 				'presently' => $request->input('modalityServicePresently'),
 				'user_id' => Auth::user()->id,
-				'image' => 'resources/categories/'.$categorie->image,
+				'image' => 'resources/categories/category-profile.png',
 				'category_id' => $request->input('categoryService'),            
 				'state_id' => 1
 		]);
@@ -135,8 +133,7 @@ class ServiceController extends Controller
       $user->state_id = 4;
       $user->save();
 
-      if($request->input('imageService'))
-         $this->uploadCover($request->file('imageService'), $service); 
+      $this->uploadCover($request->file('imageService'), $service); 
            
 
 		Session::flash('success','Has creado correctamente tu servicio');
@@ -146,16 +143,19 @@ class ServiceController extends Controller
    }
 
    public function  uploadCover($file, $service){
+         
+         $pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
+         
+         if(!$file){
+            $categorie = Category::find($service->category_id);
+            Service::find($service->id)->update([
+               'image' => $pathImage . $service->image
+            ]);
+            return false;
+         }
 
-   		if(!$file){
-   			return false;
-   		}
-
-   		$imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
-
-   		$pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
-
-   		$file->move(base_path() . '/public/' . $pathImage, $imageName);
+         $imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
+     		$file->move(base_path() . '/public/' . $pathImage, $imageName);
 
    		Service::find($service->id)->update([
    			'image' => $pathImage . $imageName
@@ -183,6 +183,4 @@ class ServiceController extends Controller
 	   	}
 
    }
-
-
 }

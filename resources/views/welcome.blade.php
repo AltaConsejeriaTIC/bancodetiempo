@@ -2,8 +2,7 @@
 
 @section('content')
 
-	<modal v-if="this.showModal" @@close="showModal = false">
-	</modal>
+	<modal></modal>
 	
 	@include('nav', array('type' => 1))	
 
@@ -53,7 +52,7 @@
 				</div>
 				
 				<div class="row space40">
-					<button id="show-modal"  @@click="showModal = true" class='button1 background-active-green-color col-xs-12 col-md-12'>Regístrate para empezar</button>
+					<button class='button1 background-active-green-color col-xs-12 col-md-12' data-toggle="modal" data-target="#login">Regístrate para empezar</button>				
 				</div>
 			
 			</article>

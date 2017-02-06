@@ -35,9 +35,9 @@
 		                <div class="row">
 		                    {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
 		                        <input type="hidden" name="token" value="{{ csrf_token() }}">                    
-		                        <deactivate v-if="this.showModal" @@close="showModal = false"></deactivate>
+		                        <deactivate></deactivate>
 		                    {!! Form::close() !!}
-		                    <button id="show-modal" @click="showModal = true" class="col-xs-12 button10 background-white">Desactivar Cuenta</button>                    
+		                    <button class="col-xs-12 button10 background-white" data-toggle="modal" data-target="#deactivate">Desactivar Cuenta</button>                    
 		                </div>
 	                </div>
 	               
@@ -61,13 +61,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="title1">Mis Ofertas</h2>
-                        {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
-                          <newservice v-if="this.showModal1" @close="showModal1 = false"></newservice>
-                        {!! Form::close() !!}
-                        <button id="show-modal" @click="showModal1 = true" class="col-xs-12 buttonService background-white">
+                        <button class="col-xs-12 buttonService background-white" data-toggle="modal" data-target="#NewService">
                           <i class="fa fa-plus-square icons" aria-hidden="true"></i>
                           <p>Publicar nueva oferta</p>
-                        </button>
+                        </button>                        
+                        {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+                          <newservice></newservice>
+                        {!! Form::close() !!}
                     </div>               
                 </div>
             </article>

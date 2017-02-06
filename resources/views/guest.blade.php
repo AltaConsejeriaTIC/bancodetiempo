@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-	<modal v-if="this.showModal" @@close="showModal = false">
-	</modal>
+	<modal></modal>
 	@include('nav',array('type' => 3))
 
 	<div class="container">

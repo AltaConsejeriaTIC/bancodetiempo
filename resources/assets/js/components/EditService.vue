@@ -116,7 +116,7 @@
             this.$parent.setMyData('imageService', 'images/previewService.jpg');
             this.$parent.setMyData('serviceName', 'Titulo de la oferta');
             this.$parent.setMyData('descriptionService', 'Descripción de la oferta');                              
-            for (var i = 0; i < 3; i++) 
+            for (var i = 0; i < this.services.length; i++) 
             {
                 if(this.services[i].id == this.id)
                 {
