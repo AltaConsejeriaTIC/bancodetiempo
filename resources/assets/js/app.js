@@ -10,7 +10,6 @@ Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('avatar', require('./components/ImageProfile.vue'));
 Vue.component('firstservice', require('./components/FirstService.vue'));
 Vue.component('editservice', require('./components/EditService.vue'));
-Vue.component('datepicker', require('./components/date.vue'));
 //directives
 Vue.directive('validation', require('./components/validations.vue'));
 Vue.directive('validationText', require('./components/validationsText.vue'));
