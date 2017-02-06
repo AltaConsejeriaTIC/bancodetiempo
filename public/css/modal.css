@@ -13,7 +13,7 @@
 {
   border-radius: 18px;
   position: relative;
-  height: 93%;
+  max-height: 913px;
   width: 420px;
   overflow-y: auto;
   overflow-x: hidden;
