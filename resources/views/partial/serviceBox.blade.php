@@ -26,14 +26,14 @@
 			<div class="content">		 
 				<h3 class='title title2'>{{$service->name}}</h3>		 		
 		 		<div class='ranking'>											
-					<div>											
-						@for($cont = 1 ; $cont <= 5 ; $cont++)												
+					<div>
+						@for($cont = 1 ; $cont <= 5 ; $cont++)
 							@if($cont <= $service->user->ranking)
-								<span class='material-icons paragraph8'>grade</span>
+								<span class='material-icons paragraph9'>grade</span>
 							@else
-								<span class='material-icons paragraph8 star'>fiber_manual_record</span>
-							@endif												
-						@endfor												
+								<span class='material-icons paragraph8 '>fiber_manual_record</span>
+							@endif
+						@endfor
 					</div>		
 				</div>
 				<div class="space15">										

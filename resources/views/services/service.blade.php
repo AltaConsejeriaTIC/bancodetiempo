@@ -4,47 +4,50 @@
 
 	@include('nav',array('type' => 2))
 
-	<section class="row">
+	<section class="row not-padding">
 		<div class="container">
 			<div class='row'>
 				<article class="col-md-8">
 					<div class="image-service">
-						<div class="">
+						<span class='category'>{{$service->category->category}}</span>
 						<img src="@if(strpos($service->image, 'http') === false) /{{$service->image}} @else {{$service->image}} @endif" alt="" />
 
+					</div>
+					<h3 class='title title2'>{{$service->name}}</h3>
+					<div class='ranking left'>
+						<div class='left'>
+							@for($cont = 1 ; $cont <= 5 ; $cont++)
+								@if($cont <= $service->user->ranking)
+									<span class='material-icons paragraph9'>grade</span>
+								@else
+									<span class='material-icons paragraph8 '>fiber_manual_record</span>
+								@endif
+							@endfor
+						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="content">
-								<h3 class='title title2'>{{$service->name}}</h3>
-								<div class='ranking left'>
-									<div class='left'>
-										@for($cont = 1 ; $cont <= 5 ; $cont++)
-											@if($cont <= $service->user->ranking)
-												<span class='material-icons paragraph8'>grade</span>
-											@else
-												<span class='material-icons paragraph8 star'>fiber_manual_record</span>
-											@endif
-										@endfor
-									</div>
-								</div>
-								<p class="paragraph4">{{$service->description}}</p>
+								<p class="paragraph4 text-center">{{$service->description}}</p>
 								<div class="space15">
-								</div>
-								<div class='tags'>
-									<a class='button7'>#Palabraclave</a>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="space">
-							</div>
-							<p >Modalidad: Presencial
-								 Adquiere esta oferta por:</p>
+							<p class="paragraph4 text-bold">Modalidad: </p>
+
+							<p class="paragraph4 text-bold"> Adquiere esta oferta por: </p>
+							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
+							<p>{{$service->value}} <span> Laches</span></p>
 						</div>
 					</div>
-					</div>
-
+						<div class='tags'>
+							<p>
+								<a class='button7'>#Palabraclave</a>
+								<a class='button7'>#Palabraclave</a>
+								<a class='button7'>#Palabraclave</a>
+							</p>
+						</div>
 				</article>
 
 				<article class='col-md-4 col-xs-12 col-sm-6'>
@@ -52,7 +55,7 @@
 						<div class="col-xs-6 col-xs-offset-3">
 							<avatar :cover='myData.cover'>
 								<template scope="props">
-									@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
+									@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#0f6784', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
 								</template>
 							</avatar>
 						</div>
