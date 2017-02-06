@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -28,11 +29,13 @@ class HomeController extends Controller
     {
     	$interestsUser = $this->getInterestsUser();
     	
+    	$categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
+    	
     	$allServices = Service::where("user_id" , "!=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
     	
     	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
     	
-        return view('home', compact('allServices', 'recommendedServices'));
+        return view('home', compact('allServices', 'recommendedServices', 'categories'));
     }
     
     public function indexNotRegister(){

@@ -1,4 +1,5 @@
 var Vue = require('vue');
+var VueResource = require('vue-resource');
 var helpers = require('./helpers');
 
 Vue.component('modal', require('./components/Modal.vue'));
@@ -10,6 +11,7 @@ Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('avatar', require('./components/ImageProfile.vue'));
 Vue.component('firstservice', require('./components/FirstService.vue'));
 Vue.component('editservice', require('./components/EditService.vue'));
+Vue.component('filtersCategories', require('./components/filtersCategories.vue'));
 //directives
 Vue.directive('validation', require('./components/validations.vue'));
 Vue.directive('validationText', require('./components/validationsText.vue'));
