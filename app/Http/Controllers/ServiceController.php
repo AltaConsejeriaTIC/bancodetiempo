@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use PhpParser\Node\Expr\Print_;
 use JavaScript;
+use function GuzzleHttp\Promise\all;
 
 class ServiceController extends Controller
 {
@@ -158,6 +159,17 @@ class ServiceController extends Controller
       ]);
       
       return $pathImage . $imageName;
+   }   
+   
+   public function findCategories($idCategory = 0){
+   		$servicesForCategory = "";
+   		if($idCategory == 0){
+   			$servicesForCategory = Service::where('state_id', 1)->get()->where('user.state_id', 1);
+   		}else{
+   			$servicesForCategory = Service::where('category_id', $idCategory)->where('state_id', 1)->get()->where('user.state_id', 1);
+   		}
+   		return view('services/filterCategories', compact('servicesForCategory'));
+   		
    }
 
 }

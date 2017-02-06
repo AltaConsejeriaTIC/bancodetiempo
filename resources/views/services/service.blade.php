@@ -10,7 +10,7 @@
 				<article class="col-md-8">
 					<div class="image-service">
 						<div class="">
-						<img src="/{{$service->image}}" alt="" />
+						<img src="@if(strpos($service->image, 'http') === false) /{{$service->image}} @else {{$service->image}} @endif" alt="" />
 
 					</div>
 					<div class="row">
