@@ -2,8 +2,6 @@
 
 @section('content')
 
-	<modal></modal>
-	
 	@include('nav', array('type' => 1))	
 
 	<section class='bannerHome row'>

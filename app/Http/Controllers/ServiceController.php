@@ -9,7 +9,6 @@ use App\Models\Category;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use App\Models\CategoriesService;
 use PhpParser\Node\Expr\Print_;
 use JavaScript;
 
@@ -34,20 +33,24 @@ class ServiceController extends Controller
 
    }
 
-	 public function deleteService ($serviceId){
+	 public function deleteService ($serviceId)
+   {
+    
+    $numServices = Service::where("user_id",Auth::user()->id)->count();
 
-		 $numServices = Service::where("user_id",Auth::user()->id)->count();
-		 if ($numServices>1){
-		 $categorie = CategoriesService::where("service_id",$serviceId)->delete();
-
-		 $service = Service::find($serviceId);
-		 $service->delete();
-	 }else{
-		 Session::flash('error','No puedes tener menos de un servicio');
-		 return redirect('profile');
-	 }
-	 		Session::flash('success','Has eliminado correctamente tu servicio');
-   		return redirect('profile');
+    if ($numServices>1)
+    {
+      $service = Service::find($serviceId);
+      $service->delete();
+    }
+    else
+    {
+      Session::flash('error','No puedes tener menos de un servicio');
+      return redirect('profile');
+    }
+    
+    Session::flash('success','Has eliminado correctamente tu servicio');
+    return redirect('profile');
 
    }
 
@@ -74,34 +77,32 @@ class ServiceController extends Controller
 
    }
 
-   public function update($id, Request $request){
+  public function update($id, Request $request){
 
-   	$this->validate($request, [
-   			'serviceName' => 'required|max:100',
-   			'descriptionService' => 'required|max:250|min:50',
-   			'valueService' => 'required|numeric|min:1|max:10',
-   			'modalityServiceVirtually' => 'required_without:modalityServicePresently',
-   			'modalityServicePresently' => 'required_without:modalityServiceVirtually',
-   			'imageService' => 'image|max:2000'
-   	]);
+      $this->validate($request, [
+          'serviceName' => 'required|max:100',
+          'descriptionService' => 'required|max:250|min:50',
+          'valueService' => 'required|numeric|min:1|max:10',
+          'modalityServiceVirtually' => 'required_without:modalityServicePresently',
+          'modalityServicePresently' => 'required_without:modalityServiceVirtually',
+          'imageService' => 'image|max:2000'
+      ]);
 
-		$service = Service::find($id);
+      $service = Service::find($id);
+      $service->update([
+          'name' => $request->input('serviceName'),
+          'description' => $request->input('descriptionService'),
+          'value' => $request->input('valueService'),
+          'virtually' => $request->input('modalityServiceVirtually'),
+          'presently' => $request->input('modalityServicePresently'),
+          'category_id' => $request->input('categoryService'),
+      ]);
 
-		$service->update([
-				'name' => $request->input('serviceName'),
-				'description' => $request->input('descriptionService'),
-				'value' => $request->input('valueService'),
-				'virtually' => $request->input('modalityServiceVirtually'),
-				'presently' => $request->input('modalityServicePresently'),
-				'category_id' => $request->input('categoryService'),
-		]);
-
-		$this->uploadCover($request->file('imageService'), $service);
-   		
-		Session::flash('success','Has actualizado correctamente tu servicio');
-		
-   	return redirect('profile');
-
+      $this->uploadCover($request->file('imageService'), $service);
+        
+      Session::flash('success','Has actualizado correctamente tu servicio');
+      
+      return redirect('profile');
    }
 
    public function create(Request $request){
@@ -143,44 +144,20 @@ class ServiceController extends Controller
    }
 
    public function  uploadCover($file, $service){
-         
-         $pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
-         
-         if(!$file){
-            $categorie = Category::find($service->category_id);
-            Service::find($service->id)->update([
-               'image' => $pathImage . $service->image
-            ]);
-            return false;
-         }
+      
+      if(!$file){
+        return false;
+      }
 
-         $imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
-     		$file->move(base_path() . '/public/' . $pathImage, $imageName);
-
-   		Service::find($service->id)->update([
-   			'image' => $pathImage . $imageName
-   		]);
-
-   		return $pathImage . $imageName;
-
+      $imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
+      $pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
+      $file->move(base_path() . '/public/' . $pathImage, $imageName);
+      
+      Service::find($service->id)->update([
+        'image' => $pathImage . $imageName
+      ]);
+      
+      return $pathImage . $imageName;
    }
 
-   public function updateCategoriesService($categories, $service){
-
-   		$serviceCategory = CategoriesService::where('service_id', $service->id);
-
-   		if($serviceCategory){
-   			$serviceCategory->delete();
-   		}
-
-	   	foreach ($categories as $category){
-
-	   		CategoriesService::create([
-	   				'category_id' => $category,
-	   				'service_id' => $service->id
-	   		]);
-
-	   	}
-
-   }
 }
