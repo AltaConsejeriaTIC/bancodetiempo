@@ -6,9 +6,11 @@
 				<button class="icons-button" data-toggle="modal" data-target="#DeleteService{{$service->id}}"><i class="fa fa-trash-o"></i></button>						
 			</div>
 			{!! Form::model($service, ['url' => ['service/save', $service->id], 'method' => 'put', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
-				<editservice name="EditService{{$service->id}}" id="{{$service->id}}"></editservice>		
-			{!!Form::close()!!}
-
+				<editservice name="EditService{{$service->id}}" id="{{$service->id}}"></editservice>						
+			{!!Form::close()!!}	
+			{!! Form::model($service, ['url' => ['serviceDelete', $service->id], 'method' => 'get', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}		
+				@include('services.partial.deleteService')
+			{!!Form::close()!!}		
 		@endif			
 			<span class='category'>{{$service->category->category}}</span>
 			<a href="service/{{$service->id}}">

@@ -10,8 +10,7 @@
 }
 
 .modal-content-box
-{
-  border-radius: 18px;
+{  
   position: relative;
   max-height: 913px;
   width: 420px;
@@ -64,8 +63,7 @@
   width: 420px;
   margin: auto;  
   padding: 11px 44px 33px 43px;
-  background-color: #fff;
-  border-radius: 1%;
+  background-color: #fff;  
   box-shadow: 0 20pxx 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;  

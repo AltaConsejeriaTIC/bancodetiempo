@@ -110,12 +110,7 @@
             return helpers.Service().data;
         }, 
         mixins: [helpers.Helpers(),helpers.ValidateService(),helpers.MethodsService()],
-        mounted() {   
-            this.$parent.setMyData('totalChar', 250);
-            this.$parent.setMyData('maxChar', 250);
-            this.$parent.setMyData('imageService', 'images/previewService.jpg');
-            this.$parent.setMyData('serviceName', 'Titulo de la oferta');
-            this.$parent.setMyData('descriptionService', 'Descripción de la oferta');                              
+        mounted() {                                    
             for (var i = 0; i < this.services.length; i++) 
             {
                 if(this.services[i].id == this.id)

@@ -215,9 +215,10 @@ module.exports = {
                         return;
                     
                      reader.onload = (e) => {
-                          this.imageService = e.target.result;
+                        this.imageService = e.target.result;
                      };
-                    reader.readAsDataURL(files[0]);
+                    console.log("esteeeeee");                  
+                    reader.readAsDataURL(files[0]);  
                 },
             }
         }
