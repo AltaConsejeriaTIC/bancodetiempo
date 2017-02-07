@@ -37,8 +37,7 @@ function getFunctionElement(element){
 	"errorsCheckbox(this, errors)"+
 	"}else{"+
 	"if(errors>0){this.setAttribute('validation', 'false')}else{this.setAttribute('validation', 'true')}"+
-	"}"+
-	"validateAll();"
+	"}"
 	
 	_functionElement.method = function(){eval(functionElement)}
 }
@@ -65,9 +64,10 @@ function errorsCheckbox(el, errors){
 }
 
 function required(el){
-	
 	var error = 0;
-	if(el.value == "" || el.value == 0 || (el.getAttribute('type') == 'checkbox' && !el.checked) ||  (el.getAttribute('type') == 'radio' && !el.checked)){
+	var name = el.getAttribute('name')
+	var type = el.getAttribute('type')
+	if(el.value == "" || el.value == 0 || (type == 'checkbox' && !el.checked) ||  (type == 'radio' && parent.querySelectorAll('[name="'+name+'"]:checked').length == 0)){
 		error = 1;
 		showErrorsBox(el, "required")
 	}else{
@@ -288,6 +288,12 @@ export default {
 			senders[send].setAttribute("sender" , 'sender')
 		}
 
+	},
+	componentUpdated:function(el, b, vnode){
+		var elements = el.getElementsByClassName('validation');
+		for (var obj = 0; obj < elements.length; obj++){	
+			validateInit(elements[obj])
+		}
 	}
 }
 

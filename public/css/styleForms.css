@@ -300,3 +300,35 @@ input[type=checkbox].boxCheck:checked + label i {
     border:1px solid #2cba36 !important;
     border-color:#2cba36 !important;
 }
+
+.validation[validation='true'] + i{
+	display: block;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    z-index: 10;
+    right: 5px;
+    margin-top: 10px;
+    color: #2cba36;
+}
+
+.validation[validation='true'] + i:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f00c";
+}
+
+.validation[validation='false'] + i{
+	display: block;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    z-index: 10;
+    right: 5px;
+    margin-top: 10px;
+    color: #ae3a38;
+}
+
+.validation[validation='false'] + i:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f00d";
+}
