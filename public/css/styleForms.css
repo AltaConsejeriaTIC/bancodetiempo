@@ -300,3 +300,112 @@ input[type=checkbox].boxCheck:checked + label i {
     border:1px solid #2cba36 !important;
     border-color:#2cba36 !important;
 }
+
+.validation[validation='true'] + i{
+	display: block;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    z-index: 10;
+    right: 5px;
+    margin-top: 10px;
+    color: #2cba36;
+}
+
+.validation[validation='true'] + i:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f00c";
+}
+
+.validation[validation='false'] + i{
+	display: block;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    z-index: 10;
+    right: 5px;
+    margin-top: 10px;
+    color: #ae3a38;
+}
+
+.validation[validation='false'] + i:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f00d";
+}
+
+
+.multi-select {
+    display: block;
+    position: absolute;
+    border: 1px solid #9ca2a9;
+    z-index: 150;
+    background: #fff;
+    border-radius: 5px;
+    overflow:hidden;
+    max-width:90%;
+}
+
+.multi-select.pick {
+    height: 40px;
+}
+
+.multi-select.drop{
+	height:auto;
+}
+
+.multi-select input[type='checkbox'] {
+    display: none;
+}
+
+.multi-select input[type='checkbox'] + label {
+	width:100%;
+    padding: 10px;
+    margin-bottom:0px;
+    cursor:pointer;
+    color:#445870;
+    font-size:14px;
+}
+
+.multi-select input[type='checkbox']:checked + label {
+    background: #dfe4ea;
+}
+
+.multi-select .list {
+   	max-width: 100%;
+    padding: 10px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    color: #445870;
+    font-size: 14px;
+    display: block;
+    white-space: nowrap;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.multi-select .list::-webkit-scrollbar {
+    display:none;
+}
+
+.multi-select input[type='checkbox'] + label:after {
+    content: "";
+    display: block;
+    width: 95%;
+    position: relative;
+    border-bottom: 0.1px solid rgba(151, 151, 151, 0.31);
+    margin: auto;
+    height: 7px;
+}
+
+.multi-select input[type='checkbox']:checked + label:after {
+    content: "";
+    display: none;
+}
+
+.multi-select .list:before {
+    position: absolute;
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f107";
+    right: 5%;
+    margin-top: 5px;
+}

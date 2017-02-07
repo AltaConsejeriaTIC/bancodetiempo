@@ -6,7 +6,7 @@
 {!! Form::close() !!}
 <div class="container">
 	<div class="row">
-	    <ul  class="nav nav-pills col-md-9">
+	    <ul  class="nav nav-pills col-md-8">
 			<li class="active">
 	        	<a  href="#filterAll" data-toggle="tab" class='parrafo3'>Todos</a>
 			</li>
@@ -17,16 +17,11 @@
 		<div class='col-md-1 not-padding'>
 			<p class="paragraph10">Filtrar&nbsp;por</p>
 		</div>
-		<div class="col-md-2">
-			<filters-categories>
-				<template>					
-					<option value="0">Todas las categorías</option>
-					@foreach($categories as $category)
-						<option value="{{$category->id}}">{{$category->category}}</option>
-					@endforeach
-				</template>
-			</filters-categories>
+		<div class="col-md-3">
+			<filters-categories categories='{{ $categories }}'></filters-categories>
 		</div>
+	</div>
+	<div class='row'>
 		<div class="tab-content clearfix">
 			<div class="tab-pane active" id="filterAll">
 				<div class='row'>
