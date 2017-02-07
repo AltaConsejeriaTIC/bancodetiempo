@@ -51,9 +51,10 @@ Titles
 }
 
 .title2{
+	font-family: Montserrat, sans-serif;
 	margin-top: 12px !important;
 	font-weight:bold;
-	font-size:20px;
+	font-size:28px;
 	color:#2c3e50;
 	word-wrap: break-word;
 }
@@ -227,10 +228,15 @@ Paragraphs
 	word-wrap: break-word;
 }
 .paragraph8{
-		font-size: 8px !important;		
-		color:#2c3e50 !important;
+	font-size: 8px !important;
+	color:#2c3e50 !important;
   	word-wrap: break-word;
 	}
+.paragraph9{
+	font-size: 20px !important;
+	color:#2c3e50 !important;
+	word-wrap: break-word;
+}
 .paragraph10{
 	font-size:14px !important;
 	color:#90a1b5 !important;
@@ -480,14 +486,15 @@ Service box
 }
 
 .service-box span.category {
-    background: #2c3e50;
-    position: absolute;
-    top: 2%;
-    right: 2%;
-    z-index: 10;
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 5px;
+	background: rgba(0, 0, 0, 0.6);
+	position: absolute;
+	top: 2%;
+	right: 2%;
+	z-index: 10;
+	color: #fff;
+	border: solid 1px #18aada;
+	padding: 10px 15px;
+	border-radius: 5px;
 }
 
 .service-box .cover {
@@ -535,6 +542,21 @@ Service box
     display: block;
     height: 65px;
 }
+/*
+Detail Service
+*/
+.category{
+	background: rgba(0, 0, 0, 0.6);
+	position: absolute;
+	top: 2%;
+	right: 4%;
+	z-index: 10;
+	color: #fff;
+	border: solid 1px #18aada;
+	padding: 10px 15px;
+	border-radius: 5px;
+}
+
 
 
 /*
@@ -688,9 +710,11 @@ Media Querys
 		font-size: 17px !important;
 	}
 
-	.paragraph8 {
+	.paragraph8{
 		font-size: 8px !important;
 	}
+
+
 	
 }
 

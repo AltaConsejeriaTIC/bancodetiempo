@@ -40,7 +40,7 @@ class ServicesTableSeeder extends Seeder
 					'name' => $faker->word,
 					'description' => $faker->text,
 					'value' => $faker->numberBetween(1,8),
-					'virtually'  => $faker->numberBetween(1,8),
+					'virtually'  => $faker->numberBetween(0,1),
 					'presently' => 1,
 					'image' => $faker->randomElement($fotos),
 					'category_id' => $faker->numberBetween(1,5),

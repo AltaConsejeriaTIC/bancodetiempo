@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
 @include('nav',array('type' => 2))
-
+{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+  <newservice></newservice>
+{!! Form::close() !!}
 <div class="container">
 	<div class="row">
 	    <ul  class="nav nav-pills col-md-9">

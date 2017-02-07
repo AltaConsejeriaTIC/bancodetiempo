@@ -73,7 +73,7 @@
 				@endforeach
 		 	
 		 		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-12 not-padding ">
-					<a href="guest"  class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-4 text-center'>Explorar más ofertas</a>
+					<a href="guest"  class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>Explorar más ofertas</a>
 		 		</div>
 		 	
 		 	</article>
@@ -90,7 +90,7 @@
 
 		<div class="container">
 				
-				<div class='row'>
+				<div class='row col-xs-offset-1'>
 					<h2 class='title1 text-white text-center col-xs-12 col-md-12'>¡ÚNETE!</h2>
 				</div>
 				

@@ -59,22 +59,17 @@ class ServiceController extends Controller
 
    public function showService($serviceId){
 
-       $categories = Category::all('id', 'category');
-       $service = Service::findOrFail($serviceId);
-       $user = User::find($service->user_id);
+     $categories = Category::all('id', 'category');
+     $service = Service::findOrFail($serviceId);
+     $user = User::find($service->user_id);
 
-       JavaScript::put([
-           'userJs'=> $user,
-           'categoriesJs' => $categories,
-       ]);
-   		if ($service->user_id != Auth::user()->id){
-   			return view('services/service', compact('categories', 'service', 'method' ,'user'));
-   		}
-   		foreach ($service->categories as $selected){
-   			$categories->find($selected->category_id)->setAttribute("selected", "selected");
-   		}
-   		$method = 'put';
-   		return view('services/formService', compact('categories', 'service', 'method' ,'user'));
+     JavaScript::put([
+         'userJs'=> $user,
+         'categoriesJs' => $categories,
+     ]);
+   		
+     return view('services/service', compact('categories', 'service', 'method' ,'user'));
+   		
 
    }
 
