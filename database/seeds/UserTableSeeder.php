@@ -102,6 +102,6 @@ class UserTableSeeder extends Seeder
         'state_id' => 1,
         'role_id' => 2,
         'privacy_policy' => 1,
-    ]);
-    
+    ]);       
+    }
 }
