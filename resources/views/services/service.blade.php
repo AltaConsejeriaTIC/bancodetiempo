@@ -13,7 +13,7 @@
 						<img src="@if(strpos($service->image, 'http') === false) /{{$service->image}} @else {{$service->image}} @endif" alt="" />
 
 					</div>
-					<h3 class='title title2'>{{$service->name}}</h3>
+					<h3 class='title title2-service'>{{$service->name}}</h3>
 					<div class='ranking left'>
 						<div class='left'>
 							@for($cont = 1 ; $cont <= 5 ; $cont++)
@@ -34,11 +34,22 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<p class="paragraph4 text-bold">Modalidad: </p>
-
+							<p class="paragraph4">
+								<span class="paragraph4 text-bold">Modalidad:</span>
+								@if($service->presently==1) Presencial @endif
+								@if($service->presently==1 && $service->virtually !== 0) y @endif
+								@if($service->virtually !== 0) Virtual @endif</p>
+							<p class="space15"></p>
 							<p class="paragraph4 text-bold"> Adquiere esta oferta por: </p>
-							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
-							<p>{{$service->value}} <span> Laches</span></p>
+							<div class="row space10">
+								<div class="col-md-2">
+									<img src="{{ asset('images/moneda.png') }}" class=" moneda icon-nav text-center"></image>
+								</div>
+								<div class="col-md-10">
+									<p class="paragraph4 text-bold">{{$service->value}} <span> Laches</span></p>
+									<p class="paragraph8 ">Cada lache vale una hora de tu tiempo, y del tiempo de cualquier persona.</p>
+								</div>
+							</div>
 						</div>
 					</div>
 						<div class='tags'>

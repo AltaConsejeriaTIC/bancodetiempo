@@ -54,6 +54,14 @@ Titles
 	font-family: Montserrat, sans-serif;
 	margin-top: 12px !important;
 	font-weight:bold;
+	font-size:20px;
+	color:#2c3e50;
+	word-wrap: break-word;
+}
+.title2-service{
+	font-family: Montserrat, sans-serif;
+	margin-top: 12px !important;
+	font-weight:bold;
 	font-size:28px;
 	color:#2c3e50;
 	word-wrap: break-word;
@@ -228,7 +236,7 @@ Paragraphs
 	word-wrap: break-word;
 }
 .paragraph8{
-	font-size: 8px !important;
+	font-size: 9px !important;
 	color:#2c3e50 !important;
   	word-wrap: break-word;
 	}
