@@ -341,6 +341,16 @@ input[type=checkbox].boxCheck:checked + label i {
     z-index: 150;
     background: #fff;
     border-radius: 5px;
+    overflow:hidden;
+    max-width:90%;
+}
+
+.multi-select.pick {
+    height: 40px;
+}
+
+.multi-select.drop{
+	height:auto;
 }
 
 .multi-select input[type='checkbox'] {
@@ -358,4 +368,44 @@ input[type=checkbox].boxCheck:checked + label i {
 
 .multi-select input[type='checkbox']:checked + label {
     background: #dfe4ea;
+}
+
+.multi-select .list {
+   	max-width: 100%;
+    padding: 10px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    color: #445870;
+    font-size: 14px;
+    display: block;
+    white-space: nowrap;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.multi-select .list::-webkit-scrollbar {
+    display:none;
+}
+
+.multi-select input[type='checkbox'] + label:after {
+    content: "";
+    display: block;
+    width: 95%;
+    position: relative;
+    border-bottom: 0.1px solid rgba(151, 151, 151, 0.31);
+    margin: auto;
+    height: 7px;
+}
+
+.multi-select input[type='checkbox']:checked + label:after {
+    content: "";
+    display: none;
+}
+
+.multi-select .list:before {
+    position: absolute;
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f107";
+    right: 5%;
+    margin-top: 5px;
 }

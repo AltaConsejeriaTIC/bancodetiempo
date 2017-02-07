@@ -1,10 +1,10 @@
 <script>
 
 var eventForTag = {
-		"INPUT[type='text']":"keyup",
-		"INPUT[type='number']":"keyup",
-		"INPUT[type='password']":"keyup",
-		"INPUT[type='email']":"keyup",
+		"INPUT[type='text']":"change",
+		"INPUT[type='number']":"change",
+		"INPUT[type='password']":"change",
+		"INPUT[type='email']":"change",
 		"INPUT[type='hidden']":"change",
 		"INPUT[type='radio']":"change",
 		"INPUT[type='checkbox']":"change",
