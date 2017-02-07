@@ -477,8 +477,8 @@ Service box
 .service-box {
     position: relative;
     width: 322px;
-    max-height: 430px;
-    height: 410px;
+    max-height: 500px;
+    height: 475px;
     margin: 10px auto;
     background-color:#dedede;
     border: 0.25px solid #a0a0a0;
@@ -777,4 +777,85 @@ Animations
 
 .left{
 	margin-left: 0px;
+}
+
+
+.vue-input-tag-wrapper .input-tag {
+	background-color: initial;
+	color: initial;
+	border: 1px solid #999999;
+	border-radius: 4px;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 400;
+	margin-bottom: 4px;
+	margin-right: 4px;
+	padding: 3px;
+}
+
+.no-input > input{
+	border: none !important;
+	display: initial !important;
+  overflow: initial !important;
+  margin-bottom: 0px !important;  
+}
+
+.vue-input-tag-wrapper .input-tag .remove {
+	color: initial !important;
+}
+
+.vue-input-tag-wrapper {
+	background-color: #fff;
+  border: 1px solid #ccc;
+  overflow: hidden;    
+  cursor: text;
+  text-align: left;
+  -webkit-appearance: textfield;
+	border-radius: 4px;
+	padding: 10px 12px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.input-tag:before {
+    content: "#";
+}
+
+.vue-input-tag-wrapper .input-tag .remove {
+  cursor: pointer;
+  font-weight: bold;
+  color: #638421;
+}
+
+.vue-input-tag-wrapper .input-tag .remove:hover {
+  text-decoration: none;
+}
+
+.vue-input-tag-wrapper .input-tag .remove::before {
+  content: " x";
+}
+
+.vue-input-tag-wrapper .new-tag {
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  margin-top: 1px;
+  outline: none;
+  padding: 4px;
+  padding-left: 0;
+  width: 80px;
+}
+
+.vue-input-tag-wrapper.read-only {
+  cursor: default;
+}
+
+.tag-margin{
+	margin-right: 12.5px;	
+	margin-bottom: 5px; 
+	width: auto;
 }

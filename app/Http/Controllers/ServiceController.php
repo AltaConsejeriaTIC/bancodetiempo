@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use Session;
 use App\Models\Category;
+use App\Models\Tag;
+use App\Models\TagsService;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -102,40 +104,51 @@ class ServiceController extends Controller
    }
 
    public function create(Request $request){
-      
-      $this->validate($request, [
-            'serviceName' => 'required|max:100',
-            'descriptionService' => 'required|max:250|min:50',
-            'valueService' => 'required|numeric|min:1|max:10',
-            'modalityServiceVirtually' => 'required_without:modalityServicePresently',
-            'modalityServicePresently' => 'required_without:modalityServiceVirtually',
-            'categoryService' => 'required',
-            'imageService' => 'image|max:2000'
-      ]);
-      
+    
+    $this->validate($request, [
+          'serviceName' => 'required|max:100',
+          'descriptionService' => 'required|max:250|min:50',
+          'valueService' => 'required|numeric|min:1|max:10',
+          'modalityServiceVirtually' => 'required_without:modalityServicePresently',
+          'modalityServicePresently' => 'required_without:modalityServiceVirtually',
+          'categoryService' => 'required',
+          'imageService' => 'image|max:2000'
+    ]);    
 
-		$service = Service::create([
-				'name' => $request->input('serviceName'),
-				'description' => $request->input('descriptionService'),
-				'value' => $request->input('valueService'),
-				'virtually' => $request->input('modalityServiceVirtually'),
-				'presently' => $request->input('modalityServicePresently'),
-				'user_id' => Auth::user()->id,
-				'image' => 'resources/categories/category-profile.png',
-				'category_id' => $request->input('categoryService'),            
-				'state_id' => 1
-		]);
+    $service = Service::create([
+        'name' => $request->input('serviceName'),
+        'description' => $request->input('descriptionService'),
+        'value' => $request->input('valueService'),
+        'virtually' => $request->input('modalityServiceVirtually'),
+        'presently' => $request->input('modalityServicePresently'),
+        'user_id' => Auth::user()->id,
+        'image' => 'resources/categories/category-profile.png',
+        'category_id' => $request->input('categoryService'),            
+        'state_id' => 1
+    ]);
+        
+    $tagsService = json_decode($request->tagService);
+    foreach ( $tagsService as $tag) 
+    {
+      $newTag = new Tag;    
+      $newTag->tag = $tag;
+      $newTag->save();
+      $newTagService = new TagsService;
+      $newTagService->service_id = $service->id;
+      $newTagService->tag_id = $newTag->id;
+      $newTagService->save();
+    }
 
-      $user = User::find(Auth::user()->id);
-      $user->state_id = 4;
-      $user->save();
+    $user = User::find(Auth::user()->id);
+    $user->state_id = 4;
+    $user->save();
 
-      $this->uploadCover($request->file('imageService'), $service); 
-           
+    $this->uploadCover($request->file('imageService'), $service); 
+         
 
 		Session::flash('success','Has creado correctamente tu servicio');
 		Session::put('registerPass3', 'done');
-  		return redirect('profile');
+		return redirect('profile');
 
    }
 
