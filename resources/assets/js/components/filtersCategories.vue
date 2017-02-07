@@ -70,7 +70,7 @@ export default {
 			this.$http.get('/service/category/'+filter).then(response => {
 				document.getElementById('filterAll').firstChild.innerHTML = response.body
 			  }, response => {
-			    alert("error")
+			    console.log("error")
 			  });
 		},
 		toogleSelect:function(){
