@@ -332,3 +332,30 @@ input[type=checkbox].boxCheck:checked + label i {
     font: normal normal normal 14px/1 FontAwesome;
     content: "\f00d";
 }
+
+
+.multi-select {
+    display: block;
+    position: absolute;
+    border: 1px solid #9ca2a9;
+    z-index: 150;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.multi-select input[type='checkbox'] {
+    display: none;
+}
+
+.multi-select input[type='checkbox'] + label {
+	width:100%;
+    padding: 10px;
+    margin-bottom:0px;
+    cursor:pointer;
+    color:#445870;
+    font-size:14px;
+}
+
+.multi-select input[type='checkbox']:checked + label {
+    background: #dfe4ea;
+}

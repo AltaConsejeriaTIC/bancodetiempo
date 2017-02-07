@@ -92,16 +92,5 @@ class ServicesTableSeeder extends Seeder
             'user_id' => 17,
             'state_id' => 1,
         ]);
-        $this->create([
-            'name' => 'visita guiada a la costa colombiana',
-            'description' => 'Ofrezco una visita guiada a la costa colombiana, el interesado debe cubrir los costos de ida y regreso, estadía y hospedaje.',
-            'value' => 4,
-            'virtually'  => 1,
-            'presently' => 1,
-            'image' => $faker->randomElement($fotos),
-            'category_id' => 1,
-            'user_id' => 18,
-            'state_id' => 1,
-        ]);
 	}
 }
