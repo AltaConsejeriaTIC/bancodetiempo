@@ -172,6 +172,7 @@ class ServiceController extends Controller
    public function findCategories($categories){
    		
    		$idCategories = explode(":", $categories);
+      $tags = Tag::select('tags.*','tags_services.service_id')->join('tags_services','tags.id','=','tags_services.tag_id')->join('services','tags_services.service_id','=','services.id')->where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get();
    		
    		$servicesForCategory = "";
    		
@@ -181,7 +182,7 @@ class ServiceController extends Controller
    			$servicesForCategory = Service::whereIn('category_id', $idCategories)->where('state_id', 1)->get()->where('user.state_id', 1);
    	
    		}
-   		return view('services/filterCategories', compact('servicesForCategory'));
+   		return view('services/filterCategories', compact('servicesForCategory','tags'));
    		
    }
 

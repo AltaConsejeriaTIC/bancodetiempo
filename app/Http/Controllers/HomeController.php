@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tags = Tag::join('tags_services','tags.id','=','tags_services.tag_id')->join('services','tags_services.service_id','=','services.id')->where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get();
+        $tags = Tag::select('tags.*','tags_services.service_id')->join('tags_services','tags.id','=','tags_services.tag_id')->join('services','tags_services.service_id','=','services.id')->where('state_id' , 1)->get();
 
     	$interestsUser = $this->getInterestsUser();
     	
@@ -54,9 +54,15 @@ class HomeController extends Controller
     		return redirect('/home');
     	}else{
     		
+            $tags = Tag::select('tags.*','tags_services.service_id')
+                ->join('tags_services','tags.id','=','tags_services.tag_id')
+                ->join('services','tags_services.service_id','=','services.id')                
+                ->where('state_id' , 1)
+                ->get();
+
     		$lastServices = Service::where('state_id' , 1)->orderBy('id', 'desc')->limit(6)->get()->where('user.state_id', 1);
     		    		
-    		return view('welcome', compact('lastServices'));
+    		return view('welcome', compact('lastServices','tags'));
     	}
     	
     }
