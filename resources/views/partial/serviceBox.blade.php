@@ -39,8 +39,14 @@
 				<div class="space15">										
 				</div>				
 				<p class='paragraph2'>{{str_limit($service->description, 100)}}</p>
-				<div class='tags'>										
-					<a class='button7'>#Palabraclave</a>				
+				<div class='col-xs-12  col-sm-12'>										
+					@foreach($tags as $tag)
+						@if($tag->service_id == $service->id)
+							<span class="col-xs-6 input-tag button7 tag-margin">
+					      <span>{{ $tag->tag }}</span>								      
+					    </span>
+					  @endif
+				  @endforeach
 				</div>
 			</div>
 		</a>

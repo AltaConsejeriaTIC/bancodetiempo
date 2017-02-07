@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Input;
 use App\Models\Category;
 use App\Models\InterestUser;
+use App\Models\Tag;
 use App\Models\Service;
 use JavaScript;
 use Illuminate\Support\Facades\Session;
@@ -19,20 +20,21 @@ class ProfileController extends Controller
    public function showProfile()
     {
     	$categories = Category::all();
-        $user = User::find(auth::user()->id);
+      $user = User::find(auth::user()->id);
 
-        $services = Service::where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
-        
-        JavaScript::put([
-					'userJs'=> $user,
-					'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
-					'mounthJs' => is_null($user->birthDate) ? "0" :  date("m",strtotime($user->birthDate)),
-					'yearJs' => is_null($user->birthDate) ? "0" :  date("Y",strtotime($user->birthDate)),
-					'categoriesJs' => $categories,
-					'servicesJs' => $services,
-				]);				
+      $services = Service::where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
+      $tags = Tag::select('tags.*','tags_services.service_id')->join('tags_services','tags.id','=','tags_services.tag_id')->join('services','tags_services.service_id','=','services.id')->where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get();
 
-        return view('profile/profile', compact('user','categories','services'));
+      JavaScript::put([
+				'userJs'=> $user,
+				'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
+				'mounthJs' => is_null($user->birthDate) ? "0" :  date("m",strtotime($user->birthDate)),
+				'yearJs' => is_null($user->birthDate) ? "0" :  date("Y",strtotime($user->birthDate)),
+				'categoriesJs' => $categories,
+				'servicesJs' => $services,
+			]);				
+
+      return view('profile/profile', compact('user','categories','services','tags'));
         
     }
    public function showEditProfile()

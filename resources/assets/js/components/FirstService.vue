@@ -88,8 +88,9 @@
 			<div class="row">
 				<label for="tagService" class="paragraph10">Palabras clave</label><span class="text-opacity"> (Opcional)</span>
 			</div>
-			<div class="row">
-				<input type="text" name="tagService" class="col-xs-12  col-sm-12" placeholder="Ej. #EstiloDeVida, #JuegosDeMesa, #Collar">
+			<div class="row">				
+				<input-tag class="col-xs-12  col-sm-12 no-input" :on-change="setTags" placeholder="Ej. #EstiloDeVida, #JuegosDeMesa, #Collar" validate="text" :tags="tags"></input-tag>
+				<input type="hidden" name="tagService" v-model="tagService">
 			</div>
 			<div class="row">
 				<label for="imageService" class="paragraph10">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>
@@ -107,43 +108,47 @@
 		</div>
 	</div>
 </template>
-<script>
-    var helpers = require('./../helpers');
-
+<script>		
+    var helpers = require('./../helpers');    
     export default {       
-         data: function () {
-            return helpers.Service().data;
-        }, 
-        mixins: [helpers.Helpers(),helpers.ValidateService(),helpers.MethodsService()],
-        mounted() {        		
-            this.$parent.setMyData('totalChar', 250);
-            this.$parent.setMyData('maxChar', 250);
-            this.$parent.setMyData('imageService', 'images/previewService.jpg');
-            this.$parent.setMyData('serviceName', 'Titulo de la oferta');
-            this.$parent.setMyData('descriptionService', 'Descripción de la oferta');
+      data: function () {
+          return helpers.Service().data;
+      }, 
+      mixins: [helpers.Helpers(),helpers.ValidateService(),helpers.MethodsService()],
+      mounted() {        		
+          this.$parent.setMyData('totalChar', 250);
+          this.$parent.setMyData('maxChar', 250);
+          this.$parent.setMyData('imageService', 'images/previewService.jpg');
+          this.$parent.setMyData('serviceName', 'Titulo de la oferta');
+          this.$parent.setMyData('descriptionService', 'Descripción de la oferta'); 	                       
+          this.$parent.setMyData('tags', Array('PalabrasClave'));
+      },      
+      watch : {
+        category : function (value) { 
+        	if(value != ''){
+        		var cat = this.categories[value-1].category;
+        		this.$parent.setMyData('category', cat);
+        	}	          
         },
-	      watch : {
-	        category : function (value) { 
-	        	if(value != ''){
-	        		var cat = this.categories[value-1].category;
-	        		this.$parent.setMyData('category', cat);
-	        	}
-	          
-	        },
-	        imageService: function (value){
-	        	this.$parent.setMyData('imageService', value);
-	        },
-	        serviceName: function (value){
-	        	if(value.length > 30){
-	        		this.$parent.setMyData('serviceName', value.substring(0, 30)+"...");
-	        	}else{
-	        		this.$parent.setMyData('serviceName', value);
-	        	}
-	        	
-	        },
-	        descriptionService: function (value){
-	        	this.$parent.setMyData('descriptionService', value);
-	        }
-	      }
+        imageService: function (value){
+        	this.$parent.setMyData('imageService', value);
+        },
+        serviceName: function (value){
+        	if(value.length > 30){
+        		this.$parent.setMyData('serviceName', value.substring(0, 30)+"...");
+        	}else{
+        		this.$parent.setMyData('serviceName', value);
+        	}	        	
+        },
+        descriptionService: function (value){
+        	this.$parent.setMyData('descriptionService', value);
+        }
+    	},
+    	methods: {
+    		setTags: function(value){
+    			this.tagService = value;	
+    			this.$parent.setMyData('tags', value);    			
+    		}
+    	}
     }
 </script>

@@ -3,6 +3,7 @@ var VueResource = require('vue-resource');
 var helpers = require('./helpers');
 
 Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('input-tag', require('./components/InputTag.vue'));
 Vue.component('register', require('./components/Register.vue'));
 Vue.component('category', require('./components/CategorySearch.vue'));
 Vue.component('interest', require('./components/Interest.vue'));
