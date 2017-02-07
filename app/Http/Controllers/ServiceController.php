@@ -161,12 +161,17 @@ class ServiceController extends Controller
       return $pathImage . $imageName;
    }   
    
-   public function findCategories($idCategory = 0){
+   public function findCategories($categories){
+   		
+   		$idCategories = explode(":", $categories);
+   		
    		$servicesForCategory = "";
-   		if($idCategory == 0){
+   		
+   		if(array_search('0', $idCategories) > -1){
    			$servicesForCategory = Service::where('state_id', 1)->get()->where('user.state_id', 1);
-   		}else{
-   			$servicesForCategory = Service::where('category_id', $idCategory)->where('state_id', 1)->get()->where('user.state_id', 1);
+   		}else{   			
+   			$servicesForCategory = Service::whereIn('category_id', $idCategories)->where('state_id', 1)->get()->where('user.state_id', 1);
+   	
    		}
    		return view('services/filterCategories', compact('servicesForCategory'));
    		
