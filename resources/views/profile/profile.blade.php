@@ -71,7 +71,7 @@
                     </div>               
                 </div>
             </article>
-            <article class="col-md-8">
+            <article class="col-md-8 panel-services">
                 <div class="row">
                     @foreach($services as $key => $service)                  
                       <div class='col-md-6 col-xs-12 col-sm-6'>                            

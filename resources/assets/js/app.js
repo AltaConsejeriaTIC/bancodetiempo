@@ -35,7 +35,7 @@ var app = new Vue({
     	},
     	putMyData($var, $val){
     		this.myData[$var] = $val
-    	}        
+    	} 
     },
     mounted(){   	
     	scrollFixed()

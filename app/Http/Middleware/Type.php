@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use App\Models\Service;
 use Illuminate\Support\Facades\Session;
 
 abstract class Type 
@@ -46,6 +47,16 @@ abstract class Type
     }
 
     $this->auth->user()->state_id = 1;
+    //activate Services
+    $idservice = Service::select('id')->whereUserId($this->auth->user()->id)->get();
+    
+    foreach ($idservice as $id) 
+    {   
+      $service = Service::find($id->id);
+      $service->state_id = 1;
+      $service->save();
+    }
+
     $this->auth->user()->save();
     return $next($request);
 

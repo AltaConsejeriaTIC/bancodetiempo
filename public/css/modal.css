@@ -1,5 +1,9 @@
 /* Styles Window Modal with vue.js*/
 
+.modal-open{
+  padding-right: 0px !important;
+}
+
 .modal-box
 {
   display: block;
@@ -12,7 +16,7 @@
 .modal-content-box
 {  
   position: relative;
-  max-height: 913px;
+  max-height: 918px;
   width: 420px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -63,8 +67,7 @@
   width: 420px;
   margin: auto;  
   padding: 11px 44px 33px 43px;
-  background-color: #fff;  
-  box-shadow: 0 20pxx 8px rgba(0, 0, 0, .33);
+  background-color: #fff;    
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;  
   max-height: 100%;
@@ -119,3 +122,10 @@ button.close
 }
 
 /* End Styles Window Modal with vue.js*/
+
+@media screen and (max-height: 700px) {
+  .modal-content-box
+  {     
+    max-height: 628px;   
+  }
+}

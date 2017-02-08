@@ -22,9 +22,18 @@ class ProfileController extends Controller
     	$categories = Category::all();
       $user = User::find(auth::user()->id);
 
-      $services = Service::where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
-      $tags = Tag::select('tags.*','tags_services.service_id')->join('tags_services','tags.id','=','tags_services.tag_id')->join('services','tags_services.service_id','=','services.id')->where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get();
+      $services = Service::where("user_id" , "=", Auth::user()->id)
+	      						->where('state_id' , 1)
+	      						->get()
+	      						->where('user.state_id', 1);
 
+      $tags = Tag::select('tags.*','tags_services.service_id')
+      						->join('tags_services','tags.id','=','tags_services.tag_id')
+      						->join('services','tags_services.service_id','=','services.id')
+      						->where("user_id" , "=", Auth::user()->id)
+      						->where('state_id' , 1)
+      						->get();
+      
       JavaScript::put([
 				'userJs'=> $user,
 				'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
@@ -32,6 +41,7 @@ class ProfileController extends Controller
 				'yearJs' => is_null($user->birthDate) ? "0" :  date("Y",strtotime($user->birthDate)),
 				'categoriesJs' => $categories,
 				'servicesJs' => $services,
+				'tagsJs' => $tags,
 			]);				
 
       return view('profile/profile', compact('user','categories','services','tags'));
@@ -85,19 +95,21 @@ public function  editProfilePicture(Request $request){
 	 	
 	 	$picture=$this->editProfilePicture($request);
 	 	$user = Auth::user ();
+	 	
 	 	if($picture !==false){
 	    $user->avatar = $picture;
 	  }
+		
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = $request->input('birthDate');
 		$user->aboutMe = $request->input("aboutMe");
-	  	$user->privacy_policy = $request->input('terms');
-	  	$user->gender = $request->input('gender');
-	  	$user->email2 = $request->input('email2');
-	  	$user->save();
+  	$user->privacy_policy = $request->input('terms');
+  	$user->gender = $request->input('gender');
+  	$user->email2 = $request->input('email2');
+  	$user->save();
 
-	  	Session::put('registerPass1', 'done');
+	  Session::put('registerPass1', 'done');
 	  	
 		if(!empty($user->interests->all())){
 
@@ -150,12 +162,16 @@ public function  editProfilePicture(Request $request){
 		$user->state_id = 2;
 
 		//Deactivate Services
-		$idservice = Service::select('id')->whereUserId(Auth::User()->id)->first();
-		$service = Service::find($idservice->id);
-		$service->state_id = 2;
+		$idservice = Service::select('id')->whereUserId(Auth::User()->id)->get();
+		
+		foreach ($idservice as $id) 
+		{		
+			$service = Service::find($id->id);
+			$service->state_id = 2;
+			$service->save();
+		}
 
 		$user->save();
-		$service->save();
 		Auth::logout();
 
 		return redirect("/");

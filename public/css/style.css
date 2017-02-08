@@ -484,7 +484,7 @@ Service box
 */
 .service-box {
     position: relative;
-    width: 322px;
+    width: 345px;
     max-height: 500px;
     height: 475px;
     margin: 10px auto;
@@ -866,4 +866,8 @@ Animations
 	margin-right: 12.5px;	
 	margin-bottom: 5px; 
 	width: auto;
+}
+
+.panel-services{
+    position: initial;
 }
