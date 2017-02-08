@@ -172,6 +172,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </template>
 <script>
 var helpers = require('./../helpers');
@@ -200,7 +201,7 @@ export default {
 					if(this.tagService[j].service_id == this.services[i].id)
 					{						
 						//this.tags.push(this.tagService[j].tag);
-					}
+					}	
 				}
 			}             
 		}            

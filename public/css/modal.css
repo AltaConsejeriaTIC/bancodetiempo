@@ -1,5 +1,9 @@
 /* Styles Window Modal with vue.js*/
 
+.modal-open{
+  padding-right: 0px !important;
+}
+
 .modal-box
 {
   display: block;
@@ -118,3 +122,10 @@ button.close
 }
 
 /* End Styles Window Modal with vue.js*/
+
+@media screen and (max-height: 700px) {
+  .modal-content-box
+  {     
+    max-height: 628px;   
+  }
+}
