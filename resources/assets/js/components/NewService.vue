@@ -99,9 +99,10 @@
 	            			<div class="row">
 	            				<label for="tagService" class="paragraph10">Palabras clave</label><span class="text-opacity"> (Opcional)</span>
 	            			</div>
-	            			<div class="row">
-	            				<input type="text" name="tagService" class="col-xs-12  col-sm-12" placeholder="Ej. #EstiloDeVida, #JuegosDeMesa, #Collar">
-	            			</div>
+	            			<div class="row">				
+								<input-tag class="col-xs-12  col-sm-12 no-input" :on-change="setTags" placeholder="Ej. #EstiloDeVida, #JuegosDeMesa, #Collar" validate="text" :tags="tags"></input-tag>
+								<input type="hidden" name="tagService" v-model="tagService">
+							</div>
 	            			<div class="row">
 	            				<label for="imageService" class="paragraph10">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>
 	            			</div>
@@ -109,13 +110,22 @@
 	            				<input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 " id='imageService' @change='previewPhotoService'>
 	            				<label for="imageService" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : imageService!='', 'load' : imageService!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
 	            			</div>
-	            			<div class='space'></div>
+	            			<div class='space15'></div>
 	            			<div class="row">
-	            				<button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
-	            				Publicar oferta
+	            				
+            					<button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
+            						Publicar oferta
 	            				</button>
-	            			</div>                   
-	                        </div>
+		            			
+		            			<div class="space10">		            				
+		            			</div>
+	            				
+								<button class="col-xs-12 button10 background-white text-center"
+									data-dismiss="modal" aria-label="Close">
+									Cancelar
+								</button>
+								
+	            			</div>                   	                        
                         </div>
                         <div class="modal-footer">
                         </div>
@@ -139,8 +149,9 @@
             this.$parent.setMyData('imageService', 'images/previewService.jpg');
             this.$parent.setMyData('serviceName', 'Titulo de la oferta');
             this.$parent.setMyData('descriptionService', 'Descripción de la oferta');
+            this.$parent.setMyData('tags', Array('PalabrasClave'));
         },            
-          watch : {
+        watch : {
             category : function (value) {                                               
               this.$parent.setMyData('category', value);
             },
@@ -153,6 +164,12 @@
             descriptionService: function (value){
                 this.$parent.setMyData('descriptionService', value);
             }
-          }  
+        },  
+    	methods: {
+    		setTags: function(value){    			
+    			this.tagService = value;	
+    			this.$parent.setMyData('tags', value);    			
+    		}
+    	}
     }
 </script>

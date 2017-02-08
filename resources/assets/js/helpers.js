@@ -150,7 +150,7 @@ module.exports = {
                 valueService: '',
                 categories: windowvar.categoriesJs,                
                 services: windowvar.servicesJs,                
-                tagService: '',
+                tagService: windowvar.tagsJs,                
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
             }                      
         }
