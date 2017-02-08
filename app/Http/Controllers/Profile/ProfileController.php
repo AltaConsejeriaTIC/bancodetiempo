@@ -32,7 +32,7 @@ class ProfileController extends Controller
       						->join('services','tags_services.service_id','=','services.id')
       						->where("user_id" , "=", Auth::user()->id)
       						->where('state_id' , 1)
-      						>get();
+      						->get();
       
       JavaScript::put([
 				'userJs'=> $user,
