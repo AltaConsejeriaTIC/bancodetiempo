@@ -21,7 +21,7 @@ class ServiceController extends Controller
    public function index(){
 
    		$categories = Category::all();
-        $user = User::find(auth::user()->id);
+      $user = User::find(auth::user()->id);
    		$selectedCategories = [];
    		$method = 'post';
          JavaScript::put([
@@ -29,8 +29,7 @@ class ServiceController extends Controller
                'categoriesJs' => $categories,
              ]);
 
-
-         Session::put('registerPass3', 'actual');
+      Session::put('registerPass3', 'actual');
          
    		return view('services/formService', compact('categories', 'method'));
 
@@ -128,6 +127,7 @@ class ServiceController extends Controller
     ]);
         
     $tagsService = json_decode($request->tagService);
+    
     foreach ( $tagsService as $tag) 
     {
       $newTag = new Tag;    

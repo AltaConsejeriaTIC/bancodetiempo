@@ -135,10 +135,11 @@
 								<label for="tagService" class="paragraph10">Palabras
 									clave</label><span class="text-opacity"> (Opcional)</span>
 							</div>
-							<div class="row">
-								<input type="text" name="tagService"
-									class="col-xs-12  col-sm-12"
-									placeholder="Ej. #EstiloDeVida, #JuegosDeMesa, #Collar">
+							<div class="row">				
+								<input-tag class="col-xs-12  col-sm-12 no-input" :on-change="setTags" placeholder="Ej. #EstiloDeVida, #JuegosDeMesa, #Collar" validate="text" :tags="tags">
+									sdasdsasd
+								</input-tag>
+								<input type="hidden" name="tagService" v-model="tagService">
 							</div>
 							<div class="row">
 								<label for="imageService" class="paragraph10">Foto de la
@@ -192,8 +193,16 @@ export default {
 				this.category = this.services[i].category_id;
 				this.modalityServiceVirtually = this.services[i].virtually;
 				this.modalityServicePresently = this.services[i].presently;    
-				this.valueService = this.services[i].value;                    
-			}
+				this.valueService = this.services[i].value;       
+				
+				for(var j = 0; j < this.tagService.length; j++)
+				{
+					if(this.tagService[j].service_id == this.services[i].id)
+					{						
+						//this.tags.push(this.tagService[j].tag);
+					}
+				}
+			}             
 		}            
 	},            
 	watch : {

@@ -24,7 +24,7 @@ class ProfileController extends Controller
 
       $services = Service::where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
       $tags = Tag::select('tags.*','tags_services.service_id')->join('tags_services','tags.id','=','tags_services.tag_id')->join('services','tags_services.service_id','=','services.id')->where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get();
-
+      
       JavaScript::put([
 				'userJs'=> $user,
 				'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
@@ -32,6 +32,7 @@ class ProfileController extends Controller
 				'yearJs' => is_null($user->birthDate) ? "0" :  date("Y",strtotime($user->birthDate)),
 				'categoriesJs' => $categories,
 				'servicesJs' => $services,
+				'tagsJs' => $tags,
 			]);				
 
       return view('profile/profile', compact('user','categories','services','tags'));

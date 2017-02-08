@@ -110,6 +110,7 @@
 </template>
 <script>		
     var helpers = require('./../helpers');    
+    
     export default {       
       data: function () {
           return helpers.Service().data;
@@ -124,25 +125,25 @@
           this.$parent.setMyData('tags', Array('PalabrasClave'));
       },      
       watch : {
-        category : function (value) { 
-        	if(value != ''){
-        		var cat = this.categories[value-1].category;
-        		this.$parent.setMyData('category', cat);
-        	}	          
-        },
-        imageService: function (value){
-        	this.$parent.setMyData('imageService', value);
-        },
-        serviceName: function (value){
-        	if(value.length > 30){
-        		this.$parent.setMyData('serviceName', value.substring(0, 30)+"...");
-        	}else{
-        		this.$parent.setMyData('serviceName', value);
-        	}	        	
-        },
-        descriptionService: function (value){
-        	this.$parent.setMyData('descriptionService', value);
-        }
+	        category : function (value) { 
+	        	if(value != ''){
+	        		var cat = this.categories[value-1].category;
+	        		this.$parent.setMyData('category', cat);
+	        	}	          
+	        },
+	        imageService: function (value){
+	        	this.$parent.setMyData('imageService', value);
+	        },
+	        serviceName: function (value){
+	        	if(value.length > 30){
+	        		this.$parent.setMyData('serviceName', value.substring(0, 30)+"...");
+	        	}else{
+	        		this.$parent.setMyData('serviceName', value);
+	        	}	        	
+	        },
+	        descriptionService: function (value){
+	        	this.$parent.setMyData('descriptionService', value);
+	        }
     	},
     	methods: {
     		setTags: function(value){
