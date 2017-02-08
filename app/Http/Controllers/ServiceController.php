@@ -74,7 +74,21 @@ class ServiceController extends Controller
    		
 
    }
+    public function showServiceGuest($serviceId){
 
+        $categories = Category::all('id', 'category');
+
+        $service = Service::findOrFail($serviceId);
+
+        $user = User::find($service->user_id);
+        JavaScript::put([
+            'userJs'=> $user,
+            'categoriesJs' => $categories,
+        ]);
+        return view('services/serviceGuest', compact('categories', 'service', 'method' ,'user'));
+
+
+    }
   public function update($id, Request $request){
 
       $this->validate($request, [
