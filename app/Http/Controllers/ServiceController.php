@@ -42,6 +42,12 @@ class ServiceController extends Controller
 
     if ($numServices>1)
     {
+      $tagsService = TagsService::where('service_id','=',$serviceId)->get();
+      foreach ($tagsService as $tagService) 
+      {
+        $tagService = TagsService::find($tagService->id);
+        $tagService->delete();
+      }
       $service = Service::find($serviceId);
       $service->delete();
     }
