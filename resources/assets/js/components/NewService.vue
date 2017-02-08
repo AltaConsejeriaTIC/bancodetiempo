@@ -8,7 +8,7 @@
                             <button type="button" class="close circle-shape" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body"> 
-	                        <div v-validation:msg='' class='serviceForm'>
+	                        <div v-validation:msg='' class='newServiceForm'>
 	                            <div class="row">
 	                                <h1 class="title1 text-center">¿Qué deseas ofrecer?</h1>
 	                            </div>
@@ -17,6 +17,7 @@
 	            			</div>
 	            			<div class="row"> 
 	            				<input type="text" name="serviceName" autofocus placeholder="Ej. Clase de Inglés, Asesoría penal…" class="col-xs-12 col-sm-12 col-md-12 validation" v-model="serviceName"   maxlength="50" data-validations='["required", "min:3", "max:50"]'>
+	            				<i for='serviceName'></i>
 	            				<div class="msg" errors='serviceName'>
 	            					<p error='required'>Este campo es obligatorio.</p>
 	            					<p error='min'>Este campo debe ser mínimo de 3 caracteres.</p>

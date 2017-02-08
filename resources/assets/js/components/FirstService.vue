@@ -6,6 +6,7 @@
 			</div>
 			<div class="row"> 
 				<input type="text" name="serviceName" autofocus placeholder="Ej. Clase de Inglés, Asesoría penal…" class="col-xs-12 col-sm-12 col-md-12 validation" v-model="serviceName"   maxlength="50" data-validations='["required", "min:3", "max:50"]'>
+				<i for='serviceName'></i>
 				<div class="msg" errors='serviceName'>
 					<p error='required'>Este campo es obligatorio.</p>
 					<p error='min'>Este campo debe ser mínimo de 3 caracteres.</p>
