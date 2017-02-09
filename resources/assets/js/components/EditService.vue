@@ -136,7 +136,7 @@
 									clave</label><span class="text-opacity"> (Opcional)</span>
 							</div>
 							<div class="row">				
-								<input-tag class="col-xs-12  col-sm-12 no-input" :on-change="setTags" placeholder="Ej. #EstiloDeVida, #JuegosDeMesa, #Collar" validate="text" :tags="tags">
+								<input-tag class="col-xs-12  col-sm-12 no-input" :on-change="setTags" placeholder="Ej. #EstiloDeVida #JuegosDeMesa #Collar" validate="text" :tags="tags">
 									sdasdsasd
 								</input-tag>
 								<input type="hidden" name="tagService" v-model="tagService">
