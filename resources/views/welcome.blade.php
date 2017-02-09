@@ -90,7 +90,7 @@
 
 		<div class="container">
 				
-				<div class='row col-xs-offset-1'>
+				<div class='row'>
 					<h2 class='title1 text-white text-center col-xs-12 col-md-12'>¡ÚNETE!</h2>
 				</div>
 				

@@ -867,3 +867,7 @@ Animations
 	margin-bottom: 5px; 
 	width: auto;
 }
+
+.panel-services{
+    position: initial;
+}
