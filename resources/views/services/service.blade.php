@@ -87,7 +87,7 @@
 							</div>
 							@if($service->user_id != Auth::user()->id)
 								<div class="col-xs-12 ">
-									<a class='col-xs-12 button1 background-active-color text-center' href="/defaultsend/{{$service->id}}">Comunicate con {{$user->first_name}}</a>
+									<button class='col-xs-12 button1 background-active-color text-center' v-on:click='putMyData("contactMail", "visible")'>Comunicate con {{$user->first_name}}</button>
 								</div>
 							@endif
 						</div>
@@ -97,12 +97,47 @@
 
 			</div>
 	</section>
-	
-	<button v-on:click='putMyData("contactMail", "visible")'>abrir</button>
-	
+		
 	<contactmailmodal service='{{$service->id}}' :contact-mail='myData.contactMail'>
-		<div slot="modal">
-			<div>coso</div>
+		<div slot="modal" class='box'>
+			{!! Form::open(['url' => '/defaultsend/'.$service->id, 'method' => 'post', 'class' => 'form-custom']) !!}             
+	      		<div class='row'>
+	      			<div class="col-md-12 text-center title1">Comunícate con Diego</div>
+	      		</div>
+	      		<div class="row">
+	      			<div class="col-md-12 paragraph2">
+	      				<p>¡Preséntate!<br>
+							Cuéntale por qué estás interesado en tomar su oferta.<br>
+							Coméntale lo que esperas recibir.<br>
+							Concreta los datos del acuerdo y envíale una propuesta.</p>
+	      			</div>
+	      			<div v-validation:msg="">
+		      			<div class="row">
+		      				<div class="col-md-12">
+		      					<textarea name="content" class='validation ' id="content" rows="10"  data-validations='["required", "min:50", "max:250"]'></textarea>
+		      					<div class='clearfix'></div>
+		      					<div class="msg" errors='content'>
+									<p error='required'>Este campo es obligatorio.</p>
+									<p error='min'>Este campo debe ser mínimo de 50 caracteres.</p>
+									<p error='max'>Este campo debe ser máximo de 250 caracteres.</p>
+								</div>
+		      				</div>
+		      			</div>
+		      			<div class="space10"></div>
+		      			<div class="row">
+		      				<div class="col-md-6 col-md-offset-3">
+		      					<input type='submit' value='Enviar' class='col-md-12 button1 background-active-color'>
+		      				</div>
+		      			</div>
+		      			<div class="space10"></div>
+		      			<div class="row">
+		      				<div class="col-md-6 col-md-offset-3">
+		      					<button class='button1 col-md-12 '  v-on:click='putMyData("contactMail", "hidden")'>Cancelar</button>
+		      				</div>
+		      			</div>
+		      		</div>
+	      		</div>
+			{!! Form::close() !!}
 		</div>
 	</contactmailmodal>
 	

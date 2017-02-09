@@ -10,7 +10,7 @@ var eventForTag = {
 		"INPUT[type='radio']":"change",
 		"INPUT[type='checkbox']":"change",
 		"SELECT":"change",
-		"TEXTAREA":"change",
+		"TEXTAREA":"keyup",
 }
 		
 var _functionElement = {};
@@ -70,7 +70,6 @@ function errorsCheckbox(el, errors){
 }
 
 function required(el){
-	
 	var error = 0;
 	var name = el.getAttribute('name')
 	var type = el.getAttribute('type')
