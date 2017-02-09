@@ -22,3 +22,4 @@ Route::get('/service/category/{idCategory}', 'ServiceController@findCategories')
 Route::get('/filter', 'HomeController@filter');
 
 
+Route::get('/defaultsend/{serviceid?}','EmailController@defaultSend');

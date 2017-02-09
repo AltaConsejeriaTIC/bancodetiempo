@@ -87,7 +87,7 @@
 							</div>
 							@if($service->user_id != Auth::user()->id)
 								<div class="col-xs-12 ">
-									<button class='col-xs-12 button1 background-active-color'>Comunicate con {{$user->first_name}}</button>
+									<a class='col-xs-12 button1 background-active-color text-center' href="/defaultsend/{{$service->id}}">Comunicate con {{$user->first_name}}</a>
 								</div>
 							@endif
 						</div>
