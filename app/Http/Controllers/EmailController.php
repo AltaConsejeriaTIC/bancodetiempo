@@ -16,9 +16,10 @@ class EmailController extends Controller
     {
         $service = Service::findOrFail($serviceId);
         $user = User::find($service->user_id);
+        $userauth = User::find(auth::user()->id);
         $mail = $user->email;
         log::info("Request cycle without Queues started");
-        $text='Hola!, '.$user->first_name." ".$user->last_name.' quiere contactar con tigo revisa tus notificaciones en cambalachea!';
+        $text='¡Hola '.$user->first_name."!, ".$userauth->first_name.' '.$userauth->last_name.' quiere contactar contigo revisa tus notificaciones en Cambalachea.';
         Mail::raw($text,function ($message) use ($mail){
             $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
             $message->subject('Notificación');
