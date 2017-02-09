@@ -38,12 +38,13 @@
 				<div class="space15">										
 				</div>				
 				<p class='paragraph2'>{{str_limit($service->description, 100)}}</p>
-				<div class='col-xs-12  col-sm-12'>										
-					@foreach($tags as $tag)
+				<div class='col-xs-12  col-sm-12'>	
+													
+					@foreach($service->tags as $tag)
 						@if($tag->service_id == $service->id)
-							<span class="col-xs-6 input-tag button7 tag-margin">
-					      <span>{{ $tag->tag }}</span>								      
-					    </span>
+							<a class="col-xs-6 input-tag button7 tag-margin" tag='{{ $tag->tag->id }}' href='/filter?filter=%23{{ $tag->tag->tag }}'>
+					      		<span>{{ $tag->tag->tag }}</span>								      
+					   		</a>
 					  @endif
 				  @endforeach
 				</div>

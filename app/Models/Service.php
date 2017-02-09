@@ -23,6 +23,12 @@ class Service extends Model
 		
 	}
 	
+	public function tags(){
+	
+		return $this->hasMany(TagsService::class);
+	
+	}
+	
 	public function setImageAttribute($value){
 		
 		if(!empty($value) && $value !=  ''){
