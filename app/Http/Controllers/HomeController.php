@@ -37,7 +37,7 @@ class HomeController extends Controller
     	
     	$categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
     	
-    	$allServices = Service::where("user_id" , "!=", Auth::user()->id)->where('state_id' , 1)->get()->where('user.state_id', 1);
+    	$allServices = Service::where('state_id' , 1)->get()->where('user.state_id', 1);
     	
     	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
 
@@ -112,7 +112,7 @@ class HomeController extends Controller
     		
     	Session::put('filters.tags', $idTags);
     	
-    	$allServices = Service::select("services.*")->distinct('services.id')->join('tags_services', 'services.id', 'tags_services.service_id')->where("user_id" , "!=", Auth::user()->id)->where('state_id' , 1)->whereIn('tags_services.tag_id', $idTags)->get();
+    	$allServices = Service::select("services.*")->distinct('services.id')->join('tags_services', 'services.id', 'tags_services.service_id')->where('state_id' , 1)->whereIn('tags_services.tag_id', $idTags)->get();
     	    			
     	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
     

@@ -824,6 +824,12 @@ Animations
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   color: #2c3e50;
+  white-space: nowrap;
+  overflow-x:auto;
+}
+
+.vue-input-tag-wrapper::-webkit-scrollbar {
+    display:none;
 }
 
 .input-tag:before {
@@ -855,7 +861,6 @@ Animations
   outline: none;
   padding: 4px;
   padding-left: 0;
-  width: 80px;
 }
 
 .vue-input-tag-wrapper.read-only {
