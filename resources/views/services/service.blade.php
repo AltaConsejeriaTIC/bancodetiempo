@@ -97,5 +97,13 @@
 
 			</div>
 	</section>
-
+	
+	<button v-on:click='putMyData("contactMail", "visible")'>abrir</button>
+	
+	<contactmailmodal service='{{$service->id}}' :contact-mail='myData.contactMail'>
+		<div slot="modal">
+			<div>coso</div>
+		</div>
+	</contactmailmodal>
+	
 @endsection
