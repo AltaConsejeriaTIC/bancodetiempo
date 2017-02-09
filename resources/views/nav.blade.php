@@ -30,6 +30,7 @@
  	 
 @elseif($type == 2)
 
+
 <!--Navbar-->
 	<nav class='navbar navbar-default navbar-static-top nav2'>
 		<div class="container">
@@ -41,8 +42,10 @@
 					</a>
 				</div>
 				<div class='hidden-xs hidden-sm padding-top col-md-3'>
-					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentras personas, habilidades y más ... '>
-					<label for="filter1" class=" fa fa-search "></label>
+					{!! Form::open(['url' => 'filter', 'method' => 'get']) !!}
+						<input type='text' class='filter col-md-12' name='filter' value='{{ Session::get("filters.text") }}' id='filter1' placeholder='Encuentras personas, habilidades y más ... '>
+						<label for="filter1" class=" fa fa-search "></label>
+					{!! Form::close() !!}
 				</div>
 				
 				<div class="hidden-xs col-md-4 col-md-offset-0 padding-top col-sm-4 col-sm-offset-1 not-padding not-margin text-right">

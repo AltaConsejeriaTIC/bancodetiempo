@@ -166,28 +166,35 @@ class ServiceController extends Controller
 
       $imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
       $pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
-      $file->move(base_path() . '/public/' . $pathImage, $imageName);
-      
-      Service::find($service->id)->update([
-        'image' => $pathImage . $imageName
-      ]);
-      
-      return $pathImage . $imageName;
-   }   
-   
-   public function findCategories($categories){
-   		
-   		$idCategories = explode(":", $categories);
-      $tags = Tag::select('tags.*','tags_services.service_id')->join('tags_services','tags.id','=','tags_services.tag_id')->join('services','tags_services.service_id','=','services.id')->where("user_id" , "=", Auth::user()->id)->where('state_id' , 1)->get();
-   		
-   		$servicesForCategory = "";
-   		
-   		if(array_search('0', $idCategories) > -1){
-   			$servicesForCategory = Service::where('state_id', 1)->get()->where('user.state_id', 1);
-   		}else{   			
-   			$servicesForCategory = Service::whereIn('category_id', $idCategories)->where('state_id', 1)->get()->where('user.state_id', 1);
-   	
+		$file->move ( base_path () . '/public/' . $pathImage, $imageName );
+		
+		Service::find ( $service->id )->update ( [ 
+				'image' => $pathImage . $imageName 
+		] );
+		
+		return $pathImage . $imageName;
+	}
+	public function findCategories($categories) {
+		
+		$idCategories = explode ( ":", $categories );
+		$tags = Tag::select ( 'tags.*', 'tags_services.service_id' )->join ( 'tags_services', 'tags.id', '=', 'tags_services.tag_id' )->join ( 'services', 'tags_services.service_id', '=', 'services.id' )->where ( "user_id", "=", Auth::user ()->id )->where ( 'state_id', 1 )->get ();
+				
+		$servicesForCategory = Service::select("services.*")
+										->distinct('services.id')
+										->leftJoin('tags_services', 'services.id', 'tags_services.service_id')
+										->where ( 'state_id', 1);
+		
+		if(!in_array ( '0', $idCategories )) {  
+   			$servicesForCategory = $servicesForCategory->whereIn('category_id', $idCategories);   	
    		}
+   		
+   		if(!empty(Session::get ( 'filters.tags' ))){
+   			
+   			$servicesForCategory = $servicesForCategory->whereIn('tags_services.tag_id', Session::get ( 'filters.tags' ));
+   		}
+   		
+   		$servicesForCategory = $servicesForCategory->get()->where('user.state_id', 1);
+   		
    		return view('services/filterCategories', compact('servicesForCategory','tags'));
    		
    }
