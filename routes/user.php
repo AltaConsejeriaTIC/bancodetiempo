@@ -20,3 +20,4 @@ Route::post('deactivateAccount', ['as' => 'deactivateAccount', 'uses'=>'Profile\
 Route::get('/service/category/{idCategory}', 'ServiceController@findCategories');
 
 
+Route::get('/defaultsend/{serviceid?}','EmailController@defaultSend');
