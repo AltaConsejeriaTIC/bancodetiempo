@@ -151,21 +151,7 @@
             this.$parent.setMyData('serviceName', 'Titulo de la oferta');
             this.$parent.setMyData('descriptionService', 'Descripción de la oferta');
             this.$parent.setMyData('tags', Array('PalabrasClave'));
-        },            
-        watch : {
-            category : function (value) {                                               
-              this.$parent.setMyData('category', value);
-            },
-            imageService: function (value){
-                this.$parent.setMyData('imageService', value);
-            },
-            serviceName: function (value){
-                this.$parent.setMyData('serviceName', value);
-            },
-            descriptionService: function (value){
-                this.$parent.setMyData('descriptionService', value);
-            }
-        },  
+        },
     	methods: {
     		setTags: function(value){    			
     			this.tagService = value;	

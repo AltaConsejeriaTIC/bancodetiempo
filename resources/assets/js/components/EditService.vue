@@ -154,18 +154,22 @@
 									:style="{ backgroundImage: 'url(' + this.imageService + ')' }"><span>Sube
 										una foto</span></label>
 							</div>
-							<div class='space'></div>
-							<div class="row">
-								<div class="col-md-12">
-									<button type="submit"
-										class="col-xs-12  col-sm-12 button1 background-active-color">
-										Actualizar oferta</button>
-								</div>
-								<div class="col-md-12">
-									<button class="col-xs-12 button10 background-white text-center"
-										data-dismiss="modal" aria-label="Close">Cancelar</button>
-								</div>
-							</div>
+							<div class='space15'></div>
+	            			<div class="row">
+	            				
+            					<button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
+            						Actualizar oferta
+	            				</button>
+		            			
+		            			<div class="space10">		            				
+		            			</div>
+	            				
+								<button class="col-xs-12 button10 background-white text-center"
+									data-dismiss="modal" aria-label="Close">
+									Cancelar
+								</button>
+								
+	            			</div>                   	                        
 						</div>
 					</div>
 				</div>
@@ -207,20 +211,6 @@ export default {
 				this.tagService = editags;						
 			}             
 		}            
-	},            
-	watch : {
-		category : function (value) {                                               
-			this.$parent.setMyData('category', value);
-		},
-		imageService: function (value){
-			this.$parent.setMyData('imageService', value);
-		},
-		serviceName: function (value){
-			this.$parent.setMyData('serviceName', value);
-		},
-		descriptionService: function (value){
-			this.$parent.setMyData('descriptionService', value);
-		}
 	},  
 	methods: {
 		setTags: function(value){    			
