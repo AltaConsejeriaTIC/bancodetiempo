@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
-@include('nav',array('type' => 2))
+
+@if(!is_null(Auth::User()))
+	@include('nav',array('type' => 2))
+@else
+	@include('nav',array('type' => 3))
+@endif
 {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
   <newservice></newservice>
 {!! Form::close() !!}
@@ -39,15 +44,17 @@
 
 			<div class="tab-pane" id="filterRecommended">
 				<div class='row'>
-			        @foreach($recommendedServices as $key => $service)
-
-			          <div class='col-md-4 col-xs-12 col-sm-6'>
-
-				          @include('partial/serviceBox', array("service" => $service))
-
-			          </div>
-
-			        @endforeach
+					@if($recommendedServices != '')
+				        @foreach($recommendedServices as $key => $service)
+	
+				          <div class='col-md-4 col-xs-12 col-sm-6'>
+	
+					          @include('partial/serviceBox', array("service" => $service))
+	
+				          </div>
+	
+				        @endforeach
+				     @endif
 			    </div>
 			</div>
 		</div>

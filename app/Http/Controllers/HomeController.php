@@ -85,11 +85,11 @@ class HomeController extends Controller
     
     public function filter(Request $request)
     {   	
+    	
+    	
     	Session::put('filters.text', $request->input('filter'));
     	
     	$filters = explode(" ", $request->input('filter'));
-    	    	   	
-    	$interestsUser = $this->getInterestsUser();
     	 
     	$categories = Category::select('categories.id','categories.category')
     								->join('services','categories.id','=','services.category_id')
@@ -97,8 +97,6 @@ class HomeController extends Controller
     								->groupBy('categories.id','categories.category')->get();
     	 
     	$idTags = Tag::select("id")->whereIn('tag', $filters)->get();
-    	
-    	
     	
     	$allServices = Service::select("services.*")
     							->distinct('services.id')
@@ -111,9 +109,17 @@ class HomeController extends Controller
     	}
     	
     	$allServices = $allServices->get();
-    	    			
-    	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
-    
+    	
+    	$recommendedServices = '';
+    	
+    	if(!is_null(Auth::User())){
+
+    		$interestsUser = $this->getInterestsUser();
+    		 
+    		$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
+    		
+    	}
+    	
     	$categoriesAll = Category::all();
     
     	JavaScript::put([
