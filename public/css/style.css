@@ -34,6 +34,10 @@ header .header-content {
   width: 100%;
 }
 
+buttom{
+	cursor:pointer;
+}
+
 /*
 Titles
 */
@@ -875,4 +879,28 @@ Animations
 
 .panel-services{
     position: initial;
+}
+
+
+.shadow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.5);
+    z-index:1000;
+}
+
+.contactMail {
+    position: fixed;
+    width: 50%;
+    top: 5%;
+    left: 25%;
+    z-index:1000;
+}
+
+.contactMail .box {
+    background: #fff;
+    padding: 5%;
 }

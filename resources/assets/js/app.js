@@ -13,6 +13,7 @@ Vue.component('avatar', require('./components/ImageProfile.vue'));
 Vue.component('firstservice', require('./components/FirstService.vue'));
 Vue.component('editservice', require('./components/EditService.vue'));
 Vue.component('filtersCategories', require('./components/filtersCategories.vue'));
+Vue.component('contactmailmodal', require('./components/contactMailModal.vue'));
 //directives
 Vue.directive('validation', require('./components/validations.vue'));
 Vue.directive('validationText', require('./components/validationsText.vue'));
