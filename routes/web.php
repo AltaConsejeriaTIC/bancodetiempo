@@ -42,3 +42,6 @@ Route::post("/interest", 'Profile\ProfileController@saveInterest');
 
 Route::get('/guest', 'GuestHomeController@index');
 Route::get('/serviceGuest/{serviceid}', 'ServiceController@showServiceGuest');
+
+
+Route::get('/filter', 'HomeController@filter');

@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
-use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use JavaScript;
+use App\Models\Category;
+use App\Models\Tag;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Session;
+
 
 class GuestHomeController extends Controller
 {
@@ -35,9 +40,20 @@ class GuestHomeController extends Controller
                 ->where('state_id' , 1)
                 ->get();
 
-    	$allServices = Service::paginate(12);
-        return view('guest', compact('allServices','tags'));
+
+        $categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
+
+        $allServices = Service::where('state_id' , 1)->get()->where('user.state_id', 1);
+
+
+        $categoriesAll = Category::all();
+
+        JavaScript::put([
+            'categoriesJs' => $categories,
+        ]);
+        return view('guest', compact('allServices','recommendedServices', 'categories','tags'));
     }
+
 
 
 
