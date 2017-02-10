@@ -195,14 +195,16 @@ export default {
 				this.modalityServiceVirtually = this.services[i].virtually;
 				this.modalityServicePresently = this.services[i].presently;    
 				this.valueService = this.services[i].value;       
-				
+				var editags = new Array();
 				for(var j = 0; j < this.tagService.length; j++)
 				{
 					if(this.tagService[j].service_id == this.services[i].id)
 					{						
-						//this.tags.push(this.tagService[j].tag);
+						editags.push(this.tagService[j].tag);
 					}	
 				}
+				this.tags = editags;
+				this.tagService = editags;						
 			}             
 		}            
 	},            
@@ -219,6 +221,12 @@ export default {
 		descriptionService: function (value){
 			this.$parent.setMyData('descriptionService', value);
 		}
-	}  
+	},  
+	methods: {
+		setTags: function(value){    			
+			this.tagService = value;	
+			this.$parent.setMyData('tags', value);    			
+		}
+	}
 }
 </script>

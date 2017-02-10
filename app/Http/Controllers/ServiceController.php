@@ -115,6 +115,25 @@ class ServiceController extends Controller
           'category_id' => $request->input('categoryService'),
       ]);
 
+      $tagsService = json_decode($request->tagService);
+
+      TagsService::where('service_id','=',$service->id)->delete();
+
+      foreach ($tagsService as $tag) 
+      {
+        $newTag = Tag::where('tag',$tag)->first();
+        
+        if(empty($newTag))
+          $newTag = new Tag;        
+        $newTag->tag = $tag;
+        $newTag->save();
+
+        $newTagService = new TagsService;
+        $newTagService->service_id = $service->id;
+        $newTagService->tag_id = $newTag->id;
+        $newTagService->save();
+      }
+
       $this->uploadCover($request->file('imageService'), $service);
         
       Session::flash('success','Has actualizado correctamente tu servicio');

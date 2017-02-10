@@ -149,9 +149,8 @@ module.exports = {
                 modalityServicePresently: '',
                 valueService: '',
                 categories: windowvar.categoriesJs,                
-                services: windowvar.servicesJs,                
-                
-                tagService: windowvar.tagsJs,                
+                services: windowvar.servicesJs,                                
+                tagService: windowvar.tagsJs,                                
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
             }                      
         }
