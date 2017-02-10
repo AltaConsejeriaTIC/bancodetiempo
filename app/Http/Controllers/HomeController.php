@@ -84,45 +84,49 @@ class HomeController extends Controller
     }
     
     public function filter(Request $request)
-    {
-    	$tags = Tag::select('tags.*','tags_services.service_id')->join('tags_services','tags.id','=','tags_services.tag_id')->join('services','tags_services.service_id','=','services.id')->where('state_id' , 1)->get();
-    	    	
-    	$listTags = [];
+    {   	
     	
-    	$listWords = [];
     	
     	Session::put('filters.text', $request->input('filter'));
     	
     	$filters = explode(" ", $request->input('filter'));
+    	 
+    	$categories = Category::select('categories.id','categories.category')
+    								->join('services','categories.id','=','services.category_id')
+    								->where('services.state_id', 1)
+    								->groupBy('categories.id','categories.category')->get();
+    	 
+    	$idTags = Tag::select("id")->whereIn('tag', $filters)->get();
     	
-    	
-    	foreach ($filters as $filter){
-    		if(preg_match('/^#/', $filter)){
-    			$listTags[] = str_replace("#", "", $filter);
-    		}else{
-    			$listWords[] = $filter;
-    		}
+    	$allServices = Service::select("services.*")
+    							->distinct('services.id')
+    							->join('tags_services', 'services.id', 'tags_services.service_id')
+    							->where('state_id' , 1);
+    	if($filters == ''){
+    		$allServices->whereIn('tags_services.tag_id', $idTags);
+    	}else{
+    		Session::flash('filters.tags', $idTags);
     	}
-    	    	
-    	$interestsUser = $this->getInterestsUser();
-    	 
-    	$categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
-    	 
-    	$idTags = Tag::select("id")->whereIn('tag', $listTags)->get();
-    		
-    	Session::put('filters.tags', $idTags);
     	
-    	$allServices = Service::select("services.*")->distinct('services.id')->join('tags_services', 'services.id', 'tags_services.service_id')->where('state_id' , 1)->whereIn('tags_services.tag_id', $idTags)->get();
-    	    			
-    	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
-    
+    	$allServices = $allServices->get();
+    	
+    	$recommendedServices = '';
+    	
+    	if(!is_null(Auth::User())){
+
+    		$interestsUser = $this->getInterestsUser();
+    		 
+    		$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
+    		
+    	}
+    	
     	$categoriesAll = Category::all();
     
     	JavaScript::put([
     			'categoriesJs' => $categories,
     	]);
     	 
-    	return view('home', compact('allServices', 'recommendedServices', 'categories','tags'));
+    	return view('home', compact('allServices', 'recommendedServices', 'categories'));
     }
 
 }
