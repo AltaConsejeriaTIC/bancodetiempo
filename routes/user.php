@@ -17,8 +17,5 @@ Route::put('/service/save/{id}', 'ServiceController@update');
 // Route Deactivate Account
 Route::post('deactivateAccount', ['as' => 'deactivateAccount', 'uses'=>'Profile\ProfileController@deactivateAccount']);
 //
-Route::get('/service/category/{idCategory}', 'ServiceController@findCategories');
-
-
 
 Route::get('/defaultsend/{serviceid?}','EmailController@defaultSend');
