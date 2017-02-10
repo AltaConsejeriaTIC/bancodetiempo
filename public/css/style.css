@@ -34,7 +34,7 @@ header .header-content {
   width: 100%;
 }
 
-buttom{
+buttom, a{
 	cursor:pointer;
 }
 
@@ -894,9 +894,7 @@ Animations
 
 .contactMail {
     position: fixed;
-    width: 50%;
-    top: 5%;
-    left: 25%;
+    top: 15%;
     z-index:1000;
 }
 
