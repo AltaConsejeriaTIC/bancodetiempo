@@ -87,24 +87,31 @@ class HomeController extends Controller
     {   	
     	
     	
-    	Session::put('filters.text', $request->input('filter'));
-    	
-    	$filters = explode(" ", $request->input('filter'));
+    	Session::put('filters.text', $request->input('filter'));  	
     	 
     	$categories = Category::select('categories.id','categories.category')
     								->join('services','categories.id','=','services.category_id')
     								->where('services.state_id', 1)
     								->groupBy('categories.id','categories.category')->get();
-    	 
-    	$idTags = Tag::select("id")->whereIn('tag', $filters)->get();
     	
+    								
     	$allServices = Service::select("services.*")
-    							->distinct('services.id')
-    							->join('tags_services', 'services.id', 'tags_services.service_id')
-    							->where('state_id' , 1);
+    								->distinct('services.id')
+    								->join('tags_services', 'services.id', 'tags_services.service_id')
+    								->where('state_id' , 1);
+    	 
+    	if($request->input('filter') != ""){
+			$filters = explode(" ", $request->input('filter'));
+		}else{
+			$filters = "";
+		}
+    	
     	if($filters != ''){
+    		$idTags = Tag::select("id")->whereIn('tag', $filters)->get();
     		$allServices->whereIn('tags_services.tag_id', $idTags);
     		Session::flash('filters.tags', $idTags);
+    	}else{
+    		Session::pull('filters.tags');
     	}
     	
     	$allServices = $allServices->get();
