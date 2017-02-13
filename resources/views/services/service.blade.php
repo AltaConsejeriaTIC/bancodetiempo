@@ -55,13 +55,16 @@
 							</div>
 						</div>
 					</div>
-						<div class='tags'>
-							<p>
-								<a class='button7'>#Palabraclave</a>
-								<a class='button7'>#Palabraclave</a>
-								<a class='button7'>#Palabraclave</a>
-							</p>
-						</div>
+					<div class='col-xs-12  col-sm-12'>
+
+						@foreach($service->tags as $tag)
+							@if($tag->service_id == $service->id)
+								<a class="col-xs-6 input-tag button7 tag-margin" tag='{{ $tag->tag->id }}' href='/filter?filter={{ $tag->tag->tag }}'>
+									<span>{{ $tag->tag->tag }}</span>
+								</a>
+							@endif
+						@endforeach
+					</div>
 				</article>
 
 				<article class='col-md-4 col-xs-12 col-sm-6'>
