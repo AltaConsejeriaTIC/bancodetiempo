@@ -1,4 +1,6 @@
-
+label{
+	cursor:pointer;
+}
 .form-custom input[type='text'], .form-custom input[type='date'], .form-custom textarea{
 	
 	font-family: 'Open Sans', sans-serif;
@@ -310,6 +312,7 @@ input[type=checkbox].boxCheck:checked + label i {
 
 .multi-select input[type='checkbox']:checked + label {
     background: #dfe4ea;
+    position:relative;
 }
 
 .multi-select .list {
@@ -337,6 +340,15 @@ input[type=checkbox].boxCheck:checked + label i {
     border-bottom: 0.1px solid rgba(151, 151, 151, 0.31);
     margin: auto;
     height: 7px;
+}
+
+.multi-select input[type='checkbox']:checked + label:before {
+    content: "\f00c";
+    display: block;
+    position: absolute;
+    font-family: FontAwesome;
+    top: 8px;
+    left: 85%;
 }
 
 .multi-select input[type='checkbox']:checked + label:after {
