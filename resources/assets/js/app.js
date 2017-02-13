@@ -24,9 +24,7 @@ Vue.directive('validationOptions', require('./components/validationsOptions.vue'
 var app = new Vue({
 
     el: '#app',    
-    data:{
-    	showModal: false,
-        showModal1: false,        
+    data:{   
     	myData : {'validation' : 1}
     },
     mixins: [helpers.Helpers(), helpers.animationSide(),helpers.Filters()],

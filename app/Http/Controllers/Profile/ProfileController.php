@@ -44,7 +44,7 @@ class ProfileController extends Controller
 				'tagsJs' => $tags,
 			]);				
 
-      return view('profile/profile', compact('user','categories','services','tags'));
+      return view('profile/profile', compact('user','categories','services'));
         
     }
    public function showEditProfile()
