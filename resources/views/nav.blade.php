@@ -17,7 +17,14 @@
 			        	<button class="button4 hidden-xs" data-toggle="modal" data-target="#login">Registrarse</button>          		          
 			        </div>
 				@elseif((!Auth::guest()))
-					<a class="hidden-xs col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-5  text-right" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+					<div class="hidden-xs col-sm-6 col-sm-offset-5 col-md-6 col-md-offset-7 text-right">												
+						<p class="col-xs-5 align-right">
+							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav"></image> 
+							{{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? "Dorado" : "Dorados" }}
+						</p>
+						<p class="col-xs-1 line-nav">|</p>
+						<a class="col-xs-5 align-left" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+					</div>
 					<a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1' href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></a>
 					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
@@ -52,7 +59,7 @@
 					<div class="flex-center">
 						<div class="col-md-7 col-sm-7 padding-top not-margin bolsa-de-tiempo text-left">
 							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
-							<p class="paragraph4 textpadding col-md-10 col-sm-7 text-white">Bolsa de tiempo:<br>8 Horas</p>
+							<p class="paragraph4 textpadding col-md-10 col-sm-7 text-white">Bolsa de tiempo:<br>{{ Auth::user()->credits }} Dorados</p>
 						</div>
 						<div class="col-md-1 col-sm-1 not-padding ">
 							<i class="fa fa-envelope icon-nav notification"><span>2</span></i>

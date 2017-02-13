@@ -58,22 +58,21 @@ class ProfileController extends Controller
 
 public function  editProfilePicture(Request $request){
 
+  $file = $request->file('avatar');
+		
+		if(!$file){
+			return false;
+		}
 
-        $file = $request->file('avatar');
-     		if(!$file){
+		$imageName = 'img' . Auth::User()->id . '.' . $file->getClientOriginalExtension();
+		$pathImage = 'resources/user/user_'. Auth::User()->id;
+		$file->move(base_path() . '/public/' . $pathImage, $imageName);
 
-     			return false;
-     		}
-     		$imageName = 'img' . Auth::User()->id . '.' . $file->getClientOriginalExtension();
+		User::find(Auth::User()->id)->update([
+			'avatar' => $pathImage .'/'. $imageName
+		]);
 
-     		$pathImage = 'resources/user/user_'. Auth::User()->id;
-
-     		$file->move(base_path() . '/public/' . $pathImage, $imageName);
-
-     		User::find(Auth::User()->id)->update([
-     			'avatar' => $pathImage .'/'. $imageName
-     		]);
-     		return $pathImage .'/'. $imageName;
+		return $pathImage .'/'. $imageName;
 
 }
 
@@ -91,10 +90,9 @@ public function  editProfilePicture(Request $request){
 	 			'avatar' => 'max:2000|image',
 	 			'email2' => 'required|email'
 	 	]);
-	 	
-	 	
+	 		 	
 	 	$picture=$this->editProfilePicture($request);
-	 	$user = Auth::user ();
+	 	$user = Auth::user();
 	 	
 	 	if($picture !==false){
 	    $user->avatar = $picture;
@@ -107,19 +105,10 @@ public function  editProfilePicture(Request $request){
   	$user->privacy_policy = $request->input('terms');
   	$user->gender = $request->input('gender');
   	$user->email2 = $request->input('email2');
+  	$user->credits = 1;
   	$user->save();
-
-	  Session::put('registerPass1', 'done');
 	  	
-		if(!empty($user->interests->all())){
-
-			return Redirect::to("profile");
-
-		}else{
-
-			return Redirect::to("/interest");
-
-		}
+		return Redirect::to("/interest");	
 
 	}
 	
@@ -136,7 +125,10 @@ public function  editProfilePicture(Request $request){
 	public function saveInterest(Request $request){
 
 		$interestAct = InterestUser::where('user_id', Auth::User()->id);
-			
+		$user = Auth::user();
+		$user->credits = 2; 
+		$user->save();
+
 		$interestAct->delete();
 		
 		foreach($request->get('interets') as $interets){

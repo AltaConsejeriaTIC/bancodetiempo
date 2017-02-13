@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('gender')->nullable();
             $table->date('birthDate')->nullable();
             $table->string('aboutMe')->nullable();
-            $table->string('credits')->nullable();
+            $table->integer('credits')->nullable();
             $table->integer('ranking')->nullable();
             $table->integer('role_id')->unsigned();
             $table->integer('state_id')->unsigned();
