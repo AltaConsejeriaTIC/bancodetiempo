@@ -102,9 +102,8 @@ class HomeController extends Controller
     							->distinct('services.id')
     							->join('tags_services', 'services.id', 'tags_services.service_id')
     							->where('state_id' , 1);
-    	if($filters == ''){
+    	if($filters != ''){
     		$allServices->whereIn('tags_services.tag_id', $idTags);
-    	}else{
     		Session::flash('filters.tags', $idTags);
     	}
     	
