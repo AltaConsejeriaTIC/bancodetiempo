@@ -88,13 +88,13 @@
 									<input type="radio" name="valueService" value="1" :id="'time1'+this.id"
 										class="circle validation" v-model="valueService"
 										data-validations='["required"]'> <label :for="'time1'+this.id">1
-										Lache</label>
+										Hora</label>
 								</div>
 								<div class="col-xs-6 col-sm-6">
 									<input type="radio" name="valueService" value="2" :id="'time2'+this.id"
 										class="circle validation" v-model="valueService"
 										data-validations='["required"]'> <label :for="'time2'+this.id">2
-										Laches</label>
+										Horas</label>
 								</div>
 							</div>
 							<div class="row">
@@ -102,13 +102,13 @@
 									<input type="radio" name="valueService" value="3" :id="'time3'+this.id"
 										class="circle validation" v-model="valueService"
 										data-validations='["required"]'> <label :for="'time3'+this.id">3
-										Laches</label>
+										Horas</label>
 								</div>
 								<div class="col-xs-6 col-sm-6">
 									<input type="radio" name="valueService" value="4" :id="'time4'+this.id"
 										class="circle validation" v-model="valueService"
 										data-validations='["required"]'> <label :for="'time4'+this.id">4
-										Laches</label>
+										Horas</label>
 								</div>
 							</div>
 							<div class="row">

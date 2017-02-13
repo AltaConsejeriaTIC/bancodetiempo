@@ -52,21 +52,21 @@
 			<div class="row">
 				<div class="col-xs-6 col-sm-6">
 					<input type="radio" name="valueService" value="1" id="time1" class="circle validation" v-model="valueService" data-validations='["required"]'>
-					<label for="time1">1 Lache</label>                        
+					<label for="time1">1 Hora</label>                        
 				</div>
 				<div class="col-xs-6 col-sm-6">
 					<input type="radio" name="valueService" value="2" id="time2" class="circle validation" v-model="valueService" data-validations='["required"]'>
-					<label for="time2">2 Laches</label>                        
+					<label for="time2">2 Horas</label>                        
 				</div>                 
 			</div>
 			<div class="row">
 				<div class="col-xs-6 col-sm-6">
 					<input type="radio" name="valueService" value="3" id="time3" class="circle validation" v-model="valueService" data-validations='["required"]'>
-					<label for="time3">3 Laches</label>                        
+					<label for="time3">3 Horas</label>                        
 				</div>
 				<div class="col-xs-6 col-sm-6">
 					<input type="radio" name="valueService" value="4" id="time4" class="circle validation" v-model="valueService" data-validations='["required"]'>
-					<label for="time4">4 Laches</label>                        
+					<label for="time4">4 Horas</label>                        
 				</div>                  
 			</div>
 			<div class="row">
