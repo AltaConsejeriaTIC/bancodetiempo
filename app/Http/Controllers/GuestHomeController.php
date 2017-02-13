@@ -34,13 +34,6 @@ class GuestHomeController extends Controller
 
     public function index()
     {
-        $tags = Tag::select('tags.*','tags_services.service_id')
-                ->join('tags_services','tags.id','=','tags_services.tag_id')
-                ->join('services','tags_services.service_id','=','services.id')                
-                ->where('state_id' , 1)
-                ->get();
-
-
         $categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
 
         $allServices = Service::where('state_id' , 1)->get()->where('user.state_id', 1);
@@ -51,7 +44,7 @@ class GuestHomeController extends Controller
         JavaScript::put([
             'categoriesJs' => $categories,
         ]);
-        return view('guest', compact('allServices','recommendedServices', 'categories','tags'));
+        return view('guest', compact('allServices','recommendedServices', 'categories'));
     }
 
 

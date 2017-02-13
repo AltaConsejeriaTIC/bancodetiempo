@@ -31,8 +31,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tags = Tag::select('tags.*','tags_services.service_id')->join('tags_services','tags.id','=','tags_services.tag_id')->join('services','tags_services.service_id','=','services.id')->where('state_id' , 1)->get();
-
     	$interestsUser = $this->getInterestsUser();
     	
     	$categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
@@ -47,7 +45,7 @@ class HomeController extends Controller
                     'categoriesJs' => $categories,                    
                 ]); 
     	
-        return view('home', compact('allServices', 'recommendedServices', 'categories','tags'));
+        return view('home', compact('allServices', 'recommendedServices', 'categories'));
     }
     
     public function indexNotRegister(){
@@ -55,16 +53,10 @@ class HomeController extends Controller
     	if(Auth::user()){
     		return redirect('/home');
     	}else{
-    		
-            $tags = Tag::select('tags.*','tags_services.service_id')
-                ->join('tags_services','tags.id','=','tags_services.tag_id')
-                ->join('services','tags_services.service_id','=','services.id')                
-                ->where('state_id' , 1)
-                ->get();
 
     		$lastServices = Service::where('state_id' , 1)->orderBy('id', 'desc')->limit(6)->get()->where('user.state_id', 1);
     		    		
-    		return view('welcome', compact('lastServices','tags'));
+    		return view('welcome', compact('lastServices'));
     	}
     	
     }

@@ -78,9 +78,7 @@ class NetworkAccountsController extends Controller
 		$account->user()->associate($user);
 		$account->save();
 
-		auth()->login($user);
-
-		
+		auth()->login($user);	
 		
 		return true;
 
