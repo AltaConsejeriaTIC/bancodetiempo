@@ -507,6 +507,7 @@ Service box
 	border: solid 1px #18aada;
 	padding: 10px 15px;
 	border-radius: 5px;
+	cursor:pointer;
 }
 
 .service-box .cover {

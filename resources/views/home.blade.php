@@ -13,7 +13,7 @@
 	<div class="row">
 	    <ul  class="nav nav-pills col-md-8">
 			<li class="active">
-	        	<a  href="#filterAll" data-toggle="tab" class='parrafo3'>Todos</a>
+	        	<a  href="#filterAll" data-toggle="tab" class='parrafo3' v-on:click='filterCategory(0)'>Todos</a>
 			</li>
 			<li>
 	        	<a  href="#filterRecommended" data-toggle="tab" class='parrafo3'>Recomendados</a>

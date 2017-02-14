@@ -76,6 +76,13 @@ module.exports = {
                         
                         reader.readAsDataURL(files[0]);
                     },
+                    filterCategory:function(filter){
+                    	this.$http.get('/service/category/'+filter).then(response => {
+            				document.getElementById('filterAll').firstChild.innerHTML = response.body
+            			  }, response => {
+            			    console.log("error")
+            			  });
+                    },
                     validation:function (){
                     	var v = 0
                     	if(this.$el.getElementsByClassName('validation').length == 0){v=1}

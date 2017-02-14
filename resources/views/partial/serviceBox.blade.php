@@ -12,7 +12,7 @@
 				@include('services.partial.deleteService')
 			{!!Form::close()!!}		
 		@endif			
-			<span class='category'>{{$service->category->category}}</span>
+			<span class='category' onClick='app.__vue__.filterCategory({{$service->category->id}})'>{{$service->category->category}}</span>
 			<a href="@if( Auth::user()) service/{{$service->id}} @else serviceGuest/{{$service->id}}@endif">
 			<div class="cover">
 				<img src="{{$service->image}}" alt="" />
