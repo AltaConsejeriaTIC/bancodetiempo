@@ -102,10 +102,11 @@
 							<div class="col-xs-12 text-center">
 								<p class='paragraph4'>{{$user->aboutMe}}</p>
 							</div>
+							@if($service->user_id != Auth::user()->id)
 							<div class="col-xs-12">
 								<p class='paragraph4'>¿Te interesa esta oferta?</p>
 							</div>
-							@if($service->user_id != Auth::user()->id)
+							
 								<div class="col-xs-12 ">
 									<button class='col-xs-12 button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunicate con {{$user->first_name}}</button>
 								</div>

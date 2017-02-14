@@ -1,11 +1,11 @@
 <script>
 
 var eventForTag = {
-		"INPUT[type='text']":"change",
-		"INPUT[type='number']":"change",
-		"INPUT[type='date']":"change",
-		"INPUT[type='password']":"change",
-		"INPUT[type='email']":"change",
+		"INPUT[type='text']":"keyup",
+		"INPUT[type='number']":"keyup",
+		"INPUT[type='date']":"keyup",
+		"INPUT[type='password']":"keyup",
+		"INPUT[type='email']":"keyup",
 		"INPUT[type='hidden']":"change",
 		"INPUT[type='radio']":"change",
 		"INPUT[type='checkbox']":"change",
@@ -279,7 +279,7 @@ function hiddenErrorsBox(element, error){
 			childrens = allChildrens
 		}else{
 			childrens = boxErrors[0].querySelectorAll('[error="'+error+'"]');
-			element.classList.remove('init')
+			
 		}
 		
 		for(var child = 0; child < childrens.length; child++){
@@ -335,7 +335,7 @@ export default {
 	componentUpdated:function(el, b, vnode){
 		var elements = el.getElementsByClassName('validation');
 		for (var obj = 0; obj < elements.length; obj++){	
-			//validateInit(elements[obj])
+			validateInit(elements[obj])
 		}
 	}
 }

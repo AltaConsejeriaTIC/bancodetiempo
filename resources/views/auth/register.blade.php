@@ -45,6 +45,7 @@
 		                        		</template>
 		                        	
 		                        </avatar>
+		                        <p class="avatarMsg hidden">El peso màximo de la imagen debe ser de 3 Megas.</p>
 		                     </div>              
 		                </div>    
 	
