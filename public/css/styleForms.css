@@ -363,3 +363,15 @@ input[type=checkbox].boxCheck:checked + label i {
     right: 5%;
     margin-top: 5px;
 }
+
+.validation.init {
+    border: solid 1px #2c3e50 !important;
+}
+
+.validation.init[validation='true'] + i {
+    display: none;
+}
+
+.form-custom *.init, .form-custom input[type="radio"].init + label:before, .form-custom input[type="checkbox"].init + label:before {
+    border: 1px solid #1162A5 !important;
+}

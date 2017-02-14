@@ -1,24 +1,3 @@
-var optionDay = new Array();
-for(var i = 1; i <= 31; i++)
-{
-    optionDay.push(i);
-}
-var optionMounth = new Array();
-for(var i = 1; i <= 12; i++)
-{
-    optionMounth.push(i);
-}
-var optionYear = new Array();
-var fecha = new Date();
-var currentYear = fecha.getFullYear();
-
-currentYear = currentYear - 18;
-
-for(var i = 1950; i <= currentYear; i++)
-{
-    optionYear.push(i);
-}
-
 var Vue = require('vue');
 
 
@@ -35,18 +14,13 @@ module.exports = {
                 firstName : windowvar.userJs["first_name"],
                 lastName : windowvar.userJs["last_name"],
                 gender: windowvar.userJs["gender"],
-                day: parseInt(windowvar.dayJs),
-                mounth: parseInt(windowvar.mounthJs),
-                year: parseInt(windowvar.yearJs),
+                birthDate: windowvar.userJs["birthDate"],
                 aboutMe: windowvar.userJs["aboutMe"],
                 email: windowvar.userJs["email"],
                 email2: windowvar.userJs["email2"],
-                terms: terms,
+                terms: terms, 
                 expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
                 exprNum: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*$'),
-                arrayDay: optionDay,
-                arrayMounth: optionMounth,
-                arrayYear: optionYear
             }
         }
         return profile;

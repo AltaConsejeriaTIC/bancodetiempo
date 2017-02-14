@@ -109,17 +109,6 @@
         },
         props:['profile'],        
         mixins: [helpers.ValidateUser()],
-        computed: {
-        	birthDate: function(){
-        		if(this.mounth.toString().length < 2){
-        			this.mounth = '0'+this.mounth
-        		}
-        		if(this.day.toString().length < 2){
-        			this.day = '0'+this.day
-        		}
-        		return this.year+"-"+this.mounth+"-"+this.day;
-        	}
-        },
         watch:{
         	aboutMe:function(val){
         		this.$parent.putMyData('aboutMe', this.aboutMe)
