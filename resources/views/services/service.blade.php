@@ -3,11 +3,11 @@
 @section('content')
 
 @if(session('response'))
-<generalmodal  name='daza' :state='myData.daza' state-init='true'>
+<generalmodal  name='notificationEmail' :state='myData.notificationEmail' state-init='true'>
 	<div slot="modal" class='box row'>
-		<button type="button" class='close'  v-on:click='myData.daza = false'><i class='fa fa-close'></i></button>
+		<button type="button" class='close'  v-on:click='myData.notificationEmail = false'><i class='fa fa-close'></i></button>
 		<h1 class='title1 col-md-12 text-center'>¡Notificación enviada!</h1>
-		<p class='text-center col-md-12'>Se ha enviado un correo electrónico a Diego informándole sobre tu interés en tomar su oferta. <br>
+		<p class='text-center col-md-12'>Se ha enviado un correo electrónico a {{ $service->user->first_name }} informándole sobre tu interés en tomar su oferta. <br>
 		En los próximos días Diego te contactará a través de tu correo electrónico.</p>
 		<p class='text-center col-md-12 title1'>
 			<i class="fa fa-signal" aria-hidden="true" style='font-size: 60px;font-size: 50px;transform: rotateZ(-90deg) translateX(40px) translateY(-10px);'></i><i class="fa fa-envelope" aria-hidden="true" style='font-size: 120px;'></i>

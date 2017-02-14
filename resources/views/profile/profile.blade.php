@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    
+    @if(session('response'))
+      <generalmodal  name='winCoin' :state='myData.winCoin' state-init='true'>
+        <div slot="modal" class='box row'>      
+          <h1 class='title1 col-md-12 text-center'>¡Acabas de ganar 4 dorados!</h1>     
+          <p class="paragraph1 col-md-12 text-center">A partir de este momento puedes tomar una oferta.</p>
+        </div>
+      </generalmodal>
+      <modaltimeoff name="winCoin">
+      </modaltimeoff>
+    @endif
     @include('nav',array('type' => 2))
     
     <section class="row">

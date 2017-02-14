@@ -3,6 +3,17 @@
 
 @include('nav', array('type' => 1))
 
+@if(session('response'))
+	<generalmodal  name='winCoin' :state='myData.winCoin' state-init='true'>
+		<div slot="modal" class='box row'>			
+			<h1 class='title1 col-md-12 text-center'>¡Felicidades!</h1>			
+			<p class="paragraph1 col-md-12 text-center">Has ganado tu primer dorado. Elige tus intereses y gana un dorado más.</p>			
+		</div>
+	</generalmodal>
+	<modaltimeoff name="winCoin">
+	</modaltimeoff>
+@endif
+
 <section class='bannerRegister row'>
 	 
 </section>
@@ -37,12 +48,12 @@
 					@endforeach					
 				
 				<div class='crearfix'></div>
-				<p class="msg col-xs-11 " v-if='myData < 3'>Recuerda que debes seleccionar al menos tres categorías  para continuar con el proceso de registro.</p>
+				<p class="msg col-xs-11 " v-if='myData.validation < 3'>Recuerda que debes seleccionar al menos tres categorías  para continuar con el proceso de registro.</p>
 				
 				<div class="space"></div>
 				
 				<div class="col-xs-12 col-md-6 col-md-offset-3">
-					{{ Form::submit('Siguiente', ['class' => 'button1 background-active-color col-xs-12', ':class' => '{inactive: this.myData < 3}']) }}
+					{{ Form::submit('Siguiente', ['class' => 'button1 background-active-color col-xs-12', ':class' => '{inactive: this.myData.validation < 3}']) }}
 				</div>			
 		
 			{!! Form::close() !!}

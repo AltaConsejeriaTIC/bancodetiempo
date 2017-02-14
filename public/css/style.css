@@ -902,3 +902,12 @@ Animations
     background: #fff;
     padding: 5%;
 }
+
+.fade-transition{
+	transition: all 1s ease;
+	opacity: 100;
+}
+
+.fade-enter, .fade-leave{
+	opacity: 0;
+}

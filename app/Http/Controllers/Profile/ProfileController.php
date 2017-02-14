@@ -108,7 +108,7 @@ public function  editProfilePicture(Request $request){
   	$user->credits = 1;
   	$user->save();
 	  	
-		return Redirect::to("/interest");	
+		return Redirect::to("/interest")->with('response',true);	
 
 	}
 	
@@ -138,9 +138,8 @@ public function  editProfilePicture(Request $request){
 					'category_id' => $interets
 			]);
 
-		}
-		Session::put('registerPass2', 'done');
-		return redirect("/service");
+		}		
+		return redirect("/service")->with('response',true);
 
 
 	}
