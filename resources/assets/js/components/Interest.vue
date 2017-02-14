@@ -1,8 +1,7 @@
 <template>
 	<div class='col-xs-12 col-md-4'>
 		<input type='checkbox' name='interets[]' :value='val' :id='titleShort' class='boxCheck' v-model='check'>
-		<label :for='titleShort' class='text-center'>{{title}}</label>
-		
+		<label :for='titleShort' class='text-center'>{{title}}</label>		
 	</div>
 		
 </template>
@@ -20,14 +19,14 @@ export default {
 	 	check: function(val){
 	 		
 	 		if(val){	 			
-				this.$parent.myData = this.$parent.myData+1;
+				this.$parent.myData.validation = this.$parent.myData.validation+1;
 	 		}else{
-				this.$parent.myData = this.$parent.myData-1;
+				this.$parent.myData.validation = this.$parent.myData.validation-1;
 	 		}
 		}
 	},
 	mounted() {
-		this.$parent.myData = 0;	                
+		this.$parent.setMyData('validation', 0);
     }
 }
 

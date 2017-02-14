@@ -3,6 +3,17 @@
 @section('content')
 
 @include('nav', array('type' => 1))
+	
+	@if(session('response'))
+		<generalmodal  name='winCoin' :state='myData.winCoin' state-init='true'>
+			<div slot="modal" class='box row'>				
+				<h1 class='title1 col-md-12 text-center'>¡Tienes dos dorados!</h1>			
+				<p class="paragraph1 col-md-12 text-center"> Publica tu primera oferta y gana dos dorados más.</p>
+			</div>
+		</generalmodal>
+		<modaltimeoff name="winCoin">
+		</modaltimeoff>
+	@endif
 
 	<section class='bannerService row'>
 		<div class="container">	
@@ -10,7 +21,7 @@
 				<div class='row'>		
 					<div class='col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3'>
 						<div class="col-xs-12 col-sm-12">
-							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#0f6784', 'borderSize' => '3px'))							
+							@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#0f6784', 'borderSize' => '3px'))				
 						</div>				
 					</div>	
 				</div>			

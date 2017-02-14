@@ -14,6 +14,7 @@ Vue.component('editservice', require('./components/EditService.vue'));
 Vue.component('filtersCategories', require('./components/filtersCategories.vue'));
 Vue.component('contactmailmodal', require('./components/contactMailModal.vue'));
 Vue.component('generalmodal', require('./components/generalModal.vue')); 
+Vue.component('modaltimeoff', require('./components/modalTimeOff.vue')); 
 //directives
 Vue.directive('validation', require('./components/validations.vue'));
 Vue.directive('validationText', require('./components/validationsText.vue'));

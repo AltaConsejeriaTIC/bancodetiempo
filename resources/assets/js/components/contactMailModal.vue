@@ -10,7 +10,7 @@
 <script>
 
 export default {
-	props: ['service', "contactMail"],
+	props: ['service', "contactMail"],		
 	mounted(){
 		this.$parent.setMyData('contactMail', false)
 	}

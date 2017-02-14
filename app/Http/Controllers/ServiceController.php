@@ -186,9 +186,8 @@ class ServiceController extends Controller
     $this->uploadCover($request->file('imageService'), $service); 
          
 
-		Session::flash('success','Has creado correctamente tu servicio');
-		Session::put('registerPass3', 'done');
-		return redirect('profile');
+		Session::flash('success','Has creado correctamente tu servicio');		
+		return redirect('profile')->with('response',true);
 
    }
 
