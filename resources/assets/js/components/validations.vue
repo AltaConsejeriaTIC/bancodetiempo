@@ -240,8 +240,7 @@ function validateInit(element){
 	var eventElement = eventForTag[tag];
 	var event = new CustomEvent(eventElement, {});
 	element.dispatchEvent(event, true);
-	
-	hiddenErrorsBox(element)
+	// 
 	
 }
 function validateAll(padre){
@@ -280,6 +279,7 @@ function hiddenErrorsBox(element, error){
 			childrens = allChildrens
 		}else{
 			childrens = boxErrors[0].querySelectorAll('[error="'+error+'"]');
+			element.classList.remove('init')
 		}
 		
 		for(var child = 0; child < childrens.length; child++){
@@ -291,6 +291,7 @@ function hiddenErrorsBox(element, error){
 			boxErrors[0].style.display = "none"
 		}
 	}
+	
 }
 
 function showErrorsBox(element, error){
@@ -302,6 +303,7 @@ function showErrorsBox(element, error){
 			childrens[child].style.display = "block"
 		}
 	}
+	element.classList.remove('init')
 }
 
 var parent;
@@ -318,6 +320,8 @@ export default {
 			elements[obj].padre = el
 			addEventElements(elements[obj])	
 			validateInit(elements[obj])
+			elements[obj].classList.add('init')
+			hiddenErrorsBox(elements[obj])
 		}
 		
 		var senders = el.querySelectorAll('[type="submit"]');
@@ -326,12 +330,12 @@ export default {
 			
 			senders[send].setAttribute("sender" , 'sender')
 		}
-
+		
 	},
 	componentUpdated:function(el, b, vnode){
 		var elements = el.getElementsByClassName('validation');
 		for (var obj = 0; obj < elements.length; obj++){	
-			validateInit(elements[obj])
+			//validateInit(elements[obj])
 		}
 	}
 }

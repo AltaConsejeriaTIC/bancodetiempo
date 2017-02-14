@@ -36,9 +36,7 @@ class ProfileController extends Controller
       
       JavaScript::put([
 				'userJs'=> $user,
-				'dayJs' => is_null($user->birthDate) ? "0" :  date("d",strtotime($user->birthDate)),
-				'mounthJs' => is_null($user->birthDate) ? "0" :  date("m",strtotime($user->birthDate)),
-				'yearJs' => is_null($user->birthDate) ? "0" :  date("Y",strtotime($user->birthDate)),
+				'birthDateJs' => is_null($user->birthDate) ? "0000-00-00" :  $user->birthDate,
 				'categoriesJs' => $categories,
 				'servicesJs' => $services,
 				'tagsJs' => $tags,
