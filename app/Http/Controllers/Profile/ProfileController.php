@@ -24,6 +24,7 @@ class ProfileController extends Controller
 
       $services = Service::where("user_id" , "=", Auth::user()->id)
 	      						->where('state_id' , 1)
+	      						->orderBy("created_at","desc")
 	      						->get()
 	      						->where('user.state_id', 1);
 

@@ -35,7 +35,7 @@ class HomeController extends Controller
     	
     	$categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
     	
-    	$allServices = Service::where('state_id' , 1)->get()->where('user.state_id', 1);
+    	$allServices = Service::where('state_id' , 1)->orderBy("created_at","desc")->get()->where('user.state_id', 1);
     	
     	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
 
