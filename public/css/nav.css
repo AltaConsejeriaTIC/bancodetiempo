@@ -82,8 +82,9 @@ input.filter::-webkit-input-placeholder {
     padding-left:28px;
 }
 .moneda{
-    height: 25px;
-    width:25px;
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
 }
 .textpadding{
     padding-left: 5px;
@@ -103,4 +104,22 @@ input.filter::-webkit-input-placeholder {
     padding-right: 0px;
     padding-top: 8px;
     text-align: left;
+}
+
+.line-nav{
+    font-size: 33px;
+  top: -16px;
+}
+
+.align-right{
+    font-size: 18px;
+    text-align: right;
+    right: -25px;
+    top: -1px;
+}
+
+.align-left{
+    font-size: 18px;
+    text-align: left;
+    left: -12px;
 }

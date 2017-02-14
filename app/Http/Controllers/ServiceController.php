@@ -178,8 +178,9 @@ class ServiceController extends Controller
       $newTagService->save();
     }
 
-    $user = User::find(Auth::user()->id);
+    $user = Auth::user();
     $user->state_id = 4;
+    $user->credits = 4;
     $user->save();
 
     $this->uploadCover($request->file('imageService'), $service); 
