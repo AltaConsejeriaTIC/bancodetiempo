@@ -93,7 +93,7 @@
             </div>
 
             <div class="row not-margin">
-                <input type="submit" value='Siguiente' class='button1 col-xs-12 background-active-color'  v-if='profile == 0' v-on:click=""/>
+                <input type="submit" value='Siguiente' class='button1 col-xs-12 background-active-color'  v-if='profile == 0'/>
                 
                 <input type="submit" value='Actualizar' class='button1 col-xs-12 background-active-color'  v-if='profile == 1'/>
                 

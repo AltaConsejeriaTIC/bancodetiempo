@@ -49,8 +49,7 @@
 	<section  id='pass' class='not-padding-bottom'>
 			<div class="container">
 				<div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">
-					@include('partial/pass', array("pass1" => Illuminate\Support\Facades\Session::get('registerPass1'), "pass2" => Illuminate\Support\Facades\Session::get('registerPass2'), "pass3" => Illuminate\Support\Facades\Session::get('registerPass3')))
-					
+					@include('partial/pass',array('pass1','pass2','pass3'))					
 				</div>
 			</div>
 	</section>
