@@ -108,7 +108,7 @@
 							</div>
 							
 								<div class="col-xs-12 ">
-									<button class='col-xs-12 button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunicate con {{$user->first_name}}</button>
+									<button class='col-xs-12 button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunícate con {{$user->first_name}}</button>
 								</div>
 							@endif
 						</div>
@@ -129,10 +129,10 @@
 	      		<div class="space"></div>
 	      		<div class="row">
 	      			<div class="col-md-12 paragraph2  not-padding">
-	      				<p>¡Preséntate!<br>
-							Cuéntale por qué estás interesado en tomar su oferta.<br>
-							Coméntale lo que esperas recibir.<br>
-							Concreta los datos del acuerdo y envíale una propuesta.</p>
+	      				<p>- ¡Preséntate!<br>
+							- Cuéntale por qué estás interesado en tomar su oferta.<br>
+							- Coméntale lo que esperas recibir.<br>
+							- Concreta los datos del acuerdo y envíale una propuesta.</p>
 	      			</div>
 	      			<div v-validation:msg="">
 		      			<div class="row">

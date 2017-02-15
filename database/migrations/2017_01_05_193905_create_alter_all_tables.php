@@ -83,7 +83,10 @@ class CreateAlterAllTables extends Migration
                 ->on('tags')
                 ->onUpdate('cascade');      
         });
-
+        
+        
+        
+        
     }
 
     /**

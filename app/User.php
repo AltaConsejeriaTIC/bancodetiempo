@@ -8,6 +8,7 @@ use App\Models\Service;
 use App\Models\State;
 use App\Models\Role;
 use App\Models\InterestUser;
+use App\Models\Message;
 
 class User extends Authenticatable
 {
@@ -34,6 +35,11 @@ class User extends Authenticatable
     public function services()
     {
        	return $this->hasMany(Service::class);
+    }
+    
+    public function messages()
+    {
+    	return $this->hasMany(Message::class);
     }
 
     public function role()

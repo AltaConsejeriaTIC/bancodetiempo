@@ -61,8 +61,8 @@
 							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
 							<p class="paragraph4 textpadding col-md-10 col-sm-7 text-white">Bolsa de tiempo:<br>{{ Auth::user()->credits }} Dorados</p>
 						</div>
-						<div class="col-md-1 col-sm-1 not-padding ">
-							<i class="fa fa-envelope icon-nav notification"><span>2</span></i>
+						<div class="col-md-1 col-sm-1 not-padding " onclick='location.href="/inbox#received"'>
+							<i class="fa fa-envelope icon-nav notification"><span>{{App\Helpers::getNotificationsUser()}}</span></i>
 						</div>
 						<div class="col-md-4 col-sm-4 not-padding hidden-xs hidden-sm hidden-md text-center">
 							<button class="button9 newservice" data-toggle="modal" data-target="#NewService">
