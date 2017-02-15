@@ -325,7 +325,6 @@ export default {
 			validateInit(elements[obj])
 			elements[obj].classList.add('init')
 			hiddenErrorsBox(elements[obj])
-			console.log(elements[obj]);
 		}
 		
 		var senders = el.querySelectorAll('[type="submit"]');

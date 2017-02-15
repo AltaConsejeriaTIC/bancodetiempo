@@ -185,7 +185,7 @@ export default {
 	data: function () {
 		return helpers.Service().data;
 	}, 
-	mixins: [helpers.Helpers(),helpers.ValidateService(),helpers.MethodsService()],
+	mixins: [helpers.Helpers(),helpers.MethodsService()],
 	mounted() {                                    
 		for (var i = 0; i < this.services.length; i++) 
 		{

@@ -116,7 +116,7 @@
       data: function () {
           return helpers.Service().data;
       }, 
-      mixins: [helpers.Helpers(),helpers.ValidateService(),helpers.MethodsService()],
+      mixins: [helpers.Helpers(),helpers.MethodsService()],
       mounted() {        		
           this.$parent.setMyData('totalChar', 250);
           this.$parent.setMyData('maxChar', 250);

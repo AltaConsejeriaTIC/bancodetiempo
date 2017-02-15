@@ -25,28 +25,9 @@ module.exports = {
         }
         return profile;
     },
-    ValidateUser: function () {
-        var validate = {
-            methods: {
-                validateAll: function() {
-                	var v = ''
-                    for(var elem = 0; elem < app.getElementsByClassName('validate').length; elem++){
-                    	v += app.getElementsByClassName('validate')[elem].getAttribute('validate')
-                    }
-                	return v;
-                },                
-            }
-        }
-        return validate;
-    },
     Helpers: function () {
         var Helpers = {
                 methods:{
-                    countCharacters: function(){
-                    	
-                    	var totalChar = this.myData.maxChar - this.myData.aboutMe.length                    	
-                        this.putMyData('totalChar', totalChar)
-                    },
                     previewPhoto(e) {
                     	this.$el.getElementsByClassName('profilePhoto')[0].classList.add('validation');
                     	this.$el.getElementsByClassName('profilePhoto')[0].setAttribute('validation', 'true');
@@ -54,12 +35,10 @@ module.exports = {
                         if (!files.length){
                             return;
                         }
-                        console.log(files)
                         if(files[0].size > 2000000){
                         	this.$el.getElementsByClassName('profilePhoto')[0].setAttribute('validation', 'false');
                         	this.$el.getElementsByClassName('avatarMsg')[0].classList.remove('hidden')
                         	this.$el.getElementsByClassName('avatarMsg')[0].classList.add('visible')
-                        	this.validation();
                         }else{
                         	var image = new Image();
                             var reader = new FileReader();
@@ -68,7 +47,6 @@ module.exports = {
 	                        	 this.$el.getElementsByClassName('avatarMsg')[0].classList.remove('visible')
 	                         	 this.$el.getElementsByClassName('avatarMsg')[0].classList.add('hidden')
 	                             this.myData.cover = e.target.result
-	                             this.validation();
 	                         };
 	                        
 	                        reader.readAsDataURL(files[0]);
@@ -81,17 +59,7 @@ module.exports = {
             			    console.log("error")
             			  });
                     },
-                    validation:function (){
-                    	var v = 0
-                    	if(this.$el.getElementsByClassName('validation').length == 0){v=1}
-                        for(var elem = 0; elem < this.$root.$el.getElementsByClassName('validation').length; elem++){                            
-                            if(this.$el.getElementsByClassName('validation')[elem].getAttribute('validation') == 'false'){
-                            	v+=1;
-                            }
-                        }
-                    	this.myData.validation = v;
-                        	
-                    }
+                    
                 }
             }
         return Helpers;
@@ -129,61 +97,12 @@ module.exports = {
                 valueService: '',
                 categories: windowvar.categoriesJs,                
                 services: windowvar.servicesJs,                                
-                tagService: windowvar.tagsJs,                                
-                expr: new RegExp('^[^ ][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$'),
+                tagService: windowvar.tagsJs,
             }                      
         }
         return service;
     },
-    ValidateService: function () {
-        var validate = {
-            computed: {
-                validateName: function() {
-                    if(this.serviceName != "" && this.serviceName.length >= 3 && this.expr.test(this.serviceName)){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
-                validateDescription: function() {
-                    if(this.descriptionService != "" && this.descriptionService.length >= 50){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
-                validateModality: function() {
-                    if(this.modalityServiceVirtually == 1 || this.modalityServicePresently == 1){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
-                validateValueService: function() {
-                    if(this.valueService != ''){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
-                validateCategory: function() {
-                    if(this.category != ''){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                },
-                validateAll: function() {
-                    if(this.validateName && this.validateDescription && this.validateModality && this.validateValueService && this.validateCategory){
-                        return false;
-                    }else{
-                        return true;
-                    }
-                }
-            }
-        }
-        return validate;        
-    },
+    
     MethodsService: function () {
         var methodsService = {
             methods: {
@@ -193,11 +112,10 @@ module.exports = {
                     var files = e.target.files || e.dataTransfer.files;
                     if (!files.length)
                         return;
-                    
                      reader.onload = (e) => {
                         this.imageService = e.target.result;
                      };
-                    console.log("esteeeeee");                  
+                                     
                     reader.readAsDataURL(files[0]);  
                 },
             }

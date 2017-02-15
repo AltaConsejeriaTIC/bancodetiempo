@@ -8,13 +8,7 @@ class Conversations extends Model
 {
 	protected  $fillable = ['user1', 'user2', 'service_id'];
 	
-	public function user1(){
-	
-		return $this->belongsTo(User::class);
-	
-	}
-	
-	public function user2(){
+	public function applicant(){
 	
 		return $this->belongsTo(User::class);
 	
@@ -24,5 +18,9 @@ class Conversations extends Model
 	
 		return $this->belongsTo(Service::class);
 	
+	}
+	
+	public function messages(){
+		return $this->hasMany(Message::class);
 	}
 }

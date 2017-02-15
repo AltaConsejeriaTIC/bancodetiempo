@@ -82,10 +82,40 @@ class CreateAlterAllTables extends Migration
                 ->references('id')
                 ->on('tags')
                 ->onUpdate('cascade');      
+        }); 
+        
+        // Foreign key Table conversations
+        Schema::table('conversations', function($table)
+        {
+        	$table->foreign('service_id')
+        	->references('id')
+        	->on('services')
+        	->onUpdate('cascade');
+        
+        	$table->foreign('applicant')
+        	->references('id')
+        	->on('users')
+        	->onUpdate('cascade');
         });
         
+        // Foreign key Table message
+        Schema::table('messages', function($table)
+        {
+        	$table->foreign('conversation_id')
+        	->references('id')
+        	->on('conversations')
+        	->onUpdate('cascade');
         
-        
+        	$table->foreign('sender')
+        	->references('id')
+        	->on('users')
+        	->onUpdate('cascade');
+        	
+        	$table->foreign('addressee')
+        	->references('id')
+        	->on('users')
+        	->onUpdate('cascade');
+        });
         
     }
 

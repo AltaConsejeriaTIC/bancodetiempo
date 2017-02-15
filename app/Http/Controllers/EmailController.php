@@ -60,8 +60,7 @@ class EmailController extends Controller
     		$conversation = Conversations::where('user2', $service->user->id)->where("user1", $userauth->id)->first();
     		if(count($conversation) == 0){
     			$conversation = Conversations::create([
-    					'user1' => $service->user->id,
-    					'user2' => $userauth->id,
+    					'applicant' => $userauth->id,
     					'service_id' => $service->id
     			]);
     		}

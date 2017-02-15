@@ -1,5 +1,6 @@
 <template>
     <article class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 serviceForm" id='formRegister' v-validation:msg=''>
+    
             <div class="row not-margin">
                 <label for="firstName" class="paragraph10">Nombre</label>  
             </div>
@@ -108,7 +109,6 @@
             return helpers.ProfileUser().data;
         },
         props:['profile'],        
-        mixins: [helpers.ValidateUser()],
         watch:{
         	aboutMe:function(val){
         		this.$parent.putMyData('aboutMe', this.aboutMe)
@@ -118,7 +118,6 @@
             this.$parent.setMyData('totalChar', 250)
             this.$parent.setMyData('maxChar', 250)
             this.$parent.setMyData('aboutMe', this.aboutMe)
-            this.$parent.validation()
         },    
     }
 </script>
