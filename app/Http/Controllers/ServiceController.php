@@ -19,20 +19,48 @@ class ServiceController extends Controller
 {
 
    public function index(){
+ 		
+    $categories = Category::all();
+    $user = User::find(auth::user()->id);
+ 		$selectedCategories = [];
+ 		
+    JavaScript::put([
+       'userJs'=> $user,
+       'categoriesJs' => $categories,
+    ]);
+    
+    if(Auth::user()->services->count() >= 1)
+    {
+      return redirect('/');
+    }
+    else
+    {
+      if(Auth::user()->privacy_policy == 0)
+      {
+        $pass1 = 'actual';
+        $pass2 = '';
+        $pass3 = '';      
+        return redirect('register');
+      }
+      else
+      {
+        if(Auth::user()->interests->count() < 3 )
+        {
+          $pass1 = 'done';
+          $pass2 = 'actual';
+          $pass3 = '';
+          return redirect('interest');  
+        }
+        else
+        {
+          $pass1 = 'done';
+          $pass2 = 'done';
+          $pass3 = 'actual';          
+        }
+      }
+    }
 
-   		$categories = Category::all();
-      $user = User::find(auth::user()->id);
-   		$selectedCategories = [];
-   		$method = 'post';
-         JavaScript::put([
-               'userJs'=> $user,
-               'categoriesJs' => $categories,
-             ]);
-
-      Session::put('registerPass3', 'actual');
-         
-   		return view('services/formService', compact('categories', 'method'));
-
+ 		return view('services/formService', compact('categories','pass1','pass2','pass3'));
    }
 
 	 public function deleteService ($serviceId)

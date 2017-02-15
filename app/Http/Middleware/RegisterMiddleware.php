@@ -16,12 +16,16 @@ class RegisterMiddleware
      */
     
     public function handle($request, Closure $next)
-    {      
+    {   
+        if(Auth::user() == null )
+        {
+            return redirect('/');
+        }   
         if(Auth::user()->role_id == 1 )
         {         
-       return redirect('/homeAdmin');
+            return redirect('/homeAdmin');
         }
+                
         return $next($request);
-
     }
 }

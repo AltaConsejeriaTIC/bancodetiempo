@@ -16,8 +16,7 @@ export default {
 			}
 	},
 	watch:{	 	
-	 	check: function(val){
-	 		
+	 	check: function(val){	 		
 	 		if(val){	 			
 				this.$parent.myData.validation = this.$parent.myData.validation+1;
 	 		}else{
@@ -27,7 +26,16 @@ export default {
 	},
 	mounted() {
 		this.$parent.setMyData('validation', 0);
-    }
+		
+		for (var i = 0; i < windowvar.interestJs.length; i++) 
+		{	
+			if(this.val == windowvar.interestJs[i].category_id)
+			{
+				this.check = true;				
+			}
+		}
+
+  }
 }
 
 </script>
