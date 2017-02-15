@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Conversations extends Model
 {
-	protected  $fillable = ['user1', 'user2', 'service_id'];
+	protected  $fillable = ['applicant', 'service_id'];
 	
 	public function applicant(){
 	

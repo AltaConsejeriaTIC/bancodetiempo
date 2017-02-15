@@ -54,16 +54,18 @@ class EmailController extends Controller
     		$message->to($mail);
     	});
     	
-    	$conversation = Conversations::where('user1', $service->user->id)->where("user2", $userauth->id)->first();
+    	if($service->user->id == $userauth->id){
+    		
+    	}
+    	
+    	$conversation = Conversations::where('applicant', $userauth->id)->where("service_id", $service->id)->first();
     	
     	if(count($conversation) == 0){
-    		$conversation = Conversations::where('user2', $service->user->id)->where("user1", $userauth->id)->first();
-    		if(count($conversation) == 0){
-    			$conversation = Conversations::create([
-    					'applicant' => $userauth->id,
-    					'service_id' => $service->id
-    			]);
-    		}
+    		$conversation = Conversations::create([
+    				'applicant' => $userauth->id,
+    				'service_id' => $service->id
+    		]);
+    		
     	}
     	
     	
