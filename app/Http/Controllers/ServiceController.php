@@ -116,24 +116,28 @@ class ServiceController extends Controller
       ]);
 
       $tagsService = json_decode($request->tagService);
+      
+      if($tagsService)
+      {        
+        TagsService::where('service_id','=',$service->id)->delete();
 
-      TagsService::where('service_id','=',$service->id)->delete();
+        foreach ($tagsService as $tag) 
+        {
+          $newTag = Tag::where('tag',$tag)->first();
+          
+          if(empty($newTag))
+            $newTag = new Tag;        
 
-      foreach ($tagsService as $tag) 
-      {
-        $newTag = Tag::where('tag',$tag)->first();
-        
-        if(empty($newTag))
-          $newTag = new Tag;        
-        $newTag->tag = $tag;
-        $newTag->save();
+          $newTag->tag = $tag;
+          $newTag->save();
 
-        $newTagService = new TagsService;
-        $newTagService->service_id = $service->id;
-        $newTagService->tag_id = $newTag->id;
-        $newTagService->save();
+          $newTagService = new TagsService;
+          $newTagService->service_id = $service->id;
+          $newTagService->tag_id = $newTag->id;
+          $newTagService->save();
+        }
       }
-
+      
       $this->uploadCover($request->file('imageService'), $service);
         
       Session::flash('success','Has actualizado correctamente tu servicio');
@@ -142,7 +146,7 @@ class ServiceController extends Controller
    }
 
    public function create(Request $request){
-    
+
     $this->validate($request, [
           'serviceName' => 'required|max:100',
           'descriptionService' => 'required|max:250|min:50',
@@ -164,30 +168,35 @@ class ServiceController extends Controller
         'category_id' => $request->input('categoryService'),            
         'state_id' => 1
     ]);
-        
+    
     $tagsService = json_decode($request->tagService);
     
-    foreach ( $tagsService as $tag) 
-    {
-      $newTag = new Tag;    
-      $newTag->tag = $tag;
-      $newTag->save();
-      $newTagService = new TagsService;
-      $newTagService->service_id = $service->id;
-      $newTagService->tag_id = $newTag->id;
-      $newTagService->save();
+    if($tagsService)
+    {       
+      foreach ($tagsService as $tag) 
+      {
+        $newTag = new Tag;    
+        $newTag->tag = $tag;
+        $newTag->save();
+        $newTagService = new TagsService;
+        $newTagService->service_id = $service->id;
+        $newTagService->tag_id = $newTag->id;
+        $newTagService->save();
+      }
     }
-
+    
     $user = Auth::user();
     $user->state_id = 4;
     $user->credits = 4;
     $user->save();
 
     $this->uploadCover($request->file('imageService'), $service); 
-         
 
-		Session::flash('success','Has creado correctamente tu servicio');		
-		return redirect('profile')->with('response',true);
+    $countService = Service::where('user_id',Auth::user()->id)->get()->count();
+    if($countService > 1)
+		  return redirect('profile');
+    else
+      return redirect('profile')->with('response',true);
 
    }
 
