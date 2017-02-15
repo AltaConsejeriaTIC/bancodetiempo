@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Log;
 use Mail;
 use App\User;
+use App\Models\Conversations;
+use App\Models\Message;
 
 
 class EmailController extends Controller
@@ -51,6 +53,28 @@ class EmailController extends Controller
     		$message->subject('Notificación');
     		$message->to($mail);
     	});
+    	
+    	$conversation = Conversations::where('user1', $service->user->id)->where("user2", $userauth->id)->first();
+    	
+    	if(count($conversation) == 0){
+    		$conversation = Conversations::where('user2', $service->user->id)->where("user1", $userauth->id)->first();
+    		if(count($conversation) == 0){
+    			$conversation = Conversations::create([
+    					'user1' => $service->user->id,
+    					'user2' => $userauth->id,
+    					'service_id' => $service->id
+    			]);
+    		}
+    	}
+    	
+    	
+    	Message::create([
+    		'conversation_id' => $conversation->id,
+    		'state' => 0,
+    		'sender' => $userauth->id,
+    		'addressee' => $service->user->id,
+    		'message' => $content
+    	]);
     	
     	return redirect()->back()->with('response', true);
     	

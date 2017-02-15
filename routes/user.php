@@ -19,3 +19,5 @@ Route::post('deactivateAccount', ['as' => 'deactivateAccount', 'uses'=>'Profile\
 //
 
 Route::get('/defaultsend/{serviceid?}','EmailController@defaultSend');
+
+Route::get('/inbox','MessageController@index');

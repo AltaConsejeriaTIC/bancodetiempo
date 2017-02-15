@@ -63,10 +63,13 @@ function errorsCheckbox(el, errors){
 	var checkbox = el.padre.querySelectorAll('[name="'+name+'"]')
 	var validation = true
 	if(errors > 0){validation = false}
-	for(var c = 0; c < checkbox.length; c++){
-		checkbox[c].setAttribute("validation", validation)
-		el.setAttribute("validation", validation)
+	if(name != null){
+		for(var c = 0; c < checkbox.length; c++){
+			checkbox[c].setAttribute("validation", validation)
+		}
 	}
+	el.setAttribute("validation", validation)
+	
 }
 
 function required(el){
@@ -322,6 +325,7 @@ export default {
 			validateInit(elements[obj])
 			elements[obj].classList.add('init')
 			hiddenErrorsBox(elements[obj])
+			console.log(elements[obj]);
 		}
 		
 		var senders = el.querySelectorAll('[type="submit"]');
