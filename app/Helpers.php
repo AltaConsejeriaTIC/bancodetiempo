@@ -10,7 +10,7 @@ class Helpers{
 	
 	static function getNotificationsUser(){
 		
-		$notifications = Message::select('sender, conversation_id')->where('addressee', Auth::user()->id)->where('state', 0)->groupBy('sender, conversation_id')->get();
+		$notifications = Message::select('sender', 'conversation_id')->where('addressee', Auth::user()->id)->where('state', 0)->groupBy('sender', 'conversation_id')->get();
 		
 		return count($notifications);
 		
