@@ -356,6 +356,18 @@ Helpers
   height: 15.2px;
   width: 100%;
 }
+.space20{
+	display: block;
+  clear: both;
+  height: 20.2px;
+  width: 100%;
+}
+.space4{
+	display: block;
+  clear: both;
+  height: 4px;
+  width: 100%;
+}
 .cap {
     position: absolute;
     top: 0px;
@@ -911,4 +923,10 @@ Animations
 
 .fade-enter, .fade-leave{
 	opacity: 0;
+}
+
+.border
+{
+	border-top: 1px solid #979797;
+  border-bottom: 1px solid #979797; 
 }
