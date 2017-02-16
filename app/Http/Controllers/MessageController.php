@@ -15,4 +15,17 @@ class MessageController extends Controller
 		return view("inbox", compact("messages"));
 		
 	}
+	
+	static public function createMessage($conversation, $sender, $addressee, $message){
+	
+		Message::create([
+				'conversation_id' => $conversation->id,
+				'state' => 0,
+				'sender' => $sender,
+				'addressee' => $addressee,
+				'message' => $message
+		]);
+		
+	}
+	
 }

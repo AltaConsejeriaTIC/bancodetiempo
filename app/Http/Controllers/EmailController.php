@@ -54,10 +54,6 @@ class EmailController extends Controller
     		$message->to($mail);
     	});
     	
-    	if($service->user->id == $userauth->id){
-    		
-    	}
-    	
     	$conversation = Conversations::where('applicant', $userauth->id)->where("service_id", $service->id)->first();
     	
     	if(count($conversation) == 0){
@@ -68,14 +64,7 @@ class EmailController extends Controller
     		
     	}
     	
-    	
-    	Message::create([
-    		'conversation_id' => $conversation->id,
-    		'state' => 0,
-    		'sender' => $userauth->id,
-    		'addressee' => $service->user->id,
-    		'message' => $content
-    	]);
+    	MessageController::createMessage($conversation, $userauth->id, $service->user->id, $content);
     	
     	return redirect()->back()->with('response', true);
     	
