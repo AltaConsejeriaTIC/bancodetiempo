@@ -28,14 +28,14 @@
 					<div class='col-md-2'><h2 class="title1">Fecha</h2></div>
 					<div class='col-md-3'><h2 class="title1">Accción</h2></div>
 				</div>
-				@foreach($messages as $message)
+				@foreach($conversations as $conversation)
 					<div class='row'>
 						<div class='col-md-1'><input type='checkbox'></div>
-						<div class='col-md-3'></div>
-						<div class='col-md-3'><h4></h4><p>{{str_limit($message->message, 30)}}</p></div>
-						<div class='col-md-2'><p>{{$message->created_at}}</p></div>
+						<div class='col-md-3'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</div>
+						<div class='col-md-3'><h4></h4><p>{{ $conversation->lastMessage->message }}</p></div>
+						<div class='col-md-2'><p>{{$conversation->created_at}}</p></div>
 						<div class='col-md-3'>
-							<a class='button1 background-active-color' href=''>Ver mensaje</a>							
+							<a class='button1 background-active-color' href='/conversation/{{$conversation->id}}'>Ver mensaje</a>							
 						</div>
 						
 					</div>

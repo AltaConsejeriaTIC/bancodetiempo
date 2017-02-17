@@ -53,6 +53,12 @@ class User extends Authenticatable
 
     }
 
+    public function conversations(){
+
+        return $this->hasMany(conversations::class);
+
+    }
+
     public function state()
     {
       return $this->belongsTo(State::class);

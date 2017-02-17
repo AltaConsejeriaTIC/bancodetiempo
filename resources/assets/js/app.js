@@ -15,11 +15,11 @@ Vue.component('filtersCategories', require('./components/filtersCategories.vue')
 Vue.component('contactmailmodal', require('./components/contactMailModal.vue'));
 Vue.component('generalmodal', require('./components/generalModal.vue')); 
 Vue.component('modaltimeoff', require('./components/modalTimeOff.vue')); 
+Vue.component('callmessages', require('./components/callMessages.vue'));  
+Vue.component('sendmessage', require('./components/sendMessage.vue'));
 //directives
 Vue.directive('validation', require('./components/validations.vue'));
-Vue.directive('validationText', require('./components/validationsText.vue'));
-Vue.directive('validationDate', require('./components/validationsDate.vue'));
-Vue.directive('validationOptions', require('./components/validationsOptions.vue'));
+
 
 
 var app = new Vue({

@@ -639,6 +639,56 @@ notificacion icon
 }
 
 /*
+conversation box
+*/
+.conversationBox {
+    position: relative;
+    display: block;
+    padding: 0 15px 15px 15px;
+    background: #fff;
+    box-shadow: 1px 2px 8px #757575;
+}
+
+.conversationBox .head{
+	background: #0a475b;
+	padding: 15px;
+}
+
+.conversationBox .listMessages {
+    padding: 45px 15px;
+}
+
+.conversationBox .message {
+    position: relative;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.conversationBox .fromMe .messageText {
+    position: relative;
+    display: block;
+    background: #0f6784;
+    color:#fff;
+    padding: 15px;
+    border-radius: 5px;
+    float:right;
+}
+
+.conversationBox .forMe .messageText {
+    position: relative;
+    display: block;
+    background: #e5e5e5;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+
+
+.conversationBox .image {
+    padding: 0px 7px;
+}
+
+/*
 Media Querys
 */
 @media (min-width: 1024px){

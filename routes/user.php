@@ -20,8 +20,11 @@ Route::post('deactivateAccount', ['as' => 'deactivateAccount', 'uses'=>'Profile\
 
 Route::get('/defaultsend/{serviceid?}','EmailController@defaultSend');
 
-Route::get('/inbox','MessageController@index');
+Route::get('/inbox','ConversationController@index');
 
-Route::get('/conversation/{{}}','MessageController@index');
+Route::get('/conversation/{conversation_id}','ConversationController@showConversation');
 
+Route::get('/messages/{conversation_id}','ConversationController@messagesConversation');
+
+Route::post('/newMessage','ConversationController@saveMessage');
 

@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Conversations extends Model
 {
-	protected  $fillable = ['applicant', 'service_id'];
+	protected  $fillable = ['applicant_id', 'service_id', 'message'];
 	
 	public function applicant(){
 	
@@ -18,9 +19,5 @@ class Conversations extends Model
 	
 		return $this->belongsTo(Service::class);
 	
-	}
-	
-	public function messages(){
-		return $this->hasMany(Message::class);
 	}
 }
