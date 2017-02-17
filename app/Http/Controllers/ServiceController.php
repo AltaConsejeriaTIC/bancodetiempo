@@ -19,7 +19,8 @@ class ServiceController extends Controller
 {
 
    public function index(){
- 		
+
+    $tags = json_encode(Tag::all('tag'));
     $categories = Category::all();
     $user = User::find(auth::user()->id);
  		$selectedCategories = [];
@@ -27,7 +28,8 @@ class ServiceController extends Controller
     JavaScript::put([
        'userJs'=> $user,
        'categoriesJs' => $categories,
-    ]);
+       'tags'=> $tags,
+       ]);
     
     if(Auth::user()->services->count() >= 1)
     {
@@ -59,8 +61,7 @@ class ServiceController extends Controller
         }
       }
     }
-
- 		return view('services/formService', compact('categories','pass1','pass2','pass3'));
+      return view('services/formService', compact('categories','tags','pass1','pass2','pass3'));
    }
 
 	 public function deleteService ($serviceId)
@@ -165,11 +166,8 @@ class ServiceController extends Controller
           $newTagService->save();
         }
       }
-      
       $this->uploadCover($request->file('imageService'), $service);
-        
       Session::flash('success','Has actualizado correctamente tu servicio');
-      
       return redirect('profile');
    }
 
@@ -221,11 +219,11 @@ class ServiceController extends Controller
     $this->uploadCover($request->file('imageService'), $service); 
 
     $countService = Service::where('user_id',Auth::user()->id)->get()->count();
+
     if($countService > 1)
 		  return redirect('profile');
     else
       return redirect('profile')->with('response',true);
-
    }
 
    public function  uploadCover($file, $service){
@@ -241,7 +239,7 @@ class ServiceController extends Controller
 		Service::find ( $service->id )->update ( [ 
 				'image' => $pathImage . $imageName 
 		] );
-		
+
 		return $pathImage . $imageName;
 	}
 	
@@ -268,5 +266,4 @@ class ServiceController extends Controller
    		return view('services/filterCategories', compact('servicesForCategory'));
    		
    }
-
 }

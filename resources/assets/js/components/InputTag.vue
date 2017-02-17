@@ -35,10 +35,22 @@
     },
     data() {
       return {
+        tagsList:JSON.parse(windowvar.tags),
         newTag: '',
       };
     },
     methods: {
+      previewTags(tag){
+       var n = tag.length;
+       var suggestion= this.tagsList.filter( function (elemento){
+          if(tag == elemento.tag.substring(0,n) ){
+              return elemento.tag;
+              }
+       });
+       return suggestion.map(function(item) {
+                  return item['tag'];
+                    });
+      },
       focusNewTag() {
         if (this.readOnly) { return; }
         this.$el.querySelector('.new-tag').focus();
@@ -103,6 +115,6 @@
       <span>{{ tag }}</span>
       <a v-if="!readOnly" @click.prevent.stop="remove(index)" class="remove"></a>
     </span>
-    <input v-if="!readOnly" v-bind:placeholder="getPlaceholder()" type="text" v-model="newTag" v-on:keydown.delete.stop="removeLastTag()" v-on:keydown.space.enter.prevent.stop="addNew(newTag)" class="new-tag"/>
+    <input v-if="!readOnly" v-bind:placeholder="getPlaceholder()" type="text" v-model="newTag" v-on:keydown.delete.stop="removeLastTag()" v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)" class="new-tag"/>
   </div>
 </template>
