@@ -6,11 +6,10 @@
 	
 	@if(session('response'))
 		<generalmodal  name='winCoin' :state='myData.winCoin' state-init='true'>
-			<div slot="modal" class='box row'>				
-				<h1 class='title1 col-md-12 text-center'>¡Tienes dos dorados!</h1>			
-				<p class="paragraph1 col-md-12 text-center"> Publica tu primera oferta y gana dos dorados más.</p>
-			</div>
-		</generalmodal>
+		<div slot="modal" class='box-animation row'>			
+			<img class="animation" src="images/AnimacionDorados.gif">
+		</div>
+	</generalmodal>
 		<modaltimeoff name="winCoin">
 		</modaltimeoff>
 	@endif

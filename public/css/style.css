@@ -980,3 +980,11 @@ Animations
 	border-top: 1px solid #979797;
   border-bottom: 1px solid #979797; 
 }
+
+.animation{
+	width: 80%;
+
+}
+.box-animation {    
+    padding: 5%;
+}

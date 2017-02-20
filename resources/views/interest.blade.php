@@ -5,9 +5,8 @@
 
 @if(session('response'))
 	<generalmodal  name='winCoin' :state='myData.winCoin' state-init='true'>
-		<div slot="modal" class='box row'>			
-			<h1 class='title1 col-md-12 text-center'>¡Felicidades!</h1>			
-			<p class="paragraph1 col-md-12 text-center">Has ganado tu primer dorado. Elige tus intereses y gana un dorado más.</p>			
+		<div slot="modal" class='box-animation row'>			
+			<img class="animation" src="images/AnimacionDorados.gif">
 		</div>
 	</generalmodal>
 	<modaltimeoff name="winCoin">
