@@ -223,7 +223,7 @@ class ServiceController extends Controller
     if($countService > 1)
 		  return redirect('profile');
     else
-      return redirect('profile')->with('response',true);
+      return redirect(Session::get('last_url'));
    }
 
    public function  uploadCover($file, $service){
