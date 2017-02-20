@@ -40,6 +40,9 @@ Route::post("/interest", 'Profile\ProfileController@saveInterest');
 
 //Guest views
 Route::get('/serviceGuest/{serviceid}', 'ServiceController@showServiceGuest');
+
+Route::get('/service/{serviceid}', 'ServiceController@showService');
+
 Route::get('/guest', 'GuestHomeController@index');
 Route::get('/service/category/{idCategory}', 'ServiceController@findCategories');
 
