@@ -57,8 +57,14 @@ class ConversationController extends Controller
 		$conversation = Conversations::find($id_conversation);
 		
 		$messages = json_decode($conversation->message);
-	
-		$conversation["message"] = $messages; 
+
+		foreach ($messages as $key => $value) {
+			$messages[$key]->state = 1;
+		}
+
+		$conversation->update([
+			"message" => json_encode($messages)
+		]);
 
 		return view('conversation', compact("conversation"));
 
