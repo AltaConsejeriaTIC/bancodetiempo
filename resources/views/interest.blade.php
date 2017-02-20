@@ -3,7 +3,7 @@
 
 @include('nav', array('type' => 1))
 
-@if(session('response'))
+@if(session('response') and Auth::user()->credits == 1)
 	<generalmodal  name='winCoin' :state='myData.winCoin' state-init='true'>
 		<div slot="modal" class='box-animation row'>			
 			<img class="animation" src="images/AnimacionDorados.gif">
