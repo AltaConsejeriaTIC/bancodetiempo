@@ -23,6 +23,7 @@
 				this.$http.get('/messages/'+this.conversation).then(response => {
 					this.html = response.body
 					setTimeout(this.getMessages, 2000);
+					
 				}, response => {
 				    console.log("error")
 				});

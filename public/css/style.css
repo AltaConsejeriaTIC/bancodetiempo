@@ -656,6 +656,14 @@ conversation box
 
 .conversationBox .listMessages {
     padding: 45px 15px;
+    position: relative;
+    overflow: auto;
+    height: 600px;
+}
+
+.conversationBox .listMessages > div{
+    position: relative;
+    height: auto;
 }
 
 .conversationBox .message {

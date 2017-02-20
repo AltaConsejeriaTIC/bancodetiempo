@@ -28,23 +28,44 @@
 					<div class='col-md-2'><h2 class="title1">Fecha</h2></div>
 					<div class='col-md-3'><h2 class="title1">Accción</h2></div>
 				</div>
-				@foreach($conversations as $conversation)
-					<div class='row'>
-						<div class='col-md-1'><input type='checkbox'></div>
-						<div class='col-md-3'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</div>
-						<div class='col-md-3'><h4></h4><p>{{ $conversation->lastMessage->message }}</p></div>
-						<div class='col-md-2'><p>{{$conversation->created_at}}</p></div>
-						<div class='col-md-3'>
-							<a class='button1 background-active-color' href='/conversation/{{$conversation->id}}'>Ver mensaje</a>							
+				@if(count($conversationsMyService) > 0)
+					@foreach($conversationsMyService as $conversation)
+						<div class='row'>
+							<div class='col-md-1'><input type='checkbox'></div>
+							<div class='col-md-3'><a href='/conversation/{{$conversation->id}}'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</a></div>
+							<div class='col-md-3'><h4></h4><p>{{ $conversation->lastMessage->message }}</p></div>
+							<div class='col-md-2'><p>{{$conversation->created_at}}</p></div>
+							<div class='col-md-3'>
+								<a class='button1 background-active-color' href='/conversation/{{$conversation->id}}'>Ver mensaje</a>							
+							</div>
+							
 						</div>
-						
-					</div>
-				@endforeach
+					@endforeach
+				@endif
 			
 			</div>
 			<div class="tab-pane" id="sent">
-			
-			enviados 
+				<div class='row header'>
+					<div class='col-md-1'>*</div>
+					<div class='col-md-3'><h2 class="title1">De</h2></div>
+					<div class='col-md-3'><h2 class="title1">mensaje</h2></div>
+					<div class='col-md-2'><h2 class="title1">Fecha</h2></div>
+					<div class='col-md-3'><h2 class="title1">Accción</h2></div>
+				</div>
+				@if(count($conversations) > 0)
+					@foreach($conversations as $conversation)
+						<div class='row'>
+							<div class='col-md-1'><input type='checkbox'></div>
+							<div class='col-md-3'><a href='/conversation/{{$conversation->id}}'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</a></div>
+							<div class='col-md-3'><h4></h4><p>{{ $conversation->lastMessage->message }}</p></div>
+							<div class='col-md-2'><p>{{$conversation->created_at}}</p></div>
+							<div class='col-md-3'>
+								<a class='button1 background-active-color' href='/conversation/{{$conversation->id}}'>Ver mensaje</a>							
+							</div>
+							
+						</div>
+					@endforeach
+				@endif
 			</div>
 		</div>
 	</div>

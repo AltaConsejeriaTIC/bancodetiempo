@@ -34,10 +34,11 @@
       },
     },
     data() {
-      return {
-        tagsList:JSON.parse(windowvar.tags),
-        newTag: '',
-      };
+      var obj = {newTag: ''}
+      if(windowvar.tags !== undefined){
+        obj['tagsList'] = JSON.parse(windowvar.tags);
+      }
+      return obj;
     },
     methods: {
       previewTags(tag){

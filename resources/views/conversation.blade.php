@@ -30,7 +30,7 @@
 			@endif
 
 		</div>
-		<div class='listMessages'>
+		<div class='listMessages scrollBottom' >
 			<callmessages conversation='{{$conversation->id}}' ></callmessages>
 		</div>
 		<div class='responseBox'>
