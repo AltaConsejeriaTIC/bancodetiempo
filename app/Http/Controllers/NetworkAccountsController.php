@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Socialite;
 
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use App\Models\NetworkAccounts;
 
 use App\User;
@@ -24,6 +25,8 @@ class NetworkAccountsController extends Controller
 			return Redirect::route("login");
 
 		}
+
+		Session::put('last_url', str_replace("http://".$_SERVER['HTTP_HOST'], "", URL::previous()));
 
 		$function = "redirect".ucwords($provider);
 
@@ -127,10 +130,12 @@ class NetworkAccountsController extends Controller
 
 			auth()->login($networkAccounts->getUser());
 			
-			if(auth()->user()->privacy_policy == 0)
+			if(auth()->user()->privacy_policy == 0){
 				return redirect('register');
-			else
-				return Redirect::to("home");
+			}else{
+				
+				return Redirect::to(Session::get('last_url'));
+			}
 
 		}else{
 
