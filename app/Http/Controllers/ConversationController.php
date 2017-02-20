@@ -12,8 +12,16 @@ class ConversationController extends Controller
 
 		$myServices = Auth::User()->services;
 
-		$conversations = Conversations::whereIn("service_id", $myServices)->get();
+		$conversationsMyService = Conversations::whereIn("service_id", $myServices)->get();
 
+		$conversations = Conversations::where("applicant_id", Auth::user()->id)->get();
+
+		foreach ($conversationsMyService as  $key => $conversation) {
+
+			$messages = json_decode($conversation->message);
+
+			$conversationsMyService[$key]["lastMessage"] = $messages[count($messages)-1]; 
+		}
 
 		foreach ($conversations as  $key => $conversation) {
 
@@ -22,7 +30,7 @@ class ConversationController extends Controller
 			$conversations[$key]["lastMessage"] = $messages[count($messages)-1]; 
 		}
 
-		return view("inbox", compact("conversations"));	
+		return view("inbox", compact("conversationsMyService", "conversations"));	
 
 	}
 
@@ -49,8 +57,14 @@ class ConversationController extends Controller
 		$conversation = Conversations::find($id_conversation);
 		
 		$messages = json_decode($conversation->message);
-	
-		$conversation["message"] = $messages; 
+
+		foreach ($messages as $key => $value) {
+			$messages[$key]->state = 1;
+		}
+
+		$conversation->update([
+			"message" => json_encode($messages)
+		]);
 
 		return view('conversation', compact("conversation"));
 

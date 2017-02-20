@@ -12,9 +12,22 @@ class Helpers{
 		
 		$myServices = Auth::User()->services;
 
-		$conversations = Conversations::whereIn("service_id", $myServices)->get();
+		$conversationsMyService = Conversations::whereIn("service_id", $myServices)->get();
+
+		$conversations = Conversations::where("applicant_id", Auth::user()->id)->get();
 
 		$notifications = 0;
+
+		foreach ($conversationsMyService as  $key => $conversation) {
+
+			$messages = json_decode($conversation->message);
+			
+			$lastMessage = $messages[count($messages)-1];
+
+			if($lastMessage->state == 0 && $lastMessage->sender != Auth::User()->id){
+				$notifications += 1;
+			}
+		}
 
 		foreach ($conversations as  $key => $conversation) {
 
@@ -22,7 +35,7 @@ class Helpers{
 			
 			$lastMessage = $messages[count($messages)-1];
 
-			if($lastMessage->state == 0){
+			if($lastMessage->state == 0 && $lastMessage->sender != Auth::User()->id){
 				$notifications += 1;
 			}
 		}
