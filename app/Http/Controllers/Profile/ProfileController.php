@@ -104,17 +104,20 @@ public function  editProfilePicture(Request $request){
   	$user->privacy_policy = $request->input('terms');
   	$user->gender = $request->input('gender');
   	$user->email2 = $request->input('email2');
-  	$user->credits = 1;
-  	$user->save();
+  	
 	  
 	  if(!empty($user->interests->all()))
 		{
+			$user->save();
 			return Redirect::to("profile");
 		}
 		else
 		{
+			$user->credits = 1;
+			$user->save();
 			return Redirect::to("/interest")->with('response',true);	
 		}
+  	
 
 	}
 	
