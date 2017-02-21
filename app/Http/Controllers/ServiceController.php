@@ -200,7 +200,7 @@ class ServiceController extends Controller
           'imageService' => 'image|max:2000'
     ]);
      if($request->input('modalityServiceVirtually')==null) {$virtually = 0; } else { $virtually =$request->input('modalityServiceVirtually');}
-     if($request->input('modalityServicePresently')==null) {$presently = 0; } else { $presently =$request->input('modalityServiceVirtually');}
+     if($request->input('modalityServicePresently')==null) {$presently = 0; } else { $presently =$request->input('modalityServicePresently');}
     $service = Service::create([
         'name' => $request->input('serviceName'),
         'description' => $request->input('descriptionService'),
