@@ -198,14 +198,15 @@ class ServiceController extends Controller
           'modalityServicePresently' => 'required_without:modalityServiceVirtually',
           'categoryService' => 'required',
           'imageService' => 'image|max:2000'
-    ]);    
-
+    ]);
+     if($request->input('modalityServiceVirtually')==null) {$virtually = 0; } else { $virtually =$request->input('modalityServiceVirtually');}
+     if($request->input('modalityServicePresently')==null) {$presently = 0; } else { $presently =$request->input('modalityServiceVirtually');}
     $service = Service::create([
         'name' => $request->input('serviceName'),
         'description' => $request->input('descriptionService'),
         'value' => $request->input('valueService'),
-        'virtually' => $request->input('modalityServiceVirtually'),
-        'presently' => $request->input('modalityServicePresently'),
+        'virtually' =>$virtually,
+        'presently' =>$presently,
         'user_id' => Auth::user()->id,
         'image' => 'resources/categories/category-profile.png',
         'category_id' => $request->input('categoryService'),            
