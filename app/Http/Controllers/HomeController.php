@@ -31,13 +31,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-    	$interestsUser = $this->getInterestsUser();
-    	
-    	$categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
-    	
-    	$allServices = Service::where('state_id' , 1)->orderBy("created_at","desc")->get()->where('user.state_id', 1);
-    	
-    	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
+        $interestsUser = '';
+        $recommendedServices = '';
+
+        $categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
+        
+        $allServices = Service::where('state_id' , 1)->orderBy("created_at","desc")->get()->where('user.state_id', 1);
+
+        if(!is_null(Auth::User())){
+            $interestsUser = $this->getInterestsUser();
+            $recommendedServices = $allServices->whereIn("category_id", $interestsUser);
+        }
 
         $categoriesAll = Category::all();
 

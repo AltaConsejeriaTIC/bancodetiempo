@@ -9,6 +9,7 @@ use App\Models\State;
 use App\Models\Role;
 use App\Models\InterestUser;
 use App\Models\Message;
+use App\Models\AttainmentUsers;
 
 class User extends Authenticatable
 {
@@ -62,5 +63,10 @@ class User extends Authenticatable
     public function state()
     {
       return $this->belongsTo(State::class);
+    }
+
+    public function attainmentUsers()
+    {       
+        return $this->hasMany(AttainmentUsers::class);      
     }
 }
