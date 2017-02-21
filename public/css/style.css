@@ -861,7 +861,9 @@ Animations
 .left{
 	margin-left: 0px;
 }
-
+.dropdown-menu li {
+	cursor: pointer;
+}
 
 .vue-input-tag-wrapper .input-tag {
 	background-color: initial;
