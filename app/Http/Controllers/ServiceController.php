@@ -226,19 +226,14 @@ class ServiceController extends Controller
         $newTagService->tag_id = $newTag->id;
         $newTagService->save();
       }
-    }
-    
-    $user = Auth::user();
-    $user->state_id = 4;
-    $user->credits = 4;
-    $user->save();
+    }       
 
     $this->uploadCover($request->file('imageService'), $service); 
 
     $countService = Service::where('user_id',Auth::user()->id)->get()->count();
 
     $step = Attainment::where('id','=',3)->first();       
-    $attainments = AttainmentUsers::where('user_id',$user->id)->where('attainment_id',$step->id)->first();          
+    $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();          
     
     if($attainments != null)    
       $attainments = AttainmentUsers::find($attainments->id);
@@ -247,6 +242,11 @@ class ServiceController extends Controller
     {
       $attainments->state_id = 1;
       $attainments->save();      
+
+      $user = Auth::user();
+      $user->state_id = 1;
+      $user->credits = $user->credits + $step->value;
+      $user->save();
     }        
     
     if($countService > 1)
@@ -257,12 +257,12 @@ class ServiceController extends Controller
 
    public function  uploadCover($file, $service){
       
-      if(!$file){
-        return false;
-      }
+    if(!$file){
+      return false;
+    }
 
-      $imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
-      $pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
+    $imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
+    $pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
 		$file->move ( base_path () . '/public/' . $pathImage, $imageName );
 		
 		Service::find ( $service->id )->update ( [ 
