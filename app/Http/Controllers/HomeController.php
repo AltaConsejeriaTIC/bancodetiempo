@@ -138,18 +138,20 @@ class HomeController extends Controller
     }
 
     public function IncompleteRegister(){
-
-        if (Auth::user()->privacy_policy == 1) {
-            if(InterestUser::whereUserId(Auth::user()->id)->count()>=3) {
-                if (Service::whereUserId(Auth::user()->id)->first()) {                        
-                    return false;
-                }                    
-                return redirect('/service');
-            }                
-            return redirect('/interest');
-        }            
-        return redirect('/register'); 
+        if(!is_null(Auth::user())){
+            if (Auth::user()->privacy_policy == 1) {
+                if(InterestUser::whereUserId(Auth::user()->id)->count()>=3) {
+                    if (Service::whereUserId(Auth::user()->id)->first()) {                        
+                        return false;
+                    }                    
+                    return redirect('/service');
+                }                
+                return redirect('/interest');
+            }            
+            return redirect('/register'); 
+        }
         
+
     }
 
 
