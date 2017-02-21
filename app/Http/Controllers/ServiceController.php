@@ -253,7 +253,7 @@ class ServiceController extends Controller
     if($countService > 1)
 		  return redirect('profile');
     else
-      return redirect(Session::get('last_url'))->with('coin',$step->value);
+      return redirect('home')->with('coin',$step->value);
    }
 
    public function  uploadCover($file, $service){
