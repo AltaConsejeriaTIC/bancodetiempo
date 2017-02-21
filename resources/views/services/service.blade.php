@@ -111,7 +111,7 @@
 							@if(!is_null(Auth::User()))
 								@if($service->user_id != Auth::user()->id)
 								<div class="col-xs-12">
-									<p class='paragraph4'>¿Te interesa esta oferta?</p>
+									<p class='paragraph4'>¿Te interesa está oferta?</p>
 								</div>
 								
 									<div class="col-xs-12 ">
@@ -121,7 +121,7 @@
 							@else
 								
 								<div class="col-xs-12">
-									<p class='paragraph4'>¿Te interesa esta oferta?</p>
+									<p class='paragraph4'>¿Te interesa está oferta?</p>
 								</div>
 							
 								<div class="col-xs-12 ">
