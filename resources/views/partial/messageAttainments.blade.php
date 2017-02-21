@@ -1,7 +1,5 @@
 @if(!is_null(Auth::user()))	
 
-{{ Session::get('coin') }}
-
 	@if(Session::get('coin') == 1)
 	    <generalmodal  name='winCoin' :state='myData.winCoin' state-init='true'>
 	        <div slot="modal" class='box-animation row'>            
