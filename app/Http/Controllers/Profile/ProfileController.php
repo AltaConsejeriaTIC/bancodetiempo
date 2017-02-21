@@ -121,7 +121,8 @@ public function  editProfilePicture(Request $request){
 			$step = Attainment::where('attainments','=','Register Step 1')->first();
 			$stepRegister = Auth::user()->attainmentUsers->count(); 
 			$attainments = AttainmentUsers::where('user_id',$user->id)->where('attainment_id',$step->id)->first();			
-			$attainments = AttainmentUsers::find($attainments->id);
+			if($attainments != null)
+				$attainments = AttainmentUsers::find($attainments->id);
 			
 			if($stepRegister == 0)
 				$attainments = new AttainmentUsers;
