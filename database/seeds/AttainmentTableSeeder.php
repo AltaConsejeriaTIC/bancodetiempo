@@ -29,12 +29,15 @@ class AttainmentTableSeeder extends Seeder
     {
         $this->create([
             'attainments' => 'Register Step 1',
+            'value' => '1',
         ]);
         $this->create([
             'attainments' => 'Register Step 2',
+            'value' => '1',
         ]);
         $this->create([
             'attainments' => 'Register Step 3',
+            'value' => '2',
         ]);        
     }
 }

@@ -2,17 +2,7 @@
 
 @section('content')
 
-@include('nav', array('type' => 1))
-	
-	@if(session('response'))
-		<generalmodal  name='winCoin' :state='myData.winCoin' state-init='true'>
-		<div slot="modal" class='box-animation row'>			
-			<img class="animation" src="images/AnimacionDorados.gif">
-		</div>
-	</generalmodal>
-		<modaltimeoff name="winCoin">
-		</modaltimeoff>
-	@endif
+@include('nav', array('type' => 1))	
 
 	<section class='bannerService row'>
 		<div class="container">	
