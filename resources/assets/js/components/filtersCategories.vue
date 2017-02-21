@@ -84,9 +84,6 @@ export default {
 		}
 	},
 	mounted(){
-		document.getElementById('app').addEventListener('click', function(){
-			console.log("click")
-		})
 		this.allCategories = JSON.parse(this.categories)
 	}
 }
