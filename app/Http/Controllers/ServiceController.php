@@ -246,7 +246,7 @@ class ServiceController extends Controller
       $user = Auth::user();
       $user->state_id = 1;
       $user->credits = $user->credits + $step->value;
-      $user->save();
+      $user->save(); 
     }        
     
     if($countService > 1)
