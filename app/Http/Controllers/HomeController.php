@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\InterestUser;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use JavaScript;
@@ -21,7 +22,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+               
     }
 
     /**
@@ -31,13 +32,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-    	$interestsUser = $this->getInterestsUser();
-    	
-    	$categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
-    	
-    	$allServices = Service::where('state_id' , 1)->orderBy("created_at","desc")->get()->where('user.state_id', 1);
-    	
-    	$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
+
+        if($this->IncompleteRegister()){
+            return $this->IncompleteRegister();
+        }
+
+        $interestsUser = '';
+        $recommendedServices = '';
+
+        $categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
+        
+        $allServices = Service::where('state_id' , 1)->orderBy("created_at","desc")->get()->where('user.state_id', 1);
+
+        if(!is_null(Auth::User())){
+            $interestsUser = $this->getInterestsUser();
+            $recommendedServices = $allServices->whereIn("category_id", $interestsUser);
+        }
 
         $categoriesAll = Category::all();
 
@@ -126,5 +136,23 @@ class HomeController extends Controller
     	 
     	return view('home', compact('allServices', 'recommendedServices', 'categories'));
     }
+
+    public function IncompleteRegister(){
+        if(!is_null(Auth::user())){
+            if (Auth::user()->privacy_policy == 1) {
+                if(InterestUser::whereUserId(Auth::user()->id)->count()>=3) {
+                    if (Service::whereUserId(Auth::user()->id)->first()) {                        
+                        return false;
+                    }                    
+                    return redirect('/service');
+                }                
+                return redirect('/interest');
+            }            
+            return redirect('/register'); 
+        }
+        
+
+    }
+
 
 }

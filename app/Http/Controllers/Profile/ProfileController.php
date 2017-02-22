@@ -10,6 +10,8 @@ use App\User;
 use Illuminate\Support\Facades\Input;
 use App\Models\Category;
 use App\Models\InterestUser;
+use App\Models\AttainmentUsers;
+use App\Models\Attainment;
 use App\Models\Tag;
 use App\Models\Service;
 use JavaScript;
@@ -113,9 +115,33 @@ public function  editProfilePicture(Request $request){
 		}
 		else
 		{
-			$user->credits = 1;
-			$user->save();
-			return Redirect::to("/interest")->with('response',true);	
+
+			$step = Attainment::where('id','=',1)->first();
+			$stepRegister = Auth::user()->attainmentUsers->count(); 
+			$attainments = AttainmentUsers::where('user_id',$user->id)->where('attainment_id',$step->id)->first();			
+			if($attainments != null)
+				$attainments = AttainmentUsers::find($attainments->id);
+			
+			if($stepRegister == 0)
+				$attainments = new AttainmentUsers;
+			
+			if(is_null($attainments->state_id))
+			{				
+				$attainments->user_id = $user->id;
+				$attainments->attainment_id = $step->id;
+				$attainments->state_id = 1;
+				$attainments->save();
+				$user->credits = $step->value;
+				$user->save();
+
+				return Redirect::to("/interest")->with('coin',$step->value);	
+			}
+			else
+			{
+				$user->save();
+				return Redirect::to("/interest");	
+			}
+			
 		}
   	
 
@@ -124,6 +150,24 @@ public function  editProfilePicture(Request $request){
 	public function showFromInterest(){
 
 		$categories = Category::all('id', 'category');
+		
+		$step = Attainment::where('id','=',2)->first();
+		$stepRegister = Auth::user()->attainmentUsers->count();
+		$attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();					
+				
+		if($attainments != null)		
+			$attainments = AttainmentUsers::find($attainments->id);			
+		
+
+		if($stepRegister == 1)
+		{
+			$attainments = new AttainmentUsers;
+			$attainments->state_id = 2;
+		}
+				
+		$attainments->user_id = Auth::user()->id;
+		$attainments->attainment_id = $step->id;
+		$attainments->save();
 
 		JavaScript::put([
 			'interestJs' => Auth::user()->interests,				
@@ -166,11 +210,15 @@ public function  editProfilePicture(Request $request){
 	public function saveInterest(Request $request){
 
 		$interestAct = InterestUser::where('user_id', Auth::User()->id);
-		$user = Auth::user();
-		$user->credits = 2; 
-		$user->save();
-
 		$interestAct->delete();
+		$user = Auth::user();
+
+		$step = Attainment::where('id','=',2)->first();		
+		$attainments = AttainmentUsers::where('user_id',$user->id)->where('attainment_id',$step->id)->first();					
+				
+		if($attainments != null)
+			$attainments = AttainmentUsers::find($attainments->id);
+
 		
 		foreach($request->get('interets') as $interets){
 			
@@ -178,10 +226,20 @@ public function  editProfilePicture(Request $request){
 					'user_id' => Auth::User()->id,
 					'category_id' => $interets
 			]);
-
+		}	
+			
+		if($attainments->state_id == 2)
+		{
+			$attainments->state_id = 1;
+			$attainments->save();
+			$user->credits = $user->credits + $step->value; 
+			$user->save();
+			return redirect("/service")->with('coin',$step->value);
+		}
+		else
+		{			
+			return redirect("/service");			
 		}		
-		return redirect("/service")->with('response',true);
-
 
 	}
 

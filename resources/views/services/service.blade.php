@@ -16,7 +16,11 @@
 </generalmodal>
 @endif
 
-	@include('nav',array('type' => 2))
+	@if(!is_null(Auth::User()))
+		@include('nav',array('type' => 2))
+	@else
+		@include('nav',array('type' => 3))
+	@endif
 
 	<section class="row not-padding">
 		<div class="container">
@@ -102,15 +106,29 @@
 							<div class="col-xs-12 text-center">
 								<p class='paragraph4'>{{$user->aboutMe}}</p>
 							</div>
-							@if($service->user_id != Auth::user()->id)
-							<div class="col-xs-12">
-								<p class='paragraph4'>¿Te interesa esta oferta?</p>
-							</div>
+
+
+							@if(!is_null(Auth::User()))
+								@if($service->user_id != Auth::user()->id)
+								<div class="col-xs-12">
+									<p class='paragraph4'>¿Te interesa está oferta?</p>
+								</div>
+								
+									<div class="col-xs-12 ">
+										<button class='col-xs-12 button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunícate con {{$user->first_name}}</button>
+									</div>
+								@endif
+							@else
+								
+								<div class="col-xs-12">
+									<p class='paragraph4'>¿Te interesa está oferta?</p>
+								</div>
 							
 								<div class="col-xs-12 ">
-									<button class='col-xs-12 button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunícate con {{$user->first_name}}</button>
+									<button class='col-xs-12 button1 background-active-color text-center' data-toggle="modal" data-target="#login">Comunícate con {{$user->first_name}}</button>
 								</div>
 							@endif
+							
 						</div>
 					</div>
 

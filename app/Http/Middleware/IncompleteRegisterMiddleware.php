@@ -26,12 +26,16 @@ class IncompleteRegisterMiddleware
             if (Auth::user()->privacy_policy == 1) {
                 if(InterestUser::whereUserId(Auth::user()->id)->count()>=3) {
                     if (Service::whereUserId(Auth::user()->id)->first()) {
+                        
                         return $next($request);
                     }
+                    
                     return redirect('/service');
                 }
+                
                 return redirect('/interest');
             }
+            
             return redirect('/register');
 
         }

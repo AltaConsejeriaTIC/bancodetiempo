@@ -52,7 +52,14 @@ module.exports = {
 	                        reader.readAsDataURL(files[0]);
                        }
                     },
-                    filterCategory:function(filter){
+                    filterCategory:function(filter, category){
+
+                        this.$children[2].filter = [filter];
+                        if(filter != 0){                            
+                            this.$children[2].list = category;  
+                        }else{
+                            this.$children[2].list = "Todas las categorias"
+                        }
                     	this.$http.get('/service/category/'+filter).then(response => {
             				document.getElementById('filterAll').firstChild.innerHTML = response.body
             			  }, response => {

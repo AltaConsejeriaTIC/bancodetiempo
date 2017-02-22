@@ -8,6 +8,8 @@ use Session;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\TagsService;
+use App\Models\Attainment;
+use App\Models\AttainmentUsers;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -37,6 +39,21 @@ class ServiceController extends Controller
     }
     else
     {
+      $step = Attainment::where('id','=',3)->first();
+      $stepRegister = Auth::user()->attainmentUsers->count();
+      $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();         
+          
+      if($attainments != null)
+        $attainments = AttainmentUsers::find($attainments->id);
+      
+      if($stepRegister == 2)
+        $attainments = new AttainmentUsers;
+      
+      $attainments->user_id = Auth::user()->id;
+      $attainments->attainment_id = $step->id;
+      $attainments->state_id = 2;
+      $attainments->save();
+      
       if(Auth::user()->privacy_policy == 0)
       {
         $pass1 = 'actual';
@@ -173,67 +190,73 @@ class ServiceController extends Controller
 
    public function create(Request $request){
 
-    $this->validate($request, [
-          'serviceName' => 'required|max:100',
-          'descriptionService' => 'required|max:250|min:50',
-          'valueService' => 'required|numeric|min:1|max:10',
-          'modalityServiceVirtually' => 'required_without:modalityServicePresently',
-          'modalityServicePresently' => 'required_without:modalityServiceVirtually',
-          'categoryService' => 'required',
-          'imageService' => 'image|max:2000'
-    ]);    
+        $this->validate($request, [
+              'serviceName' => 'required|max:100',
+              'descriptionService' => 'required|max:250|min:50',
+              'valueService' => 'required|numeric|min:1|max:10',
+              'modalityServiceVirtually' => 'required_without:modalityServicePresently',
+              'modalityServicePresently' => 'required_without:modalityServiceVirtually',
+              'categoryService' => 'required',
+              'imageService' => 'image|max:2000'
+        ]);
 
-    $service = Service::create([
-        'name' => $request->input('serviceName'),
-        'description' => $request->input('descriptionService'),
-        'value' => $request->input('valueService'),
-        'virtually' => $request->input('modalityServiceVirtually'),
-        'presently' => $request->input('modalityServicePresently'),
-        'user_id' => Auth::user()->id,
-        'image' => 'resources/categories/category-profile.png',
-        'category_id' => $request->input('categoryService'),            
-        'state_id' => 1
-    ]);
+        $virtually = $request->input('modalityServiceVirtually') == null ? 0 : $request->input('modalityServiceVirtually');
+
+        $presently = $request->input('modalityServicePresently') == null ? 0 : $request->input('modalityServicePresently');
+
+        $category = Category::find($request->input('categoryService'));
+
+        $service = Service::create([
+            'name' => $request->input('serviceName'),
+            'description' => $request->input('descriptionService'),
+            'value' => $request->input('valueService'),
+            'virtually' =>$virtually,
+            'presently' =>$presently,
+            'user_id' => Auth::user()->id,
+            'image' => "resources/categories/".$category->image,
+            'category_id' => $request->input('categoryService'),            
+            'state_id' => 1
+        ]);
+
+        $this->saveTags(json_decode($request->tagService), $service);   
+
+        $this->uploadCover($request->file('imageService'), $service); 
+
+        $countService = Service::where('user_id',Auth::user()->id)->get()->count();
+
+        $step = Attainment::where('id','=',3)->first();  
+
+        $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();          
     
-    $tagsService = json_decode($request->tagService);
+        if($attainments != null)    
+          $attainments = AttainmentUsers::find($attainments->id);
+        
+        if($attainments->state_id == 2)
+        {
+          $attainments->state_id = 1;
+          $attainments->save();      
+
+          $user = Auth::user();
+          $user->state_id = 1;
+          $user->credits = $user->credits + $step->value;
+          $user->save(); 
+        }        
     
-    if($tagsService)
-    {       
-      foreach ($tagsService as $tag) 
-      {
-        $newTag = new Tag;    
-        $newTag->tag = $tag;
-        $newTag->save();
-        $newTagService = new TagsService;
-        $newTagService->service_id = $service->id;
-        $newTagService->tag_id = $newTag->id;
-        $newTagService->save();
-      }
-    }
-    
-    $user = Auth::user();
-    $user->state_id = 4;
-    $user->credits = 4;
-    $user->save();
+        if($countService > 1)
+    		  return redirect('profile');
+        else
+          return redirect('home')->with('coin',$step->value);
 
-    $this->uploadCover($request->file('imageService'), $service); 
-
-    $countService = Service::where('user_id',Auth::user()->id)->get()->count();
-
-    if($countService > 1)
-		  return redirect('profile');
-    else
-      return redirect('profile')->with('response',true);
    }
 
    public function  uploadCover($file, $service){
       
-      if(!$file){
-        return false;
-      }
+    if(!$file){
+      return false;
+    }
 
-      $imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
-      $pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
+    $imageName = 'img' . Auth::User()->id . '-' . $service->id . '.' . $file->getClientOriginalExtension();
+    $pathImage = 'resources/user/user_'. Auth::User()->id . '/services/';
 		$file->move ( base_path () . '/public/' . $pathImage, $imageName );
 		
 		Service::find ( $service->id )->update ( [ 
@@ -266,4 +289,22 @@ class ServiceController extends Controller
    		return view('services/filterCategories', compact('servicesForCategory'));
    		
    }
+
+   public function saveTags($tags, $service){
+
+         if($tags){   
+
+            foreach ($tags as $tag){
+                $newTag = new Tag;    
+                $newTag->tag = $tag;
+                $newTag->save();
+                $newTagService = new TagsService;
+                $newTagService->service_id = $service->id;
+                $newTagService->tag_id = $newTag->id;
+                $newTagService->save();
+            }
+        }     
+
+   }
+
 }

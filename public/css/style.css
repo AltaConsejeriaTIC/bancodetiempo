@@ -861,7 +861,9 @@ Animations
 .left{
 	margin-left: 0px;
 }
-
+.dropdown-menu li {
+	cursor: pointer;
+}
 
 .vue-input-tag-wrapper .input-tag {
 	background-color: initial;
@@ -890,7 +892,6 @@ Animations
 .vue-input-tag-wrapper {
 	background-color: #fff;
   border: 1px solid #ccc;
-  overflow: hidden;    
   cursor: text;
   text-align: left;
   -webkit-appearance: textfield;
@@ -900,7 +901,6 @@ Animations
   font-size: 16px;
   color: #2c3e50;
   white-space: nowrap;
-  overflow-x:auto;
 }
 
 .vue-input-tag-wrapper::-webkit-scrollbar {

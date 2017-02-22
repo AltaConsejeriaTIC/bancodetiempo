@@ -12,7 +12,7 @@
 				@include('services.partial.deleteService')
 			{!!Form::close()!!}		
 		@endif			
-			<span class='category' onClick='app.__vue__.filterCategory({{$service->category->id}})'>{{$service->category->category}}</span>
+			<span class='category' onClick='app.__vue__.filterCategory({{$service->category->id}}, "{{$service->category->category}}")'>{{$service->category->category}}</span>
 			<a href="@if( Auth::user()) service/{{$service->id}} @else serviceGuest/{{$service->id}}@endif">
 			<div class="cover">
 				<img src="{{$service->image}}" alt="" />
@@ -21,7 +21,7 @@
 		<div class='avatar'>
 			@include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#fff', 'borderSize' => '2px'))
 		</div>
-			<a href="@if( Auth::user()) service/{{$service->id}} @else serviceGuest/{{$service->id}}@endif">
+			<a href="service/{{$service->id}}">
 			<div class="content">
 				<h3 class='title title2'>{{$service->name}}</h3>		 		
 		 		<div class='ranking'>											

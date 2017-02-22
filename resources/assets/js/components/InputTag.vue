@@ -34,7 +34,7 @@
       },
     },
     data() {
-      var obj = {newTag: ''}
+      var obj = {newTag: '', suggestions:''}
       if(windowvar.tags !== undefined){
         obj['tagsList'] = JSON.parse(windowvar.tags);
       }
@@ -42,15 +42,17 @@
     },
     methods: {
       previewTags(tag){
-       var n = tag.length;
-       var suggestion= this.tagsList.filter( function (elemento){
-          if(tag == elemento.tag.substring(0,n) ){
-              return elemento.tag;
-              }
-       });
-       return suggestion.map(function(item) {
-                  return item['tag'];
-                    });
+         var n = tag.length;
+         var suggestion= this.tagsList.filter( function (elemento){
+            if(tag == elemento.tag.substring(0,n) ){
+                return elemento.tag;
+                }
+         });
+         this.suggestions = suggestion.map(function(item) {
+                    return item['tag'];
+                      });
+
+          document.getElementById("intag").className +=  " open";
       },
       focusNewTag() {
         if (this.readOnly) { return; }
@@ -111,11 +113,17 @@
 </script>
 
 <template>
-  <div @click="focusNewTag()" v-bind:class="{'read-only': readOnly}" class="vue-input-tag-wrapper">
+  <div @click="focusNewTag()" v-bind:class="{'read-only': readOnly}" id="intag"   class="vue-input-tag-wrapper dropdown">
     <span v-for="(tag, index) in tags" class="input-tag">
       <span>{{ tag }}</span>
       <a v-if="!readOnly" @click.prevent.stop="remove(index)" class="remove"></a>
     </span>
-    <input v-if="!readOnly" v-bind:placeholder="getPlaceholder()" type="text" v-model="newTag" v-on:keydown.delete.stop="removeLastTag()" v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)" class="new-tag"/>
+    <input data-toggle="dropdown" v-if="!readOnly"  v-bind:placeholder="getPlaceholder()" type="text" v-model="newTag" v-on:keydown.delete.stop="removeLastTag()"
+           v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)" class="new-tag dropdown-toggle" />
+    <ul class="dropdown-menu "  >
+      <li v-for="suggestion in suggestions" v-on:click="addNew(suggestion)">
+        {{ suggestion }}
+      </li>
+    </ul>
   </div>
 </template>

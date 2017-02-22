@@ -36,9 +36,10 @@
 
     </head>
 
-    <body >    
+    <body >   
         @include('prependvarjs')
         <div id="app">
+            @include('partial.messageAttainments')
             @yield('content')        
         </div>
         @include('footer')
