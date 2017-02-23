@@ -1,17 +1,17 @@
 <template>
-    <article class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 serviceForm" id='formRegister' v-validation:msg=''>
+    <article class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 serviceForm" id='formRegister' >
     
             <div class="row not-margin">
                 <label for="firstName" class="paragraph10">Nombre</label>  
             </div>
             <div class="row not-margin"> 
 				
-				<input type="text" value="" v-model='firstName' name="firstName" class="col-xs-12 validation" placeholder="Nombre"  data-validations='["required", "min:3", "max:50"]'>
+				<input type="text" value="" v-model='firstName' name="firstName" maxlength='25' class="col-xs-12 validation" placeholder="Nombre"  data-validations='["required", "min:3", "max:20"]'>
 				<i for='firstName'></i>
 				<div class="msg" errors='firstName'>
 					<p error='required'>Este campo es obligatorio.</p>
 					<p error='min'>Este campo debe ser mínimo de 3 caracteres.</p>
-					<p error='max'>Este campo debe ser máximo de 50 caracteres.</p>
+					<p error='max'>Este campo debe ser máximo de 20 caracteres.</p>
 				</div>
             </div>
 
@@ -20,12 +20,12 @@
             </div>
             <div class="row not-margin">       
                  
-                <input type="text" value="" v-model='lastName' name="lastName" class="col-xs-12 validation" placeholder="Apellido"  data-validations='["required", "min:3", "max:50"]'>
+                <input type="text" value="" v-model='lastName' name="lastName"   maxlength='30' class="col-xs-12 validation" placeholder="Apellido"  data-validations='["required", "min:3", "max:25"]'>
                 <i for='lastName'></i>
                 <div class="msg" errors='lastName'>
 					<p error='required'>Este campo es obligatorio.</p>
 					<p error='min'>Este campo debe ser mínimo de 3 caracteres.</p>
-					<p error='max'>Este campo debe ser máximo de 50 caracteres.</p>
+					<p error='max'>Este campo debe ser máximo de 25 caracteres.</p>
 				</div>
             </div>
 

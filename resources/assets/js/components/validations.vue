@@ -3,7 +3,7 @@
 var eventForTag = {
 		"INPUT[type='text']":"keyup",
 		"INPUT[type='number']":"keyup",
-		"INPUT[type='date']":"keyup",
+		"INPUT[type='date']":"change",
 		"INPUT[type='password']":"keyup",
 		"INPUT[type='email']":"keyup",
 		"INPUT[type='hidden']":"change",
@@ -148,6 +148,7 @@ function min (min, el){
 			hiddenErrorsBox(el, "min")
 		}
 	}else if(el.getAttribute('type') == "date"){
+		
 		var myYears = years(el.value)
 		if(myYears < min){
 			var error = 1;
@@ -242,10 +243,38 @@ function validateInit(element){
 	}
 	var eventElement = eventForTag[tag];
 	var event = new CustomEvent(eventElement, {});
-	element.dispatchEvent(event, true);
-	// 
+	element.dispatchEvent(event, true); 
 	
 }
+
+function validateSubmit(){
+	return false;
+	var elements = el.getElementsByClassName('validation');
+		
+		for (var obj = 0; obj < elements.length; obj++){
+			var tag = elements[obj].tagName;
+			if(tag == "INPUT"){
+				tag = tag+"[type='"+elements[obj].getAttribute('type')+"']"
+			}
+			var eventElement = eventForTag[tag];
+			var event = new CustomEvent(eventElement, {});
+			elements[obj].dispatchEvent(event, true); 
+		}
+
+	var errors = 0;
+	
+	for (var obj = 0; obj < elements.length; obj++){
+		if(elements[obj].getAttribute('validation') == "false"){
+				errors += 1;
+		}
+	}
+
+	if(errors > 0){
+		return false;
+	}
+	
+}
+
 function validateAll(padre){
 	var elements = padre.getElementsByClassName('validation');
 	var errors = 0;
@@ -256,20 +285,7 @@ function validateAll(padre){
 		}
 	}
 	var senders = padre.querySelectorAll('[type="submit"]');
-	
-	if(errors > 0){
-		for (var send = 0; send < senders.length; send++){
-			
-			senders[send].classList.add('inactive')
-		}
-	}else{
-		for (var send = 0; send < senders.length; send++){
-			
-			senders[send].classList.remove('inactive')
-		}
-	}
-	
-	
+		
 }
 
 function hiddenErrorsBox(element, error){
@@ -282,7 +298,8 @@ function hiddenErrorsBox(element, error){
 			childrens = allChildrens
 		}else{
 			childrens = boxErrors[0].querySelectorAll('[error="'+error+'"]');
-			
+
+			element.classList.remove('init')
 		}
 		
 		for(var child = 0; child < childrens.length; child++){
@@ -304,9 +321,10 @@ function showErrorsBox(element, error){
 		var childrens = boxErrors[0].querySelectorAll('[error="'+error+'"]');
 		for(var child = 0; child < childrens.length; child++){
 			childrens[child].style.display = "block"
+			element.classList.remove('init')
 		}
 	}
-	element.classList.remove('init')
+	
 }
 
 var parent;
@@ -329,6 +347,8 @@ export default {
 		
 		var senders = el.querySelectorAll('[type="submit"]');
 		
+		el.addEventListener("submit", function(){return false;})
+
 		for (var send = 0; send < senders.length; send++){
 			
 			senders[send].setAttribute("sender" , 'sender')
@@ -336,10 +356,7 @@ export default {
 		
 	},
 	componentUpdated:function(el, b, vnode){
-		var elements = el.getElementsByClassName('validation');
-		for (var obj = 0; obj < elements.length; obj++){	
-			validateInit(elements[obj])
-		}
+		
 	}
 }
 

@@ -61,7 +61,7 @@
 		        </article>
 	
 		        <article class='col-md-4 not-padding'>
-		        	{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form']) !!}
+		        	{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form', 'v-validation:msg' => '']) !!}
 						<input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
 			        	<register profile='0'>	
 			        					    
