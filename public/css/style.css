@@ -965,6 +965,7 @@ Animations
 
 .contactMail {
     position: fixed;    
+    top: 15%;
     z-index:1000;
 }
 
@@ -989,10 +990,10 @@ Animations
 }
 
 .animation{
-	width: 100%;
+	width: 70%;
 
 }
-.box-animation {    
-    padding: 5%;
-	text-align: center;    
+.box-animation {      
+	text-align: center;
+	margin-top: -23%;    
 }
