@@ -30,7 +30,6 @@ class ServiceController extends Controller
     JavaScript::put([
        'userJs'=> $user,
        'categoriesJs' => $categories,
-       'tags'=> $tags,
        ]);
     
     if(Auth::user()->services->count() >= 1)
@@ -312,5 +311,9 @@ class ServiceController extends Controller
         }     
 
    }
+    public function getTags(){
+        $tags = json_encode(Tag::all('tag'));
+        print ($tags);
+    }
 
 }

@@ -34,12 +34,13 @@
       },
     },
     data() {
-      var obj = {newTag: '', suggestions:''}
-      if(windowvar.tags !== undefined){
-        obj['tagsList'] = JSON.parse(windowvar.tags);
-      }
+      var obj = {newTag: '', suggestions:'',tagsList:''}
+
       return obj;
     },
+    mounted() {
+			this.getTags()
+		},
     methods: {
       previewTags(tag){
          var n = tag.length;
@@ -63,10 +64,18 @@
         }
         console.log(newSug);
         this.suggestions = newSug;
-        document.getElementById("intag").className +=  " open";
+        document.getElementById("intag").classList.add("open");
         console.log("llego");
 
       },
+       getTags:function(){
+                  	this.$http.get('/getTags').then(response => {
+					this.tagsList = response.body
+
+				}, response => {
+				    console.log("error")
+				});
+                    },
       focusNewTag() {
         if (this.readOnly) { return; }
         this.$el.querySelector('.new-tag').focus();
