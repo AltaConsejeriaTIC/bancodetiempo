@@ -76,6 +76,7 @@
                		<div class="row">
                			<div class="col-md-8 col-md-offset-2 text-center">
                				<label for='avatar' class="button1 background-active-color text-center"  @click='showEdit'>Actualizar foto</label>
+                      <p class="avatarMsg hidden">El peso màximo de la imagen debe ser de 3 Megas.</p>
                			</div>
                		</div>
                		

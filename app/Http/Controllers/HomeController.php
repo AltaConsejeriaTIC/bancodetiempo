@@ -100,7 +100,9 @@ class HomeController extends Controller
     	$allServices = Service::select("services.*")
     								->distinct('services.id')
     								->join('tags_services', 'services.id', 'tags_services.service_id')
-    								->where('state_id' , 1);
+    								->where('state_id' , 1)
+                                    ->orderBy('services.created_at', 'desc');
+
     	 
     	if($request->input('filter') != ""){
 			$filters = explode(" ", $request->input('filter'));
