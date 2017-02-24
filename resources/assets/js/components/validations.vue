@@ -283,8 +283,20 @@ function validateAll(padre){
 		if(elements[obj].getAttribute('validation') == "false"){
 				errors += 1;
 		}
-	}
+	}	
 	var senders = padre.querySelectorAll('[type="submit"]');
+
+	if(errors > 0){
+		for (var send = 0; send < senders.length; send++){
+			
+			senders[send].classList.add('inactive')
+		}
+	}else{
+		for (var send = 0; send < senders.length; send++){
+			
+			senders[send].classList.remove('inactive')
+		}
+	}
 		
 }
 
