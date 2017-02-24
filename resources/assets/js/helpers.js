@@ -29,6 +29,7 @@ module.exports = {
         var Helpers = {
                 methods:{
                     previewPhoto(e) {
+                        console.log("lee");
                     	this.$el.getElementsByClassName('profilePhoto')[0].classList.add('validation');
                     	this.$el.getElementsByClassName('profilePhoto')[0].setAttribute('validation', 'true');
                         var files = e.target.files || e.dataTransfer.files;
@@ -40,6 +41,7 @@ module.exports = {
                         	this.$el.getElementsByClassName('avatarMsg')[0].classList.remove('hidden')
                         	this.$el.getElementsByClassName('avatarMsg')[0].classList.add('visible')
                         }else{
+
                         	var image = new Image();
                             var reader = new FileReader();
 	                         reader.onload = (e) => {

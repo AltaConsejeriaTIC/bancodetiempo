@@ -273,7 +273,8 @@ class ServiceController extends Controller
 		$servicesForCategory = Service::select("services.*")
 										->distinct('services.id')
 										->leftJoin('tags_services', 'services.id', 'tags_services.service_id')
-										->where ( 'state_id', 1);
+										->where ( 'state_id', 1)
+                    ->orderBy('id', 'desc');;
 		
 		if(!in_array ( '0', $idCategories )) {  
    			$servicesForCategory = $servicesForCategory->whereIn('category_id', $idCategories);   	
@@ -295,7 +296,12 @@ class ServiceController extends Controller
          if($tags){   
 
             foreach ($tags as $tag){
-                $newTag = new Tag;    
+                 $newTag = Tag::where('tag',$tag)->first();
+
+                if(empty($newTag)){
+                    $newTag = new Tag; 
+                }
+
                 $newTag->tag = $tag;
                 $newTag->save();
                 $newTagService = new TagsService;

@@ -23,7 +23,7 @@ class ProfileController extends Controller
     {
     	$categories = Category::all();
       $user = User::find(auth::user()->id);
-
+      $tagsJson = json_encode(Tag::all('tag'));
       $services = Service::where("user_id" , "=", Auth::user()->id)
 	      						->where('state_id' , 1)
 	      						->orderBy("created_at","desc")
@@ -43,6 +43,7 @@ class ProfileController extends Controller
 				'categoriesJs' => $categories,
 				'servicesJs' => $services,
 				'tagsJs' => $tags,
+                'tags' => $tagsJson,
 			]);				
 
       return view('profile/profile', compact('user','categories','services'));
