@@ -48,11 +48,24 @@
                 return elemento.tag;
                 }
          });
-         this.suggestions = suggestion.map(function(item) {
+
+        var list = suggestion.map(function(item) {
                     return item['tag'];
                       });
 
-          document.getElementById("intag").className +=  " open";
+        this.suggestions=list;
+        var newSug = [];
+        var arrayTags = this.tags.join()
+        for(var obj in list){
+          if(arrayTags.search(list[obj]) < 0){
+            newSug.push(list[obj]);
+          }
+        }
+        console.log(newSug);
+        this.suggestions = newSug;
+        document.getElementById("intag").className +=  " open";
+        console.log("llego");
+
       },
       focusNewTag() {
         if (this.readOnly) { return; }

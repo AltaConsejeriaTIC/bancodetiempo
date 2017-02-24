@@ -877,7 +877,9 @@ Animations
 	margin-right: 4px;
 	padding: 3px;
 }
-
+ul.dropdown-menu li:hover {
+	background: rgba(15, 103, 132,0.7);
+}
 .no-input > input{
 	border: none !important;
 	display: initial !important;
