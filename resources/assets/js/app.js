@@ -38,8 +38,8 @@ var app = new Vue({
     	} 
     },
     mounted(){   	
-    	scrollFixed()
-    	scrollBottom()
+    	scrollFixed();
+    	scrollBottom();
     }
     
 });
