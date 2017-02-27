@@ -34,5 +34,23 @@ class StateTableSeeder extends Seeder
         $this->create([
             'state' => 'Pendiente',
         ]);
+        $this->create([
+            'state' => 'Leido',
+        ]);
+        $this->create([
+            'state' => 'No leido',
+        ]);
+        $this->create([
+            'state' => 'Aceptado',
+        ]);
+        $this->create([
+            'state' => 'Cancelado',
+        ]);
+        $this->create([
+            'state' => 'Reportado',
+        ]);
+        $this->create([
+            'state' => 'Finalizado',
+        ]);
     }
 }
