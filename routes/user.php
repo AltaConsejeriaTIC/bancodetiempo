@@ -26,5 +26,7 @@ Route::get('/conversation/{conversation_id}','ConversationController@showConvers
 
 Route::get('/messages/{conversation_id}','ConversationController@messagesConversation');
 
+
 Route::post('/newMessage','ConversationController@saveMessage');
 
+Route::get('/getTags/', 'ServiceController@getTags');

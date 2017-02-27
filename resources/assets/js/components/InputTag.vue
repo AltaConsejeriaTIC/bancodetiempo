@@ -34,12 +34,13 @@
       },
     },
     data() {
-      var obj = {newTag: '', suggestions:''}
-      if(windowvar.tags !== undefined){
-        obj['tagsList'] = JSON.parse(windowvar.tags);
-      }
+      var obj = {newTag: '', suggestions:'',tagsList:''}
+
       return obj;
     },
+    mounted() {
+			this.getTags()
+		},
     methods: {
       previewTags(tag){
          var n = tag.length;
@@ -48,12 +49,33 @@
                 return elemento.tag;
                 }
          });
-         this.suggestions = suggestion.map(function(item) {
+
+        var list = suggestion.map(function(item) {
                     return item['tag'];
                       });
 
-          document.getElementById("intag").className +=  " open";
+        this.suggestions=list;
+        var newSug = [];
+        var arrayTags = this.tags.join()
+        for(var obj in list){
+          if(arrayTags.search(list[obj]) < 0){
+            newSug.push(list[obj]);
+          }
+        }
+        console.log(newSug);
+        this.suggestions = newSug;
+        document.getElementById("intag").classList.add("open");
+        console.log("llego");
+
       },
+       getTags:function(){
+                  	this.$http.get('/getTags').then(response => {
+					this.tagsList = response.body
+
+				}, response => {
+				    console.log("error")
+				});
+                    },
       focusNewTag() {
         if (this.readOnly) { return; }
         this.$el.querySelector('.new-tag').focus();

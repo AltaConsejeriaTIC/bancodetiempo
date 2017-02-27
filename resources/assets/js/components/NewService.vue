@@ -151,6 +151,7 @@
             this.$parent.setMyData('serviceName', 'Titulo de la oferta');
             this.$parent.setMyData('descriptionService', 'Descripción de la oferta');
             this.$parent.setMyData('tags', Array('PalabrasClave'));
+
             this.tagService = '';
         },
     	methods: {

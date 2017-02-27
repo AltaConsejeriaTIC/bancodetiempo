@@ -34,7 +34,7 @@
 			<callmessages conversation='{{$conversation->id}}' ></callmessages>
 		</div>
 		<div class='responseBox'>
-			<sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}'>
+			<sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}' applicant="">
 			</sendmessage>			
 
 		</div>
