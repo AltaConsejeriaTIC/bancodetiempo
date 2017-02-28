@@ -28,5 +28,8 @@ Route::get('/messages/{conversation_id}','ConversationController@messagesConvers
 
 
 Route::post('/newMessage','ConversationController@saveMessage');
+Route::post('/deal','ConversationController@deal');
 
 Route::get('/getTags/', 'ServiceController@getTags');
+
+Route::post('/addObservation','DealsController@saveObservation');

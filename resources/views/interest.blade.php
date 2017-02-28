@@ -27,7 +27,7 @@
 				
 			</div>
 			<div class="row">
-				<p class="paragraph1 col-xs-12">Elige <strong>tres</strong> categorías de interés para sugerirte ofertas.</p>
+				<p class="paragraph1 col-xs-12">Elige <strong>al menos tres</strong> categorías de interés para sugerirte ofertas.</p>
 			</div>
 			
 			{!! Form::open(['url' => '/interest', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form-custom row validation', 'role' => 'form']) !!}

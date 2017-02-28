@@ -101,20 +101,51 @@ class CreateAlterAllTables extends Migration
         // Foreign key Table AttainmentUsers
         Schema::table('attainment_users', function($table)
         {
-          $table->foreign('user_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade');
-        
-          $table->foreign('state_id')
+
+            $table->foreign('state_id')
                 ->references('id')
                 ->on('states')
                 ->onUpdate('cascade');
 
-          $table->foreign('attainment_id')
+            $table->foreign('attainment_id')
                 ->references('id')
                 ->on('attainments')
                 ->onUpdate('cascade');
+        });
+
+        Schema::table('deals', function($table)
+        {
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate("cascade");
+
+            $table->foreign('service_id')
+                ->references('id')
+                ->on('services')
+                ->onUpdate("cascade");
+
+            $table->foreign('state_id')
+                ->references('id')
+                ->on('states')
+                ->onUpdate("cascade");
+        });
+
+        Schema::table('deals_observations', function($table)
+        {
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate("cascade");
+
+            $table->foreign('deals_id')
+                ->references('id')
+                ->on('deals')
+                ->onUpdate("cascade");
         });
         
         

@@ -17,6 +17,7 @@ Vue.component('generalmodal', require('./components/generalModal.vue'));
 Vue.component('modaltimeoff', require('./components/modalTimeOff.vue')); 
 Vue.component('callmessages', require('./components/callMessages.vue'));  
 Vue.component('sendmessage', require('./components/sendMessage.vue'));
+Vue.component('deals', require('./components/Deal.vue'));
 //directives
 Vue.directive('validation', require('./components/validations.vue'));
 

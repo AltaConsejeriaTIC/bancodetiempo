@@ -969,6 +969,7 @@ ul.dropdown-menu li:hover {
     position: fixed;    
     top: 15%;
     z-index:1000;
+    left: 0%;
 }
 
 .contactMail .box {
