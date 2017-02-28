@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Models\AdminContent;
+use Faker\Generator;
+use Styde\Seeder\Seeder;
 class AdminContentSeeder extends Seeder
 {
     /**
@@ -30,7 +33,7 @@ class AdminContentSeeder extends Seeder
         ]);
         $this->create([
             "name" => "Preguntas Frecuentes",
-            "url" => "categry-profile.png"
+            "url" => "/s"
         ]);
 
 
