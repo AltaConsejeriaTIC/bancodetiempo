@@ -8,7 +8,7 @@
 	<div class="conversationBox">
 		
 		<div class="head row">
-			
+
 			@if($conversation->applicant_id == Auth::User()->id)
 				
 				<div class="col-md-1">
@@ -45,8 +45,11 @@
 			<callmessages conversation='{{$conversation->id}}' ></callmessages>
 		</div>
 		<div class='responseBox'>
-			<sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}' applicant="">
-			</sendmessage>			
+			<sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}' applicant="{{$conversation->applicant_id}}">
+			</sendmessage>		
+			{!! Form::open(['url' => '/deal', 'method' => 'post', 'class' => 'form-custom row validation']) !!}
+				<deals token='{{ csrf_token() }}' service_id='{{$conversation->service_id}}' applicant="{{$conversation->applicant_id}}"></deals>
+			{!!Form::close()!!}
 
 		</div>
 

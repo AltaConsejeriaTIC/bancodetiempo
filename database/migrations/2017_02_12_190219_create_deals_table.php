@@ -21,7 +21,7 @@ class CreateDealsTable extends Migration
             $table->time("time");
             $table->string("location");
             $table->integer("value");
-            $table->text("description");
+            $table->text("description")->nullable();
             $table->integer("state_id")->unsigned();
             $table->text("observation")->nullable();
             $table->timestamps();

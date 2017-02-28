@@ -8,12 +8,11 @@
 		<div class="space10"></div>
 		<div class="row">
 			<div class="col-md-3 col-md-offset-6 text-right">
-				<button type="button" class='button1 background-active-green-color col-md-12'>Proponer acuerdo</button>
+				<button v-if="this.sender != this.applicant" type="button" class='button1 background-active-green-color col-md-12' data-toggle="modal" data-target="#deal">Proponer acuerdo</button>
 			</div>
 			<div class="col-md-2">
 				<button type="button" class='button1 background-active-color col-md-12 send' v-on:click='send'>Enviar</button>
 			</div>
-
 		</div>
 	</div>
 </template>
@@ -29,7 +28,7 @@
 				response: ""
 			}
 		},
-		props:['conversation', 'sender', 'token'],
+		props:['conversation', 'sender', 'token','applicant'],
 		mounted() {   
 				
 		},
