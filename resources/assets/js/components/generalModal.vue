@@ -1,6 +1,6 @@
 <template>
 <div>
-	<div class='shadow' v-show='this.state' transition="fade"></div>
+	<div class='shadow' v-show='this.state' transition="fade" v-on:click='close()'></div>
 	<div class='contactMail col-md-4 col-md-offset-4' v-show='this.state' transition="fade">
 		
 		<slot name='modal'></slot>
@@ -14,6 +14,11 @@ export default {
 	mounted(){
 		var state = (this.stateInit === 'true');		
 		this.$parent.setMyData(this.name, state);
+	},
+	methods:{
+		close:function(){
+			this.$parent.putMyData(this.name, false);
+		}
 	}
 }
 </script>
