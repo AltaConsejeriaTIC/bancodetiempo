@@ -82,5 +82,8 @@ class ConversationController extends Controller
 
 	}
 
+	public function deal(Request $request){
+		dd($request->all());
+	}
 
 }

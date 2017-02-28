@@ -36,7 +36,7 @@
 		<div class='responseBox'>
 			<sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}' applicant="{{$conversation->applicant_id}}">
 			</sendmessage>		
-			{!! Form::open(['url' => '#', 'method' => 'post', 'class' => 'form-custom row validation']) !!}
+			{!! Form::open(['url' => '/deal', 'method' => 'post', 'class' => 'form-custom row validation']) !!}
 				<deals></deals>
 			{!!Form::close()!!}
 
