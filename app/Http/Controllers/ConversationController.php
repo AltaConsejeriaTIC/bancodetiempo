@@ -74,12 +74,14 @@ class ConversationController extends Controller
 	public function messagesConversation($id_conversation){
 
 		$conversation = Conversations::find($id_conversation);
-		
 		$messages = json_decode($conversation->message);
-	
 		$conversation["message"] = $messages; 
-
-		return view('messages', compact("conversation"));
+		
+		$deal = Deal::where("service_id","=",$conversation->service_id)
+									->where("user_id","=",$conversation->applicant_id)
+									->first();
+		
+		return view('messages', compact("conversation","deal"));
 
 	}
 
@@ -110,6 +112,22 @@ class ConversationController extends Controller
 				
 		ConversationController::newMessage("", $request->conversation, Auth::User()->id, $deal->id);
 
+		return redirect()->back();
+	}
+
+	public function dealUpdate(Request $request)
+	{
+		$deal = Deal::find($request->deal);
+		if(!is_null($request->agree))
+		{
+			$deal->state_id = 7;
+			$deal->save();						
+		}
+		if(!is_null($request->decline))
+		{
+			$deal->state_id = 8;
+			$deal->save();
+		}
 		return redirect()->back();
 	}
 
