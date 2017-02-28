@@ -30,6 +30,17 @@
 			@endif
 
 		</div>
+		<button type="button" class=''  v-on:click='putMyData("experience", true)'>calificar</button>
+		<generalmodal name='experience' :state='myData.experience' state-init='false'>
+			<div slot="modal" class='box row'>
+				{!! Form::open(['url' => '/addObservation', 'method' => 'post', 'class' => 'form-custom col-md-10 col-md-offset-1']) !!} 
+					<textarea name="observation" id="observation" cols="30" rows="10"></textarea>
+					<input type="hidden" name="service_id" value='{{$conversation->service_id}}'>
+					<button type="submit" class='button1 background-active-green-color col-md-6 col-md-offset-3' >Enviar</button>
+				{!! Form::close() !!}
+			</div>
+		</generalmodal>
+
 		<div class='listMessages scrollBottom' >
 			<callmessages conversation='{{$conversation->id}}' ></callmessages>
 		</div>

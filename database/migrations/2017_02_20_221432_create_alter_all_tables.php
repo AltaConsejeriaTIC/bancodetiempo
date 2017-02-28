@@ -134,6 +134,19 @@ class CreateAlterAllTables extends Migration
                 ->on('states')
                 ->onUpdate("cascade");
         });
+
+        Schema::table('deals_observations', function($table)
+        {
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate("cascade");
+
+            $table->foreign('deals_id')
+                ->references('id')
+                ->on('deals')
+                ->onUpdate("cascade");
+        });
         
         
     }
