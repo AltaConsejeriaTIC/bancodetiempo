@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Conversations;
+use App\Models\Deal;
 
 class ConversationController extends Controller
 {
@@ -34,13 +35,13 @@ class ConversationController extends Controller
 
 	}
 
-	static public function newMessage($message,$conversation_id, $sender){
+	static public function newMessage($message,$conversation_id, $sender ,$deal){
 
 		$conversation = Conversations::find($conversation_id);
 
 		$newMessage = json_decode($conversation->message);
 
-		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 0];
+		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6, "deal" => $deal];
 
 		$conversation->update([
 			"message" => json_encode($newMessage)
@@ -49,7 +50,7 @@ class ConversationController extends Controller
 	}
 
 	public function saveMessage(Request $request){
-		 ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id);
+		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id , 0);
 	}
 
 	public function showConversation($id_conversation){
@@ -82,8 +83,34 @@ class ConversationController extends Controller
 
 	}
 
-	public function deal(Request $request){
-		dd($request->all());
+	public function deal(Request $request)
+	{
+		
+		dd("bloque");
+
+		$this->validate($request, [
+        'service' => 'required',
+        'applicant' => 'required',
+        'dealDate' => 'required|date|after:tomorrow',
+        'dealHour' => 'required',
+        'dealLocation' => 'required',
+        'valueService' => 'required'
+    ]);
+		
+		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id, 1);
+
+		$deal = new Deal;
+		$deal->user_id = $request->applicant;
+    $deal->service_id = $request->service;
+    $deal->date = $request->dealDate;
+    $deal->time = $request->dealHour;
+    $deal->location = $request->dealLocation;
+    $deal->value = $request->valueService;
+    $deal->description = $request->observations;
+    $deal->state_id = 4;    
+		$deal->save();
+		
+		return redirect()->back();
 	}
 
 }
