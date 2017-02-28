@@ -86,8 +86,7 @@ class ConversationController extends Controller
 	public function deal(Request $request)
 	{
 		
-		dd("bloque");
-
+		/*
 		$this->validate($request, [
         'service' => 'required',
         'applicant' => 'required',
@@ -96,8 +95,7 @@ class ConversationController extends Controller
         'dealLocation' => 'required',
         'valueService' => 'required'
     ]);
-		
-		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id, 1);
+		*/
 
 		$deal = new Deal;
 		$deal->user_id = $request->applicant;
@@ -109,7 +107,9 @@ class ConversationController extends Controller
     $deal->description = $request->observations;
     $deal->state_id = 4;    
 		$deal->save();
-		
+				
+		ConversationController::newMessage("", $request->conversation, Auth::User()->id, $deal->id);
+
 		return redirect()->back();
 	}
 
