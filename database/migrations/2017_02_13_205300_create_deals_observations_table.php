@@ -17,6 +17,7 @@ class CreateDealsObservationsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer("deals_id")->unsigned();
+            $table->integer("score");
             $table->text("observation")->nullable();
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ class CreateDealsObservationsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('deals_observations');
     }
 }

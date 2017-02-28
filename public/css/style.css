@@ -582,6 +582,33 @@ Detail Service
 	border-radius: 5px;
 }
 
+.sliders {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.slide {
+    position: relative;
+    float: left;
+}
+
+input.stars + label > i {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: 35px;
+    font-style: normal;
+}
+
+input.stars + label > i:before {
+    content: "\f006";
+}
+
+input.stars + label > i.check:before {
+    content: "\f005";
+}
+
+
 
 
 /*
