@@ -61,47 +61,5 @@ class UserTableSeeder extends Seeder
               'role_id' => 2,
           ]);
       }
-        $this->create([
-            'first_name' => 'Anderson',
-            'last_name' => 'Osorio',
-            'email' => 'akod55@hotmail.es',
-            'email2' => 'akod55@hotmail.es',
-            'avatar'=>'https://graph.facebook.com/v2.8/10209912283758203/picture?width=1920',
-            'password'  => null,
-            'gender' => 'male',
-            'birthDate' => null,
-            'aboutMe' => 'Viajo en el tiempo si quieres un paseo victoriano llama no lo dudes y disfruta una aventura',
-            'state_id' => 1,
-            'role_id' => 2,
-            'privacy_policy' => 1,
-        ]);
-        $this->create([
-            'first_name' => 'Joe',
-            'last_name' => 'Rojas',
-            'email' => 'joerojasgomez@hotmail.com',
-            'email2' => 'joerojasgomez@hotmail.com',
-            'avatar' => 'https://graph.facebook.com/v2.8/1922079684681419/picture?width=1920',
-            'password' => null,
-            'gender' => 'male',
-            'birthDate' => null,
-            'aboutMe' => 'Diseñador Grafico apasionado por la Fotografia el Diseño UI UX la animacion y la actuacion Me encanta el cine el teatro la musica y montar bici',
-            'state_id' => 1,
-            'role_id' => 2,
-            'privacy_policy' => 1,
-        ]);
-        $this->create([
-        'first_name' => 'Alejandro',
-        'last_name' => 'Salas',
-        'email' => 'alejandro.salas.prada@gmail.com',
-        'email2' => 'alejandro.salas.prada@gmail.com',
-        'avatar' => 'https://graph.facebook.com/v2.8/10207859332388759/picture?width=1920',
-        'password'  => null,
-        'gender' => 'male',
-        'birthDate' => null,
-        'aboutMe' => 'Soy estudiante de diseno gráfico de la Universidad Nacional de Colombia Me gusta la fotografía',
-        'state_id' => 1,
-        'role_id' => 2,
-        'privacy_policy' => 1,
-    ]);       
     }
 }
