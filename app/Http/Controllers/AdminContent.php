@@ -8,7 +8,7 @@ use App\Models\Category;
 use Session;
 Use Validator;
 
-class CategoryController extends Controller
+class AdminContent extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::orderBy('created_at','desc')->paginate(6);
-        return view('admin/categories/list',compact('categories'));
+        return view('admin/contents/list',compact('categories'));
     }
     /**
      * Store a newly created resource in storage.
@@ -53,14 +53,14 @@ class CategoryController extends Controller
                     if($category->save())
                     {
                         Session::flash('success', '¡La Categoría '.$request->category.' Se Registró con Exito!');
-                        return redirect('homeAdminCategory');
+                        return redirect('homeAdminContents');
                     }
                 }
             }
             else
             {
                 Session::flash('error', '¡La Categoría '.$request->category.' Ya Existe!');
-                return redirect('homeAdminCategory');
+                return redirect('homeAdminContents');
             }
         }
         catch (Exception $e)
@@ -79,11 +79,11 @@ class CategoryController extends Controller
         if($request->category != '')
         {
             $categories = Category::where('category', 'LIKE', "%$request->category%")->paginate(6);
-            return view('admin/categories/list', compact('categories'));
+            return view('admin/contents/list', compact('categories'));
         }
         else
         {
-            return redirect('homeAdminCategory');
+            return redirect('homeAdminContents');
         }
     }
 
@@ -126,7 +126,7 @@ class CategoryController extends Controller
                 if($category->save())
                 {
                     Session::flash('success', '¡La Categoría '.$request->category.' Se Registró con Exito!');
-                    return redirect('homeAdminCategory');
+                    return redirect('homeAdminContends');
                 }
             }
         }

@@ -56,7 +56,7 @@ class ServicesTableSeeder extends Seeder
             'presently' => 1,
             'image' => $faker->randomElement($fotos),
             'category_id' => 1,
-            'user_id' => 18,
+            'user_id' => 15,
             'state_id' => 1,
         ]);
         $this->create([
@@ -67,7 +67,7 @@ class ServicesTableSeeder extends Seeder
             'presently' => 1,
             'image' => $faker->randomElement($fotos),
             'category_id' => 1,
-            'user_id' => 19,
+            'user_id' => 12,
             'state_id' => 1,
         ]);        
         $this->create([
@@ -78,7 +78,7 @@ class ServicesTableSeeder extends Seeder
             'presently' => 1,
             'image' => $faker->randomElement($fotos),
             'category_id' => 1,
-            'user_id' => 17,
+            'user_id' => 7,
             'state_id' => 1,
         ]);
         $this->create([
@@ -89,7 +89,7 @@ class ServicesTableSeeder extends Seeder
             'presently' => 1,
             'image' => $faker->randomElement($fotos),
             'category_id' => 1,
-            'user_id' => 18,
+            'user_id' => 1,
             'state_id' => 1,
         ]);
 	}
