@@ -29,6 +29,7 @@ Route::get('/messages/{conversation_id}','ConversationController@messagesConvers
 
 Route::post('/newMessage','ConversationController@saveMessage');
 Route::post('/deal','ConversationController@deal');
+Route::put('/deal','ConversationController@dealUpdate');
 
 Route::get('/getTags/', 'ServiceController@getTags');
 

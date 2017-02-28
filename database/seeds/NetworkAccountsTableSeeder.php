@@ -20,21 +20,6 @@ class NetworkAccountsTableSeeder extends Seeder
 
     public function run()
     {
-        $this->create([
-            'user_id' => '17',
-            'provider_id' => '10209912283758203',
-            'provider'=>'facebook',
-        ]);
-        $this->create([
-            'user_id' => '18',
-            'provider_id' => '1922079684681419',
-            'provider'=>'facebook',
-        ]);
-        $this->create([
-            'user_id' => '19',
-            'provider_id' => '10207859332388759',
-            'provider'=>'facebook',
-        ]);       
     }
 
 

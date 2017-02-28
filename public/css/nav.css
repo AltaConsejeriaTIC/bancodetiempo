@@ -86,6 +86,11 @@ input.filter::-webkit-input-placeholder {
     height: 26px;
     object-fit: contain;
 }
+.coinSmall{
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
 .textpadding{
     padding-left: 5px;
 }
