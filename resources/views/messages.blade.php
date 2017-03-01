@@ -1,9 +1,9 @@
 @foreach($conversation->message as $message)
-				
+
 	<div class="row">
-		<div class="col-md-12 message @if($message->sender != Auth::User()->id) forMe @else fromMe @endif">				
+		<div class="col-md-12 message @if($message->sender != Auth::User()->id) forMe @else fromMe @endif">
 			@if(!isset($message->deal) || $message->deal == 0)
-				@if($message->sender != Auth::User()->id) 
+				@if($message->sender != Auth::User()->id)
 				 	@if($conversation->applicant_id == Auth::User()->id)
 						<div class="col-md-1 image">
 							@include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#fff', 'borderSize' => '1px'))
@@ -20,6 +20,7 @@
 				</div>
 
 			@else
+
 				{!! Form::open(['url' => '/deal', 'method' => 'put', 'class' => 'form-custom row validation']) !!}				
 					<div class="messageDealText col-md-10">
 						<input type="hidden" name="deal" value="{{$deal->id}}">
@@ -66,8 +67,10 @@
 					</div>
 				{!!Form::close()!!}
 
-			@endif			
-		</div>		
+				@include('deals/deal')
+			@endif
+		</div>
+
 	</div>
 
 @endforeach
