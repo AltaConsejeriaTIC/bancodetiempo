@@ -33,11 +33,49 @@
 		<button type="button" class=''  v-on:click='putMyData("experience", true)'>calificar</button>
 		<generalmodal name='experience' :state='myData.experience' state-init='false'>
 			<div slot="modal" class='box row'>
-				{!! Form::open(['url' => '/addObservation', 'method' => 'post', 'class' => 'form-custom col-md-10 col-md-offset-1']) !!} 
-					<textarea name="observation" id="observation" cols="30" rows="10"></textarea>
-					<input type="hidden" name="service_id" value='{{$conversation->service_id}}'>
-					<button type="submit" class='button1 background-active-green-color col-md-6 col-md-offset-3' >Enviar</button>
-				{!! Form::close() !!}
+				<slider>
+					<div slot='sliders'>
+						<div class='slide' id='start'>
+							<div class='row not-margin'>
+								<button type='button' next='calificar' class='next'>Si</button> 
+								<button type='button' next='' class='next'>No</button>
+							</div>							
+						</div>
+						<div class='slide' id='calificar'>
+							<div class="row not-margin">
+								<input type="hidden" name='score' id='score' class='stars'>
+								<label for="score">
+									<i onclick='score(1)' class='star1'></i>
+									<i onclick='score(2)' class='star2'></i>
+									<i onclick='score(3)' class='star3'></i>
+									<i onclick='score(4)' class='star4'></i>
+									<i onclick='score(5)' class='star5'></i>
+								</label>
+								<script type="text/javascript">
+									function score(v){
+										jQuery("#score + label > i").removeClass("check")
+										jQuery("#score").val(v);
+										var s = v;
+										while(s > 0){
+											jQuery(".star"+s).addClass("check")
+											s -= 1; 
+										}
+									}
+								</script>
+							</div>	
+							<div class="row not-margin">
+								<button type='button' next='observations' class='next'>Siguiente</button>
+							</div>					
+						</div>
+						<div class='slide' id='observations'>
+							<div class='row not-margin'>
+								<label for="observation">Observaciones sobre el servicio</label><br>
+								<textarea name="observation" id="observation" cols="30" rows="10"></textarea>
+							</div>							
+						</div>
+					</div>
+				</slider>
+				
 			</div>
 		</generalmodal>
 

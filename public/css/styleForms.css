@@ -96,7 +96,7 @@ Radio circle
     margin-right: 5px;
     border-radius: 50%;
     font-size: 12px;
-    padding: 2px 3px;
+    padding: 1px 4px;
 }
 
 .form-custom input[type="radio"].circle:checked + label:before {
