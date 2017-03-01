@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Service;
+use App\User;
 
 class Deal extends Model
 {
@@ -26,5 +27,10 @@ class Deal extends Model
   {
 		return $this->belongsTo(Service::class);
 	}
+
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
 
 }

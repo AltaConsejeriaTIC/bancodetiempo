@@ -64,11 +64,15 @@ class EmailController extends Controller
           ]);
       }
 
-      ConversationController::newMessage($content, $conversation->id, Auth::User()->id, 0);
+      ConversationController::newMessage($content, $conversation->id, Auth::User()->id, 0, 0);
 
     	return redirect()->back()->with('response', true);
 
     	//return view('mailContact',compact("service", "userauth", "imageProfile", "imageService" ,'content', "myImageProfile"));
+    }
 
+    public function sendMailDeal($deal)
+    {
+      dd($deal->service_id);
     }
 }

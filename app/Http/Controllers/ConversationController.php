@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Conversations;
 use App\Models\Deal;
+use App\Http\Controllers\EmailController;
 
 class ConversationController extends Controller
 {
@@ -35,11 +36,11 @@ class ConversationController extends Controller
 
 	}
 
-	static public function newMessage($message,$conversation_id, $sender ,$deal){
-
+	static public function newMessage($message,$conversation_id, $sender ,$deal, $state_deal)
+  {
 		$conversation = Conversations::find($conversation_id);
 		$newMessage = json_decode($conversation->message);
-		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6, "deal" => $deal];
+		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6, "deal" => $deal, "state_deal" => $state_deal];
 
 		$conversation->update([
 			"message" => json_encode($newMessage)
@@ -47,8 +48,9 @@ class ConversationController extends Controller
 
 	}
 
-	public function saveMessage(Request $request){
-		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id , 0);
+	public function saveMessage(Request $request)
+  {
+		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id , 0,0);
 	}
 
 	public function showConversation($id_conversation){
@@ -108,7 +110,7 @@ class ConversationController extends Controller
     $deal->state_id = 4;
 		$deal->save();
 
-		ConversationController::newMessage("", $request->conversation, Auth::User()->id, $deal->id);
+		ConversationController::newMessage("", $request->conversation, Auth::User()->id, $deal->id, $deal->state_id);
 
 		return redirect()->back();
 	}
@@ -116,10 +118,14 @@ class ConversationController extends Controller
 	public function dealUpdate(Request $request)
 	{
 		$deal = Deal::find($request->deal);
-		if(!is_null($request->agree))
-		{
-			$deal->state_id = 7;
-			$deal->save();
+    $email = new EmailController;
+
+    if(!is_null($request->agree))
+    {
+      $deal->state_id = 7;
+      $deal->save();
+      ConversationController::newMessage("", $request->conversation, Auth::User()->id, $deal->id, $deal->state_id);
+      //$email->sendMailDeal($deal);
 		}
 		if(!is_null($request->decline))
 		{
