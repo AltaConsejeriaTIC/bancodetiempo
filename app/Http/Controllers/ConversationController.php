@@ -21,26 +21,24 @@ class ConversationController extends Controller
 
 			$messages = json_decode($conversation->message);
 
-			$conversationsMyService[$key]["lastMessage"] = $messages[count($messages)-1]; 
+			$conversationsMyService[$key]["lastMessage"] = $messages[count($messages)-1];
 		}
 
 		foreach ($conversations as  $key => $conversation) {
 
 			$messages = json_decode($conversation->message);
 
-			$conversations[$key]["lastMessage"] = $messages[count($messages)-1]; 
+			$conversations[$key]["lastMessage"] = $messages[count($messages)-1];
 		}
 
-		return view("inbox", compact("conversationsMyService", "conversations"));	
+		return view("inbox", compact("conversationsMyService", "conversations"));
 
 	}
 
 	static public function newMessage($message,$conversation_id, $sender ,$deal){
 
 		$conversation = Conversations::find($conversation_id);
-
 		$newMessage = json_decode($conversation->message);
-
 		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6, "deal" => $deal];
 
 		$conversation->update([
@@ -56,7 +54,7 @@ class ConversationController extends Controller
 	public function showConversation($id_conversation){
 
 		$conversation = Conversations::find($id_conversation);
-		
+
 		$messages = json_decode($conversation->message);
 
 		foreach ($messages as $key => $value) {
@@ -75,19 +73,19 @@ class ConversationController extends Controller
 
 		$conversation = Conversations::find($id_conversation);
 		$messages = json_decode($conversation->message);
-		$conversation["message"] = $messages; 
-		
+		$conversation["message"] = $messages;
+
 		$deal = Deal::where("service_id","=",$conversation->service_id)
 									->where("user_id","=",$conversation->applicant_id)
 									->first();
-		
+
 		return view('messages', compact("conversation","deal"));
 
 	}
 
 	public function deal(Request $request)
 	{
-		
+
 		/*
 		$this->validate($request, [
         'service' => 'required',
@@ -99,7 +97,7 @@ class ConversationController extends Controller
     ]);
 		*/
 
-		$deal = new Deal;
+    $deal = new Deal;
 		$deal->user_id = $request->applicant;
     $deal->service_id = $request->service;
     $deal->date = $request->dealDate;
@@ -107,9 +105,9 @@ class ConversationController extends Controller
     $deal->location = $request->dealLocation;
     $deal->value = $request->valueService;
     $deal->description = $request->observations;
-    $deal->state_id = 4;    
+    $deal->state_id = 4;
 		$deal->save();
-				
+
 		ConversationController::newMessage("", $request->conversation, Auth::User()->id, $deal->id);
 
 		return redirect()->back();
@@ -121,7 +119,7 @@ class ConversationController extends Controller
 		if(!is_null($request->agree))
 		{
 			$deal->state_id = 7;
-			$deal->save();						
+			$deal->save();
 		}
 		if(!is_null($request->decline))
 		{

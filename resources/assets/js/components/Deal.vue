@@ -1,7 +1,7 @@
-<template>  
+<template>
   <div class="modal fade" id="deal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-box" role="document">
-      <div class="modal-content-box">            
+      <div class="modal-content-box">
         <div class="modal-wrapper">
           <div class="modal-container">
             <div class="modal-header">
@@ -39,38 +39,38 @@
 							<div class="row not-margin">
 								<div class="col-xs-6 col-sm-6">
 									<input type="radio" name="valueService" value="1" id="time1" class="circle validation" v-model="valueService" data-validations='["required"]'>
-									<label for="time1">1 Hora</label>                        
+									<label for="time1">1 Hora</label>
 								</div>
 								<div class="col-xs-6 col-sm-6">
 									<input type="radio" name="valueService" value="2" id="time2" class="circle validation" v-model="valueService" data-validations='["required"]'>
-									<label for="time2">2 Horas</label>                        
-								</div>                 
+									<label for="time2">2 Horas</label>
+								</div>
 							</div>
 							<div class="row not-margin">
 								<div class="col-xs-6 col-sm-6">
 									<input type="radio" name="valueService" value="3" id="time3" class="circle validation" v-model="valueService" data-validations='["required"]'>
-									<label for="time3">3 Horas</label>                        
+									<label for="time3">3 Horas</label>
 								</div>
 								<div class="col-xs-6 col-sm-6">
 									<input type="radio" name="valueService" value="4" id="time4" class="circle validation" v-model="valueService" data-validations='["required"]'>
-									<label for="time4">4 Horas</label>                        
-								</div>                  
+									<label for="time4">4 Horas</label>
+								</div>
 							</div>
 							<div class="row not-margin">
-                <label for="observations" class="paragraph10">Observaciones</label>		                
+                <label for="observations" class="paragraph10">Observaciones</label>
             	</div>
 	            <div class="row not-margin">
-	              <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12 validation" rows="8" name="observations" id='observations' v-model='observations' placeholder="Ej. Pinceles, Acuarelas, Lienzos."  data-validations='["required", "min:50", "max:250"]'></textarea>					
+	              <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12 validation" rows="8" name="observations" id='observations' v-model='observations' placeholder="Ej. Pinceles, Acuarelas, Lienzos."  data-validations='["required", "min:50", "max:250"]'></textarea>
 	            </div>
-            	<div class="row not-margin">	            				
+            	<div class="row not-margin">
 	    					<button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color">
 	    						Realizar Propuesta
-	        				</button>            			
+	        				</button>
 	            			<div class="space10">
-	            			</div>        				
+	            			</div>
 								<button class="col-xs-12 button10 background-white text-center"	data-dismiss="modal" aria-label="Close">
 									Cancelar
-								</button>						
+								</button>
     					</div>
             </div>
             <div class="modal-footer">
@@ -79,16 +79,16 @@
         </div>
       </div>
     </div>
-  </div>    
+  </div>
 </template>
 <script>
 
-	export default 
-	{		
+	export default
+	{
 		props:['service_id', 'token','applicant','conversation'],
-		mounted() 
-		{   
-				
+		mounted()
+		{
+
 		}
 	}
 </script>
