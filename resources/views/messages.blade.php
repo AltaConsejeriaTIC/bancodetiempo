@@ -3,7 +3,7 @@
 				
 	<div class="row">
 		<div class="col-md-12 message @if($message->sender != Auth::User()->id) forMe @else fromMe @endif">				
-			@if($message->deal == 0)
+			@if(!isset($message->deal) || $message->deal == 0)
 				@if($message->sender != Auth::User()->id) 
 				 	@if($conversation->applicant_id == Auth::User()->id)
 						<div class="col-md-1 image">
