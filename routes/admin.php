@@ -15,4 +15,4 @@ Route::put('homeAdminCategory/update', ['as' => 'homeAdminCategory/update', 'use
 Route::get('changePassword', 'AdminController@changePassword');
 Route::post('changePassword', ['as' => 'changePassword', 'uses'=>'AdminController@changePasswordAdmin']);
 
-Route::resource('adminUserContents', 'AdminContent');
+Route::resource('adminUserContents', 'AdminContentController');
