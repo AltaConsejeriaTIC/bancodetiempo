@@ -124,16 +124,16 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-2 col-sm-2 padding-top col-md-2">
+				<div class="col-xs-2 col-sm-2 col-md-offset-1  padding-top col-md-2">
 					<a href="/" >
 						<img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" />
 					</a>
 				</div>
-				<div class='hidden-xs hidden-sm padding-top col-md-3'>
+				<div class='hidden-xs hidden-sm col-md-offset-1 padding-top col-md-3'>
 					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentras personas, habilidades y más ... '>
 					<label for="filter1" class=" fa fa-search "></label>
 				</div>
-				<div class="text-right" id="container-nav-buttons">
+				<div class="text-right col-md-4" id="container-nav-buttons">
 					<button class="button5" data-toggle="modal" data-target="#login">{{ trans('dictionary.login') }}</button>
 					<button class="button9 buttonStart hidden-xs" data-toggle="modal" data-target="#login">Registrarse</button>
 				</div>
