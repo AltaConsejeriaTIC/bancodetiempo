@@ -52,5 +52,11 @@ class StateTableSeeder extends Seeder
         $this->create([
             'state' => 'Finalizado',
         ]);
+        $this->create([
+            'state' => 'Finalizado por tiempo',
+        ]);
+        $this->create([
+            'state' => 'Por Calificar',
+        ]);
     }
 }

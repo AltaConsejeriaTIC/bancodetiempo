@@ -1,10 +1,10 @@
-*<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDealsTable extends Migration
+class CreateServiceScoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateDealsTable extends Migration
      */
     public function up()
     {
-        Schema::create('deals', function (Blueprint $table) {
+        Schema::create('service_scores', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('service_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer("service_id")->unsigned();
-            $table->date("date");
-            $table->time("time");
-            $table->string("location");
-            $table->integer("value");
-            $table->text("description")->nullable();
-            $table->integer("conversation_id")->unsigned();            
+            $table->integer('score');
+            $table->string('observation',250)->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ class CreateDealsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('deals');
+        Schema::dropIfExists('service_scores');
     }
 }
