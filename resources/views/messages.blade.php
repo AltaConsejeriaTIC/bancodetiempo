@@ -74,37 +74,15 @@
 	</div>
 
 @endforeach
-<div id='observations' class="hidden">
-{!! Form::open(['url' => '/addObservation', 'method' => 'post', 'class' => 'form-custom sliders']) !!}
-       <input type="hidden" name="deal_id" value="">
-       <input type="hidden" name="conversation_id" value="">
-        <div class='slide' slide='start'>
-            <div class='row not-margin'>
-                <button type='button' next='calificar' class='next'>Si</button>
-                <button type='button' next='' class='next'>No</button>
-            </div>
-        </div>
-        <div class='slide' slide='calificar'>
-            <div class="row not-margin">
-                <input type="hidden" name='score' id='score' class='stars'>
-                <label for="score">
-                    <i score='1' class='star1 score'></i>
-                    <i score='2' class='star2 score'></i>
-                    <i score='3' class='star3 score'></i>
-                    <i score='4' class='star4 score'></i>
-                    <i score='5' class='star5 score'></i>
-                </label>
-            </div>
-            <div class="row not-margin">
-                <button type='button' next='observations' class='next' validation='required:score'>Siguiente</button>
-            </div>
-        </div>
-        <div class='slide' slide='observations'>
-            <div class='row not-margin'>
-                <label for="observation">Observaciones sobre el servicio</label><br>
-                <textarea name="observation" id="observation" cols="30" rows="10"></textarea>
-                <button type="submit">Enviar</button>
-            </div>
-        </div>
-{!!Form::close()!!}
+
+<div class='row not-margin'>
+   <div class='content'>
+       <div class="row">
+           <h1 class="title1">¿Le diste el servicio a Joe satisfactoriamente?</h1>
+       </div>
+       <div class="row">
+           <button type="button" class="button1 showModal background-active-green-color col-md-2 col-md-offset-4" modal='form-observation'>Si</button>
+           <button type="button" class='button1 col-md-2'>No</button>
+       </div>
+   </div>
 </div>
