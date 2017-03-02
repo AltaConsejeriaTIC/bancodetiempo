@@ -2,7 +2,7 @@
 	<div>
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<textarea name="response" id="response" class='col-md-10 col-md-offset-1' v-model='response' v-on:keydown.enter='send'></textarea>					
+				<textarea name="response" id="response" class='col-md-10 col-md-offset-1' v-model='response' v-on:keydown.enter='send'></textarea>
 			</div>
 		</div>
 		<div class="space10"></div>
@@ -29,8 +29,8 @@
 			}
 		},
 		props:['conversation', 'sender', 'token','applicant'],
-		mounted() {   
-				
+		mounted() {
+
 		},
 		methods:{
 			send:function(){
@@ -39,13 +39,13 @@
 					this.$http.post('/newMessage', data).then(response => {
 						this.response = '';
 					}, response => {
-					    console.log("error")
+					    console.log(this.response)
 					});
 				}
-				
+
 			},
 			getMessages:function(){
-				
+
 			}
 		}
 	}

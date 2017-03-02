@@ -15,6 +15,18 @@ class AdminContentController extends Controller
         $contents = AdminContent::orderBy('created_at','desc')->paginate(6);
         return view('admin/contents/list',compact('contents'));
     }
+    public function update(Request $request)
+    {
+        $cont = AdminContent::find($request->id);
+        $cont->name = $request->name;
+        $cont->description = $request->content;
+
+        if($cont->save())
+        {
+            Session::flash('success', '¡El contenido '.$request->category.' Se Registró con Exito!');
+            return redirect('homeAdminContents');
+        }
+    }
 
 
 
