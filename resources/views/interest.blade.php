@@ -3,7 +3,7 @@
 
 @include('nav', array('type' => 1))
 
-<section class='bannerRegister row'>
+<section class='bannerInterest row'>
 	 
 </section>
 

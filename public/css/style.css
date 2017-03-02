@@ -471,7 +471,10 @@ Banner Home
 Banner Register
 */
 .bannerRegister{
-	background: url(../images/banner.png);
+	background: url(../images/banner4.jpg);
+	background-size: 100% auto;
+	background-position: 100% 30%;
+	height: 450px;
 }
 
 /*
@@ -479,9 +482,10 @@ Banner interest
 */
 .bannerInterest{
 	position:relative !important;
-	background: url(../images/banner2.jpg);
-	background-size: 130% auto;
+	background: url(../images/banner4.jpg);
+	background-size: 100% auto;
     background-position: 100% 30%;
+	height: 130px;
 }
 
 /*
@@ -490,7 +494,7 @@ Banner First Service
 
 .bannerService{
     background: url(../images/banner4.jpg);
-    background-size: 130% auto;
+    background-size: 100% auto;
     background-position: 100% 30%;
     height: 450px;
 }
