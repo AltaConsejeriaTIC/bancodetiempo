@@ -31,6 +31,5 @@ Route::post('/newMessage','ConversationController@saveMessage');
 Route::post('/deal','ConversationController@deal');
 Route::put('/deal','ConversationController@dealUpdate');
 
-Route::get('/getTags/', 'ServiceController@getTags');
 
 Route::post('/addObservation','DealsController@saveObservation');
