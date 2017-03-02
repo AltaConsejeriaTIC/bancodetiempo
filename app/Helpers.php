@@ -24,7 +24,7 @@ class Helpers{
 			
 			$lastMessage = $messages[count($messages)-1];
 
-			if($lastMessage->state == 0 && $lastMessage->sender != Auth::User()->id){
+			if($lastMessage->state == 6 && $lastMessage->sender != Auth::User()->id){
 				$notifications += 1;
 			}
 		}
@@ -32,14 +32,11 @@ class Helpers{
 		foreach ($conversations as  $key => $conversation) {
 
 			$messages = json_decode($conversation->message);
-			
-            if(isset($messages[count($messages)-1])){
 
-                $lastMessage =  $messages[count($messages)-1];
+            $lastMessage =  $messages[count($messages)-1];
 
-                if($lastMessage->state == 0 && $lastMessage->sender != Auth::User()->id){
-                    $notifications += 1;
-                }
+            if($lastMessage->state == 6 && $lastMessage->sender != Auth::User()->id){
+                $notifications += 1;
             }
 
 
