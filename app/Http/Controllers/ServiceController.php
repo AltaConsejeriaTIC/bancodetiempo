@@ -313,7 +313,8 @@ class ServiceController extends Controller
    }
     public function getTags(){
         $tags = json_encode(Tag::all('tag'));
-        print ($tags);
+
+      print($tags);
     }
 
 }

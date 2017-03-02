@@ -44,6 +44,7 @@
     methods: {
       previewTags(tag){
          var n = tag.length;
+         console.log(this.tagsList);
          var suggestion= this.tagsList.filter( function (elemento){
             if(tag == elemento.tag.substring(0,n) ){
                 return elemento.tag;
