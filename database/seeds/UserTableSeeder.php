@@ -33,6 +33,7 @@ class UserTableSeeder extends Seeder
           'state_id' => 1,
           'role_id' => 1,
           'privacy_policy' => 1,
+          
       ]);      
     }
 }
