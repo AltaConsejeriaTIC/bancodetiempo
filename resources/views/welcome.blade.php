@@ -25,7 +25,7 @@
 						<p class='paragraph7'>Recibió una hora de cuentería de Juan</p>
 					</div>
 					
-				</div>|
+				</div>
 				<div class='row'>
 				
 					<div class='col-xs-4 col-sm-3 col-md-3'>

@@ -33,11 +33,17 @@ class Helpers{
 
 			$messages = json_decode($conversation->message);
 			
-			$lastMessage = $messages[count($messages)-1];
+            if(isset($messages[count($messages)-1])){
 
-			if($lastMessage->state == 0 && $lastMessage->sender != Auth::User()->id){
-				$notifications += 1;
-			}
+                $lastMessage =  $messages[count($messages)-1];
+
+                if($lastMessage->state == 0 && $lastMessage->sender != Auth::User()->id){
+                    $notifications += 1;
+                }
+            }
+
+
+
 		}
 
 		return $notifications;

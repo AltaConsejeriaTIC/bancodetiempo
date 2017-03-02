@@ -463,7 +463,7 @@ Banner Home
 */
 .bannerHome{
 	background: url(../images/banner.png);
-	background-size: 130% auto;
+	background-size: 100%;
     background-position: 100% 30%;
 }
 
