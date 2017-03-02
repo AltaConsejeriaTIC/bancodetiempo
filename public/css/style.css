@@ -591,6 +591,7 @@ Detail Service
 .slide {
     position: relative;
     float: left;
+    margin: 0px 15px;
 }
 
 input.stars + label > i {
@@ -871,6 +872,7 @@ Media Querys
 
 }
 
+
 /*
 Animations
 */
@@ -1040,6 +1042,7 @@ ul.dropdown-menu li:hover {
     top: 15%;
     z-index:1000;
     left: 0%;
+    overflow: hidden;
 }
 
 .contactMail .box {
@@ -1069,5 +1072,6 @@ ul.dropdown-menu li:hover {
 
 .box-animation {
 	text-align: center;
+
 	margin-top: -23%;
 }

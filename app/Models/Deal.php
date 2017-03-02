@@ -21,12 +21,12 @@ class Deal extends Model
 
 		return $this->hasMany(DealsObservations::class);
 
-  }
+    }
 
-  public function service()
-  {
-		return $this->belongsTo(Service::class);
-	}
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 
   public function user()
   {

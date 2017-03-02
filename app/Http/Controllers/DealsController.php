@@ -10,14 +10,16 @@ class DealsController extends Controller
 {
     public function saveObservation(Request $request){
 
-    	dd($request->all());
 
-    	DealsObservations::create([
+    	$observation = DealsObservations::create([
     		"user_id" => Auth::User()->id,
-    		"service_id" => $request->input("service_id"),
+    		"deals_id" => $request->input("deal_id"),
     		"score" =>  $request->input("score"),
     		"observation" => $request->input("observation")
     	]);
+
+
+        return redirect()->back()->with('response', true);
 
     }
 }

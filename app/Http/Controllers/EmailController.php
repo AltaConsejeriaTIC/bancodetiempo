@@ -53,18 +53,19 @@ class EmailController extends Controller
     		$message->subject('Notificación');
     		$message->to($mail);
     	});
+        
+        $conversation = Conversations::where("service_id", $service->id)->where("applicant_id", Auth::User()->id)->first();
 
-      $conversation = Conversations::where("service_id", $service->id)->where("applicant_id", Auth::User()->id)->first();
+        if(count($conversation) == 0){
+            $conversation = Conversations::create([
+                "service_id" => $service->id,
+                "applicant_id" => Auth::User()->id,
+                "message" => "[]"
+            ]);
+        }
 
-      if(count($conversation) == 0){
-          $conversation = Conversations::create([
-              "service_id" => $service->id,
-              "applicant_id" => Auth::User()->id,
-              "message" => "[]"
-          ]);
-      }
-
-      ConversationController::newMessage($content, $conversation->id, Auth::User()->id, 0, 0);
+        ConversationController::newMessage($content, $conversation->id, Auth::User()->id, 0);
+    	
 
     	return redirect()->back()->with('response', true);
 

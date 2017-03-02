@@ -14,5 +14,5 @@ require('laravel-elixir-vue-2');
  */
 
 elixir(function(mix) {
-    mix.webpack('app.js');
+    mix.webpack(['jQueryEvents.js', 'app.js'], "public/js/app.js");
 });
