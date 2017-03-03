@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Service;
+use App\Models\DealState;
 use App\User;
 
 class Deal extends Model
 {
-  protected  $fillable = ['user_id', 'service_id','date','time','location','value','description','state_id','observation'];
+  protected  $fillable = ['user_id', 'service_id','date','time','location','value','description'];
 
 
   	public function conversation(){
@@ -33,4 +34,8 @@ class Deal extends Model
     return $this->belongsTo(User::class);
   }
 
+  public function dealStates()
+  {
+    return $this->hasMany(DealState::class);
+  }
 }
