@@ -18,8 +18,7 @@
 			<div class='messageText col-md-8' >
 				{{$message->message}}
 			</div>
-			
-			
+						
 		</div>
 
 	</div>
