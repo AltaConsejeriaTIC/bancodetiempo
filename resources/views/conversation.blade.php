@@ -29,7 +29,7 @@
 			@endif
 
 		</div>		
-		@include('deals/bannerDeal')
+		
 		<div class='listMessages scrollBottom' >
 			<div id='messages' conversation='{{$conversation->id}}'></div>
 		</div>
