@@ -18,8 +18,7 @@
 			<div class='messageText col-md-8' >
 				{{$message->message}}
 			</div>
-
-			@include('deals/deal')
+			
 			
 		</div>
 
@@ -27,6 +26,9 @@
 
 @endforeach
 
+				@include('deals/deal')			
+
+<!--
 <div class='row not-margin'>
    <div class='content'>
        <div class="row">
@@ -38,3 +40,4 @@
        </div>
    </div>
 </div>
+-->

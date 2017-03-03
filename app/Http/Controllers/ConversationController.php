@@ -68,7 +68,16 @@ class ConversationController extends Controller
 			"message" => json_encode($messages)
 		]);
 
-		return view('conversation', compact("conversation"));
+		$deal = Deal::where("service_id","=",$conversation->service_id)
+									->where("user_id","=",$conversation->applicant_id)
+									->orderBy('created_at','desc')
+									->first();
+
+		$dealState = DealState::where('deal_id','=',$deal->id)
+													->orderBy('created_at','desc')
+													->first();
+
+		return view('conversation', compact("conversation","deal","dealState"));
 
 	}
 
@@ -80,9 +89,14 @@ class ConversationController extends Controller
 
 		$deal = Deal::where("service_id","=",$conversation->service_id)
 									->where("user_id","=",$conversation->applicant_id)
+									->orderBy('created_at','desc')
 									->first();
 
-		return view('messages', compact("conversation","deal"));
+		$dealState = DealState::where('deal_id','=',$deal->id)
+													->orderBy('created_at','desc')
+													->first();
+
+		return view('messages', compact("conversation","deal","dealState"));
 
 	}
 
@@ -120,21 +134,22 @@ class ConversationController extends Controller
 	}
 
 	public function dealUpdate(Request $request)
-	{
-		$deal = Deal::find($request->deal);
+	{		
+		$dealState = new DealState;		
     $email = new EmailController;
 
     if(!is_null($request->agree))
     {
-      $deal->state_id = 7;
-      $deal->save();
-      ConversationController::newMessage("", $request->conversation, Auth::User()->id);
+      $dealState->state_id = 7;
+      $dealState->deal_id = $request->deal;
+      $dealState->save();      
       //$email->sendMailDeal($deal);
 		}
 		if(!is_null($request->decline))
 		{
-			$deal->state_id = 8;
-			$deal->save();
+			$dealState->state_id = 8;
+      $dealState->deal_id = $request->deal;
+      $dealState->save();      
 		}
 		return redirect()->back();
 	}

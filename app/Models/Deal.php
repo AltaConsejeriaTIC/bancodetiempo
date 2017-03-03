@@ -9,7 +9,7 @@ use App\User;
 
 class Deal extends Model
 {
-  protected  $fillable = ['user_id', 'service_id','date','time','location','value','description','state_id'];
+  protected  $fillable = ['user_id', 'service_id','date','time','location','value','description'];
 
 
   	public function conversation(){
