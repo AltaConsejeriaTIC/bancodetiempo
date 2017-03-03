@@ -16,7 +16,7 @@
 				</div>
 				<div class='col-md-8'>
 					<h1 class='title2 text-white'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</h1>
-				</div>
+				</div>			
 
 			@else
 
@@ -26,16 +26,15 @@
 				<div class='col-md-8'>
 					<h1 class='title2 text-white'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</h1>
 				</div>
-
 			@endif
 
-		</div>
-
+		</div>		
+		
 		<div class='listMessages scrollBottom' >
 			<div id='messages' conversation='{{$conversation->id}}'></div>
 		</div>
 		<div class='responseBox'>
-			<sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}' applicant="{{$conversation->applicant_id}}">
+			<sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}' applicant="{{$conversation->applicant_id}}" deal="{{$dealState ? $dealState->state_id : 0}}">
 			</sendmessage>		
 			{!! Form::open(['url' => '/deal', 'method' => 'post', 'class' => 'form-custom row validation']) !!}
 				<deals token='{{ csrf_token() }}' service_id='{{$conversation->service_id}}' applicant="{{$conversation->applicant_id}}" conversation='{{$conversation->id}}'></deals>
@@ -54,13 +53,17 @@
                         <h1 class="title1 col-md-10 col-md-offset-1">¡Califica tu experiencia!</h1>
                     </div>
                     <div class="row">
-                        <p class="paragraph4 col-md-12 text-center">Oferta: Fotografía de Bodas</p>
+                        <p class="paragraph4 col-md-12 text-center">Oferta: {{$conversation->service->name}}</p>
                     </div>
                     <div class="row">
                         <p class="paragraph4 text-center text-red col-md-12">Debes calificar este servicio para seguir ofertando y/o recibiendo servicios dentro de la plataforma.</p>
                     </div>
                     <div class="row">
-                        <h3 class="title2 col-md-12">Valora a Joe</h3>
+                        @if($conversation->service->user->id == Auth::User()->id)
+                            <h3 class="title2 col-md-12">Valora a {{$conversation->applicant->first_name}}</h3>
+                        @elseif($conversation->applicant_id == Auth::User()->id)
+                            <h3 class="title2 col-md-12">Valora a {{$conversation->service->user->first_name}}</h3>
+                        @endif
                     </div>
                     <div class="row">
                         <p class="paragraph4 col-md-12">Amabilidad, respeto y confianza</p>
@@ -113,9 +116,9 @@
                           <input type="hidden" name='offerer_id' value='{{$conversation->service->user->id}}'>
                           <input type="hidden" name='applicant_id' value='{{$conversation->applicant_id}}'>
                            @if($conversation->service->user->id == Auth::User()->id)
-                                <input type="hidden" name="scoreFrom" value='offerer'>
+                              <input type="hidden" name="scoreFrom" value='offerer'>
                             @elseif($conversation->applicant_id == Auth::User()->id)
-                                <input type="hidden" name="scoreFrom" value='applicant'>
+                              <input type="hidden" name="scoreFrom" value='applicant'>
                             @endif
                            <button type="submit" class='button1 background-active-color col-md-12'>Enviar</button>
                        </div>
