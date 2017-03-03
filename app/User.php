@@ -60,6 +60,12 @@ class User extends Authenticatable
 
     }
 
+    public function user_score(){
+
+        return $this->hasMany(UserScore::class);
+
+    }
+
     public function state()
     {
       return $this->belongsTo(State::class);

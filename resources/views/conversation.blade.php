@@ -54,13 +54,17 @@
                         <h1 class="title1 col-md-10 col-md-offset-1">¡Califica tu experiencia!</h1>
                     </div>
                     <div class="row">
-                        <p class="paragraph4 col-md-12 text-center">Oferta: Fotografía de Bodas</p>
+                        <p class="paragraph4 col-md-12 text-center">Oferta: {{$conversation->service->name}}</p>
                     </div>
                     <div class="row">
                         <p class="paragraph4 text-center text-red col-md-12">Debes calificar este servicio para seguir ofertando y/o recibiendo servicios dentro de la plataforma.</p>
                     </div>
                     <div class="row">
-                        <h3 class="title2 col-md-12">Valora a Joe</h3>
+                        @if($conversation->service->user->id == Auth::User()->id)
+                            <h3 class="title2 col-md-12">Valora a {{$conversation->applicant->first_name}}</h3>
+                        @elseif($conversation->applicant_id == Auth::User()->id)
+                            <h3 class="title2 col-md-12">Valora a {{$conversation->service->user->first_name}}</h3>
+                        @endif
                     </div>
                     <div class="row">
                         <p class="paragraph4 col-md-12">Amabilidad, respeto y confianza</p>
