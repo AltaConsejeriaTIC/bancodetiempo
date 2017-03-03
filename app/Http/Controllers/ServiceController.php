@@ -26,7 +26,7 @@ class ServiceController extends Controller
     $categories = Category::all();
     $user = User::find(auth::user()->id);
  		$selectedCategories = [];
- 		
+
     JavaScript::put([
        'userJs'=> $user,
        'categoriesJs' => $categories,
@@ -313,8 +313,7 @@ class ServiceController extends Controller
    }
     public function getTags(){
         $tags = json_encode(Tag::all('tag'));
-
-      print($tags);
+        print ($tags);
     }
 
 }

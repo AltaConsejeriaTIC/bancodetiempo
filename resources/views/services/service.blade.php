@@ -72,6 +72,7 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
 					<div class='col-xs-12  col-sm-12'>
 
@@ -82,6 +83,11 @@
 								</a>
 							@endif
 						@endforeach
+					</div>
+					<div>
+						<hr class="  col-md-12 report_line">
+						<a class="report" href="" title="Reportar Contenido" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class=" material-icons " aria-hidden="true">report</i>Reportar contenido</a>
+						@include('/services/report')
 					</div>
 				</article>
 
