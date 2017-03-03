@@ -113,9 +113,9 @@
                           <input type="hidden" name='offerer_id' value='{{$conversation->service->user->id}}'>
                           <input type="hidden" name='applicant_id' value='{{$conversation->applicant_id}}'>
                            @if($conversation->service->user->id == Auth::User()->id)
-                                <input type="hidden" name="scoreFrom" value='offerer'>
+                              <input type="hidden" name="scoreFrom" value='offerer'>
                             @elseif($conversation->applicant_id == Auth::User()->id)
-                                <input type="hidden" name="scoreFrom" value='applicant'>
+                              <input type="hidden" name="scoreFrom" value='applicant'>
                             @endif
                            <button type="submit" class='button1 background-active-color col-md-12'>Enviar</button>
                        </div>

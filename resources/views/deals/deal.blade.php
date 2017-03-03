@@ -1,4 +1,5 @@
 
+{{dd($deal->dealStates)}}
 {!! Form::open(['url' => '/deal', 'method' => 'put', 'class' => 'form-custom row validation']) !!}
   <div class="messageDealText col-md-10">
     <input type="hidden" name="deal" value="{{$deal->id}}">

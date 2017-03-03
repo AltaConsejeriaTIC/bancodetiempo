@@ -39,7 +39,7 @@
 					this.$http.post('/newMessage', data).then(response => {
 						this.response = '';
 					}, response => {
-					    console.log(this.response)
+					    
 					});
 				}
 
