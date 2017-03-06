@@ -79,7 +79,6 @@ class ConversationController extends Controller
 		else
 			$dealState = null;
 
-
 		return view('conversation', compact("conversation","deal","dealState"));
 
 	}
@@ -102,7 +101,9 @@ class ConversationController extends Controller
 		else
 			$dealState = null;
 
-		return view('messages', compact("conversation","deal","dealState"));
+		$deals = Deal::all();
+
+		return view('messages', compact("conversation","deal","dealState","deals"));
 
 	}
 
