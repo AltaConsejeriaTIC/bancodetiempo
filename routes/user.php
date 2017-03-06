@@ -31,5 +31,6 @@ Route::post('/newMessage','ConversationController@saveMessage');
 Route::post('/deal','ConversationController@deal');
 Route::put('/deal','ConversationController@dealUpdate');
 
-
 Route::post('/addObservation','DealsController@saveObservation');
+
+Route::post('/report/create','ConversationController@deal');

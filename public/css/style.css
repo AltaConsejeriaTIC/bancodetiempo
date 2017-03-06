@@ -514,7 +514,23 @@ Service box
     border: 0.25px solid #a0a0a0;
     max-width: 100%;
 }
-
+.report{
+	color: #999;
+	font-size: 14px;
+	position: relative;
+	left: 81.5%;
+}
+.report_line{
+	color:#999;
+	font-size: 14px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	border: 0;
+	border-top: 1px solid #999;
+}
+.report_icon{
+	font-size: 90px;
+}
 .service-box span.category {
 	background: rgba(0, 0, 0, 0.6);
 	position: absolute;
