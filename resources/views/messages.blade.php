@@ -26,7 +26,9 @@
 
 @endforeach
 
-@include('deals/deal')
+@if($message->dealState != 8)
+	@include('deals/deal')			
+@endif
 
 @if($conversation->applicant_id == Auth::User()->id)
    @if(!is_null($conversation->deals->last()->user->user_score->where("user_evaluator_id", $conversation->service->user->id)->last()))
