@@ -36,22 +36,22 @@
 
                 </div>
                 @if($conversation->service->user->id != Auth::User()->id)
-                <div class="row">
-                    <p class="paragraph4 col-md-12">Calidad del servicio</p>
-                </div>
-                <div class="row">
-                   <div class="col-md-12">
-                        <input type="hidden" name='scoreService' id='scoreService' class='stars validation' data-validations='["required"]'>
-                        <label for="scoreService">
-                            <i score='1' class='star1 score' input='scoreService'></i>
-                            <i score='2' class='star2 score' input='scoreService'></i>
-                            <i score='3' class='star3 score' input='scoreService'></i>
-                            <i score='4' class='star4 score' input='scoreService'></i>
-                            <i score='5' class='star5 score' input='scoreService'></i>
-                        </label>
-                   </div>
+                    <div class="row">
+                        <p class="paragraph4 col-md-12">Calidad del servicio</p>
+                    </div>
+                    <div class="row">
+                       <div class="col-md-12">
+                            <input type="hidden" name='scoreService' id='scoreService' class='stars validation' data-validations='["required"]'>
+                            <label for="scoreService">
+                                <i score='1' class='star1 score' input='scoreService'></i>
+                                <i score='2' class='star2 score' input='scoreService'></i>
+                                <i score='3' class='star3 score' input='scoreService'></i>
+                                <i score='4' class='star4 score' input='scoreService'></i>
+                                <i score='5' class='star5 score' input='scoreService'></i>
+                            </label>
+                       </div>
 
-                </div>
+                    </div>
                 @endif
                 <div class="row">
                     <p class="paragraph4 col-md-12">Deja un comentario (Max. 250 caracteres)</p>
@@ -69,6 +69,8 @@
                      <input type="hidden" name='service_id' value='{{$conversation->service->id}}'>
                       <input type="hidden" name='offerer_id' value='{{$conversation->service->user->id}}'>
                       <input type="hidden" name='applicant_id' value='{{$conversation->applicant_id}}'>
+                      <input type="hidden" name='response' value='1'>
+                      <input type="hidden" name='deal_id' value=''>
                        @if($conversation->service->user->id == Auth::User()->id)
                           <input type="hidden" name="scoreFrom" value='offerer'>
                         @elseif($conversation->applicant_id == Auth::User()->id)

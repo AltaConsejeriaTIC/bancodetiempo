@@ -13,8 +13,10 @@ function callMessages(){
 
 function showModal(){
 
-    var modal = jQuery(this).attr("modal")
+    var modal = jQuery(this).attr("modal");
+    var deal = jQuery(this).attr("deal");
     jQuery("#"+modal).addClass("show");
+    jQuery("#"+modal).find("input[name='deal_id']").val(deal)
     jQuery("#"+modal).find(".shadow").on("click", function(){
          jQuery("#"+modal).removeClass("show");
     })
