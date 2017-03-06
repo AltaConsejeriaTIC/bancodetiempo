@@ -8,15 +8,15 @@
         @if($dealState->state_id == 4 || $dealState->state_id == 8)
           <h1 class="title1 text-center">Propuesta de acuerdo</h1>
         @endif
-        
+
         @if($dealState->state_id == 7)
           <h1 class="title1 text-center">Acuerdo</h1>
         @endif
-        
+
         @if($dealState->state_id == 4 && Auth()->user()->id == $deal->user_id)
           <h4 class="textDealIntialState text-center">¡Tienes 72 horas para aceptar!</h4>
         @endif
-        
+
         @if($dealState->state_id == 4 && Auth()->user()->id == $deal->service->user->id)
           <h4 class="textDealIntialState text-center">¡Esperando a que {{$deal->user->first_name}} acepte tu propuesta!</h4>
         @endif
@@ -28,7 +28,7 @@
         @if($dealState->state_id == 7 && Auth()->user()->id == $deal->user->id)
           <h4 class="textDealAgreedState text-center">¡Tienes un acuerdo con {{$deal->service->user->first_name}}!</h4>
         @endif
-        
+
         @if($dealState->state_id == 8 && Auth()->user()->id == $deal->user_id && $message->sender == $deal->user->id)
           <h4 class="textDealAgreedState text-red text-center">¡No aceptaste la propuesta de {{$deal->service->user->first_name}}!</h4>
         @endif

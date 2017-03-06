@@ -129,7 +129,7 @@ class CreateAlterAllTables extends Migration
                 ->on('services')
                 ->onUpdate("cascade");
 
-            $table->foreign('conversation_id')
+            $table->foreign('conversations_id')
                 ->references('id')
                 ->on('conversations')
                 ->onUpdate("cascade");

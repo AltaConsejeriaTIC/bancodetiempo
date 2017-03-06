@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Models\InterestUser;
 use App\Models\Message;
 use App\Models\AttainmentUsers;
+use App\Models\UserScore;
 
 class User extends Authenticatable
 {

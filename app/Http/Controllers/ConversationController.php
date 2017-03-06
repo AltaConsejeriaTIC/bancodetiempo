@@ -75,7 +75,7 @@ class ConversationController extends Controller
 		if($deal)
 			$dealState = DealState::where('deal_id','=',$deal->id)
 													->orderBy('created_at','desc')
-													->first();		
+													->first();
 		else
 			$dealState = null;
 
@@ -98,7 +98,7 @@ class ConversationController extends Controller
 		if($deal)
 			$dealState = DealState::where('deal_id','=',$deal->id)
 													->orderBy('created_at','desc')
-													->first();		
+													->first();
 		else
 			$dealState = null;
 
@@ -128,7 +128,7 @@ class ConversationController extends Controller
     $deal->location = $request->dealLocation;
     $deal->value = $request->valueService;
     $deal->description = $request->observations;
-    $deal->conversation_id = $request->conversation;
+    $deal->conversations_id = $request->conversation;
 		$deal->save();
 
 		$dealState = new DealState;
@@ -153,12 +153,12 @@ class ConversationController extends Controller
       ConversationController::newMessage("Propuesta Aceptada", $request->conversation, Auth::User()->id,$request->deal,$dealState->state_id);
       //$email->sendMailDeal($deal);
 		}
-		
+
 		if(!is_null($request->decline))
 		{
 			$dealState->state_id = 8;
       $dealState->deal_id = $request->deal;
-      $dealState->save();   
+      $dealState->save();
 
       ConversationController::newMessage("Propuesta Cancelada", $request->conversation, Auth::User()->id,$request->deal,$dealState->state_id);
 

@@ -22,7 +22,9 @@ class CreateDealsTable extends Migration
             $table->string("location");
             $table->integer("value");
             $table->text("description")->nullable();
-            $table->integer("conversation_id")->unsigned();            
+            $table->integer("conversations_id")->unsigned();
+            $table->boolean("response_applicant")->nullable();
+            $table->boolean("response_offerer")->nullable();
             $table->timestamps();
         });
     }
