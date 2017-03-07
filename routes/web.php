@@ -1,4 +1,4 @@
-$listTypes<?php
+<?php
 
 use App\Http\Controllers\Profile\ProfileController;
 
