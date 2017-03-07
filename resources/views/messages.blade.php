@@ -19,7 +19,7 @@
 						@include('deals/dealMessages')
 					@else
 						<div class='messageText col-md-8' >
-								{{$message->message}}
+							{{$message->message}}
 						</div>
 					@endif
 			</div>
@@ -28,8 +28,10 @@
 
 @endforeach
 
-@if($dealState->state_id != 8)
-	@include('deals/deal')			
+@if(!is_null($dealState))
+    @if($dealState->state_id != 8)
+    	@include('deals/deal')			
+    @endif
 @endif
 
 @if(!is_null($conversation->deals->first()))
