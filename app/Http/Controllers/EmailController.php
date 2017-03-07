@@ -67,13 +67,15 @@ class EmailController extends Controller
         ConversationController::newMessage($content, $conversation->id, Auth::User()->id,0,0);
     	
 
-    	return redirect()->back()->with('response', true);
-
-    	//return view('mailContact',compact("service", "userauth", "imageProfile", "imageService" ,'content', "myImageProfile"));
+    	return redirect()->back()->with('response', true);    	
     }
 
-    public function sendMailDeal($deal)
+    public function sendMailDeal($Addressee,$stateDeal,$action)
     {
-      dd($deal->service_id);
+      if($action == "new")
+      {
+        $user = User::findOrFail($Addressee);        
+        dd($user,$stateDeal,$action);
+      }
     }
 }
