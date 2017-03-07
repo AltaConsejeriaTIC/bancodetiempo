@@ -93,7 +93,7 @@ class NetworkAccountsController extends Controller
 					'email2' => $providerData['email'],
 					'first_name' => $providerData['first_name'],
 					'last_name' => $providerData['last_name'],
-					'avatar' => $providerData['avatar'],
+					'avatar' => '',
 					'state_id' => 4,
 					'gender' => $providerData['gender'],
 					'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
@@ -106,10 +106,33 @@ class NetworkAccountsController extends Controller
 		$account->save();
 
 		auth()->login($user);	
-		
+
+		$avatar = $this->getAvatar($providerData['avatar']);
+        if($avatar){
+            $user->update([
+                'avatar' => $avatar
+            ]);
+        }
+
+
 		return true;
 
 	}
+
+    public function getAvatar($url){
+        if(mkdir('resources/user/user_'.Auth::id(), 0777, true)) {
+             $img = 'resources/user/user_'.Auth::id().'/img'.Auth::id().'.jpg';
+            $file = fopen($img,"w+");
+            if($file != false){
+              file_put_contents($img, file_get_contents($url));
+              return $img;
+            }else{
+                return false;
+            }
+        }
+
+
+    }
 
 	public function callback($provider){
 

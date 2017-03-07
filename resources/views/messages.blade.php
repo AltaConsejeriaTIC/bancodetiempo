@@ -7,7 +7,7 @@
 				@if($message->sender != Auth::User()->id)
 				 	@if($conversation->applicant_id == Auth::User()->id)
 						<div class="col-md-1 image">
-							@include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#fff', 'borderSize' => '1px'))
+							@include('partial/imageProfile', array('cover' => $conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#fff', 'borderSize' => '1px'))
 						</div>
 					@else
 						<div class="col-md-1 image">

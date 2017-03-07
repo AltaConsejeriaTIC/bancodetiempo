@@ -96,7 +96,7 @@
 						<div class="col-xs-6 col-xs-offset-3">
 							<avatar :cover='myData.cover'>
 								<template scope="props">
-									@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#0f6784', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
+									@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
 								</template>
 							</avatar>
 						</div>
