@@ -18,7 +18,7 @@ class EmailController extends Controller
     {
     	$service = Service::findOrFail($serviceId);
 
-    	$userauth = User::find ( auth::user ()->id );
+    	$userauth = User::find(auth::user()->id);
 
   		$mail = $service->user->email2;
 
@@ -70,12 +70,20 @@ class EmailController extends Controller
     	return redirect()->back()->with('response', true);    	
     }
 
-    public function sendMailDeal($Addressee,$stateDeal,$action)
+    public function sendMailDeal($Addressee,$userService,$userAuth,$action)
     {
-      if($action == "new")
+      dd("Pendiente Envio!!");
+      $user = User::findOrFail($Addressee);
+      $mail = $user->email2;        
+
+      Mail::send('deals/dealEmail',["user" => $user, "action" => $action], function ($message) use ($mail)
       {
-        $user = User::findOrFail($Addressee);        
-        dd($user,$stateDeal,$action);
-      }
+        $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+        $message->subject('Notificación');
+        $message->to($mail);
+      });
+
+      return redirect()->back();
+      
     }
 }

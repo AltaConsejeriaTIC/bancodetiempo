@@ -3,6 +3,8 @@
   {!! Form::open(['url' => '/deal', 'method' => 'put', 'class' => 'form-custom row validation']) !!}
     <div class="messageDealText col-md-10">
       <input type="hidden" name="deal" value="{{$deal->id}}">
+      <input type="hidden" name="applicant" value="{{$deal->user_id}}">
+      <input type="hidden" name="userService" value="{{$deal->service->user->id}}">      
       <input type="hidden" name="conversation" value="{{$conversation->id}}">
       <div class="row">
         @if($dealState->state_id == 4 || $dealState->state_id == 8)

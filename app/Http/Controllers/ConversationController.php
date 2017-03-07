@@ -140,7 +140,7 @@ class ConversationController extends Controller
 
 		ConversationController::newMessage("¡Has enviado un propuesta!", $request->conversation, Auth::User()->id,$deal->id,$dealState->state_id);
 
-		$email->sendMailDeal($deal->user_id,$dealState->state_id,"new");
+		$email->sendMailDeal($deal->user_id,$deal->service->user->id,Auth::user()->id,"new");
 		
 		return redirect()->back();
 	}
@@ -155,7 +155,8 @@ class ConversationController extends Controller
       $dealState->state_id = 7;
       $dealState->deal_id = $request->deal;
       $dealState->save();      
-      ConversationController::newMessage("Propuesta Aceptada", $request->conversation, Auth::User()->id,$request->deal,$dealState->state_id);      
+      ConversationController::newMessage("Propuesta Aceptada", $request->conversation, Auth::User()->id,$request->deal,$dealState->state_id);
+      $email->sendMailDeal($request->applicant,$request->userService,Auth::user()->id,"agree");      
 		}
 
 		if(!is_null($request->decline))
@@ -165,6 +166,7 @@ class ConversationController extends Controller
       $dealState->save();
 
       ConversationController::newMessage("Propuesta Cancelada", $request->conversation, Auth::User()->id,$request->deal,$dealState->state_id);
+      $email->sendMailDeal($request->applicant,$request->userService,Auth::user()->id,"decline");
 
 		}
 		return redirect()->back();
