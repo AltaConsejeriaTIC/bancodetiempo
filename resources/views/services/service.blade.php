@@ -49,7 +49,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="content">
-								<p class="paragraph4 text-center">{{$service->description}}</p>
+								<p class="paragraph4 ">{{$service->description}}</p>
 								<div class="space15">
 								</div>
 							</div>
