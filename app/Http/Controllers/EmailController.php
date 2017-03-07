@@ -72,7 +72,7 @@ class EmailController extends Controller
 
     public function sendMailDeal($Addressee,$userService,$userAuth,$action)
     {
-      dd("Pendiente Envio!!");
+      //"Pendiente Envio!!"
       $user = User::findOrFail($Addressee);
       $mail = $user->email2;        
 
