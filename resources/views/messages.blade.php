@@ -7,7 +7,7 @@
 				@if($message->sender != Auth::User()->id)
 				 	@if($conversation->applicant_id == Auth::User()->id)
 						<div class="col-md-1 image">
-							@include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#fff', 'borderSize' => '1px'))
+							@include('partial/imageProfile', array('cover' => $conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#fff', 'borderSize' => '1px'))
 						</div>
 					@else
 						<div class="col-md-1 image">
@@ -19,7 +19,7 @@
 						@include('deals/dealMessages')
 					@else
 						<div class='messageText col-md-8' >
-								{{$message->message}}
+							{{$message->message}}
 						</div>
 					@endif
 			</div>
@@ -28,8 +28,10 @@
 
 @endforeach
 
-@if($dealState->state_id != 8)
-	@include('deals/deal')			
+@if(!is_null($dealState))
+    @if($dealState->state_id != 8)
+    	@include('deals/deal')			
+    @endif
 @endif
 
 @if(!is_null($conversation->deals->first()))
