@@ -15,11 +15,12 @@
                         </div>
                         {!!Form::open(['url' => 'report/update','method'=> 'put', 'class'=>'form-custom'])!!}
                             <div class="row ">
-                                <div class="form-group col-md-12" >
+                                <div class="col-md-12" >
                                     {!!Form::label('Categotia', '¿Cual es el problema?',['class' => 'paragraph10 text-center'])!!}
-                                    {!!Form::select('size', array('L' => 'Large', 'S' => 'Small'), 'l', ['class' => 'col-xs-12 col-sm-12 col-md-12 validation', 'required' => "required"])!!}
+                                    {!!Form::select('size', $listTypes , 'l', ['class' => 'col-xs-12 col-sm-12 col-md-12 validation', 'required' => "required"])!!}
+
                                 </div>
-                                <div class="form-group col-md-12" >
+                                <div class="col-md-12" >
                                     {!!Form::label('Observación', 'Observación',['class' => 'paragraph10 text-center'])!!}
                                     {!!Form::textarea('Observación',null, ['class' => 'countCharacters col-xs-12 col-sm-12 col-md-12 validation', 'required' => "required", "min:50", "max:250"])!!}
                                 </div>

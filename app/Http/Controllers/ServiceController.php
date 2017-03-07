@@ -7,6 +7,7 @@ use App\Models\Service;
 use Session;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\TypeReport;
 use App\Models\TagsService;
 use App\Models\Attainment;
 use App\Models\AttainmentUsers;
@@ -114,13 +115,13 @@ class ServiceController extends Controller
      $categories = Category::all('id', 'category');
      $service = Service::findOrFail($serviceId);
      $user = User::find($service->user_id);
-
+     $listTypes = TypeReport::pluck('type','id');
      JavaScript::put([
          'userJs'=> $user,
          'categoriesJs' => $categories,
      ]);
    		
-     return view('services/service', compact('categories', 'service', 'method' ,'user'));
+     return view('services/service', compact('categories', 'service', 'method' ,'user','listTypes'));
    		
 
    }
