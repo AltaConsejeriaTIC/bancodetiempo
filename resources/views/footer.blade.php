@@ -3,9 +3,9 @@
 	<div class="container">
 		
 		<div class="row">
-
-
-
+			
+			<a class="button5" href="/terms">Términos y condiciones</a>			
+			<a class="button5" href="/privacyPolicies">Políticas de privacidad</a>
 		</div>
 	
 	</div>

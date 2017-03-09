@@ -12,10 +12,16 @@ class TermsController extends Controller
 
     public function index()
     {
-
-        $content = AdminContent::find(1);
-        return view('terms',compact('content'));
+      $content = AdminContent::find(1);
+      return view('terms',compact('content'));
     }
+
+    public function privacyPolicies()
+    {      
+      return view('privacyPolicies');
+    }
+
+
 
 
 }
