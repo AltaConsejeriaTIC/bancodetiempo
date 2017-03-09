@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Models\Deal;
+use App\Models\DealState;
 use App\Models\UserScore;
 use App\Models\ServiceScore;
 
@@ -63,6 +64,11 @@ class DealsController extends Controller
 
         $this->exchange($request->input("deal_id"));
 
+        DealState::create([
+            "deal_id" => $request->input("deal_id"),
+            "state_id" => 10
+        ]);
+
         return redirect()->back()->with('response', true);
 
     }
@@ -71,11 +77,11 @@ class DealsController extends Controller
 
         $_deal = Deal::find($deal);
 
+        $applicant = User::find($_deal->user_id);
+
+        $offerer = User::find($_deal->service->user_id);
+
         if($_deal->response_applicant == 1 && $_deal->response_offerer == 1){
-
-            $applicant = User::find($_deal->user_id);
-
-            $offerer = User::find($_deal->service->user_id);
 
             $applicant->update([
                 "credits" => $applicant->credits-$_deal->value
@@ -89,6 +95,17 @@ class DealsController extends Controller
 
         if($_deal->response_applicant == 0 && $_deal->response_offerer == 0){
 
+            if($_deal->applicant_badObservations_id == 3 && $_deal->offerer_badObservations_id == 2){
+
+                $applicant->update([
+                    "credits" => $applicant->credits-$_deal->value
+                ]);
+
+                $offerer->update([
+                    "credits" => $offerer->credits+$_deal->value
+                ]);
+
+            }
 
         }
 

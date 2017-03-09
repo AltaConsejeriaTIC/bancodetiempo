@@ -19,6 +19,15 @@ class CreateDealStatesTable extends Migration
             $table->integer('state_id')->unsigned();            
             $table->timestamps();
         });
+
+        DB::unprepared("CREATE EVENT `dealInProgress`
+                        ON SCHEDULE EVERY 5 MINUTE
+                        STARTS '2017-02-28 00:00:00.000000'
+                        ENDS '2025-05-27 00:00:00.000000'
+                        ON COMPLETION NOT PRESERVE ENABLE DO
+                        SELECT * FROM deals
+                        ");
+
     }
 
     /**
