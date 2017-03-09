@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Models\Service;
 use App\Models\State;
 use Session;
 use Validator;
@@ -45,7 +46,12 @@ class AdminController extends Controller
       $users = User::with('state','role')->orderBy('created_at','desc')->paginate(6);   
       $states = State::where('id','!=','2')->pluck('state','id');      
       return view('admin/users/list',compact('users','states'));
-    }    
+    }
+    public function homeAdminServices()
+    {
+        $services = Service::orderBy('created_at','desc')->paginate(6);
+        return view('admin/services/list',compact('services'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -120,6 +126,19 @@ class AdminController extends Controller
           return redirect('homeAdminUser');
       }        
     }
+
+    public function showServices(Request $request)
+    {
+        if($request->name != '')
+        {
+            $services = Service::where('first_name', 'LIKE', "%$request->name%")->paginate(6);
+            return view('admin/services/list', compact('services'));
+        }
+        else
+        {
+            return redirect('homeAdminServices');
+        }
+    }
   
     /**
      * Update the specified resource in storage.
@@ -167,6 +186,42 @@ class AdminController extends Controller
       catch (Exception $e) 
       {
       }              
+    }
+
+    public function updateServices(Request $request)
+    {
+        try
+        {
+            $rules = [
+                'name' => 'required|min:3|alpha_spaces'
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails())
+            {
+                return redirect()->back()->withInput()->withErrors($validator->errors());
+            }
+            else
+            {
+                $service = Service::find($request->id);
+                $service->state_id = $request->state;
+
+                if ($user->save())
+                {
+                    Session::flash('success', '¡La oferta con nombre '.$request->name.' fue cambiada de estado con Exito!');
+                    return redirect('homeAdminUser');
+                }
+                else
+                {
+                    Session::flash('error', '¡Error con actualizar el estado de la oferta con nombre '.$request->name);
+                    return redirect('homeAdminUser');
+                }
+            }
+        }
+        catch (Exception $e)
+        {
+        }
     }
 
     /**

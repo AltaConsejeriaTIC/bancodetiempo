@@ -22,7 +22,11 @@ class Service extends Model
 		return $this->belongsTo(Category::class);
 
 	}
+    public function state(){
 
+        return $this->belongsTo(State::class);
+
+    }
 	public function tags(){
 
 		return $this->hasMany(TagsService::class);

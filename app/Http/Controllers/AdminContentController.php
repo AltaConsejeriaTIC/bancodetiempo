@@ -19,7 +19,7 @@ class AdminContentController extends Controller
     {
         $cont = AdminContent::find($request->id);
         $cont->name = $request->name;
-        $cont->description = $request->content;
+        $cont->description = $request->input('content');
 
         if($cont->save())
         {

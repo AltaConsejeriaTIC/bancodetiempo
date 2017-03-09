@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\TypeReport;
+use App\Models\Reports;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 class ReportsController extends Controller
 {
 
-    public function index($serviceId)
+    public function create(Request $request, $serviceId)
     {
-        $service= Service::find($serviceId);
-        $user = User::find(auth::user()->id);
-        $listTypes=TypeReport::all();
-        return view('',compact('service','user', 'listTypes'));
+        $userauth = User::find ( auth::user ()->id );
+        $report = Reports::create([
+            'service_id' => $serviceId,
+            'user_id' => $userauth->id,
+            'type_report_id' => $request->input('list'),
+            'observation' =>$request->input('observacion')
+        ]);
     }
 
 }
