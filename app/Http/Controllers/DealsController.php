@@ -13,36 +13,49 @@ class DealsController extends Controller
 {
     public function saveObservation(Request $request){
 
+        $badObservation = is_null($request->input("badObservation")) ? 1 : (int) $request->input("badObservation");
+
+        $score = is_null($request->input("score")) ? 0 : $request->input("score");
+
         if($request->input("scoreFrom") == "offerer"){
             UserScore::create([
                "user_evaluator_id" => Auth::User()->id,
                 "user_id" => $request->input("applicant_id"),
-                "score" => $request->input("score"),
+                "score" => $score,
                 "observation" => $request->input("observation")
             ]);
 
             Deal::find($request->input("deal_id"))->update([
-               "response_offerer" => $request->input("response")
+                "response_offerer" => $request->input("response"),
+                "offerer_badObservations_id" => $badObservation
             ]);
 
         }elseif($request->input("scoreFrom") == "applicant"){
 
-            UserScore::create([
-               "user_evaluator_id" => Auth::User()->id,
-                "user_id" => $request->input("offerer_id"),
-                "score" => $request->input("score"),
-                "observation" => $request->input("observation")
-            ]);
+
+
+            if($request->input("response") == 1){
+
+                UserScore::create([
+                   "user_evaluator_id" => Auth::User()->id,
+                    "user_id" => $request->input("offerer_id"),
+                    "score" => $score,
+                    "observation" => $request->input("observation")
+                ]);
+
+            }
 
             ServiceScore::create([
                 "service_id" => $request->input("service_id"),
                 "user_id" => Auth::User()->id,
-                "score" => $request->input("score"),
-                "observation" => $request->input("observation")
+                "score" => $score,
+                "observation" => $request->input("observation"),
+                "badObservations_id" => $badObservation
             ]);
 
             Deal::find($request->input("deal_id"))->update([
-               "response_applicant" => $request->input("response")
+                "response_applicant" => $request->input("response"),
+                "applicant_badObservations_id" => $badObservation
             ]);
 
 
@@ -71,6 +84,11 @@ class DealsController extends Controller
             $offerer->update([
                 "credits" => $offerer->credits+$_deal->value
             ]);
+
+        }
+
+        if($_deal->response_applicant == 0 && $_deal->response_offerer == 0){
+
 
         }
 

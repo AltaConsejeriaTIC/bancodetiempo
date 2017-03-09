@@ -107,7 +107,7 @@
            </div>
            <div class="row">
                <button type="button" class="button1 showModal background-active-green-color col-md-2 col-md-offset-4" deal='{{$conversation->deals->last()->id}}'  modal='form-observation'>Si</button>
-               <button type="button" class='button10 background-white col-md-2'>No</button>
+               <button type="button" class='button10 background-white col-md-2 showModal' deal='{{$conversation->deals->last()->id}}' modal='form-bad-observation'>No</button>
            </div>
        </div>
     </div>

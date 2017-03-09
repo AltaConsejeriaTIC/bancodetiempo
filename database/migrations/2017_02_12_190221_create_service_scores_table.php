@@ -19,6 +19,7 @@ class CreateServiceScoresTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('score');
             $table->string('observation',250)->nullable();
+            $table->integer("badObservations_id")->unsigned()->default(1);
             $table->timestamps();
         });
     }

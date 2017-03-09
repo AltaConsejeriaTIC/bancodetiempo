@@ -104,15 +104,22 @@
                 <div class="row">
                     <p class="paragraph4 text-center text-red col-md-12">Elije el motivo por el cuál no se realizó el acuerdo.</p>
                 </div>
-                <div class="row">
-                    <p class="paragraph4 col-md-12">Amabilidad, respeto y confianza</p>
-                </div>
+                @foreach(App\Models\BadObservation::where('id', '!=', 1)->get() as $observation)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="radio" value='{{$observation->id}}' name='badObservation' class='square' id='observation{{$observation->id}}'>
+                            <label for="observation{{$observation->id}}">{{$observation->observation}}</label>
+                        </div>
+                    </div>
+                @endforeach
+
+
                 <div class="row">
                    <div class="col-md-12">
                      <input type="hidden" name='service_id' value='{{$conversation->service->id}}'>
                       <input type="hidden" name='offerer_id' value='{{$conversation->service->user->id}}'>
                       <input type="hidden" name='applicant_id' value='{{$conversation->applicant_id}}'>
-                      <input type="hidden" name='response' value='1'>
+                      <input type="hidden" name='response' value='0'>
                       <input type="hidden" name='deal_id' value=''>
                        @if($conversation->service->user->id == Auth::User()->id)
                           <input type="hidden" name="scoreFrom" value='offerer'>
@@ -125,7 +132,7 @@
                 <br>
                 <div class="row">
                     <div class="col-md-12">
-                       <button type="button" class='button10 background-white col-md-12 hiddenModal' modal='form-observation'>Cancelar</button>
+                       <button type="button" class='button10 background-white col-md-12 hiddenModal' modal='form-bad-observation'>Cancelar</button>
                    </div>
                 </div>
                 <br>

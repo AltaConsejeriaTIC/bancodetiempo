@@ -120,17 +120,17 @@ class NetworkAccountsController extends Controller
 	}
 
     public function getAvatar($url){
-        if(mkdir('resources/user/user_'.Auth::id(), 0777, true)) {
-             $img = 'resources/user/user_'.Auth::id().'/img'.Auth::id().'.jpg';
-            $file = fopen($img,"w+");
-            if($file != false){
-              file_put_contents($img, file_get_contents($url));
-              return $img;
-            }else{
-                return false;
-            }
+        if(!is_dir('resources/user/user_'.Auth::id())){
+            mkdir('resources/user/user_'.Auth::id(), 0777, true);
         }
-
+        $img = 'resources/user/user_'.Auth::id().'/img'.Auth::id().'.jpg';
+        $file = fopen($img,"w+");
+        if($file != false){
+          file_put_contents($img, file_get_contents($url));
+          return $img;
+        }else{
+            return false;
+        }
 
     }
 
