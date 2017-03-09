@@ -13,7 +13,7 @@
 		<article>
 			<div style='width:90%;margin-left:15px;color:#fff;float:left;background:#0f6784;padding: 0px 15px;border-radius:4px;font-family: "Open Sans", sans-serif;''>
 				<p style="color:#fff">
-					Hola {{$user->first_name}}, tienes nueva actividad en la plataforma:
+					Hola {{$Addressee->first_name}}, tienes nueva actividad en la plataforma:
 				</p>
 				<p>
 					@if($action == "new")
@@ -27,7 +27,7 @@
 					@endif
 				</p>
 			</div>
-			<hr style='display:block;width:100%;border:none;height:10px;'>
+			<hr style='display:block;width:100%;border:none;height:20px;'>
 			<a href='http://localbancodetiempo.com' align='center' style='background:#2cba36;display:block;width:60%;margin-left:15%;padding:15px;border-radius:4px;color:#fff;font-weight: bold;text-decoration: none;'>Ingresa para más Información</a>
 		</article>
 		<article>

@@ -70,13 +70,13 @@ class EmailController extends Controller
     	return redirect()->back()->with('response', true);    	
     }
 
-    public function sendMailDeal($Addressee,$userService,$userAuth,$action)
+    public function sendMailDeal($Addressee,$action)
     {
-      //"Pendiente Envio!!"
-      $user = User::findOrFail($Addressee);
-      $mail = $user->email2;
+      //"Pendiente Envio!!"      
+      $Addressee = User::findOrFail($Addressee);
+      $mail = $Addressee->email2;
 
-      Mail::send('deals/dealEmail',["user" => $user, "action" => $action], function ($message) use ($mail)
+      Mail::send('deals/dealEmail',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail)
       {
 
         $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
