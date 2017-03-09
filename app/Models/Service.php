@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Models\serviceScore;
 
 
 class Service extends Model
@@ -26,6 +27,12 @@ class Service extends Model
 	public function tags(){
 
 		return $this->hasMany(TagsService::class);
+
+	}
+
+    public function serviceScore(){
+
+		return $this->hasMany(serviceScore::class);
 
 	}
 

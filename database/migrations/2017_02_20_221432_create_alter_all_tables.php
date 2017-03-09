@@ -133,6 +133,16 @@ class CreateAlterAllTables extends Migration
                 ->references('id')
                 ->on('conversations')
                 ->onUpdate("cascade");
+
+            $table->foreign('applicant_badObservations_id')
+                ->references('id')
+                ->on('bad_observations')
+                ->onUpdate("cascade");
+
+            $table->foreign('offerer_badObservations_id')
+                ->references('id')
+                ->on('bad_observations')
+                ->onUpdate("cascade");
         });
 
         Schema::table('deal_states', function($table)
@@ -158,6 +168,11 @@ class CreateAlterAllTables extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
+                ->onUpdate("cascade");
+
+            $table->foreign('badObservations_id')
+                ->references('id')
+                ->on('bad_observations')
                 ->onUpdate("cascade");
         });       
 

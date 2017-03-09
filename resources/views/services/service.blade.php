@@ -161,11 +161,11 @@
 	      			<div v-validation:msg="">
 		      			<div class="row">
 		      				<div class="col-md-12">
-		      					<textarea name="content" class='validation ' id="content" rows="10" placeholder='Ej. ¡Hola! Me llamo Joe, me gustaría tomar tu oferta ya que dentro de poco será mi matrimonio, y quiero conservar los mejores recuerdos de ese día. ¿Te parece bien si nos encontramos el Lunes, 6 de Agosto a las 3 PM en el Parque Simón Bolivar para realizar la actividad? Espero tu respuesta.'  data-validations='["required", "min:50", "max:250"]'></textarea>
+		      					<textarea name="content" class='validation ' id="content" rows="10" placeholder='Ej. ¡Hola! Me llamo Joe, me gustaría tomar tu oferta ya que dentro de poco será mi matrimonio, y quiero conservar los mejores recuerdos de ese día. ¿Te parece bien si nos encontramos el Lunes, 6 de Agosto a las 3 PM en el Parque Simón Bolivar para realizar la actividad? Espero tu respuesta.'  data-validations='["required", "min:20", "max:250"]'></textarea>
 		      					<div class='clearfix'></div>
 		      					<div class="msg" errors='content'>
 									<p error='required'>Este campo es obligatorio.</p>
-									<p error='min'>Este campo debe ser mínimo de 50 caracteres.</p>
+									<p error='min'>Este campo debe ser mínimo de 20 caracteres.</p>
 									<p error='max'>Este campo debe ser máximo de 250 caracteres.</p>
 								</div>
 		      				</div>

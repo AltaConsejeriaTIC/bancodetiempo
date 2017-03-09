@@ -672,6 +672,7 @@ notificacion icon
 .notification {
 	position: relative;
 	right: 38px;
+    cursor: pointer;
 }
 
 .notification > span {

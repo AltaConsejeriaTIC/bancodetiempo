@@ -75,7 +75,7 @@ class EmailController extends Controller
       if($action == "new")
       {
         $user = User::findOrFail($Addressee);        
-        dd($user,$stateDeal,$action);
+        //dd($user,$stateDeal,$action);
       }
     }
 }
