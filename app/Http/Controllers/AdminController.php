@@ -131,7 +131,7 @@ class AdminController extends Controller
     {
         if($request->name != '')
         {
-            $services = Service::where('first_name', 'LIKE', "%$request->name%")->paginate(6);
+            $services = Service::where('name', 'LIKE', "%$request->name%")->paginate(6);
             return view('admin/services/list', compact('services'));
         }
         else
