@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reports extends Model
 {
-    protected  $fillable = ['observation'];
+    protected $fillable = ['TypeReport','observation'];
+
+    public function TypeReport()
+    {
+
+        return $this->belongsTo(TypeReport::class);
+
+
+    }
 }

@@ -9,6 +9,6 @@ class DatabaseSeeder extends BaseSeeder
     );
 
     protected $seeders = array(
-        'State','Role','User', 'NetworkAccounts' , 'Category', 'Tags',  'Services', 'TagsService', 'Attainment' , 'AdminContent', 'BadObservation'
+        'State','Role','User', 'NetworkAccounts' , 'Category', 'Tags',  'Services', 'TagsService', 'Attainment' , 'AdminContent', 'BadObservation','TypeReport'
     );
 }

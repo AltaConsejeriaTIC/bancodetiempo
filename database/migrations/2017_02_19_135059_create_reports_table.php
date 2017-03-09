@@ -17,6 +17,7 @@ class CreateReportsTable extends Migration
             $table->increments('id');
             $table->integer('service_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('type_report_id')->unsigned();
             $table->string('observation',250)->nullable();
             $table->timestamps();
         });
