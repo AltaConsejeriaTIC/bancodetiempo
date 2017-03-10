@@ -33,4 +33,4 @@ Route::put('/deal','ConversationController@dealUpdate');
 
 Route::post('/addObservation','DealsController@saveObservation');
 
-Route::post('/report/create','ConversationController@deal');
+Route::post('/report/create/{serviceid?}','ReportsController@create');
