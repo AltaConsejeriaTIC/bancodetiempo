@@ -11,10 +11,10 @@
                 <h1 class="title1">Propuesta de acuerdo</h1>
                 <h4>Oferta:</h4>
             </div>
+          	<input type="hidden" name="service" v-model="this.service_id">
+          	<input type="hidden" name="applicant" v-model="this.applicant">
+          	<input type="hidden" name="conversation" v-model="this.conversation">
             <div class="modal-body">
-            	<input type="hidden" name="service" v-model="this.service_id">
-            	<input type="hidden" name="applicant" v-model="this.applicant">
-            	<input type="hidden" name="conversation" v-model="this.conversation">
             	<div class="row not-margin">
 								<label for="dealDate" class="paragraph10">Fecha de realización del acuerdo</label>
 							</div>
@@ -29,12 +29,15 @@
 							</div>
 							<div class="row not-margin">
 								<label for="dealLocation" class="paragraph10">Lugar</label>
+							</div>							
+							<div class="row not-margin">
+								<input type="text" name="dealLocation" id="pac-input" placeholder="Parque Simón Bolivar">
 							</div>
 							<div class="row not-margin">
-								<input type="text" name="dealLocation" placeholder="Parque Simón Bolivar">
+								<div id="id="map""></div>
 							</div>
 							<div class="row not-margin">
-								<label class="paragraph10">Tiempo de duración de la actividad que estás ofertando</label>
+								<label class="paragraph10">Tiempo de duración de la actividad que estás ofertando</label>								
 							</div>
 							<div class="row not-margin">
 								<div class="col-xs-6 col-sm-6">
