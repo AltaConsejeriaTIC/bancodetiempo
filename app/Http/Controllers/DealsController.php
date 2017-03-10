@@ -64,10 +64,15 @@ class DealsController extends Controller
 
         $this->exchange($request->input("deal_id"));
 
-        DealState::create([
-            "deal_id" => $request->input("deal_id"),
-            "state_id" => 10
-        ]);
+        $deal = Deal::find($request->input("deal_id"));
+
+        if(!is_null($deal->response_applicant) && !is_null($deal->response_offerer)){
+
+            DealState::create([
+                "deal_id" => $request->input("deal_id"),
+                "state_id" => 10
+            ]);
+        }
 
         return redirect()->back()->with('response', true);
 
