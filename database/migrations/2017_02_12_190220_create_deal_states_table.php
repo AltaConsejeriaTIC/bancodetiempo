@@ -66,7 +66,7 @@ class CreateDealStatesTable extends Migration
             FETCH cursor1 INTO trato;
 
             SELECT state_id INTO estado FROM deal_states WHERE deal_id = trato ORDER BY id DESC LIMIT 0,1;
-            IF estado = 4 THEN INSERT INTO deal_states (deal_id, state_id,created_at ,updated_at) VALUES (trato, 9,NOW(), NOW()); END IF;
+            IF estado = 4 THEN INSERT INTO deal_states (deal_id, state_id,created_at ,updated_at) VALUES (trato, 8,NOW(), NOW()); END IF;
 
         END LOOP c1_loop;
 
