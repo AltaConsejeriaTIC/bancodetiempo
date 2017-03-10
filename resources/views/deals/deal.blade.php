@@ -85,7 +85,7 @@
                     Declinar
                 </button>
               </div>
-            @else
+            @elseif($dealState->state_id != 12)
               <div class="col-md-4 col-md-offset-4 text-center">
                 <button name="decline" class='dealButtonCancel background-white col-md-12'>
                     Cancelar
@@ -94,6 +94,26 @@
             @endif
         </div>
       @endif
+
+      @if($dealState->state_id == 12)
+        <div class='row not-margin'>
+           <div class='content'>
+               <div class="row">
+                   <div class="col-md-12">
+                        @if($conversation->applicant_id == Auth::User()->id)
+                            <h1 class="title2">¿Recibiste con éxito el servicio de Diego?</h1>
+                        @else
+                            <h1 class="title2">¿Le diste el servicio a Joe satisfactoriamente?</h1>
+                        @endif
+                   </div>
+               </div>
+               <div class="row">
+                   <button type="button" class="button1 showModal background-active-green-color col-md-2 col-md-offset-4" deal='{{$conversation->deals->last()->id}}'  modal='form-observation'>Si</button>
+                   <button type="button" class='button10 background-white col-md-2 showModal' deal='{{$conversation->deals->last()->id}}' modal='form-bad-observation'>No</button>
+               </div>
+           </div>
+        </div>
+    @endif
     </div>
   {!!Form::close()!!}
 @endif

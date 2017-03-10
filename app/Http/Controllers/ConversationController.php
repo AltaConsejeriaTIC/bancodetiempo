@@ -91,12 +91,12 @@ class ConversationController extends Controller
 
 		$deal = Deal::where("service_id","=",$conversation->service_id)
 									->where("user_id","=",$conversation->applicant_id)
-									->orderBy('created_at','desc')
+									->orderBy('id','desc')
 									->first();
 
 		if($deal)
 			$dealState = DealState::where('deal_id','=',$deal->id)
-													->orderBy('created_at','desc')
+													->orderBy('id','desc')
 													->first();
 		else
 			$dealState = null;
