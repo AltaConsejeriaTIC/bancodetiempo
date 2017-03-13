@@ -1127,9 +1127,11 @@ ul.dropdown-menu li:hover {
 
 #map
 {
-  height: 100%;
+	position: absolute !important;
+  height: 200%;
+  width: 50%;
 }
-
+/*
 .controls {
   margin-top: 10px;
   border: 1px solid transparent;
@@ -1155,4 +1157,4 @@ ul.dropdown-menu li:hover {
 #pac-input:focus {
   border-color: #4d90fe;
 }
-
+*/
