@@ -28,17 +28,17 @@ class AdminContentTableSeeder extends Seeder
         {
             $this->create([
                 "name" => "Terminos y Condiciones",
-                "url" => "/terms",
+                "url" => "terms",
                 "description" => ""
             ]);
             $this->create([
                 "name" => "Políticas de Privacidad",
-                "url" => "/",
+                "url" => "privacity",
                 "description" => ""
             ]);
             $this->create([
                 "name" => "Preguntas Frecuentes",
-                "url" => "/s",
+                "url" => "questions",
                 "description" => ""
             ]);
 
