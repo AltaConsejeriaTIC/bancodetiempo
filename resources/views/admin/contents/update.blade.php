@@ -14,9 +14,9 @@
                         {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required'])!!}
                     </div>
 
-                    <div class="form-group col-md-10" >
+                    <div class="form-group col-md-12" >
                         {!!Form::label('content', 'Contenido')!!}
-                        {!!Form::textarea('content',$cont->description, ['class' => 'form-control', 'required' => 'required'])!!}
+                        {!!Form::textarea('content',$cont->description, ['class' => 'form-control editor', 'required' => 'required'])!!}
                     </div>
             </div>
             </div>
@@ -27,3 +27,4 @@
         {!! Form::close()!!}
     </div>
 </div>
+
