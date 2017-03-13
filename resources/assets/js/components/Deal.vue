@@ -31,7 +31,7 @@
 								<label for="dealLocation" class="paragraph10">Lugar</label>
 							</div>
 							<div class="row not-margin">
-
+								<input type="text" name="dealLocation" placeholder="Parque Simón Bolivar">
 							</div>
 							<div class="row not-margin">
 
