@@ -7,8 +7,9 @@
         @else
             @include('nav',array('type' => 3))
         @endif
-
-        {!! $content->description !!}
+        <div class="container ">
+            {!! $content->description !!}
+        </div>
 
     @endsection
 
