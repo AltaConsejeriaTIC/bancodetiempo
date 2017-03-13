@@ -81,7 +81,5 @@ class CategoryTableSeeder extends Seeder
           "category" => "Otros",
           "image" => "services/otros01.jpg"
         ]);
-
-
     }
 }
