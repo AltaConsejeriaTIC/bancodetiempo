@@ -8,7 +8,7 @@
             @include('nav',array('type' => 3))
         @endif
 
-        {{print($content->description)}}
+        {!! $content->description !!}
 
     @endsection
 
