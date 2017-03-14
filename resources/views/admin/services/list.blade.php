@@ -23,11 +23,10 @@
 							<table class="table table-striped table-hover">
 							  <thead>
 							  	<tr>
-
 									<th>name</th>
 							  	  <th>description</th>
-							  	  <th>user_id</th>
-							  	  <th>state_id</th>
+							  	  <th>Usuario</th>
+							  	  <th>Estado</th>
 							  	  <th>Acción</th>
 							  	</tr>
 						    </thead>
@@ -36,15 +35,17 @@
 						        <tr>
 						        	<td>{{ $service->name }}</td>
 						        	<td>{{ $service->description }}</td>
-						        	<td>{{ $service->user_id }}</td>
-						        	<td>{{ $service->state_id }}</td>
+						        	<td>{{$service->user->first_name." ".$service->user->last_name}}</td>
+						        	<td>{{ $service->state->state }}</td>
 						        	<td>
 										<a class="btn btn-raised btn-primary btn-xs" href="" title="Ver oferta" data-toggle="modal" data-target="#show-dialog{{$service->id}}"><i class="material-icons">find_in_page</i></a>
 						        		<a class="btn btn-raised btn-primary btn-xs" href="" title="Editar estado" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class="material-icons">mode_edit</i></a>
 									</td>
 						        </tr>
 								@include('admin/services/show')
-						      @endforeach
+								@include('admin/services/update')
+
+							  @endforeach
 						    </tbody>         
 						  </table>						
 						</div>

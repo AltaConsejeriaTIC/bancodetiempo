@@ -58,8 +58,6 @@
                             </div>
                             <div class="col-md-10">
                               <p class="paragraph4 text-bold">{{$service->value}} <span> Dorados</span></p>
-                              <p class="paragraph8 ">Cada lache vale una hora de tu tiempo, y del tiempo de cualquier persona.</p>
-                            </div>
                           </div>
                         </div>
 
