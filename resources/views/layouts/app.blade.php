@@ -55,8 +55,5 @@
     <script src="{{ asset('js/app.js') }}"></script>    
     <script src="{{ asset('js/mapsFunctions.js') }}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA&libraries=places"></script>
-<!--
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA&libraries=places&callback=initMap"
-        async defer></script>
--->
+    
 </html>

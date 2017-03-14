@@ -15,8 +15,8 @@
                 <h4 class="textDealAgreedState text-red text-center">¡{{$deal->user->first_name}} ha declinado tu propuesta!</h4>
               @endif
 
-              @if($value->state_id == 8 && $message->sender == $deal->service->user->id && Auth()->user()->id == $deal->user_id)
-                <h4 class="textDealAgreedState text-red text-center">¡{{$deal->user->first_name}} ha cancelado la propuesta!</h4>
+              @if($value->state_id == 8 && Auth()->user()->id == $deal->user_id && $message->sender == $deal->service->user->id )
+                <h4 class="textDealAgreedState text-red text-center">¡{{$deal->service->user->first_name}} ha cancelado la propuesta!</h4>
               @endif
 
               @if($value->state_id == 8 && $message->sender == $deal->service->user->id && Auth()->user()->id == $deal->service->user->id)
