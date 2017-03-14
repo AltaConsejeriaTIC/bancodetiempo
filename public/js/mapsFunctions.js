@@ -10,7 +10,7 @@ $(function(){
     navigationControl:true
   };
   var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  var input = document.getElementById('calle');
+  var input = document.getElementById('place');
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
   var infowindow = new google.maps.InfoWindow();
