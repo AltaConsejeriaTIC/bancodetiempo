@@ -106,11 +106,8 @@
 						<article class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0">	
 							<div class="col-xs-12  not-padding ">					
 								<h1 class="title1 text-centernot-margin-top">¿Qué&nbsp;deseas&nbsp;ofrecer?</h1>
-					        </div>		
-			      	<div class="row col-xs-12">					
-			          	<p class="paragraph10 text-bold text-opacity not-margin-y">Si no sabes qué compartir,</p>
-			          	<a href="/test" class='link2'>realiza nuestro test de habilidades</a>
-			      	</div>
+					    </div>		
+			      	
 			      	<div class='space'></div>            	
 			      	{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}             
 			      		<firstservice></firstservice>
