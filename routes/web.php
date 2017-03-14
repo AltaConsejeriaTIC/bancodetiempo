@@ -15,9 +15,7 @@ use App\Http\Controllers\Profile\ProfileController;
 
 Route::get('/', 'HomeController@indexNotRegister');
 Route::get('/home', 'HomeController@index');
-Route::get('/terms', 'TermsController@index');
-Route::get('/privacyPolicies', 'TermsController@privacyPolicies');
-Route::get('/test', 'TestController@index');
+Route::get('/content/{name}', 'ContentController@index');
 
 //Social Loging
 

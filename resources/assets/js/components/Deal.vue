@@ -29,15 +29,18 @@
 							</div>
 							<div class="row not-margin">
 								<label for="dealLocation" class="paragraph10">Lugar</label>
-							</div>							
-							<div class="row not-margin">
-								<input type="text" name="dealLocation" id="pac-input" placeholder="Parque Simón Bolivar">
 							</div>
 							<div class="row not-margin">
-								<div id="id="map""></div>
+								<input type="text" name="dealLocation" placeholder="Parque Simón Bolivar">
 							</div>
 							<div class="row not-margin">
-								<label class="paragraph10">Tiempo de duración de la actividad que estás ofertando</label>								
+
+              </div>
+              <div class="row not-margin">
+
+              </div>
+							<div class="row not-margin">
+								<label class="paragraph10">Tiempo de duración de la actividad que estás ofertando</label>
 							</div>
 							<div class="row not-margin">
 								<div class="col-xs-6 col-sm-6">

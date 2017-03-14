@@ -88,7 +88,7 @@
             <div class="row not-margin" v-show='this.profile == 0'>
                 <div class='col-xs-12'>
                     <input type="checkbox" name="terms" value="1" id="terms" class="square validation" v-model="terms" data-validations='["required"]'>
-					<label for="terms">Aceptar los <a href="terms" target="_blank">términos y condiciones</a> de la plataforma</label> 
+					<label for="terms">Aceptar los <a href="/content/terms" target="_blank">términos y condiciones</a> de la plataforma</label>
                 </div>
             </div>
 

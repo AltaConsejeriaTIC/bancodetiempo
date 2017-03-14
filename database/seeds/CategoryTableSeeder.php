@@ -26,28 +26,60 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         $this->create([
-          "category" => "Arte y Diseño",
-          "image" => "category-profile.png"
+          "category" => "Cocina",
+          "image" => "services/cocina01.jpg"
         ]);        
         $this->create([
-          "category" => "Negocios",
-          "image" => "category-profile.png"
+          "category" => "Idiomas",
+          "image" => "services/idiomas01.jpg"
         ]);        
         $this->create([
-          "category" => "Educación",
-          "image" => "category-profile.png"
+          "category" => "Música",
+          "image" => "services/musica01.jpg"
         ]);
         $this->create([
-          "category" => "Fitness",
-          "image" => "category-profile.png"
+          "category" => "Diseño",
+          "image" => "services/diseño01.jpg"
         ]);
         $this->create([
-          "category" => "Hogar",
-          "image" => "category-profile.png"
+          "category" => "Arte",
+          "image" => "services/arte01.jpg"
+        ]);
+        $this->create([
+          "category" => "Entretenimiento",
+          "image" => "services/entretenimiento01.jpg"
+        ]);
+        $this->create([
+          "category" => "Moda",
+          "image" => "services/moda01.jpg"
+        ]);
+        $this->create([
+          "category" => "Multimedia",
+          "image" => "services/multimedia01.jpg"
+        ]);
+        $this->create([
+          "category" => "Literatura",
+          "image" => "services/literatura01.jpg"
+        ]);
+        $this->create([
+          "category" => "Ciencia",
+          "image" => "services/ciencia01.jpg"
         ]);
         $this->create([
           "category" => "Tecnología",
-          "image" => "category-profile.png"
+          "image" => "services/tecnologia01.jpg"
+        ]);
+        $this->create([
+          "category" => "Actividad Física y deportes",
+          "image" => "services/actividadfisica01.jpg"
+        ]);
+        $this->create([
+          "category" => "Administración y negocios",
+          "image" => "services/administracionynegocios01.jpg"
+        ]);
+        $this->create([
+          "category" => "Otros",
+          "image" => "services/otros01.jpg"
         ]);
     }
 }

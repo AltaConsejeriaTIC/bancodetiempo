@@ -19,10 +19,10 @@
     <!-- Bootstrap Material Design -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-material-design.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/summernote.css') }}">
+
     <!-- Custom styles -->
     <link href="{{ asset('/css/styleAdmin.css') }}" rel="stylesheet">
-
-    <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -108,6 +108,13 @@
     <script src="{{ asset('/js/material.min.js') }}"></script>   
     <script src="{{ asset('/js/ripples.min.js') }}"></script>   
     <script src="{{ asset('/js/script.js') }}"></script>
-
+    <script src="{{ asset('js/summernote.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery('.editor').summernote({
+              height:300,
+            });
+        });
+    </script>
 </body>
 </html>

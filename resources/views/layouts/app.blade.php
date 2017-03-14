@@ -20,14 +20,14 @@
         <!-- Bootstrap Material Design-->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-material-design.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
-       
+
         <!-- Custom styles -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
-       
+
         <!-- Scripts -->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>       
-           
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
         <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
@@ -36,18 +36,22 @@
 
     </head>
 
-    <body >   
+    <body >
         @include('prependvarjs')
         <div id="app">
-            @yield('content')        
+            @yield('content')
             @include('footer')
             @include('partial.messageAttainments')
         </div>
     </body>
 
     <!--  Scripts-->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>         
-    <script src="{{ asset('js/materialize.js') }}"></script>        
-    <script src="{{ asset('js/app.js') }}"></script>       
-    
+     <script src="{{ asset('js/mapsFunctions.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA&libraries=places&callback=initMap"
+        async defer></script>
+
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/materialize.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
 </html>

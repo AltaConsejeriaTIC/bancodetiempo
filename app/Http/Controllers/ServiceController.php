@@ -213,7 +213,7 @@ class ServiceController extends Controller
             'virtually' =>$virtually,
             'presently' =>$presently,
             'user_id' => Auth::user()->id,
-            'image' => "resources/categories/".$category->image,
+            'image' => "resources/".$category->image,
             'category_id' => $request->input('categoryService'),            
             'state_id' => 1
         ]);
