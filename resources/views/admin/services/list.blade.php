@@ -39,11 +39,11 @@
 						        	<td>{{ $service->user_id }}</td>
 						        	<td>{{ $service->state_id }}</td>
 						        	<td>
-						        		<a class="btn btn-raised btn-primary btn-xs" href="" title="Editar Usuario" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class="material-icons">mode_edit</i></a>
-						        		<a class="btn btn-raised btn-primary btn-xs" href="" title="Más Detalles" data-toggle="modal" data-target="#show-dialog{{$service->id}}"><i class="material-icons">find_in_page</i></a>
-						        	</td>                 
+										<a class="btn btn-raised btn-primary btn-xs" href="" title="Ver oferta" data-toggle="modal" data-target="#show-dialog{{$service->id}}"><i class="material-icons">find_in_page</i></a>
+						        		<a class="btn btn-raised btn-primary btn-xs" href="" title="Editar estado" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class="material-icons">mode_edit</i></a>
+									</td>
 						        </tr>
-
+								@include('admin/services/show')
 						      @endforeach
 						    </tbody>         
 						  </table>						
