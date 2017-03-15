@@ -10,7 +10,7 @@ Route::put('adminUser/update', ['as' => 'adminUser/update', 'uses'=>'AdminContro
 
 Route::get('homeAdminServices', 'AdminController@homeAdminServices');
 Route::post('homeAdminServices/show', ['as' => 'homeAdminServices/show', 'uses'=>'AdminController@showServices']);
-Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'uses'=>'AdminController@updateServices']);
+Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'uses'=>'AdminController@updateServiceState']);
 
 Route::resource('homeAdminCategory', 'CategoryController');
 Route::post('homeAdminCategory/show', ['as' => 'homeAdminCategory/show', 'uses'=>'CategoryController@show']);

@@ -40,14 +40,22 @@ class Service extends Model
 
 	}
 
-	public function setImageAttribute($value){
+    public function reports(){
 
-		if(!empty($value) && $value !=  ''){
+        return $this->hasMany(Reports::class);
 
-			$this->attributes['image'] = $value;
+    }
 
-		}
+	public function setImageAttribute($value)
+    {
 
-	}
+        if (!empty($value) && $value != '') {
+
+            $this->attributes['image'] = $value;
+
+        }
+    }
+
+
 	
 }
