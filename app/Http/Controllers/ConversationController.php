@@ -61,7 +61,9 @@ class ConversationController extends Controller
 		$messages = json_decode($conversation->message);
 
 		foreach ($messages as $key => $value) {
-			$messages[$key]->state = 1;
+            if($messages[$key]->sender != Auth::id()){
+                $messages[$key]->state = 5;
+            }
 		}
 
 		$conversation->update([
