@@ -66,7 +66,12 @@ class CreateDealStatesTable extends Migration
             FETCH cursor1 INTO trato;
 
             SELECT state_id INTO estado FROM deal_states WHERE deal_id = trato ORDER BY id DESC LIMIT 0,1;
-            IF estado = 4 THEN INSERT INTO deal_states (deal_id, state_id,created_at ,updated_at) VALUES (trato, 8,NOW(), NOW()); END IF;
+            SELECT conversations_id INTO conversation FROM deals WHERE id = trato;
+            SELECT message INTO json FROM conversations WHERE id = conversation;
+            IF estado = 4 THEN SET json = SUBSTRING(json, 1, CHAR_LENGTH(json) - 1)+\",{'message':'Propuesta Cancelada','date':'2017-03-15','time':'15:26:52','sender':2,'state':6,'deal':'1','dealState':8}]\";
+            INSERT INTO deal_states (deal_id, state_id,created_at ,updated_at) VALUES (trato, 8,NOW(), NOW());
+            UPDATE conversations SET message = json;
+            END IF;
 
         END LOOP c1_loop;
 
