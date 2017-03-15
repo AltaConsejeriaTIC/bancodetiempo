@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Service;
+use App\Models\AdminContent;
 use App\Models\State;
 use Session;
 use Validator;
@@ -139,7 +140,23 @@ class AdminController extends Controller
             return redirect('homeAdminServices');
         }
     }
-  
+    public function index()
+    {
+        $contents = AdminContent::orderBy('created_at','desc')->paginate(6);
+        return view('admin/contents/list',compact('contents'));
+    }
+    public function updateContent(Request $request)
+    {
+        $cont = AdminContent::find($request->id);
+        $cont->name = $request->name;
+        $cont->description = $request->input('content');
+
+        if($cont->save())
+        {
+            Session::flash('success', '¡El contenido '.$request->category.' Se Registró con Exito!');
+            return redirect('homeAdminContents');
+        }
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -186,6 +203,19 @@ class AdminController extends Controller
       catch (Exception $e) 
       {
       }              
+    }
+
+    public function updateServiceState(Request $request)
+    {
+        $service = AdminContent::find($request->id);
+        $service->state_id = $request->state_id;
+
+        if($service->save())
+        {
+            Session::flash('success', '¡El contenido '.$request->category.' Se Registró con Exito!');
+            return redirect('homeAdminContents');
+        }
+
     }
 
     public function updateServices(Request $request)

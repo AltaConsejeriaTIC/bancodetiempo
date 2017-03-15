@@ -98,15 +98,15 @@ class CreateDealStatesTable extends Migration
 
         DB::unprepared("DROP EVENT IF EXISTS `dealForRating`");
 
-        DB::unprepared("DROP PROCEDURE IF EXISTS `changeDealForRating");
+        DB::unprepared("DROP PROCEDURE IF EXISTS `changeDealForRating`");
 
         DB::unprepared("DROP EVENT IF EXISTS `changeToFinishDeal`");
 
-        DB::unprepared("DROP PROCEDURE IF EXISTS `finishDeal");
+        DB::unprepared("DROP PROCEDURE IF EXISTS `finishDeal`");
 
         DB::unprepared("DROP EVENT IF EXISTS `changeToRefuseDeal`");
 
-        DB::unprepared("DROP PROCEDURE IF EXISTS `refuseDeal");
+        DB::unprepared("DROP PROCEDURE IF EXISTS `refuseDeal`");
 
     }
 }

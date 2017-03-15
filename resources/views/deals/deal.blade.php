@@ -24,11 +24,11 @@
         @endif
 
         @if($dealState->state_id == 7 && Auth()->user()->id == $deal->service->user->id)
-          <h4 class="textDealAgreedState text-center">¡Tienes un acuerdo con {{$deal->user->first_name}}!</h4>
+          <h4 class="textDealAgreedState textColorSuccessDeal text-center">¡Tienes un acuerdo con {{$deal->user->first_name}}!</h4>
         @endif
 
         @if($dealState->state_id == 7 && Auth()->user()->id == $deal->user->id)
-          <h4 class="textDealAgreedState text-center">¡Tienes un acuerdo con {{$deal->service->user->first_name}}!</h4>
+          <h4 class="textDealAgreedState textColorSuccessDeal text-center">¡Tienes un acuerdo con {{$deal->service->user->first_name}}!</h4>
         @endif
 
         @if($dealState->state_id == 8 && Auth()->user()->id == $deal->user_id && $message->sender == $deal->user->id)

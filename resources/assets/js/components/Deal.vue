@@ -30,11 +30,11 @@
 							<div class="row not-margin">
 								<label for="dealLocation" class="paragraph10">Lugar</label>
 							</div>
-							<div class="row not-margin">
-
+							<div class="row not-margin">																
+								<input type="text" name="dealLocation" id="place" placeholder="Parque Simón Bolivar" size="60" />
 							</div>
 							<div class="row not-margin">
-
+								<div id="map_canvas" class="map"></div>
               </div>
               <div class="row not-margin">
 

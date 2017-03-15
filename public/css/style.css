@@ -285,7 +285,7 @@ Helpers
 }
 
 .text-red{
-    color:#cd0000;
+    color: #cd0000;
 }
 
 .text-opacity {
@@ -783,8 +783,11 @@ conversation box
   font-style: normal;
   font-stretch: normal;
   line-height: 1;
-  letter-spacing: normal;
-  color: #2cba36;
+  letter-spacing: normal;  
+}
+
+.textColorSuccessDeal{
+	color: #2cba36;
 }
 
 .conversationBox .image {
@@ -1125,34 +1128,8 @@ ul.dropdown-menu li:hover {
 	margin-top: -23%;
 }
 
-#map
-{
-  height: 100%;
+.map
+{	
+  height: 250px;
+  width: 100%;
 }
-
-.controls {
-  margin-top: 10px;
-  border: 1px solid transparent;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  height: 32px;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-#pac-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 300px;
-}
-
-#pac-input:focus {
-  border-color: #4d90fe;
-}
-

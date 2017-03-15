@@ -45,8 +45,5 @@
 @include("partial/observationForm")
 
 </div>
-<div>
-                      <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
-                    </div>
-                  <section id="map" class="size"></section>
+
 @endsection
