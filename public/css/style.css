@@ -449,6 +449,10 @@ RedesSociales
 	text-align:left;
 }
 
+.social-button:hover, .social-button:focus{
+	color: #fff;    
+}
+
 .social-button-facebook:hover, .social-button-facebook:focus{
 	color: #3b5994;    
 }
@@ -461,6 +465,15 @@ RedesSociales
 
 .social-button >i {
     margin-left: 19px;
+}
+.facebook-login{
+	background-color:#3b5998;
+}
+.google-login{
+	background-color:#d34836;
+}
+.linkedin-login{	
+	background-color:#007bb6;
 }
 .facebook{
 	background-color: #fff;
