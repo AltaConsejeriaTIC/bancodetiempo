@@ -8,19 +8,20 @@
               <h1 class="title1 text-center">Propuesta de acuerdo</h1>
 
               @if($value->state_id == 8 && Auth()->user()->id == $deal->user_id && $message->sender == $deal->user->id)
-                <h4 class="textDealAgreedState text-red text-center">¡No aceptaste la propuesta de {{$deal->service->user->first_name}}!</h4>
+                <h4 class="textDealAgreedState text-red text-center">¡No aceptaste la propuesta de {{$deal->service->user->first_name}}!</br>
+                Solicítale que realice una nueva.</h4>
               @endif
 
               @if($value->state_id == 8 && Auth()->user()->id == $deal->service->user->id && $message->sender == $deal->user->id)
-                <h4 class="textDealAgreedState text-red text-center">¡{{$deal->user->first_name}} ha declinado tu propuesta!</h4>
+                <h4 class="textDealAgreedState text-red text-center">¡{{$deal->user->first_name}} ha declinado tu propuesta! </br>Realiza una nueva.</h4>
               @endif
 
               @if($value->state_id == 8 && Auth()->user()->id == $deal->user_id && $message->sender == $deal->service->user->id )
-                <h4 class="textDealAgreedState text-red text-center">¡{{$deal->service->user->first_name}} ha cancelado la propuesta!</h4>
+                <h4 class="textDealAgreedState text-red text-center">¡{{$deal->service->user->first_name}} ha cancelado la propuesta!<br> Solicítale que realice una nueva.</h4>
               @endif
 
               @if($value->state_id == 8 && $message->sender == $deal->service->user->id && Auth()->user()->id == $deal->service->user->id)
-                <h4 class="textDealAgreedState text-red text-center">¡Has cancelado tu propuesta!</h4>
+                <h4 class="textDealAgreedState text-red text-center">¡Has cancelado tu propuesta! </br>Realiza una nueva.</h4>
               @endif
 
             </div>

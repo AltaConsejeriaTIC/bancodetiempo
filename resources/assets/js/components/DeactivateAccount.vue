@@ -11,11 +11,11 @@
 							<div class="row">
 								<div class='col-xs-12'>
 									<div class="row">
-										<h1 class="title1 col-xs-12 text-center">¡Lamentamos que te vayas! </h1>
+										<h1 class="title1 col-xs-12 text-center">¡Lamentamos que te vayas! :( </h1>
 									</div>
 									<div class='row'>
 										<p class="paragraph2">
-						      		Recuerda que puedes volver cuando lo  desees. Tu información permanecerá intacta.
+						      		Recuerda que puedes volver cuando lo  desees.</br> Tu información dejará de ser pública y permanecerá intacta.
 						    		</p>
 									</div>
 									<div class="row">

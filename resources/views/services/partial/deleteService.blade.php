@@ -16,8 +16,8 @@
 									</div>
 									
 									<div class="row">
-										<p class="text-center paragraph2">
-									    ¿Deseas eliminar esta oferta de forma permanente? 
+										<p class="paragraph2 text-center">
+										¿Deseas eliminar esta oferta<br> de forma permanente?<br>Esta acción no podrá deshacerse.
 									  </p>
 									</div>																						
 									<div class="space10"></div>

@@ -33,6 +33,7 @@
 		<div class='listMessages scrollBottom' >
 			<div id='messages' conversation='{{$conversation->id}}'></div>
 		</div>
+
 		<div class='responseBox'>
 			<sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}' applicant="{{$conversation->applicant_id}}" deal="{{$dealState ? $dealState->state_id : 0}}">
 			</sendmessage>
