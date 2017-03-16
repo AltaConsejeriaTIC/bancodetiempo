@@ -76,4 +76,11 @@ class User extends Authenticatable
     {       
         return $this->hasMany(AttainmentUsers::class);      
     }
+
+    public function reports(){
+
+        return $this->hasMany(Reports::class);
+
+    }
+
 }

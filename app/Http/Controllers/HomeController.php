@@ -10,6 +10,7 @@ use App\User;
 use JavaScript;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\subscribers;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Session;
 
@@ -158,6 +159,21 @@ class HomeController extends Controller
             return redirect('/register'); 
         }
         
+
+    }
+
+    public function subscribe(Request $request){
+
+        $this->validate($request, [
+            'email' => 'required|email',
+        ]);
+        if(is_null(subscribers::where("email", $request->input('email'))->get()->last())){
+            subscribers::create([
+                "email" => $request->input('email')
+            ]);
+        }
+
+        return redirect()->back()->with('response', true);
 
     }
 

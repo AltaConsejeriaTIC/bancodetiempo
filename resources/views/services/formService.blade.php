@@ -28,7 +28,7 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-12 col-md-offset-0">
-								<p class="not-padding paragraph1 text-white col-xs-12 col-sm-12 col-md-12">Para empezar, cuéntanos, que quieres ofrecer, recuerda que puedes ofertar cualquier habilidad, servicio o destreza. Puedes editar y crear nuevas ofertas más adelante.</p>
+								<p class="not-padding paragraph1 text-white col-xs-12 col-sm-12 col-md-12">Para empezar, cuéntanos qué quieres ofrecer, recuerda que puedes ofertar cualquier habilidad, servicio o destreza. Puedes editar y crear nuevas ofertas más adelante.</p>
 							</div>
 						</div>
 					</article>

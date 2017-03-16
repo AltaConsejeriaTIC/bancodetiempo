@@ -50,7 +50,7 @@
 				</div>
 				<div class='hidden-xs hidden-sm padding-top col-md-3'>
 					{!! Form::open(['url' => 'filter', 'method' => 'get']) !!}
-						<input type='text' class='filter col-md-12' name='filter' value='{{ Session::get("filters.text") }}' id='filter1' placeholder='Encuentras personas, habilidades y más ... '>
+						<input type='text' class='filter col-md-12' name='filter' value='{{ Session::get("filters.text") }}' id='filter1' placeholder='Encuentra ofertas, palabras clave y más...'>
 						<label for="filter1" class=" fa fa-search "></label>
 					{!! Form::close() !!}
 				</div>

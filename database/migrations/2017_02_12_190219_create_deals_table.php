@@ -27,6 +27,8 @@ class CreateDealsTable extends Migration
             $table->boolean("response_offerer")->nullable();
             $table->integer("applicant_badObservations_id")->unsigned()->default(1);
             $table->integer("offerer_badObservations_id")->unsigned()->default(1);
+            $table->text("applicant_observation")->nullable();
+            $table->text("offerer_observation")->nullable();
             $table->timestamps();
         });
     }

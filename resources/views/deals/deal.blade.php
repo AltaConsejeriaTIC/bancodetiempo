@@ -145,7 +145,7 @@
                <div class='content'>
                    <div class="row">
                        <div class="col-md-12">
-                            <h1 class="title2">¿Recibiste con éxito el servicio de {{$conversation->service->user->first_name}}?</h1>
+                            <h1 class="title2">¿Recibiste con éxito el servicio: <i>{{$deal->service->name}}</i> de {{$conversation->service->user->first_name}}?</h1>
                        </div>
                    </div>
                    <div class="row">
@@ -164,7 +164,7 @@
                <div class='content'>
                    <div class="row">
                        <div class="col-md-12">
-                            <h1 class="title2">¿Le diste el servicio a {{$conversation->applicant->first_name}} satisfactoriamente?</h1>
+                            <h1 class="title2">¿Realizaste exitosamente el intercambio con {{$conversation->applicant->first_name}}?</h1>
                        </div>
                    </div>
                    <div class="row">

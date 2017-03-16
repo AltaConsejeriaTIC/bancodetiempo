@@ -28,7 +28,8 @@ class DealsController extends Controller
 
             Deal::find($request->input("deal_id"))->update([
                 "response_offerer" => $request->input("response"),
-                "offerer_badObservations_id" => $badObservation
+                "offerer_badObservations_id" => $badObservation,
+                "offerer_observation" => $request->input("observation")
             ]);
 
         }elseif($request->input("scoreFrom") == "applicant"){
@@ -56,7 +57,8 @@ class DealsController extends Controller
 
             Deal::find($request->input("deal_id"))->update([
                 "response_applicant" => $request->input("response"),
-                "applicant_badObservations_id" => $badObservation
+                "applicant_badObservations_id" => $badObservation,
+                "applicant_observation" => $request->input("observation")
             ]);
 
 

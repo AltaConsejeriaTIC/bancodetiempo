@@ -3,16 +3,24 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class Reports extends Model
 {
     protected $fillable = ['service_id','user_id','type_report_id','observation'];
 
-    public function TypeReport()
+    public function service()
     {
-
-        return $this->belongsTo(TypeReport::class);
-
-
+        return $this->belongsTo(Service::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function type_report()
+    {
+        return $this->belongsTo(TypeReport::class);
+    }
+
 }

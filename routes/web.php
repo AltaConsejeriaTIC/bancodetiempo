@@ -12,8 +12,10 @@ use App\Http\Controllers\Profile\ProfileController;
 | to using a Closure or controller method. Build something great!
 |
 */
-
-Route::get('/', 'HomeController@indexNotRegister');
+Route::get('/', function(){
+    return view('landing');
+});
+Route::get('/index', 'HomeController@indexNotRegister');
 Route::get('/home', 'HomeController@index');
 Route::get('/content/{name}', 'ContentController@index');
 
@@ -49,4 +51,6 @@ Route::get('/service/category/{idCategory}', 'ServiceController@findCategories')
 Route::get('/getTags', 'ServiceController@getTags');
 
 Route::get('/filter', 'HomeController@filter');
+Route::post('/subscribe', 'HomeController@subscribe');
+
 Route::get('/map', 'HomeController@map');
