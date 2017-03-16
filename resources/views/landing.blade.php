@@ -160,7 +160,7 @@
         <!-- Header -->
         <header class="header">
             <div class="text-vertical-center">
-                <img class=" col-xs-9 img-responsive img-center" src="/images/logo.png" alt="">
+                <img class=" col-xs-9 img-responsive img-center" src="/images/logoLanding.png" alt="">
                 <form  role="form" method="POST" action="{{ url('/subscribe') }}">
                     {{ csrf_field() }}
 
