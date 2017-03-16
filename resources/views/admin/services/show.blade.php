@@ -73,7 +73,7 @@
                         @endforeach
                       </div>
 
-                    <article class='col-md-4 col-xs-12 col-sm-6'>
+                    <article class=' col-xs-12'>
                       <div class="space10"></div>
                       <h3>Propietario</h3>
                       <div class="row">
@@ -87,7 +87,7 @@
                       </div>
                       <div >
                         <div class="row">
-                          <div class="col-xs-12 text-center">
+                          <div class="col-xs-12 ">
                             <h5 class="title1">{{$service->user->first_name." ".$service->user->last_name}}</h5>
                           </div>
                         </div>

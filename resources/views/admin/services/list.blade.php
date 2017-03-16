@@ -23,9 +23,9 @@
 							<table class="table table-striped table-hover">
 							  <thead>
 							  	<tr>
-									<th>name</th>
-							  	  <th>description</th>
-							  	  <th>Usuario</th>
+									<th>Nombre</th>
+							  	  <th>Description</th>
+							  	  <th>Propietario</th>
 							  	  <th>Estado</th>
 							  	  <th>Acción</th>
 							  	</tr>
@@ -45,11 +45,11 @@
 						        </tr>
 								@include('admin/services/show')
 								@include('admin/services/update')
+								@include('admin/services/reports')
 							  @endforeach
 						    </tbody>         
 						  </table>
 
-							@include('admin/services/reports')
 						</div>
 						<div class="col-md-12 pagination pg-bluegrey">             
 							{!! $services->render() !!}
