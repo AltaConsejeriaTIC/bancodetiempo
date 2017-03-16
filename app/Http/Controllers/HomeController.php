@@ -25,6 +25,11 @@ class HomeController extends Controller
                
     }
 
+    public function map()
+    {
+     return view('maps');          
+    }
+
     /**
      * Show the application dashboard.
      *

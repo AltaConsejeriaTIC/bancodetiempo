@@ -3,7 +3,7 @@
 @section('content')
 
 	@include('nav', array('type' => 1))	
-
+	
 	<section class='bannerHome row'>
 		<div class='cap'></div>
 		<div class="container">
@@ -100,15 +100,15 @@
 				
 				<div class="row">
 					<div class="col-xs-12 col-md-4" >
-						<a href="{{ url('loginRedes/facebook') }}" class="col-xs-12 col-sm-12 col-md-12 button6 social-button facebook">Regístrate con Facebook <i class="fa fa-facebook"></i></a>
+						<a href="{{ url('loginRedes/facebook') }}" class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-facebook facebook">Regístrate con Facebook <i class="fa fa-facebook"></i></a>
 					</div>
 
 					<div class="col-xs-12 col-md-4" >
-						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button google"> Regístrate con          Google  <i class="fa fa-google"></i></a>
+						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-google google"> Regístrate con          Google  <i class="fa fa-google"></i></a>
 					</div>
 
 					<div class="col-xs-12 col-md-4" >
-						<a href="{{ url('loginRedes/linkedin') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button linkedin">Regístrate con Linkedin <i class="fa fa-linkedin"></i></a>
+						<a href="{{ url('loginRedes/linkedin') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-linkedin linkedin">Regístrate con Linkedin <i class="fa fa-linkedin"></i></a>
 					</div>
 				</div>
 				

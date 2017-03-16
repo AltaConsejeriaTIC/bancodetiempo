@@ -139,7 +139,8 @@ Buttons
 	height: 40.8px;
 	color: #fff;
 	width: 283px;
-	padding: 8px;
+	padding-top: 8px;
+  padding-bottom: 10px;
 	padding-left: 22px;
 	border-radius: 4px;
 	border: none;
@@ -444,21 +445,33 @@ RedesSociales
 	text-align:left;
 }
 
-.social-button:hover, .social-button:focus{
-	color:#fff;
+.social-button-facebook:hover, .social-button-facebook:focus{
+	color: #3b5994;    
+}
+.social-button-google:hover, .social-button-google:focus{
+	color: #cf4836;    
+}
+.social-button-linkedin:hover, .social-button-linkedin:focus{
+	color: #007bb2; 
 }
 
 .social-button >i {
     margin-left: 19px;
 }
 .facebook{
-	background-color:#3b5998;
+	background-color: #fff;
+	color: #3b5994;
+  border: solid 2px #3b5994;
 }
 .google{
-	background-color:#d34836;
+	background-color: #fff;
+	color: #cf4836;
+  border: solid 2px #cf4836;
 }
-.linkedin{
-	background-color:#007bb6;
+.linkedin{	
+	background-color: #fff;
+	color: #007bb2;
+  border: solid 2px #007bb2;
 }
 
 /*
