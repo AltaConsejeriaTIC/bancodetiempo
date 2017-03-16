@@ -21,6 +21,8 @@ class ReportsController extends Controller
             'type_report_id' => $request->input('list'),
             'observation' =>$request->input('observacion')
         ]);
+
+        return redirect()->back()->with('report', true);
     }
 
 }

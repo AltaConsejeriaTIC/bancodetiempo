@@ -2,19 +2,19 @@
 
 @section('content')
 
-@if(session('response'))
-<generalmodal  name='notificationEmail' :state='myData.notificationEmail' state-init='true'>
-	<div slot="modal" class='box row'>
-		<button type="button" class='close'  v-on:click='myData.notificationEmail = false'><i class='fa fa-close'></i></button>
-		<h1 class='title1 col-md-12 text-center'>¡Notificación enviada!</h1>
-		<p class='text-center col-md-12'>Se ha enviado un correo electrónico a {{ $service->user->first_name }} informándole sobre tu interés en tomar su oferta. <br>
-		En los próximos días {{ $service->user->first_name }} te contactará a través de tu correo electrónico.</p>
-		<p class='text-center col-md-12 title1'>
-			<i class="fa fa-signal" aria-hidden="true" style='font-size: 60px;font-size: 50px;transform: rotateZ(-90deg) translateX(40px) translateY(-10px);'></i><i class="fa fa-envelope" aria-hidden="true" style='font-size: 120px;'></i>
-		</p>
-	</div>
-</generalmodal>
-@endif
+	@if(session('response'))
+		<generalmodal  name='notificationEmail' :state='myData.notificationEmail' state-init='true'>
+			<div slot="modal" class='box row'>
+				<button type="button" class='close'  v-on:click='myData.notificationEmail = false'><i class='fa fa-close'></i></button>
+				<h1 class='title1 col-md-12 text-center'>¡Notificación enviada!</h1>
+				<p class='text-center col-md-12'>Se ha enviado un correo electrónico a {{ $service->user->first_name }} informándole sobre tu interés en tomar su oferta. <br>
+					En los próximos días {{ $service->user->first_name }} te contactará a través de tu correo electrónico.</p>
+				<p class='text-center col-md-12 title1'>
+					<i class="fa fa-signal" aria-hidden="true" style='font-size: 60px;font-size: 50px;transform: rotateZ(-90deg) translateX(40px) translateY(-10px);'></i><i class="fa fa-envelope" aria-hidden="true" style='font-size: 120px;'></i>
+				</p>
+			</div>
+		</generalmodal>
+	@endif
 
 	@if(!is_null(Auth::User()))
 		@include('nav',array('type' => 2))
@@ -86,8 +86,13 @@
 					</div>
 					<div>
 						<hr class="  col-md-12 report_line">
-						<a class="report" href="" title="Reportar Contenido" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class=" material-icons " aria-hidden="true">report</i>Reportar contenido</a>
-						@include('/services/report')
+						@if(!is_null(Auth::User()))
+							<a class="report" href="" title="Reportar Contenido" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class=" material-icons " aria-hidden="true">report</i>Reportar contenido</a>
+							@include('/services/report')
+						@else
+							<a class="report" href="" title="Reportar Contenido" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class=" material-icons " aria-hidden="true">report</i>Reportar contenido</a>
+						@endif
+
 					</div>
 				</article>
 

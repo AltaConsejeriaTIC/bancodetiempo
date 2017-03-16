@@ -5,7 +5,7 @@
 		<div class="row">   
 			<div class="col-md-12">	
 				<div class="panel panel-default">
-					<div class="panel-heading"><h2>Lista de Usuarios Registrados en el Sistema</h2></div>
+					<div class="panel-heading"><h2>Lista de Ofertas Registrados en el Sistema</h2></div>
 					<div class="panel-body">
 						@include('partial.errors')
 						{!! Form::open(['route' => 'homeAdminServices/show', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
@@ -35,19 +35,21 @@
 						        <tr>
 						        	<td>{{ $service->name }}</td>
 						        	<td>{{ $service->description }}</td>
-						        	<td>{{$service->user->first_name." ".$service->user->last_name}}</td>
+						        	<td>{{ $service->user->first_name." ".$service->user->last_name}}</td>
 						        	<td>{{ $service->state->state }}</td>
 						        	<td>
 										<a class="btn btn-raised btn-primary btn-xs" href="" title="Ver oferta" data-toggle="modal" data-target="#show-dialog{{$service->id}}"><i class="material-icons">find_in_page</i></a>
 						        		<a class="btn btn-raised btn-primary btn-xs" href="" title="Editar estado" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class="material-icons">mode_edit</i></a>
+										<a class="btn btn-raised btn-primary btn-xs" href="" title="Ver reportes" data-toggle="modal" data-target="#reports-dialog{{$service->id}}"><i class="material-icons">error_outline</i></a>
 									</td>
 						        </tr>
 								@include('admin/services/show')
 								@include('admin/services/update')
-
 							  @endforeach
 						    </tbody>         
-						  </table>						
+						  </table>
+
+							@include('admin/services/reports')
 						</div>
 						<div class="col-md-12 pagination pg-bluegrey">             
 							{!! $services->render() !!}

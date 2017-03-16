@@ -125,21 +125,7 @@ class ServiceController extends Controller
    		
 
    }
-    public function showServiceGuest($serviceId){
 
-        $categories = Category::all('id', 'category');
-
-        $service = Service::findOrFail($serviceId);
-
-        $user = User::find($service->user_id);
-        JavaScript::put([
-            'userJs'=> $user,
-            'categoriesJs' => $categories,
-        ]);
-        return view('services/serviceGuest', compact('categories', 'service', 'method' ,'user'));
-
-
-    }
   public function update($id, Request $request){
 
       $this->validate($request, [
@@ -187,25 +173,25 @@ class ServiceController extends Controller
       Session::flash('success','Has actualizado correctamente tu servicio');
       return redirect('profile');
    }
-
-   public function create(Request $request){
-
+    public function validateForm($request)
+    {
         $this->validate($request, [
-              'serviceName' => 'required|max:100',
-              'descriptionService' => 'required|max:250|min:50',
-              'valueService' => 'required|numeric|min:1|max:10',
-              'modalityServiceVirtually' => 'required_without:modalityServicePresently',
-              'modalityServicePresently' => 'required_without:modalityServiceVirtually',
-              'categoryService' => 'required',
-              'imageService' => 'image|max:2000'
+            'serviceName' => 'required|max:100',
+            'descriptionService' => 'required|max:250|min:50',
+            'valueService' => 'required|numeric|min:1|max:10',
+            'modalityServiceVirtually' => 'required_without:modalityServicePresently',
+            'modalityServicePresently' => 'required_without:modalityServiceVirtually',
+            'categoryService' => 'required',
+            'imageService' => 'image|max:2000'
         ]);
+    }
 
+    public function create(Request $request){
+
+        $this->validateForm($request);
         $virtually = $request->input('modalityServiceVirtually') == null ? 0 : $request->input('modalityServiceVirtually');
-
         $presently = $request->input('modalityServicePresently') == null ? 0 : $request->input('modalityServicePresently');
-
         $category = Category::find($request->input('categoryService'));
-
         $service = Service::create([
             'name' => $request->input('serviceName'),
             'description' => $request->input('descriptionService'),
@@ -217,30 +203,24 @@ class ServiceController extends Controller
             'category_id' => $request->input('categoryService'),            
             'state_id' => 1
         ]);
-
-        $this->saveTags(json_decode($request->tagService), $service);   
-
-        $this->uploadCover($request->file('imageService'), $service); 
-
+        $this->saveTags(json_decode($request->tagService), $service);
+        $this->uploadCover($request->file('imageService'), $service);
         $countService = Service::where('user_id',Auth::user()->id)->get()->count();
+        $step = Attainment::where('id','=',3)->first();
 
-        $step = Attainment::where('id','=',3)->first();  
+        $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();
+        if($attainments != null)
+            $attainments = AttainmentUsers::find($attainments->id);
 
-        $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();          
-    
-        if($attainments != null)    
-          $attainments = AttainmentUsers::find($attainments->id);
-        
         if($attainments->state_id == 2)
         {
-          $attainments->state_id = 1;
-          $attainments->save();      
-
-          $user = Auth::user();
-          $user->state_id = 1;
-          $user->credits = $user->credits + $step->value;
-          $user->save(); 
-        }        
+            $attainments->state_id = 1;
+            $attainments->save();
+            $user = Auth::user();
+            $user->state_id = 1;
+            $user->credits = $user->credits + $step->value;
+            $user->save();
+        };
     
         if($countService > 1)
     		  return redirect('profile');
@@ -248,6 +228,8 @@ class ServiceController extends Controller
           return redirect('home')->with('coin',$step->value);
 
    }
+
+
 
    public function  uploadCover($file, $service){
       

@@ -51,7 +51,8 @@ class AdminController extends Controller
     public function homeAdminServices()
     {
         $services = Service::orderBy('created_at','desc')->paginate(6);
-        return view('admin/services/list',compact('services'));
+        $states = State::whereIn('id',array(1,2))->pluck('state','id');
+        return view('admin/services/list',compact('services','states'));
     }
 
     /**
@@ -94,9 +95,8 @@ class AdminController extends Controller
             {                     
               Session::flash('success', '¡El Usuario con E-Mail '.$request->email.' Se Registro con Exito!');
               return redirect('homeAdminUser');                 
-            }    
-          }          
-        }         
+            }
+          }}
         else 
         {                 
           Session::flash('error', '¡El Usuario con E-Mail '.$request->email.' Ya Existe!');                 
@@ -207,13 +207,13 @@ class AdminController extends Controller
 
     public function updateServiceState(Request $request)
     {
-        $service = AdminContent::find($request->id);
-        $service->state_id = $request->state_id;
+        $service = Service::find($request->id);
 
+        $service->state_id = $request->state_id;
         if($service->save())
         {
-            Session::flash('success', '¡El contenido '.$request->category.' Se Registró con Exito!');
-            return redirect('homeAdminContents');
+            Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
+            return redirect('homeAdminServices');
         }
 
     }
