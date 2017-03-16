@@ -6,25 +6,19 @@
                 <h4 class="modal-title titleContent">Reportes de la oferta</h4>
             </div>
             <div class="modal-body">
+                <div class="row">
+                    <p class="col-xs-4">Usuario</p>
+                    <p class="col-xs-4">Categoria</p>
+                    <p class="col-xs-4">Observación</p>
+                </div>
 
-                <table id="otratabla" class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Categoria</th>
-                        <th>Observación</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($service->reports as $repo)
-                        <tr>
-                            <td>{{ $repo->name }}</td>
-                            <td>{{ $repo->description }}</td>
-                            <td>{{ $repo->state->state }}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                @foreach($service->reports as $repo)
+                    <div class="row">
+                        <p class="col-xs-4">{{ $repo->user->first_name }} {{ $repo->user->last_name }}</p>
+                        <p class="col-xs-4">{{ $repo->type_report->type }}</p>
+                        <p class="col-xs-4">{{ $repo->observation }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
