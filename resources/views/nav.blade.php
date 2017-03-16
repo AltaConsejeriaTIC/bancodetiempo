@@ -7,7 +7,7 @@
 			<div class='row'>
 
 				<div class="col-xs-9  col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-0">
-					<a href="/" >
+					<a href="/index" >
 						<img src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
 				</div>
@@ -44,7 +44,7 @@
 			<div class='row'>
 
 				<div class="col-xs-2 col-sm-2 padding-top col-md-2">
-					<a href="/" >
+					<a href="/index" >
 						<img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" />
 					</a>
 				</div>
@@ -125,7 +125,7 @@
 			<div class='row'>
 
 				<div class="col-xs-2 col-sm-2 col-md-offset-1  padding-top col-md-2">
-					<a href="/" >
+					<a href="/index" >
 						<img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" />
 					</a>
 				</div>
