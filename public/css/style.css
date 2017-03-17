@@ -1166,12 +1166,16 @@ ul.dropdown-menu li:hover {
 
 .map
 {	
+	display: none;
   height: 250px;
-  width: 100%;
-  z-index: 1500;
+  width: 100%;    
 }
 
 .pac-container
 {
 	z-index: 1500;
+}
+.gm-style div
+{
+	z-index: 9999999999;
 }
