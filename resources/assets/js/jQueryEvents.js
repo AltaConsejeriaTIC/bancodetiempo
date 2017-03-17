@@ -95,6 +95,18 @@ var allValidations = {
         this.hiddenError(it.attr('name'), 'min');
         return 0;
     },
+    requiredIfNot : function(it, v){
+        var br = jQuery("input[name='"+v+"']");
+        if(!br.is(":checked") && !it.is(":checked")){
+            br.attr('validation', 'false');
+            this.showError(it.attr('name'), 'requiredIfNot');
+            return 1;
+        }
+        br.attr('validation', 'true');
+        this.hiddenError(br.attr('name'), 'requiredIfNot');
+        this.hiddenError(it.attr('name'), 'requiredIfNot');
+        return 0;
+    },
     years : function (date){
 
         var hoy = new Date()
