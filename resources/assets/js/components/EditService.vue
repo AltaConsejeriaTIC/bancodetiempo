@@ -12,7 +12,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<div v-validation:msg='' class='serviceForm'>
+						<div class='serviceForm'>
 							<div class="row">
 								<h1 class="title1 text-center">Actualizar Oferta</h1>
 							</div>
@@ -123,7 +123,7 @@
 							<div class="row">
 								<select name='categoryService'
 									class='col-xs-12  col-sm-12 validation' v-model='category'
-									data-validations='["required"]'>
+									data-validations='["requiredSelect"]'>
 									<option value="">Seleccione una Categoría....</option>
 									<option v-for="op in this.categories" :value="op.id">{{op.category}}</option>
 								</select>
