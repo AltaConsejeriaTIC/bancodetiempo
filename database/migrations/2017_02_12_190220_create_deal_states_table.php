@@ -89,6 +89,8 @@ class CreateDealStatesTable extends Migration
         DB::unprepared("CREATE EVENT `changeToFinishDeal` ON SCHEDULE EVERY 1 MINUTE STARTS '2017-02-28 00:00:00' ENDS '2025-05-27 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL `finishDeal`(@p0, @p1)");
 
         DB::unprepared("CREATE EVENT `changeToRefuseDeal` ON SCHEDULE EVERY 1 MINUTE STARTS '2017-02-28 00:00:00' ENDS '2025-05-27 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL `refuseDeal`(@p0, @p1)");
+        
+        DB::unprepared("SET GLOBAL event_scheduler='ON'");
 
     }
 
