@@ -100,10 +100,10 @@
 											</div>
 										</div>
 										<div class="row not-margin">
-			                <label for="observations" class="paragraph10">Observaciones</label>
+			                <label for="observations" class="paragraph10">Observaciones</label><span class="opacity">(Opcional)</span>
 			            	</div>
 				            <div class="row not-margin">
-				              <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12 validation" rows="8" name="observations" id='observations' placeholder="Ej. Pinceles, Acuarelas, Lienzos."  data-validations='["required", "min:50", "max:250"]'></textarea>
+				              <textarea class="countCharacters col-xs-12 col-sm-12 col-md-12 validation" rows="8" name="observations" id='observations' placeholder="Ej. Pinceles, Acuarelas, Lienzos."></textarea>
 				            </div>
 			            	<div class="row not-margin">
 				    					<button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color">
