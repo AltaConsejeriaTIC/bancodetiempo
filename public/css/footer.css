@@ -3,9 +3,9 @@ footer{
 	
 	background-color: #009fe3;  
 	color: #fff;
-	padding-top:64px;
-	margin-top: 40px;
-	padding-bottom:61px;
+	padding-top: 33px;
+	margin-top: 33px;
+	padding-bottom: 16px;
 
 }
 
@@ -26,4 +26,46 @@ footer li > a{
 	
 	color: #fff;
 	
+}
+
+.circle-social-network{
+	border-radius: 51%;
+	width: 39px;
+	height: 39px;
+	padding: 0 1px 1px 1px !important;
+  background: #003e65;
+  margin-right: 15.6px;
+  position: relative;
+  float: left;
+  border: 1px;
+  z-index: 10;
+  color: #fff;
+}
+
+.icons-social-network{
+	margin-top: 19%;
+  font-size: 25px !important;
+}
+
+footer a:hover{
+	text-decoration: underline !important;
+}
+
+footer a{
+	color: #fff !important;
+}
+
+.link-social-network{
+	margin-bottom: 	15px;
+}
+
+.logo-footer{
+	border-right: solid 1px #fff;
+}
+
+.author{
+	opacity: 0.84;
+ 	font-size: 12px;
+ 	margin-top: 43px;
+ 	text-align: right;
 }

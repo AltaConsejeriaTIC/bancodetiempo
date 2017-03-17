@@ -17,18 +17,18 @@
                   <div class="modal-button-center">
                     <div class="row">
                       <div class="col-xs-12">
-                        <a href="/loginRedes/facebook" class="col-xs-12 col-md-12 button6 social-button facebook">Ingresa con Facebook <i class="fa fa-facebook"></i></a>
+                        <a href="/loginRedes/facebook" class="col-xs-12 col-md-12 button6 social-button facebook-login">Ingresa con Facebook <i class="fa fa-facebook"></i></a>
                       </div>
                       
                     </div>
                     <div class="row">
                       <div class="col-xs-12">
-                        <a href="/loginRedes/google"  class="col-xs-12 col-md-12 button6 social-button google">Ingresa con Google <i class="fa fa-google"></i></a>
+                        <a href="/loginRedes/google"  class="col-xs-12 col-md-12 button6 social-button google-login">Ingresa con Google <i class="fa fa-google"></i></a>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-xs-12">
-                        <a href="/loginRedes/linkedin"  class="col-xs-12 col-md-12 button6 social-button linkedin">Ingresa con Linkedin <i class="fa fa-linkedin"></i></a>
+                        <a href="/loginRedes/linkedin"  class="col-xs-12 col-md-12 button6 social-button linkedin-login">Ingresa con Linkedin <i class="fa fa-linkedin"></i></a>
                       </div>
                     </div>
                   </div>

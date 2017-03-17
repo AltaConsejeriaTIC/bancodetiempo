@@ -135,6 +135,10 @@
         </div>
       @endif
 
+      @include('deals/responseDeal')
+
+      <hr>
+
       @if($dealState->state_id == 12)
         @if($conversation->applicant_id == Auth::User()->id && is_null($deal->response_applicant))
             <div class='row not-margin'>
@@ -177,7 +181,7 @@
         @endif
     @endif
 
-    @include('deals/responseDeal')
+
 
     </div>
   {!!Form::close()!!}

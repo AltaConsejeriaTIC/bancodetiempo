@@ -14,15 +14,20 @@ class ReportsController extends Controller
 
     public function create(Request $request, $serviceId)
     {
-        $userauth = User::find ( auth::user ()->id );
-        $report = Reports::create([
-            'service_id' => $serviceId,
-            'user_id' => $userauth->id,
-            'type_report_id' => $request->input('list'),
-            'observation' =>$request->input('observacion')
-        ]);
 
-        return redirect()->back()->with('report', true);
+        if (is_null(Reports::where("user_id",auth::user()->id)->get()->last())) {
+            $report = Reports::create([
+                'service_id' => $serviceId,
+                'user_id' => auth::user()->id,
+                'type_report_id' => $request->input('list'),
+                'observation' => $request->input('observacion')
+            ]);
+            return redirect()->back()->with('report', true);
+
+        }
+
+            return redirect()->back()->with('reportOk', true);
+
     }
 
 }

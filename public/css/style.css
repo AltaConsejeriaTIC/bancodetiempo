@@ -139,7 +139,8 @@ Buttons
 	height: 40.8px;
 	color: #fff;
 	width: 283px;
-	padding: 8px;
+	padding-top: 8px;
+  padding-bottom: 10px;
 	padding-left: 22px;
 	border-radius: 4px;
 	border: none;
@@ -204,11 +205,13 @@ Paragraphs
 	font-family: 'Open Sans', sans-serif;
 	word-wrap: break-word;
 	color:#2c3e50 !important;
+	word-wrap: break-word;
 }
 
 .paragraph2 {
 	font-size: 16px !important;
 	color: #2c3e50 !important;
+	word-wrap: break-word;
 	word-wrap: break-word;
 }
 
@@ -216,6 +219,7 @@ Paragraphs
 	font-size:16px !important;
 	color:#2c3e50 !important;
     word-wrap: break-word;
+	word-wrap: break-word;
 }
 
 .paragraph4{
@@ -225,6 +229,7 @@ Paragraphs
     font-stretch: normal;
     line-height: 1.29;
     color: #001738;
+	word-wrap: break-word;
 }
 
 .paragraph6{
@@ -445,20 +450,45 @@ RedesSociales
 }
 
 .social-button:hover, .social-button:focus{
-	color:#fff;
+	color: #fff;
+}
+
+.social-button-facebook:hover, .social-button-facebook:focus{
+	color: #3b5994;
+}
+.social-button-google:hover, .social-button-google:focus{
+	color: #cf4836;
+}
+.social-button-linkedin:hover, .social-button-linkedin:focus{
+	color: #007bb2;
 }
 
 .social-button >i {
     margin-left: 19px;
 }
-.facebook{
+.facebook-login{
 	background-color:#3b5998;
 }
-.google{
+.google-login{
 	background-color:#d34836;
 }
-.linkedin{
+.linkedin-login{
 	background-color:#007bb6;
+}
+.facebook{
+	background-color: #fff;
+	color: #3b5994;
+  border: solid 2px #3b5994;
+}
+.google{
+	background-color: #fff;
+	color: #cf4836;
+  border: solid 2px #cf4836;
+}
+.linkedin{
+	background-color: #fff;
+	color: #007bb2;
+  border: solid 2px #007bb2;
 }
 
 /*
@@ -1124,7 +1154,7 @@ ul.dropdown-menu li:hover {
 }
 
 .animation{
-	width: 70%;
+	width: 100%;
 
 }
 

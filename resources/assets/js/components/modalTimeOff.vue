@@ -6,9 +6,12 @@ export default {
 	props: ["name"],	
 	mounted(){		
 		var app = this
-		setTimeout(function (){
-			app.$parent.putMyData(app.name,false);
-		},2000);
+        jQuery(document).ready(function(){
+            setTimeout(function (){
+                app.$parent.putMyData(app.name,false);
+            },2000);
+        })
+
 	}
 }
 </script>
