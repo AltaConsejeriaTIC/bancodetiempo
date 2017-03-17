@@ -22,7 +22,7 @@
 					<div class="row col-md-offset-2">
 							<div class="col-md-8 col-md-offset-3">
 								<div>
-									<a class="circle-social-network text-center"><i class="fa fa-facebook icons-social-network" aria-hidden="true"></i></a>
+									<a href="https://www.facebook.com/Cambalachea.co" target="_blank" class="circle-social-network text-center"><i class="fa fa-facebook icons-social-network" aria-hidden="true"></i></a>
 								</div>
 								<div>
 									<a href="https://twitter.com/cambalachea" target="_blank" class="circle-social-network text-center"><i class="fa fa-twitter icons-social-network" aria-hidden="true"></i></a>
