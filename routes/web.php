@@ -52,5 +52,3 @@ Route::get('/getTags', 'ServiceController@getTags');
 
 Route::get('/filter', 'HomeController@filter');
 Route::post('/subscribe', 'HomeController@subscribe');
-
-Route::get('/map', 'HomeController@map');

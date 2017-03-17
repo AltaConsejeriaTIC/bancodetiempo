@@ -17,21 +17,6 @@ use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-               
-    }
-
-    public function map()
-    {
-     return view('maps');
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response

@@ -1168,4 +1168,10 @@ ul.dropdown-menu li:hover {
 {	
   height: 250px;
   width: 100%;
+  z-index: 1500;
+}
+
+.pac-container
+{
+	z-index: 1500;
 }
