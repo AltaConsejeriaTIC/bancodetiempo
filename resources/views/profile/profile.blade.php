@@ -26,7 +26,7 @@
 		                     </avatar>
 	                    </div>                            
 	                </div>
-	                <div v-if='noEdit'>
+	                <div v-show='noEdit'>
 		                <div class="row">
 		                    <div class="col-xs-12">
 		                        <h2 class="title1">{{$user->first_name." ".$user->last_name}}</h2>
@@ -71,7 +71,7 @@
 		                </div>
 	                </div>
 	               
-               	<div v-if='edit' >
+               	<div v-show='edit' >
                	
                		<div class="row">
                			<div class="col-md-8 col-md-offset-2 text-center">
@@ -80,7 +80,7 @@
                			</div>
                		</div>
                		
-               		{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form', 'v-validation:msg' => '']) !!}
+               		{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form', 'form-validation' => '']) !!}
 						        <input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
 			        	    <register  profile='1'>				        					    
 			        	    </register>		             
@@ -96,7 +96,7 @@
                           <i class="fa fa-plus-square icons" aria-hidden="true"></i>
                           <p>Publicar nueva oferta</p>
                         </button>                        
-                        {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+                        {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation' => '']) !!}
                           <newservice></newservice>
                         {!! Form::close() !!}
                     </div>               

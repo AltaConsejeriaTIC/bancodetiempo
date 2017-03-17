@@ -47,64 +47,83 @@ function score(){
 var allValidations = {
     required : function(it){
         if(it.val() == ''){
-            this.showError(it.attr('name'), 'required');
+            this.showError(it, 'required');
             return 1;
         }
-        this.hiddenError(it.attr('name'), 'required');
+        this.hiddenError(it, 'required');
+        return 0;
+    },
+    requiredSelect : function(it){
+        if(it.find("option:selected").val() == '' || it.find("option:selected").val() === undefined){
+            this.showError(it, 'required');
+            return 1;
+        }
+        this.hiddenError(it, 'required');
+        return 0;
+    },
+    requiredRadio : function(it){
+        var parent = it.closest('form');
+        var r = parent.find("input[name='"+it+"']:checked");
+        if(r.val() == '' || r.val() === undefined){
+            this.showError(it, 'required');
+            return 1;
+        }
+        this.hiddenError(it, 'required');
         return 0;
     },
     requiredCheck : function(it){
         if(!it.is(':checked')){
-            this.showError(it.attr('name'), 'requiredCheck');
+            this.showError(it, 'requiredCheck');
             return 1;
         }
-        this.hiddenError(it.attr('name'), 'requiredCheck');
+        this.hiddenError(it, 'requiredCheck');
         return 0;
     },
     min : function(it, v){
         if(it.val().length < v){
-            this.showError(it.attr('name'), 'min');
+            this.showError(it, 'min');
             return 1;
         }
-        this.hiddenError(it.attr('name'), 'min');
+        this.hiddenError(it, 'min');
         return 0;
     },
     max : function(it, v){
         if(it.val().length > v){
-            this.showError(it.attr('name'), 'max');
+            this.showError(it, 'max');
             return 1;
         }
-        this.hiddenError(it.attr('name'), 'max');
+        this.hiddenError(it, 'max');
         return 0;
     },
     email : function(it){
       var expresion = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
         if(!expresion.test(it.val())){
-            this.showError(it.attr('name'), 'email');
+            this.showError(it, 'email');
             return 1;
         }
-        this.hiddenError(it.attr('name'), 'email');
+        this.hiddenError(it, 'email');
         return 0;
 
     },
     minYear : function(it, v){
         if(this.years(it.val()) < v){
-            this.showError(it.attr('name'), 'min');
+            this.showError(it, 'min');
             return 1;
         }
-        this.hiddenError(it.attr('name'), 'min');
+        this.hiddenError(it, 'min');
         return 0;
     },
     requiredIfNot : function(it, v){
-        var br = jQuery("input[name='"+v+"']");
+        var parent = it.closest('form');
+        var br = parent.find("input[name='"+v+"']");
         if(!br.is(":checked") && !it.is(":checked")){
             br.attr('validation', 'false');
-            this.showError(it.attr('name'), 'requiredIfNot');
+            this.showError(it, 'requiredIfNot');
             return 1;
         }
         br.attr('validation', 'true');
-        this.hiddenError(br.attr('name'), 'requiredIfNot');
-        this.hiddenError(it.attr('name'), 'requiredIfNot');
+        this.hiddenError(br, 'requiredIfNot');
+        this.hiddenError(it, 'requiredIfNot');
         return 0;
     },
     years : function (date){
@@ -129,16 +148,18 @@ var allValidations = {
         }
         return years;
     },
-    showError : function(input, error){
-        jQuery(".msg[errors='"+input+"'] p[error='"+error+"']").css('display', 'block');
+    showError : function(it, error){
+        var parent = it.closest('form');
+        parent.find(".msg[errors='"+it.attr('name')+"'] p[error='"+error+"']").css('display', 'block');
     },
-    hiddenError : function(input, error){
-        jQuery(".msg[errors='"+input+"'] p[error='"+error+"']").css('display', 'none');
+    hiddenError : function(it, error){
+        var parent = it.closest('form');
+        parent.find(".msg[errors='"+it.attr('name')+"'] p[error='"+error+"']").css('display', 'none');
     }
 }
 
 function validation(){
-    console.log(jQuery(this))
+
     var validations = jQuery(this).data('validations');
     var errors = 0;
     for(var v in validations){
@@ -159,8 +180,10 @@ function validation(){
 }
 
 function validationGeneal(){
+
     var allErrors = 0;
     jQuery(this).find(".validation").each(function(){
+
         var validations = jQuery(this).data('validations');
         var errors = 0;
         for(var v in validations){
