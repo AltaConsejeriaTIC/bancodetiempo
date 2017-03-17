@@ -220,6 +220,11 @@ input[type=checkbox].boxCheck:checked + label i {
     padding: 10px 5px 0px 5px;
     font-size: 14px;
     margin-bottom: 0px;
+
+}
+
+.form-custom  .msg > p{
+    display: none;
 }
 .form-custom *[validation="false"], .form-custom input[type="radio"][validation="false"] + label:before, .form-custom input[type="checkbox"][validation="false"] + label:before{
 	border:1px solid #ae3a38 !important;
