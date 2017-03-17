@@ -1,7 +1,9 @@
 <template>
-  <input type="hidden" name="service" v-model="this.service_id">
-	<input type="hidden" name="applicant" v-model="this.applicant">
-	<input type="hidden" name="conversation" v-model="this.conversation">
+	<div>
+	  <input type="hidden" name="service" v-model="this.service_id">
+		<input type="hidden" name="applicant" v-model="this.applicant">
+		<input type="hidden" name="conversation" v-model="this.conversation">
+	</div>
 </template>
 <script>
 

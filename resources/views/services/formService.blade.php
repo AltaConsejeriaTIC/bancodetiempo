@@ -106,12 +106,12 @@
 						<article class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0">	
 							<div class="col-xs-12  not-padding ">					
 								<h1 class="title1 text-centernot-margin-top">¿Qué&nbsp;deseas&nbsp;ofrecer?</h1>
-					    </div>		
+					        </div>
 			      	
-			      	<div class='space'></div>            	
-			      	{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}             
-			      		<firstservice></firstservice>
-							{!! Form::close() !!}	        
+			      	        <div class='space'></div>
+                            {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation' => '']) !!}
+                                <firstservice></firstservice>
+                            {!! Form::close() !!}
 						</article>	
 					</div>		
 				</div>

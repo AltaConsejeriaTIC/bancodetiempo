@@ -1,5 +1,5 @@
 <template>
-	<div v-validation:msg='' class='serviceForm'>
+	<div class='serviceForm'>
 		<div class="row col-sm-12">
 			<div class="row">
 				<label for="serviceName" class="paragraph10">Nombre de la oferta (Max. 50 caracteres)</label>
