@@ -1,7 +1,7 @@
 
 footer{
-	
-	background-color: #009fe3;  
+
+	background-color: #009fe3;
 	color: #fff;
 	padding-top: 33px;
 	margin-top: 33px;
@@ -10,22 +10,22 @@ footer{
 }
 
 footer ul{
-	
+
 	list-style:none;
 	padding:0px;
-	
+
 }
 
 footer li{
-	
+
 	color: #fff;
-	
+
 }
 
 footer li > a{
-	
+
 	color: #fff;
-	
+
 }
 
 .circle-social-network{
@@ -68,4 +68,9 @@ footer a{
  	font-size: 12px;
  	margin-top: 43px;
  	text-align: right;
+}
+
+.footer-logo
+{
+  width: 100%;
 }
