@@ -545,11 +545,11 @@ Service box
     border: 0.25px solid #a0a0a0;
     max-width: 100%;
 }
-.report{
-	color: #999;
-	font-size: 14px;
-	position: relative;
-	left: 81.5%;
+.report {
+    color: #999;
+    font-size: 14px;
+    position: relative;
+    float: right;
 }
 .report_line{
 	color:#999;
@@ -942,7 +942,6 @@ Media Querys
 	}
 
 	.paragraph4{
-		font-size: 10.5px !important;
 		word-wrap: break-word;
 	}
 
@@ -952,7 +951,7 @@ Media Querys
 	}
 
 	.paragraph8{
-		font-size: 8px !important;
+		font-size: 10px !important;
 		word-wrap: break-word;
 	}
 

@@ -25,7 +25,7 @@
 	<section class="row not-padding">
 		<div class="container">
 			<div class='row'>
-				<article class="col-md-8">
+				<article class="col-md-8 col-xs-12">
 
 					<div class="image-service">
 						<span class='category'>{{$service->category->category}}</span>
@@ -83,7 +83,7 @@
 						@endforeach
 					</div>
 					<div>
-						<hr class="  col-md-12 report_line">
+						<hr class="  col-md-12 report_line hidden-xs">
 						@if(!is_null(Auth::User()))
 							<a class="report" href="" title="Reportar Contenido" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class=" material-icons " aria-hidden="true">report</i>Reportar contenido</a>
 							@include('/services/report')
@@ -93,7 +93,8 @@
 
 					</div>
 				</article>
-
+                <div class="space visible-xs"></div>
+                 <div class="space visible-xs"></div>
 				<article class='col-md-4 col-xs-12 col-sm-6'>
 					<div class="row">
 						<div class="col-xs-6 col-xs-offset-3">
