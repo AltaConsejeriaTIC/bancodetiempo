@@ -176,7 +176,7 @@
 		      			<div class="space10"></div>
 		      			<div class="row">
 		      				<div class="col-md-10 col-md-offset-1">
-		      					<input type='submit' value='Enviar' class='col-md-12 button1 background-active-color'>
+		      					<input type='submit' value='Enviar' class='col-md-12 button1 background-active-color' onClick='jQuery(this).css("pointer-events", "none")'>
 		      				</div>
 		      			</div>
 		      			<div class="space10"></div>

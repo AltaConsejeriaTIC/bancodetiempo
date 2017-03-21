@@ -61,7 +61,7 @@ class CreateDealStatesTable extends Migration
         DECLARE conversation TEXT;
         DECLARE json TEXT;
         DECLARE applicant TEXT;
-        DECLARE cursor1 CURSOR FOR SELECT id FROM deals WHERE DATE(created_at) <= ADDDATE(CURDATE(), INTERVAL -3 DAY) AND TIME(created_at) <= CURTIME() OR (date >= CURDATE() AND time >= CURTIME());
+        DECLARE cursor1 CURSOR FOR SELECT id FROM deals WHERE DATE(created_at) <= ADDDATE(CURDATE(), INTERVAL -3 DAY) AND TIME(created_at) <= CURTIME() OR (date <= CURDATE() AND time <= CURTIME());
 
         OPEN cursor1;
         c1_loop: LOOP

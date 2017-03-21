@@ -63,7 +63,9 @@ var allValidations = {
     },
     requiredRadio : function(it){
         var parent = it.closest('form');
-        var r = parent.find("input[name='"+it+"']:checked");
+
+        var r = parent.find("input[name='"+it.attr('name')+"']:checked");
+        console.log(r.val());
         if(r.val() == '' || r.val() === undefined){
             this.showError(it, 'required');
             return 1;
