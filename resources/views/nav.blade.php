@@ -73,11 +73,11 @@
 						<div class="col-md-1 col-sm-1 not-padding " onclick='location.href="/inbox#received"'>
 							<i class="fa fa-envelope icon-nav notification"><span>{{App\Helpers::getNotificationsUser()}}</span></i>
 						</div>
-						<div class="col-md-4 col-sm-4 not-padding hidden-xs hidden-sm hidden-md text-center">
+						<!--<div class="col-md-4 col-sm-4 not-padding hidden-xs hidden-sm hidden-md text-center">
 							<button class="button9 newservice" data-toggle="modal" data-target="#NewService">
 							<p>Nueva oferta</p>
 							</button>							 
-						</div>
+						</div><-->
 					</div>
 					
 				</div>
