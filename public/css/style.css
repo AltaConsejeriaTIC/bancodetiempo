@@ -1158,9 +1158,11 @@ ul.dropdown-menu li:hover {
 .contactMail {
     position: fixed;
     top: 15%;
-    z-index:1000;
+    z-index: 1000;
     left: 0%;
     overflow: hidden;
+    height: 80%;
+    overflow-y: auto;
 }
 
 .contactMail .box {
