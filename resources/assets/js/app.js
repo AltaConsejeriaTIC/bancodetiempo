@@ -18,8 +18,6 @@ Vue.component('modaltimeoff', require('./components/modalTimeOff.vue'));
 Vue.component('sendmessage', require('./components/sendMessage.vue'));
 Vue.component('slider', require('./components/slider.vue'));
 Vue.component('deals', require('./components/Deal.vue'));
-//directives
-Vue.directive('validation', require('./components/validations.vue'));
 
 
 

@@ -96,6 +96,9 @@
 						    	<a href="{{ url('profile') }}">Perfil</a>
 						    </li>
 						    <li>
+						        <a href="/inbox">Notificaciones <span>{{App\Helpers::getNotificationsUser()}}</span></a>
+						    </li>
+						    <li>
 						    	<a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
 								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 							</li>
@@ -108,6 +111,9 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
                       <ul class="dropdown-menu">
                         <li><a href="{{ url('profile') }}">Perfil</a></li>
+                        <li>
+						        <a href="/inbox">Notificaciones <span>{{App\Helpers::getNotificationsUser()}}</span></a>
+						    </li>
                         <li><a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
 								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>  </li>
                       </ul>

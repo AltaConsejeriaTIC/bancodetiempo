@@ -28,7 +28,7 @@
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
 
-       <link href="{{ asset('css/jquery.datepick.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -55,14 +55,14 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>    
-
-    <script src="{{ asset('js/jquery.plugin.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.datepick.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script>
-        jQuery(document).ready(function(){
-            console.log("start");
-            jQuery('.datepick').datepick();
-        })
+        jQuery( ".datepick" ).datepicker({
+            inline: true,
+            dateFormat : 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true
+        });
     </script>
     <script src="{{ asset('js/mapsFunctions.js') }}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA&libraries=places"></script>
