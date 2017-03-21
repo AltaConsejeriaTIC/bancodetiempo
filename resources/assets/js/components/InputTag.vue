@@ -150,7 +150,7 @@
       <a v-if="!readOnly" @click.prevent.stop="remove(index)" class="remove"></a>
     </span>
     <input data-toggle="dropdown" v-if="!readOnly"  v-bind:placeholder="getPlaceholder()" type="text" v-model="newTag" v-on:keydown.delete.stop="removeLastTag()"
-           v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)" v-on:keydown.space="enter()" v-on:keydown.down.stop="down()" v-on:keydown.up.stop="up()"  class="new-tag dropdown-toggle" />
+           v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)" v-on:keydown="enter()" v-on:keydown.down.stop="down()" v-on:keydown.up.stop="up()"  class="new-tag dropdown-toggle" />
     <ul class="dropdown-menu "  >
       <li v-for="suggestion in suggestions" v-on:click="addNew(suggestion)">
         {{ suggestion }}
