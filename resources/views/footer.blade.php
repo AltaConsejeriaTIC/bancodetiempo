@@ -42,16 +42,8 @@
 		<hr>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-7 col-md-offset-3">
-					<div class="col-md-2 logo-footer">
-						<img src="{{ asset('images/moneda.png') }}">
-					</div>
-					<div class="col-md-2 logo-footer">
-						<img src="{{ asset('images/moneda.png') }}">
-					</div>
-					<div class="col-md-2 logo-footer">
-						<img src="{{ asset('images/moneda.png') }}">
-					</div>
+				<div class="col-md-7 col-md-offset-2">
+					<img class="footer-logo" src="{{ asset('images/logos_footer-3-14.png') }}">
 				</div>
 			</div>
 		</div>
