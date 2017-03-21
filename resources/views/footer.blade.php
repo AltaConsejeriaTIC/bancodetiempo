@@ -14,9 +14,11 @@
 					<div class="row link-social-network">
 						<a href="/content/terms">Términos y Condiciones</a>
 					</div>
+					<!--
 					<div class="row link-social-network">
 						<a href="/content/questions">Preguntas Frecuentes</a>
 					</div>
+					-->
 				</div>
 				<div class="col-md-5 text-center">
 					<div class="row col-md-offset-2">
@@ -27,13 +29,15 @@
 								<div>
 									<a href="https://twitter.com/cambalachea" target="_blank" class="circle-social-network text-center"><i class="fa fa-twitter icons-social-network" aria-hidden="true"></i></a>
 								</div>
+								<!--
 								<div>
 									<a class="circle-social-network text-center"><i class="fa fa-instagram icons-social-network" aria-hidden="true"></i></a>
 								</div>
+								-->
 							</div>
 							<div class="space10"></div>
 							<div class="row col-md-12">
-								¿Tienes sugerencias, dudas o comentarios? Contáctanos a <a href="mailto:evenvivelab_bog@unal.edu.co">admin@cambalachea.com </a>
+								¿Tienes sugerencias, dudas o comentarios? Contáctanos a <a href="mailto:evenvivelab_bog@unal.edu.co">evenvivelab_bog@unal.edu.co</a>
 							</div>
 					</div>
 				</div>
