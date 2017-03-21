@@ -11,28 +11,28 @@
 			<div style='width:15%;float:left;'>
 				<img src='{{$imageProfile}}' style='width:90%' alt='image'>
 			</div>
-			<div style='width:60%;margin-left:15px;float:left;'><h3 style='color:#4e4d61;font-family: "Open Sans", sans-serif;''>{{$service->name}}</h3></div>
+			<div style='width:60%;margin-left:15px;float:left;'><h3 style='color:#4e4d61;font-family: "Open Sans", sans-serif;'>{{$service->name}}</h3></div>
 		</article>		
 		<hr style='display:block;width:100%;border:none;height:30px;'>
 		<article>
 			<div style='width:15%;float:right;'>
 				<img src='{{$myImageProfile}}' style='width:90%' alt='image'>
 			</div>
-			<div style='width:60%;margin-right:15px;color:#fff;float:right;background:#0f6784;padding: 0px 15px;border-radius:4px;font-family: "Open Sans", sans-serif;''>
+			<div style='width:60%;margin-right:15px;color:#fff;float:right;background:#0f6784;padding: 0px 15px;border-radius:4px;font-family: "Open Sans", sans-serif;'>
 				<p>{{$content}}</p>
 			</div>
 			<hr style='display:block;width:100%;border:none;height:10px;'>
-			<a href='http://localbancodetiempo.com' align='center' style='background:#2cba36;display:block;width:60%;margin-left:15%;padding:15px;border-radius:4px;color:#fff;font-weight: bold;text-decoration: none;'>Entra para responder</a>
+			<a href='http://cambalachea.co' align='center' style='background:#2cba36;display:block;width:60%;margin-left:15%;padding:15px;border-radius:4px;color:#fff;font-weight: bold;text-decoration: none;'>Entra para responder</a>
 		</article>
 		<article>
-			<p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;''>
+			<p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>
 				Datos de contacto<br>
 				Teléfono:  000 00 00<br>
 				Dirección: Carrera 45 No. 26 - 33 <br>
-				Email: contacto@cambalachea.com<br>
+				Email: contacto@cambalachea.co<br>
 			</p>
-			<a href="#" style='color:#0f6784;font-size:12px;font-family: "Open Sans", sans-serif;''>Cancelar suscripción</a>
-			<p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>Por favor no respondas éste correo. La cuenta comunicacion@cambalachea.com distribuye las notificaciones al correo, no es una vía para resolver dudas. Si tienes alguna pergunta, inquietud o sugerencia, escríbenos al correo: ayuda@cambalachea.com.</p>
+			<a href="#" style='color:#0f6784;font-size:12px;font-family: "Open Sans", sans-serif;'>Cancelar suscripción</a>
+			<p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>Por favor no respondas éste correo. La cuenta comunicacion@cambalachea.com distribuye las notificaciones al correo, no es una vía para resolver dudas. Si tienes alguna pergunta, inquietud o sugerencia, escríbenos al correo: ayuda@cambalachea.co.</p>
 		</article>
 	</section>
 	
