@@ -545,11 +545,11 @@ Service box
     border: 0.25px solid #a0a0a0;
     max-width: 100%;
 }
-.report{
-	color: #999;
-	font-size: 14px;
-	position: relative;
-	left: 81.5%;
+.report {
+    color: #999;
+    font-size: 14px;
+    position: relative;
+    float: right;
 }
 .report_line{
 	color:#999;
@@ -942,7 +942,6 @@ Media Querys
 	}
 
 	.paragraph4{
-		font-size: 10.5px !important;
 		word-wrap: break-word;
 	}
 
@@ -952,11 +951,41 @@ Media Querys
 	}
 
 	.paragraph8{
-		font-size: 8px !important;
+		font-size: 10px !important;
 		word-wrap: break-word;
 	}
 
+    ul.menuMobile {
+        padding: 0;
+        list-style: none;
+    }
 
+    ul.menuMobile > li > a > i {
+        font-size: 25px;
+        text-align: right;
+        color:#fff !important;
+    }
+
+    ul.menuMobile ul.dropdown-menu {
+        left: -125px;
+
+    }
+
+    .modal-content-box{
+        width: 100% !important;
+    }
+
+    .modal-container {
+        width: 100% !important;
+        padding: 40px 0px !important;
+    }
+
+    .modal-header .close {
+        float: none !important;
+        position: relative !important;
+        margin: auto !important;
+        display: block !important;
+    }
 
 }
 
@@ -1009,13 +1038,13 @@ Animations
 	margin: auto;
 	vertical-align: middle;
 	width: 100%;
-	height: 360px;
 }
 
 .image-service{
 	background: grey !important;
-	height: 360px !important;
+	max-height: 360px !important;
 	width: 100%;
+    overflow: hidden;
 }
 
 .left{
@@ -1128,9 +1157,11 @@ ul.dropdown-menu li:hover {
 .contactMail {
     position: fixed;
     top: 15%;
-    z-index:1000;
+    z-index: 1000;
     left: 0%;
     overflow: hidden;
+    height: 80%;
+    overflow-y: auto;
 }
 
 .contactMail .box {

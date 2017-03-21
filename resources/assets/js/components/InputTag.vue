@@ -3,7 +3,7 @@
   const validators = {
     email : new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
     url : new RegExp(/^(https?|ftp|rmtp|mms):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\/?/i),
-    text : new RegExp(/^[^ 0-9#][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/),
+    text : new RegExp(/^[^ 0-9#][a-zA-Z0-9éíóúÁÉÍÓÚ ]*$/),
     digits : new RegExp(/^[\d() \.\:\-\+#]+$/),
     isodate : new RegExp(/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/)
   }
@@ -128,8 +128,8 @@
           this.onChange(JSON.parse(JSON.stringify(this.tags)));
         }
       },
-      enter(){
-      console.log("enter");
+      keys(e){
+        console.log(e);
       },
       down(){
 
@@ -150,7 +150,7 @@
       <a v-if="!readOnly" @click.prevent.stop="remove(index)" class="remove"></a>
     </span>
     <input data-toggle="dropdown" v-if="!readOnly"  v-bind:placeholder="getPlaceholder()" type="text" v-model="newTag" v-on:keydown.delete.stop="removeLastTag()"
-           v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)" v-on:keydown.enter.stop="enter()" v-on:keydown.down.stop="down()" v-on:keydown.up.stop="up()"  class="new-tag dropdown-toggle" />
+           v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)" v-on:keydown="keys(e)" v-on:keydown.down.stop="down()" v-on:keydown.up.stop="up()"  class="new-tag dropdown-toggle" />
     <ul class="dropdown-menu "  >
       <li v-for="suggestion in suggestions" v-on:click="addNew(suggestion)">
         {{ suggestion }}

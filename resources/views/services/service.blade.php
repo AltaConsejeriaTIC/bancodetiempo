@@ -25,7 +25,7 @@
 	<section class="row not-padding">
 		<div class="container">
 			<div class='row'>
-				<article class="col-md-8">
+				<article class="col-md-8 col-xs-12">
 
 					<div class="image-service">
 						<span class='category'>{{$service->category->category}}</span>
@@ -60,7 +60,7 @@
 								@if($service->virtually !== 0) Virtual @endif</p>
 							<p class="space15"></p>
 							<p class="paragraph4 text-bold"> Adquiere esta oferta por: </p>
-							<div class="row space10">
+							<div class="row">
 								<div class="col-md-2">
 									<img src="{{ asset('images/moneda.png') }}" class=" moneda icon-nav text-center"></image>
 								</div>
@@ -72,18 +72,21 @@
 						</div>
 
 					</div>
-					<div class='col-xs-12  col-sm-12'>
+					<div class="row">
+					    <div class='col-xs-12  col-sm-12'>
 
-						@foreach($service->tags as $tag)
-							@if($tag->service_id == $service->id)
-								<a class="col-xs-6 input-tag button7 tag-margin" tag='{{ $tag->tag->id }}' href='/filter?filter={{ $tag->tag->tag }}'>
-									<span>{{ $tag->tag->tag }}</span>
-								</a>
-							@endif
-						@endforeach
+                            @foreach($service->tags as $tag)
+                                @if($tag->service_id == $service->id)
+                                    <a class="col-xs-6 input-tag button7 tag-margin" tag='{{ $tag->tag->id }}' href='/filter?filter={{ $tag->tag->tag }}'>
+                                        <span>{{ $tag->tag->tag }}</span>
+                                    </a>
+                                @endif
+                            @endforeach
+                        </div>
 					</div>
-					<div>
-						<hr class="  col-md-12 report_line">
+
+					<div class="row">
+						<hr class="  col-md-12 report_line hidden-xs">
 						@if(!is_null(Auth::User()))
 							<a class="report" href="" title="Reportar Contenido" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class=" material-icons " aria-hidden="true">report</i>Reportar contenido</a>
 							@include('/services/report')
@@ -93,7 +96,8 @@
 
 					</div>
 				</article>
-
+                <div class="space visible-xs"></div>
+                 <div class="space visible-xs"></div>
 				<article class='col-md-4 col-xs-12 col-sm-6'>
 					<div class="row">
 						<div class="col-xs-6 col-xs-offset-3">
