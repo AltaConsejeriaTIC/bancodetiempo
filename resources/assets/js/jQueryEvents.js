@@ -4,6 +4,8 @@ jQuery(document).ready(function(){
     jQuery("form[form-validation]").on("change", ".validation", validation);
     jQuery("form[form-validation]").on("keyup", "textarea.validation", validation);
     jQuery("form[form-validation]").on("submit", validationGeneal);
+
+
 })
 
 function callMessages(){

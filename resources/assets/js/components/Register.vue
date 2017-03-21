@@ -65,7 +65,7 @@
                 <label for="birthdate" class="paragraph10">Fecha de nacimiento</label>                
             </div>         
             <div class="row not-margin">               	                
-                <input type='date' name='birthDate' v-model='birthDate' class=' validation' data-validations='["required", "minYear:18"]'>
+                <input type='text' name='birthDate' v-model='birthDate' class='datepick validation' data-validations='["required", "minYear:18"]'>
                 <div class="msg" errors='birthDate'>
 					<p error='required'>Este campo es obligatorio.</p>
 					<p error='min'>Debes ser mayor de edad para registrarte en Cambalachea.</p>
