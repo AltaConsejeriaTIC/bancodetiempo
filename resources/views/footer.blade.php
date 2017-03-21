@@ -14,9 +14,11 @@
 					<div class="row link-social-network">
 						<a href="/content/terms">Términos y Condiciones</a>
 					</div>
+					<!--
 					<div class="row link-social-network">
 						<a href="/content/questions">Preguntas Frecuentes</a>
 					</div>
+					-->
 				</div>
 				<div class="col-md-5 text-center">
 					<div class="row col-md-offset-2">
