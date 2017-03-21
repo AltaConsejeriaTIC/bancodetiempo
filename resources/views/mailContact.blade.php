@@ -27,12 +27,11 @@
 		<article>
 			<p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>
 				Datos de contacto<br>
-				Teléfono:  000 00 00<br>
-				Dirección: Carrera 45 No. 26 - 33 <br>
-				Email: contacto@cambalachea.co<br>
+				Dirección: Vivelab Bogotá Carrera 45 No. 26 - 33 <br>
+				Email: evenvivelab_bog@unal.edu.co<br>
 			</p>
 			<a href="#" style='color:#0f6784;font-size:12px;font-family: "Open Sans", sans-serif;'>Cancelar suscripción</a>
-			<p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>Por favor no respondas éste correo. La cuenta comunicacion@cambalachea.com distribuye las notificaciones al correo, no es una vía para resolver dudas. Si tienes alguna pergunta, inquietud o sugerencia, escríbenos al correo: ayuda@cambalachea.co.</p>
+			<p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>Por favor no respondas éste correo. La cuenta evenvivelab_bog@unal.edu.co distribuye las notificaciones al correo, no es una vía para resolver dudas. Si tienes alguna pergunta, inquietud o sugerencia, escríbenos al correo: evenvivelab_bog@unal.edu.co.</p>
 		</article>
 	</section>
 	
