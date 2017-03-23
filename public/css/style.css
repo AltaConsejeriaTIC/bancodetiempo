@@ -185,6 +185,32 @@ Buttons
 	border-radius: 4px;
 }
 
+.button11{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	color: #212f3f;
+	padding: 8px 9px;
+}
+
+.button11:hover{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	color: #212f3f;
+	padding: 8px 9px;
+}
+
+
+.button11:focus{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #212f3f;
+	padding: 8px 9px;
+	border-bottom: 3px solid #212f3f;
+	background-color: none !important;
+}
+
+
 .buttonService{
   height: 140px;
   border-radius: 5px;
@@ -541,8 +567,9 @@ Service box
     max-height: 500px;
     height: 475px;
     margin: 10px auto;
-    background-color:#dedede;
-    border: 0.25px solid #a0a0a0;
+    background-color:#fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.24);
+    /*border: 0.25px solid #a0a0a0;*/
     max-width: 100%;
 }
 .report {

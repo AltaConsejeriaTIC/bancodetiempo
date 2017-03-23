@@ -10,10 +10,10 @@
 	<div class="row">
 		<ul  class="nav nav-pills col-md-8">
 			<li class="active">
-	        	<a  href="#received" data-toggle="tab" class='parrafo3'>Interesados en mis ofertas</a>
+	        	<a  href="#received" data-toggle="tab" class="button11">Interesados en mis ofertas</a>
 			</li>
 			<li>
-	        	<a  href="#sent" data-toggle="tab" class='parrafo3'>Ofertas que deseo recibir</a>
+	        	<a  href="#sent" data-toggle="tab" class="button11">Ofertas que deseo recibir</a>
 			</li>
 		</ul>
 	</div>
