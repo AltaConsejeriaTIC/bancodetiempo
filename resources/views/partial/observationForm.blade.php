@@ -1,7 +1,7 @@
 <div class='box-modal' id='form-observation'>
     <div class='shadow'></div>
     <div class='panel box-fixed col-md-4 col-md-offset-4'>
-       {!! Form::open(['url' => '/addObservation', 'method' => 'post', 'class' => 'form-custom', 'v-validation:msg' => '']) !!}
+       {!! Form::open(['url' => '/addObservation', 'method' => 'post', 'class' => 'form-custom', 'form-validation' => '']) !!}
             <div class="content">
                 <div class="row">
                     <h1 class="title1 col-md-10 col-md-offset-1">¡Califica tu experiencia!</h1>
@@ -93,7 +93,7 @@
 <div class='box-modal' id='form-bad-observation'>
     <div class='shadow'></div>
     <div class='panel box-fixed col-md-4 col-md-offset-4'>
-       {!! Form::open(['url' => '/addObservation', 'method' => 'post', 'class' => 'form-custom', 'v-validation:msg' => '']) !!}
+       {!! Form::open(['url' => '/addObservation', 'method' => 'post', 'class' => 'form-custom', 'form-validation' => '']) !!}
             <div class="content">
                 <div class="row">
                     <h1 class="title1 col-md-10 col-md-offset-1">¿Qué salió mal?</h1>

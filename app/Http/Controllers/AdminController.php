@@ -133,7 +133,8 @@ class AdminController extends Controller
         if($request->name != '')
         {
             $services = Service::where('name', 'LIKE', "%$request->name%")->paginate(6);
-            return view('admin/services/list', compact('services'));
+            $states = State::whereIn('id',array(1,2))->pluck('state','id');
+            return view('admin/services/list',compact('services','states'));
         }
         else
         {

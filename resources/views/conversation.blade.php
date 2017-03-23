@@ -28,6 +28,7 @@
 					<h1 class='title2 text-white'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</h1>
 					<i class="text-white">{{$conversation->service->name}}</i>
 				</div>
+
 			@endif
 
 		</div>
@@ -58,7 +59,7 @@
 											<label for="dealDate" class="paragraph10">Fecha de realización del acuerdo</label>
 										</div>
 										<div class="row not-margin">
-											<input type="date" name="dealDate" id="dealDate" placeholder="dd/mm/aaaa" class="validation"  data-validations='["required"]'>
+											<input type="text" name="dealDate" id="dealDate" placeholder="dd/mm/aaaa" class="validation datepick"  data-validations='["required"]'>
 										</div>
 										<div class="row not-margin">
 											<label for="dealHour" class="paragraph10">Hora</label>
