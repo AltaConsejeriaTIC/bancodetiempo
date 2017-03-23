@@ -16,6 +16,7 @@
 				</div>
 				<div class='col-md-8'>
 					<h1 class='title2 text-white'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</h1>
+					<i class="text-white">{{$conversation->service->name}}</i>
 				</div>
 
 			@else
@@ -25,6 +26,7 @@
 				</div>
 				<div class='col-md-8'>
 					<h1 class='title2 text-white'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</h1>
+					<i class="text-white">{{$conversation->service->name}}</i>
 				</div>
 			@endif
 
@@ -48,7 +50,7 @@
 			            </div>
 			            <div class="modal-header-welcome">
 			                <h1 class="title1">Propuesta de acuerdo</h1>
-			                <h4>Oferta:</h4>
+			                <h4>Oferta: {{$conversation->service->name}}</h4>
 			            </div>
 			          	
 			            <div class="modal-body">

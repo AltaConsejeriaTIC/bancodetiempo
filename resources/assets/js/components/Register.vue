@@ -115,9 +115,10 @@
         	}
         },
         mounted() {            
-            this.$parent.setMyData('totalChar', 250)
-            this.$parent.setMyData('maxChar', 250)
-            this.$parent.setMyData('aboutMe', this.aboutMe)
+            this.$parent.setMyData('totalChar', 250);
+            this.$parent.setMyData('maxChar', 250);
+            this.$parent.setMyData('aboutMe', this.aboutMe);
+            jQuery("input[name='birthDate']").val(windowvar.userJs["birthDate"]);
         },    
     }
 </script>
