@@ -78,7 +78,6 @@ class NetworkAccountsController extends Controller
 
 	public function createUser($providerData){
 
-
 		$account = new NetworkAccounts([
 				'provider_id' => $providerData['id'],
 				'provider' => $providerData['provider']
@@ -98,7 +97,7 @@ class NetworkAccountsController extends Controller
 					'avatar' => '',
 					'state_id' => 4,
 					'gender' => $providerData['gender'],
-					'birthDate' => $providerData['birthdate'] == '' ? 0000-00-00 : date("Y-m-d", strtotime($providerData['birthdate'])),
+					'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
 					'aboutMe' => '',
 					'role_id' => 2
 			]);
