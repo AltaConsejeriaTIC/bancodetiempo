@@ -48,7 +48,7 @@
 			            </div>
 			            <div class="modal-header-welcome">
 			                <h1 class="title1">Propuesta de acuerdo</h1>
-			                <h4>Oferta:</h4>
+			                <h4>Oferta: {{$conversation->service->name}}</h4>
 			            </div>
 			          	
 			            <div class="modal-body">
