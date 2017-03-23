@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'IncompleteRegister' => \App\Http\Middleware\IncompleteRegisterMiddleware::class,
         'userService' => \App\Http\Middleware\UserServiceMiddleware::class,        
         'register' => \App\Http\Middleware\RegisterMiddleware::class,
+        'conversation' => \App\Http\Middleware\ConversationMiddleware::class,
     ];
 }

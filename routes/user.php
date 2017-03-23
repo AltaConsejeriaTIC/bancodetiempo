@@ -22,7 +22,7 @@ Route::get('/defaultsend/{serviceid?}','EmailController@defaultSend');
 
 Route::get('/inbox','ConversationController@index');
 
-Route::get('/conversation/{conversation_id}','ConversationController@showConversation');
+Route::get('/conversation/{conversation_id}','ConversationController@showConversation')->middleware('conversation');
 
 Route::get('/messages/{conversation_id}','ConversationController@messagesConversation');
 
