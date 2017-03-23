@@ -86,17 +86,19 @@ class NetworkAccountsController extends Controller
 
 		$user = User::whereEmail($providerData['email'])->first();
 		
+        $email = is_null($providerData['email']) ? $providerData['id']."@cambalachea.co" : $providerData['email'];
+
 		if (!$user) {
 
 			$user = User::create([
-					'email' => $providerData['email'],
+					'email' => $email,
 					'email2' => $providerData['email'],
 					'first_name' => $providerData['first_name'],
 					'last_name' => $providerData['last_name'],
 					'avatar' => '',
 					'state_id' => 4,
 					'gender' => $providerData['gender'],
-					'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
+					'birthDate' => $providerData['birthdate'] == '' || $providerData['birthdate'] == 0 ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
 					'aboutMe' => '',
 					'role_id' => 2
 			]);
