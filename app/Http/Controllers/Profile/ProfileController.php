@@ -43,7 +43,7 @@ class ProfileController extends Controller
 				'categoriesJs' => $categories,
 				'servicesJs' => $services,
 				'tagsJs' => $tags,
-                'tags' => $tagsJson,
+        'tags' => $tagsJson,
 			]);				
 
       return view('profile/profile', compact('user','categories','services'));
