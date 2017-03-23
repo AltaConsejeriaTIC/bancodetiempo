@@ -16,6 +16,7 @@
 				</div>
 				<div class='col-md-8'>
 					<h1 class='title2 text-white'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</h1>
+					<i class="text-white">{{$conversation->service->name}}</i>
 				</div>
 
 			@else
@@ -25,6 +26,7 @@
 				</div>
 				<div class='col-md-8'>
 					<h1 class='title2 text-white'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</h1>
+					<i class="text-white">{{$conversation->service->name}}</i>
 				</div>
 			@endif
 
