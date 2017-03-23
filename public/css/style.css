@@ -848,7 +848,10 @@ conversation box
     top: 5%;
     z-index: 15000;
 }
-
+.aling{
+	margin-right: 0px;
+  margin-left: -9px;
+}
 /*
 Media Querys
 */
@@ -885,6 +888,12 @@ Media Querys
 }
 
 @media (max-width: 450px){
+	.align
+		{
+			margin-right: 0px !important;
+    	margin-left: 0px !important;
+		}
+		
 	.bannerHome {
 	    background-size: 480% auto;
     	background-position: 65% 25%;
@@ -976,10 +985,10 @@ Media Querys
     }
 
     .modal-container {
-        width: 100% !important;
-        padding: 40px 0px !important;
+        width: 100% !important;        
+        /*padding: 40px 0px !important;*/
     }
-
+    
     .modal-header .close {
         float: none !important;
         position: relative !important;
