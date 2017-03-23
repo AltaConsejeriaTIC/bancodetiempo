@@ -57,11 +57,14 @@
     <script src="{{ asset('js/app.js') }}"></script>    
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script>
+        var date = new Date();
+        var range = '1950:'+date.getFullYear();
         jQuery( ".datepick" ).datepicker({
             inline: true,
             dateFormat : 'yy-mm-dd',
             changeMonth: true,
-            changeYear: true
+            changeYear: true,
+            yearRange: range
         });
     </script>
     <script src="{{ asset('js/mapsFunctions.js') }}"></script>
