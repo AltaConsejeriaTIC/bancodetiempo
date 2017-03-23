@@ -18,11 +18,13 @@ class ConversationMiddleware
     public function handle($request, Closure $next)
     {
         $conversation = Conversations::find($request->route('conversation_id'));
-
-        if($conversation->applicant_id == Auth::id() || $conversation->service->user->id == Auth::id()){
-            return $next($request);
+        if(!is_null($conversation)){
+            if($conversation->applicant_id == Auth::id() || $conversation->service->user->id == Auth::id()){
+                return $next($request);
+            }else{
+                 return redirect('home');
+            }
         }
-
         return redirect('home');
 
     }

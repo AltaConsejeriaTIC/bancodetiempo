@@ -223,6 +223,12 @@ Buttons
 	background-color: #818993 !important;
 	pointer-events: none;
 }
+
+.inactive {
+    pointer-events: none;
+    background: #b7bab7 !important;
+    opacity: 0.7;
+}
 /*
 Paragraphs
 */
