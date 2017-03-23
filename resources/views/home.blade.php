@@ -39,11 +39,6 @@
 	        @endforeach
 			  </div>
 			  
-			  <div class="col-md-12 pagination pg-bluegrey">             
-					{!! $allServices->render() !!}         
-				</div>
-			</div>
-
 			<div class="tab-pane" id="filterRecommended">
 				<div class='row'>
 					@if($recommendedServices != '')
