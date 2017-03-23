@@ -1,9 +1,11 @@
+
 @if(isset($service))
+
 	<div class='service-box'>	
 		@if(isset($edit))		
 			<div class="col-md-5 icons-button-content">				
 				<button class="icons-button" data-toggle="modal" data-target="#EditService{{$service->id}}"><i class="fa fa-pencil"></i></button>					
-				<button class="icons-button" data-toggle="modal" data-target="#DeleteService{{$service->id}}"><i class="fa fa-trash-o"></i></button>						
+				<button class="icons-button  @if($service->conversations->count() > 0) inactive @endif" @if($service->conversations->count() == 0) data-toggle="modal" data-target="#DeleteService{{$service->id}}" @endif><i class="fa fa-trash-o"></i></button>
 			</div>
 			{!! Form::model($service, ['url' => ['service/save', $service->id], 'method' => 'put', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation']) !!}
 				<editservice name="EditService{{$service->id}}" id="{{$service->id}}"></editservice>						
@@ -30,7 +32,7 @@
 							@if($cont <= $service->user->ranking)
 								<span class='material-icons paragraph9'>grade</span>
 							@else
-								<span class='material-icons paragraph8 '>fiber_manual_record</span>
+								<span class='material-icons paragraph8 in'>fiber_manual_record</span>
 							@endif
 						@endfor
 					</div>		

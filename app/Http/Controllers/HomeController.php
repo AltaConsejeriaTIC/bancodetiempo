@@ -55,7 +55,11 @@ class HomeController extends Controller
     		return redirect('/home');
     	}else{
 
-    		$lastServices = Service::where('state_id' , 1)->orderBy('id', 'desc')->limit(6)->get()->where('user.state_id', 1);
+    		$lastServices = Service::where('services.state_id','=', 1)
+                            ->orderBy('services.id', 'desc')
+                            ->limit(6)
+                            ->get()
+                            ->where('state_id','=', 1);
     		    		
     		return view('welcome', compact('lastServices'));
     	}

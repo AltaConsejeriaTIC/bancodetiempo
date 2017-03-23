@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Models\serviceScore;
+use App\Models\Deal;
+use App\Models\Conversations;
 
 
 class Service extends Model
@@ -56,6 +58,12 @@ class Service extends Model
         }
     }
 
+    public function conversations(){
+        return $this->hasMany(Conversations::class);
+    }
 
+    public function deals(){
+        return $this->hasMany(Deal::class);
+    }
 	
 }
