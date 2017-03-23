@@ -24,7 +24,8 @@ class HomeController extends Controller
     public function index()
     {
 
-        if($this->IncompleteRegister()){
+        if($this->IncompleteRegister())
+        {
             return $this->IncompleteRegister();
         }
 
@@ -33,7 +34,11 @@ class HomeController extends Controller
 
         $categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
         
-        $allServices = Service::where('state_id' , 1)->orderBy("created_at","desc")->get()->where('user.state_id', 1);
+        $allServices = Service::join('users','services.user_id','=','users.id')
+                        ->where('users.state_id','=', 1)
+                        ->where('services.state_id','=', 1)
+                        ->orderBy('services.created_at', 'desc')                        
+                        ->paginate(12);
 
         if(!is_null(Auth::User())){
             $interestsUser = $this->getInterestsUser();
@@ -55,7 +60,12 @@ class HomeController extends Controller
     		return redirect('/home');
     	}else{
 
-    		$lastServices = Service::where('state_id' , 1)->orderBy('id', 'desc')->limit(6)->get()->where('user.state_id', 1);
+    		$lastServices = Service::join('users','services.user_id','=','users.id')
+                            ->where('users.state_id','=', 1)
+                            ->where('services.state_id','=', 1)
+                            ->orderBy('services.id', 'desc')
+                            ->limit(6)
+                            ->get();
     		    		
     		return view('welcome', compact('lastServices'));
     	}
@@ -77,8 +87,7 @@ class HomeController extends Controller
     }
     
     public function filter(Request $request)
-    {   	
-    	
+    {      	
     	
     	Session::put('filters.text', $request->input('filter'));  	
     	 
