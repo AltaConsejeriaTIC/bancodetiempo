@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="row link-social-network">
-						<a href="#">¿Cómo funciona?</a>
+						<a href="/how">¿Cómo funciona?</a>
 					</div>
 				</div>
 				<div class="col-md-3">
