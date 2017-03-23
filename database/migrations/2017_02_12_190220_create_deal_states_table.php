@@ -75,7 +75,7 @@ class CreateDealStatesTable extends Migration
                 'CONCAT(SUBSTRING(json, 1, CHAR_LENGTH(json) - 1),'.
                 '\',{"message":"Propuesta Cancelada","date":"\', CURTIME(), \'","time":"\', CURTIME(), \'", "sender":\', applicant, \',"state":6,"deal":"\', trato, \'","dealState":8}]\');
             INSERT INTO deal_states (deal_id, state_id,created_at ,updated_at) VALUES (trato, 8,NOW(), NOW());
-            UPDATE conversations SET message = json;
+            UPDATE conversations SET message = json WHERE id = conversation;
             END IF;
 
         END LOOP c1_loop;

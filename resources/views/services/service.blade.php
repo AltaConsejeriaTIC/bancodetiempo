@@ -153,7 +153,7 @@
 	<contactmailmodal service='{{$service->id}}' :contact-mail='myData.contactMail'>
 		<div slot="modal" class='box row'>
 			<button type="button" class='close'  v-on:click='putMyData("contactMail", false)'><i class='fa fa-close'></i></button>
-			{!! Form::open(['url' => '/defaultsend/'.$service->id, 'method' => 'get', 'class' => 'form-custom col-md-10 col-md-offset-1']) !!}             
+			{!! Form::open(['url' => '/defaultsend/'.$service->id, 'method' => 'get', 'class' => 'form-custom col-md-10 col-md-offset-1', 'form-validation']) !!}
 	      		<div class='row'>
 	      			<div class="col-md-12 text-center title1 not-padding">Comunícate con {{$service->user->first_name}}</div>
 	      		</div>
@@ -165,7 +165,7 @@
 							- Coméntale lo que esperas recibir.<br>
 							- Concreta los datos del acuerdo y envíale una propuesta.</p>
 	      			</div>
-	      			<div v-validation:msg="">
+	      			<div >
 		      			<div class="row">
 		      				<div class="col-md-12">
 		      					<textarea name="content" class='validation ' id="content" rows="10" placeholder='Ej. ¡Hola! Me llamo Joe, me gustaría tomar tu oferta ya que dentro de poco será mi matrimonio, y quiero conservar los mejores recuerdos de ese día. ¿Te parece bien si nos encontramos el Lunes, 6 de Agosto a las 3 PM en el Parque Simón Bolivar para realizar la actividad? Espero tu respuesta.'  data-validations='["required", "min:20", "max:250"]'></textarea>
@@ -180,7 +180,7 @@
 		      			<div class="space10"></div>
 		      			<div class="row">
 		      				<div class="col-md-10 col-md-offset-1">
-		      					<input type='submit' value='Enviar' class='col-md-12 button1 background-active-color' onClick='jQuery(this).css("pointer-events", "none")'>
+		      					<input type='submit' value='Enviar' class='col-md-12 button1 background-active-color'>
 		      				</div>
 		      			</div>
 		      			<div class="space10"></div>

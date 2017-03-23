@@ -209,6 +209,9 @@ function validationGeneal(){
 
     if(allErrors > 0){
         return false;
+    }else{
+        jQuery(this).find('[type="submit"]').attr("type", "button");
+        return true;
     }
 
 }

@@ -108,7 +108,7 @@
 
 				            </div>
 			            	<div class="row not-margin">
-				    					<button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" onClick='jQuery(this).css("pointer-events", "none")'>
+				    					<button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color">
 				    						Realizar Propuesta
 				        				</button>
 				            			<div class="space10">
