@@ -42,7 +42,7 @@
                             <div class="row ">
                                 <div class="col-md-12" >
                                     {!!Form::label('Categotia', '¿Cual es el problema?',['class' => 'paragraph10 text-center'])!!}
-                                    {!!Form::select('list', $listTypes , 'l', ['class' => 'col-xs-12 col-sm-12 col-md-12 validation', 'required' => "required"])!!}
+                                    {!!Form::select('list', $listTypes , 'l', [ 'required' => "required"])!!}
 
                                 </div>
                                 <div class="col-md-12" >
