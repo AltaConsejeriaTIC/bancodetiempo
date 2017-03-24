@@ -34,7 +34,7 @@
 						      @foreach($services as $service)
 						        <tr>
 						        	<td>{{ $service->name }}</td>
-						        	<td>{{ $service->description }}</td>
+									<td><p  class="paragraph3">{{ $service->description }}</p></td>
 						        	<td>{{ $service->user->first_name." ".$service->user->last_name}}</td>
 						        	<td>{{ $service->state->state }}</td>
 						        	<td>

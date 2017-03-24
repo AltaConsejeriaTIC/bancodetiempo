@@ -48,15 +48,15 @@
                           <img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav"></image> 
                         </p>                          
                         <p class="col-xs-10">
-                          Bolsa de tiempo:
-                          <br>
                           <span class="text-bold">
                             {{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? "Dorado" : "Dorados" }}
                           </span>
-                          <span class="space4"></span>
-                          <span class="paragraph6">
+                            <span class="space4"></span>
+                            <span class="paragraph6">
                             Cada dorado equivale a una hora de tu tiempo, y del tiempo de cualquier persona.
                           </span>
+                          <br>
+
                         </p>
                         <div class="space20"></div>        
                       </div>
