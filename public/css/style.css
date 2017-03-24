@@ -1252,3 +1252,13 @@ ul.dropdown-menu li:hover {
 {
 	z-index: 9999999999;
 }
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+  background-color: #003e65 !important;
+  border-color: #003e65 !important;
+}
+
+.pagination
+{
+	margin: 2% 0 1% 22% !important;
+}
