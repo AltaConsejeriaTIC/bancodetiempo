@@ -39,6 +39,8 @@
 	        @endforeach
 			  </div>
 			  
+			  {!! $allServices->links() !!}
+
 			<div class="tab-pane" id="filterRecommended">
 				<div class='row'>
 					@if($recommendedServices != '')

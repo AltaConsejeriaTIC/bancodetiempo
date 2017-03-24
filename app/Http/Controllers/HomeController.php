@@ -21,7 +21,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         if($this->IncompleteRegister()){
@@ -32,8 +32,13 @@ class HomeController extends Controller
         $recommendedServices = '';
 
         $categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
-        
-        $allServices = Service::where('state_id' , 1)->orderBy("created_at","desc")->get()->where('user.state_id', 1);
+                
+        $allServices = Service::select('services.*')
+                                ->join('users','users.id','=','services.user_id')
+                                ->where('services.state_id' , 1)
+                                ->where('users.state_id', 1)
+                                ->orderBy("created_at","desc")
+                                ->paginate(12);
 
         if(!is_null(Auth::User())){
             $interestsUser = $this->getInterestsUser();
@@ -45,8 +50,8 @@ class HomeController extends Controller
         JavaScript::put([                    
                     'categoriesJs' => $categories,                    
                 ]); 
-    	
-        return view('home', compact('allServices', 'recommendedServices', 'categories'));
+
+        return view('home', compact('allServices', 'recommendedServices', 'categories'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
     
     public function indexNotRegister(){
