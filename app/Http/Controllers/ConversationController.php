@@ -15,7 +15,13 @@ class ConversationController extends Controller
 
 		$myServices = Auth::User()->services;
 
-		$conversationsMyService = Conversations::whereIn("service_id", $myServices)->get();
+        $listServices = [];
+
+        foreach($myServices as $services){
+            $listServices[] = $services->id;
+        }
+
+		$conversationsMyService = Conversations::whereIn("service_id", $listServices)->get();
 
 		$conversations = Conversations::where("applicant_id", Auth::user()->id)->get();
 

@@ -29,6 +29,9 @@
                             <i score='4' class='star4 score' input='score'></i>
                             <i score='5' class='star5 score' input='score'></i>
                         </label>
+                        <div class="msg" errors='score'>
+                            <p error='required'>Este campo es obligatorio.</p>
+                        </div>
                    </div>
 
                 </div>
@@ -46,6 +49,9 @@
                                 <i score='4' class='star4 score' input='scoreService'></i>
                                 <i score='5' class='star5 score' input='scoreService'></i>
                             </label>
+                            <div class="msg" errors='scoreService'>
+                                <p error='required'>Este campo es obligatorio.</p>
+                            </div>
                        </div>
 
                     </div>
