@@ -118,7 +118,7 @@ class HomeController extends Controller
     		Session::pull('filters.tags');
     	}
     	
-    	$allServices = $allServices->get();
+    	$allServices = $allServices->paginate(12);
     	
     	$recommendedServices = '';
     	
@@ -136,7 +136,7 @@ class HomeController extends Controller
     			'categoriesJs' => $categories,
     	]);
     	 
-    	return view('home', compact('allServices', 'recommendedServices', 'categories'));
+    	return view('home', compact('allServices', 'recommendedServices', 'categories'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     public function IncompleteRegister(){
