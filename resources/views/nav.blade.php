@@ -52,7 +52,7 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-9  col-sm-3  col-md-3 padding-top">
+				<div class="col-xs-7  col-sm-3  col-md-3 padding-top">
 					<a href="/index" >
 						<img class="iconbar2" src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
