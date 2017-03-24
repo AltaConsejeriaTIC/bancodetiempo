@@ -143,7 +143,7 @@
 					</a>
 				</div>
 				<div class='hidden-xs hidden-sm col-md-offset-1 padding-top col-md-3'>
-					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentras personas, habilidades y más ... '>
+					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentra ofertas, palabras clave y más...'>
 					<label for="filter1" class=" fa fa-search "></label>
 				</div>
 				<div class="text-right col-md-4" id="container-nav-buttons">
