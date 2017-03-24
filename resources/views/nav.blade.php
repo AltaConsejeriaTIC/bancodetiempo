@@ -87,7 +87,7 @@
 					</div>
 					
 				</div>
-				<div class=' hidden- xs col-xs-1 col-sm-1 col-sm-1 col-md-1 text-right icon-profile'>
+				<div class=' hidden-xs col-xs-1 col-sm-1 col-sm-1 col-md-1 text-right icon-profile'>
 					@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '1px'))
 				</div>
 				<div class=' hidden-xs col-xs-2 col-sm-2 padding-top menu  col-sm-2 col-md-2 text-right dropdown'>
@@ -109,7 +109,7 @@
 					</a>
 				</div>
 				
-				<ul class="menuMobile visible-xs col-xs-2 col-xs-offset-1">
+				<ul class="menuMobile visible-xs col-xs-2 col-xs-offset-3">
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
                       <ul class="dropdown-menu">
