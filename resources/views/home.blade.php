@@ -42,7 +42,7 @@
 		  
 		  {!! $allServices->links() !!}
 
-			<div class="tab-pane" id="filterRecommended">
+			<div class="tab-pane hidden" id="filterRecommended">
 				<div class='row'>
 					@if($recommendedServices != '')
 				        @foreach($recommendedServices as $key => $service)
