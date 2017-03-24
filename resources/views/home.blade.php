@@ -27,36 +27,39 @@
 		</div>
 	</div>
 	<div class='row'>
-            <div class="tab-content clearfix">
-                <div class="tab-pane active" id="filterAll">
-                    <div class='row'>
-                @foreach($allServices as $key => $service)
 
-                  <div class='col-md-4 col-xs-12 col-sm-6'>
-                      @include('partial/serviceBox', array("service" => $service))
-                  </div>
+	<div class="tab-content clearfix">
+		<div class="tab-pane active" id="filterAll">
+			<div class='row'>
+        @foreach($allServices as $key => $service)
 
-                @endforeach
-                  </div>
+          <div class='col-md-4 col-xs-12 col-sm-6'>
+	          @include('partial/serviceBox', array("service" => $service))
+          </div>
 
-                <div class="tab-pane" id="filterRecommended">
-                    <div class='row'>
-                        @if($recommendedServices != '')
-                            @foreach($recommendedServices as $key => $service)
+        @endforeach
+		  </div>
+		  
+		  {!! $allServices->links() !!}
 
-                              <div class='col-md-4 col-xs-12 col-sm-6'>
+			<div class="tab-pane" id="filterRecommended">
+				<div class='row'>
+					@if($recommendedServices != '')
+				        @foreach($recommendedServices as $key => $service)
+	
+				          <div class='col-md-4 col-xs-12 col-sm-6'>
+	
+					          @include('partial/serviceBox', array("service" => $service))
+	
+				          </div>
+	
+				        @endforeach
+				     @endif
+			    </div>
+			</div>
+		</div>
+	</div>
 
-                                  @include('partial/serviceBox', array("service" => $service))
-
-                              </div>
-
-                            @endforeach
-                         @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 
