@@ -52,9 +52,9 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-9 col-sm-2 padding-top col-md-2">
+				<div class="col-xs-9  col-sm-3  col-md-3 padding-top">
 					<a href="/index" >
-						<img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" />
+						<img class="iconbar2" src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
 				</div>
 				<div class='hidden-xs hidden-sm padding-top col-md-3'>
@@ -64,14 +64,20 @@
 					{!! Form::close() !!}
 				</div>
 				
-				<div class="hidden-xs col-md-4 col-md-offset-0 padding-top col-sm-4 col-sm-offset-1 not-padding not-margin text-right">
+				<div class="hidden-xs col-md-3 col-md-offset-0 padding-top col-sm-3 col-sm-offset-1 not-padding not-margin text-right">
 					<div class="flex-center">
-						<div class="col-md-7 col-sm-7 padding-top not-margin bolsa-de-tiempo text-left">
+						<div class="col-md-10 col-sm-10 padding-top not-margin bolsa-de-tiempo text-left">
+							<div class="space4"></div>
 							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
-							<p class="paragraph4 textpadding col-md-10 col-sm-7 text-white">Bolsa de tiempo:<br>{{ Auth::user()->credits }} Dorados</p>
+
+							<p class="paragraph4 textpadding col-md-10 col-sm-7 text-white">{{ Auth::user()->credits }} Dorados</p>
 						</div>
 						<div class="col-md-1 col-sm-1 not-padding " onclick='location.href="/inbox#received"'>
-							<i class="fa fa-envelope icon-nav notification"><span>{{App\Helpers::getNotificationsUser()}}</span></i>
+							@if(App\Helpers::getNotificationsUser()>0)
+								<i class="fa fa-envelope icon-nav notification text-center"><span>{{App\Helpers::getNotificationsUser()}}</span></i>
+							@else
+								<i class="fa fa-envelope icon-nav notification text-center"></i>
+							@endif
 						</div>
 						<!--<div class="col-md-4 col-sm-4 not-padding hidden-xs hidden-sm hidden-md text-center">
 							<button class="button9 newservice" data-toggle="modal" data-target="#NewService">

@@ -22,7 +22,7 @@
 		<div class="tab-content clearfix">
 			<div class="tab-pane active" id="received">
 				<div class='row header'>
-					<div class='col-md-1'>*</div>
+					<div class='col-md-1'></div>
 					<div class='col-md-3'><h2 class="title1">De</h2></div>
 					<div class='col-md-3'><h2 class="title1">mensaje</h2></div>
 					<div class='col-md-2'><h2 class="title1">Fecha</h2></div>
@@ -46,7 +46,7 @@
 			</div>
 			<div class="tab-pane" id="sent">
 				<div class='row header'>
-					<div class='col-md-1'>*</div>
+					<div class='col-md-1'></div>
 					<div class='col-md-3'><h2 class="title1">De</h2></div>
 					<div class='col-md-3'><h2 class="title1">mensaje</h2></div>
 					<div class='col-md-2'><h2 class="title1">Fecha</h2></div>
