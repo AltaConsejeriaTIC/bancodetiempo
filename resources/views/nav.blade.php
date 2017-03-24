@@ -87,12 +87,12 @@
 					</div>
 					
 				</div>
-				<div class=' hidden-xs col-xs-1 col-sm-1 col-sm-1 col-md-1 text-right icon-profile'>
+				<div class=' hidden- xs col-xs-1 col-sm-1 col-sm-1 col-md-1 text-right icon-profile'>
 					@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '1px'))
 				</div>
 				<div class=' hidden-xs col-xs-2 col-sm-2 padding-top menu  col-sm-2 col-md-2 text-right dropdown'>
 					<a class='dropdown-toggle flex-center ' data-toggle="dropdown">
-						<div class='col-xs-12 not-padding menu '>
+						<div class='col-xs-12  not-padding menu '>
 							<span class='not-padding not-margin paragraph4  text-white'>{{Auth::user()->first_name}}</span>
 								<i class='iconmenu menu fa fa-angle-down'></i>
 						</div>
