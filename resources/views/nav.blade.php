@@ -32,12 +32,16 @@
 							{{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? "Dorado" : "Dorados" }}
 						</p>
 						<p class="col-xs-1 line-nav">|</p>
-						<a class="col-xs-5 align-left" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+						<!-- <a class="col-xs-5 align-left" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a> -->
+						<a class="col-xs-5 align-left" href="{{ url('/validateLogout') }}">Cerrar Sesión</a>
 					</div>
+					<!--
 					<a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1' href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></a>
 					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
 					</form>
+					-->
+					<a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1' href="{{ url('/validateLogout') }}"></a>
 				@endif
 			</div>
 		</div>
@@ -102,31 +106,35 @@
 						    	<a href="{{ url('profile') }}">Perfil</a>
 						    </li>
 						    <li>
-						    	<a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+						    	<!--<a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
 								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+								-->
+								<a href="{{ url('/validateLogout') }}" class="link1">Cerrar Sesión</a>
 							</li>
 						</ul>
 					</a>
 				</div>
 				
 				<ul class="menuMobile visible-xs col-xs-2 col-xs-offset-3">
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="{{ url('profile') }}">Perfil</a></li>
-                        <li>
-						        <a href="/inbox">Notificaciones <span>{{App\Helpers::getNotificationsUser()}}</span></a>
-						    </li>
-                        <li><a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
-								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>  </li>
-                      </ul>
-                    </li>
-                </ul>
-
-			</div>
-			
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+            <ul class="dropdown-menu">
+              <li>
+              	<a href="{{ url('profile') }}">Perfil</a>
+              </li>
+              <li>
+	        			<a href="/inbox">Notificaciones <span>{{App\Helpers::getNotificationsUser()}}</span></a>
+	    				</li>
+              <li>
+              	<!--<a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>  -->
+								<a href="{{ url('/validateLogout') }}"  class="link1">Cerrar Sesión</a>
+							</li>
+            </ul>
+          </li>
+        </ul>
+			</div>			
 		</div>
-
  	 </nav>
 
 
@@ -152,9 +160,6 @@
 				</div>
 
 			</div>
-
-
-
 		</div>
 
 	</nav>

@@ -34,10 +34,22 @@ class NetworkAccountsController extends Controller
 
 	}
 
+	public function validateLogout()
+	{
+		if(auth()->user())
+		{
+			auth()->logout();	
+			return redirect('/');
+		}
+		else
+		{
+			return redirect('/');
+		}
+  }   
+
 	public function showFrom(){
 
-		$user = User::findOrFail(Auth::user()->id);
-		
+		$user = User::findOrFail(Auth::user()->id);		
 
 		JavaScript::put([
 			'userJs'=> $user,			
@@ -83,7 +95,7 @@ class NetworkAccountsController extends Controller
 				'provider' => $providerData['provider']
 		]);
 
-        $email = is_null($providerData['email']) ? $providerData['id']."@cambalachea.co" : $providerData['email'];
+    $email = is_null($providerData['email']) ? $providerData['id']."@cambalachea.co" : $providerData['email'];
 
 		$user = User::whereEmail($email)->first();
 

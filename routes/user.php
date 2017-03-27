@@ -34,8 +34,3 @@ Route::put('/deal','ConversationController@dealUpdate');
 Route::post('/addObservation','DealsController@saveObservation');
 
 Route::post('/report/create/{serviceid?}','ReportsController@create');
-
-Route::get('maps',function()
-  {
-    return view('maps');;
-  });
