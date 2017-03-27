@@ -1,0 +1,132 @@
+@media (max-width: 450px){
+	.align
+		{
+			margin-right: 0px !important;
+    	margin-left: 0px !important;
+		}
+
+	.bannerHome {
+	    background-size: 480% auto;
+    	background-position: 65% 25%;
+    	padding-top: 120px;
+	}
+
+	.bannerRegister {
+	    background-size: auto 100%;
+	    background-position: 50% 25%;
+	}
+	.bannerInterest{
+		background-size: 215% auto;
+    	background-position: 45% 40%;
+	}
+
+	.boxRegister {
+	    background-size: 350% auto;
+	    background-position: 45% 40%;
+	}
+
+	.bannerService {
+	    background-size: 470% auto;
+    	background-position: 50% 56%;
+	    padding-top: 120px;
+	}
+
+	.button5 {
+    	font-size: 13px !important;
+	}
+
+	.button7 {
+    	font-size: 14px;
+	}
+
+	.button9{
+		font-size:9.5px;
+	}
+
+    .title1{
+        font-size: 20px !important;
+    }
+
+	.title3{
+		font-size: 17px !important;
+		margin: 0;
+	}
+
+	.paragraph1{
+		font-size: 16px !important;
+		word-wrap: break-word;
+	}
+	.paragraph2{
+		font-size: 14px !important;
+		word-wrap: break-word;
+	}
+	.paragraph3{
+		font-size: 14px !important;
+		word-wrap: break-word;
+	}
+
+	.paragraph4{
+		word-wrap: break-word;
+	}
+
+	.paragraph7{
+		font-size: 17px !important;
+		word-wrap: break-word;
+	}
+
+	.paragraph8{
+		font-size: 10px !important;
+		word-wrap: break-word;
+	}
+
+    ul.menuMobile {
+        padding: 0;
+        list-style: none;
+    }
+
+    ul.menuMobile > li > a > i {
+        font-size: 25px;
+        text-align: right;
+        color:#fff !important;
+    }
+
+    ul.menuMobile ul.dropdown-menu {
+        left: -125px;
+
+    }
+
+    .modal-content-box{
+        width: 100% !important;
+    }
+
+    .modal-container {
+        width: 100% !important;
+        /*padding: 40px 0px !important;*/
+    }
+
+    .modal-header .close {
+        float: none !important;
+        position: relative !important;
+        margin: auto !important;
+        display: block !important;
+    }
+
+    .nav-pills>li>a {
+        font-size: 13px !important;
+        padding: 7px;
+        display: block;
+    }
+
+    ul.nav-pills {
+        list-style: none;
+    }
+
+    .conversationBox .listMessages {
+        height: 350px !important;
+    }
+
+    .listMessages > #messages > .row {
+        margin-bottom: 5px;
+    }
+
+}

@@ -5,11 +5,11 @@
 
 				@if($message->sender != Auth::User()->id)
 				 	@if($conversation->applicant_id == Auth::User()->id)
-						<div class="col-md-1 image">
+						<div class="col-md-1 col-xs-3 image">
 							@include('partial/imageProfile', array('cover' => $conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#fff', 'borderSize' => '1px'))
 						</div>
 					@else
-						<div class="col-md-1 image">
+						<div class="col-md-1 col-xs-3 image">
 							@include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#fff', 'borderSize' => '1px'))
 						</div>
 					@endif
@@ -17,7 +17,7 @@
 					@if($message->dealState == 8)
 						@include('deals/dealMessages')
 					@else
-						<div class='messageText col-md-8' >
+						<div class='messageText col-md-8 col-xs-8' >
 							{{$message->message}}
 						</div>
 					@endif
@@ -29,7 +29,7 @@
 
 @if(!is_null($dealState))
     @if($dealState->state_id != 8)
-    	@include('deals/deal')			
+    	@include('deals/deal')
     @endif
 @endif
 

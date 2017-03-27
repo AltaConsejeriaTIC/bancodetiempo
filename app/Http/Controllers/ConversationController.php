@@ -21,7 +21,7 @@ class ConversationController extends Controller
             $listServices[] = $services->id;
         }
 
-		$conversationsMyService = Conversations::whereIn("service_id", $listServices)->get();
+		$conversationsMyService = Conversations::whereIn("service_id", $listServices)->orderBy('updated_at', 'desc')->get();
 
 		$conversations = Conversations::where("applicant_id", Auth::user()->id)->get();
 
@@ -39,7 +39,7 @@ class ConversationController extends Controller
 			$conversations[$key]["lastMessage"] = $messages[count($messages)-1];
 		}
 
-		return view("inbox", compact("conversationsMyService", "conversations"));
+		return view("inbox/inbox", compact("conversationsMyService", "conversations"));
 
 	}
 
@@ -87,7 +87,7 @@ class ConversationController extends Controller
 		else
 			$dealState = null;
 
-		return view('conversation', compact("conversation","deal","dealState"));
+		return view('inbox/conversation', compact("conversation","deal","dealState"));
 
 	}
 
@@ -111,7 +111,7 @@ class ConversationController extends Controller
 
 		$deals = Deal::all();
 
-		return view('messages', compact("conversation","deal","dealState","deals"));
+		return view('inbox/messages', compact("conversation","deal","dealState","deals"));
 
 	}
 

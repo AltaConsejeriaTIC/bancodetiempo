@@ -1,4 +1,5 @@
 @import url('footer.css');
+@import url('style-mobile.css');
 @import url('nav.css');
 @import url('styleForms.css');
 @import url('font-awesome.css');
@@ -330,9 +331,7 @@ Helpers
 	opacity:0.5;
 }
 
-.not-padding{
-	padding:0px !important;
-}
+
 .not-padding-bottom{
 	padding-bottom:0px !important;
 }
@@ -695,8 +694,63 @@ input.stars + label > i.check:before {
     content: "\f005";
 }
 
+/*
+tabs
+*/
 
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #212f3f;
+    background-color: transparent;
+    font-weight: bold;
+}
 
+.nav-pills>li.active>a:after, .nav-pills>li.active>a:focus:after, .nav-pills>li.active>a:hover:after, .nav-pills>li:hover>a:after {
+    content: "";
+    position: relative;
+    background: #333;
+    height: 2px;
+    width: 95%;
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+}
+
+ul.nav-pills {
+    list-style: none;
+}
+
+.nav-pills>li>a {
+    display: block;
+}
+
+/*
+conversation
+*/
+
+.separator {
+    border-top: 1px solid #d4d4d4;
+    display: block;
+    height: 20px;
+    margin-top: 15px;
+}
+
+#received {
+    background: #fff;
+}
+
+#received > div {
+    padding: 10px 20px 0px 20px;
+}
+
+.notRead {
+    background: #e3e9f3;
+    overflow: hidden;
+}
+
+#received .header {
+    border: 1px solid #979797;
+    background: #e7e7e7;
+}
 
 /*
 Ranking
@@ -905,6 +959,16 @@ Media Querys
 	.space40{
 		margin-top:40px;
 	}
+    .not-padding{
+        padding:0px !important;
+    }
+
+    .nav-pills>li>a {
+        display: block;
+        padding-right: 20px;
+        font-size: 16px;
+    }
+
 }
 
 
@@ -920,116 +984,7 @@ Media Querys
 
 }
 
-@media (max-width: 450px){
-	.align
-		{
-			margin-right: 0px !important;
-    	margin-left: 0px !important;
-		}
-		
-	.bannerHome {
-	    background-size: 480% auto;
-    	background-position: 65% 25%;
-    	padding-top: 120px;
-	}
 
-	.bannerRegister {
-	    background-size: auto 100%;
-	    background-position: 50% 25%;
-	}
-	.bannerInterest{
-		background-size: 215% auto;
-    	background-position: 45% 40%;
-	}
-
-	.boxRegister {
-	    background-size: 350% auto;
-	    background-position: 45% 40%;
-	}
-
-	.bannerService {
-	    background-size: 470% auto;
-    	background-position: 50% 56%;
-	    padding-top: 120px;
-	}
-
-	.button5 {
-    	font-size: 13px !important;
-	}
-
-	.button7 {
-    	font-size: 14px;
-	}
-
-	.button9{
-		font-size:9.5px;
-	}
-
-	.title3{
-		font-size: 17px !important;
-		margin: 0;
-	}
-
-	.paragraph1{
-		font-size: 16px !important;
-		word-wrap: break-word;
-	}
-	.paragraph2{
-		font-size: 14px !important;
-		word-wrap: break-word;
-	}
-	.paragraph3{
-		font-size: 14px !important;
-		word-wrap: break-word;
-	}
-
-	.paragraph4{
-		word-wrap: break-word;
-	}
-
-	.paragraph7{
-		font-size: 17px !important;
-		word-wrap: break-word;
-	}
-
-	.paragraph8{
-		font-size: 10px !important;
-		word-wrap: break-word;
-	}
-
-    ul.menuMobile {
-        padding: 0;
-        list-style: none;
-    }
-
-    ul.menuMobile > li > a > i {
-        font-size: 25px;
-        text-align: right;
-        color:#fff !important;
-    }
-
-    ul.menuMobile ul.dropdown-menu {
-        left: -125px;
-
-    }
-
-    .modal-content-box{
-        width: 100% !important;
-    }
-
-    .modal-container {
-        width: 100% !important;        
-        /*padding: 40px 0px !important;*/
-    }
-    
-    .modal-header .close {
-        float: none !important;
-        position: relative !important;
-        margin: auto !important;
-        display: block !important;
-    }
-
-}
 
 
 /*

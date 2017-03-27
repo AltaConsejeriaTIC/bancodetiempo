@@ -11,20 +11,20 @@
 
 			@if($conversation->applicant_id == Auth::User()->id)
 
-				<div class="col-md-1">
+				<div class="col-md-1 col-xs-4">
 					@include('partial/imageProfile', array('cover' => $conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#fff', 'borderSize' => '1px'))
 				</div>
-				<div class='col-md-8'>
+				<div class='col-md-8 col-xs-8'>
 					<h1 class='title2 text-white'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</h1>
 					<i class="text-white">{{$conversation->service->name}}</i>
 				</div>
 
 			@else
 
-				<div class="col-md-1">
+				<div class="col-md-1 col-xs-4">
 					@include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#fff', 'borderSize' => '1px'))
 				</div>
-				<div class='col-md-8'>
+				<div class='col-md-8 col-xs-8'>
 					<h1 class='title2 text-white'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</h1>
 					<i class="text-white">{{$conversation->service->name}}</i>
 				</div>
@@ -53,7 +53,7 @@
 			                <h1 class="title1">Propuesta de acuerdo</h1>
 			                <h4>Oferta: {{$conversation->service->name}}</h4>
 			            </div>
-			          	
+
 			            <div class="modal-body">
 			            	<div class="row not-margin">
 											<label for="dealDate" class="paragraph10">Fecha de realización del acuerdo</label>
@@ -68,9 +68,9 @@
 											<input type="time" name="dealHour" id="dealHour" placeholder="hh:mm" class="validation"  data-validations='["required"]'>
 										</div>
 										<div class="row not-margin">
-											<label for="dealLocation" class="paragraph10">Lugar</label>											
+											<label for="dealLocation" class="paragraph10">Lugar</label>
 										</div>
-										<div class="row not-margin">																
+										<div class="row not-margin">
 											<input type="text" name="dealLocation" id="place" placeholder="Parque Simón Bolivar" size="60" class="validation"  data-validations='["required"]' />
 										</div>
 										<div class="row not-margin">

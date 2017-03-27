@@ -104,6 +104,9 @@
         <p class="not-margin">
           <strong>Valor:</strong> <img src="/images/moneda.png" class="not-padding coinSmall icon-nav text-center"> {{$deal->value}} Dorados
         </p>
+        <p class="not-margin">
+          <strong>Observaciones:</strong> {{$deal->description}}
+        </p>
       </div>
       <div class="space20"></div>
       @if($dealState->state_id == 4)
