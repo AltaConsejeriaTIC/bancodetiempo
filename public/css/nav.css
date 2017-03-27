@@ -37,6 +37,9 @@
 .iconbar2{
     padding-right: 20px;
     padding-top: 5px;
+    width: 83%;
+    left: 25%;
+    position: relative;
 }
 @media (max-width: 450px){
 	
@@ -96,6 +99,7 @@ input.filter::-webkit-input-placeholder {
 }
 .textpadding{
     padding-left: 5px;
+    padding-top: 4px;
 }
 .buttonStart{
     height: 42px;
@@ -106,9 +110,10 @@ input.filter::-webkit-input-placeholder {
 }
 .icon-profile svg {
     height: 54px !important;
+    padding-left: 44px;
 }
 .menu{
-    padding-left: 0px;
+    padding-left: 22px;
     padding-right: 0px;
     padding-top: 8px;
     text-align: left;

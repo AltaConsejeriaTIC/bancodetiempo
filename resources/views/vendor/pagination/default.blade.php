@@ -8,6 +8,7 @@
         @endif
 
         {{-- Pagination Elements --}}
+
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
@@ -15,6 +16,7 @@
             @endif
 
             {{-- Array Of Links --}}
+
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())

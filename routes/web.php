@@ -24,7 +24,6 @@ Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
 
 Auth::routes();
 
-
 //Route Access Admin Panel
 Route::get('admin','AdminController@AdminLogin')->middleware('guest');
 
@@ -50,6 +49,9 @@ Route::get('/getTags', 'ServiceController@getTags');
 
 Route::get('/filter', 'HomeController@filter');
 Route::post('/subscribe', 'HomeController@subscribe');
+
 Route::get('/how', function(){
     return view("how");
 });
+
+Route::get('/validateLogout', 'NetworkAccountsController@validateLogout');
