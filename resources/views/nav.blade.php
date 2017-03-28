@@ -145,9 +145,9 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-2 col-sm-2 col-md-offset-1  padding-top col-md-2">
+				<div class="col-xs-7  col-sm-3  col-md-3 padding-top">
 					<a href="/index" >
-						<img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" />
+						<img class="iconbar2" src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
 				</div>
 				<div class='hidden-xs hidden-sm col-md-offset-1 padding-top col-md-3'>
