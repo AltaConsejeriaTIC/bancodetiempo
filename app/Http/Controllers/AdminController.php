@@ -50,7 +50,7 @@ class AdminController extends Controller
     }
     public function homeAdminServices()
     {
-        $services = Service::orderBy('created_at','desc')->paginate(6);
+        $services = Service::orderBy('updated_at','desc')->paginate(6);
         $states = State::whereIn('id',array(1,2))->pluck('state','id');
         return view('admin/services/list',compact('services','states'));
     }

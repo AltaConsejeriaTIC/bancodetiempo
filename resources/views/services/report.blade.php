@@ -17,7 +17,7 @@
         <div slot="modal" class='box row'>
             <button type="button" class='close'  v-on:click='myData.notificationReportOk = false'><i class='fa fa-close'></i></button>
             <h1 class='title1 col-md-12 text-center'>¡Ya reportaste esta oferta anteriormente!</h1>
-            <p class='text-center col-md-12'>Gracias por ayudar en nuestracomunidad.</p>
+            <p class='text-center col-md-12'>Gracias por ayudar en nuestra comunidad.</p>
             <p class='text-center col-md-12 title1'>
                 <i class="fa fa-signal" aria-hidden="true" style='font-size: 60px;font-size: 50px;transform: rotateZ(-90deg) translateX(40px) translateY(-10px);'></i><i class="fa fa-envelope" aria-hidden="true" style='font-size: 120px;'></i>
             </p>

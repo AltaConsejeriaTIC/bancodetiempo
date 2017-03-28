@@ -14,8 +14,8 @@ class ReportsController extends Controller
 
     public function create(Request $request, $serviceId)
     {
-
-        if (is_null(Reports::where("user_id",auth::user()->id)->get()->last())) {
+        $user_report=(Reports:: where([['user_id', '=', auth::user()->id],['service_id', '=', $serviceId],])->get());
+        if (count($user_report)==0){
             $report = Reports::create([
                 'service_id' => $serviceId,
                 'user_id' => auth::user()->id,

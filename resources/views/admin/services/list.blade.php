@@ -40,7 +40,12 @@
 						        	<td>
 										<a class="btn btn-raised btn-primary btn-xs" href="" title="Ver oferta" data-toggle="modal" data-target="#show-dialog{{$service->id}}"><i class="material-icons">find_in_page</i></a>
 						        		<a class="btn btn-raised btn-primary btn-xs" href="" title="Editar estado" data-toggle="modal" data-target="#update-dialog{{$service->id}}"><i class="material-icons">mode_edit</i></a>
-										<a class="btn btn-raised btn-primary btn-xs" href="" title="Ver reportes" data-toggle="modal" data-target="#reports-dialog{{$service->id}}"><i class="material-icons">error_outline</i></a>
+										@if(count($service->reports)==0)
+											<a class="btn btn-raised btn-primary btn-xs" href="" title="Ver reportes" data-toggle="modal" data-target="#reports-dialog{{$service->id}}"><i class="material-icons">error_outline</i></a>
+										@else
+											<a class="btn btn-raised btn-primary btn-xs report" href="" title="Ver reportes" data-toggle="modal" data-target="#reports-dialog{{$service->id}}"><i class="material-icons">error_outline</i></a>
+
+										@endif
 									</td>
 						        </tr>
 								@include('admin/services/show')
