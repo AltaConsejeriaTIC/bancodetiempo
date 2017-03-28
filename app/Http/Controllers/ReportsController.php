@@ -15,15 +15,22 @@ class ReportsController extends Controller
     public function create(Request $request, $serviceId)
     {
         $user_report=(Reports:: where([['user_id', '=', auth::user()->id],['service_id', '=', $serviceId],])->get());
-        if (count($user_report)==0){
+
+        if (count($user_report)==0) {
             $report = Reports::create([
                 'service_id' => $serviceId,
                 'user_id' => auth::user()->id,
                 'type_report_id' => $request->input('list'),
                 'observation' => $request->input('observacion')
             ]);
+            $numReports=(Reports:: where([['service_id', '=', $serviceId],])->get());
+            if (count($numReports) > 4) {
+                $service = Service::find($serviceId);
+                $service->update([
+                    'state_id' => 2,
+                ]);
+            }
             return redirect()->back()->with('report', true);
-
         }
 
             return redirect()->back()->with('reportOk', true);
