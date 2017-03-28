@@ -6,10 +6,10 @@
 		}
 
 	.bannerHome {
-	    background-size: 480% auto;
-    	background-position: 65% 25%;
-    	padding-top: 120px;
-	}
+        background-size: auto 100% !important;
+        background-position: 90% 25% !important;
+        padding-top: 120px !important;
+    }
 
 	.bannerRegister {
 	    background-size: auto 100%;
@@ -44,7 +44,7 @@
 	}
 
     .title1{
-        font-size: 20px !important;
+        font-size: 25px !important;
     }
 
 	.title3{

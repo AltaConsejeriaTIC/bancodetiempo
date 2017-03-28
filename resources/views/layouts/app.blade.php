@@ -11,11 +11,12 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Banco de Tiempo Bogotá</title>
+        <title>Cambalachea</title>
 
         <!-- Fonts-->
         <link rel="stylesheet" type="text/css" href="{{asset('/css/fonts.css')}}">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
         <!-- Bootstrap -->
         <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
