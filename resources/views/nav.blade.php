@@ -26,21 +26,13 @@
                         </li>
 			        </ul>
 				@elseif((!Auth::guest()))
-					<div class="hidden-xs col-sm-6 col-sm-offset-5 col-md-6 col-md-offset-7 text-right">												
-						<p class="col-xs-5 align-right">
+					<div class="hidden-xs col-sm-6 col-sm-offset-5 col-md-5 col-md-offset-4 text-right">
+						<p class="col-md-6 col-md-offset-2 align-right">
 							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav"></image> 
 							{{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? "Dorado" : "Dorados" }}
 						</p>
-						<p class="col-xs-1 line-nav">|</p>
-						<!-- <a class="col-xs-5 align-left" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a> -->
-						<a class="col-xs-5 align-left" href="{{ url('/validateLogout') }}">Cerrar Sesión</a>
+						<a class="col-md-4 align-right" href="{{ url('/validateLogout') }}">Cerrar Sesión</a>
 					</div>
-					<!--
-					<a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1' href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></a>
-					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-							{{ csrf_field() }}
-					</form>
-					-->
 					<a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1' href="{{ url('/validateLogout') }}"></a>
 				@endif
 			</div>

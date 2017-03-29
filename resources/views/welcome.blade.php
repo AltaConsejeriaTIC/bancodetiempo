@@ -8,15 +8,10 @@
 		<div class='cap'></div>
 		<div class="container">
 		
-			<article class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0'>
+			<article class='col-xs-12  col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0'>
 				
 				<div class='row'>
-					<div class='col-xs-4 col-sm-3 col-md-3'>
-						<section></section>
-					</div>
-					<div class='col-xs-7 col-sm-8 col-md-8'>
-					<section></section>
-					</div>
+				    <div class="space"></div>
 					<div class='col-xs-4 col-sm-3 col-md-3'>
 						@include('partial/imageProfile', array('cover' => 'images/foto_camila.png', 'id' => 'foto_camila', 'border' => '#fff', 'borderSize' => '0px'))
 					</div>
@@ -39,18 +34,21 @@
 				</div>
 				
 			</article>
-			<article class='col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2'>
+			<article class='col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2'>
 				
 				<div class="row">
-					<h1 class='title1 text-white'>¿PARA QUÉ EL DINERO SI PUEDES USAR TU TIEMPO?</h1>
+					<h1 class='title1 text-white col-xs-12'>¿PARA QUÉ EL DINERO SI PUEDES USAR TU TIEMPO?</h1>
 				</div>
 				
-				<div class="row space40">
-					<p class="paragraph1 text-white not-padding col-xs-10" >Invierte tus habilidades para obtener lo que otros ofrecen</p>
+				<div class="row">
+					<p class="paragraph1 text-white col-xs-12" >Invierte tus habilidades para obtener lo que otros ofrecen</p>
 				</div>
-				
-				<div class="row space40">
-					<button class='button1 background-active-green-color col-xs-12 col-md-12' data-toggle="modal" data-target="#login">Regístrate para empezar</button>				
+				<div class="space"></div>
+				<div class="row">
+				    <div class="col-xs-12 col-md-12">
+				        <button class='button1 background-active-green-color col-xs-12' data-toggle="modal" data-target="#login">Regístrate para empezar</button>
+				    </div>
+
 				</div>
 			
 			</article>
