@@ -71,8 +71,7 @@ class EmailController extends Controller
     }
 
     public function sendMailDeal($Addressee,$action)
-    {
-      //"Pendiente Envio!!"      
+    {      
       $Addressee = User::findOrFail($Addressee);
       $mail = $Addressee->email2;
 
@@ -87,5 +86,18 @@ class EmailController extends Controller
 
       return redirect()->back();
 
+    }
+
+    public function dailyEmailNotification()
+    {
+     
+      Mail::send('deals/dailyEmailNotification',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail)
+      {
+
+        $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+        $message->subject('Notificación');
+        $message->to($mail);
+
+      });      
     }
 }
