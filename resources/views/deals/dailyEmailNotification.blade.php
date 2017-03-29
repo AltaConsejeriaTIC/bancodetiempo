@@ -7,7 +7,7 @@
 	</header>
 	<section style='width:90%;position:relative;margin:auto;'>
 		<article>
-			<h3 style='color:#4e4d61;font-family: "Open Sans", sans-serif;'>Tienes nueva Actividad:</h3>
+			<h3 style='color:#4e4d61;font-family: "Open Sans", sans-serif;'>¡Tienes conversaciones pendientes!</h3>
 		</article>
 		<hr style='display:block;width:100%;border:none;height:30px;'>
 		<article>
@@ -16,15 +16,7 @@
 					Hola {{$Addressee->first_name}}, tienes nueva actividad en la plataforma:
 				</p>
 				<p>
-					@if($action == "new")
-						<strong>Tienes Nuevas Propuestas.</strong>
-					@endif
-					@if($action == "agree")
-						<strong>Tienes Propuestas Aceptadas.</strong>
-					@endif
-					@if($action == "decline")
-						<strong>Tienes Propuestas Canceladas.</strong>
-					@endif
+					<strong>Recuerda ingresar para continuar conversando y realizar acuerdos. ¡Estás a un clic de compartir o adquirir nuevas habilidades en nuestra comunidad de Cambalacheros!</strong>					
 				</p>
 			</div>
 			<hr style='display:block;width:100%;border:none;height:20px;'>
