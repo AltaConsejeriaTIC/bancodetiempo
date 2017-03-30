@@ -71,20 +71,40 @@ class EmailController extends Controller
     }
 
     public function sendMailDeal($Addressee,$action)
+        {
+          $Addressee = User::findOrFail($Addressee);
+          $mail = $Addressee->email2;
+          Mail::send('deals/dealEmail',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail)
+          {
+            $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+            $message->subject('Notificación');
+            $message->to($mail);
+          });
+          return redirect()->back();
+        }
+
+    public function sendMailDaily()
     {      
-      $Addressee = User::findOrFail($Addressee);
-      $mail = $Addressee->email2;
+        $Conversations = Conversations::all();
 
-      Mail::send('deals/dealEmail',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail)
-      {
+        foreach($Conversations as $conversation){
+            $message = json_decode($conversation->message);
+            $lastMessage = end($message);
+            if($lastMessage->state == 6){
+                if($lastMessage->sender != $conversation->applicant_id){
+                    $addressee = $conversation->applicant;
+                }else{
+                    $addressee = $conversation->service->user;
+                }
 
-        $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
-        $message->subject('Notificación');
-        $message->to($mail);
-
-      });
-
-      return redirect()->back();
+                Mail::send('emailDaily', ["user" => $addressee], function ($message) use ($addressee)
+                {
+                    $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+                    $message->subject('Notificación');
+                    $message->to($addressee->email2);
+                });
+            }
+        }
 
     }
    

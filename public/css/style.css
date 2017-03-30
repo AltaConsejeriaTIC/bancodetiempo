@@ -1063,10 +1063,10 @@ Animations
 }
 
 .no-input > input{
-	border: none !important;
-	display: initial !important;
-  overflow: initial !important;
-  margin-bottom: 0px !important;
+    border: none !important;
+    display: initial !important;
+    overflow: initial !important;
+    margin-bottom: 0px !important;
 }
 
 .vue-input-tag-wrapper .input-tag .remove {

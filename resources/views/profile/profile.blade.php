@@ -80,12 +80,16 @@
                			</div>
                		</div>
                		
-               		{!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form', 'form-validation' => '']) !!}
-						        <input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
-			        	    <register  profile='1'>				        					    
-			        	    </register>		             
-                  {!! Form::close() !!}
-			        <button class="col-xs-12 button10 background-white text-center"  @click='hiddenEdit'>Cancelar</button>  
+                    {!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form', 'form-validation' => '']) !!}
+                        <input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
+                        <register  profile='1'>
+                        </register>
+                        <div class="col-xs-12">
+                            <button class="col-xs-12 button10 background-white text-center" type='button' @click='hiddenEdit'>Cancelar</button>
+                        </div>
+
+                    {!! Form::close() !!}
+
                	</div>
             </article>
             <article class="col-md-4 col-xs-12 col-sm-6">
