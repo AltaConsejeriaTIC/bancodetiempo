@@ -232,4 +232,9 @@ function validationGeneal(){
 }
 
 
+function previewPhotoService(){
+
+    console.log("pare");
+
+}
 

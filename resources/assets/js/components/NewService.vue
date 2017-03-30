@@ -109,7 +109,10 @@
 	            			</div>
 	            			<div class="row">    		
 	            				<input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 validation" id='imageService' @change='previewPhotoService'  data-validations='["maxFile:2500000"]'>
-	            				<label for="imageService" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : imageService!='', 'load' : imageService!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
+                               <label for="imageService" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : imageService!='', 'load' : imageService!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
+                               <div class="msg" errors='imageService'>
+                                    <p error='max'>El peso màximo de la imagen debe ser de 3 Megas.</p>
+                                </div>
 	            			</div>
 	            			<div class='space15'></div>
 	            			<div class="row">
