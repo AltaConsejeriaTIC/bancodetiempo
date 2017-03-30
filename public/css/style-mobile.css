@@ -12,9 +12,10 @@
     }
 
 	.bannerRegister {
-	    background-size: auto 100%;
-	    background-position: 50% 25%;
-	}
+        background-size: auto 100% !important;
+        background-position: 50% 30% !important;
+        padding-top: 100px !important;
+    }
 	.bannerInterest{
 		background-size: 215% auto;
     	background-position: 45% 40%;

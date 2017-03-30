@@ -51,21 +51,21 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6 col-sm-6">
-					<input type="radio" name="valueService" value="1" id="time1" class="circle validation" v-model="valueService" data-validations='["required"]'>
+					<input type="radio" name="valueService" value="1" id="time1" class="circle validation" v-model="valueService" data-validations='["requiredRadio"]'>
 					<label for="time1">1 Hora</label>                        
 				</div>
 				<div class="col-xs-6 col-sm-6">
-					<input type="radio" name="valueService" value="2" id="time2" class="circle validation" v-model="valueService" data-validations='["required"]'>
+					<input type="radio" name="valueService" value="2" id="time2" class="circle validation" v-model="valueService" data-validations='["requiredRadio"]'>
 					<label for="time2">2 Horas</label>                        
 				</div>                 
 			</div>
 			<div class="row">
 				<div class="col-xs-6 col-sm-6">
-					<input type="radio" name="valueService" value="3" id="time3" class="circle validation" v-model="valueService" data-validations='["required"]'>
+					<input type="radio" name="valueService" value="3" id="time3" class="circle validation" v-model="valueService" data-validations='["requiredRadio"]'>
 					<label for="time3">3 Horas</label>                        
 				</div>
 				<div class="col-xs-6 col-sm-6">
-					<input type="radio" name="valueService" value="4" id="time4" class="circle validation" v-model="valueService" data-validations='["required"]'>
+					<input type="radio" name="valueService" value="4" id="time4" class="circle validation" v-model="valueService" data-validations='["requiredRadio"]'>
 					<label for="time4">4 Horas</label>                        
 				</div>                  
 			</div>
@@ -97,8 +97,11 @@
 				<label for="imageService" class="paragraph10">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>
 			</div>
 			<div class="row">    		
-				<input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 " id='imageService' @change='previewPhotoService'>
-				<label for="imageService" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : imageService!='', 'load' : imageService!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
+				<input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 validation" id='imageService' @change='previewPhotoService'  data-validations='["maxFile:2500000"]'>
+               <label for="imageService" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : imageService!='', 'load' : imageService!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
+               <div class="msg" errors='imageService'>
+					<p error='max'>El peso màximo de la imagen debe ser de 3 Megas.</p>
+				</div>
 			</div>
 			<div class='space'></div>
 			<div class="row">

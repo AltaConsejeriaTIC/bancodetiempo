@@ -107,6 +107,11 @@ var allValidations = {
                 error = 1;
             }
         }
+        if(error > 0){
+            this.showError(it, 'max');
+        }else{
+            this.hiddenError(it, 'max');
+        }
         return error;
     },
     email : function(it){
