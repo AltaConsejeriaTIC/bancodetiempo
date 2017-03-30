@@ -114,8 +114,17 @@ var allValidations = {
         }
         return error;
     },
+    onlyChar: function(it){
+        var expresion = new RegExp('^[^ 0-9][a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$');
+        if(!expresion.test(it.val())){
+            this.showError(it, 'onlyChar');
+            return 1;
+        }
+        this.hiddenError(it, 'onlyChar');
+        return 0;
+    },
     email : function(it){
-      var expresion = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+        var expresion = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
         if(!expresion.test(it.val())){
             this.showError(it, 'email');
             return 1;
