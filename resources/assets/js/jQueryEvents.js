@@ -67,7 +67,7 @@ var allValidations = {
         var parent = it.closest('form');
 
         var r = parent.find("input[name='"+it.attr('name')+"']:checked");
-        console.log(r.val());
+
         if(r.val() == '' || r.val() === undefined){
             this.showError(it, 'required');
             return 1;
@@ -102,7 +102,6 @@ var allValidations = {
     maxFile : function(it, v){
         error = 0;
         var files = it[0].files;
-        console.log(files);
         for(var f in files){
             if(files[f].size > v){
                 error = 1;
