@@ -36,7 +36,7 @@
 				Dirección: Vivelab Bogotá Carrera 45 No. 26 - 33 <br>
 				Email: evenvivelab_bog@unal.edu.co<br>
 			</p>
-			<a href="#" style='color:#0f6784;font-size:12px;font-family: "Open Sans", sans-serif;'>Cancelar suscripción</a>
+
 			<p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>Si tienes alguna pergunta, inquietud o sugerencia, escríbenos al correo: evenvivelab_bog@unal.edu.co.</p>
 		</article>
 	</section>
