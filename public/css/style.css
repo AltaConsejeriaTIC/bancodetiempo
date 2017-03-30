@@ -741,6 +741,7 @@ conversation
 .notRead {
     background: #e3e9f3;
     overflow: hidden;
+    padding: 1% 0px;
 }
 
 #received .header {

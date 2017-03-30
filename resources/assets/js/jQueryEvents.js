@@ -99,6 +99,17 @@ var allValidations = {
         this.hiddenError(it, 'max');
         return 0;
     },
+    maxFile : function(it, v){
+        error = 0;
+        var files = it[0].files;
+        console.log(files);
+        for(var f in files){
+            if(files[f].size > v){
+                error = 1;
+            }
+        }
+        return error;
+    },
     email : function(it){
       var expresion = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
         if(!expresion.test(it.val())){
