@@ -71,8 +71,7 @@ class EmailController extends Controller
     }
 
     public function sendMailDeal($Addressee,$action)
-    {
-      //"Pendiente Envio!!"      
+    {      
       $Addressee = User::findOrFail($Addressee);
       $mail = $Addressee->email2;
 
@@ -88,4 +87,5 @@ class EmailController extends Controller
       return redirect()->back();
 
     }
+   
 }

@@ -85,10 +85,10 @@
                                 <label for='conversationCkeck{{$conversation->id}}'></label>
                             </div>
                             <div class='col-md-1'>
-                                @include('partial/imageProfile', array('cover' =>$conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#0a475b', 'borderSize' => '2px'))
+                                @include('partial/imageProfile', array('cover' =>$conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#0a475b', 'borderSize' => '2px'))
                             </div>
                             <div class="col-md-2">
-                                <a href='/conversation/{{$conversation->id}}' class='paragraph4 text-bold'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</a>
+                                <a href='/conversation/{{$conversation->id}}' class='paragraph4 text-bold'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</a>
                              </div>
                             <div class='col-md-3'><p class='paragraph4 text-bold'>{{$conversation->service->name}}</p><p>{{ $conversation->lastMessage->message }}</p></div>
                             <div class='col-md-2'><p>{{$conversation->created_at}}</p></div>
