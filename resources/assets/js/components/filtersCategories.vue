@@ -74,7 +74,6 @@ export default {
 			  });
 		},
 		toogleSelect:function(){
-			console.log('toogle')
 			if(this.stateSelect == "pick"){
 				this.stateSelect = 'drop'
 			}else if(this.stateSelect == "drop"){

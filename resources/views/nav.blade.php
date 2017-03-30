@@ -87,10 +87,12 @@
 					@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '1px'))
 				</div>
 				<div class=' hidden-xs col-xs-2 col-sm-2 padding-top menu  col-sm-2 col-md-2 text-right dropdown'>
-					<a class='dropdown-toggle flex-center ' data-toggle="dropdown">
-						<div class='col-xs-12  not-padding menu '>
-							<span class='not-padding not-margin paragraph4  text-white'>{{Auth::user()->first_name}}</span>
-								<i class='iconmenu menu fa fa-angle-down'></i>
+
+						<div class='col-xs-12  not-padding menu dropdown-toggle flex-center ' data-toggle="dropdown">
+
+                                <span class='not-padding not-margin paragraph4  text-white'>{{Auth::user()->first_name}}</span>
+                                <i class='iconmenu menu fa fa-angle-down'></i>
+
 						</div>
 
 						<ul class="dropdown-menu">	
@@ -98,33 +100,28 @@
 						    	<a href="{{ url('profile') }}">Perfil</a>
 						    </li>
 						    <li>
-						    	<!--<a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
-								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-								-->
 								<a href="{{ url('/validateLogout') }}" class="link1">Cerrar Sesión</a>
 							</li>
 						</ul>
-					</a>
+
 				</div>
 				
-				<ul class="menuMobile visible-xs col-xs-2 col-xs-offset-3">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
-            <ul class="dropdown-menu">
-              <li>
-              	<a href="{{ url('profile') }}">Perfil</a>
-              </li>
-              <li>
-	        			<a href="/inbox">Notificaciones <span>{{App\Helpers::getNotificationsUser()}}</span></a>
-	    				</li>
-              <li>
-              	<!--<a href="{{ url('/logout') }}"  class="link1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
-								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>  -->
-								<a href="{{ url('/validateLogout') }}"  class="link1">Cerrar Sesión</a>
-							</li>
-            </ul>
-          </li>
-        </ul>
+                <ul class="menuMobile visible-xs col-xs-2 col-xs-offset-3">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ url('profile') }}">Perfil</a>
+                            </li>
+                            <li>
+                                <a href="/inbox">Notificaciones <span>{{App\Helpers::getNotificationsUser()}}</span></a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/validateLogout') }}"  class="link1">Cerrar Sesión</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
 			</div>
 		</div>
  	 </nav>

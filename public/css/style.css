@@ -1060,9 +1060,11 @@ Animations
 	margin-right: 4px;
 	padding: 3px;
 }
-ul.dropdown-menu li:hover {
-	background: rgba(15, 103, 132,0.7);
+
+.dropdown-toggle{
+    cursor: pointer;
 }
+
 .no-input > input{
 	border: none !important;
 	display: initial !important;
@@ -1210,7 +1212,3 @@ ul.dropdown-menu li:hover {
   border-color: #003e65 !important;
 }
 
-.pagination
-{
-	margin: 2% 0 1% 22% !important;
-}

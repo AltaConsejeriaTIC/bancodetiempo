@@ -40,8 +40,10 @@
 
 	            @endforeach
 	        	</div>
+            <div class="text-center">
+                {!! $allServices->links('vendor.pagination.bootstrap-4') !!}
+            </div>
 
-	        {!! $allServices->links('vendor.pagination.bootstrap-4') !!}
 
 	        <div class="tab-pane hidden" id="filterRecommended">
 	            <div class='row'>
