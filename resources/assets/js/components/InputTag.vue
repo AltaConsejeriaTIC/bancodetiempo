@@ -58,16 +58,19 @@
         var newSug = [];
         var arrayTags = this.tags.join()
         for(var obj in list){
-          if(arrayTags.search(list[obj]) < 0){
-            newSug.push(list[obj]);
-          }
+            if(obj > 6){
+                break;
+            }
+            if(arrayTags.search(list[obj]) < 0){
+                newSug.push(list[obj]);
+            }
         }
         this.suggestions = newSug;
         document.getElementById("intag").classList.add("open");
 
       },
        getTags:function(){
-                  	this.$http.get('/getTags').then(response => {
+                  	this.$http.get('/tags').then(response => {
 					this.tagsList = response.body
 
 				}, response => {
@@ -128,17 +131,6 @@
           this.onChange(JSON.parse(JSON.stringify(this.tags)));
         }
       },
-      keys(e){
-        console.log(e);
-      },
-      down(){
-
-      console.log("abajo");
-      },
-      up(){
-
-      console.log("arriba");
-      },
     },
   };
 </script>
@@ -150,7 +142,7 @@
       <a v-if="!readOnly" @click.prevent.stop="remove(index)" class="remove"></a>
     </span>
     <input data-toggle="dropdown" v-if="!readOnly"  v-bind:placeholder="getPlaceholder()" type="text" v-model="newTag" v-on:keydown.delete.stop="removeLastTag()"
-           v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)" v-on:keydown="keys(e)" v-on:keydown.down.stop="down()" v-on:keydown.up.stop="up()"  class="new-tag dropdown-toggle" />
+           v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)"  class="new-tag dropdown-toggle" />
     <ul class="dropdown-menu "  >
       <li v-for="suggestion in suggestions" v-on:click="addNew(suggestion)">
         {{ suggestion }}

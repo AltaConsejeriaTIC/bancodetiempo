@@ -7,7 +7,6 @@
 		@include('nav',array('type' => 3))
 	@endif
 
-
 	<div class="container">
 		<div class="row">
 		    <ul  class="nav nav-pills col-md-8 col-xs-4">
