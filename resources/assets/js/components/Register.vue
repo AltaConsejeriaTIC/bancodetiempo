@@ -86,6 +86,13 @@
 					<p error='max'>Este campo debe ser máximo de 250 caracteres.</p>
 				</div>
             </div>
+
+            <div class="row not-margin" v-show='this.profile == 0'>
+                <div class='col-xs-12'>
+                    <input type="checkbox" name="adult" value="1" id="adult" class="square validation" data-validations='["requiredCheck"]'>
+					<label for="adult">Confirmo que soy mayor de edad</label>
+                </div>
+            </div>
 			
             <div class="row not-margin" v-show='this.profile == 0'>
                 <div class='col-xs-12'>
