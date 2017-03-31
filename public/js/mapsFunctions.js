@@ -71,4 +71,40 @@ jQuery(document).ready(function(){
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
   });
+
 });
+
+
+function showLocation(canvas, location){
+    jQuery(document).ready(function(){
+        var place = '';
+        jQuery.getJSON( "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"&key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA")
+        .done(function( json ) {
+            console.log(json);
+            for(var p in json.results){
+                var latlng = json.results[p].geometry.location;
+                var myOptions = {
+                    zoom: 14,
+                    center: latlng,
+                };
+                var map = new google.maps.Map(document.getElementById(canvas), myOptions);
+                var marker = new google.maps.Marker
+                ({
+                  position: latlng,
+                  map: map
+                });
+                var cityCircle = new google.maps.Circle({
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35,
+                    map: map,
+                    center: latlng,
+                    radius: Math.sqrt(50) * 100
+                });
+            }
+
+        });
+    });
+}

@@ -9,9 +9,19 @@ jQuery(document).ready(function(){
 })
 
 function callMessages(){
-    jQuery("#messages").load('/messages/'+jQuery("#messages").attr('conversation'), function(){
-        jQuery(".showModal").on("click", showModal);
-        jQuery(".hiddenModal").on("click", hiddenModal);
+
+    jQuery.ajax({
+        url : '/messages/'+jQuery("#messages").attr('conversation'),
+        type : "GET",
+        data : "key="+jQuery("#keyConversation").val(),
+        success : function(data){
+            console.log(data);
+            if(data != ""){
+                jQuery("#messages").html(data);
+                jQuery(".showModal").on("click", showModal);
+                jQuery(".hiddenModal").on("click", hiddenModal);
+            }
+        }
     });
     setTimeout(callMessages, 2000);
 }

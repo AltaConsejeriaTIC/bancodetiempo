@@ -1,3 +1,4 @@
+<input type="hidden" name="keyConversation" value="{{$conversation->key}}" id='keyConversation'>
 @foreach($conversation->message as $message)
 	@if($message->message != "¡Has enviado un propuesta!"  && $message->message != "Propuesta Aceptada")
 		<div class="row">

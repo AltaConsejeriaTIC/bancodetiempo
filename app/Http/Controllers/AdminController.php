@@ -45,7 +45,7 @@ class AdminController extends Controller
     public function homeAdminUser()
     {
       $users = User::with('state','role')->orderBy('created_at','desc')->paginate(6);   
-      $states = State::where('id','!=','2')->pluck('state','id');      
+      $states = State::whereIn('id',[1, 3])->pluck('state','id');
       return view('admin/users/list',compact('users','states'));
     }
     public function homeAdminServices()

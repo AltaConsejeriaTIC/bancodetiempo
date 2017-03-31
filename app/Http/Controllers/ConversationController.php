@@ -91,29 +91,33 @@ class ConversationController extends Controller
 
 	}
 
-	public function messagesConversation($id_conversation){
+	public function messagesConversation(Request $request, $id_conversation){
 
 		$conversation = Conversations::find($id_conversation);
-		$messages = json_decode($conversation->message);
-		$conversation["message"] = $messages;
+        $deal = $conversation->deals->last();
+        $key = md5($conversation->message.$conversation->deals->last()->dealStates->last()->state_id);
+        if($request->input('key') != $key){
+            $conversation["key"] = $key;
+            $conversation["message"] = json_decode($conversation->message);
+            $deals = Deal::all();
 
-		$deal = Deal::where("service_id","=",$conversation->service_id)
-									->where("user_id","=",$conversation->applicant_id)
-									->orderBy('id','desc')
-									->first();
+            $dealState = $this->getDealConversation($deal, $conversation);
 
-		if($deal)
-			$dealState = DealState::where('deal_id','=',$deal->id)
-													->orderBy('id','desc')
-													->first();
-		else
-			$dealState = null;
-
-		$deals = Deal::all();
-
-		return view('inbox/messages', compact("conversation","deal","dealState","deals"));
+            return view('inbox/messages', compact("conversation","deal","dealState","deals"));
+        }else{
+            print("");
+        }
 
 	}
+
+    public function getDealConversation($deal, $conversation){
+
+        if($deal){
+            return DealState::where('deal_id','=',$deal->id)->orderBy('id','desc')->first();
+        }else{
+			return null;
+        }
+    }
 
 	public function deal(Request $request)
 	{

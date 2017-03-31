@@ -110,8 +110,11 @@
       </div>
       <div class="space20"></div>
       @if($dealState->state_id == 4)
-        <div class="row not-margin mapMessage">
+        <div class="" id='mapDeal{{$deal->id}}' style="height:250px">
         </div>
+        <script>
+            showLocation('mapDeal{{$deal->id}}', '{{$deal->location}}');
+        </script>
       @endif
 
       @if($dealState->state_id != 8)
