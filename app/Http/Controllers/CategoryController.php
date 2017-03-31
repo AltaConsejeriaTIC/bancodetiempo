@@ -134,4 +134,13 @@ class CategoryController extends Controller
         {
         }
     }
+
+    public function jsonCategories(){
+
+        $categories = Category::all('id', 'category')->toJson();
+
+        print($categories);
+
+    }
+
 }

@@ -6,9 +6,7 @@
 	@else
 		@include('nav',array('type' => 3))
 	@endif
-	{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
-	  <newservice></newservice>
-	{!! Form::close() !!}
+
 
 	<div class="container">
 		<div class="row">

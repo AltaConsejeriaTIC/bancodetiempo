@@ -786,7 +786,7 @@ notificacion icon
 */
 .notification {
 	position: relative;
-	right: 10px;
+	right: 30px;
 	padding-top: 10px;
 	cursor: pointer;
 }

@@ -1,5 +1,7 @@
 jQuery(document).ready(function(){
-    callMessages();
+    if(jQuery("#messages").length){
+       callMessages();
+    }
     jQuery(".score").on("click", score)
     jQuery("form[form-validation]").on("change", ".validation", validation);
     jQuery("form[form-validation]").on("keyup", "textarea.validation", validation);
@@ -15,7 +17,6 @@ function callMessages(){
         type : "GET",
         data : "key="+jQuery("#keyConversation").val(),
         success : function(data){
-            console.log(data);
             if(data != ""){
                 jQuery("#messages").html(data);
                 jQuery(".showModal").on("click", showModal);

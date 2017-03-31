@@ -62,24 +62,24 @@
 				
 				<div class="hidden-xs col-md-3 col-md-offset-0 padding-top col-sm-3 col-sm-offset-1 not-padding not-margin text-right">
 					<div class="flex-center">
-						<div class="col-md-10 col-sm-10 padding-top not-margin bolsa-de-tiempo text-left">
+						<div class="col-md-7 col-sm-7 padding-top not-margin bolsa-de-tiempo text-left">
 							<div class="space4"></div>
 							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
 
-							<p class="paragraph4 textpadding col-md-10 col-sm-7 text-white">{{ Auth::user()->credits }} Dorados</p>
+							<p class="paragraph4 textpadding col-md-9 col-sm-7 text-white">{{ Auth::user()->credits }} Dorados</p>
 						</div>
-						<div class="col-md-1 col-sm-1 not-padding " onclick='location.href="/inbox#received"'>
+						<div class="col-md-2 col-sm-2 not-padding " onclick='location.href="/inbox#received"'>
 							@if(App\Helpers::getNotificationsUser()>0)
-								<i class="fa fa-envelope icon-nav notification text-center"><span>{{App\Helpers::getNotificationsUser()}}</span></i>
+								<i class="fa fa-envelope icon-nav notification text-left"><span>{{App\Helpers::getNotificationsUser()}}</span></i>
 							@else
-								<i class="fa fa-envelope icon-nav notification text-center"></i>
+								<i class="fa fa-envelope icon-nav notification text-left"></i>
 							@endif
 						</div>
-						<!--<div class="col-md-4 col-sm-4 not-padding hidden-xs hidden-sm hidden-md text-center">
+						<div class="col-md-3 col-sm-4 not-padding hidden-xs hidden-sm hidden-md text-center">
 							<button class="button9 newservice" data-toggle="modal" data-target="#NewService">
 							<p>Nueva oferta</p>
 							</button>							 
-						</div><-->
+						</div>
 					</div>
 					
 				</div>
@@ -126,6 +126,10 @@
 		</div>
  	 </nav>
 
+{!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+	  <newservice></newservice>
+{!! Form::close() !!}
+<div class="clearfix"></div>
 
 @elseif($type == 3)
 

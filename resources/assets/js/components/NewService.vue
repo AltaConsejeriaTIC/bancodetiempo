@@ -147,15 +147,30 @@
             return helpers.Service().data;
         }, 
         mixins: [helpers.Helpers(),helpers.MethodsService()],
-        mounted() {             
-            this.$parent.setMyData('totalChar', 250);
-            this.$parent.setMyData('maxChar', 250);
+        mounted() {
             this.$parent.setMyData('imageService', 'images/previewService.jpg');
             this.$parent.setMyData('serviceName', 'Titulo de la oferta');
             this.$parent.setMyData('descriptionService', 'Descripción de la oferta');
             this.$parent.setMyData('tags', Array('PalabrasClave'));
-
             this.tagService = '';
+
+            jQuery.ajax({
+                url : '/categories',
+                context: this,
+                success : function(data){
+                    this.categories = JSON.parse(data);
+                }
+            });
+
+            jQuery.ajax({
+                url : '/tags',
+                context: this,
+                success : function(data){
+                    this.tagService = JSON.parse(data);
+                }
+            });
+
+
         },
     	methods: {
     		setTags: function(value){    			

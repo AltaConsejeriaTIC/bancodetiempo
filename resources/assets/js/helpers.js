@@ -1,6 +1,5 @@
 var Vue = require('vue');
 
-
 module.exports = {
     ProfileUser: function () {
     	
@@ -95,6 +94,7 @@ module.exports = {
         return animation;
     },
     Service: function () {
+
         var service = {
             data: {
                 imageService:'',
@@ -104,9 +104,9 @@ module.exports = {
                 modalityServiceVirtually : '',
                 modalityServicePresently: '',
                 valueService: '',
-                categories: windowvar.categoriesJs,                
-                services: windowvar.servicesJs,                                
-                tagService: windowvar.tagsJs,
+                categories: '',
+                services: '',
+                tagService: '',
             }                      
         }
         return service;
