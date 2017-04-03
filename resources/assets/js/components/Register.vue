@@ -47,15 +47,15 @@
                 <label for="gender" class="paragraph10">Género</label>        
             </div>            
             <div class="row not-margin">
-                <div class="col-md-4 not-padding">
+                <div class="col-md-12 not-padding">
                 	<input type='radio' value='male' name='gender' id='male' class='square validation' v-model='gender'   data-validations='["requiredRadio"]'>
                 	<label for="male" class="paragraph10">Hombre</label>
                 </div>
-                <div class="col-md-3 not-padding">
+                <div class="col-md-12 not-padding">
 	                <input type='radio' value='famale' name='gender' id='famale' class='square validation' v-model='gender'   data-validations='["requiredRadio"]'>
 	                <label for="famale" class="paragraph10">Mujer</label>
                 </div>
-                <div class="col-md-5 not-padding">
+                <div class="col-md-12 not-padding">
 	                <input type='radio' value='indeterminate' name='gender' id='indeterminate' class='square validation' v-model='gender'   data-validations='["requiredRadio"]'>
 	                <label for="indeterminate" class="paragraph10">Indeterminado</label>
                 </div>

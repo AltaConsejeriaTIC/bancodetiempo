@@ -8,13 +8,14 @@
 					<div class="panel-heading"><h2>Lista de Ofertas Registrados en el Sistema</h2></div>
 					<div class="panel-body">
 						@include('partial.errors')
-						{!! Form::open(['route' => 'homeAdminServices/show', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
+						{!! Form::open(['route' => 'homeAdminServices', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
 							<div class="form-group">
 								<label>Nombre</label>
-								<input type="text" class="form-control" name="name" >
-			        </div>
+								<input type="text" class="form-control" name="find" >
+			                </div>
 							<button type="submit" class="btn btn-raised btn-primary" title="Buscar"><i class="material-icons">search</i></button>
 							<a href="{{ url('/homeAdminServices') }}" class="btn btn-raised btn-primary" title="Listar Todos"><i class="material-icons">youtube_searched_for</i></a>
+							<a href="{{ url('/homeAdminServices/reported') }}" class="btn btn-raised btn-primary" title="Listar Reportados">Reportados</a>
 						{!! Form::close() !!}
 						<div class="col-md-2 form-group navbar-right">
 							<span class="label label-success news">Hay {!! $services->total() !!} Ofertas Registradas</span>

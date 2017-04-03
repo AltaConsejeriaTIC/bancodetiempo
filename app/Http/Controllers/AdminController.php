@@ -48,18 +48,23 @@ class AdminController extends Controller
       $states = State::whereIn('id',[1, 3])->pluck('state','id');
       return view('admin/users/list',compact('users','states'));
     }
-    public function homeAdminServices()
+    public function homeAdminServices(Request $request)
     {
-        $services = Service::orderBy('updated_at','desc')->paginate(6);
+        $services = Service::orderBy('updated_at','desc');
+        $services = $request->find != '' ? $services->where('name', 'LIKE', "%$request->find%") : $services ;
+        $services = $services->paginate(6);
         $states = State::whereIn('id',array(1,2))->pluck('state','id');
         return view('admin/services/list',compact('services','states'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
+    public function showServicesReported(Request $request){
+        $services = Service::Select("services.*")->join('reports', 'reports.service_id', '=', 'services.id')->orderBy('updated_at','desc');
+        $services = $request->find != '' ? $services->where('name', 'LIKE', "%$request->find%") : $services ;
+        $services = $services->paginate(6);
+        $states = State::whereIn('id',array(1,2))->pluck('state','id');
+        return view('admin/services/list',compact('services','states'));
+    }
+
     public function store(Request $request)
     {
       try 
@@ -107,25 +112,6 @@ class AdminController extends Controller
       catch (Exception $e) 
       {
       }      
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show(Request $request)
-    {
-      if($request->name != '')
-      {
-          $users = User::where('first_name', 'LIKE', "%$request->name%")->paginate(6);
-          return view('admin/users/list', compact('users'));
-      }
-      else
-      {
-          return redirect('homeAdminUser');
-      }        
     }
 
     public function showServices(Request $request)
