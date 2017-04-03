@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Service;
+use App\Models\InterestUser;
 
 class Category extends Model
 {
@@ -13,6 +14,12 @@ class Category extends Model
 		
 		return $this->hasMany(Service::class);
 		
+	}
+
+    public function interestUsers(){
+
+		return $this->hasMany(InterestUser::class);
+
 	}
 	
 }

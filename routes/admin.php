@@ -17,6 +17,7 @@ Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'use
 Route::resource('homeAdminCategory', 'CategoryController');
 Route::post('homeAdminCategory/show', ['as' => 'homeAdminCategory/show', 'uses'=>'CategoryController@show']);
 Route::put('homeAdminCategory/update', ['as' => 'homeAdminCategory/update', 'uses'=>'CategoryController@update']);
+Route::post('homeAdminCategory/delete', ['as' => 'homeAdminCategory/delete', 'uses'=>'CategoryController@delete']);
 
 Route::get('changePassword', 'AdminController@changePassword');
 Route::post('changePassword', ['as' => 'changePassword', 'uses'=>'AdminController@changePasswordAdmin']);

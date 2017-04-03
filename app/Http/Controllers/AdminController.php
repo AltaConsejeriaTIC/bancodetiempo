@@ -25,22 +25,10 @@ class AdminController extends Controller
       return view('admin/login');
     }
 
-    /**
-     * Show home Admin.
-     *
-     * @return Response
-     */
-
     public function homeAdmin()
     {      
       return view('admin/homeAdmin');
     }
-
-    /**
-     * Show home Admin.
-     *
-     * @return Response
-     */
 
     public function homeAdminUser()
     {
@@ -144,12 +132,6 @@ class AdminController extends Controller
             return redirect('homeAdminContents');
         }
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function update(Request $request)
     {
       try 

@@ -135,6 +135,14 @@ class CategoryController extends Controller
         }
     }
 
+    public function delete(Request $request){
+
+        Category::find($request->input('id_category'))->delete();
+
+        return redirect()->back();
+
+    }
+
     public function jsonCategories(){
 
         $categories = Category::all('id', 'category')->toJson();
