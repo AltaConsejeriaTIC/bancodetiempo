@@ -6,7 +6,6 @@ jQuery(document).ready(function(){
     jQuery("form[form-validation]").on("change", ".validation", validation);
     jQuery("form[form-validation]").on("keyup", "textarea.validation", validation);
     jQuery("form[form-validation]").on("submit", validationGeneal);
-    jQuery("input[type='time']").each(formatTime());
 
 })
 
@@ -136,7 +135,8 @@ var allValidations = {
         return 0;
     },
     time:function(it){
-        var expresion = new RegExp('^[00-23]{2}:[00-59]{2}$');
+        console.log(it.val()+" daza")
+        var expresion = new RegExp('^0[0-9]|1[0-9]|2[0-3]:[0-5][0-9]$');
         if(!expresion.test(it.val())){
             this.showError(it, 'time');
             return 1;

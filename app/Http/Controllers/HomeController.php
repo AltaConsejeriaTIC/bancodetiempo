@@ -16,42 +16,39 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
+    public function index(Request $request){
 
-        if($this->IncompleteRegister()){
-            return $this->IncompleteRegister();
-        }
-
-        $interestsUser = '';
-        $recommendedServices = '';
-
-        $categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')->where('services.state_id', 1)->groupBy('categories.id','categories.category')->get();
-                
+        $this->IncompleteRegister();
+        $categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')
+                                ->where('services.state_id', 1)
+                                ->groupBy('categories.id','categories.category')
+                                ->get();
         $allServices = Service::select('services.*')
                                 ->join('users','users.id','=','services.user_id')
                                 ->where('services.state_id' , 1)
                                 ->where('users.state_id', 1)
                                 ->orderBy("created_at","desc")
                                 ->paginate(12);
-
-        if(!is_null(Auth::User())){
-            $interestsUser = $this->getInterestsUser();
-            $recommendedServices = $allServices->whereIn("category_id", $interestsUser);
-        }
-
-        $categoriesAll = Category::all();
-
-        JavaScript::put([                    
-                    'categoriesJs' => $categories,                    
-                ]); 
+        $recommendedServices = $this->recommendedServices();
+        JavaScript::put([
+            'categoriesJs' => $categories,
+        ]);
 
         return view('home', compact('allServices', 'recommendedServices', 'categories'))->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    public function recommendedServices(){
+        if(!is_null(Auth::User())){
+            $allServices = Service::select('services.*')
+                                ->join('users','users.id','=','services.user_id')
+                                ->where('services.state_id' , 1)
+                                ->where('users.state_id', 1)
+                                ->orderBy("created_at","desc");
+            $interestsUser = $this->getInterestsUser();
+            return $allServices->whereIn("category_id", $interestsUser);
+        }else{
+            return null;
+        }
     }
     
     public function indexNotRegister(){
@@ -59,7 +56,6 @@ class HomeController extends Controller
     	if(Auth::user()){
     		return redirect('/home');
     	}else{
-
     		$lastServices = Service::where('services.state_id','=', 1)
                             ->orderBy('services.id', 'desc')
                             ->limit(6)
@@ -74,29 +70,22 @@ class HomeController extends Controller
     public function getInterestsUser(){
     	
     	$interests = array();
-    	
     	foreach (User::find(Auth::user()->id)->interests->toArray() as $interest){
-    		
-    		array_push($interests, $interest['category_id']);   
-    		
-    	}
-    	
+    		array_push($interests, $interest['category_id']);
+        }
     	return $interests;
     	
     }
     
-    public function filter(Request $request)
-    {   	
-    	
-    	
-    	Session::put('filters.text', $request->input('filter'));  	
+    public function filter(Request $request){
+
+        Session::put('filters.text', $request->input('filter'));
     	 
     	$categories = Category::select('categories.id','categories.category')
     								->join('services','categories.id','=','services.category_id')
     								->where('services.state_id', 1)
     								->groupBy('categories.id','categories.category')
                                     ->get();
-    	
     								
     	$allServices = Service::select("services.*")
     								->distinct('services.id')
@@ -107,32 +96,16 @@ class HomeController extends Controller
     	 
     	if($request->input('filter') != ""){
 			$filters = explode(" ", $request->input('filter'));
-		}else{
-			$filters = "";
-		}
-    	
-    	if($filters != ''){
-    		$idTags = Tag::select("id")->whereIn('tag', $filters)->get();
+            $idTags = Tag::select("id")->whereIn('tag', $filters)->get();
     		$allServices->whereIn('tags_services.tag_id', $idTags);
     		Session::flash('filters.tags', $idTags);
-    	}else{
-    		Session::pull('filters.tags');
-    	}
+		}else{
+			Session::pull('filters.tags');
+		}
     	
     	$allServices = $allServices->paginate(12);
     	
-    	$recommendedServices = '';
-    	
-    	if(!is_null(Auth::User())){
-
-    		$interestsUser = $this->getInterestsUser();
-    		 
-    		$recommendedServices = $allServices->whereIn("category_id", $interestsUser);
-    		
-    	}
-    	
-    	$categoriesAll = Category::all();
-    
+    	$recommendedServices = $this->recommendedServices();
     	JavaScript::put([
     			'categoriesJs' => $categories,
     	]);
