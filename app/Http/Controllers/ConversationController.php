@@ -95,7 +95,8 @@ class ConversationController extends Controller
 
 		$conversation = Conversations::find($id_conversation);
         $deal = $conversation->deals->last();
-        $key = md5($conversation->message.$conversation->deals->last()->dealStates->last()->state_id);
+        $lastState = is_null($conversation->deals->last()) ? 0 : $conversation->deals->last()->dealStates->last()->state_id;
+        $key = md5($conversation->message.$lastState);
         if($request->input('key') != $key){
             $conversation["key"] = $key;
             $conversation["message"] = json_decode($conversation->message);

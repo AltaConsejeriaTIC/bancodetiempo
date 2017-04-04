@@ -127,6 +127,22 @@
           this.$parent.setMyData('serviceName', 'Titulo de la oferta');
           this.$parent.setMyData('descriptionService', 'Descripción de la oferta'); 	                       
           this.$parent.setMyData('tags', Array('PalabrasClave'));
+
+          jQuery.ajax({
+                url : '/categories',
+                context: this,
+                success : function(data){
+                    this.categories = JSON.parse(data);
+                }
+            });
+
+            jQuery.ajax({
+                url : '/tags',
+                context: this,
+                success : function(data){
+                    this.tagService = JSON.parse(data);
+                }
+            });
       },      
       watch : {
 	        category : function (value) { 

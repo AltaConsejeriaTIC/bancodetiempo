@@ -207,7 +207,24 @@ export default {
 				this.tags = editags;
 				this.tagService = editags;						
 			}             
-		}            
+		}
+
+            jQuery.ajax({
+                url : '/categories',
+                context: this,
+                success : function(data){
+                    this.categories = JSON.parse(data);
+                }
+            });
+
+            jQuery.ajax({
+                url : '/tags',
+                context: this,
+                success : function(data){
+                    this.tagService = JSON.parse(data);
+                }
+            });
+
 	},  
 	methods: {
 		setTags: function(value){    			

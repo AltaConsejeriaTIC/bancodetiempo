@@ -35,6 +35,3 @@ Route::post('/addObservation','DealsController@saveObservation');
 
 Route::post('/report/create/{serviceid?}','ReportsController@create');
 
-Route::get('/categories','CategoryController@jsonCategories');
-
-Route::get('/tags','TagsController@jsonTags');
