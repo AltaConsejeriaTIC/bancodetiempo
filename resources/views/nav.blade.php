@@ -13,15 +13,15 @@
 				</div>
 				@if((Auth::guest()))
 			        <div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-5  text-right" id="container-nav-buttons">	    
-			        	<button class="button5" data-toggle="modal" data-target="#login">{{ trans('dictionary.login') }}</button>          	
-			        	<button class="button4 hidden-xs" data-toggle="modal" data-target="#login">Registrarse</button>          		          
+			        	<button class="button5" data-toggle="modal" data-target="#login">{{ trans('nav.login') }}</button>
+			        	<button class="button4 hidden-xs" data-toggle="modal" data-target="#login">{{ trans('nav.register') }}</button>
 			        </div>
 			        <ul class="menuMobile visible-xs col-xs-2 col-xs-offset-1">
 			            <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
                           <ul class="dropdown-menu">
-                            <li><a data-toggle="modal" data-target="#login">{{ trans('dictionary.login') }}</a></li>
-                            <li><a data-toggle="modal" data-target="#login">Registrarse</a>  </li>
+                            <li><a data-toggle="modal" data-target="#login">{{ trans('nav.login') }}</a></li>
+                            <li><a data-toggle="modal" data-target="#login">{{ trans('nav.register') }}</a>  </li>
                           </ul>
                         </li>
 			        </ul>
@@ -29,9 +29,9 @@
 					<div class="hidden-xs col-sm-6 col-sm-offset-5 col-md-5 col-md-offset-4 text-right">
 						<p class="col-md-6 col-md-offset-2 align-right">
 							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav"></image> 
-							{{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? "Dorado" : "Dorados" }}
+							{{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? trans('nav.credit') : trans('nav.credits') }}
 						</p>
-						<a class="col-md-4 align-right" href="{{ url('/validateLogout') }}">Cerrar Sesión</a>
+						<a class="col-md-4 align-right" href="{{ url('/validateLogout') }}">{{ trans('nav.logout') }}</a>
 					</div>
 					<a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1' href="{{ url('/validateLogout') }}"></a>
 				@endif
@@ -55,7 +55,7 @@
 				</div>
 				<div class='hidden-xs hidden-sm padding-top col-md-3'>
 					{!! Form::open(['url' => 'filter', 'method' => 'get']) !!}
-						<input type='text' class='filter col-md-12' name='filter' value='{{ Session::get("filters.text") }}' id='filter1' placeholder='Encuentra ofertas, palabras clave y más...'>
+						<input type='text' class='filter col-md-12' name='filter' value='{{ Session::get("filters.text") }}' id='filter1' placeholder='{{ trans("nav.inputFind") }}'>
 						<label for="filter1" class=" fa fa-search "></label>
 					{!! Form::close() !!}
 				</div>
@@ -66,7 +66,7 @@
 							<div class="space4"></div>
 							<img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
 
-							<p class="paragraph4 textpadding col-md-9 col-sm-7 text-white">{{ Auth::user()->credits }} Dorados</p>
+							<p class="paragraph4 textpadding col-md-9 col-sm-7 text-white">{{ Auth::user()->credits }} {{ trans('nav.credits') }}</p>
 						</div>
 						<div class="col-md-2 col-sm-2 not-padding " onclick='location.href="/inbox#received"'>
 							@if(App\Helpers::getNotificationsUser()>0)
@@ -76,9 +76,7 @@
 							@endif
 						</div>
 						<div class="col-md-3 col-sm-4 not-padding hidden-xs hidden-sm hidden-md text-center">
-							<button class="button9 newservice" data-toggle="modal" data-target="#NewService">
-							<p>Nueva oferta</p>
-							</button>							 
+							<button class="button9 newservice" data-toggle="modal" data-target="#NewService">{{ trans('nav.newOffer') }}</button>
 						</div>
 					</div>
 					
@@ -97,10 +95,10 @@
 
 						<ul class="dropdown-menu">	
 						    <li>
-						    	<a href="{{ url('profile') }}">Perfil</a>
+						    	<a href="{{ url('profile') }}">{{ trans('nav.profile') }}</a>
 						    </li>
 						    <li>
-								<a href="{{ url('/validateLogout') }}" class="link1">Cerrar Sesión</a>
+								<a href="{{ url('/validateLogout') }}" class="link1">{{ trans('nav.logout') }}</a>
 							</li>
 						</ul>
 
@@ -111,13 +109,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{{ url('profile') }}">Perfil</a>
+                                <a href="{{ url('profile') }}">{{ trans('nav.profile') }}</a>
                             </li>
                             <li>
-                                <a href="/inbox">Notificaciones <span>{{App\Helpers::getNotificationsUser()}}</span></a>
+                                <a href="/inbox">{{ trans('nav.notifications') }} <span>{{App\Helpers::getNotificationsUser()}}</span></a>
                             </li>
                             <li>
-                                <a href="{{ url('/validateLogout') }}"  class="link1">Cerrar Sesión</a>
+                                <a href="{{ url('/validateLogout') }}"  class="link1">{{ trans('nav.logout') }}</a>
                             </li>
                         </ul>
                     </li>
@@ -144,12 +142,12 @@
 					</a>
 				</div>
 				<div class='hidden-xs hidden-sm col-md-offset-1 padding-top col-md-3'>
-					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='Encuentra ofertas, palabras clave y más...'>
+					<input type='text' class='filter col-md-12' name='filter' id='filter1' placeholder='{{ trans("nav.inputFind") }}'>
 					<label for="filter1" class=" fa fa-search "></label>
 				</div>
 				<div class="text-right col-md-4" id="container-nav-buttons">
-					<button class="button5" data-toggle="modal" data-target="#login">{{ trans('dictionary.login') }}</button>
-					<button class="button9 buttonStart hidden-xs" data-toggle="modal" data-target="#login">Registrarse</button>
+					<button class="button5" data-toggle="modal" data-target="#login">{{ trans('nav.login') }}</button>
+					<button class="button9 buttonStart hidden-xs" data-toggle="modal" data-target="#login">{{ trans('nav.register') }}</button>
 				</div>
 
 			</div>
