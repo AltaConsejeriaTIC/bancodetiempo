@@ -41,7 +41,7 @@ class AdminController extends Controller
         $services = Service::orderBy('updated_at','desc');
         $services = $request->find != '' ? $services->where('name', 'LIKE', "%$request->find%") : $services ;
         $services = $services->paginate(6);
-        $states = State::whereIn('id',array(1,2))->pluck('state','id');
+        $states = State::whereIn('id',array(1,3))->pluck('state','id');
         return view('admin/services/list',compact('services','states'));
     }
 
@@ -132,6 +132,18 @@ class AdminController extends Controller
             return redirect('homeAdminContents');
         }
     }
+
+    public function show(Request $request){
+        if($request->name != ''){
+            $users = User::where('first_name', 'LIKE', "%$request->name%")->paginate(6);
+            $states = State::whereIn('id',[1, 3])->pluck('state','id');
+            return view('admin/users/list', compact('users', 'states'));
+        }else{
+          return redirect('homeAdminUser');
+        }
+    }
+
+
     public function update(Request $request)
     {
       try 
