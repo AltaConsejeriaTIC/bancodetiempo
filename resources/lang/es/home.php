@@ -1,0 +1,18 @@
+<?php
+
+return [
+    'nameExample1' => 'Camila (Abogada)',
+    'descriptionExample1' => 'Recibió una hora de cuentería de Juan',
+    'nameExample2' => 'Juan (Cuentero)',
+    'descriptionExample3' => 'Obtuvo una asesoría en derecho penal de Camila',
+    'titleBanner' => '¿PARA QUÉ EL DINERO SI PUEDES USAR TU TIEMPO?',
+    'descriptionBanner' => 'Invierte tus habilidades para obtener lo que otros ofrecen',
+    'buttonBanner' => 'Regístrate para empezar',
+    'title' => 'OFERTAS RECIENTES',
+    'button1' => 'Explorar más ofertas',
+    'titleLower' => '¡ÚNETE!',
+    'descriptionLower' => 'Regístrate y comienza a ser parte de nuestra gran comunidad',
+    'registerFacebook' => 'Regístrate con Facebook',
+    'registerGoogle' => 'Regístrate con Google',
+    'registerLinkedin' => 'Regístrate con Linkedin',
+];

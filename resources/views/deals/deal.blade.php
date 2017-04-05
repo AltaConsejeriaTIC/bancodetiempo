@@ -120,10 +120,15 @@
       @if($dealState->state_id != 8)
         <div class="space20"></div>
         <div class="row not-margin text-center">
-            @if($dealState->state_id == 4 && Auth()->user()->id == $deal->user_id)
+            @if($dealState->state_id == 4 && Auth()->user()->id == $deal->user_id && $deal->user->credits >= $deal->value)
               <div class="col-md-4 col-md-offset-2 text-center">
                 <button name="agree" class='button1 background-active-green-color col-md-12'>Aceptar</button>
               </div>
+            @endif
+            @if($dealState->state_id == 4 && Auth()->user()->id == $deal->user_id && $deal->user->credits < $deal->value)
+                <div class="col-md-4 col-md-offset-2 text-center">
+                    <p>No tienes dorados suficientes</p>
+                </div>
             @endif
             @if($dealState->state_id == 4 && Auth()->user()->id == $deal->user_id)
               <div class="col-md-4 text-center">
