@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\DealsController;
 
 class Kernel extends ConsoleKernel
 {
@@ -28,6 +29,12 @@ class Kernel extends ConsoleKernel
             $email = new EmailController();
             $email->sendMailDaily();
         });
+
+        $schedule->call(function (){
+            $deals = new DealsController();
+            $deals->exchangeForTime();
+        });
+
     }
 
     /**

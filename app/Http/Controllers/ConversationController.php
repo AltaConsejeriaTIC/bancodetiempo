@@ -9,21 +9,13 @@ use App\Models\Deal;
 use App\Models\DealState;
 use App\Http\Controllers\EmailController;
 
-class ConversationController extends Controller
-{
+class ConversationController extends Controller{
+
 	public function index(){
 
-		$myServices = Auth::User()->services;
+		$conversationsMyService = Conversations::whereIn("service_id", $this->getMyServices())->orderBy('updated_at', 'desc')->get();
 
-        $listServices = [];
-
-        foreach($myServices as $services){
-            $listServices[] = $services->id;
-        }
-
-		$conversationsMyService = Conversations::whereIn("service_id", $listServices)->orderBy('updated_at', 'desc')->get();
-
-		$conversations = Conversations::where("applicant_id", Auth::user()->id)->get();
+		$conversations = Conversations::where("applicant_id", Auth::user()->id)->orderBy('updated_at', 'desc')->get();
 
 		foreach ($conversationsMyService as  $key => $conversation) {
 
@@ -43,6 +35,20 @@ class ConversationController extends Controller
 
 	}
 
+    public function getMyServices(){
+
+        $myServices = Auth::User()->services;
+
+        $listServices = [];
+
+        foreach($myServices as $services){
+            $listServices[] = $services->id;
+        }
+
+        return $listServices;
+
+    }
+
 	static public function newMessage($message,$conversation_id,$sender,$deal,$dealState)
   {
 		$conversation = Conversations::find($conversation_id);
@@ -55,8 +61,7 @@ class ConversationController extends Controller
 
 	}
 
-	public function saveMessage(Request $request)
-  {
+	public function saveMessage(Request $request){
 		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id,0,0);
 	}
 
@@ -77,13 +82,13 @@ class ConversationController extends Controller
 		]);
 
 		$deal = Deal::where("service_id","=",$conversation->service_id)
-									->where("user_id","=",$conversation->applicant_id)
-									->orderBy('id','desc')
-									->first();
+                    ->where("user_id","=",$conversation->applicant_id)
+                    ->orderBy('id','desc')
+                    ->first();
 		if($deal)
 			$dealState = DealState::where('deal_id','=',$deal->id)
-													->orderBy('id','desc')
-													->first();
+                                    ->orderBy('id','desc')
+                                    ->first();
 		else
 			$dealState = null;
 
@@ -122,28 +127,16 @@ class ConversationController extends Controller
 
 	public function deal(Request $request)
 	{
-
-		/*
-		$this->validate($request, [
-        'service' => 'required',
-        'applicant' => 'required',
-        'dealDate' => 'required|date|after:tomorrow',
-        'dealHour' => 'required',
-        'dealLocation' => 'required',
-        'valueService' => 'required'
-    ]);
-		*/
 		$email = new EmailController;
-
-    $deal = new Deal;
-		$deal->user_id = $request->applicant;
-    $deal->service_id = $request->service;
-    $deal->date = $request->dealDate;
-    $deal->time = $request->dealHour;
-    $deal->location = $request->dealLocation;
-    $deal->value = $request->valueService;
-    $deal->description = $request->observations;
-    $deal->conversations_id = $request->conversation;
+        $deal = new Deal;
+        $deal->user_id = $request->applicant;
+        $deal->service_id = $request->service;
+        $deal->date = $request->dealDate;
+        $deal->time = $request->dealHour;
+        $deal->location = $request->dealLocation;
+        $deal->value = $request->valueService;
+        $deal->description = $request->observations;
+        $deal->conversations_id = $request->conversation;
 		$deal->save();
 
 		$dealState = new DealState;

@@ -36,31 +36,28 @@
                             </div>
                             <div class="row not-margin">
                                 <div id="map_canvas" class="map"></div>
-              </div>
-              <div class="row not-margin">
-
-              </div>
+                            </div>
                             <div class="row not-margin">
                                 <label class="paragraph10">Tiempo de duración de la actividad que estás ofertando</label>
                             </div>
                             <div class="row not-margin">
                                 <div class="col-xs-6 col-sm-6">
-                                    <input type="radio" name="valueService" value="1" id="time1" class="circle validation" data-validations='["requiredRadio"]'>
-                                    <label for="time1">1 Hora</label>
+                                    <input type="radio" name="valueService" value="1" id="dealtime1" class="circle validation" data-validations='["requiredRadio"]'>
+                                    <label for="dealtime1">1 Hora</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6">
-                                    <input type="radio" name="valueService" value="2" id="time2" class="circle validation" data-validations='["requiredRadio"]'>
-                                    <label for="time2">2 Horas</label>
+                                    <input type="radio" name="valueService" value="2" id="dealtime2" class="circle validation" data-validations='["requiredRadio"]'>
+                                    <label for="dealtime2">2 Horas</label>
                                 </div>
                             </div>
                             <div class="row not-margin">
                                 <div class="col-xs-6 col-sm-6">
-                                    <input type="radio" name="valueService" value="3" id="time3" class="circle validation" data-validations='["requiredRadio"]'>
-                                    <label for="time3">3 Horas</label>
+                                    <input type="radio" name="valueService" value="3" id="dealtime3" class="circle validation" data-validations='["requiredRadio"]'>
+                                    <label for="dealtime3">3 Horas</label>
                                 </div>
                                 <div class="col-xs-6 col-sm-6">
-                                    <input type="radio" name="valueService" value="4" id="time4" class="circle validation" data-validations='["requiredRadio"]'>
-                                    <label for="time4">4 Horas</label>
+                                    <input type="radio" name="valueService" value="4" id="dealtime4" class="circle validation" data-validations='["requiredRadio"]'>
+                                    <label for="dealtime4">4 Horas</label>
                                 </div>
                             </div>
                             <div class="row not-margin">

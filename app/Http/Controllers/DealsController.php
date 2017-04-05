@@ -12,110 +12,129 @@ use App\Models\ServiceScore;
 
 class DealsController extends Controller
 {
+    private $request;
+
     public function saveObservation(Request $request){
 
-        $badObservation = is_null($request->input("badObservation")) ? 1 : (int) $request->input("badObservation");
+        $this->request = $request;
 
-        $score = is_null($request->input("score")) ? 0 : $request->input("score");
-
-        if($request->input("scoreFrom") == "offerer"){
-            UserScore::create([
-               "user_evaluator_id" => Auth::User()->id,
-                "user_id" => $request->input("applicant_id"),
-                "score" => $score,
-                "observation" => $request->input("observation")
-            ]);
-
-            Deal::find($request->input("deal_id"))->update([
-                "response_offerer" => $request->input("response"),
-                "offerer_badObservations_id" => $badObservation,
-                "offerer_observation" => $request->input("observation")
-            ]);
-
+        if($this->request->input("scoreFrom") == "offerer"){
+            $this->saveObservationOfferer();
         }elseif($request->input("scoreFrom") == "applicant"){
-
-
-
-            if($request->input("response") == 1){
-
-                UserScore::create([
-                   "user_evaluator_id" => Auth::User()->id,
-                    "user_id" => $request->input("offerer_id"),
-                    "score" => $score,
-                    "observation" => $request->input("observation")
-                ]);
-
-            }
-
-            ServiceScore::create([
-                "service_id" => $request->input("service_id"),
-                "user_id" => Auth::User()->id,
-                "score" => $score,
-                "observation" => $request->input("observation"),
-                "badObservations_id" => $badObservation
-            ]);
-
-            Deal::find($request->input("deal_id"))->update([
-                "response_applicant" => $request->input("response"),
-                "applicant_badObservations_id" => $badObservation,
-                "applicant_observation" => $request->input("observation")
-            ]);
-
-
+            $this->saveObservationApplicant();
         }
-
-        $this->exchange($request->input("deal_id"));
-
+        $this->exchange($this->request->input("deal_id"));
         $deal = Deal::find($request->input("deal_id"));
 
         if(!is_null($deal->response_applicant) && !is_null($deal->response_offerer)){
-
-            DealState::create([
-                "deal_id" => $request->input("deal_id"),
-                "state_id" => 10
-            ]);
+            $this->createNewState($this->request->input("deal_id"), 10);
         }
-
         return redirect()->back()->with('response', true);
 
     }
 
-    public function exchange($deal){
+    public function saveObservationOfferer(){
+        UserScore::create([
+           "user_evaluator_id" => Auth::User()->id,
+            "user_id" => $this->request->input("applicant_id"),
+            "score" => $this->request->input("score", 0),
+            "observation" => $this->request->input("observation")
+        ]);
 
-        $_deal = Deal::find($deal);
+        Deal::find($this->request->input("deal_id"))->update([
+            "response_offerer" => $this->request->input("response"),
+            "offerer_badObservations_id" => $this->request->input("badObservation", 1),
+            "offerer_observation" => $this->request->input("observation")
+        ]);
+    }
 
-        $applicant = User::find($_deal->user_id);
-
-        $offerer = User::find($_deal->service->user_id);
-
-        if($_deal->response_applicant == 1 && $_deal->response_offerer == 1){
-
-            $applicant->update([
-                "credits" => $applicant->credits-$_deal->value
+    public function saveObservationApplicant(){
+        if($this->request->input("response") == 1){
+            UserScore::create([
+                "user_evaluator_id" => Auth::User()->id,
+                "user_id" => $this->request->input("offerer_id"),
+                "score" => $this->request->input("score", 0),
+                "observation" => $this->request->input("observation")
             ]);
+        }
+        ServiceScore::create([
+            "service_id" => $this->request->input("service_id"),
+            "user_id" => Auth::User()->id,
+            "score" => $this->request->input("score", 0),
+            "observation" => $this->request->input("observation"),
+            "badObservations_id" => $this->request->input("badObservation", 1),
+        ]);
 
-            $offerer->update([
-                "credits" => $offerer->credits+$_deal->value
-            ]);
+        Deal::find($this->request->input("deal_id"))->update([
+            "response_applicant" => $this->request->input("response"),
+            "applicant_badObservations_id" => $this->request->input("badObservation", 1),
+            "applicant_observation" => $this->request->input("observation")
+        ]);
 
+    }
+
+    public function createNewState($deal_id, $state){
+
+        DealState::create([
+            "deal_id" => $deal_id,
+            "state_id" => $state
+        ]);
+
+    }
+
+    public function makeExchange($applicant, $offerer, $creditsApplicant, $creditsOfferer){
+        $applicant->update([
+                "credits" => $creditsApplicant
+        ]);
+
+        $offerer->update([
+                "credits" => $creditsOfferer
+        ]);
+    }
+
+    public function exchange($deal_id){
+
+        $deal = Deal::find($deal_id);
+
+        $applicant = User::find($deal->user_id);
+
+        $offerer = User::find($deal->service->user_id);
+
+        if($deal->response_applicant == 1 && $deal->response_offerer == 1){
+            $this->makeExchange($applicant, $offerer, $applicant->credits-$deal->value, $offerer->credits+$deal->value);
         }
 
-        if($_deal->response_applicant == 0 && $_deal->response_offerer == 0){
+        if($deal->response_applicant == 1 && $deal->response_offerer == 0){
+            $this->makeExchange($applicant, $offerer, $applicant->credits-$deal->value, $offerer->credits+$deal->value);
+        }
 
-            if($_deal->applicant_badObservations_id == 3 && $_deal->offerer_badObservations_id == 2){
+        if($deal->response_applicant == 0 && $deal->response_offerer == 0){
 
-                $applicant->update([
-                    "credits" => $applicant->credits-$_deal->value
-                ]);
-
-                $offerer->update([
-                    "credits" => $offerer->credits+$_deal->value
-                ]);
-
+            if($deal->applicant_badObservations_id == 3 && $deal->offerer_badObservations_id == 2){
+                $this->makeExchange($applicant, $offerer, $applicant->credits-$deal->value, $offerer->credits+$deal->value);
             }
 
         }
 
+    }
+
+    public function exchangeForTime(){
+        $date = new \DateTime(date('Y').'-'.date('m').'-'.(date('d')-3));
+        $deals = Deal::where('date', '<=', $date->format('Y-m-d'))->where('time', '<=', date("H:i:s"))->get();
+        foreach($deals as $deal){
+            if($deal->dealStates->last()->state_id == 12){
+                $this->createNewState($deal->id, 10);
+                 if($deal->response_applicant == null && $deal->response_offerer == null){
+                     $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
+                 }
+                if($deal->response_applicant == 1 && $deal->response_offerer == null){
+                     $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
+                 }
+                if($deal->response_applicant == null && $deal->response_offerer == 1){
+                     $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
+                 }
+            }
+        }
     }
 
 }
