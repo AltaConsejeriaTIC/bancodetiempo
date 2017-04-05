@@ -4,15 +4,15 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="row link-social-network">
-						<a href="/how">¿Cómo funciona?</a>
+						<a href="/how">{{ trans('footer.how') }}</a>
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="row link-social-network">
-						<a href="/content/privacity">Políticas de Privacidad</a>
+						<a href="/content/privacity">{{ trans('footer.privacity') }}</a>
 					</div>
 					<div class="row link-social-network">
-						<a href="/content/terms">Términos y Condiciones</a>
+						<a href="/content/terms">{{ trans('footer.terms') }}</a>
 					</div>
 					<!--
 					<div class="row link-social-network">
@@ -37,7 +37,7 @@
 							</div>
 							<div class="space10"></div>
 							<div class="row col-md-12">
-								¿Tienes sugerencias, dudas o comentarios? Contáctanos a <a href="mailto:evenvivelab_bog@unal.edu.co">evenvivelab_bog@unal.edu.co</a>
+								{!! trans('footer.textContact') !!}
 							</div>
 					</div>
 				</div>
