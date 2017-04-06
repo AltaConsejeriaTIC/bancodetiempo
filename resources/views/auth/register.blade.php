@@ -8,13 +8,13 @@
 	    <div class="container">
 	        <div class='row'>
 	            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	                <h2 class='title1 not-padding text-white col-xs-12 col-sm-12 col-md-12'>¡Gracias por vincular tu cuenta!</h2>
+	                <h2 class='title1 not-padding text-white col-xs-12 col-sm-12 col-md-12'>{{ trans('register.thank') }}</h2>
 	            </div>
 	        </div>
 	        <div class="space"></div>
 	        <div class="row">
 	            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-	                <p class="paragraph2 not-padding text-white col-xs-12 col-sm-12 col-md-12">Actualiza los datos de tu perfil para continuar con el registro.<br>Recuerda que puedes modificar esta información cuando lo desees.</p>
+	                <p class="paragraph2 not-padding text-white col-xs-12 col-sm-12 col-md-12">{!!trans('register.descriptionBanner')!!}</p>
 	            </div>
 	        </div>
 	        <div class="space"></div>
@@ -25,7 +25,7 @@
 	<section  id='pass' class='not-padding-bottom'>
 		<div class="container">
 			<div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4">				
-				@include('partial/pass', array('pass1','pass2','pass3'))
+				@include('partial/pass')
 			</div>
 		</div>
 	</section>

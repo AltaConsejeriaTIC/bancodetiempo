@@ -105,6 +105,12 @@
 			</div>
 			<div class='space'></div>
 			<div class="row">
+				<a href='/' class="col-xs-12  col-sm-12 button1 background-white text-center link1" >
+				Saltar este paso
+				</a>
+			</div>
+			<br>
+			<div class="row">
 				<button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
 				Publicar oferta
 				</button>

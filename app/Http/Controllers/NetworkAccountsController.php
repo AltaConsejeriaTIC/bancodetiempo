@@ -50,23 +50,7 @@ class NetworkAccountsController extends Controller
 
 		]);
 
-		if(Auth::user()->services->count() >= 1){
-            return redirect('/');
-        }else{
-            if($user->privacy_policy == 0){
-                $pass1 = 'actual';
-                $pass2 = '';
-                $pass3 = '';
-            }else{
-                $pass1 = 'done';
-                if(Auth::user()->interests->count() >= 3){
-                    $pass2 = 'done';
-                    $pass3 = 'actual';
-                }else{
-                    $pass2 = 'actual';
-                }
-			}	
-        }
+
 		return view('auth/register', compact('user','pass1','pass2','pass3'));
 	}
 

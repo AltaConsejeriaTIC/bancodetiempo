@@ -104,18 +104,15 @@ public function  editProfilePicture(Request $request){
 		$user->last_name = $request->input('lastName');
 		$user->birthDate = $request->input('birthDate');
 		$user->aboutMe = $request->input("aboutMe");
-  	$user->privacy_policy = $request->input('terms');
-  	$user->gender = $request->input('gender');
-  	$user->email2 = $request->input('email2');
+        $user->privacy_policy = $request->input('terms');
+        $user->gender = $request->input('gender');
+        $user->email2 = $request->input('email2');
   	
 	  
-	  if(!empty($user->interests->all()))
-		{
+        if(!empty($user->interests->all())){
 			$user->save();
 			return Redirect::to("profile");
-		}
-		else
-		{
+		}else{
 
 			$step = Attainment::where('id','=',1)->first();
 			$stepRegister = Auth::user()->attainmentUsers->count(); 
@@ -173,36 +170,6 @@ public function  editProfilePicture(Request $request){
 		JavaScript::put([
 			'interestJs' => Auth::user()->interests,				
 		]);
-
-		if(Auth::user()->services->count() >= 1)
-    {
-      return redirect('/');
-    }
-    else
-    {   
-    	if(Auth::user()->privacy_policy == 0)
-			{
-				$pass1 = 'actual';
-				$pass2 = '';
-				$pass3 = '';			
-				return redirect('register');
-			}
-			else
-			{				
-				if(Auth::user()->interests->count() >= 3)
-				{
-					$pass1 = 'done';
-					$pass2 = 'done';
-					$pass3 = 'actual';
-				}
-				else
-				{
-					$pass1 = 'done';
-					$pass2 = 'actual';
-					$pass3 = '';
-				}
-			} 	
-		}
 		
 		return view('/interest', compact('categories','pass2','pass1','pass3'));
 

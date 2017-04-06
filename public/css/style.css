@@ -932,6 +932,8 @@ conversation box
     position: fixed;
     top: 5%;
     z-index: 15000;
+    max-height: 85%;
+    overflow: auto;
 }
 /*
 Media Querys
