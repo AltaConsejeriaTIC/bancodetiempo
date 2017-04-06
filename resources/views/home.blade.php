@@ -11,14 +11,14 @@
 		<div class="row">
 		    <ul  class="nav nav-pills col-md-8 col-xs-4">
 				<li class="active">
-		        	<a  href="#filterAll" data-toggle="tab" class='parrafo3' v-on:click='filterCategory(0)'>Todos</a>
+		        	<a  href="#filterAll" data-toggle="tab" class='parrafo3' v-on:click='filterCategory(0)'>{{ trans('home.all') }}</a>
 				</li>
 				<li class="hidden">
-		        	<a  href="#filterRecommended" data-toggle="tab" class='parrafo3'>Recomendados</a>
+		        	<a  href="#filterRecommended" data-toggle="tab" class='parrafo3'>{{ trans('home.Recommended') }}</a>
 				</li>
 			</ul>
 			<div class='col-md-1 col-xs-3 not-padding'>
-				<p class="paragraph10">Filtrar&nbsp;por</p>
+				<p class="paragraph10">{{ trans('home.filter') }}</p>
 			</div>
 			<div class="col-md-3 col-xs-5">
 				<filters-categories categories='{{ $categories }}'></filters-categories>
