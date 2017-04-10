@@ -137,6 +137,7 @@ class ConversationController extends Controller{
         $deal->value = $request->valueService;
         $deal->description = $request->observations;
         $deal->conversations_id = $request->conversation;
+        $deal->coordinates = $request->coordinates;
 		$deal->save();
 
 		$dealState = new DealState;

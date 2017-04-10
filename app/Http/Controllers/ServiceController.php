@@ -26,57 +26,30 @@ class ServiceController extends Controller
     $tags = json_encode(Tag::all('tag'));
     $categories = Category::all();
     $user = User::find(auth::user()->id);
- 		$selectedCategories = [];
+        $selectedCategories = [];
 
     JavaScript::put([
        'userJs'=> $user,
        'categoriesJs' => $categories,
-       ]);
-    
-    if(Auth::user()->services->count() >= 1)
-    {
-      return redirect('/');
-    }
-    else
-    {
-      $step = Attainment::where('id','=',3)->first();
-      $stepRegister = Auth::user()->attainmentUsers->count();
-      $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();         
-          
-      if($attainments != null)
+    ]);
+
+    if(Auth::user()->services->count() >= 1){
+        return redirect('/');
+    }else{
+        $step = Attainment::where('id','=',3)->first();
+        $stepRegister = Auth::user()->attainmentUsers->count();
+        $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();
+
+        if($attainments != null)
         $attainments = AttainmentUsers::find($attainments->id);
-      
-      if($stepRegister == 2)
+
+        if($stepRegister == 2)
         $attainments = new AttainmentUsers;
-      
-      $attainments->user_id = Auth::user()->id;
-      $attainments->attainment_id = $step->id;
-      $attainments->state_id = 2;
-      $attainments->save();
-      
-      if(Auth::user()->privacy_policy == 0)
-      {
-        $pass1 = 'actual';
-        $pass2 = '';
-        $pass3 = '';      
-        return redirect('register');
-      }
-      else
-      {
-        if(Auth::user()->interests->count() < 3 )
-        {
-          $pass1 = 'done';
-          $pass2 = 'actual';
-          $pass3 = '';
-          return redirect('interest');  
-        }
-        else
-        {
-          $pass1 = 'done';
-          $pass2 = 'done';
-          $pass3 = 'actual';          
-        }
-      }
+
+        $attainments->user_id = Auth::user()->id;
+        $attainments->attainment_id = $step->id;
+        $attainments->state_id = 2;
+        $attainments->save();
     }
       return view('services/formService', compact('categories','tags','pass1','pass2','pass3'));
    }
@@ -113,7 +86,7 @@ class ServiceController extends Controller
    public function showService($serviceId){
 
      $categories = Category::all('id', 'category');
-     $service = Service::findOrFail($serviceId);
+     $service = Service::where('id', $serviceId)->where('state_id', 1)->firstOrFail();
      $user = User::find($service->user_id);
      $listTypes = TypeReport::pluck('type','id');
      JavaScript::put([

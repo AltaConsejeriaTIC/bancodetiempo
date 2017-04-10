@@ -32,6 +32,7 @@
                                 <label for="dealLocation" class="paragraph10">Lugar</label>
                             </div>
                             <div class="row not-margin">
+                                <input type="text" name="coordinates" id='coordinates'>
                                 <input type="text" name="dealLocation" id="place" placeholder="Parque Simón Bolivar" size="60" class="validation"  data-validations='["required"]' />
                             </div>
                             <div class="row not-margin">

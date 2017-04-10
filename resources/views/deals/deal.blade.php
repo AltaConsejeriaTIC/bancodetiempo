@@ -113,7 +113,12 @@
         <div class="" id='mapDeal{{$deal->id}}' style="height:250px">
         </div>
         <script>
-            showLocation('mapDeal{{$deal->id}}', '{{$deal->location}}');
+            @if(is_null($deal->coordinates) || $deal->coordinates == '')
+                showLocation('mapDeal{{$deal->id}}', '{{$deal->location}}');
+            @else
+                showLocationWithCoordinates('mapDeal{{$deal->id}}', '{!!$deal->coordinates!!}');
+            @endif
+
         </script>
       @endif
 
