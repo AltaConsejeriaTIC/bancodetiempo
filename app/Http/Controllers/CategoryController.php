@@ -151,4 +151,12 @@ class CategoryController extends Controller
 
     }
 
+    static function getCategoriesActive(){
+        return Category::select('categories.id','categories.category')
+                                ->join('services','categories.id','=','services.category_id')
+                                ->where('services.state_id', 1)
+                                ->groupBy('categories.id','categories.category')
+                                ->get();
+    }
+
 }

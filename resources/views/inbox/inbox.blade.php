@@ -101,7 +101,7 @@
                     <div class='visible-xs @if($conversation->lastMessage->state == 6 && $conversation->lastMessage->sender != Auth::user()->id) notRead @endif'>
                         <div class="row">
                             <div class="col-xs-2">
-                                @include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                @include('partial/imageProfile', array('cover' =>$conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#0a475b', 'borderSize' => '2px'))
                             </div>
                             <div class="col-xs-10">
                                 <a href='/conversation/{{$conversation->id}}' class='paragraph4'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</a>

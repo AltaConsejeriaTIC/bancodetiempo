@@ -138,6 +138,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 <script>
     var helpers = require('./../helpers');

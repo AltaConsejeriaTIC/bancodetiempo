@@ -80,37 +80,40 @@ class HomeController extends Controller
     public function filter(Request $request){
 
         Session::put('filters.text', $request->input('filter'));
-    	 
-    	$categories = Category::select('categories.id','categories.category')
-    								->join('services','categories.id','=','services.category_id')
-    								->where('services.state_id', 1)
-    								->groupBy('categories.id','categories.category')
-                                    ->get();
     								
     	$allServices = Service::select("services.*")
-    								->distinct('services.id')
-    								->join('tags_services', 'services.id', 'tags_services.service_id')
-    								->where('state_id' , 1)
-                                    ->orderBy('services.created_at', 'desc');
-
+                                ->distinct('services.id')
+                                ->join('tags_services', 'services.id', 'tags_services.service_id')
+                                ->where('state_id' , 1)
+                                ->orderBy('services.created_at', 'desc');
     	 
-    	if($request->input('filter') != ""){
-			$filters = explode(" ", $request->input('filter'));
-            $idTags = Tag::select("id")->whereIn('tag', $filters)->get();
-    		$allServices->whereIn('tags_services.tag_id', $idTags);
-    		Session::flash('filters.tags', $idTags);
-		}else{
-			Session::pull('filters.tags');
-		}
+    	$allServices = $this->filterTags($allServices, $request->input('filter'));
     	
     	$allServices = $allServices->paginate(12);
     	
     	$recommendedServices = $this->recommendedServices();
+
     	JavaScript::put([
-    			'categoriesJs' => $categories,
+    			'categoriesJs' => CategoryController::getCategoriesActive(),
     	]);
+
+        $categories = CategoryController::getCategoriesActive();
     	 
     	return view('home', compact('allServices', 'recommendedServices', 'categories'))->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    public function filterTags($allServices, $filter){
+
+        if($filter != ""){
+			$filters = explode(" ", $filter);
+            $idTags = Tag::select("id")->whereIn('tag', $filters)->get();
+    		return $allServices->whereIn('tags_services.tag_id', $idTags);
+    		Session::flash('filters.tags', $idTags);
+		}else{
+			Session::pull('filters.tags');
+            return $allServices;
+		}
+
     }
 
     public function IncompleteRegister(){
