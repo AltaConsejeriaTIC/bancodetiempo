@@ -104,7 +104,7 @@
                                 @include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
                             </div>
                             <div class="col-xs-10">
-                                <a href='/conversation/{{$conversation->id}}' class='paragraph4'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</a>
+                                <a href='/conversation/{{$conversation->id}}' class='paragraph4'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</a>
                             </div>
                         </div>
                         <div class="row">
