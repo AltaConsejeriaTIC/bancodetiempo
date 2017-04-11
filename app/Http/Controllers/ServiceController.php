@@ -272,4 +272,10 @@ class ServiceController extends Controller
         print ($tags);
     }
 
+    static function getServiceActive(){
+        return Service::select("services.*")
+                    ->where('state_id' , 1)
+                    ->orderBy('services.created_at', 'desc');
+    }
+
 }

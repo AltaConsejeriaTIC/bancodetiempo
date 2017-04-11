@@ -80,15 +80,13 @@ class HomeController extends Controller
     public function filter(Request $request){
 
         Session::put('filters.text', $request->input('filter'));
-    								
-    	$allServices = Service::select("services.*")
-                                ->distinct('services.id')
-                                ->join('tags_services', 'services.id', 'tags_services.service_id')
-                                ->where('state_id' , 1)
-                                ->orderBy('services.created_at', 'desc');
-    	 
-    	$allServices = $this->filterTags($allServices, $request->input('filter'));
-    	
+
+    	$allServices = ServiceController::getServiceActive();
+
+        //$this->filterText($allServices, $request->input('filter'));
+
+        $this->filterTags($allServices, $request->input('filter'));
+
     	$allServices = $allServices->paginate(12);
     	
     	$recommendedServices = $this->recommendedServices();
@@ -107,7 +105,8 @@ class HomeController extends Controller
         if($filter != ""){
 			$filters = explode(" ", $filter);
             $idTags = Tag::select("id")->whereIn('tag', $filters)->get();
-    		return $allServices->whereIn('tags_services.tag_id', $idTags);
+            $allServices->join('tags_services', 'services.id', 'tags_services.service_id');
+    		return $allServices->WhereIn('tags_services.tag_id', $idTags);
     		Session::flash('filters.tags', $idTags);
 		}else{
 			Session::pull('filters.tags');
@@ -115,6 +114,18 @@ class HomeController extends Controller
 		}
 
     }
+
+    public function filterText($allServices, $filter){
+
+        if($filter != ""){
+    		return $allServices->where('services.name', 'LIKE', "%$filter%");
+
+		}else{
+            return $allServices;
+		}
+
+    }
+
 
     public function IncompleteRegister(){
         if(!is_null(Auth::user())){
