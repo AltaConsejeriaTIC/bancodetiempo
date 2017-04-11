@@ -2,6 +2,9 @@ jQuery(document).ready(function(){
     if(jQuery("#messages").length){
        callMessages();
     }
+    if(jQuery(".autoCompleteUsers").length){
+       autoCompleteUsers();
+    }
     jQuery(".score").on("click", score)
     jQuery("form[form-validation]").on("change", ".validation", validation);
     jQuery("form[form-validation]").on("keyup", "textarea.validation", validation);
@@ -261,10 +264,64 @@ function validationGeneal(){
 
 }
 
+function autoCompleteUsers(){
+    jQuery(".autoCompleteUsers").each(function(){
+        jQuery(this).after('<ul class="listComplete hidden"></ul>')
+        jQuery(this).on("keyup", getAutoCompleteUsers);
+    })
+}
 
-function previewPhotoService(){
+function getAutoCompleteUsers (){
+    _autoCompleteUsers.el = jQuery(this);
+    text = jQuery(this).val();
+    if(text.length >= 3){
+       findUsers(text);
+    }
+}
 
-    console.log("pare");
+function findUsers (text){
+    jQuery.ajax({
+        url : "/find/users",
+        data: "find="+text,
+        success: function(data){
+            datos = JSON.parse(data);
+            _autoCompleteUsers.makeAutoComplete(datos);
+        }
+    })
+}
+
+
+
+var _autoCompleteUsers = {
+    el : '',
+    collaborators : [],
+    collaborators_name : [],
+    makeAutoComplete :function (data){
+        var autoCompleteHtml = '';
+        for(var obj in data){
+            autoCompleteHtml += "<li><input type='checkbox' id='collaborator"+data[obj].id+"' class='square' value='"+data[obj].id+"'><label for='collaborator"+data[obj].id+"'>"+data[obj].first_name+" "+data[obj].last_name+"</label></li>";
+        }
+        this.showAutoComplete(autoCompleteHtml);
+    },
+    showAutoComplete : function (html){
+        this.el.siblings(".listComplete").html(html).removeClass("hidden");
+        this.el.siblings(".listComplete").find("input").on("change", jQuery.proxy(this.addCollaborator, this))
+    },
+    addCollaborator : function (e){
+        var elemt = jQuery(e.target);
+        if(elemt.is(":checked")){
+            this.collaborators.push(elemt.val());
+            this.collaborators_name.push(elemt.siblings("label[for='"+elemt.attr('id')+"']").text());
+        }else{
+            var index = this.collaborators.indexOf(elemt.val());
+            var index_name = this.collaborators_name.indexOf(elemt.siblings("label[for='"+elemt.attr('id')+"']").text());
+            this.collaborators.splice(index, 1);
+            this.collaborators_name.splice(index_name, 1);
+        }
+        this.el.val(this.collaborators_name);
+        this.el.siblings("input[for='"+this.el.attr('name')+"']").val(this.collaborators)
+    }
 
 }
+
 

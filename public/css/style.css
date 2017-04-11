@@ -1211,3 +1211,19 @@ Animations
   border-color: #003e65 !important;
 }
 
+
+/*Autocomplete users*/
+
+ul.listComplete {
+    position: absolute;
+    top: 80%;
+    background: #fff;
+    z-index: 10;
+    width: 100%;
+    list-style: none;
+    height: 100px;
+    overflow: auto;
+    padding: 5px;
+    border: 1px solid #d2d2d2;
+}
+

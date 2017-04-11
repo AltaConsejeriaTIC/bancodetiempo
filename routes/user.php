@@ -35,3 +35,5 @@ Route::post('/addObservation','DealsController@saveObservation');
 
 Route::post('/report/create/{serviceid?}','ReportsController@create');
 
+Route::get('/find/users','UsersController@findUsers');
+
