@@ -20,6 +20,7 @@ class CreateGroupTable extends Migration
             $table->string('image');
             $table->integer('creator_id')->unsigned();
             $table->integer('admin_id')->unsigned();
+            $table->integer('state_id')->unsigned();
             $table->timestamps();
         });
 

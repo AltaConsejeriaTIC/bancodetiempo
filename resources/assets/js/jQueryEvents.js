@@ -268,21 +268,22 @@ function autoCompleteUsers(){
     jQuery(".autoCompleteUsers").each(function(){
         jQuery(this).after('<ul class="listComplete hidden"></ul>')
         jQuery(this).on("keyup", getAutoCompleteUsers);
+        _autoCompleteUsers.el = jQuery(this);
+        getUsers();
     })
 }
 
 function getAutoCompleteUsers (){
-    _autoCompleteUsers.el = jQuery(this);
     text = jQuery(this).val();
+    console.log(text);
     if(text.length >= 3){
-       findUsers(text);
+       _autoCompleteUsers.findUsers(text);
     }
 }
 
-function findUsers (text){
+function getUsers (){
     jQuery.ajax({
         url : "/find/users",
-        data: "find="+text,
         success: function(data){
             datos = JSON.parse(data);
             _autoCompleteUsers.makeAutoComplete(datos);
@@ -290,13 +291,13 @@ function findUsers (text){
     })
 }
 
-
-
 var _autoCompleteUsers = {
     el : '',
+    data: [],
     collaborators : [],
     collaborators_name : [],
     makeAutoComplete :function (data){
+        this.data = data;
         var autoCompleteHtml = '';
         for(var obj in data){
             autoCompleteHtml += "<li><input type='checkbox' id='collaborator"+data[obj].id+"' class='square' value='"+data[obj].id+"'><label for='collaborator"+data[obj].id+"'>"+data[obj].first_name+" "+data[obj].last_name+"</label></li>";
@@ -320,6 +321,13 @@ var _autoCompleteUsers = {
         }
         this.el.val(this.collaborators_name);
         this.el.siblings("input[for='"+this.el.attr('name')+"']").val(this.collaborators)
+    },
+    findUsers: function(text){
+        for(var index in this.data){
+            if(this.data[index].first_name.search(text) >= 0){
+                console.log(this.data[index].first_name)
+            }
+        }
     }
 
 }
