@@ -13,7 +13,7 @@ class GroupsController extends Controller
     //post
     public function create(Request $request){
 
-        $cover = Helpers::uploadImage($request->file('imageGroup'), 'group'.date("Ymd").Auth::user()->id, 'resources/user/user_'. Auth::User()->id . '/groups/');
+        $cover = Helpers::uploadImage($request->file('imageGroup'), 'group'.date("Ymd").rand(000,999), 'resources/user/user_'. Auth::User()->id . '/groups/');
 
         if($cover){
             $group = Groups::create([

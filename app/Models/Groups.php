@@ -21,4 +21,10 @@ class Groups extends Model
 
 	}
 
+    static function groupsUser($userId){
+
+        return Groups::where('admin_id', $userId)->get();
+
+    }
+
 }

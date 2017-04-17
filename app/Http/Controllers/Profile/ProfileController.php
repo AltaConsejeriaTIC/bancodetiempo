@@ -14,6 +14,7 @@ use App\Models\AttainmentUsers;
 use App\Models\Attainment;
 use App\Models\Tag;
 use App\Models\Service;
+use App\Models\Groups;
 use JavaScript;
 use Illuminate\Support\Facades\Session;
 
@@ -21,7 +22,7 @@ class ProfileController extends Controller
 {
    public function showProfile()
     {
-    	$categories = Category::all();
+       $categories = Category::all();
       $user = User::find(auth::user()->id);
       $tagsJson = json_encode(Tag::all('tag'));
       $services = Service::where("user_id" , "=", Auth::user()->id)
@@ -46,7 +47,8 @@ class ProfileController extends Controller
         'tags' => $tagsJson,
 			]);				
 
-      return view('profile/profile', compact('user','categories','services'));
+       $myGroups = Groups::groupsUser(Auth::user()->id);
+       return view('profile/profile', compact('user','categories','services', 'myGroups'));
         
     }
    public function showEditProfile()
