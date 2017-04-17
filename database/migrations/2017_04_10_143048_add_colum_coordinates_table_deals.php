@@ -25,6 +25,8 @@ class AddColumCoordinatesTableDeals extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('deals', function(Blueprint $table) {
+           $table->dropColumn('coordinates');
+       });
     }
 }

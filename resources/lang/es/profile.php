@@ -6,6 +6,7 @@ return [
     'newGroup' => 'Nuevo grupo',
     'descriptionGroup' => 'Descripción',
     'buttonNewGroup' => 'Crear nuevo grupo',
-    'collaboratorGroup' => 'Colaboradores'
+    'collaboratorGroup' => 'Colaboradores',
+    'errorCollaborators' => 'Debe seleccionar dos colaboradores como minimo'
 
 ];

@@ -5,6 +5,11 @@ jQuery(document).ready(function(){
     if(jQuery(".autoCompleteUsers").length){
        autoCompleteUsers();
     }
+    if(jQuery(".preview").length){
+       jQuery(".preview").each(function(){
+           jQuery(this).on('change' ,previewImage);
+       })
+    }
     jQuery(".score").on("click", score)
     jQuery("form[form-validation]").on("change", ".validation", validation);
     jQuery("form[form-validation]").on("keyup", "textarea.validation", validation);
@@ -58,6 +63,24 @@ function score(){
         jQuery("#"+input+" + label > .star"+s).addClass("check")
         s -= 1;
     }
+}
+
+function previewImage(e){
+    var id =  e.target.id;
+    var files = e.target.files;
+    var label = jQuery(e.target.labels[0]);
+    if(files[0].size < 2000000){
+        label.siblings(".error").remove();
+        var image = new Image();
+        var reader = new FileReader();
+         reader.onload = (e) => {
+             label.css("background-image", "url('"+e.target.result+"')")
+         };
+        reader.readAsDataURL(files[0]);
+    }else{
+        label.after("<p class='msg error'>El peso màximo de la imagen debe ser de 3 Megas.</p>")
+    }
+
 }
 
 var allValidations = {
@@ -165,6 +188,15 @@ var allValidations = {
         this.hiddenError(it, 'min');
         return 0;
     },
+    minArray : function(it, v){
+        console.log(it.val().split(",").length);
+        if(it.val().split(",").length < v){
+            this.showError(it, 'minArray');
+            return 1;
+        }
+        this.hiddenError(it, 'minArray');
+        return 0;
+    },
     requiredIfNot : function(it, v){
         var parent = it.closest('form');
         var br = parent.find("input[name='"+v+"']");
@@ -266,29 +298,38 @@ function validationGeneal(){
 
 function autoCompleteUsers(){
     jQuery(".autoCompleteUsers").each(function(){
+        jQuery(this).before('<div id="collaborators"></div>')
         jQuery(this).after('<ul class="listComplete hidden"></ul>')
         jQuery(this).on("keyup", getAutoCompleteUsers);
         _autoCompleteUsers.el = jQuery(this);
-        getUsers();
+        _autoCompleteUsers.getUsers();
+        jQuery(window).click(function(e){
+            var parents = jQuery(e.target).parents();
+            var parent = _autoCompleteUsers.el.parent();
+            var count = 0;
+            for(var index in parents){
+                var _class = parents[index].className;
+                if(_class !== undefined){
+                   if(_class.search("autoComplete") >= 0){
+                        count += 1;
+                    }
+                }
+
+            }
+            if(count == 0){
+                _autoCompleteUsers.el.siblings('.listComplete').addClass("hidden");
+            }
+        });
     })
 }
 
 function getAutoCompleteUsers (){
     text = jQuery(this).val();
-    console.log(text);
     if(text.length >= 3){
-       _autoCompleteUsers.findUsers(text);
+       _autoCompleteUsers.showAutoComplete(_autoCompleteUsers.findUsers(text));
+    }else{
+       _autoCompleteUsers.el.siblings('.listComplete').addClass("hidden");
     }
-}
-
-function getUsers (){
-    jQuery.ajax({
-        url : "/find/users",
-        success: function(data){
-            datos = JSON.parse(data);
-            _autoCompleteUsers.makeAutoComplete(datos);
-        }
-    })
 }
 
 var _autoCompleteUsers = {
@@ -296,17 +337,22 @@ var _autoCompleteUsers = {
     data: [],
     collaborators : [],
     collaborators_name : [],
-    makeAutoComplete :function (data){
-        this.data = data;
+    makeAutoComplete :function (){
         var autoCompleteHtml = '';
-        for(var obj in data){
-            autoCompleteHtml += "<li><input type='checkbox' id='collaborator"+data[obj].id+"' class='square' value='"+data[obj].id+"'><label for='collaborator"+data[obj].id+"'>"+data[obj].first_name+" "+data[obj].last_name+"</label></li>";
+        for(var obj in this.data){
+            autoCompleteHtml += "<li id='user"+this.data[obj].id+"' class='hidden'><input type='checkbox' id='collaborator"+this.data[obj].id+"' class='square' value='"+this.data[obj].id+"'><label for='collaborator"+this.data[obj].id+"'>"+this.data[obj].first_name+" "+this.data[obj].last_name+"</label></li>";
         }
-        this.showAutoComplete(autoCompleteHtml);
+        this.el.siblings(".listComplete").html(autoCompleteHtml);
+        this.el.siblings(".listComplete").children("li").children("input").on("change", jQuery.proxy(this.addCollaborator, this))
     },
-    showAutoComplete : function (html){
-        this.el.siblings(".listComplete").html(html).removeClass("hidden");
-        this.el.siblings(".listComplete").find("input").on("change", jQuery.proxy(this.addCollaborator, this))
+    showAutoComplete : function (list){
+        if(list.length > 0){
+            this.el.siblings(".listComplete").children("li").addClass("hidden")
+            this.el.siblings(".listComplete").removeClass("hidden")
+            for(var index in list){
+                this.el.siblings(".listComplete").children("#user"+list[index]).removeClass('hidden');
+            }
+        }
     },
     addCollaborator : function (e){
         var elemt = jQuery(e.target);
@@ -319,15 +365,33 @@ var _autoCompleteUsers = {
             this.collaborators.splice(index, 1);
             this.collaborators_name.splice(index_name, 1);
         }
-        this.el.val(this.collaborators_name);
+        this.el.siblings("#collaborators").html(this.collaborators_name.join());
         this.el.siblings("input[for='"+this.el.attr('name')+"']").val(this.collaborators)
     },
     findUsers: function(text){
+        var users = [];
         for(var index in this.data){
-            if(this.data[index].first_name.search(text) >= 0){
-                console.log(this.data[index].first_name)
+            var name = this.data[index].first_name + " " + this.data[index].last_name;
+            name = name.toLowerCase();
+            text = text.toLowerCase();
+            if(name.search(text) >= 0){
+                users.push(this.data[index].id);
             }
         }
+        return users;
+    },
+    getUsers : function(){
+        var data
+        jQuery.ajax({
+            url : "/find/users",
+            async : false,
+            success: function(list){
+                data = list
+            }
+        })
+
+        this.data = JSON.parse(data);
+        this.makeAutoComplete();
     }
 
 }

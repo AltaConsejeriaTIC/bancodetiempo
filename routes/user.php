@@ -37,3 +37,5 @@ Route::post('/report/create/{serviceid?}','ReportsController@create');
 
 Route::get('/find/users','UsersController@findUsers');
 
+Route::post('createGroup','GroupsController@create');
+
