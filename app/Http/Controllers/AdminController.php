@@ -52,7 +52,7 @@ class AdminController extends Controller
         $services = $request->find != '' ? $services->where('name', 'LIKE', "%$request->find%") : $services;
         $services = $services->paginate(6);
         $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
-        return view('admin/services/list', compact('services', 'states'));
+        return view('admin/groups/list', compact('services', 'states'));
     }
 
     public function showServicesReported(Request $request)
