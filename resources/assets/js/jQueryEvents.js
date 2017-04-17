@@ -161,9 +161,18 @@ var allValidations = {
         return 0;
     },
     time:function(it){
-        console.log(it.val()+" daza")
         var expresion = new RegExp('^0[0-9]|1[0-9]|2[0-3]:[0-5][0-9]$');
         if(!expresion.test(it.val())){
+            this.showError(it, 'time');
+            return 1;
+        }
+        this.hiddenError(it, 'time');
+        return 0;
+    },
+    afterToday:function(it){
+        var date = new Date(it.val());
+        var today = new Date();
+        if(+date < +today){
             this.showError(it, 'time');
             return 1;
         }
@@ -182,6 +191,14 @@ var allValidations = {
     },
     minYear : function(it, v){
         if(this.years(it.val()) < v){
+            this.showError(it, 'min');
+            return 1;
+        }
+        this.hiddenError(it, 'min');
+        return 0;
+    },
+    minNumber : function(it, v){
+        if(it.val() < v){
             this.showError(it, 'min');
             return 1;
         }

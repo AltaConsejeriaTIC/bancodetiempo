@@ -35,6 +35,20 @@
                 </div>
             </div>
 
+            @if($group->admin_id == Auth::user()->id)
+
+                <div class="row">
+                   <div class="col-md-6">
+                       <button class="col-xs-12 buttonService background-white" @click='myData.newcampaign = true'>
+                          <i class="fa fa-plus-square icons" aria-hidden="true"></i>
+                          <p>{{ trans("groups.newCampaign") }}</p>
+                        </button>
+                   </div>
+
+                </div>
+
+            @endif
+
         </article>
 
         <article class="col-md-4">
@@ -45,7 +59,7 @@
                 </div>
             </div>
             <div class="row">
-            @foreach($group->collaborators as $collaborator)
+            @foreach($group->collaborators as $k => $collaborator)
 
                 <div class="col-md-6">
                     <div class="col-md-8 col-md-offset-2">
@@ -54,6 +68,9 @@
                     <div class="clearfix"></div>
                     <p class="paragraph2 text-center">{{ $collaborator->user->first_name ." ". $collaborator->user->last_name }}</p>
                 </div>
+                @if($k%2 != 0)
+                    <div class="clearfix"></div>
+                @endif
 
             @endforeach
             </div>
@@ -61,5 +78,7 @@
         </article>
 
     </div>
+
+@include('groups/partial/formCampaign')
 
 @endsection

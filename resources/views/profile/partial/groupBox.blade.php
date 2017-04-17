@@ -8,7 +8,7 @@
 			</div>
         </a>
 
-        <a href="service/{{$service->id}}">
+        <a href="group/{{$group->id}}">
 			<div class="content">
 				<h3 class='title title2'>{{$group->name}}</h3>
 

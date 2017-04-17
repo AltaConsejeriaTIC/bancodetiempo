@@ -41,3 +41,5 @@ Route::post('createGroup','GroupsController@create');
 
 Route::get('group/{groupId}','GroupsController@show');
 
+Route::post('createCampaign','CampaignController@create');
+
