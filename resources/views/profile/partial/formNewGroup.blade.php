@@ -9,7 +9,7 @@
                     <label for="nameGroup" class="paragraph10">{{ trans("profile.nameGroup") }}</label>
                 </div>
                 <div class="row">
-                    <input type="text" name='nameGroup' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "max:50", "min:10"]'>
+                    <input type="text" name='nameGroup' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "max:50", "min:4"]'>
                 </div>
                 <div class="row">
                     <label for="nameGroup" class="paragraph10">{{ trans("profile.descriptionGroup") }}</label>
@@ -21,9 +21,9 @@
                     <label for="collaboratorGroup" class="paragraph10">{{ trans("profile.collaboratorGroup") }}</label>
                 </div>
                 <div class="row relative autoComplete">
-                    <input type="text" name="colaborator" id='colaborator' class='autoCompleteUsers col-xs-12 col-sm-12 col-md-12'>
-                    <input type="hidden" name="colaborators" for='colaborator' class="validation" data-validations='["minArray:2"]'>
-                    <div class="msg" errors='colaborators'>
+                    <input type="text" name="collaborator" id='collaborator' class='autoCompleteUsers col-xs-12 col-sm-12 col-md-12'>
+                    <input type="hidden" name="collaborators" for='collaborator' class="validation" data-validations='["minArray:2"]'>
+                    <div class="msg" errors='collaborators'>
                         <p error='minArray'>{{ trans('profile.errorCollaborators') }}</p>
                     </div>
                 </div>

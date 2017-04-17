@@ -32,6 +32,18 @@ class Helpers{
 		return $notifications;
 		
 	}
+
+    static function uploadImage($file, $name = '', $directory = 'resources/'){
+
+        if(!$file){
+          return false;
+        }
+        $imageName = $name == '' ? date("Ymd").rand(000,999) : $name;
+
+        $file->move ( base_path () . '/public/' . $directory, $imageName. '.' .$file->getClientOriginalExtension() );
+
+		return $directory . $imageName . '.' . $file->getClientOriginalExtension();
+    }
 	
 }
 ?>
