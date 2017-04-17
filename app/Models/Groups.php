@@ -21,6 +21,10 @@ class Groups extends Model
 
 	}
 
+    public function collaborators(){
+        return $this->hasMany(Group_collaborators::class);
+    }
+
     static function groupsUser($userId){
 
         return Groups::where('admin_id', $userId)->get();

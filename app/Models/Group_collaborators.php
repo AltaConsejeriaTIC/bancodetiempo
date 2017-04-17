@@ -9,7 +9,7 @@ use App\Models\Groups;
 
 class Group_collaborators extends Model
 {
-    protected  $fillable = ['group_id', 'user_id'];
+    protected  $fillable = ['groups_id', 'user_id'];
 
     public function user(){
 

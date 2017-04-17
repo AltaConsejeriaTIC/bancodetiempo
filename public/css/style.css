@@ -690,6 +690,21 @@ input.stars + label > i.check:before {
     content: "\f005";
 }
 
+
+/*
+detail group
+*/
+
+div.groupCover{
+    max-height: 360px !important;
+    width: 100%;
+    overflow: hidden;
+}
+
+img.groupCover{
+    max-width: 100%;
+}
+
 /*
 tabs
 */

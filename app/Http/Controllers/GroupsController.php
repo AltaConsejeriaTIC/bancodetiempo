@@ -35,10 +35,18 @@ class GroupsController extends Controller
         $collaborators = explode(",", $collaborators);
         foreach($collaborators as $collaborator){
             Group_collaborators::create([
-                'group_id' => $group->id,
+                'groups_id' => $group->id,
                 'user_id' => $collaborator
             ]);
         }
+    }
+
+
+    public function show($groupId){
+
+        $group = Groups::findOrFail($groupId);
+
+        return view('groups/group', compact('group'));
     }
 
 }

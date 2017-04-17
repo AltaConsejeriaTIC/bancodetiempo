@@ -15,14 +15,14 @@ class CreateGroupCollaboratorsTable extends Migration
     {
         Schema::create('group_collaborators', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('group_id')->unsigned();
+            $table->integer('groups_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('group_collaborators', function($table)
         {
-          $table->foreign('group_id')
+          $table->foreign('groups_id')
                 ->references('id')
                 ->on('groups')
                 ->onUpdate('cascade');

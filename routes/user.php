@@ -39,3 +39,5 @@ Route::get('/find/users','UsersController@findUsers');
 
 Route::post('createGroup','GroupsController@create');
 
+Route::get('group/{groupId}','GroupsController@show');
+
