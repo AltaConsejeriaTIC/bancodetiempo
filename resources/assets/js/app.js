@@ -20,6 +20,8 @@ jQuery.ajax({
         tags = JSON.parse(data);
     }
 });
+window.categories = categories;
+window.tags = tags;
 
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('input-tag', require('./components/InputTag.vue'));

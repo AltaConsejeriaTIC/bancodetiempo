@@ -20,7 +20,7 @@ class CreateCampaignsTable extends Migration
             $table->string('image');
             $table->integer('groups_id')->unsigned();
             $table->integer('quotas');
-            $table->integet('category_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->date('date');
             $table->time('time');
             $table->integer('state_id')->unsigned();

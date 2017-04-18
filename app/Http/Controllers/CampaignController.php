@@ -21,6 +21,7 @@ class CampaignController extends Controller
                 'image' => $cover,
                 'groups_id' => $request->input('group_id'),
                 'quotas' => $request->input('quotasCampaign'),
+                'category_id' => $request->input('categoryCampaign'),
                 'date' => $request->input('dateCampaign'),
                 'time' => $request->input('timeCampaign'),
                 'state_id' => 1

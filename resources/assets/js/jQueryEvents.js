@@ -5,6 +5,11 @@ jQuery(document).ready(function(){
     if(jQuery(".autoCompleteUsers").length){
        autoCompleteUsers();
     }
+
+    if(jQuery("select.categories").length){
+       listCategories();
+    }
+
     if(jQuery(".preview").length){
        jQuery(".preview").each(function(){
            jQuery(this).on('change' ,previewImage);
@@ -80,6 +85,17 @@ function previewImage(e){
     }else{
         label.after("<p class='msg error'>El peso màximo de la imagen debe ser de 3 Megas.</p>")
     }
+
+}
+
+function listCategories(){
+
+    jQuery("select.categories").each(function(){
+        jQuery(this).append("<option value=''>Seleccione una categoria</option>")
+        for(var index in window.categories){
+            jQuery(this).append("<option value='"+window.categories[index].id+"'>"+window.categories[index].category+"</option>")
+        }
+    })
 
 }
 
