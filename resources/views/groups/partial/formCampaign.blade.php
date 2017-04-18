@@ -15,7 +15,7 @@
                     <label for="descriptionCampaign" class="paragraph10">{{ trans("groups.descriptionCampaign") }}</label>
                 </div>
                 <div class="row">
-                    <textarea name='descriptionCampaign' rows='8' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required"]'></textarea>
+                    <textarea name='descriptionCampaign' rows='8' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "min:50"]'></textarea>
                 </div>
                 <div class="row">
                     <label for="quotasCampaign" class="paragraph10">{{ trans("groups.quotas") }}</label>
@@ -41,6 +41,17 @@
                     <input type="time" name="timeCampaign" id="timeCampaign" placeholder="hh:mm" class="validation"  data-validations='["required", "time"]'>
                     <div class="msg" errors='timeCampaign'>
                         <p error='time'>El formato no es valido.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="categoryCampaign" class="paragraph10">{{ trans("groups.category") }}</label>
+                </div>
+                <div class="row">
+                    <select name='categoryCampaign' class="col-xs-12 col-sm-12 col-md-12 categories validation" data-validations='["required"]' >
+                    </select>
+                    <div class="msg" errors='categoryCampaign'>
+                        <p error='required'>Debe seleccionar una opción</p>
                     </div>
                 </div>
 

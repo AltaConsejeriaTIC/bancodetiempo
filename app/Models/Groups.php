@@ -37,4 +37,8 @@ class Groups extends Model
 
     }
 
+    public function campaigns(){
+        return $this->hasMany(Campaigns::class);
+    }
+
 }

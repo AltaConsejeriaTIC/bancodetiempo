@@ -18,8 +18,9 @@ class CreateCampaignsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('image');
-            $table->integer('group_id')->unsigned();
+            $table->integer('groups_id')->unsigned();
             $table->integer('quotas');
+            $table->integer('category_id')->unsigned();
             $table->date('date');
             $table->time('time');
             $table->integer('state_id')->unsigned();
@@ -28,7 +29,7 @@ class CreateCampaignsTable extends Migration
 
         Schema::table('campaigns', function($table)
         {
-          $table->foreign('group_id')
+          $table->foreign('groups_id')
                 ->references('id')
                 ->on('groups')
                 ->onUpdate('cascade');

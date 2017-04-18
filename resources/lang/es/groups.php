@@ -11,5 +11,6 @@ return [
     'publishCampaign' => 'Publicar campaña',
     'cancel' => 'Cancelar',
     'date' => 'Fecha',
-    'time' => 'Hora'
+    'time' => 'Hora',
+    'category' => 'Categoria'
 ];
