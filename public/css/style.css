@@ -706,6 +706,20 @@ img.groupCover{
 }
 
 /*
+detail campaign
+*/
+
+div.campaignCover{
+    max-height: 360px !important;
+    width: 100%;
+    overflow: hidden;
+}
+
+img.campaignCover{
+    max-width: 100%;
+}
+
+/*
 tabs
 */
 

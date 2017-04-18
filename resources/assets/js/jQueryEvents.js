@@ -214,11 +214,19 @@ var allValidations = {
         return 0;
     },
     minNumber : function(it, v){
-        if(it.val() < v){
-            this.showError(it, 'min');
+        if(parseInt(it.val()) < v){
+            this.showError(it, 'minNumber');
             return 1;
         }
-        this.hiddenError(it, 'min');
+        this.hiddenError(it, 'minNumber');
+        return 0;
+    },
+    maxNumber : function(it, v){
+        if(parseInt(it.val()) > v){
+            this.showError(it, 'maxNumber');
+            return 1;
+        }
+        this.hiddenError(it, 'maxNumber');
         return 0;
     },
     minArray : function(it, v){

@@ -21,6 +21,7 @@ class CreateCampaignsTable extends Migration
             $table->integer('groups_id')->unsigned();
             $table->integer('quotas');
             $table->integer('category_id')->unsigned();
+            $table->integer('credits');
             $table->date('date');
             $table->time('time');
             $table->integer('state_id')->unsigned();
