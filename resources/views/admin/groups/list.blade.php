@@ -21,7 +21,7 @@
                            title="Listar Reportados">Reportados</a>
                         {!! Form::close() !!}
                         <div class="col-md-2 form-group navbar-right">
-                            <span class="label label-success news">Hay {!! $services->total() !!}
+                            <span class="label label-success news">Hay {!! $groups->total() !!}
                                 Ofertas Registradas</span>
                         </div>
                         <div class="col-md-12">
@@ -36,52 +36,42 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($services as $service)
+
+                                @foreach($groups as $group)
                                     <tr>
-                                        <td>{{ $service->name }}</td>
-                                        <td><p class="paragraph3">{{ $service->description }}</p></td>
-                                        <td>{{ $service->user->first_name." ".$service->user->last_name}}</td>
-                                        <td>{{ $service->state->state }}</td>
+                                        <td>{{ $group->name }}</td>
+                                        <td><p class="paragraph3">{{ $group->description }}</p></td>
+                                        <td>{{ $group->admin->first_name." ".$group->admin->last_name}}</td>
+                                        <td>{{ $group->state->state}}</td>
                                         <td>
                                             <a class="btn btn-raised btn-primary btn-xs" href="" title="Ver oferta"
-                                               data-toggle="modal" data-target="#show-dialog{{$service->id}}"><i
+                                               data-toggle="modal" data-target="#show-dialog{{$group->id}}"><i
                                                         class="material-icons">find_in_page</i></a>
-                                            @if($service->state_id==1)
+                                            @if($group->state_id==1)
                                                 <a class="btn btn-raised btn-primary btn-xs" href=""
                                                    title="Editar estado" data-toggle="modal"
-                                                   data-target="#update-dialog{{$service->id}}"><i
+                                                   data-target="#update-dialog{{$group->id}}"><i
                                                             class="material-icons">mode_edit</i></a>
                                             @else
                                                 <a class="btn btn-raised btn-primary btn-xs report" href=""
                                                    title="Editar estado" data-toggle="modal"
-                                                   data-target="#update-dialog{{$service->id}}"><i
+                                                   data-target="#update-dialog{{$group->id}}"><i
                                                             class="material-icons">mode_edit</i></a>
-
-                                            @endif
-                                            @if(count($service->reports)==0)
-                                                <a class="btn btn-raised btn-primary btn-xs" href=""
-                                                   title="Ver reportes" data-toggle="modal"
-                                                   data-target="#reports-dialog{{$service->id}}"><i
-                                                            class="material-icons">error_outline</i></a>
-                                            @else
-                                                <a class="btn btn-raised btn-primary btn-xs report" href=""
-                                                   title="Ver reportes" data-toggle="modal"
-                                                   data-target="#reports-dialog{{$service->id}}"><i
-                                                            class="material-icons">error_outline</i></a>
 
                                             @endif
                                         </td>
                                     </tr>
-                                    @include('admin/services/show')
+                                    {{--@include('admin/services/show')
                                     @include('admin/services/update')
-                                    @include('admin/services/reports')
+                                    @include('admin/services/reports')--}}
                                 @endforeach
+
                                 </tbody>
                             </table>
 
                         </div>
                         <div class="col-md-12 pagination pg-bluegrey">
-                            {!! $services->render() !!}
+                            {!! $groups->render() !!}
                         </div>
                     </div>
                 </div>

@@ -15,6 +15,12 @@ class Groups extends Model
 
 	}
 
+    public function state(){
+
+		return $this->belongsTo(State::class);
+
+	}
+
     public function admin(){
 
 		return $this->belongsTo(User::class);
