@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Models\Campaigns;
+use App\Models\HistoryDonations;
 
 class DonationsController extends Controller
 {
@@ -25,7 +26,19 @@ class DonationsController extends Controller
             'credits' => $campaign->credits+$credits
         ]);
 
+        $this->saveHistory($user->id, $campaign->id, $credits);
+
         return redirect()->back();
+
+    }
+
+    private function saveHistory($donor, $campaign, $credits){
+
+        HistoryDonations::create([
+            "donor_id" => $donor,
+            "campaign_id" => $campaign,
+            "credits" => $credits
+        ]);
 
     }
 }

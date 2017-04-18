@@ -9,7 +9,7 @@
                 <label for="quotasCampaign" class="paragraph10">{{ trans("nav.credits") }}</label>
             </div>
             <div class="row">
-                <input type="number" name='credits' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "minNumber:1", "maxNumber:{{Auth::user()->credits}}"]' />
+                <input type="number" name='credits' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "minNumber:1", "maxNumber:{{Auth::user()->credits-1}}"]' />
                 <div class="msg" errors='credits'>
                     <p error='required'>Este campo es obligatorio.</p>
                     <p error='minNumber'>{{ trans("campaigns.errorMinDonation") }}</p>
