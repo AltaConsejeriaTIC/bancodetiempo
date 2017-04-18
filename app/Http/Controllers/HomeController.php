@@ -10,6 +10,7 @@ use App\User;
 use JavaScript;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Campaigns;
 use App\Models\subscribers;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Session;
@@ -34,10 +35,12 @@ class HomeController extends Controller
             'categoriesJs' => $categories,
         ]);
 
-        return view('home', compact('allServices', 'recommendedServices', 'categories'))->with('i', ($request->input('page', 1) - 1) * 5);
+        $campaigns = Campaigns::where('state_id', 1)->get();
+
+        return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
-    public function recommendedServices(){
+    private function recommendedServices(){
         if(!is_null(Auth::User())){
             $allServices = Service::select('services.*')
                                 ->join('users','users.id','=','services.user_id')

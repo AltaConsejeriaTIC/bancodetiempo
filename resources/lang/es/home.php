@@ -17,5 +17,6 @@ return [
     'registerLinkedin' => 'Regístrate con Linkedin',
     'filter' => 'Filtrar&nbsp;por',
     'all' => 'Todos',
-    'Recommended' => 'Recomendados'
+    'Recommended' => 'Recomendados',
+    'campaigns' => 'Campañas'
 ];
