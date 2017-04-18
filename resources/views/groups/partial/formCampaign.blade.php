@@ -45,6 +45,17 @@
                 </div>
 
                 <div class="row">
+                    <label for="categoryCampaign" class="paragraph10">{{ trans("groups.category") }}</label>
+                </div>
+                <div class="row">
+                    <select name='categoryCampaign' class="col-xs-12 col-sm-12 col-md-12 categories validation" data-validations='["required"]' >
+                    </select>
+                    <div class="msg" errors='categoryCampaign'>
+                        <p error='required'>Debe seleccionar una opción</p>
+                    </div>
+                </div>
+
+                <div class="row">
                     <input type="file" name="imageCampaign" id="imageCampaign" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 preview">
                     <label for="imageCampaign" class="text-center col-xs-12 col-sm-12">
                         <span>Sube una foto</span>

@@ -104,9 +104,7 @@ module.exports = {
                 modalityServiceVirtually : '',
                 modalityServicePresently: '',
                 valueService: '',
-                categories: '',
                 services: '',
-                tagService: '',
             }                      
         }
         return service;
