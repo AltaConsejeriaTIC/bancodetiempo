@@ -60,6 +60,17 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Reporte donaciones</h3></div>
+                    <div class="panel-body">
+                        <p>Sección para visualizar repote de donaciones.</p>
+                        <p><a href="/historyDonations" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection
