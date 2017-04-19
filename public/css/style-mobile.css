@@ -6,9 +6,16 @@
 		}
 
 	.bannerHome {
+    }
+
+    .bannerHome .carousel > div {
         background-size: auto 100% !important;
-        background-position: 90% 25% !important;
-        padding-top: 120px !important;
+        background-position: 20% 0% !important;
+    }
+
+    .bannerHome .carousel > div > img {
+        left: 0% !important;
+        width: 100%;
     }
 
 	.bannerRegister {

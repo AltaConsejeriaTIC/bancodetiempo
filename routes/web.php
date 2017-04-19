@@ -55,3 +55,6 @@ Route::get('/how', function(){
 });
 
 Route::get('/validateLogout', 'NetworkAccountsController@validateLogout');
+
+Route::get('/tags','TagsController@jsonTags');
+Route::get('/categories','CategoryController@jsonCategories');
