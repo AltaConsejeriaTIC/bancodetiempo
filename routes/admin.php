@@ -26,3 +26,7 @@ Route::post('changePassword', ['as' => 'changePassword', 'uses'=>'AdminControlle
 
 Route::resource('homeAdminContents', 'AdminController');
 Route::put('AdminController/updateContent', ['as' => 'homeAdminContents/update', 'uses'=>'AdminController@updateContent']);
+
+
+Route::get('historyDonations', 'AdminController@historyDonations');
+Route::post('historyDonations', 'AdminController@historyDonations');
