@@ -141,6 +141,14 @@ var allValidations = {
         this.hiddenError(it, 'required');
         return 0;
     },
+    requiredImage : function(it){
+        if(it.val() == ''){
+            this.showError(it, 'required');
+            return 1;
+        }
+        this.hiddenError(it, 'required');
+        return 0;
+    },
     requiredSelect : function(it){
         if(it.find("option:selected").val() == '' || it.find("option:selected").val() === undefined){
             this.showError(it, 'required');
@@ -399,7 +407,7 @@ function autoCompleteUsers(){
 
 function getAutoCompleteUsers (){
     text = jQuery(this).val();
-    if(text.length >= 3){
+    if(text.length >= 1){
        _autoCompleteUsers.showAutoComplete(_autoCompleteUsers.findUsers(text));
     }else{
        _autoCompleteUsers.el.siblings('.listComplete').addClass("hidden");

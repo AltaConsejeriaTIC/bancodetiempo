@@ -9,13 +9,23 @@
                     <label for="nameGroup" class="paragraph10">{{ trans("profile.nameGroup") }}</label>
                 </div>
                 <div class="row">
-                    <input type="text" name='nameGroup' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "max:50", "min:4"]'>
+                    <input type="text" name='nameGroup' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "max:50", "min:3"]'>
+                    <div class="msg" errors='nameGroup'>
+                        <p error='required'>{{ trans('errors.required') }}</p>
+                        <p error='min'>{{trans('groups.errorMinName')}}</p>
+                        <p error='max'>{{trans('groups.errorMaxName')}}</p>
+                    </div>
                 </div>
                 <div class="row">
                     <label for="nameGroup" class="paragraph10">{{ trans("profile.descriptionGroup") }}</label>
                 </div>
                 <div class="row">
-                    <textarea name='descriptionGroup' rows='8' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required"]'></textarea>
+                    <textarea name='descriptionGroup' rows='8' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "min:50", "max:250"]'></textarea>
+                    <div class="msg" errors='descriptionGroup'>
+                        <p error='required'>{{ trans('errors.required') }}</p>
+                        <p error='min'>{{trans('groups.errorMinDescription')}}</p>
+                        <p error='max'>{{trans('groups.errorMaxDescription')}}</p>
+                    </div>
                 </div>
                 <div class="row">
                     <label for="collaboratorGroup" class="paragraph10">{{ trans("profile.collaboratorGroup") }}</label>
@@ -28,14 +38,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <input type="file" name="imageGroup" id="imageGroup" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 preview">
+                    <input type="file" name="imageGroup" id="imageGroup" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 preview validation" data-validations='["requiredImage"]'>
                     <label for="imageGroup" class="text-center col-xs-12 col-sm-12">
                         <span>Sube una foto</span>
                     </label>
+                    <div class="msg" errors='imageGroup'>
+                        <p error='required'>{{ trans('errors.required') }}</p>
+                    </div>
                 </div>
                 <div class="row">
                     <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
-                        Publicar oferta
+                        {{ trans("groups.newGroups") }}
                     </button>
                 </div>
                 <br>

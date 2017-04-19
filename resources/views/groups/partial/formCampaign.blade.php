@@ -18,10 +18,10 @@
                     <textarea name='descriptionCampaign' rows='8' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "min:50"]'></textarea>
                 </div>
                 <div class="row">
-                    <label for="quotasCampaign" class="paragraph10">{{ trans("groups.quotas") }}</label>
+                    <label for="quotasCampaign" class="paragraph10">{{ trans("groups.hours") }}</label>
                 </div>
                 <div class="row">
-                    <input type="number" name='quotasCampaign' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "minNumber:1"]' />
+                    <input type="number" name='quotasCampaign' class="col-xs-12 col-sm-12 col-md-12 validation" min='0' data-validations='["required", "minNumber:1"]' />
                 </div>
                 <div class="row">
                     <label for="dateCampaign" class="paragraph10">{{ trans("groups.date") }}</label>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="row">
-                    <input type="file" name="imageCampaign" id="imageCampaign" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 preview">
+                    <input type="file" name="imageCampaign" id="imageCampaign" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 preview validation" data-validations='["requiredImage"]'>
                     <label for="imageCampaign" class="text-center col-xs-12 col-sm-12">
                         <span>Sube una foto</span>
                     </label>
