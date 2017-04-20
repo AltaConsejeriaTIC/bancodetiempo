@@ -162,8 +162,8 @@ class ServiceController extends Controller
     public function create(Request $request){
 
         $this->validateForm($request);
-        $virtually = $request->input('modalityServiceVirtually') == null ? 0 : $request->input('modalityServiceVirtually');
-        $presently = $request->input('modalityServicePresently') == null ? 0 : $request->input('modalityServicePresently');
+        $virtually = $request->input('modalityServiceVirtually', 0);
+        $presently = $request->input('modalityServicePresently', 0);
         $category = Category::find($request->input('categoryService'));
         $service = Service::create([
             'name' => $request->input('serviceName'),
@@ -179,6 +179,21 @@ class ServiceController extends Controller
         $this->saveTags(json_decode($request->tagService), $service);
         $this->uploadCover($request->file('imageService'), $service);
         $countService = Service::where('user_id',Auth::user()->id)->get()->count();
+
+        if(Auth::user()->role_id == 2){
+            $this->saveAttainment();
+        }else{
+            return redirect('homeAdmin');
+        }
+
+        if($countService > 1)
+    		  return redirect('profile');
+        else
+          return redirect('home')->with('coin',$step->value);
+
+   }
+
+    private function saveAttainment(){
         $step = Attainment::where('id','=',3)->first();
 
         $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();
@@ -194,15 +209,7 @@ class ServiceController extends Controller
             $user->credits = $user->credits + $step->value;
             $user->save();
         }
-    
-        if($countService > 1)
-    		  return redirect('profile');
-        else
-          return redirect('home')->with('coin',$step->value);
-
-   }
-
-
+    }
 
    public function  uploadCover($file, $service){
       

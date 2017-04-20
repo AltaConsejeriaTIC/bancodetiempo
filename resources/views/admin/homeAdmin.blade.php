@@ -13,6 +13,7 @@
             <div class="col-md-12">
                 @include('partial.errors')
             </div>
+
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3>Administrar Usuarios</h3></div>
@@ -23,6 +24,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3>Administrar Categorias</h3></div>
@@ -80,6 +82,25 @@
                 </div>
             </div>
 
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Crear ofertas</h3></div>
+                    <div class="panel-body">
+                        <p>Crear ofertas</p>
+                        <p><button type="button" class="btn btn-raised btn-primary btn-lg"  data-toggle="modal" data-target="#NewService">Crear</button></p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+{!! Form::open(['url' => 'admin/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation']) !!}
+	  <newservice :categories='this.myData.categories' :tags-service='this.myData.tags'></newservice>
+{!! Form::close() !!}
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.js') }}"></script>
+
 @endsection

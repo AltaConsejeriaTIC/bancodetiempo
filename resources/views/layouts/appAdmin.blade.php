@@ -22,6 +22,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/summernote.css') }}">
 
     <!-- Custom styles -->
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/styleForms.css') }}" rel="stylesheet">
+     <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/styleAdmin.css') }}" rel="stylesheet">
     <script>
         window.Laravel = <?php echo json_encode([
