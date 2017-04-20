@@ -82,8 +82,6 @@ class HomeController extends Controller
     
     public function filter(Request $request){
 
-        Session::put('filters.text', $request->input('filter'));
-
     	$allServices = ServiceController::getServiceActive();
 
         //$this->filterText($allServices, $request->input('filter'));
@@ -100,7 +98,8 @@ class HomeController extends Controller
 
         $categories = CategoryController::getCategoriesActive();
     	 
-    	return view('home', compact('allServices', 'recommendedServices', 'categories'))->with('i', ($request->input('page', 1) - 1) * 5);
+        $campaigns = Campaigns::where('state_id', 1)->get();
+    	return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     public function filterTags($allServices, $filter){
@@ -109,8 +108,9 @@ class HomeController extends Controller
 			$filters = explode(" ", $filter);
             $idTags = Tag::select("id")->whereIn('tag', $filters)->get();
             $allServices->join('tags_services', 'services.id', 'tags_services.service_id');
+            Session::flash('filters.tags', $idTags);
     		return $allServices->WhereIn('tags_services.tag_id', $idTags);
-    		Session::flash('filters.tags', $idTags);
+
 		}else{
 			Session::pull('filters.tags');
             return $allServices;

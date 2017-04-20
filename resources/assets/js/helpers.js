@@ -28,7 +28,6 @@ module.exports = {
         var Helpers = {
                 methods:{
                     previewPhoto(e) {
-                        console.log("lee");
                     	this.$el.getElementsByClassName('profilePhoto')[0].classList.add('validation');
                     	this.$el.getElementsByClassName('profilePhoto')[0].setAttribute('validation', 'true');
                         var files = e.target.files || e.dataTransfer.files;
@@ -114,6 +113,29 @@ module.exports = {
         var methodsService = {
             methods: {
                 previewPhotoService(e) {
+                    this.$el.getElementsByClassName('imageService')[0].classList.add('validation');
+                    this.$el.getElementsByClassName('imageService')[0].setAttribute('validation', 'true');
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length){
+                        return;
+                    }
+                    if(files[0].size > 2000000){
+                        this.$el.getElementsByClassName('imageService')[0].setAttribute('validation', 'false');
+                        this.$el.getElementsByClassName('avatarMsg')[0].classList.remove('hidden')
+                        this.$el.getElementsByClassName('avatarMsg')[0].classList.add('visible')
+                    }else{
+
+                        var image = new Image();
+                        var reader = new FileReader();
+                         reader.onload = (e) => {
+
+                             this.$el.getElementsByClassName('avatarMsg')[0].classList.remove('visible')
+                             this.$el.getElementsByClassName('avatarMsg')[0].classList.add('hidden')
+                             this.myData.cover = e.target.result
+                         };
+
+                        reader.readAsDataURL(files[0]);
+                   }
                     var image = new Image();
                     var reader = new FileReader();
                     var files = e.target.files || e.dataTransfer.files;

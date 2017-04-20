@@ -227,13 +227,36 @@ var allValidations = {
         return 0;
     },
     afterToday:function(it){
-        var date = new Date(it.val());
+        dateUser = it.val().split("-")
         var today = new Date();
+        var date = new Date(dateUser[0], dateUser[1]-1, dateUser[2], today.getHours(), today.getMinutes()+5, today.getSeconds());
+
         if(+date < +today){
-            this.showError(it, 'time');
+            this.showError(it, 'afterToday');
             return 1;
         }
-        this.hiddenError(it, 'time');
+        this.hiddenError(it, 'afterToday');
+        return 0;
+    },
+    afterTime:function(it){
+        timeUser = it.val().split(":")
+        var today = new Date();
+        if(it.data('date') === undefined || it.data('date') == ''){
+            var date = new Date(today.getFullYear(), today.getMonth(), today.getUTCDate(), timeUser[0], timeUser[1], '00');
+        }else{
+            var customDate = jQuery(it.data('date'));
+            myDate = customDate.val().split("-");
+            if(myDate[0] == ''){
+                var date = new Date(today.getFullYear(), today.getMonth(), today.getUTCDate(), timeUser[0], timeUser[1], '00');
+            }else{
+               var date = new Date(myDate[0], myDate[1]-1, myDate[2], timeUser[0], timeUser[1], '00');
+            }
+        }
+        if(+date < +today){
+            this.showError(it, 'afterTime');
+            return 1;
+        }
+        this.hiddenError(it, 'afterTime');
         return 0;
     },
     email : function(it){
