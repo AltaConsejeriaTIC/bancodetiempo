@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Groups;
 use App\Models\Campaigns;
+use App\Models\CampaignParticipants;
 use App\Helpers;
 
 class CampaignController extends Controller
@@ -43,6 +44,32 @@ class CampaignController extends Controller
         $campaign = Campaigns::findOrFail($campaignId);
 
         return view('campaigns/campaign', compact('campaign'));
+    }
+
+    public function inscriptionParticipant(Request $request){
+
+        if($this->getQuotasAvailable($request->input('campaign_id')) > 0){
+            $participant = CampaignParticipants::create([
+                'campaigns_id' => $request->input('campaign_id'),
+                'participant_id' => Auth::id(),
+            ]);
+
+            return redirect()->back()->with('msg', 'Te has inscrito con exito');
+        }
+
+        return redirect()->back()->with('msg', 'Ya no quedan cupos disponibles');
+
+    }
+
+    private function getQuotasCampaign($campaign){
+        $quotas = $campaign->credits/$campaign->hours;
+        return (int) floor($quotas);
+    }
+
+    private function getQuotasAvailable($campaign_id){
+        $campaign = Campaigns::find($campaign_id);
+        $totalParticipants = $campaign->participants->count();
+        return $this->getQuotasCampaign($campaign)-$totalParticipants;
     }
 
 }

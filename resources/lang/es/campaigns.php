@@ -11,5 +11,6 @@ return [
     'cancel' => 'Cancelar',
     'textInscription' => '¿Quieres inscribirte a esta campaña?',
     'inscription' => "Inscribirme",
+    'participants' => 'Participantes'
 
 ];

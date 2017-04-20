@@ -16,15 +16,15 @@ class CreateCampaignParticipantsTable extends Migration
         Schema::create('campaign_participants', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('participant_id')->unsigned();
-            $table->integer('groups_id')->unsigned();
+            $table->integer('campaigns_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('campaign_participants', function($table)
         {
-          $table->foreign('groups_id')
+          $table->foreign('campaigns_id')
                 ->references('id')
-                ->on('groups')
+                ->on('campaigns')
                 ->onUpdate('cascade');
 
           $table->foreign('participant_id')

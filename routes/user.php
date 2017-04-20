@@ -46,3 +46,6 @@ Route::post('createCampaign','CampaignController@create');
 Route::get('campaign/{campaignId}','CampaignController@show');
 
 Route::post('donation','DonationsController@transfer');
+
+Route::post('inscriptionParticipant','CampaignController@inscriptionParticipant');
+

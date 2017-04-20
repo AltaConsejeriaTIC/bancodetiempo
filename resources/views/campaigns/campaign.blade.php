@@ -51,6 +51,19 @@
                     </p>
                 </div>
             </div>
+            <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="title1">{{trans('campaigns.participants')}}</h2>
+                    </div>
+                </div>
+            <div class="row">
+                @foreach($campaign->participants as $participant)
+                    <div class="col-md-2">
+                        @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                        <p class='text-center'>{{$participant->participant->first_name." ".$participant->participant->last_name}}</p>
+                    </div>
+                @endforeach
+            </div>
 
         </article>
 
@@ -97,18 +110,23 @@
                             <p class='paragraph4'>Podras inscribirte a esta campaña el dia <br><strong class="text-center">{{ date("Y-m-d", strtotime($campaign->date_donations)) }}</strong></p>
                         </div>
                     @else
-                       @if($campaign->groups->admin_id != Auth::user()->id)
-                            <div class="col-xs-12">
-                                <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
-                            </div>
+                        @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)
+                            @if($campaign->groups->admin_id != Auth::user()->id)
+                                    <div class="col-xs-12">
+                                        <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
+                                    </div>
 
-                            <div class="col-xs-12 ">
-                                <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.donation = true'>{{ trans("campaigns.inscription") }}</button>
-                            </div>
-                            <br>
-
+                                    <div class="col-xs-12 ">
+                                        <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.inscription = true'>{{ trans("campaigns.inscription") }}</button>
+                                    </div>
+                                    <br>
+                            @endif
                         @endif
-
+                        @if (session('msg'))
+                            <div class="msg text-center">
+                                <p>{{ session('msg') }}</p>
+                            </div>
+                        @endif
 
                     @endif
 
@@ -119,4 +137,5 @@
 
     </div>
 @include("campaigns/partial/donation")
+@include("campaigns/partial/inscription")
 @endsection
