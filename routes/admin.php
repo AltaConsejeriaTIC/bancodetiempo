@@ -16,6 +16,7 @@ Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'use
 
 Route::get('adminGroups', 'AdminController@adminGroups');
 Route::post('adminGroups', ['as' => 'adminGroups', 'uses'=>'AdminController@adminGroups']);
+Route::put('adminGroups/update', ['as' => 'adminGroups/update', 'uses'=>'AdminController@updateGroupState']);
 
 Route::resource('homeAdminCategory', 'CategoryController');
 Route::post('homeAdminCategory/show', ['as' => 'homeAdminCategory/show', 'uses'=>'CategoryController@show']);

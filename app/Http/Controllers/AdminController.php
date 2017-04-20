@@ -193,6 +193,19 @@ class AdminController extends Controller
 
     }
 
+    public function updateGroupState(Request $request)
+    {
+        $group = Groups::find($request->id);
+
+        $group->state_id = $request->state_id;
+
+        if ($group->save()) {
+            Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
+            return redirect('adminGroups');
+        }
+
+    }
+
     public function updateServices(Request $request)
     {
         try {
