@@ -27,6 +27,17 @@
 				<filters-categories categories='{{ $categories }}'></filters-categories>
 			</div>
 		</div>
+
+		@if(count(Illuminate\Support\Facades\Session::get("filters.tags", [])) > 0)
+            <div class="row">
+
+               <strong class="paragraph1">Filtros: </strong>
+                @foreach(Illuminate\Support\Facades\Session::get("filters.tags", []) as $tag)
+                    <a tag="{{$tag->id}}" class="input-tag button7 tag-margin"><span>{{ App\Models\Tag::find($tag->id)->tag }}</span></a>
+                @endforeach
+                <a href='/filter'>Borrar filtros</a>
+            </div>
+        @endif
 		<div class='row'>
 
             <div class="tab-content clearfix">
