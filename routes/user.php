@@ -43,3 +43,6 @@ Route::get('group/{groupId}','GroupsController@show');
 
 Route::post('createCampaign','CampaignController@create');
 
+Route::get('campaign/{campaignId}','CampaignController@show');
+
+Route::post('donation','DonationsController@transfer');

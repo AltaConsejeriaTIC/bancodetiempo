@@ -125,6 +125,7 @@
       data: function () {
           return helpers.Service().data;
       }, 
+        props: ['categories', 'tagsService'],
       mixins: [helpers.Helpers(),helpers.MethodsService()],
       mounted() {        		
           this.$parent.setMyData('totalChar', 250);
@@ -134,21 +135,6 @@
           this.$parent.setMyData('descriptionService', 'Descripción de la oferta'); 	                       
           this.$parent.setMyData('tags', Array('PalabrasClave'));
 
-          jQuery.ajax({
-                url : '/categories',
-                context: this,
-                success : function(data){
-                    this.categories = JSON.parse(data);
-                }
-            });
-
-            jQuery.ajax({
-                url : '/tags',
-                context: this,
-                success : function(data){
-                    this.tagService = JSON.parse(data);
-                }
-            });
       },      
       watch : {
 	        category : function (value) { 
@@ -174,7 +160,7 @@
     	methods: {
     		setTags: function(value){
     			this.tagService = value;	
-    			this.$parent.setMyData('tags', value);    			
+    			this.$parent.setMyData('tagsUser', value);
     		}
     	}
     }

@@ -8,7 +8,7 @@ use App\Models\States;
 
 class Campaigns extends Model
 {
-    protected  $fillable = ['name', 'description', 'image', 'groups_id', 'category_id', 'quotas', 'date', 'time', 'state_id'];
+    protected  $fillable = ['name', 'description', 'image', 'groups_id', 'category_id', 'credits',  'quotas', 'date', 'time', 'state_id'];
 
     public function groups()
     {

@@ -21,6 +21,7 @@ class CampaignController extends Controller
                 'image' => $cover,
                 'groups_id' => $request->input('group_id'),
                 'quotas' => $request->input('quotasCampaign'),
+                'credits' => 0,
                 'category_id' => $request->input('categoryCampaign'),
                 'date' => $request->input('dateCampaign'),
                 'time' => $request->input('timeCampaign'),
@@ -31,4 +32,12 @@ class CampaignController extends Controller
         return redirect()->back();
 
     }
+
+     public function show($campaignId){
+
+        $campaign = Campaigns::findOrFail($campaignId);
+
+        return view('campaigns/campaign', compact('campaign'));
+    }
+
 }

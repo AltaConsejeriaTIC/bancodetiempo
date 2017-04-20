@@ -93,7 +93,7 @@
 											</div>											
 											<p class='paragraph2'>@{{myData.descriptionService}}</p>									
 											<div class='col-xs-12  col-sm-12'>										
-												<span v-for="tag in myData.tags" class="col-xs-6 input-tag button7 tag-margin">
+												<span v-for="tag in myData.tagsUser" class="col-xs-6 input-tag button7 tag-margin">
 										      <span>@{{ tag }}</span>								      
 										    </span>
 											</div>
@@ -110,7 +110,7 @@
 			      	
 			      	        <div class='space'></div>
                             {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation' => '']) !!}
-                                <firstservice></firstservice>
+                                <firstservice  :categories='this.myData.categories' :tags-service='this.myData.tags'></firstservice>
                             {!! Form::close() !!}
 						</article>	
 					</div>		

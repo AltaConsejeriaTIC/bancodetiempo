@@ -5,7 +5,9 @@ return [
     'descriptionExample1' => 'Recibió una hora de cuentería de Juan',
     'nameExample2' => 'Juan (Cuentero)',
     'descriptionExample2' => 'Obtuvo una asesoría en derecho penal de Camila',
-    'titleBanner' => '¿PARA QUÉ EL DINERO SI PUEDES USAR TU TIEMPO?',
+    'titleBanner1' => '¿PARA QUÉ EL DINERO SI PUEDES USAR TU TIEMPO?',
+    'titleBanner2' => 'INTERCAMBIA CON OTRAS PERSONAS HABILIDADES EN BOGOTÁ',
+    'titleBanner3' => 'PORQUE SIEMPRE HAY ALGO NUEVO QUE APRENDER',
     'descriptionBanner' => 'Invierte tus habilidades para obtener lo que otros ofrecen',
     'buttonBanner' => 'Regístrate para empezar',
     'title' => 'OFERTAS RECIENTES',
@@ -17,5 +19,6 @@ return [
     'registerLinkedin' => 'Regístrate con Linkedin',
     'filter' => 'Filtrar&nbsp;por',
     'all' => 'Todos',
-    'Recommended' => 'Recomendados'
+    'Recommended' => 'Recomendados',
+    'campaigns' => 'Campañas'
 ];

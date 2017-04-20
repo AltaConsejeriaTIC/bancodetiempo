@@ -15,6 +15,10 @@ jQuery(document).ready(function(){
            jQuery(this).on('change' ,previewImage);
        })
     }
+
+    if(jQuery(".bannerHome").length){
+       bannerHome();
+    }
     jQuery(".score").on("click", score)
     jQuery("form[form-validation]").on("change", ".validation", validation);
     jQuery("form[form-validation]").on("keyup", "textarea.validation", validation);
@@ -22,6 +26,35 @@ jQuery(document).ready(function(){
 
 })
 
+function bannerHome(){
+    jQuery(".bannerHome .carousel").attr("banner", 3);
+    animationBanner();
+}
+
+function animationBanner(){
+    var actual = jQuery(".bannerHome .carousel").attr("banner");
+    var next = parseInt(actual)+1;
+    var description = jQuery("#bannerDescription");
+    if(actual == 3){
+        next = 1;
+    }
+
+    description.animate({opacity:0}, 100, function(){
+        var newText = jQuery(".bannerHome .carousel .banner"+next).children(".description").html();
+
+        setTimeout(function(){
+            description.html(newText);
+            description.animate({opacity:100}, 800);
+        }, 1000);
+    })
+
+    jQuery(".bannerHome .carousel .banner"+actual).removeClass("active");
+    jQuery(".bannerHome .carousel .banner"+next).addClass("active");
+
+    jQuery(".bannerHome .carousel").attr("banner", next);
+    setTimeout(animationBanner, 4000);
+
+}
 
 function callMessages(){
 
@@ -101,6 +134,14 @@ function listCategories(){
 
 var allValidations = {
     required : function(it){
+        if(it.val() == ''){
+            this.showError(it, 'required');
+            return 1;
+        }
+        this.hiddenError(it, 'required');
+        return 0;
+    },
+    requiredImage : function(it){
         if(it.val() == ''){
             this.showError(it, 'required');
             return 1;
@@ -214,11 +255,19 @@ var allValidations = {
         return 0;
     },
     minNumber : function(it, v){
-        if(it.val() < v){
-            this.showError(it, 'min');
+        if(parseInt(it.val()) < v){
+            this.showError(it, 'minNumber');
             return 1;
         }
-        this.hiddenError(it, 'min');
+        this.hiddenError(it, 'minNumber');
+        return 0;
+    },
+    maxNumber : function(it, v){
+        if(parseInt(it.val()) > v){
+            this.showError(it, 'maxNumber');
+            return 1;
+        }
+        this.hiddenError(it, 'maxNumber');
         return 0;
     },
     minArray : function(it, v){
@@ -358,7 +407,7 @@ function autoCompleteUsers(){
 
 function getAutoCompleteUsers (){
     text = jQuery(this).val();
-    if(text.length >= 3){
+    if(text.length >= 1){
        _autoCompleteUsers.showAutoComplete(_autoCompleteUsers.findUsers(text));
     }else{
        _autoCompleteUsers.el.siblings('.listComplete').addClass("hidden");

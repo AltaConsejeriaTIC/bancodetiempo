@@ -183,7 +183,7 @@ return [
         //Provider Component Laravel Collective
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,        
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -234,7 +234,8 @@ return [
     	'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,        
+        'JavaScript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

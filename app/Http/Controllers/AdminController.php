@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Groups;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use App\User;
 use App\Models\Service;
 use App\Models\AdminContent;
 use App\Models\State;
+use App\Models\HistoryDonations;
 use Session;
 use Validator;
 use Hash;
@@ -262,6 +264,46 @@ class AdminController extends Controller
 
             return redirect('changePassword');
         }
+    }
+
+    public function historyDonations(Request $request){
+        $findDonor = $request->input('findDonor', '');
+        $findCampaign = $request->input('findcampaign', '');
+        $history = HistoryDonations::select("history_donations.*")->orderBy('updated_at', 'desc');
+
+        if($findDonor != ''){
+            $history->join('users', 'users.id', 'history_donations.donor_id')->where("users.first_name", 'LIKE', "%$findDonor%")->orWhere("users.last_name", 'LIKE', "%$findDonor%");
+        }
+
+        if($findCampaign != ''){
+            $history->join('campaigns', 'campaigns.id', 'history_donations.campaign_id')->where("campaigns.name", 'LIKE', "%$findCampaign%");
+        }
+
+        if($request->input('download') == 'true'){
+            $this->exportExcel($history);
+        }
+
+        $history = $history->paginate(12);
+
+        return view("admin/history/donations", compact('history'));
+
+    }
+
+    private function exportExcel($history){
+        $history = $history->get();
+        $data = [];
+        foreach($history as $row){
+            $data[] = ["Donador" => $row->donor->first_name." ".$row->donor->last_name, "Campaña" => $row->campaign->name, "Dorados" => $row->credits, "Fecha" => $row->created_at];
+        }
+        Excel::create('DonadoresCambalachea'.date("Y-m-d"), function($excel) use ($data) {
+            $excel->sheet('Productos', function($sheet) use ($data) {
+
+                $sheet->fromArray($data);
+
+            });
+        })->export('xls');
+
+        return redirect()->back();
     }
 
 }
