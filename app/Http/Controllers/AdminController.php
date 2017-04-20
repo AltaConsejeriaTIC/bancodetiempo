@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaigns;
 use App\Models\Groups;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -210,11 +211,11 @@ class AdminController extends Controller
 
     public function adminCampaigns(Request $request)
     {
-        $groups = Groups::orderBy('updated_at', 'desc');
-        $groups = $request->find != '' ? $groups->where('name', 'LIKE', "%$request->find%") : $groups;
-        $groups = $groups->paginate(6);
+        $campaigns = Campaigns::orderBy('updated_at', 'desc');
+        $campaigns = $request->find != '' ? $campaigns->where('name', 'LIKE', "%$request->find%") : $campaigns;
+        $campaigns = $campaigns->paginate(6);
         $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
-        return view('admin/groups/list', compact('groups', 'states'));
+        return view('admin/campaigns/list', compact('campaigns', 'states'));
     }
 
     public function updateCampaignState(Request $request)
