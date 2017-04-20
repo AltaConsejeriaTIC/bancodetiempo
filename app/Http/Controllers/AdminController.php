@@ -50,7 +50,7 @@ class AdminController extends Controller
     public function adminGroups(Request $request)
     {
         $groups = Groups::orderBy('updated_at', 'desc');
-        //$services = $request->find != '' ? $services->where('name', 'LIKE', "%$request->find%") : $services;
+        $groups = $request->find != '' ? $groups->where('name', 'LIKE', "%$request->find%") : $groups;
         $groups = $groups->paginate(6);
         $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
         return view('admin/groups/list', compact('groups', 'states'));

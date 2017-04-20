@@ -8,7 +8,7 @@
                     <div class="panel-heading"><h2>Lista de Grupos Registrados en el Sistema</h2></div>
                     <div class="panel-body">
                         @include('partial.errors')
-                        {!! Form::open(['route' => 'homeAdminServices', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
+                        {!! Form::open(['route' => 'adminGroups', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
                         <div class="form-group">
                             <label>Nombre</label>
                             <input type="text" class="form-control" name="find">
@@ -22,7 +22,7 @@
                         {!! Form::close() !!}
                         <div class="col-md-2 form-group navbar-right">
                             <span class="label label-success news">Hay {!! $groups->total() !!}
-                                Ofertas Registradas</span>
+                                Grupos Registrados</span>
                         </div>
                         <div class="col-md-12">
                             <table class="table table-striped table-hover">
@@ -30,7 +30,7 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Description</th>
-                                    <th>Propietario</th>
+                                    <th>Administrador</th>
                                     <th>Estado</th>
                                     <th>Acción</th>
                                 </tr>
