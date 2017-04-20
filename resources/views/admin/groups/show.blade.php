@@ -36,15 +36,33 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8">
-                                                <article class=' col-xs-12'>
-                                                    <div class="space10"></div>
-                                                    <h3>Administrador</h3>
+                                            <article class="col-md-8">
+                                                <div class="space10"></div>
+                                                <h3>Administrador</h3>
+                                                <div class="row">
+                                                    <div class="col-xs-6 col-xs-offset-3">
+                                                        <avatar :cover='myData.cover'>
+                                                            <template scope="props">
+                                                                @include('partial/imageProfile', array('cover' => $group->admin->avatar, 'id' =>$group->admin->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                                            </template>
+                                                        </avatar>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-xs-12 ">
+                                                            <h5 class="title1">{{$group->admin->first_name." ".$group->admin->last_name}}</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="space10"></div>
+                                                <h3>Colaboradores</h3>
+                                                @foreach($group->collaborators as $collaborator)
                                                     <div class="row">
                                                         <div class="col-xs-6 col-xs-offset-3">
                                                             <avatar :cover='myData.cover'>
                                                                 <template scope="props">
-                                                                    @include('partial/imageProfile', array('cover' => $group->admin->avatar, 'id' =>$group->admin->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                                                    @include('partial/imageProfile', array('cover' => $collaborator->user->avatar, 'id' =>$collaborator->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
                                                                 </template>
                                                             </avatar>
                                                         </div>
@@ -52,34 +70,12 @@
                                                     <div>
                                                         <div class="row">
                                                             <div class="col-xs-12 ">
-                                                                <h5 class="title1">{{$group->admin->first_name." ".$group->admin->last_name}}</h5>
+                                                                <h5 class="title1">{{$collaborator->user->first_name." ".$collaborator->user->last_name}}</h5>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </article>
-                                                <article class=' col-xs-12'>
-                                                    <div class="space10"></div>
-                                                    <h3>Colaboradores</h3>
-                                                    @foreach($group->collaborators as $collaborator)
-                                                        <div class="row">
-                                                            <div class="col-xs-6 col-xs-offset-3">
-                                                                <avatar :cover='myData.cover'>
-                                                                    <template scope="props">
-                                                                        @include('partial/imageProfile', array('cover' => $collaborator->user->avatar, 'id' =>$collaborator->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
-                                                                    </template>
-                                                                </avatar>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div class="row">
-                                                                <div class="col-xs-12 ">
-                                                                    <h5 class="title1">{{$collaborator->user->first_name." ".$collaborator->user->last_name}}</h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </article>
-                                            </div>
+                                                @endforeach
+                                            </article>
                                         </article>
                                     </div>
                                 </div>
