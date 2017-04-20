@@ -19,12 +19,13 @@ class CreateCampaignsTable extends Migration
             $table->text('description');
             $table->string('image');
             $table->integer('groups_id')->unsigned();
-            $table->integer('quotas');
+            $table->integer('hours');
             $table->integer('category_id')->unsigned();
             $table->integer('credits');
-            $table->date('date');
-            $table->time('time');
+            $table->dateTime('date');
+            $table->dateTime('date_donations');
             $table->integer('state_id')->unsigned();
+            $table->boolean('allows_registration')->default(0);
             $table->timestamps();
         });
 
@@ -40,6 +41,26 @@ class CreateCampaignsTable extends Migration
                 ->on('states')
                 ->onUpdate('cascade');
         });
+
+        DB::unprepared("CREATE PROCEDURE `duplicateCreditsCampaign`()
+        BEGIN
+        DECLARE campaign INT;
+        DECLARE credit INT;
+        DECLARE cursor1 CURSOR FOR SELECT id, credits FROM campaigns WHERE date_donations <= NOW() and allows_registration = 0;
+
+        OPEN cursor1;
+        c1_loop: LOOP
+            FETCH cursor1 INTO campaign, credit;
+				UPDATE campaigns SET credits = credit*2, allows_registration = 1 WHERE id = campaign;
+
+        END LOOP c1_loop;
+
+        CLOSE cursor1;
+
+        END");
+
+        DB::unprepared("CREATE EVENT `Campaign` ON SCHEDULE EVERY 1 MINUTE STARTS '2017-02-28 00:00:00' ENDS '2025-05-27 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL `duplicateCreditsCampaign`()");
+
     }
 
     /**
@@ -50,5 +71,9 @@ class CreateCampaignsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('campaigns');
+
+        DB::unprepared("DROP EVENT IF EXISTS `Campaign`");
+
+        DB::unprepared("DROP PROCEDURE IF EXISTS `duplicateCreditsCampaign`");
     }
 }

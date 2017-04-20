@@ -8,6 +8,8 @@ return [
     'errorMinDonation' => 'No puedes donar menos de 1 dorado.',
     'errorMaxDonation' => 'No Tienes dorados suficientes.',
     'submit' => 'Donar',
-    'cancel' => 'Cancelar'
+    'cancel' => 'Cancelar',
+    'textInscription' => '¿Quieres inscribirte a esta campaña?',
+    'inscription' => "Inscribirme",
 
 ];

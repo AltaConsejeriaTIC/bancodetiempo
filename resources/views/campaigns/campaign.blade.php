@@ -28,6 +28,29 @@
                     <p class="paragraph4">{{$campaign->description}}</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md 12">
+                    <p class="paragraph4">
+                        <strong>Dorados de esta campaña</strong> {{$campaign->credits}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md 12">
+                    <p class="paragraph4">
+                        <strong>Fecha de la campaña</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md 12">
+                    <p class="paragraph4">
+                        {{date("F j Y g:i a", strtotime($campaign->date))}}
+                    </p>
+                </div>
+            </div>
 
         </article>
 
@@ -61,13 +84,33 @@
 
                     @endif
 
-                   <div class="col-xs-12">
-                        <p class='paragraph4'>{{ trans("campaigns.textDonation") }}</p>
-                    </div>
+                    @if($campaign->allows_registration == 0)
+                        <div class="col-xs-12">
+                            <p class='paragraph4'>{{ trans("campaigns.textDonation") }}</p>
+                        </div>
 
-                    <div class="col-xs-12 ">
-                        <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.donation = true'>{{ trans("campaigns.donation") }}</button>
-                    </div>
+                        <div class="col-xs-12 ">
+                            <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.donation = true'>{{ trans("campaigns.donation") }}</button>
+                        </div>
+                        <br>
+                        <div class="col-xs-12">
+                            <p class='paragraph4'>Podras inscribirte a esta campaña el dia <br><strong class="text-center">{{ date("Y-m-d", strtotime($campaign->date_donations)) }}</strong></p>
+                        </div>
+                    @else
+                       @if($campaign->groups->admin_id != Auth::user()->id)
+                            <div class="col-xs-12">
+                                <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
+                            </div>
+
+                            <div class="col-xs-12 ">
+                                <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.donation = true'>{{ trans("campaigns.inscription") }}</button>
+                            </div>
+                            <br>
+
+                        @endif
+
+
+                    @endif
 
                 </div>
             </div>
