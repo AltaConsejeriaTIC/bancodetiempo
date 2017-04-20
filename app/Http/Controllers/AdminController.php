@@ -49,14 +49,6 @@ class AdminController extends Controller
         return view('admin/services/list', compact('services', 'states'));
     }
 
-    public function adminGroups(Request $request)
-    {
-        $groups = Groups::orderBy('updated_at', 'desc');
-        $groups = $request->find != '' ? $groups->where('name', 'LIKE', "%$request->find%") : $groups;
-        $groups = $groups->paginate(6);
-        $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
-        return view('admin/groups/list', compact('groups', 'states'));
-    }
 
     public function showServicesReported(Request $request)
     {
@@ -193,6 +185,51 @@ class AdminController extends Controller
 
     }
 
+
+    public function adminGroups(Request $request)
+    {
+        $groups = Groups::orderBy('updated_at', 'desc');
+        $groups = $request->find != '' ? $groups->where('name', 'LIKE', "%$request->find%") : $groups;
+        $groups = $groups->paginate(6);
+        $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
+        return view('admin/groups/list', compact('groups', 'states'));
+    }
+
+    public function updateGroupState(Request $request)
+    {
+        $group = Groups::find($request->id);
+
+        $group->state_id = $request->state_id;
+
+        if ($group->save()) {
+            Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
+            return redirect('adminGroups');
+        }
+
+    }
+
+    public function adminCampaigns(Request $request)
+    {
+        $groups = Groups::orderBy('updated_at', 'desc');
+        $groups = $request->find != '' ? $groups->where('name', 'LIKE', "%$request->find%") : $groups;
+        $groups = $groups->paginate(6);
+        $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
+        return view('admin/groups/list', compact('groups', 'states'));
+    }
+
+    public function updateCampaignState(Request $request)
+    {
+        $group = Groups::find($request->id);
+
+        $group->state_id = $request->state_id;
+
+        if ($group->save()) {
+            Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
+            return redirect('adminGroups');
+        }
+
+    }
+
     public function updateServices(Request $request)
     {
         try {
@@ -266,20 +303,21 @@ class AdminController extends Controller
         }
     }
 
-    public function historyDonations(Request $request){
+    public function historyDonations(Request $request)
+    {
         $findDonor = $request->input('findDonor', '');
         $findCampaign = $request->input('findcampaign', '');
         $history = HistoryDonations::select("history_donations.*")->orderBy('updated_at', 'desc');
 
-        if($findDonor != ''){
+        if ($findDonor != '') {
             $history->join('users', 'users.id', 'history_donations.donor_id')->where("users.first_name", 'LIKE', "%$findDonor%")->orWhere("users.last_name", 'LIKE', "%$findDonor%");
         }
 
-        if($findCampaign != ''){
+        if ($findCampaign != '') {
             $history->join('campaigns', 'campaigns.id', 'history_donations.campaign_id')->where("campaigns.name", 'LIKE', "%$findCampaign%");
         }
 
-        if($request->input('download') == 'true'){
+        if ($request->input('download') == 'true') {
             $this->exportExcel($history);
         }
 
@@ -289,14 +327,15 @@ class AdminController extends Controller
 
     }
 
-    private function exportExcel($history){
+    private function exportExcel($history)
+    {
         $history = $history->get();
         $data = [];
-        foreach($history as $row){
-            $data[] = ["Donador" => $row->donor->first_name." ".$row->donor->last_name, "Campaña" => $row->campaign->name, "Dorados" => $row->credits, "Fecha" => $row->created_at];
+        foreach ($history as $row) {
+            $data[] = ["Donador" => $row->donor->first_name . " " . $row->donor->last_name, "Campaña" => $row->campaign->name, "Dorados" => $row->credits, "Fecha" => $row->created_at];
         }
-        Excel::create('DonadoresCambalachea'.date("Y-m-d"), function($excel) use ($data) {
-            $excel->sheet('Productos', function($sheet) use ($data) {
+        Excel::create('DonadoresCambalachea' . date("Y-m-d"), function ($excel) use ($data) {
+            $excel->sheet('Productos', function ($sheet) use ($data) {
 
                 $sheet->fromArray($data);
 

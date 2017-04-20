@@ -62,8 +62,8 @@
                                         </td>
                                     </tr>
                                     @include('admin/groups/show')
-                                    {{--@include('admin/services/update')
-                                    @include('admin/services/reports')--}}
+                                    @include('admin/groups/update')
+                                    {{--@include('admin/services/reports')--}}
                                 @endforeach
 
                                 </tbody>
