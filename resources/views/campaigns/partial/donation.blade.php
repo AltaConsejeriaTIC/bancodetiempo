@@ -1,6 +1,6 @@
 <generalmodal  name='donation' :state='myData.donation' state-init='false'>
     <div slot="modal" class='modal-container'>
-        <button type="button" @click='myData.newcampaign = false' class="close circle-shape"><span aria-hidden="true">×</span></button>
+        <button type="button" @click='myData.donation = false' class="close circle-shape"><span aria-hidden="true">×</span></button>
         {!! Form::open(['url' => 'donation', 'method' => 'post','enctype' => 'multipart/form-data', 'class' => 'form-custom', 'form-validation' => '']) !!}
             <div class="row">
                 <h1 class="title1 text-center">{{ trans("campaigns.questionDonation") }}</h1>
