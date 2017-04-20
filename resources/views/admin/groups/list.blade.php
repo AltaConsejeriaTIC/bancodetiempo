@@ -15,10 +15,10 @@
                         </div>
                         <button type="submit" class="btn btn-raised btn-primary" title="Buscar"><i
                                     class="material-icons">search</i></button>
-                        <a href="{{ url('/homeAdminServices') }}" class="btn btn-raised btn-primary"
+                        <a href="{{ url('/adminGroups') }}" class="btn btn-raised btn-primary"
                            title="Listar Todos"><i class="material-icons">youtube_searched_for</i></a>
-                        <a href="{{ url('/homeAdminServices/reported') }}" class="btn btn-raised btn-primary"
-                           title="Listar Reportados">Reportados</a>
+                        <!--a href="{{ url('/homeAdminServices/reported') }}" class="btn btn-raised btn-primary"
+                           title="Listar Reportados">Reportados</a-->
                         {!! Form::close() !!}
                         <div class="col-md-2 form-group navbar-right">
                             <span class="label label-success news">Hay {!! $groups->total() !!}
@@ -44,7 +44,7 @@
                                         <td>{{ $group->admin->first_name." ".$group->admin->last_name}}</td>
                                         <td>{{ $group->state->state}}</td>
                                         <td>
-                                            <a class="btn btn-raised btn-primary btn-xs" href="" title="Ver oferta"
+                                            <a class="btn btn-raised btn-primary btn-xs" href="" title="Ver detalle"
                                                data-toggle="modal" data-target="#show-dialog{{$group->id}}"><i
                                                         class="material-icons">find_in_page</i></a>
                                             @if($group->state_id==1)
@@ -61,8 +61,8 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    {{--@include('admin/services/show')
-                                    @include('admin/services/update')
+                                    @include('admin/groups/show')
+                                    {{--@include('admin/services/update')
                                     @include('admin/services/reports')--}}
                                 @endforeach
 
