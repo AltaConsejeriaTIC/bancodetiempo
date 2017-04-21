@@ -20,7 +20,7 @@ Route::put('adminGroups/update', ['as' => 'adminGroups/update', 'uses'=>'AdminCo
 
 Route::get('adminCampaigns', 'AdminController@adminCampaigns');
 Route::post('adminCampaigns', ['as' => 'adminCampaigns', 'uses'=>'AdminController@adminCampaigns']);
-Route::put('adminCampaigns/update', ['as' => 'adminCampaigns/update', 'uses'=>'AdminController@adminCampaignsState']);
+Route::put('adminCampaigns/update', ['as' => 'adminCampaigns/update', 'uses'=>'AdminController@updateCampaignState']);
 
 Route::resource('homeAdminCategory', 'CategoryController');
 Route::post('homeAdminCategory/show', ['as' => 'homeAdminCategory/show', 'uses'=>'CategoryController@show']);

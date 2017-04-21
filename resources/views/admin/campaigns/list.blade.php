@@ -66,8 +66,8 @@
                                         </td>
                                     </tr>
                                     @include('admin/campaigns/show')
-                                    {{--@include('admin/campaigns/update')
-                                    @include('admin/services/reports')--}}
+                                    @include('admin/campaigns/update')
+                                    {{--@include('admin/services/reports')--}}
                                 @endforeach
 
                                 </tbody>

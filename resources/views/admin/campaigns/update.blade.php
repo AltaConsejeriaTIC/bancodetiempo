@@ -3,9 +3,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title titleContent">Actualizar estado del grupo</h4>
+                <h4 class="modal-title titleContent">Actualizar estado de la campaña</h4>
             </div>
-            {!!Form::model($campaign, ['route' => 'adminGroups/update', 'method'=> 'put'])!!}
+            {!!Form::model($campaign, ['route' => 'adminCampaigns/update', 'method'=> 'put'])!!}
             <div class="modal-body">
                 <div class="row">
                     {!!Form::hidden('id', $campaign->id)!!}
