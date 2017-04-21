@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Groups;
 use App\Models\State;
+use App\Models\CampaignParticipants;
 
 class Campaigns extends Model
 {
@@ -22,6 +23,10 @@ class Campaigns extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function participants(){
+        return $this->hasMany(CampaignParticipants::class);
     }
 
 }
