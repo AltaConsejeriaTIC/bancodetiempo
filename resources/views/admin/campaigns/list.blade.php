@@ -46,7 +46,7 @@
                                         <td>{{ $campaign->credits}}</td>
                                         <td>{{ $campaign->hours}}</td>
                                         <td>{{ $campaign->date}}</td>
-                                        <td>{{ $campaign->state}}</td>
+                                        <td>{{ $campaign->state->state}}</td>
                                         <td>
                                             <a class="btn btn-raised btn-primary btn-xs" href="" title="Ver detalle"
                                                data-toggle="modal" data-target="#show-dialog{{$campaign->id}}"><i
@@ -65,8 +65,8 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    {{--@include('admin/campaigns/show')
-                                    @include('admin/campaigns/update')
+                                    @include('admin/campaigns/show')
+                                    {{--@include('admin/campaigns/update')
                                     @include('admin/services/reports')--}}
                                 @endforeach
 

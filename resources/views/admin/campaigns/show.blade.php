@@ -31,51 +31,43 @@
                                             <h3 class='col-md-8'>Estado</h3>
                                             <div class="col-md-8">
                                                 <div class="content">
-                                                    <p class="paragraph4 ">{{$campaign->states->state}}</p>
+                                                    <p class="paragraph4 ">{{$campaign->state->state}}</p>
                                                     <div class="space15">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <article class="col-md-8">
-                                                <div class="space10"></div>
-                                                <h3>Administrador</h3>
-                                                <div class="row">
-                                                    <div class="col-xs-6 col-xs-offset-3">
-                                                        <avatar :cover='myData.cover'>
-                                                            <template scope="props">
-                                                                @include('partial/imageProfile', array('cover' => $campaign->admin->avatar, 'id' =>$campaign->admin->id, 'border' => '#0f6784', 'borderSize' => '3px'))
-                                                            </template>
-                                                        </avatar>
+                                            <h3 class='col-md-8'>Creditos</h3>
+                                            <div class="col-md-8">
+                                                <div class="content">
+                                                    <p class="paragraph4 ">{{$campaign->credits}}</p>
+                                                    <div class="space15">
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <div class="row">
-                                                        <div class="col-xs-12 ">
-                                                            <h5 class="title1">{{$campaign->admin->first_name." ".$campaign->admin->last_name}}</h5>
-                                                        </div>
+                                            </div>
+                                            <h3 class='col-md-8'>Horas</h3>
+                                            <div class="col-md-8">
+                                                <div class="content">
+                                                    <p class="paragraph4 ">{{$campaign->hours}}</p>
+                                                    <div class="space15">
                                                     </div>
                                                 </div>
-                                                <div class="space10"></div>
-                                                <h3>Colaboradores</h3>
-                                                @foreach($campaign->collaborators as $collaborator)
-                                                    <div class="row">
-                                                        <div class="col-xs-6 col-xs-offset-3">
-                                                            <avatar :cover='myData.cover'>
-                                                                <template scope="props">
-                                                                    @include('partial/imageProfile', array('cover' => $collaborator->user->avatar, 'id' =>$collaborator->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
-                                                                </template>
-                                                            </avatar>
-                                                        </div>
+                                            </div>
+                                            <h3 class='col-md-8'>Fecha</h3>
+                                            <div class="col-md-8">
+                                                <div class="content">
+                                                    <p class="paragraph4 ">{{$campaign->date}}</p>
+                                                    <div class="space15">
                                                     </div>
-                                                    <div>
-                                                        <div class="row">
-                                                            <div class="col-xs-12 ">
-                                                                <h5 class="title1">{{$collaborator->user->first_name." ".$collaborator->user->last_name}}</h5>
-                                                            </div>
-                                                        </div>
+                                                </div>
+                                            </div>
+                                            <h3 class='col-md-8'>Fecha límite de donaciones</h3>
+                                            <div class="col-md-8">
+                                                <div class="content">
+                                                    <p class="paragraph4 ">{{$campaign->date_donations}}</p>
+                                                    <div class="space15">
                                                     </div>
-                                                @endforeach
-                                            </article>
+                                                </div>
+                                            </div>
                                         </article>
                                     </div>
                                 </div>

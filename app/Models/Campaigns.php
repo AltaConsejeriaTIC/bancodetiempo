@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Groups;
-use App\Models\States;
+use App\Models\State;
 
 class Campaigns extends Model
 {
@@ -15,9 +15,9 @@ class Campaigns extends Model
         return $this->belongsTo(Groups::class);
     }
 
-    public function states()
+    public function state()
     {
-        return $this->belongsTo(States::class);
+        return $this->belongsTo(State::class);
     }
 
     public function category(){
