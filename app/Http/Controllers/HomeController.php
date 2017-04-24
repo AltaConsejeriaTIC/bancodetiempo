@@ -11,6 +11,7 @@ use JavaScript;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Campaigns;
+use App\Models\ServiceAdmin;
 use App\Models\subscribers;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Session;
@@ -30,6 +31,9 @@ class HomeController extends Controller
                                 ->where('users.state_id', 1)
                                 ->orderBy("created_at","desc")
                                 ->paginate(12);
+
+        $serviceAdmin = ServiceAdmin::where('state_id', 1)->orderBy('created_at', 'desc')->paginate(12);
+
         $recommendedServices = $this->recommendedServices();
         JavaScript::put([
             'categoriesJs' => $categories,
@@ -37,7 +41,7 @@ class HomeController extends Controller
 
         $campaigns = Campaigns::where('state_id', 1)->get();
 
-        return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     private function recommendedServices(){

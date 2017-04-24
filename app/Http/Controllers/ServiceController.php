@@ -181,7 +181,7 @@ class ServiceController extends Controller
         $countService = Service::where('user_id',Auth::user()->id)->get()->count();
 
         if(Auth::user()->role_id == 2){
-            $this->saveAttainment();
+            $step = $this->saveAttainment();
         }else{
             return redirect('homeAdmin');
         }
@@ -209,6 +209,8 @@ class ServiceController extends Controller
             $user->credits = $user->credits + $step->value;
             $user->save();
         }
+
+        return $step;
     }
 
    public function  uploadCover($file, $service){

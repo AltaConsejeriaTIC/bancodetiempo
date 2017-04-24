@@ -21,11 +21,15 @@
 			</div>
 			</a>
 		<div class='avatar'>
-			@include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#fff', 'borderSize' => '2px'))
+
+            @if(isset($service->toArray()['user_id']))
+                @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#fff', 'borderSize' => '2px'))
+            @endif
 		</div>
 			<a href="service/{{$service->id}}">
 			<div class="content">
-				<h3 class='title title2'>{{$service->name}}</h3>		 		
+				<h3 class='title title2'>{{$service->name}}</h3>
+				@if(isset($service->toArray()['user_id']))
 		 		<div class='ranking'>											
 					<div>
 						@for($cont = 1 ; $cont <= 5 ; $cont++)
@@ -37,18 +41,21 @@
 						@endfor
 					</div>		
 				</div>
+				@endif
 				<div class="space15">										
 				</div>				
 				<p class='paragraph2'>{{str_limit($service->description, 100)}}</p>
-				<div class='col-xs-12  col-sm-12'>	
-													
-					@foreach($service->tags as $tag)
-						@if($tag->service_id == $service->id)
-							<a class="col-xs-6 input-tag button7 tag-margin" tag='{{ $tag->tag->id }}' href='/filter?filter={{ $tag->tag->tag }}'>
-					      		<span>{{ $tag->tag->tag }}</span>								      
-					   		</a>
-					  @endif
-				  @endforeach
+				<div class='col-xs-12  col-sm-12'>
+
+				    @if(!is_null($service->tags))
+                        @foreach($service->tags as $tag)
+                            @if($tag->service_id == $service->id)
+                                <a class="col-xs-6 input-tag button7 tag-margin" tag='{{ $tag->tag->id }}' href='/filter?filter={{ $tag->tag->tag }}'>
+                                    <span>{{ $tag->tag->tag }}</span>
+                                </a>
+                          @endif
+                        @endforeach
+				    @endif
 				</div>
 			</div>
 		</a>

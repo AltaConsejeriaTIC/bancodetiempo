@@ -20,5 +20,6 @@ return [
     'filter' => 'Filtrar&nbsp;por',
     'all' => 'Todos',
     'Recommended' => 'Recomendados',
-    'campaigns' => 'Campañas'
+    'campaigns' => 'Campañas',
+    'serviceAdmin' => 'Servicios de cambalachea'
 ];
