@@ -8,6 +8,7 @@ use App\Models\Groups;
 use App\Models\Campaigns;
 use App\Models\CampaignParticipants;
 use App\Helpers;
+use Mail;
 
 class CampaignController extends Controller
 {
@@ -86,6 +87,24 @@ class CampaignController extends Controller
         $campaign = Campaigns::find($campaign_id);
         $totalParticipants = $campaign->participants->count();
         return $this->getQuotasCampaign($campaign) - $totalParticipants;
+    }
+
+    public function sendReminder(){
+        $yesterday = date("Y-m-d H-i-s", mktime(date("H"), date("i"), 0, date("m"), date("d")+1, date("Y")));
+        $yesterday2 = date("Y-m-d H-i-s", mktime(date("H"), date("i"), 59, date("m"), date("d")+1, date("Y")));
+        $range = array($yesterday, $yesterday2);
+        $campaigns = Campaigns::whereBetween('date', $range)->get();
+        foreach($campaigns as $campaign){
+            foreach($campaign->participants as $participant){
+                $email = $participant->participant->email2;
+
+                Mail::send('mailReminder',['user' => $participant->participant, 'campaign' => $campaign], function ($message) use ($email){
+                $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+                $message->subject('Notificación');
+                $message->to($email);
+    	});
+            }
+        }
     }
 
 }
