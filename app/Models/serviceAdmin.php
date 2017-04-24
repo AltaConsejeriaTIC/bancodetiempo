@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\state;
 use App\User;
 
-class serviceAdmin extends Model
+class ServiceAdmin extends Model
 {
     protected $table = 'services_admin';
     protected  $fillable = ['name','description','value','virtually','presently','image','category_id','state_id'];
