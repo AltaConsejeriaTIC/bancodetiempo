@@ -68,6 +68,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <h3 class='col-md-8'>Participantes</h3>
+                                            <div class="col-md-8">
+                                                <div class="content">
+                                                    @foreach($campaign->participants as $participant)
+                                                        <p class="paragraph4 ">{{$participant->participant->first_name.' '.$participant->participant->last_name}}</p>
+                                                        <div class="space5"></div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </article>
                                     </div>
                                 </div>
