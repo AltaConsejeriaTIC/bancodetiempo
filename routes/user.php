@@ -49,3 +49,5 @@ Route::post('donation','DonationsController@transfer');
 
 Route::post('inscriptionParticipant','CampaignController@inscriptionParticipant');
 
+Route::post('serviceAdmin/{serviceId}','ServiceAdminController@index');
+

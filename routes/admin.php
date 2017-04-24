@@ -36,4 +36,7 @@ Route::put('AdminController/updateContent', ['as' => 'homeAdminContents/update',
 
 Route::get('historyDonations', 'AdminController@historyDonations');
 Route::post('historyDonations', 'AdminController@historyDonations');
-Route::post('admin/service/save', 'ServiceController@create');
+
+Route::get('listServiceAdmin', 'ServiceAdminController@listServiceAdmin');
+Route::post('admin/service/save', 'ServiceAdminController@create');
+Route::put('admin/service/update', 'ServiceAdminController@update');

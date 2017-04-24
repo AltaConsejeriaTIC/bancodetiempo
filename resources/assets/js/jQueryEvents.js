@@ -126,7 +126,11 @@ function listCategories(){
     jQuery("select.categories").each(function(){
         jQuery(this).append("<option value=''>Seleccione una categoria</option>")
         for(var index in window.categories){
-            jQuery(this).append("<option value='"+window.categories[index].id+"'>"+window.categories[index].category+"</option>")
+            var select = ""
+            if(jQuery(this).attr("option") == window.categories[index].id){
+               select = "selected";
+            }
+            jQuery(this).append("<option value='"+window.categories[index].id+"' "+select+">"+window.categories[index].category+"</option>")
         }
     })
 
