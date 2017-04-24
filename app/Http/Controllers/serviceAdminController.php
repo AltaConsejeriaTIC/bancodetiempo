@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Helpers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
-use App\Models\serviceAdmin;
+use App\Models\ServiceAdmin;
+use App\User;
 
-class serviceAdminController extends Controller
+class ServiceAdminController extends Controller
 {
     public function index($serviceId){
 
