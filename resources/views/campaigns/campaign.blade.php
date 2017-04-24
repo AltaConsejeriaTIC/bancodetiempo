@@ -106,6 +106,10 @@
                             <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.donation = true'>{{ trans("campaigns.donation") }}</button>
                         </div>
                         <br>
+                        <div class="col-xs-12 ">
+                            <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.preinscription = true'>{{ trans("campaigns.preInscription") }}</button>
+                        </div>
+                        <br>
                         <div class="col-xs-12">
                             <p class='paragraph4'>Podras inscribirte a esta campaña el dia <br><strong class="text-center">{{ date("Y-m-d", strtotime($campaign->date_donations)) }}</strong></p>
                         </div>
@@ -138,4 +142,5 @@
     </div>
 @include("campaigns/partial/donation")
 @include("campaigns/partial/inscription")
+@include("campaigns/partial/preinscription")
 @endsection

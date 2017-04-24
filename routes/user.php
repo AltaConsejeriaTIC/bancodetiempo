@@ -48,6 +48,7 @@ Route::get('campaign/{campaignId}','CampaignController@show');
 Route::post('donation','DonationsController@transfer');
 
 Route::post('inscriptionParticipant','CampaignController@inscriptionParticipant');
+Route::post('preinscriptionParticipant','CampaignController@preinscriptionParticipant');
 
 Route::post('serviceAdmin/{serviceId}','ServiceAdminController@index');
 

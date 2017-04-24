@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'textDonation' => '¿Te gustaria donar dorados a esta campaña?',
     'donation' => "Donar",
     'questionDonation' => '¿Cuantos dorados quieres Donar?',
@@ -10,7 +9,9 @@ return [
     'submit' => 'Donar',
     'cancel' => 'Cancelar',
     'textInscription' => '¿Quieres inscribirte a esta campaña?',
+    'textPreinscription' => '¿Quieres pre inscribirte a esta campaña?',
     'inscription' => "Inscribirme",
+    'preInscription' => "Pre inscribirme",
     'participants' => 'Participantes'
 
 ];
