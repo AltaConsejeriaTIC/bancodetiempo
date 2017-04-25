@@ -17,7 +17,7 @@ class CreateCampaignParticipantsTable extends Migration
             $table->increments('id');
             $table->integer('participant_id')->unsigned();
             $table->integer('campaigns_id')->unsigned();
-            $table->integer('confirmed');
+            $table->boolean('confirmed');
             $table->timestamps();
         });
 
