@@ -27,7 +27,7 @@ jQuery(document).ready(function(){
 })
 
 function bannerHome(){
-    jQuery(".bannerHome .carousel").attr("banner", 3);
+    jQuery(".bannerHome .carousel").attr("banner", 0);
     animationBanner();
 }
 
@@ -35,7 +35,7 @@ function animationBanner(){
     var actual = jQuery(".bannerHome .carousel").attr("banner");
     var next = parseInt(actual)+1;
     var description = jQuery("#bannerDescription");
-    if(actual == 3){
+    if(actual == parseInt(jQuery(".bannerHome .carousel").attr("slider"))){
         next = 1;
     }
 

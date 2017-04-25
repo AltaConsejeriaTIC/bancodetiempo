@@ -5,7 +5,7 @@
 	@include('nav', array('type' => 1))	
 
 	<section class='bannerHome row'>
-		<div class='carousel'>
+		<div class='carousel' slider='2'>
 		    <div class="banner1">
 		        <img src="/images/banner/people1.png" alt="">
 		        <div class="description hidden">{{ trans('home.titleBanner1') }}</div>
@@ -13,10 +13,6 @@
 		    <div class="banner2">
 		        <img src="/images/banner/people2.png" alt="">
 		        <div class="description hidden">{{ trans('home.titleBanner2') }}</div>
-		    </div>
-		    <div class="banner3">
-		        <img src="/images/banner/people3.png" alt="">
-		        <div class="description hidden">{{ trans('home.titleBanner3') }}</div>
 		    </div>
 		</div>
 		<div class="container">
