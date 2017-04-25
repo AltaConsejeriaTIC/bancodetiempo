@@ -6,13 +6,13 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-9  col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-0">
-					<a href="/index" >
+				<div class="col-xs-9  col-sm-4 col-sm-offset-4 col-md-5 col-md-offset-0">
+					<a href="/index" class='logo text-center'>
 						<img src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
 				</div>
 				@if((Auth::guest()))
-			        <div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-5  text-right" id="container-nav-buttons">	    
+			        <div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-2  text-right" id="container-nav-buttons">
 			        	<button class="button5" data-toggle="modal" data-target="#login">{{ trans('nav.login') }}</button>
 			        	<button class="button4 hidden-xs" data-toggle="modal" data-target="#login">{{ trans('nav.register') }}</button>
 			        </div>
