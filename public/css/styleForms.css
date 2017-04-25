@@ -142,6 +142,24 @@ checkbox square
 }
 
 /*
+checkbox list
+*/
+.form-custom input[type="checkbox"].list {
+    display:none
+}
+
+.form-custom input[type="checkbox"].list + label{
+	cursor:pointer;
+    padding: 10px 5px;
+}
+
+.form-custom input[type="checkbox"].list:checked + label{
+    background-color: rgba(156, 162, 169, 0.5);
+    color: #fff;
+}
+
+
+/*
 checkbox boxCheck
 */
 input[type=checkbox].boxCheck {

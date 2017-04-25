@@ -14,5 +14,13 @@ require('laravel-elixir-vue-2');
  */
 
 elixir(function(mix) {
-    mix.webpack(['jQueryEvents.js', 'app.js'], "public/js/app.js");
+
+    mix.webpack([
+        'autoCompleteUsers.js',
+        'validation.js',
+        'jQueryEvents.js',
+        'app.js'],
+    "public/js/app.js");
+
+
 });
