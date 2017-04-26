@@ -39,7 +39,7 @@ class HomeController extends Controller
             'categoriesJs' => $categories,
         ]);
 
-        $campaigns = Campaigns::where('state_id', 1)->get();
+        $campaigns = Campaigns::where('state_id', 1)->get()->where("groups.state_id", 1);
 
         return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin'))->with('i', ($request->input('page', 1) - 1) * 5);
     }

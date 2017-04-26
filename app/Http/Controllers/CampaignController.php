@@ -53,10 +53,19 @@ class CampaignController extends Controller
     {
 
         if ($this->getQuotasAvailable($request->input('campaign_id')) > 0) {
-            $participant = CampaignParticipants::create([
-                'campaigns_id' => $request->input('campaign_id'),
-                'participant_id' => Auth::id(),
-            ]);
+
+            $participant = CampaignParticipants::where("participant_id", Auth::id())->where("campaigns_id", $request->input('campaign_id'));
+            if($participant->get()->count() == 0){
+                $participant = CampaignParticipants::create([
+                    'campaigns_id' => $request->input('campaign_id'),
+                    'participant_id' => Auth::id(),
+                    "confirmed" => 1
+                ]);
+            }else{
+                $participant->update([
+                    "confirmed" => 1
+                ]);
+            }
 
             return redirect()->back()->with('msg', 'Te has inscrito con exito');
         }

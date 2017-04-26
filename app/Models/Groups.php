@@ -33,7 +33,7 @@ class Groups extends Model
 
     static function groupsUser($userId){
 
-        return Groups::where('admin_id', $userId)->get();
+        return Groups::where('admin_id', $userId)->where("state_id", 1)->get();
 
     }
 

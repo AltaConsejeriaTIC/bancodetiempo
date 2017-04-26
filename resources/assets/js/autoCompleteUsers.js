@@ -8,10 +8,13 @@ function initAutoComplete(){
     jQuery(".autoCompleteUsers").each(function(){
         jQuery(this).before('<div id="collaborators"></div>');
         jQuery(this).after('<ul class="listComplete hidden"></ul>');
-
         jQuery(this).on("keyup", getAutoCompleteUsers);
         _autoCompleteUsers.el = jQuery(this);
         _autoCompleteUsers.getUsers();
+        if(jQuery(this).data("collaborators") !== undefined){
+            _autoCompleteUsers.collaborators = jQuery(this).data("collaborators").split(",");
+        }
+        console.log(_autoCompleteUsers.collaborators);
         jQuery(window).click(closeAutoComplete);
     })
 }

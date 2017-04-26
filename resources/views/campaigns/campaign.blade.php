@@ -57,7 +57,7 @@
                     </div>
                 </div>
             <div class="row">
-                @foreach($campaign->participants as $participant)
+                @foreach($campaign->participants->where("confirmed", 1) as $participant)
                     <div class="col-md-2">
                         @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
                         <p class='text-center'>{{$participant->participant->first_name." ".$participant->participant->last_name}}</p>
@@ -86,17 +86,6 @@
                         <p class='paragraph4'>{{ str_limit($campaign->groups->description, 100)}}</p>
                     </div>
 
-                    @if($campaign->groups->admin_id != Auth::user()->id)
-                        <!--<div class="col-xs-12">
-                            <p class='paragraph4'>¿Te interesa está campaña?</p>
-                        </div>
-
-                        <div class="col-xs-12 ">
-                            <button class='col-xs-12 button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunícate con {{$campaign->groups->name}}</button>
-                        </div>-->
-
-                    @endif
-
                     @if($campaign->allows_registration == 0)
                         <div class="col-xs-12">
                             <p class='paragraph4'>{{ trans("campaigns.textDonation") }}</p>
@@ -105,7 +94,7 @@
                         <div class="col-xs-12 ">
                             <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.donation = true'>{{ trans("campaigns.donation") }}</button>
                         </div>
-                        <br>
+                        <div class="space10"></div>
                         <div class="col-xs-12 ">
                             <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.preinscription = true'>{{ trans("campaigns.preInscription") }}</button>
                         </div>
@@ -114,7 +103,7 @@
                             <p class='paragraph4'>Podras inscribirte a esta campaña el dia <br><strong class="text-center">{{ date("Y-m-d", strtotime($campaign->date_donations)) }}</strong></p>
                         </div>
                     @else
-                        @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)
+                        @if($campaign->participants->where('participant_id', Auth::id())->where("confirmed", 1)->count() == 0)
                             @if($campaign->groups->admin_id != Auth::user()->id)
                                     <div class="col-xs-12">
                                         <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
