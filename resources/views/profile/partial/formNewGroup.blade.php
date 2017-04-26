@@ -62,11 +62,59 @@
                     </div>
                 </div>
 
+
+                <div class="row">
+                    <label for="linkNetwork" class="paragraph10">{{ trans("profile.linkNetwork") }}</label>
+                </div>
+                <div class="row">
+                   <div class="row">
+                       <button type="button" class="button1 background-active-color col-md-8 col-md-offset-2" v-show='!myData.linkFacebook' @click='setMyData("linkFacebook", true)'>
+                           <i class="fa fa-facebook" style="font-size: 27px;float:left"></i>{{ trans("profile.link") }}
+                       </button>
+                       <div class="inputIntegrate col-md-10 col-md-offset-1" v-show='myData.linkFacebook'>
+                            <i class="fa fa-facebook" style="font-size: 27px"></i>
+                            <input type="text" class="text-center col-md-10" name="linkFacebook" placeholder='{{ trans("profile.placeHolderLinkFacebok") }}'>
+                       </div>
+
+                   </div>
+                   <br>
+                   <div class="row">
+                       <button type="button" class="button1 background-active-color col-md-8 col-md-offset-2" v-show='!myData.linkTwitter' @click='setMyData("linkTwitter", true)'>
+                           <i class="fa fa-twitter" style="font-size: 27px;float:left"></i>{{ trans("profile.link") }}
+                       </button>
+                       <div class="inputIntegrate col-md-10 col-md-offset-1" v-show='myData.linkTwitter'>
+                            <i class="fa fa-twitter" style="font-size: 27px"></i>
+                            <input type="text" class="text-center col-md-10" name="linkTwitter" placeholder='{{ trans("profile.placeHolderLinkTwitter") }}'>
+                       </div>
+                   </div>
+                   <br>
+                   <div class="row">
+                       <button type="button" class="button1 background-active-color col-md-8 col-md-offset-2" v-show='!myData.linkLinkedin' @click='setMyData("linkLinkedin", true)'>
+                           <i class="fa fa-linkedin" style="font-size: 27px;float:left"></i>{{ trans("profile.link") }}
+                       </button>
+                       <div class="inputIntegrate col-md-10 col-md-offset-1" v-show='myData.linkLinkedin'>
+                            <i class="fa fa-linkedin" style="font-size: 27px"></i>
+                            <input type="text" class="text-center col-md-10" name="linkLinkedin" placeholder='{{ trans("profile.placeHolderLinkLinkedin") }}'>
+                       </div>
+                   </div>
+                   <br>
+                   <div class="row">
+                       <button type="button" class="button1 background-active-color col-md-8 col-md-offset-2" v-show='!myData.linkInstagram' @click='setMyData("linkInstagram", true)'>
+                           <i class="fa fa-instagram" style="font-size: 27px;float:left"></i>{{ trans("profile.link") }}
+                       </button>
+                       <div class="inputIntegrate col-md-10 col-md-offset-1" v-show='myData.linkInstagram'>
+                            <i class="fa fa-instagram" style="font-size: 27px"></i>
+                            <input type="text" class="text-center col-md-10" name="linkInstagram" placeholder='{{ trans("profile.placeHolderLinkInstagram") }}'>
+                       </div>
+                   </div>
+                </div>
+                <br>
                 <div class="row">
                     <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
                         {{ trans("groups.newGroups") }}
                     </button>
                 </div>
+
                 <br>
                 <div class="row">
                     <button class="col-xs-12 button10 background-white text-center" @click='myData.newgroup = false'>

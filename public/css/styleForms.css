@@ -265,7 +265,6 @@ input[type=checkbox].boxCheck:checked + label i {
     display: block;
     overflow: hidden;
     margin-bottom: 20px;
-    width:100%;
 }
 
 .validation[validation='true'] + i{
@@ -404,4 +403,26 @@ input[type=checkbox].boxCheck:checked + label i {
     padding: 10px 5px 0px 5px;
     font-size: 14px;
     margin-bottom: 0px;
+}
+
+.inputIntegrate{
+    font-family: 'Open Sans', sans-serif;
+	font-size: 16px !important;
+	color: #2c3e50 !important;
+	padding: 10px 12px;
+	border: solid 1px #2c3e50;
+	border-radius: 4px;
+	transition:all 1s;
+	resize: none;
+}
+
+.inputIntegrate > * {
+    float: left;
+    margin-right: 10px;
+}
+
+.inputIntegrate > input {
+    border: 0px !important;
+    margin: 0px;
+    padding: 0px !important;
 }

@@ -18,6 +18,11 @@ return [
     'errorCollaborators' => 'Debe seleccionar dos colaboradores como minimo',
     'placeHolderNameGroup' => 'Ej. Estudiantes Universitarios',
     'placeHolderDescriptionGroup' => 'Ej. Ofrezco una hora de una clase de Yoga para principiantes. Podemos acordar un lugar de encuentro cercano al campus de Universidad Nacional. Puedo realizar la sesión los lunes o los miércoles de 6:00 am a 7:00 pm.',
-
+    'linkNetwork' => 'Vincular Redes Sociales',
+    'link' => 'Vincular',
+    'placeHolderLinkFacebok' => 'Ingresa tu usuario de Facebook',
+    'placeHolderLinkTwitter' => 'Ingresa tu usuario de Twitter',
+    'placeHolderLinkLinkedin' => 'Ingresa tu usuario de Linkedin',
+    'placeHolderLinkInstagram' => 'Ingresa tu usuario de Instagram',
 
 ];
