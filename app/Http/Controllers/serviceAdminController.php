@@ -18,6 +18,7 @@ class ServiceAdminController extends Controller
     }
 
     public function create(Request $request){
+        $category = Category::find($request->input("categoryService"));
         $cover = Helpers::uploadImage($request->file('imageService'), 'services'.date("Ymd").rand(000,999), 'resources/user/user_'. Auth::User()->id . '/services/');
         if(!$cover){
             $cover = "resources/".$category->image;

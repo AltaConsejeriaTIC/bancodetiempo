@@ -95,6 +95,18 @@
                 </div>
             </div>
 
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Tratos</h3></div>
+                    <div class="panel-body">
+                        <p>Listado de tratos</p>
+                        <p>
+                           <p><a href="/listDeals" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
