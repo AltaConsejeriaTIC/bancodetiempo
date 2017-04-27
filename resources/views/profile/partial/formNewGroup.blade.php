@@ -8,7 +8,7 @@
                 </div>
 
                 <div class="row">
-                    <input type="file" name="imageGroup" id="imageGroup" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 previewSvg validation" data-validations='["requiredImage"]'>
+                    <input type="file" name="imageGroup" id="imageGroup" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 previewSvg validation" >
                     <div  class='col-md-6 col-md-offset-3'>
                         <svg viewbox="0 0 100 100" version="1.1" for='imageGroup'>
                             <defs>
@@ -55,7 +55,7 @@
                     <label for="collaboratorGroup" class="paragraph10">{{ trans("profile.collaboratorGroup") }}</label>
                 </div>
                 <div class="row relative autoComplete">
-                    <input type="text" name="collaborator" id='collaborator' class='autoCompleteUsers col-xs-12 col-sm-12 col-md-12'>
+                    <input type="text" name="collaborator" id='collaborator' autocomplete="off" class='autoCompleteUsers col-xs-12 col-sm-12 col-md-12'>
                     <input type="hidden" name="collaborators" for='collaborator' class="validation" data-validations='["minArray:2"]'>
                     <div class="msg" errors='collaborators'>
                         <p error='minArray'>{{ trans('profile.errorCollaborators') }}</p>
