@@ -48,6 +48,10 @@ class GroupsController extends Controller
         $this->saveCollaborators($collaborators, $group);
     }
 
+    private function deleteCollaborators($group){
+        Group_collaborators::where("groups_id", $group->id)->delete();
+    }
+
 
     public function show($groupId){
 
@@ -73,6 +77,14 @@ class GroupsController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function delete(Request $request){
+        $group = Groups::find($request->input('group_id'));
+        $this->deleteCollaborators($group);
+        $group->delete();
+
+        return redirect()->back();
     }
 
 }

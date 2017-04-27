@@ -20,4 +20,7 @@ return [
     'errorMaxName' => 'Este campo debe ser maximo de 50 caracteres',
     'errorMinDescription' => 'Este campo debe ser mínimo de 50 caracteres',
     'errorMaxDescription' => 'Este campo debe ser maximo de 250 caracteres',
+    'questionDelete' => 'Estas seguro que deseas borrar este grupo',
+    "yes" => 'Si',
+    "not" => "No"
 ];

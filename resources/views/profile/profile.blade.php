@@ -135,6 +135,7 @@
                       <div class='col-md-6 col-xs-12 col-sm-6'>
                           @include('partial/groupBox', array("edit" => 1))
                       </div>
+                      @include("profile/partial/deleteGroup")
                     @endforeach
                 </div>
             </article>
