@@ -95,10 +95,12 @@
                             <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.donation = true'>{{ trans("campaigns.donation") }}</button>
                         </div>
                         <div class="space10"></div>
-                        <div class="col-xs-12 ">
-                            <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.preinscription = true'>{{ trans("campaigns.preInscription") }}</button>
-                        </div>
-                        <br>
+                        @if($campaign->groups->admin_id != Auth::user()->id)
+                            <div class="col-xs-12 ">
+                                <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.preinscription = true'>{{ trans("campaigns.preInscription") }}</button>
+                            </div>
+                            <br>
+                        @endif
                         <div class="col-xs-12">
                             <p class='paragraph4'>Podras inscribirte a esta campaña el dia <br><strong class="text-center">{{ date("Y-m-d", strtotime($campaign->date_donations)) }}</strong></p>
                         </div>
@@ -115,6 +117,15 @@
                                     <br>
                             @endif
                         @endif
+
+                        @if($campaign->state_id == 12)
+
+                            <div class="col-xs-12 ">
+                                <button class='col-xs-12 button1 background-active-color text-center' v-on:click='myData.pay = true'>{{ trans("campaigns.pay") }}</button>
+                            </div>
+                            <br>
+                        @endif
+
                         @if (session('msg'))
                             <div class="msg text-center">
                                 <p>{{ session('msg') }}</p>
@@ -132,4 +143,5 @@
 @include("campaigns/partial/donation")
 @include("campaigns/partial/inscription")
 @include("campaigns/partial/preinscription")
+@include("campaigns/partial/pay")
 @endsection

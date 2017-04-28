@@ -124,7 +124,7 @@ class CampaignController extends Controller
         if (!$uploadedImage) {
             $uploadedImage = "";
         }
-        //dd($request->all());
+
         $campaign = Campaigns::find($request->input("campaign_id"))->update([
             'name' => $request->input('nameCampaign'),
             'description' => $request->input('descriptionCampaign'),
@@ -138,8 +138,7 @@ class CampaignController extends Controller
         return redirect()->back();
     }
 
-    public function delete($serviceId)
-    {
+    public function delete($serviceId){
 
         $numServices = Service::where("user_id", Auth::user()->id)->count();
 
@@ -159,6 +158,15 @@ class CampaignController extends Controller
         Session::flash('success', 'Has eliminado correctamente tu servicio');
         return redirect('profile');
 
+    }
+
+    public function changeState(){
+        $campaigns = Campaigns::whereBetween("date", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where("state_id", 1)->get();
+        foreach($campaigns as $campaign){
+            $campaign->update([
+                "state_id" => 12
+            ]);
+        }
     }
 
 }
