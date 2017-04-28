@@ -24,7 +24,7 @@
             <label for="quotasCampaign" class="paragraph10">{{ trans("groups.hours") }}</label>
         </div>
         <div class="row">
-            <input type="number" name='quotasCampaign' class="col-xs-12 col-sm-12 col-md-12 validation" min='0'
+            <input type="number" name='hoursCampaign' class="col-xs-12 col-sm-12 col-md-12 validation" min='0'
                    data-validations='["required", "minNumber:1"]' value="{{$campaign->hours}}"/>
         </div>
         <div class="row">
@@ -32,7 +32,7 @@
         </div>
         <div class="row">
             <input type='text' name='dateCampaign' class='datepick validation'
-                   data-validations='["required", "afterToday"]' value="{{$campaign->date}}">
+                   data-validations='["required", "afterToday"]' value="{{explode(" ", $campaign->date)[0]}}">
             <div class="msg" errors='dateCampaign'>
                 <p error='required'>Este campo es obligatorio.</p>
                 <p error='min'>Debes ser mayor de edad para registrarte en Cambalachea.</p>
@@ -44,7 +44,7 @@
         </div>
         <div class="row">
             <input type="time" name="timeCampaign" id="timeCampaign" placeholder="hh:mm" class="validation"
-                   data-validations='["required", "time"]' value="{{$campaign->time}}">
+                   data-validations='["required", "time"]' value="{{explode(" ", $campaign->date)[1]}}">
             <div class="msg" errors='timeCampaign'>
                 <p error='time'>El formato no es valido.</p>
             </div>
@@ -63,10 +63,9 @@
         </div>
 
         <div class="row">
-            <input type="file" name="imageCampaign" id="imageCampaign"
-                   class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 preview validation"
-                   data-validations='["requiredImage"]'>
-            <label for="imageCampaign" class="text-center col-xs-12 col-sm-12"
+            <input type="file" name="imageCampaign" id="imageCampaign{{$campaign->id}}"
+                   class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 preview validation">
+            <label for="imageCampaign{{$campaign->id}}" class="text-center col-xs-12 col-sm-12"
                    style="background-image: url('/{{$campaign->image}}');">
                 <span>Sube una foto</span>
             </label>

@@ -28,7 +28,7 @@ class CampaignController extends Controller
                 'description' => $request->input('descriptionCampaign'),
                 'image' => $cover,
                 'groups_id' => $request->input('group_id'),
-                'hours' => $request->input('quotasCampaign'),
+                'hours' => $request->input('hoursCampaign'),
                 'credits' => 0,
                 'category_id' => $request->input('categoryCampaign'),
                 'date_donations' => $date_finish_donations,
@@ -128,9 +128,8 @@ class CampaignController extends Controller
         $campaign = Campaigns::find($request->input("campaign_id"))->update([
             'name' => $request->input('nameCampaign'),
             'description' => $request->input('descriptionCampaign'),
-            'credits' => $request->input('quotasCampaign'),
             'date' => $request->input('dateCampaign') . " " . $request->input('timeCampaign'),
-            'hours' => $request->input('quotasCampaign'),
+            'hours' => $request->input('hoursCampaign'),
             'category_id' => $request->input('categoryCampaign'),
             'image' => $uploadedImage,
             'state_id' => 1

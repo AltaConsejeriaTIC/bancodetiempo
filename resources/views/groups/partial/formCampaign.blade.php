@@ -21,7 +21,7 @@
                     <label for="quotasCampaign" class="paragraph10">{{ trans("groups.hours") }}</label>
                 </div>
                 <div class="row">
-                    <input type="number" name='quotasCampaign' class="col-xs-12 col-sm-12 col-md-12 validation" min='0' data-validations='["required", "minNumber:1"]' />
+                    <input type="number" name='hoursCampaign' class="col-xs-12 col-sm-12 col-md-12 validation" min='0' data-validations='["required", "minNumber:1"]' />
                 </div>
                 <div class="row">
                     <label for="dateCampaign" class="paragraph10">{{ trans("groups.date") }}</label>
