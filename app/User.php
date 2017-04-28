@@ -85,17 +85,19 @@ class User extends Authenticatable
     }
 
     static function recommendedServices(){
-        if(!is_null(Auth::User())){
+        if(Auth::check()){
             $allServices = Service::select('services.*')
                                 ->join('users','users.id','=','services.user_id')
                                 ->where('services.state_id' , 1)
                                 ->where('users.state_id', 1)
+                                ->whereIn("category_id", Auth::User()->interests)
                                 ->orderBy("created_at","desc");
-            $interestsUser = $this->getInterestsUser();
-            return $allServices->whereIn("category_id", $interestsUser);
+            return $allServices->get();
         }else{
             return null;
         }
     }
+
+
 
 }

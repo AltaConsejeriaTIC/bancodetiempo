@@ -29,14 +29,12 @@ class HomeController extends Controller{
 
     }
 
-
     public function index(Request $request){
 
         $categories = Category::getCategoriesInUse();
         $allServices = Service::getServicesActive()->paginate(12);
         $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
         $recommendedServices = User::recommendedServices();
-
         JavaScript::put([
             'categoriesJs' => $categories,
         ]);
@@ -46,17 +44,6 @@ class HomeController extends Controller{
         return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin'));
     }
 
-
-    
-    public function getInterestsUser(){
-    	
-    	$interests = array();
-    	foreach (User::find(Auth::user()->id)->interests->toArray() as $interest){
-    		array_push($interests, $interest['category_id']);
-        }
-    	return $interests;
-    	
-    }
     
     public function filter(Request $request){
 
