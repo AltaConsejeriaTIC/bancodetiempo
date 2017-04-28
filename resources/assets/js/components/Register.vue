@@ -67,7 +67,7 @@
                 <label for="birthdate" class="paragraph10">Fecha de nacimiento</label>                
             </div>         
             <div class="row not-margin">               	                
-                <input type='text' name='birthDate' class='datepick validation' data-validations='["required", "minYear:18"]'>
+                <input type='text' name='birthDate' class='datepick validation col-md-12' data-validations='["required", "minYear:18"]'>
                 <div class="msg" errors='birthDate'>
 					<p error='required'>Este campo es obligatorio.</p>
 					<p error='min'>Debes ser mayor de edad para registrarte en Cambalachea.</p>
@@ -89,7 +89,7 @@
 
             <div class="row not-margin" v-show='this.profile == 0'>
                 <div class='col-xs-12'>
-                    <input type="checkbox" name="adult" value="1" id="adult" class="square validation" data-validations='["requiredCheck"]'>
+                    <input type="checkbox" name="adult" value="1" id="adult" class="square validation" data-validations='["requiredCheck"]' v-if='this.profile == 0'>
 					<label for="adult">Confirmo que soy mayor de edad</label>
                 </div>
             </div>
