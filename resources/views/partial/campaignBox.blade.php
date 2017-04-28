@@ -8,14 +8,6 @@
                 <button class="icons-button" @click="myData.deleteCampaign=true"><i
                             class="fa fa-trash-o"></i></button>
             </div>
-            {{--
-                {!! Form::model($campaign, ['url' => ['service/save', $campaign->id], 'method' => 'put', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation']) !!}
-                    <editservice name="EditService{{$campaign->id}}" id="{{$campaign->id}}"></editservice>
-                {!!Form::close()!!}
-                {!! Form::model($campaign, ['url' => ['serviceDelete', $campaign->id], 'method' => 'get', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
-                    @include('services.partial.deleteService')
-                {!!Form::close()!!}
-            --}}
         @endif
         <span class='category'>{{$campaign->category->category}}</span>
         <a href="/campaign/{{$campaign->id}}">
