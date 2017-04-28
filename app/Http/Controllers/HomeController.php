@@ -48,23 +48,17 @@ class HomeController extends Controller{
     public function filter(Request $request){
 
     	$allServices = ServiceController::getServiceActive();
-
-        //$this->filterText($allServices, $request->input('filter'));
-
         $this->filterTags($allServices, $request->input('filter'));
-
     	$allServices = $allServices->paginate(12);
-    	
-    	$recommendedServices = $this->recommendedServices();
+    	$recommendedServices = User::recommendedServices();
+        $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
 
     	JavaScript::put([
     			'categoriesJs' => CategoryController::getCategoriesActive(),
     	]);
-
         $categories = CategoryController::getCategoriesActive();
-    	 
         $campaigns = Campaigns::where('state_id', 1)->get();
-    	return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns'))->with('i', ($request->input('page', 1) - 1) * 5);
+    	return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     public function filterTags($allServices, $filter){

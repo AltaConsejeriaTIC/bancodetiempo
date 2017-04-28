@@ -263,7 +263,7 @@ function validationGeneal(){
             jQuery(this).attr("validation", "true");
         }
     })
-
+    console.log(allErrors)
     if(allErrors > 0){
         return false;
     }else{
