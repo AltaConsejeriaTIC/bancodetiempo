@@ -44,7 +44,7 @@ class ProfileController extends Controller
 				'categoriesJs' => $categories,
 				'servicesJs' => $services,
 				'tagsJs' => $tags,
-        'tags' => $tagsJson,
+                'tags' => $tagsJson,
 			]);				
 
        $myGroups = Groups::groupsUser(Auth::user()->id);

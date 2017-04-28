@@ -70,13 +70,8 @@
 
       },
        getTags:function(){
-                  	this.$http.get('/tags').then(response => {
-					this.tagsList = response.body
-
-				}, response => {
-				    console.log("error")
-				});
-                    },
+            this.tagsList = window.tags;
+        },
       focusNewTag() {
         if (this.readOnly) { return; }
         this.$el.querySelector('.new-tag').focus();
