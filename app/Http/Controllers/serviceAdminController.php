@@ -18,7 +18,7 @@ class ServiceAdminController extends Controller
     }
 
     public function create(Request $request){
-        $category = Category::find($request->input("categoryService"));
+        $category = Category::find($request->input("categoryService")); 
         $cover = Helpers::uploadImage($request->file('imageService'), 'services'.date("Ymd").rand(000,999), 'resources/user/user_'. Auth::User()->id . '/services/');
         if(!$cover){
             $cover = "resources/".$category->image;
@@ -53,8 +53,7 @@ class ServiceAdminController extends Controller
             'virtually' =>$request->input('modalityServiceVirtually', 0),
             'presently' =>$request->input('modalityServicePresently', 0),
             'image' => $cover,
-            'category_id' => $request->input('serviceCategory'),
-            'state_id' => 1
+            'category_id' => $request->input('serviceCategory')
         ]);
 
         return redirect()->back();
