@@ -145,7 +145,16 @@ class CampaignController extends Controller
         ]);
 
         return redirect('profile');
+    }
 
+    public function changeState()
+    {
+        $campaigns = Campaigns::whereBetween("date", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where("state_id", 1)->get();
+        foreach ($campaigns as $campaign) {
+            $campaign->update([
+                "state_id" => 12
+            ]);
+        }
     }
 
 }

@@ -13,9 +13,8 @@ use App\Http\Controllers\Profile\ProfileController;
 |
 */
 Route::get('/', 'HomeController@indexNotRegister');
-
+Route::get('/index', 'HomeController@indexNotRegister');
 Route::get('/home', 'HomeController@index')->middleware('passRegister');
-
 Route::get('/content/{name}', 'ContentController@index');
 
 //Social Loging

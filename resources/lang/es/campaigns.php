@@ -12,6 +12,7 @@ return [
     'textPreinscription' => '¿Quieres pre inscribirte a esta campaña?',
     'inscription' => "Inscribirme",
     'preInscription' => "Pre inscribirme",
-    'participants' => 'Participantes'
+    'participants' => 'Participantes',
+    'pay' => 'Pagar'
 
 ];
