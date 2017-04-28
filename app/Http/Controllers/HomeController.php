@@ -16,63 +16,37 @@ use App\Models\subscribers;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Session;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller{
+
+    public function indexNotRegister(){
+
+    	if(Auth::check()){
+    		return redirect('/home');
+    	}else{
+    		$lastServices = Service::getServicesActive()->get()->take(6);
+    		return view('welcome', compact('lastServices'));
+    	}
+
+    }
+
+
     public function index(Request $request){
 
-        $this->IncompleteRegister();
-        $categories = Category::select('categories.id','categories.category')->join('services','categories.id','=','services.category_id')
-                                ->where('services.state_id', 1)
-                                ->groupBy('categories.id','categories.category')
-                                ->get();
-        $allServices = Service::select('services.*')
-                                ->join('users','users.id','=','services.user_id')
-                                ->where('services.state_id' , 1)
-                                ->where('users.state_id', 1)
-                                ->orderBy("created_at","desc")
-                                ->paginate(12);
+        $categories = Category::getCategoriesInUse();
+        $allServices = Service::getServicesActive()->paginate(12);
+        $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
+        $recommendedServices = User::recommendedServices();
 
-        $serviceAdmin = ServiceAdmin::where('state_id', 1)->orderBy('created_at', 'desc')->paginate(12);
-
-        $recommendedServices = $this->recommendedServices();
         JavaScript::put([
             'categoriesJs' => $categories,
         ]);
 
         $campaigns = Campaigns::where('state_id', 1)->get()->where("groups.state_id", 1);
 
-        return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin'));
     }
 
-    private function recommendedServices(){
-        if(!is_null(Auth::User())){
-            $allServices = Service::select('services.*')
-                                ->join('users','users.id','=','services.user_id')
-                                ->where('services.state_id' , 1)
-                                ->where('users.state_id', 1)
-                                ->orderBy("created_at","desc");
-            $interestsUser = $this->getInterestsUser();
-            return $allServices->whereIn("category_id", $interestsUser);
-        }else{
-            return null;
-        }
-    }
-    
-    public function indexNotRegister(){
-    	
-    	if(Auth::user()){
-    		return redirect('/home');
-    	}else{
-    		$lastServices = Service::where('services.state_id','=', 1)
-                            ->orderBy('services.id', 'desc')
-                            ->limit(6)
-                            ->get()
-                            ->where('state_id','=', 1);
-    		    		
-    		return view('welcome', compact('lastServices'));
-    	}
-    	
-    }
+
     
     public function getInterestsUser(){
     	
@@ -130,24 +104,6 @@ class HomeController extends Controller
 		}else{
             return $allServices;
 		}
-
-    }
-
-
-    public function IncompleteRegister(){
-        if(!is_null(Auth::user())){
-            if (Auth::user()->privacy_policy == 1) {
-                if(InterestUser::whereUserId(Auth::user()->id)->count()>=3) {
-                    if (Service::whereUserId(Auth::user()->id)->first()) {                        
-                        return false;
-                    }                    
-                    return redirect('/service');
-                }                
-                return redirect('/interest');
-            }            
-            return redirect('/register'); 
-        }
-        
 
     }
 

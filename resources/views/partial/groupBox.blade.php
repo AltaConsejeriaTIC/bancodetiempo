@@ -4,7 +4,7 @@
         @if(isset($edit))
 			<div class="col-md-5 icons-button-content">
 				<button class="icons-button" @click="myData.editgroup{{$group->id}} = true"><i class="fa fa-pencil"></i></button>
-				<button class="icons-button"><i class="fa fa-trash-o"></i></button>
+				<button class="icons-button" @click="myData.deletegroup{{$group->id}} = true"><i class="fa fa-trash-o"></i></button>
 			</div>
 			@include('profile.partial.formEditGroup')
 		@endif

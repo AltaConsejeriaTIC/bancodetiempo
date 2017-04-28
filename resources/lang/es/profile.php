@@ -14,6 +14,7 @@ return [
     'myServices' => 'Mis Ofertas',
     'myGroups' => 'Mis grupos',
     'newGroup' => 'Crear nuevo grupo',
+    'editGroup' => 'Editar grupo',
     'collaboratorGroup' => 'Agregar Colaboradores',
     'errorCollaborators' => 'Debe seleccionar dos colaboradores como minimo',
     'placeHolderNameGroup' => 'Ej. Estudiantes Universitarios',

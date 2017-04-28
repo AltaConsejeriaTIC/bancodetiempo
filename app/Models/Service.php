@@ -65,5 +65,13 @@ class Service extends Model
     public function deals(){
         return $this->hasMany(Deal::class);
     }
+
+    static function getServicesActive(){
+        return Service::select('services.*')
+                        ->join('users','users.id','=','services.user_id')
+                        ->where('services.state_id' , 1)
+                        ->where('users.state_id', 1)
+                        ->orderByRaw("RAND()");
+    }
 	
 }

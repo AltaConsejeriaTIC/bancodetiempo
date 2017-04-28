@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
 use App\Models\State;
 use App\Models\Role;
@@ -81,6 +82,20 @@ class User extends Authenticatable
 
         return $this->hasMany(Reports::class);
 
+    }
+
+    static function recommendedServices(){
+        if(!is_null(Auth::User())){
+            $allServices = Service::select('services.*')
+                                ->join('users','users.id','=','services.user_id')
+                                ->where('services.state_id' , 1)
+                                ->where('users.state_id', 1)
+                                ->orderBy("created_at","desc");
+            $interestsUser = $this->getInterestsUser();
+            return $allServices->whereIn("category_id", $interestsUser);
+        }else{
+            return null;
+        }
     }
 
 }

@@ -31,6 +31,15 @@ class Groups extends Model
         return $this->hasMany(Group_collaborators::class);
     }
 
+    public function setImageAttribute($value){
+
+        if (!empty($value) && $value != '') {
+
+            $this->attributes['image'] = $value;
+
+        }
+    }
+
     static function groupsUser($userId){
 
         return Groups::where('admin_id', $userId)->where("state_id", 1)->get();

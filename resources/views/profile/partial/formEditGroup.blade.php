@@ -8,9 +8,9 @@
                 </div>
 
                 <div class="row">
-                    <input type="file" name="imageGroup" id="imageGroup" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 previewSvg validation" data-validations='[]'>
+                    <input type="file" name="imageGroup" id="imageGroup{{$group->id}}" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 previewSvg validation" >
                     <div  class='col-md-6 col-md-offset-3'>
-                        <svg viewbox="0 0 100 100" version="1.1" for='imageGroup'>
+                        <svg viewbox="0 0 100 100" version="1.1" for='imageGroup{{$group->id}}'>
                             <defs>
                                <pattern id="preview"  patternUnits="userSpaceOnUse" width="100" height="100">
                                  <image  xlink:href="/{{$group->image}}" x="-25" width="150" height="100" />
@@ -21,7 +21,7 @@
                     </div>
                     <p></p>
                     <p class="text-center">
-                        <label for="imageGroup" class="button1 background-active-color">{{ trans("profile.updateCover") }}</label>
+                        <label for="imageGroup{{$group->id}}" class="button1 background-active-color">{{ trans("profile.updateCover") }}</label>
                     </p>
 
                     <div class="msg" errors='imageGroup'>
@@ -54,9 +54,10 @@
                 <div class="row">
                     <label for="collaboratorGroup" class="paragraph10">{{ trans("profile.collaboratorGroup") }}</label>
                 </div>
+
                 <div class="row relative autoComplete">
-                    <input type="text" name="collaborator" id='collaborator' class='autoCompleteUsers col-xs-12 col-sm-12 col-md-12' data-collaborators='@foreach($group->collaborators as $collaborator){{$collaborator->id}},@endforeach'>
-                    <input type="hidden" name="collaborators" for='collaborator' class="validation" data-validations='["minArray:2"]'>
+                    <input type="text" name="collaborator" id='collaboratorGroup{{$group->id}}' class='autoCompleteUsers col-xs-12 col-sm-12 col-md-12'  autocomplete="off" data-collaborators='{{$group->collaborators->implode("user_id", ",")}}'>
+                    <input type="hidden" name="collaborators" for='collaboratorGroup{{$group->id}}' class="validation" data-validations='["minArray:2"]'>
                     <div class="msg" errors='collaborators'>
                         <p error='minArray'>{{ trans('profile.errorCollaborators') }}</p>
                     </div>
@@ -110,8 +111,9 @@
                 </div>
                 <br>
                 <div class="row">
+                   <input type="hidden" name="group_id" value='{{$group->id}}'>
                     <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
-                        {{ trans("groups.newGroups") }}
+                        {{ trans("groups.editGroups") }}
                     </button>
                 </div>
 

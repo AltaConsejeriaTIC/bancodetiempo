@@ -53,8 +53,7 @@ class ServiceAdminController extends Controller
             'virtually' =>$request->input('modalityServiceVirtually', 0),
             'presently' =>$request->input('modalityServicePresently', 0),
             'image' => $cover,
-            'category_id' => $request->input('serviceCategory'),
-            'state_id' => 1
+            'category_id' => $request->input('serviceCategory')
         ]);
 
         return redirect()->back();
