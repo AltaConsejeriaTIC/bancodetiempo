@@ -1,6 +1,6 @@
-<generalmodal name='deleteCampaign' :state='myData.deleteCampaign' state-init='false'>
+<generalmodal name='deleteCampaign{{$campaign->id}}' :state='myData.deleteCampaign{{$campaign->id}}' state-init='false'>
     <div slot="modal" class='modal-container'>
-        <button type="button" @click='myData.deleteCampaign = false' class="close circle-shape"><span
+        <button type="button" @click='myData.deleteCampaign{{$campaign->id}} = false' class="close circle-shape"><span
                     aria-hidden="true">×</span></button>
         {!! Form::open(['url' => 'deleteCampaign/'.$campaign->id, 'method' => 'put','enctype' => 'multipart/form-data', 'class' => 'form-custom', 'form-validation' => '']) !!}
         <div class="row">
@@ -15,7 +15,7 @@
         <br>
         <div class="row">
             <button type="button" class="col-xs-12 button10 background-white text-center"
-                    @click='myData.deleteCampaign = false'>
+                    @click='myData.deleteCampaign{{$campaign->id}} = false'>
                 {{trans("groups.not")}}
             </button>
         </div>

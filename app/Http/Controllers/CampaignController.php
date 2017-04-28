@@ -120,6 +120,12 @@ class CampaignController extends Controller
     public function update(Request $request)
     {
 
+        $today = new \DateTime(date("Y-m-d"));
+        $userDate = new \DateTime($request->input('dateCampaign'));
+        $interval = $today->diff($userDate);
+        $dayInterval = (int)ceil($interval->days / 2);
+        $date_finish_donations = date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $request->input('timeCampaign');
+
         $uploadedImage = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/services/');
         if (!$uploadedImage) {
             $uploadedImage = "";
@@ -131,6 +137,7 @@ class CampaignController extends Controller
             'date' => $request->input('dateCampaign') . " " . $request->input('timeCampaign'),
             'hours' => $request->input('hoursCampaign'),
             'category_id' => $request->input('categoryCampaign'),
+            'date_donations' => $date_finish_donations,
             'image' => $uploadedImage,
             'state_id' => 1
         ]);
@@ -144,12 +151,13 @@ class CampaignController extends Controller
             'state_id' => 2
         ]);
 
-        return redirect('profile');
+        return redirect()->back();
     }
 
     public function changeState()
     {
         $campaigns = Campaigns::whereBetween("date", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where("state_id", 1)->get();
+
         foreach ($campaigns as $campaign) {
             $campaign->update([
                 "state_id" => 12
