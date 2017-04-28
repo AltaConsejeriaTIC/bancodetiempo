@@ -9,7 +9,7 @@ use App\Models\CampaignParticipants;
 
 class Campaigns extends Model
 {
-    protected  $fillable = ['name', 'description', 'image', 'groups_id', 'category_id', 'credits',  'hours', 'date', 'date_donations', 'state_id'];
+    protected $fillable = ['name', 'description', 'image', 'groups_id', 'category_id', 'credits', 'hours', 'date', 'date_donations', 'state_id'];
 
     public function groups()
     {
@@ -21,12 +21,24 @@ class Campaigns extends Model
         return $this->belongsTo(State::class);
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function participants(){
+    public function participants()
+    {
         return $this->hasMany(CampaignParticipants::class);
+    }
+
+    public function setImageAttribute($value)
+    {
+
+        if (!empty($value) && $value != '') {
+
+            $this->attributes['image'] = $value;
+
+        }
     }
 
 }
