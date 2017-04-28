@@ -42,6 +42,8 @@ Route::post('createGroup','GroupsController@create');
 Route::get('group/{groupId}','GroupsController@show');
 
 Route::post('createCampaign','CampaignController@create');
+Route::post('updateCampaign','CampaignController@update');
+Route::post('deleteCampaign','CampaignController@delete');
 
 Route::get('campaign/{campaignId}','CampaignController@show');
 

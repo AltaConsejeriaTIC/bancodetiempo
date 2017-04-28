@@ -5,6 +5,7 @@ return [
     'collaborators' => 'Colaboradores',
     'campaign' => 'Campañas',
     'newCampaign' => 'Crear nueva campaña',
+    'editCampaign' => 'Editar campaña',
     'nameCampaign' => 'Nombre',
     'descriptionCampaign' => 'Descripción',
     'quotas' => 'Cupos',

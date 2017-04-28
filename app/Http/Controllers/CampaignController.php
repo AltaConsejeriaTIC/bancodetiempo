@@ -55,13 +55,13 @@ class CampaignController extends Controller
         if ($this->getQuotasAvailable($request->input('campaign_id')) > 0) {
 
             $participant = CampaignParticipants::where("participant_id", Auth::id())->where("campaigns_id", $request->input('campaign_id'));
-            if($participant->get()->count() == 0){
+            if ($participant->get()->count() == 0) {
                 $participant = CampaignParticipants::create([
                     'campaigns_id' => $request->input('campaign_id'),
                     'participant_id' => Auth::id(),
                     "confirmed" => 1
                 ]);
-            }else{
+            } else {
                 $participant->update([
                     "confirmed" => 1
                 ]);
@@ -98,22 +98,68 @@ class CampaignController extends Controller
         return $this->getQuotasCampaign($campaign) - $totalParticipants;
     }
 
-    public function sendReminder(){
-        $yesterday = date("Y-m-d H-i-s", mktime(date("H"), date("i"), 0, date("m"), date("d")+1, date("Y")));
-        $yesterday2 = date("Y-m-d H-i-s", mktime(date("H"), date("i"), 59, date("m"), date("d")+1, date("Y")));
+    public function sendReminder()
+    {
+        $yesterday = date("Y-m-d H-i-s", mktime(date("H"), date("i"), 0, date("m"), date("d") + 1, date("Y")));
+        $yesterday2 = date("Y-m-d H-i-s", mktime(date("H"), date("i"), 59, date("m"), date("d") + 1, date("Y")));
         $range = array($yesterday, $yesterday2);
         $campaigns = Campaigns::whereBetween('date', $range)->get();
-        foreach($campaigns as $campaign){
-            foreach($campaign->participants as $participant){
+        foreach ($campaigns as $campaign) {
+            foreach ($campaign->participants as $participant) {
                 $email = $participant->participant->email2;
 
-                Mail::send('mailReminder',['user' => $participant->participant, 'campaign' => $campaign], function ($message) use ($email){
-                $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
-                $message->subject('Notificación');
-                $message->to($email);
-    	});
+                Mail::send('mailReminder', ['user' => $participant->participant, 'campaign' => $campaign], function ($message) use ($email) {
+                    $message->from('evenvivelab_bog@unal.edu.co', 'Cambalachea!');
+                    $message->subject('Notificación');
+                    $message->to($email);
+                });
             }
         }
+    }
+
+    public function update(Request $request)
+    {
+
+        $uploadedImage = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/services/');
+        if (!$uploadedImage) {
+            $uploadedImage = "";
+        }
+        //dd($request->all());
+        $campaign = Campaigns::find($request->input("campaign_id"))->update([
+            'name' => $request->input('nameCampaign'),
+            'description' => $request->input('descriptionCampaign'),
+            'credits' => $request->input('quotasCampaign'),
+            'date' => $request->input('dateCampaign') . " " . $request->input('timeCampaign'),
+            'hours' => $request->input('quotasCampaign'),
+            'category_id' => $request->input('categoryCampaign'),
+            'image' => $uploadedImage,
+            'state_id' => 1
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function delete($serviceId)
+    {
+
+        $numServices = Service::where("user_id", Auth::user()->id)->count();
+
+        if ($numServices > 1) {
+            $tagsService = TagsService::where('service_id', '=', $serviceId)->get();
+            foreach ($tagsService as $tagService) {
+                $tagService = TagsService::find($tagService->id);
+                $tagService->delete();
+            }
+            $service = Service::find($serviceId);
+            $service->delete();
+        } else {
+            Session::flash('error', 'No puedes tener menos de un servicio');
+            return redirect('profile');
+        }
+
+        Session::flash('success', 'Has eliminado correctamente tu servicio');
+        return redirect('profile');
+
     }
 
 }
