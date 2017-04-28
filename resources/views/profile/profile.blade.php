@@ -125,9 +125,6 @@
                           <i class="fa fa-plus-square icons" aria-hidden="true"></i>
                           <p>{{ trans("profile.newGroup") }}</p>
                         </button>
-                        {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation' => '']) !!}
-                          <newservice></newservice>
-                        {!! Form::close() !!}
                     </div>
                 </div>
                 <div class="row">
