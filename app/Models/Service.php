@@ -71,7 +71,7 @@ class Service extends Model
                         ->join('users','users.id','=','services.user_id')
                         ->where('services.state_id' , 1)
                         ->where('users.state_id', 1)
-                        ->orderBy("created_at","desc");
+                        ->orderByRaw("RAND()");
     }
 	
 }

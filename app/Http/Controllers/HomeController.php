@@ -23,10 +23,7 @@ class HomeController extends Controller{
     	if(Auth::check()){
     		return redirect('/home');
     	}else{
-    		$lastServices = Service::where('services.state_id','=', 1)
-                                    ->where('state_id','=', 1)
-                                    ->orderByRaw("RAND()")
-                                    ->get();
+    		$lastServices = Service::getServicesActive()->get()->take(6);
     		return view('welcome', compact('lastServices'));
     	}
 
@@ -38,7 +35,7 @@ class HomeController extends Controller{
         $categories = Category::getCategoriesInUse();
         $allServices = Service::getServicesActive()->paginate(12);
         $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
-        $recommendedServices = $this->recommendedServices();
+        $recommendedServices = User::recommendedServices();
 
         JavaScript::put([
             'categoriesJs' => $categories,
