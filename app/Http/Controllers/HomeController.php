@@ -24,9 +24,9 @@ class HomeController extends Controller{
     		return redirect('/home');
     	}else{
     		$lastServices = Service::where('services.state_id','=', 1)
-                                    ->orderBy('services.id', 'desc')
                                     ->where('state_id','=', 1)
-                                    ->get()->random(6);
+                                    ->orderByRaw("RAND()")
+                                    ->get();
     		return view('welcome', compact('lastServices'));
     	}
 
