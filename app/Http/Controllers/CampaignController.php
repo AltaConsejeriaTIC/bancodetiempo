@@ -140,7 +140,9 @@ class CampaignController extends Controller
 
     public function delete($campaignId)
     {
-        Campaigns::find($campaignId)->delete();
+        $campaign = Campaigns::find($campaignId)->update([
+            'state_id' => 2
+        ]);
 
         return redirect('profile');
 
