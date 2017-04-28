@@ -1,6 +1,6 @@
 <generalmodal name='editCampaign' :state='myData.editCampaign' state-init='false'>
     <div slot="modal" class='modal-container'>
-        <button type="button" @click='myData.newcampaign = false' class="close circle-shape"><span
+        <button type="button" @click='myData.editCampaign = false' class="close circle-shape"><span
                     aria-hidden="true">×</span></button>
         {!! Form::open(['url' => 'updateCampaign', 'method' => 'post','enctype' => 'multipart/form-data', 'class' => 'form-custom', 'form-validation' => '']) !!}
         <div class="row">

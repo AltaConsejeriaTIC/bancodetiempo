@@ -138,31 +138,19 @@ class CampaignController extends Controller
         return redirect()->back();
     }
 
-    public function delete($serviceId){
+    public function delete($campaignId)
+    {
+        $campaign = Campaigns::find($campaignId)->update([
+            'state_id' => 2
+        ]);
 
-        $numServices = Service::where("user_id", Auth::user()->id)->count();
-
-        if ($numServices > 1) {
-            $tagsService = TagsService::where('service_id', '=', $serviceId)->get();
-            foreach ($tagsService as $tagService) {
-                $tagService = TagsService::find($tagService->id);
-                $tagService->delete();
-            }
-            $service = Service::find($serviceId);
-            $service->delete();
-        } else {
-            Session::flash('error', 'No puedes tener menos de un servicio');
-            return redirect('profile');
-        }
-
-        Session::flash('success', 'Has eliminado correctamente tu servicio');
         return redirect('profile');
-
     }
 
-    public function changeState(){
+    public function changeState()
+    {
         $campaigns = Campaigns::whereBetween("date", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where("state_id", 1)->get();
-        foreach($campaigns as $campaign){
+        foreach ($campaigns as $campaign) {
             $campaign->update([
                 "state_id" => 12
             ]);
