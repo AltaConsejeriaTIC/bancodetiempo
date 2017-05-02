@@ -50,7 +50,7 @@
             @endif
 
             <div class="row">
-                @foreach($group->campaigns as $key => $campaign)
+                @foreach($group->campaigns->where('state_id', 1) as $key => $campaign)
                     <div class='col-md-6 col-xs-12 col-sm-6'>
                         @include('partial/campaignBox',array("$campaign" => $campaign, "edit" => "1"))
                     </div>

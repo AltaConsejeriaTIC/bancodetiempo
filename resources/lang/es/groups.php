@@ -10,6 +10,7 @@ return [
     'descriptionCampaign' => 'Descripción',
     'quotas' => 'Cupos',
     'publishCampaign' => 'Publicar campaña',
+    'editCampaign' => 'Editar campaña',
     'cancel' => 'Cancelar',
     'date' => 'Fecha',
     'time' => 'Hora',

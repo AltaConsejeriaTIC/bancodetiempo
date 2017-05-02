@@ -1,6 +1,6 @@
-<generalmodal name='editCampaign' :state='myData.editCampaign' state-init='false'>
+<generalmodal name='editCampaign{{$campaign->id}}' :state='myData.editCampaign{{$campaign->id}}' state-init='false'>
     <div slot="modal" class='modal-container'>
-        <button type="button" @click='myData.editCampaign = false' class="close circle-shape"><span
+        <button type="button" @click='myData.editCampaign{{$campaign->id}} = false' class="close circle-shape"><span
                     aria-hidden="true">×</span></button>
         {!! Form::open(['url' => 'updateCampaign', 'method' => 'post','enctype' => 'multipart/form-data', 'class' => 'form-custom', 'form-validation' => '']) !!}
         <div class="row">
@@ -73,12 +73,12 @@
         <div class="row">
             <input type="hidden" name='campaign_id' value="{{$campaign->id}}">
             <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color">
-                {{trans('groups.publishCampaign')}}
+                {{trans('groups.editCampaign')}}
             </button>
         </div>
         <br>
         <div class="row">
-            <button class="col-xs-12 button10 background-white text-center" @click='myData.editCampaign = false'>
+            <button class="col-xs-12 button10 background-white text-center" @click='myData.editCampaign{{$campaign->id}} = false'>
                 {{trans('groups.cancel')}}
             </button>
         </div>

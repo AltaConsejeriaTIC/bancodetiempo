@@ -3,9 +3,9 @@
     <div class='service-box'>
         @if(isset($edit))
             <div class="col-md-5 icons-button-content">
-                <button class="icons-button" @click="myData.editCampaign=true"><i
+                <button class="icons-button" @click="myData.editCampaign{{$campaign->id}}=true"><i
                             class="fa fa-pencil"></i></button>
-                <button class="icons-button" @click="myData.deleteCampaign=true"><i
+                <button class="icons-button" @click="myData.deleteCampaign{{$campaign->id}}=true"><i
                             class="fa fa-trash-o"></i></button>
             </div>
         @endif
@@ -30,6 +30,6 @@
             </div>
         </a>
     </div>
-    @include('campaigns/partial/editCampaign')
-    @include('campaigns/partial/deleteCampaign')
+    @include('campaigns/partial/editCampaign', array("$campaign" => $campaign))
+    @include('campaigns/partial/deleteCampaign', array("$campaign" => $campaign))
 @endif
