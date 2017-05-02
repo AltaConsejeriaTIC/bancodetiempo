@@ -755,7 +755,6 @@ detail group
 
 div.groupCover{
     max-height: 360px !important;
-    width: 100%;
     overflow: hidden;
 }
 
