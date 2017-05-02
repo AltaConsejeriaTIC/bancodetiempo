@@ -138,7 +138,7 @@
 								</div>
 							
 								<div class="col-xs-12 ">
-									<button class='col-xs-12 button1 background-active-color text-center' data-toggle="modal" data-target="#login">Comunícate con {{$user->first_name}}</button>
+									<button class='col-xs-12 button1 background-active-color text-center'  @click='myData.login = true'>Comunícate con {{$user->first_name}}</button>
 								</div>
 							@endif
 							

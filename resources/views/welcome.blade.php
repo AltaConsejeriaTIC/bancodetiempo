@@ -36,7 +36,7 @@
 				<div class="space"></div>
 				<div class="row">
 				    <div class="col-xs-12 col-md-12">
-				        <button class='button1 background-active-green-color col-xs-12' id='bt-register' data-toggle="modal" data-target="#login">{{ trans('home.buttonBanner') }}</button>
+				        <button class='button1 background-active-green-color col-xs-12' id='bt-register' @click='myData.login = true'>{{ trans('home.buttonBanner') }}</button>
 				    </div>
 
 				</div>
