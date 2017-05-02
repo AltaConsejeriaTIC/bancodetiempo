@@ -190,7 +190,6 @@
                                         </div>
                                         <div class="row">
                                             <select name='categoryService' class='col-xs-12  col-sm-12 validation categories' data-validations='["required"]' onChange='jQuery("#serviceCategory").html(jQuery(this).children("option:checked").text())'>
-                                                <option value="">Seleccione una Categoría....</option>
                                             </select>
                                             <div class="msg" errors='categoryService'>
                                                 <p error='required'>Debes seleccionar una categoría.</p>
@@ -201,7 +200,6 @@
                                         </div>
                                         <div class="row">
                                             <input-tag class="col-xs-12  col-sm-12 no-input" placeholder="Ej. EstiloDeVida JuegosDeMesa Collar" validate="text"></input-tag>
-                                            <input type="hidden" name="tagService" v-model="myData.tagsUser">
                                         </div>
                                         <div class="row">
                                             <label for="imageServices" class="paragraph10">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>

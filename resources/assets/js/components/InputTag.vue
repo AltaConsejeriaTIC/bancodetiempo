@@ -39,8 +39,8 @@
       return obj;
     },
     mounted() {
-			this.getTags()
-		},
+        this.getTags()
+    },
     methods: {
       previewTags(tag){
          var n = tag.length;
@@ -121,7 +121,6 @@
         return '';
       },
       tagChange() {
-        this.$parent.setMyData('tagsUser', this.tags);
         if (this.onChange) {
           // avoid passing the observer
           this.onChange(JSON.parse(JSON.stringify(this.tags)));
@@ -139,6 +138,7 @@
     </span>
     <input data-toggle="dropdown" v-if="!readOnly"  v-bind:placeholder="getPlaceholder()" type="text" v-model="newTag" v-on:keydown.delete.stop="removeLastTag()"
            v-on:keyup="previewTags(newTag)" v-on:keydown.space.enter.prevent.stop="addNew(newTag)"  class="new-tag dropdown-toggle" />
+           <input type="hidden" name="tagService" :value="this.tags">
     <ul class="dropdown-menu "  >
       <li v-for="suggestion in suggestions" v-on:click="addNew(suggestion)">
         {{ suggestion }}

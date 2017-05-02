@@ -17,6 +17,7 @@ use App\Models\Service;
 use App\Models\Groups;
 use JavaScript;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\AttainmentsController;
 
 class ProfileController extends Controller
 {
@@ -84,23 +85,13 @@ public function  editProfilePicture(Request $request){
 
 	public function editProfile(Request $request){
 
-	 	$this->validate($request, [
-	 			'firstName' => 'required|min:3|alpha_spaces',
-	 			'lastName' => 'required|min:3|alpha_spaces',
-	 			'gender' => 'required',
-	 			'aboutMe' => 'required|min:50|max:250',
-	      'terms' => 'required',
-	 			'image' => 'image|max:2000',
-	 			'avatar' => 'max:2000|image',
-	 			'email2' => 'required|email'
-	 	]);
-	 		 	
+	 	$this->validateProfile($request);
 	 	$picture=$this->editProfilePicture($request);
 	 	$user = Auth::user();
 	 	
 	 	if($picture !==false){
-	    $user->avatar = $picture;
-	  }
+	       $user->avatar = $picture;
+        }
 		
 		$user->first_name = $request->input('firstName');
 		$user->last_name = $request->input('lastName');
@@ -115,65 +106,36 @@ public function  editProfilePicture(Request $request){
 			$user->save();
 			return Redirect::to("profile");
 		}else{
-
-			$step = Attainment::where('id','=',1)->first();
-			$stepRegister = Auth::user()->attainmentUsers->count(); 
-			$attainments = AttainmentUsers::where('user_id',$user->id)->where('attainment_id',$step->id)->first();			
-			if($attainments != null)
-				$attainments = AttainmentUsers::find($attainments->id);
-			
-			if($stepRegister == 0)
-				$attainments = new AttainmentUsers;
-			
-			if(is_null($attainments->state_id))
-			{				
-				$attainments->user_id = $user->id;
-				$attainments->attainment_id = $step->id;
-				$attainments->state_id = 1;
-				$attainments->save();
-				$user->credits = $step->value;
-				$user->save();
-
-				return Redirect::to("/interest")->with('coin',$step->value);	
-			}
-			else
-			{
-				$user->save();
-				return Redirect::to("/interest");	
-			}
-			
+            $user->save();
+			AttainmentsController::saveAttainment(1);
+            return Redirect::to("/interest");
 		}
   	
 
 	}
+
+    private function validateProfile($request){
+        $this->validate($request, [
+	 			'firstName' => 'required|min:3|alpha_spaces',
+	 			'lastName' => 'required|min:3|alpha_spaces',
+	 			'gender' => 'required',
+	 			'aboutMe' => 'required|min:50|max:250',
+	            'terms' => 'required',
+	 			'image' => 'image|max:2000',
+	 			'avatar' => 'max:2000|image',
+	 			'email2' => 'required|email'
+	 	]);
+    }
 	
 	public function showFromInterest(){
 
 		$categories = Category::all('id', 'category');
-		
-		$step = Attainment::where('id','=',2)->first();
-		$stepRegister = Auth::user()->attainmentUsers->count();
-		$attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();					
-				
-		if($attainments != null)		
-			$attainments = AttainmentUsers::find($attainments->id);			
-		
-
-		if($stepRegister == 1)
-		{
-			$attainments = new AttainmentUsers;
-			$attainments->state_id = 2;
-		}
-				
-		$attainments->user_id = Auth::user()->id;
-		$attainments->attainment_id = $step->id;
-		$attainments->save();
 
 		JavaScript::put([
 			'interestJs' => Auth::user()->interests,				
 		]);
 		
-		return view('/interest', compact('categories','pass2','pass1','pass3'));
+		return view('/interest', compact('categories'));
 
 	}
 
@@ -181,35 +143,16 @@ public function  editProfilePicture(Request $request){
 
 		$interestAct = InterestUser::where('user_id', Auth::User()->id);
 		$interestAct->delete();
-		$user = Auth::user();
-
-		$step = Attainment::where('id','=',2)->first();		
-		$attainments = AttainmentUsers::where('user_id',$user->id)->where('attainment_id',$step->id)->first();					
-				
-		if($attainments != null)
-			$attainments = AttainmentUsers::find($attainments->id);
-
-		
 		foreach($request->get('interets') as $interets){
-			
 			InterestUser::create([
 					'user_id' => Auth::User()->id,
 					'category_id' => $interets
 			]);
 		}	
 			
-		if($attainments->state_id == 2)
-		{
-			$attainments->state_id = 1;
-			$attainments->save();
-			$user->credits = $user->credits + $step->value; 
-			$user->save();
-			return redirect("/service")->with('coin',$step->value);
-		}
-		else
-		{			
-			return redirect("/service");			
-		}		
+		AttainmentsController::saveAttainment(2);
+
+        return redirect("/service");
 
 	}
 
