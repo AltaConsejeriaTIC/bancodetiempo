@@ -224,10 +224,24 @@ class AdminController extends Controller
         $campaign->state_id = $request->state_id;
 
         if ($campaign->save()) {
+            sendMailToParticipants($campaign);
             Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
             return redirect('adminCampaigns');
         }
 
+    }
+
+    private function sendMailToParticipants($campaign)
+    {
+        foreach ($campaign->participants as $participant) {
+            $email = $participant->participant->email2;
+
+            Mail::send('mailCancelCampaign', ["campaign" => $campaign, "participant" => $participant->participant], function ($message) use ($email) {
+                $message->from('evenvivelab_bog@unal.edu.co', 'Cambalachea!');
+                $message->subject('Notificación');
+                $message->to($email);
+            });
+        }
     }
 
     public function updateServices(Request $request)
