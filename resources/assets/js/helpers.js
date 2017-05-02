@@ -13,7 +13,6 @@ module.exports = {
                 firstName : windowvar.userJs["first_name"],
                 lastName : windowvar.userJs["last_name"],
                 gender: windowvar.userJs["gender"],
-
                 aboutMe: windowvar.userJs["aboutMe"],
                 email: windowvar.userJs["email"],
                 email2: windowvar.userJs["email2"],
