@@ -106,6 +106,7 @@ function score(){
 }
 
 function previewImage(e){
+    var elemt = jQuery(e.target);
     var id =  e.target.id;
     var files = e.target.files;
     var label = jQuery(e.target.labels[0]);
@@ -115,6 +116,9 @@ function previewImage(e){
         var reader = new FileReader();
          reader.onload = (e) => {
              label.css("background-image", "url('"+e.target.result+"')")
+             if(elemt.data('mirror') !== undefined){
+                 jQuery(elemt.data('mirror')).attr("src", e.target.result);
+             }
          };
         reader.readAsDataURL(files[0]);
     }else{
