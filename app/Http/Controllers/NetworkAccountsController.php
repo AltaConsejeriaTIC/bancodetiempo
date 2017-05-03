@@ -61,7 +61,7 @@ class NetworkAccountsController extends Controller
 				'provider' => $providerData['provider']
 		]);
 
-    $email = is_null($providerData['email']) ? $providerData['id']."@cambalachea.co" : $providerData['email'];
+        $email = is_null($providerData['email']) ? $providerData['id']."@cambalachea.co" : $providerData['email'];
 
 		$user = User::whereEmail($email)->first();
 

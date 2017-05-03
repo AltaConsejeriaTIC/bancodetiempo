@@ -19,4 +19,10 @@ class State extends Model
 	{		
 		return $this->hasMany(AttainmentUsers::class);		
 	}
+
+    static function statesForUsers(){
+
+        return State::whereIn('id', [1,2,3,4]);
+
+    }
 }

@@ -33,30 +33,30 @@ class ServiceController extends Controller{
     }
 
 
-	 public function deleteService ($serviceId)
-   {
+	 public function deleteService ($serviceId){
     
-    $numServices = Service::where("user_id",Auth::user()->id)->count();
+        $numServices = Service::where("user_id",Auth::user()->id)->count();
 
-    if ($numServices>1)
-    {
-      $tagsService = TagsService::where('service_id','=',$serviceId)->get();
-      foreach ($tagsService as $tagService) 
-      {
-        $tagService = TagsService::find($tagService->id);
-        $tagService->delete();
-      }
-      $service = Service::find($serviceId);
-      $service->delete();
-    }
-    else
-    {
-      Session::flash('error','No puedes tener menos de un servicio');
-      return redirect('profile');
-    }
-    
-    Session::flash('success','Has eliminado correctamente tu servicio');
-    return redirect('profile');
+        if ($numServices>1){
+
+            $tagsService = TagsService::where('service_id','=',$serviceId)->get();
+            foreach ($tagsService as $tagService){
+
+                $tagService = TagsService::find($tagService->id);
+                $tagService->delete();
+            }
+
+            $service = Service::find($serviceId);
+            $service->delete();
+
+        }else{
+
+          Session::flash('error','No puedes tener menos de un servicio');
+          return redirect('profile');
+
+        }
+        Session::flash('success','Has eliminado correctamente tu servicio');
+        return redirect('profile');
 
    }
 

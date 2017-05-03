@@ -2,10 +2,10 @@
 
 //Routes Admin Panel
 Route::get('homeAdmin', 'AdminController@homeAdmin');
-Route::get('homeAdminUser', 'AdminController@homeAdminUser');
+
+Route::resource('homeAdminUser', 'Admin\UserController@showList');
 
 Route::resource('adminUser', 'AdminController');
-Route::post('adminUser/show', ['as' => 'adminUser/show', 'uses'=>'AdminController@show']);
 Route::put('adminUser/update', ['as' => 'adminUser/update', 'uses'=>'AdminController@update']);
 
 Route::get('homeAdminServices', 'AdminController@homeAdminServices');

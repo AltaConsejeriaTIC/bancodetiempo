@@ -34,12 +34,6 @@ class AdminController extends Controller
         return view('admin/homeAdmin');
     }
 
-    public function homeAdminUser()
-    {
-        $users = User::with('state', 'role')->orderBy('created_at', 'desc')->paginate(6);
-        $states = State::whereIn('id', [1, 3])->pluck('state', 'id');
-        return view('admin/users/list', compact('users', 'states'));
-    }
 
     public function homeAdminServices(Request $request)
     {
@@ -128,18 +122,6 @@ class AdminController extends Controller
             return redirect('homeAdminContents');
         }
     }
-
-    public function show(Request $request)
-    {
-        if ($request->name != '') {
-            $users = User::where('first_name', 'LIKE', "%$request->name%")->paginate(6);
-            $states = State::whereIn('id', [1, 3])->pluck('state', 'id');
-            return view('admin/users/list', compact('users', 'states'));
-        } else {
-            return redirect('homeAdminUser');
-        }
-    }
-
 
     public function update(Request $request)
     {
