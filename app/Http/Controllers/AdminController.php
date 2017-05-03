@@ -228,6 +228,7 @@ class AdminController extends Controller
             if ($campaign->state_id != 1) {
                 $this->sendMailToParticipants($campaign);
             }
+
             Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
             return redirect('adminCampaigns');
         }
