@@ -21,7 +21,7 @@
 	                    <div class="col-xs-6 col-xs-offset-3">
 	                        <avatar :cover='myData.cover'>
 			                    <template scope="props">
-			                    	@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
+			                    	@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' =>Auth::user()->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
 		                        </template>	                        	
 		                     </avatar>
 	                    </div>                            
@@ -29,12 +29,12 @@
 	                <div v-show='noEdit'>
 		                <div class="row">
 		                    <div class="col-xs-12">
-		                        <h2 class="title1">{{$user->first_name." ".$user->last_name}}</h2>
+		                        <h2 class="title1">{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
 		                    </div>               
 		                </div>
 		                <div class="row">
 		                    <div class="col-xs-12">
-		                        <p class='paragraph4'>{{$user->aboutMe}}</p>
+		                        <p class='paragraph4'>{{Auth::user()->aboutMe}}</p>
 		                    </div>
 		                </div>                
 		                <div class="row">

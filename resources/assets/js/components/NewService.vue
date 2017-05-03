@@ -102,7 +102,6 @@
 	            			</div>
 	            			<div class="row">				
 								<input-tag class="col-xs-12  col-sm-12 no-input" :on-change="setTags" placeholder="Ej. EstiloDeVida JuegosDeMesa Collar" validate="text" :tags="tags"></input-tag>
-								<input type="hidden" name="tagService" v-model="tagService">
 							</div>
 	            			<div class="row">
 	            				<label for="imageServices" class="paragraph10">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>

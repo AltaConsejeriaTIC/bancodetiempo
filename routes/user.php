@@ -3,7 +3,6 @@
 
 // Route Profile
 Route::get('profile', 'Profile\ProfileController@showProfile');
-Route::get('profile/edit', 'Profile\ProfileController@ShowEditProfile');
 
 //Route::put('profile/edit','Profile\ProfileController@editProfile');
 Route::post('profile/update', ['as' => 'profile/update', 'uses' => 'Profile\ProfileController@editProfile']);

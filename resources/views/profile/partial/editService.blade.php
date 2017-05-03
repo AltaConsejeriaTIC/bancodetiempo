@@ -1,7 +1,8 @@
 <generalmodal  name='editService{{$service->id}}' :state='myData.editService{{$service->id}}' state-init='false'>
         <div slot="modal" class='modal-container'>
-            <button type="button" @click='myData.editService{{$service->id}} = false' class="close circle-shape"><span aria-hidden="true">×</span></button>
+
             <div class="modal-body">
+               <button type="button" @click='myData.editService{{$service->id}} = false' class="close circle-shape"><span aria-hidden="true">×</span></button>
                {!! Form::model($service, ['url' => ['service/save', $service->id], 'method' => 'put', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation']) !!}
 
                 <div class='serviceForm'>
@@ -119,7 +120,6 @@
                         <select name='categoryService'
                             class='col-xs-12  col-sm-12 validation categories' option='{{$service->category_id}}'
                             data-validations='["requiredSelect"]'>
-                            <option value="">Seleccione una Categoría....</option>
                         </select>
                         <div class="msg" errors='categoryService'>
                             <p error='required'>Debes seleccionar una categoría.</p>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="row">
                         <input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 validation preview" id='"imageService{{$service->id}}'  data-validations='["maxFile:2500000"]'>
-                           <label for='imageService{{$service->id}}' class='text-center col-xs-12 col-sm-12'><span>Sube una foto</span></label>
+                           <label for='imageService{{$service->id}}' class='text-center col-xs-12 col-sm-12' style="background-image:url('{{$service->image}}')"><span>Sube una foto</span></label>
                            <div class="msg" errors='imageService'>
                                 <p error='max'>El peso màximo de la imagen debe ser de 3 Megas.</p>
                             </div>

@@ -15,6 +15,7 @@ use App\Models\HistoryDonations;
 use Session;
 use Validator;
 use Hash;
+use Mail;
 
 class AdminController extends Controller
 {
@@ -224,14 +225,16 @@ class AdminController extends Controller
         $campaign->state_id = $request->state_id;
 
         if ($campaign->save()) {
-            sendMailToParticipants($campaign);
+            if ($campaign->state_id != 1) {
+                $this->sendMailToParticipants($campaign);
+            }
             Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
             return redirect('adminCampaigns');
         }
 
     }
 
-    private function sendMailToParticipants($campaign)
+    public function sendMailToParticipants($campaign)
     {
         foreach ($campaign->participants as $participant) {
             $email = $participant->participant->email2;

@@ -143,6 +143,38 @@ class ServiceController extends Controller{
         }
    }
 
+    private function saveTags($tags, $service){
+        $this->deleteTags($service);
+        if($tags){
+            foreach ($tags as $tag){
+                 $newTag = Tag::where('tag',$tag)->first();
+
+                if(empty($newTag)){
+                    $newTag = new Tag;
+                }
+
+                $newTag->tag = $tag;
+                $newTag->save();
+                $newTagService = new TagsService;
+                $newTagService->service_id = $service->id;
+                $newTagService->tag_id = $newTag->id;
+                $newTagService->save();
+            }
+        }
+
+   }
+
+    private function deleteTags($service, $tags = []){
+        $list = $service->tags;
+        if(!empty($tags)){
+            $list = $list->whereIn("tag.id", $tags);
+        }
+
+        foreach($list as $tag){
+            $tag->delete();
+        }
+    }
+
    public function  uploadCover($file, $service){
       
     if(!$file){
@@ -185,27 +217,7 @@ class ServiceController extends Controller{
    		
    }
 
-   public function saveTags($tags, $service){
 
-         if($tags){   
-
-            foreach ($tags as $tag){
-                 $newTag = Tag::where('tag',$tag)->first();
-
-                if(empty($newTag)){
-                    $newTag = new Tag; 
-                }
-
-                $newTag->tag = $tag;
-                $newTag->save();
-                $newTagService = new TagsService;
-                $newTagService->service_id = $service->id;
-                $newTagService->tag_id = $newTag->id;
-                $newTagService->save();
-            }
-        }     
-
-   }
     public function getTags(){
         $tags = json_encode(Tag::all('tag'));
         print ($tags);
