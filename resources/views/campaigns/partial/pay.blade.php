@@ -7,7 +7,7 @@
             </div>
             @foreach($campaign->participants as $participant)
                 <div class="row">
-                    <input type="checkbox" name="participantsPay[]" class="square" id="participant{{$participant->participant->id}}">
+                    <input type="checkbox" name="participantsPay[]" value='{{$participant->participant->id}}' class="square" id="participant{{$participant->participant->id}}">
                     <label for="participant{{$participant->participant->id}}" class='col-md-12'>
                         <div class="col-md-2">
                             @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' => $participant->participant->id, 'border' => '#0f6784', 'borderSize' => '1px'))

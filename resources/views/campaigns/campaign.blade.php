@@ -129,7 +129,7 @@
                             @endif
                         @endif
 
-                        @if($campaign->state_id == 12)
+                        @if($campaign->state_id == 12 && $campaign->groups->admin_id == Auth::user()->id)
 
                             <div class="col-xs-12 ">
                                 <button class='col-xs-12 button1 background-active-color text-center'

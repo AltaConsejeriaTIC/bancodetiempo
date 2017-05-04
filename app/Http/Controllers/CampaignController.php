@@ -154,10 +154,37 @@ class CampaignController extends Controller
         return redirect()->back();
     }
 
+    public function pay(Request $request){
+        $campaign = Campaigns::find($request->input('campaign_id'));
+        $participants = $request->input('participantsPay');
+
+        foreach($participants as $participant){
+            $thisParticipant = $campaign->participants->where('participant_id', $participant);
+            if($thisParticipant->count() > 0){
+
+                $thisParticipant->last()->update([
+                    "presence" => 1
+                ]);
+
+                $thisParticipant->last()->participant->update([
+                    "credits" => $thisParticipant->last()->participant->credits + $campaign->hours
+                ]);
+
+                $campaign->update([
+                    "credits" => $campaign->credits - $campaign->hours,
+                    "state_id" => 10
+                ]);
+            }
+        }
+
+        return redirect()->back();
+
+    }
+
     public function changeState()
     {
         $campaigns = Campaigns::whereBetween("date", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where("state_id", 1)->get();
-
+        print(date("Y-m-d H:i:00"));
         foreach ($campaigns as $campaign) {
             $campaign->update([
                 "state_id" => 12

@@ -51,3 +51,5 @@ Route::post('preinscriptionParticipant', 'CampaignController@preinscriptionParti
 
 Route::post('serviceAdmin/{serviceId}', 'ServiceAdminController@index');
 
+Route::post('payParticipant', 'CampaignController@pay');
+
