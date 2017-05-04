@@ -171,11 +171,15 @@ class CampaignController extends Controller
                 ]);
 
                 $campaign->update([
-                    "credits" => $campaign->credits - $campaign->hours,
-                    "state_id" => 10
+                    "credits" => $campaign->credits - $campaign->hours
                 ]);
             }
         }
+
+        $campaign->update([
+                "credits" => 0,
+                "state_id" => 10
+        ]);
 
         return redirect()->back();
 
