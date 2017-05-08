@@ -31,7 +31,7 @@
 		 		<div class='ranking'>											
 					<div>
 						@for($cont = 1 ; $cont <= 5 ; $cont++)
-							@if($cont <= $service->user->ranking)
+							@if($cont <= $service->ranking)
 								<span class='material-icons paragraph9'>grade</span>
 							@else
 								<span class='material-icons paragraph8 in'>fiber_manual_record</span>

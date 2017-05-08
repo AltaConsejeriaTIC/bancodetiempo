@@ -23,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name',  'email','email2', 'password', 'avatar', 'state_id', 'gender', 'credits','birthDate', 'aboutMe', 'role_id','privacy_policy'
+        'first_name', 'last_name',  'email','email2', 'password', 'avatar', 'state_id', 'gender', 'credits','birthDate', 'aboutMe', 'role_id','privacy_policy', 'ranking'
     ];
 
     /**
@@ -96,6 +96,31 @@ class User extends Authenticatable
         }else{
             return null;
         }
+    }
+
+    static function setRanking($user){
+
+        $user = User::find($user);
+
+        if($user->user_score->count() > 0){
+
+            print($user->user_score->count().'<br>');
+
+            $sum = 0;
+
+            foreach($user->user_score as $score){
+                $sum += $score->score;
+            }
+
+            $ranking = $sum/$user->user_score->count();
+
+            print($sum/$user->user_score->count()."<hr>");
+            $user->update([
+                "ranking" => $ranking
+            ]);
+
+        }
+
     }
 
 

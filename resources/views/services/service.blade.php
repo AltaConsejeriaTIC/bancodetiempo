@@ -36,7 +36,7 @@
 					<div class='ranking left'>
 						<div class='left'>
 							@for($cont = 1 ; $cont <= 5 ; $cont++)
-								@if($cont <= $service->user->ranking)
+								@if($cont <= $service->ranking)
 									<span class='material-icons paragraph9'>grade</span>
 								@else
 									<span class='material-icons paragraph8 '>fiber_manual_record</span>
@@ -108,6 +108,20 @@
 							</avatar>
 						</div>
 					</div>
+					<div class="row">
+					    <div class='ranking'>
+                            <div class='left'>
+                                @for($cont = 1 ; $cont <= 5 ; $cont++)
+                                    @if($cont <= $service->user->ranking)
+                                        <span class='material-icons'>grade</span>
+                                    @else
+                                        <span class='material-icons paragraph4 '>fiber_manual_record</span>
+                                    @endif
+                                @endfor
+                            </div>
+                        </div>
+					</div>
+
 					<div >
 						<div class="row">
 							<div class="col-xs-12 text-center">

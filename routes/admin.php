@@ -14,8 +14,6 @@ Route::post('homeAdminServices', ['as' => 'homeAdminServices', 'uses'=>'AdminCon
 Route::post('homeAdminServices/reported', ['as' => 'homeAdminServices/reported', 'uses'=>'AdminController@showServicesReported']);
 Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'uses'=>'AdminController@updateServiceState']);
 
-Route::get('adminGroups', 'AdminController@adminGroups');
-Route::post('adminGroups', ['as' => 'adminGroups', 'uses'=>'AdminController@adminGroups']);
 Route::put('adminGroups/update', ['as' => 'adminGroups/update', 'uses'=>'AdminController@updateGroupState']);
 
 Route::get('adminCampaigns', 'AdminController@adminCampaigns');
@@ -42,3 +40,5 @@ Route::post('admin/service/save', 'ServiceAdminController@create');
 Route::put('admin/service/update', 'ServiceAdminController@update');
 
 Route::resource('listDeals', 'Admin\DealsController@showList');
+
+Route::resource('listGroups', 'Admin\GroupsController@showList');

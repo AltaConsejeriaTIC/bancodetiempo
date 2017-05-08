@@ -58,3 +58,9 @@ Route::get('/validateLogout', 'NetworkAccountsController@validateLogout');
 
 Route::get('/tags','TagsController@jsonTags');
 Route::get('/categories','CategoryController@jsonCategories');
+Route::get('/setRanking', function(){
+    $users = App\Models\Service::all();
+    foreach($users as $user){
+        App\Models\Service::setRanking($user->id);
+    }
+});

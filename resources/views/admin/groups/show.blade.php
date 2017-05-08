@@ -75,6 +75,17 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
+                                                <div class="space10"></div>
+                                                <h3>Campañas</h3>
+                                                @foreach($group->campaigns as $campaign)
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 ">
+                                                                <h5>{{$campaign->name}}</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
                                             </article>
                                         </article>
                                     </div>

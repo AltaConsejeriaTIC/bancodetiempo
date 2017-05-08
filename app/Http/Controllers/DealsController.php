@@ -42,6 +42,8 @@ class DealsController extends Controller
             "observation" => $this->request->input("observation")
         ]);
 
+        User::setRanking($this->request->input("applicant_id"));
+
         Deal::find($this->request->input("deal_id"))->update([
             "response_offerer" => $this->request->input("response"),
             "offerer_badObservations_id" => $this->request->input("badObservation", 1),

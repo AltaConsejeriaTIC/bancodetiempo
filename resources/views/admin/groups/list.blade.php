@@ -8,18 +8,7 @@
                     <div class="panel-heading"><h2>Lista de Grupos Registrados en el Sistema</h2></div>
                     <div class="panel-body">
                         @include('partial.errors')
-                        {!! Form::open(['route' => 'adminGroups', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
-                        <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" class="form-control" name="find">
-                        </div>
-                        <button type="submit" class="btn btn-raised btn-primary" title="Buscar"><i
-                                    class="material-icons">search</i></button>
-                        <a href="{{ url('/adminGroups') }}" class="btn btn-raised btn-primary"
-                           title="Listar Todos"><i class="material-icons">youtube_searched_for</i></a>
-                        <!--a href="{{ url('/homeAdminServices/reported') }}" class="btn btn-raised btn-primary"
-                           title="Listar Reportados">Reportados</a-->
-                        {!! Form::close() !!}
+
                         <div class="col-md-2 form-group navbar-right">
                             <span class="label label-success news">Hay {!! $groups->total() !!}
                                 Grupos Registrados</span>
@@ -32,17 +21,51 @@
                                     <th>Description</th>
                                     <th>Administrador</th>
                                     <th>Estado</th>
+                                    <th>Fecha creacion</th>
                                     <th>Acción</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                 <tr>
+                                    {!! Form::open(['url' => 'listGroups', 'method' => 'post', 'novalidate', 'id' => 'filter']) !!}
+                                        <td><input type="text" name="filterName" style='width:100px' value='{{request("filterName")}}'></td>
+                                        <td></td>
+                                        <td><input type="text" name="filterAdmin" style='width:150px' value='{{request("filterAdmin")}}'></td>
+                                        <td>
+                                           <select style='width:100px' name="filterState" onChange='jQuery("#filter").submit()'>
+                                                <option value=""></option>
+                                                @foreach($states as $state)
+                                                    <option value="{{$state->id}}" @if(request("filterState") == $state->id) selected @endif >{{$state->state}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td class="row">
+                                           <div class="col-md-9">
+                                                <span>Fecha inicio</span>
+                                                <input type="text" class="col-md-12 not-margin not-padding datepick" name="filtrerDateCreateStart" value="{{request('filtrerDateCreateStart')}}">
+                                                <span>Fecha fin</span>
+                                                <input type="text" class="col-md-12 not-margin not-padding datepick" name="filtrerDateCreateFinish" value="{{request('filtrerDateCreateFinish')}}">
+                                           </div>
 
+                                            <i class="material-icons col-md-1" onclick="jQuery('#orderCreate').val(@if(request('orderDateCreate') == 'desc') 'asc' @else 'desc' @endif); jQuery('#filter').submit()">swap_vert</i>
+                                            <input type="hidden" name='orderDateCreate' id='orderCreate' value="{{request('orderDateCreate')}}">
+                                        </td>
+                                      <td>
+                                          <button type="submit" class="btn btn-raised btn-primary btn-xs"><i class="material-icons">search</i></button>
+                                          <input type="hidden" name="download" value='0' id='download'>
+                                          <button type="submit" class="btn btn-raised btn-primary btn-xs" onclick='jQuery("#download").val(1);'>
+                                                <i class="material-icons">cloud_download</i>
+                                            </button>
+                                      </td>
+                                    {!! Form::close() !!}
+                                  </tr>
                                 @foreach($groups as $group)
                                     <tr>
                                         <td>{{ $group->name }}</td>
                                         <td><p class="paragraph3">{{ $group->description }}</p></td>
                                         <td>{{ $group->admin->first_name." ".$group->admin->last_name}}</td>
                                         <td>{{ $group->state->state}}</td>
+                                        <td>{{ $group->created_at }}</td>
                                         <td>
                                             <a class="btn btn-raised btn-primary btn-xs" href="" title="Ver detalle"
                                                data-toggle="modal" data-target="#show-dialog{{$group->id}}"><i

@@ -58,7 +58,7 @@
                     <div class="panel-heading"><h3>Administrar Grupos</h3></div>
                     <div class="panel-body">
                         <p>Sección para gestionar todos los grupos.</p>
-                        <p><a href="/adminGroups" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
+                        <p><a href="/listGroups" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
                     </div>
                 </div>
             </div>

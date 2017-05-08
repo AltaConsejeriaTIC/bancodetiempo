@@ -31,4 +31,10 @@ class State extends Model
         return State::whereIn('id', [4, 7, 8, 10, 11, 12]);
 
     }
+
+    static function statesForgroups(){
+
+        return State::whereIn('id', [1,2,3]);
+
+    }
 }
