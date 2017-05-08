@@ -158,6 +158,20 @@
 							
 						</div>
 					</div>
+					<div>
+					    <h1 class="title1">Comentarios</h1>
+					    @foreach($service->serviceScore as $commentary)
+					        @if($commentary->observation != '')
+                                <div class="row">
+                                    <div class="col-md-2 not-padding">
+                                        @include('partial/imageProfile', array('cover' => $commentary->user->avatar, 'id' =>$commentary->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                    </div>
+                                    <p class="col-md-8">{{$commentary->observation}}</p>
+                                </div>
+                                <br>
+					        @endif
+					    @endforeach
+					</div>
 
 				</article>
 
