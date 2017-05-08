@@ -138,35 +138,4 @@ class DealsController extends Controller
         }
     }
 
-    public function listDeals(){
-        $deals = Deal::orderBy("created_at", "desc")->paginate(12);
-        return view("admin/deals/list", compact("deals"));
-    }
-
-    public function listDealsDownload(){
-        $deals = Deal::orderBy("created_at", "desc")->get();
-        $data = [];
-        foreach($deals as $deal){
-            $data[] = [
-                "Servicio" => $deal->service->name,
-                "Demandante" => $deal->user->first_name." ".$deal->user->last_name,
-                "Ofertante" => $deal->service->user->first_name." ".$deal->service->user->last_name,
-                "Fecha" => $deal->date." ".$deal->time,
-                "Valor" => $deal->value,
-                "Descripcion" => $deal->description,
-                "Lugar" => $deal->location,
-                "Estado" => $deal->dealStates->last()->state->state
-            ];
-        }
-        Excel::create('TratosCambalachea' . date("Y-m-d"), function ($excel) use ($data) {
-            $excel->sheet('tratos', function ($sheet) use ($data) {
-
-                $sheet->fromArray($data);
-
-            });
-        })->export('xls');
-
-        return redirect()->back();
-    }
-
 }
