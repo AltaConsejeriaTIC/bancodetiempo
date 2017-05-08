@@ -13,8 +13,8 @@
                                 <div class="container">
                                     <div class='row'>
                                         <article class="col-md-8">
-                                            <h3 class='title title2-service'>{{$group->name}}</h3>
-                                            <div class="image-service">
+                                            <h3>{{$group->name}}</h3>
+                                            <div>
                                                 <img class="col-md-8"
                                                      src="@if(strpos($group->image, 'http') === false) /{{$group->image}} @else {{$group->image}} @endif"
                                                      alt=""/>
@@ -23,7 +23,7 @@
                                             <h3 class='col-md-8'>Descripcion del grupo</h3>
                                             <div class="col-md-8">
                                                 <div class="content">
-                                                    <p class="paragraph4 ">{{$group->description}}</p>
+                                                    <p>{{$group->description}}</p>
                                                     <div class="space15">
                                                     </div>
                                                 </div>
@@ -31,7 +31,7 @@
                                             <h3 class='col-md-8'>Estado</h3>
                                             <div class="col-md-8">
                                                 <div class="content">
-                                                    <p class="paragraph4 ">{{$group->state->state}}</p>
+                                                    <p >{{$group->state->state}}</p>
                                                     <div class="space15">
                                                     </div>
                                                 </div>
@@ -51,7 +51,7 @@
                                                 <div>
                                                     <div class="row">
                                                         <div class="col-xs-12 ">
-                                                            <h5 class="title1">{{$group->admin->first_name." ".$group->admin->last_name}}</h5>
+                                                            <h5>{{$group->admin->first_name." ".$group->admin->last_name}}</h5>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -70,7 +70,7 @@
                                                     <div>
                                                         <div class="row">
                                                             <div class="col-xs-12 ">
-                                                                <h5 class="title1">{{$collaborator->user->first_name." ".$collaborator->user->last_name}}</h5>
+                                                                <h5>{{$collaborator->user->first_name." ".$collaborator->user->last_name}}</h5>
                                                             </div>
                                                         </div>
                                                     </div>

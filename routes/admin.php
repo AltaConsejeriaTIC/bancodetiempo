@@ -41,6 +41,4 @@ Route::get('listServiceAdmin', 'ServiceAdminController@listServiceAdmin');
 Route::post('admin/service/save', 'ServiceAdminController@create');
 Route::put('admin/service/update', 'ServiceAdminController@update');
 
-Route::get('listDeals', 'DealsController@listDeals');
-
-Route::get("admin/deal/download", "DealsController@listDealsDownload");
+Route::resource('listDeals', 'Admin\DealsController@showList');
