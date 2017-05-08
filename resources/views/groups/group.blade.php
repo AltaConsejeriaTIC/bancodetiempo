@@ -14,12 +14,12 @@
 
             <div class="row">
                 <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 groupCover">
-                   @include('partial/imageProfile', array('cover' => $group->image, 'id' =>$group->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                   @include('partial/imageProfile', array('cover' => $group->image, 'id' => "group".$group->id, 'border' => '#0f6784', 'borderSize' => '3px'))
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <h2 class="title text-center">{{$group->name}}</h2>
+                    <h2 class="title1 text-center">{{$group->name}}</h2>
                 </div>
             </div>
             <div class="row">
