@@ -46,6 +46,11 @@ class Kernel extends ConsoleKernel
             $campaign->changeState();
         })->everyMinute();
 
+        $schedule->call(function (){
+            $campaign = new CampaignController();
+            $campaign->enableInscriptions();
+        })->everyMinute();
+
     }
 
     /**

@@ -9,7 +9,7 @@ use App\Models\CampaignParticipants;
 
 class Campaigns extends Model
 {
-    protected $fillable = ['name', 'description', 'image', 'groups_id', 'category_id', 'credits', 'hours', 'date', 'date_donations', 'state_id'];
+    protected $fillable = ['name', 'description', 'image', 'groups_id', 'category_id', 'credits', 'hours', 'date', 'date_donations', 'state_id', 'allows_registration'];
 
     public function groups()
     {

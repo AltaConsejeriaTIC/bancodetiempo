@@ -20,7 +20,7 @@ class CampaignController extends Controller
         $userDate = new \DateTime($request->input('dateCampaign'));
         $interval = $today->diff($userDate);
         $dayInterval = (int)ceil($interval->days / 2);
-        $date_finish_donations = date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $request->input('timeCampaign');
+        $date_finish_donations = date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $request->input('hoursCampaign');
 
         if ($cover) {
             $group = Campaigns::create([
@@ -32,7 +32,7 @@ class CampaignController extends Controller
                 'credits' => 0,
                 'category_id' => $request->input('categoryCampaign'),
                 'date_donations' => $date_finish_donations,
-                'date' => $request->input('dateCampaign') . " " . $request->input('timeCampaign'),
+                'date' => $request->input('dateCampaign') . " " . $request->input('hoursCampaign'),
                 'state_id' => 1
             ]);
         }
@@ -194,6 +194,35 @@ class CampaignController extends Controller
                 "state_id" => 12
             ]);
         }
+    }
+
+    public function enableInscriptions(){
+
+        $campaigns = Campaigns::whereBetween("date_donations", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where('allows_registration', 0)->get();
+
+        foreach($campaigns as $campaign){
+            $campaign->update([
+                "credits" => $campaign->credits*2,
+                "allows_registration" => 1
+            ]);
+
+            $this->SendEmailToPreInscribed($campaign);
+        }
+
+    }
+
+    private function SendEmailToPreInscribed($campaign){
+        foreach($campaign->participants as $participant){
+            $mail = $participant->participant->email2;
+            print($mail."\n");
+            Mail::send('mailPreInscribed',["campaign" => $campaign, "participant" => $participant->participant], function ($message) use ($mail){
+                $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+                $message->subject('Notificación');
+                $message->to($mail);
+            });
+        }
+
+
     }
 
 }
