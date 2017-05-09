@@ -8,6 +8,7 @@ use App\User;
 use App\Models\Deal;
 use App\Models\DealState;
 use App\Models\UserScore;
+use App\Models\Service;
 use App\Models\ServiceScore;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -60,6 +61,9 @@ class DealsController extends Controller
                 "observation" => $this->request->input("observation")
             ]);
         }
+
+        User::setRanking($this->request->input("offerer_id"));
+
         ServiceScore::create([
             "service_id" => $this->request->input("service_id"),
             "user_id" => Auth::User()->id,
@@ -67,6 +71,8 @@ class DealsController extends Controller
             "observation" => $this->request->input("observation"),
             "badObservations_id" => $this->request->input("badObservation", 1),
         ]);
+
+        Service::setRanking($this->request->input("service_id"));
 
         Deal::find($this->request->input("deal_id"))->update([
             "response_applicant" => $this->request->input("response"),
