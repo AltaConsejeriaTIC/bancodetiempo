@@ -27,7 +27,6 @@ Vue.component('input-tag', require('./components/InputTag.vue'));
 Vue.component('register', require('./components/Register.vue'));
 Vue.component('interest', require('./components/Interest.vue'));
 Vue.component('deactivate', require('./components/DeactivateAccount.vue'));
-Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('avatar', require('./components/ImageProfile.vue'));
 Vue.component('editservice', require('./components/EditService.vue'));
 Vue.component('filtersCategories', require('./components/filtersCategories.vue'));
