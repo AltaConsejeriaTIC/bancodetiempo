@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-9  col-sm-4 col-sm-offset-4 col-md-5 col-md-offset-0">
+				<div class="col-xs-9 col-sm-4 col-sm-offset-0 col-md-5 col-md-offset-0">
 					<a href="/index" class='logo text-center'>
 						<img src="{{ asset('images/logo.png') }}" alt="Logo" />
 					</a>
@@ -46,7 +46,7 @@
 		<div class="container">
 			<div class='row'>
 
-				<div class="col-xs-7  col-sm-3  col-md-3 padding-top">
+				<div class="col-xs-9  col-sm-3  col-md-3 padding-top">
 					<a href="/index" >
 						<img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" />
 					</a>
@@ -102,7 +102,7 @@
 
 				</div>
 				
-                <ul class="menuMobile visible-xs col-xs-2 col-xs-offset-3">
+                <ul class="menuMobile visible-xs col-xs-2 col-xs-offset-1">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
                         <ul class="dropdown-menu">

@@ -9,7 +9,7 @@
 
 	<div class="container">
 		<div class="row">
-		    <ul  class="nav nav-pills col-md-8 col-xs-4">
+		    <ul  class="nav nav-pills col-md-8 col-xs-12">
 				<li class="active">
 		        	<a  href="#filterAll" data-toggle="tab" class='parrafo3' v-on:click='filterCategory(0)'>{{ trans('home.all') }}</a>
 				</li>
@@ -23,27 +23,30 @@
 				    <a  href="#filterAdmin" data-toggle="tab" class='parrafo3'>{{ trans('home.serviceAdmin') }}</a>
 				</li>
 			</ul>
-			<div class='col-md-1 col-xs-3 not-padding'>
+			<div class='col-md-1 col-xs-5 not-padding'>
 				<p class="paragraph10">{{ trans('home.filter') }}</p>
 			</div>
-			<div class="col-md-3 col-xs-5">
+			<div class="col-md-3 col-xs-7">
 				<filters-categories categories='{{ $categories }}'></filters-categories>
 			</div>
 		</div>
+		<br>
 
 		@if(count(Illuminate\Support\Facades\Session::get("filters.tags", [])) > 0)
             <div class="row">
+                <div class="col-xs-12">
+                    <strong class="paragraph1">Filtros: </strong>
+                    @foreach(Illuminate\Support\Facades\Session::get("filters.tags", []) as $tag)
+                        <a tag="{{$tag->id}}" class="input-tag button7 tag-margin"><span>{{ App\Models\Tag::find($tag->id)->tag }}</span></a>
+                    @endforeach
+                    <a href='/filter'>Borrar filtros</a>
+                </div>
 
-               <strong class="paragraph1">Filtros: </strong>
-                @foreach(Illuminate\Support\Facades\Session::get("filters.tags", []) as $tag)
-                    <a tag="{{$tag->id}}" class="input-tag button7 tag-margin"><span>{{ App\Models\Tag::find($tag->id)->tag }}</span></a>
-                @endforeach
-                <a href='/filter'>Borrar filtros</a>
             </div>
         @endif
 		<div class='row'>
 
-            <div class="tab-content clearfix">
+            <div class="tab-content clearfix col-xs-12">
                 <div class="tab-pane active" id="filterAll">
                   <div class='row'>
                     @foreach($allServices as $key => $service)

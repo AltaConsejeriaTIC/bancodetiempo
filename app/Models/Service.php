@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Models\serviceScore;
+use App\Models\ServiceScore;
+
 use App\Models\Deal;
 use App\Models\Conversations;
 

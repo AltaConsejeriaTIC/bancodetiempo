@@ -1064,6 +1064,22 @@ Media Querys
 	    padding-top: 100px;
 	}
 
+    .bannerHome .carousel > div > img {
+        width: 50%;
+    }
+
+    .line-r-v {
+        border-right: 0px solid #fff !important;
+        margin-right: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .line-l-v {
+        border-left: 0px solid #fff !important;
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
+
 }
 
 

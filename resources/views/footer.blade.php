@@ -2,12 +2,12 @@
 	<div class="container text-white">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-3">
 					<div class="row link-social-network">
 						<a href="/how">{{ trans('footer.how') }}</a>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-3">
 					<div class="row link-social-network">
 						<a href="/content/privacity">{{ trans('footer.privacity') }}</a>
 					</div>
@@ -20,9 +20,9 @@
 					</div>
 					-->
 				</div>
-				<div class="col-md-5 text-center">
+				<div class="col-md-5 col-sm-5 text-center">
 					<div class="row col-md-offset-2">
-							<div class="col-md-8 col-md-offset-3">
+							<div class="col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-3">
 								<div>
 									<a href="https://www.facebook.com/Cambalachea.co" target="_blank" class="circle-social-network text-center"><i class="fa fa-facebook icons-social-network" aria-hidden="true"></i></a>
 								</div>
@@ -47,9 +47,9 @@
 		<div class="container">
 			<div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
-                    <img src="{{ asset('images/logoFooter1.png') }}" alt="" class="line-r-v">
-                    <img src="{{ asset('images/logoFooter2.png') }}" alt="" >
-                    <img src="{{ asset('images/logoFooter3.png') }}" alt="" class="line-l-v">
+                    <img src="{{ asset('images/logoFooter1.png') }}" alt="" class="line-r-v col-sm-4 col-xs-4">
+                    <img src="{{ asset('images/logoFooter2.png') }}" alt="" class=' col-sm-4  col-xs-4'>
+                    <img src="{{ asset('images/logoFooter3.png') }}" alt="" class="line-l-v  col-sm-4 col-xs-4">
                 </div>
 
 			</div>

@@ -38,7 +38,10 @@
 		                    </div>
 		                </div>                
 		                <div class="row">
-		                    <button class="col-xs-12 button1 background-active-color text-center"  @click='showEdit'>{{ trans("profile.editProfile") }}</button>
+                            <div class="col-xs-12">
+                                <button class="col-xs-12 button1 background-active-color text-center"  @click='showEdit'>{{ trans("profile.editProfile") }}</button>
+                            </div>
+
 		                </div>
 		                <div class="space10"></div>
                     <div class="row border ">
@@ -63,11 +66,13 @@
                     </div>
                     <div class="space10"></div>
 		                <div class="row">
-		                    {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
-		                        <input type="hidden" name="token" value="{{ csrf_token() }}">                    
-		                        <deactivate></deactivate>
-		                    {!! Form::close() !!}
-		                    <button class="col-xs-12 button10 background-white" data-toggle="modal" data-target="#deactivate">{{ trans('profile.desactiveAccount') }}</button>
+                            <div class="col-xs-12">
+                                 {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+                                    <input type="hidden" name="token" value="{{ csrf_token() }}">
+                                    <deactivate></deactivate>
+                                {!! Form::close() !!}
+                                <button class="col-xs-12 button10 background-white" data-toggle="modal" data-target="#deactivate">{{ trans('profile.desactiveAccount') }}</button>
+                            </div>
 		                </div>
 
 

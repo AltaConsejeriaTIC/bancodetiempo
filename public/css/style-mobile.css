@@ -44,7 +44,7 @@
 	}
 
 	.button7 {
-    	font-size: 14px;
+    	font-size: 14px !important;
 	}
 
 	.button9{
@@ -135,6 +135,25 @@
 
     .listMessages > #messages > .row {
         margin-bottom: 5px;
+    }
+
+    .bannerHome .carousel > div > img {
+        width: 100% !important;
+    }
+
+    .line-r-v {
+        border-right: 0px solid #fff !important;
+        margin-right: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .line-l-v {
+        border-left: 0px solid #fff !important;
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
+    .nav{
+        padding-left: 15px !important;
     }
 
 }

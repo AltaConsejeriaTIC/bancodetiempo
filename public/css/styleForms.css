@@ -308,7 +308,7 @@ input[type=checkbox].boxCheck:checked + label i {
     background: #fff;
     border-radius: 5px;
     overflow:hidden;
-    max-width:90%;
+    max-width:85%;
 }
 
 .multi-select.pick {
