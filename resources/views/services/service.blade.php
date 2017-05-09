@@ -196,7 +196,7 @@
 	      			<div >
 		      			<div class="row">
 		      				<div class="col-md-12">
-		      					<textarea name="content" class='validation ' id="content" rows="10" placeholder='Ej. ¡Hola! Me llamo Joe, me gustaría tomar tu oferta ya que dentro de poco será mi matrimonio, y quiero conservar los mejores recuerdos de ese día. ¿Te parece bien si nos encontramos el Lunes, 6 de Agosto a las 3 PM en el Parque Simón Bolivar para realizar la actividad? Espero tu respuesta.'  data-validations='["required", "min:20", "max:250"]'></textarea>
+		      					<textarea name="content" class='validation col-xs-12' id="content" rows="10" placeholder='Ej. ¡Hola! Me llamo Joe, me gustaría tomar tu oferta ya que dentro de poco será mi matrimonio, y quiero conservar los mejores recuerdos de ese día. ¿Te parece bien si nos encontramos el Lunes, 6 de Agosto a las 3 PM en el Parque Simón Bolivar para realizar la actividad? Espero tu respuesta.'  data-validations='["required", "min:20", "max:250"]'></textarea>
 		      					<div class='clearfix'></div>
 		      					<div class="msg" errors='content'>
 									<p error='required'>Este campo es obligatorio.</p>
