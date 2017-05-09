@@ -13,6 +13,7 @@ return [
     'inscription' => "Inscribirme",
     'preInscription' => "Pre inscribirme",
     'participants' => 'Participantes',
-    'pay' => 'Pagar'
+    'pay' => 'Pagar',
+    'delete' => 'Eliminar Campaña'
 
 ];

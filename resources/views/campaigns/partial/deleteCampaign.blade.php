@@ -4,7 +4,7 @@
                     aria-hidden="true">×</span></button>
         {!! Form::open(['url' => 'deleteCampaign/'.$campaign->id, 'method' => 'put','enctype' => 'multipart/form-data', 'class' => 'form-custom', 'form-validation' => '']) !!}
         <div class="row">
-            <h1 class="title1 text-center">{{ trans("groups.questionDelete") }}</h1>
+            <h1 class="title1 text-center">{{ trans("campaigns.delete") }}</h1>
         </div>
         <div class="row">
             <input type="hidden" name="campaign_id" value="{{$campaign->id}}">
