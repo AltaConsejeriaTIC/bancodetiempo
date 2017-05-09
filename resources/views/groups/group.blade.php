@@ -30,29 +30,35 @@
             <br>
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="title1">{{ trans("groups.collaborators") }}</h2>
+                    <button type="button" class='button1 background-active-color col-xs-12 col-md-12' @click='myData.editgroup{{$group->id}} = "true"'>{{trans("groups.editGroups")}}</button>
                 </div>
             </div>
+            <br>
             <div class="row">
-                @foreach($group->collaborators as $k => $collaborator)
 
-                    <div class="col-md-6">
-                        <div class="col-md-8 col-md-offset-2">
-                            @include('partial/imageProfile', array('cover' => $collaborator->user->avatar, 'id' =>$collaborator->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
-                        </div>
-                        <div class="clearfix"></div>
-                        <p class="paragraph2 text-center">{{ $collaborator->user->first_name ." ". $collaborator->user->last_name }}</p>
-                    </div>
-                    @if($k%2 != 0)
-                        <div class="clearfix"></div>
-                    @endif
+                <div class="dropdown col-md-12 col-xs-12 list">
+                  <button class="button7 background-white dropdown-toggle col-md-12 col-xs-12" type="button" data-toggle="dropdown">Colaboradores
+                  <span class="caret"></span></button>
+                    <ul class="dropdown-menu col-md-12 col-xs-12">
+                    @foreach($group->collaborators as $k => $collaborator)
 
-                @endforeach
+                        <li class="row col-xs-11 col-xs-offset-1 col-md-11 col-md-offset-1">
+                            <div class="col-md-3 col-xs-3">
+                                @include('partial/imageProfile', array('cover' => $collaborator->user->avatar, 'id' =>$collaborator->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                            </div>
+                            <div class="col-md-9 col-xs-9">
+                                {{ $collaborator->user->first_name ." ". $collaborator->user->last_name }}
+                            </div>
+                        </li>
+
+                    @endforeach
+                    </ul>
+                </div>
             </div>
 
         </article>
 
-        <article class="col-md-8">
+        <article class="col-md-8 col-xs-12">
 
            <div class="row">
                 <div class="col-md 12">
@@ -86,7 +92,7 @@
         </article>
 
     </div>
-
+    @include('profile.partial.formEditGroup')
     @include('groups/partial/formCampaign')
 
 @endsection
