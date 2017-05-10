@@ -34,6 +34,7 @@ Vue.component('contactmailmodal', require('./components/contactMailModal.vue'));
 Vue.component('generalmodal', require('./components/generalModal.vue'));
 Vue.component('sendmessage', require('./components/sendMessage.vue'));
 Vue.component('deals', require('./components/Deal.vue'));
+Vue.component('newservice', require('./components/NewService.vue'));
 
 var app = new Vue({
 

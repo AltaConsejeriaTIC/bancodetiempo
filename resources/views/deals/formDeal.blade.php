@@ -17,7 +17,7 @@
                                 <label for="dealDate" class="paragraph10">Fecha de realización del acuerdo</label>
                             </div>
                             <div class="row not-margin">
-                                <input type="text" name="dealDate" id="dealDate" placeholder="dd/mm/aaaa" class="validation datepick"  data-validations='["required", "afterToday"]'>
+                                <input type="text" name="dealDate" id="dealDate" placeholder="dd/mm/aaaa" class="validation datepick col-xs-12"  data-validations='["required", "afterToday"]'>
                                 <div class="msg" errors='dealDate'>
                                     <p error='afterToday'>No puedes proponer un acuerdo dias atras.</p>
                                 </div>
@@ -26,7 +26,7 @@
                                 <label for="dealHour" class="paragraph10">Hora</label>
                             </div>
                             <div class="row not-margin">
-                                <input type="time" name="dealHour" id="dealHour" placeholder="hh:mm" class="validation"  data-validations='["required", "time", "afterTime"]' data-date='#dealDate'>
+                                <input type="time" name="dealHour" id="dealHour" placeholder="hh:mm" class="validation col-xs-12"  data-validations='["required", "time", "afterTime"]' data-date='#dealDate'>
                                 <div class="msg" errors='dealHour'>
                                     <p error='time'>El formato no es valido.</p>
                                     <p error='afterTime'>elige un hora diferente.</p>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="row not-margin">
                                 <input type="hidden" name="coordinates" id='coordinates'>
-                                <input type="text" name="dealLocation" id="place" placeholder="Parque Simón Bolivar" size="60" class="validation"  data-validations='["required"]' />
+                                <input type="text" name="dealLocation" id="place" placeholder="Parque Simón Bolivar" size="60" class="validation col-xs-12"  data-validations='["required"]' />
                             </div>
                             <div class="row not-margin">
                                 <div id="map_canvas" class="map"></div>
