@@ -47,9 +47,9 @@
 		<div class="container">
 			<div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
-                    <img src="{{ asset('images/logoFooter1.png') }}" alt="" class="line-r-v col-sm-4 col-xs-4">
-                    <img src="{{ asset('images/logoFooter2.png') }}" alt="" class=' col-sm-4  col-xs-4'>
-                    <img src="{{ asset('images/logoFooter3.png') }}" alt="" class="line-l-v  col-sm-4 col-xs-4">
+                    <img src="{{ asset('images/logoFooter1.png') }}" alt="" class="line-r-v col-sm-4 col-xs-4 col-md-3">
+                    <img src="{{ asset('images/logoFooter2.png') }}" alt="" class=' col-sm-4  col-xs-4 col-md-4'>
+                    <img src="{{ asset('images/logoFooter3.png') }}" alt="" class="line-l-v  col-sm-4 col-xs-4 col-md-3">
                 </div>
 
 			</div>

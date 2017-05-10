@@ -42,3 +42,5 @@ Route::put('admin/service/update', 'ServiceAdminController@update');
 Route::resource('listDeals', 'Admin\DealsController@showList');
 
 Route::resource('listGroups', 'Admin\GroupsController@showList');
+
+Route::resource('/adminCampaigns/participant/{campaign_id}/download', 'Admin\CampaignsController@downloadParticipant');

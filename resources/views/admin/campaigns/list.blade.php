@@ -65,9 +65,6 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    @include('admin/campaigns/show')
-                                    @include('admin/campaigns/update')
-                                    {{--@include('admin/services/reports')--}}
                                 @endforeach
 
                                 </tbody>
@@ -82,4 +79,10 @@
             </div>
         </div>
     </div>
+
+@foreach($campaigns as $campaign)
+    @include('admin/campaigns/show')
+    @include('admin/campaigns/update')
+@endforeach
+
 @endsection
