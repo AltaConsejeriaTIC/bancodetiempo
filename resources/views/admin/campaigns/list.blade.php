@@ -8,7 +8,7 @@
                     <div class="panel-heading"><h2>Lista de Campañas Registradas en el Sistema</h2></div>
                     <div class="panel-body">
                         @include('partial.errors')
-                        {!! Form::open(['route' => 'adminCampaigns', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
+                        {!! Form::open(['url' => 'adminCampaigns', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
                         <div class="form-group">
                             <label>Nombre</label>
                             <input type="text" class="form-control" name="find">
@@ -17,8 +17,6 @@
                                     class="material-icons">search</i></button>
                         <a href="{{ url('/adminCampaigns') }}" class="btn btn-raised btn-primary"
                            title="Listar Todos"><i class="material-icons">youtube_searched_for</i></a>
-                        <!--a href="{{ url('/homeAdminServices/reported') }}" class="btn btn-raised btn-primary"
-                           title="Listar Reportados">Reportados</a-->
                         {!! Form::close() !!}
                         <div class="col-md-2 form-group navbar-right">
                             <span class="label label-success news">Hay {!! $campaigns->total() !!}

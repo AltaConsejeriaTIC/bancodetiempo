@@ -192,30 +192,6 @@ class AdminController extends Controller
 
     }
 
-    public function adminCampaigns(Request $request)
-    {
-        $campaigns = Campaigns::orderBy('updated_at', 'desc');
-        $campaigns = $request->find != '' ? $campaigns->where('name', 'LIKE', "%$request->find%") : $campaigns;
-        $campaigns = $campaigns->paginate(6);
-        $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
-        return view('admin/campaigns/list', compact('campaigns', 'states'));
-    }
-
-    public function updateCampaignState(Request $request)
-    {
-        $campaign = Campaigns::find($request->id);
-        $campaign->state_id = $request->state_id;
-
-        if ($campaign->save()) {
-            if ($campaign->state_id != 1) {
-                $this->sendMailToParticipants($campaign);
-            }
-
-            Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
-            return redirect('adminCampaigns');
-        }
-
-    }
 
     public function sendMailToParticipants($campaign)
     {
