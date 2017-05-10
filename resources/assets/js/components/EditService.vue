@@ -207,7 +207,9 @@ export default {
 				this.tags = editags;
 				this.tagService = editags;						
 			}             
-		}            
+		}
+
+
 	},  
 	methods: {
 		setTags: function(value){    			

@@ -5,6 +5,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\DealsController;
+use App\Http\Controllers\CampaignController;
 
 class Kernel extends ConsoleKernel
 {
@@ -27,7 +29,28 @@ class Kernel extends ConsoleKernel
         $schedule->call(function (){
             $email = new EmailController();
             $email->sendMailDaily();
-        });
+        })->twiceDaily(1);
+
+        $schedule->call(function (){
+            $deals = new DealsController();
+            $deals->exchangeForTime();
+        })->hourly();
+
+        $schedule->call(function (){
+            $campaign = new CampaignController();
+            $campaign->sendReminder();
+        })->everyMinute();
+
+        $schedule->call(function (){
+            $campaign = new CampaignController();
+            $campaign->changeState();
+        })->everyMinute();
+
+        $schedule->call(function (){
+            $campaign = new CampaignController();
+            $campaign->enableInscriptions();
+        })->everyMinute();
+
     }
 
     /**

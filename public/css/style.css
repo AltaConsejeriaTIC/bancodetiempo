@@ -40,6 +40,18 @@ buttom, a{
 	cursor:pointer;
 }
 
+a.logo {
+    background: rgba(255, 255, 255, 0.5);
+    display: block;
+    margin-top: -45px;
+    padding: 35px 0px 15px 0px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.logo img{
+    width: 85%;
+}
+
 /*
 Titles
 */
@@ -522,9 +534,55 @@ RedesSociales
 Banner Home
 */
 .bannerHome{
-	background: url(../images/banner.png);
-	background-size: 100%;
-    background-position: 100% 30%;
+
+}
+
+h1#bannerDescription {
+    min-height: 120px;
+}
+
+.bannerHome .carousel {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #00728f;
+}
+
+.bannerHome .carousel > div{
+    height: 100%;
+    width: 100%;
+    background-size: 100% 100%;
+    position: absolute;
+    opacity: 0;
+    transition: all 2s !important;
+}
+
+.bannerHome .carousel > div > img {
+    position: absolute;
+    bottom: 0%;
+    left: 50px;
+    opacity: 0;
+    transition: all 3s !important;
+}
+
+.bannerHome .carousel > div.active > img {
+    opacity: 100;
+}
+
+.bannerHome .carousel > div.active{
+    opacity: 100;
+}
+
+.bannerHome .carousel .banner1 {
+    background-image: url(/images/banner/back1.jpg);
+}
+.bannerHome .carousel .banner2 {
+    background-image: url(/images/banner/back2.jpg);
+}
+.bannerHome .carousel .banner3 {
+    background-image: url(/images/banner/back3.jpg);
 }
 
 /*
@@ -690,6 +748,34 @@ input.stars + label > i.check:before {
     content: "\f005";
 }
 
+
+/*
+detail group
+*/
+
+div.groupCover{
+    max-height: 360px !important;
+    overflow: hidden;
+}
+
+img.groupCover{
+    max-width: 100%;
+}
+
+/*
+detail campaign
+*/
+
+div.campaignCover{
+    max-height: 360px !important;
+    width: 100%;
+    overflow: hidden;
+}
+
+img.campaignCover{
+    max-width: 100%;
+}
+
 /*
 tabs
 */
@@ -786,7 +872,7 @@ notificacion icon
 */
 .notification {
 	position: relative;
-	right: 10px;
+	right: 30px;
 	padding-top: 10px;
 	cursor: pointer;
 }
@@ -932,6 +1018,8 @@ conversation box
     position: fixed;
     top: 5%;
     z-index: 15000;
+    max-height: 85%;
+    overflow: auto;
 }
 /*
 Media Querys
@@ -942,7 +1030,7 @@ Media Querys
 	}
 
 	.bannerHome{
-		padding-top: 120px;
+		padding-top: 230px;
 	}
 	.bannerRegister{
 		padding-top: 120px;
@@ -975,6 +1063,22 @@ Media Querys
 	    background-position: 55% 30%;
 	    padding-top: 100px;
 	}
+
+    .bannerHome .carousel > div > img {
+        width: 50%;
+    }
+
+    .line-r-v {
+        border-right: 0px solid #fff !important;
+        margin-right: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .line-l-v {
+        border-left: 0px solid #fff !important;
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
 
 }
 
@@ -1085,7 +1189,6 @@ Animations
     font-size: 16px;
     color: #2c3e50;
     white-space: nowrap;
-    overflow-y: hidden;
 }
 
 .vue-input-tag-wrapper::-webkit-scrollbar {
@@ -1210,3 +1313,44 @@ Animations
   border-color: #003e65 !important;
 }
 
+
+/*Autocomplete users*/
+
+ul.listComplete {
+    position: absolute;
+    top: 80%;
+    background: #fff;
+    z-index: 20;
+    width: 100%;
+    list-style: none;
+    height: auto;
+    max-height: 250px;
+    overflow: auto;
+    padding: 5px;
+    border: 1px solid #d2d2d2;
+}
+
+#collaborators > span {
+    background: rgba(156, 162, 169, 0.5);
+    padding: 10px;
+    margin: 5px;
+    display: block;
+    float: left;
+    border-radius: 5px;
+}
+
+.modal-dialog{
+    max-width: 100% !important;
+}
+
+.line-r-v {
+    border-right: 1px solid #fff;
+    margin-right: 20px;
+    padding-right: 20px;
+}
+
+.line-l-v {
+    border-left: 1px solid #fff;
+    margin-left: 20px;
+    padding-left: 20px;
+}

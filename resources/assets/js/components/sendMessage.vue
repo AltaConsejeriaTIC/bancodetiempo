@@ -36,11 +36,13 @@
 			send:function(){
 				if(this.response.length > 1){
 					var data = {"message" : this.response, "conversation": this.conversation, "sender" : this.sender, '_token' : this.token}
-					this.$http.post('/newMessage', data).then(response => {
-						this.response = '';
-					}, response => {
-					    
-					});
+
+                    jQuery.ajax({
+                            type: "POST",
+                            url: "/newMessage",
+                            data: data
+                    });
+                    this.response = ''
 				}
 
 			},

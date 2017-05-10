@@ -22,7 +22,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/summernote.css') }}">
 
     <!-- Custom styles -->
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/styleForms.css') }}" rel="stylesheet">
+     <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/styleAdmin.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -104,6 +109,7 @@
 
     <!-- Scripts -->    
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
     <script src="{{ asset('/js/material.min.js') }}"></script>   
     <script src="{{ asset('/js/ripples.min.js') }}"></script>   
@@ -115,6 +121,16 @@
               height:300,
             });
         });
+        var date = new Date();
+        var range = '1950:'+date.getFullYear();
+        jQuery( ".datepick" ).datepicker({
+            inline: true,
+            dateFormat : 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: range
+        });
+</script>
     </script>
 </body>
 </html>

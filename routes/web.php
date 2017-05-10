@@ -12,9 +12,11 @@ use App\Http\Controllers\Profile\ProfileController;
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('/', 'HomeController@indexNotRegister');
+Route::get('/', function(){
+    return view('mantenimiento');
+});
 Route::get('/index', 'HomeController@indexNotRegister');
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->middleware('passRegister');
 Route::get('/content/{name}', 'ContentController@index');
 
 //Social Loging
@@ -29,12 +31,12 @@ Route::get('admin','AdminController@AdminLogin')->middleware('guest');
 
 //Register process
 
-Route::get('/register', 'NetworkAccountsController@showFrom')->middleware('register');
+Route::get('/register', 'NetworkAccountsController@showFrom')->middleware('register', 'passRegister');
 Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 
 Route::put('profile/update', 'Profile\ProfileController@editProfile');
 Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
-Route::get("/interest", 'Profile\ProfileController@showFromInterest')->middleware('register');
+Route::get("/interest", 'Profile\ProfileController@showFromInterest')->middleware('register', 'passRegister');
 Route::post("/interest", 'Profile\ProfileController@saveInterest');
 
 //Guest views
@@ -55,3 +57,12 @@ Route::get('/how', function(){
 });
 
 Route::get('/validateLogout', 'NetworkAccountsController@validateLogout');
+
+Route::get('/tags','TagsController@jsonTags');
+Route::get('/categories','CategoryController@jsonCategories');
+Route::get('/setRanking', function(){
+    $users = App\Models\Service::all();
+    foreach($users as $user){
+        App\Models\Service::setRanking($user->id);
+    }
+});

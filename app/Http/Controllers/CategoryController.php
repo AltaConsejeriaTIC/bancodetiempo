@@ -134,4 +134,29 @@ class CategoryController extends Controller
         {
         }
     }
+
+    public function delete(Request $request){
+
+        Category::find($request->input('id_category'))->delete();
+
+        return redirect()->back();
+
+    }
+
+    public function jsonCategories(){
+
+        $categories = Category::all('id', 'category')->toJson();
+
+        print($categories);
+
+    }
+
+    static function getCategoriesActive(){
+        return Category::select('categories.id','categories.category')
+                                ->join('services','categories.id','=','services.category_id')
+                                ->where('services.state_id', 1)
+                                ->groupBy('categories.id','categories.category')
+                                ->get();
+    }
+
 }

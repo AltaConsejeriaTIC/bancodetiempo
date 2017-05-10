@@ -2,6 +2,7 @@
 namespace App;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Conversations;
+use Illuminate\Http\Request;
 class Helpers{
 	
 	static function getNotificationsUser(){
@@ -32,6 +33,49 @@ class Helpers{
 		return $notifications;
 		
 	}
+
+    static function uploadImage($file, $name = '', $directory = 'resources/'){
+
+        if(!$file){
+          return false;
+        }
+        $imageName = $name == '' ? date("Ymd").rand(000,999) : $name;
+
+        $file->move ( base_path () . '/public/' . $directory, $imageName. '.' .$file->getClientOriginalExtension() );
+
+		return $directory . $imageName . '.' . $file->getClientOriginalExtension();
+    }
 	
+    static function getStepsUser(){
+        $pass1 = Auth::user()->privacy_policy == 1 ? 1 : 0;
+        $pass2 = Auth::user()->interests->count() >= 1 ? 1 : 0;
+        $pass3 = Auth::user()->services->count() >= 1 ? 1 : 0;
+        session(['pass1' => $pass1]);
+        session(['pass2' => $pass2]);
+        session(['pass3' => $pass3]);
+    }
+
+    static function getLastStep(){
+
+        if(session('pass1') == 0){
+            return 'Pass1';
+        }
+        if(session('pass2') == 0){
+            return 'Pass2';
+        }
+        if(session('pass3') == 0){
+            return 'Pass3';
+        }
+
+    }
+
+    static function getRedirectLastStep(){
+        Helpers::getStepsUser();
+        $lastStep = Helpers::getLastStep();
+        return  'redirect'.$lastStep;
+
+    }
+
+
 }
 ?>

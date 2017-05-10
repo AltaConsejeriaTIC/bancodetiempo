@@ -18,93 +18,45 @@ use PhpParser\Node\Expr\Print_;
 use JavaScript;
 use function GuzzleHttp\Promise\all;
 
-class ServiceController extends Controller
-{
+class ServiceController extends Controller{
 
-   public function index(){
+    public function index(){
 
-    $tags = json_encode(Tag::all('tag'));
-    $categories = Category::all();
-    $user = User::find(auth::user()->id);
- 		$selectedCategories = [];
+        $user = User::find(auth::user()->id);
+        $selectedCategories = [];
 
-    JavaScript::put([
-       'userJs'=> $user,
-       'categoriesJs' => $categories,
-       ]);
-    
-    if(Auth::user()->services->count() >= 1)
-    {
-      return redirect('/');
-    }
-    else
-    {
-      $step = Attainment::where('id','=',3)->first();
-      $stepRegister = Auth::user()->attainmentUsers->count();
-      $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();         
-          
-      if($attainments != null)
-        $attainments = AttainmentUsers::find($attainments->id);
-      
-      if($stepRegister == 2)
-        $attainments = new AttainmentUsers;
-      
-      $attainments->user_id = Auth::user()->id;
-      $attainments->attainment_id = $step->id;
-      $attainments->state_id = 2;
-      $attainments->save();
-      
-      if(Auth::user()->privacy_policy == 0)
-      {
-        $pass1 = 'actual';
-        $pass2 = '';
-        $pass3 = '';      
-        return redirect('register');
-      }
-      else
-      {
-        if(Auth::user()->interests->count() < 3 )
-        {
-          $pass1 = 'done';
-          $pass2 = 'actual';
-          $pass3 = '';
-          return redirect('interest');  
+        if(Auth::user()->services->count() >= 1){
+            return redirect('/');
         }
-        else
-        {
-          $pass1 = 'done';
-          $pass2 = 'done';
-          $pass3 = 'actual';          
+
+        return view('services/formService');
+    }
+
+
+	 public function deleteService ($serviceId){
+    
+        $numServices = Service::where("user_id",Auth::user()->id)->count();
+
+        if ($numServices>1){
+
+            $tagsService = TagsService::where('service_id','=',$serviceId)->get();
+            foreach ($tagsService as $tagService){
+
+                $tagService = TagsService::find($tagService->id);
+                $tagService->delete();
+            }
+
+            $service = Service::find($serviceId);
+            $service->delete();
+
+        }else{
+
+          Session::flash('error','No puedes tener menos de un servicio');
+          return redirect('profile');
+
         }
-      }
-    }
-      return view('services/formService', compact('categories','tags','pass1','pass2','pass3'));
-   }
-
-	 public function deleteService ($serviceId)
-   {
-    
-    $numServices = Service::where("user_id",Auth::user()->id)->count();
-
-    if ($numServices>1)
-    {
-      $tagsService = TagsService::where('service_id','=',$serviceId)->get();
-      foreach ($tagsService as $tagService) 
-      {
-        $tagService = TagsService::find($tagService->id);
-        $tagService->delete();
-      }
-      $service = Service::find($serviceId);
-      $service->delete();
-    }
-    else
-    {
-      Session::flash('error','No puedes tener menos de un servicio');
-      return redirect('profile');
-    }
-    
-    Session::flash('success','Has eliminado correctamente tu servicio');
-    return redirect('profile');
+        Session::flash('success','Has eliminado correctamente tu servicio');
+        return redirect('profile');
 
    }
 
@@ -113,7 +65,7 @@ class ServiceController extends Controller
    public function showService($serviceId){
 
      $categories = Category::all('id', 'category');
-     $service = Service::findOrFail($serviceId);
+     $service = Service::where('id', $serviceId)->where('state_id', 1)->firstOrFail();
      $user = User::find($service->user_id);
      $listTypes = TypeReport::pluck('type','id');
      JavaScript::put([
@@ -128,15 +80,6 @@ class ServiceController extends Controller
 
   public function update($id, Request $request){
 
-      $this->validate($request, [
-          'serviceName' => 'required|max:100',
-          'descriptionService' => 'required|max:250|min:50',
-          'valueService' => 'required|numeric|min:1|max:10',
-          'modalityServiceVirtually' => 'required_without:modalityServicePresently',
-          'modalityServicePresently' => 'required_without:modalityServiceVirtually',
-          'imageService' => 'image|max:2000'
-      ]);
-
       $service = Service::find($id);
       $service->update([
           'name' => $request->input('serviceName'),
@@ -147,34 +90,14 @@ class ServiceController extends Controller
           'category_id' => $request->input('categoryService'),
       ]);
 
-      $tagsService = json_decode($request->tagService);
-      
-      if($tagsService)
-      {        
-        TagsService::where('service_id','=',$service->id)->delete();
+      $this->saveTags(explode(",", $request->tagService), $service);
 
-        foreach ($tagsService as $tag) 
-        {
-          $newTag = Tag::where('tag',$tag)->first();
-          
-          if(empty($newTag))
-            $newTag = new Tag;        
-
-          $newTag->tag = $tag;
-          $newTag->save();
-
-          $newTagService = new TagsService;
-          $newTagService->service_id = $service->id;
-          $newTagService->tag_id = $newTag->id;
-          $newTagService->save();
-        }
-      }
       $this->uploadCover($request->file('imageService'), $service);
       Session::flash('success','Has actualizado correctamente tu servicio');
       return redirect('profile');
    }
-    public function validateForm($request)
-    {
+
+    public function validateForm($request){
         $this->validate($request, [
             'serviceName' => 'required|max:100',
             'descriptionService' => 'required|max:250|min:50',
@@ -189,47 +112,68 @@ class ServiceController extends Controller
     public function create(Request $request){
 
         $this->validateForm($request);
-        $virtually = $request->input('modalityServiceVirtually') == null ? 0 : $request->input('modalityServiceVirtually');
-        $presently = $request->input('modalityServicePresently') == null ? 0 : $request->input('modalityServicePresently');
         $category = Category::find($request->input('categoryService'));
         $service = Service::create([
             'name' => $request->input('serviceName'),
             'description' => $request->input('descriptionService'),
             'value' => $request->input('valueService'),
-            'virtually' =>$virtually,
-            'presently' =>$presently,
+            'virtually' => $request->input('modalityServiceVirtually', 0),
+            'presently' => $request->input('modalityServicePresently', 0),
             'user_id' => Auth::user()->id,
             'image' => "resources/".$category->image,
             'category_id' => $request->input('categoryService'),            
             'state_id' => 1
         ]);
-        $this->saveTags(json_decode($request->tagService), $service);
+        $this->saveTags(explode(",", $request->tagService), $service);
         $this->uploadCover($request->file('imageService'), $service);
         $countService = Service::where('user_id',Auth::user()->id)->get()->count();
-        $step = Attainment::where('id','=',3)->first();
+        AttainmentsController::saveAttainment(3);
 
-        $attainments = AttainmentUsers::where('user_id',Auth::user()->id)->where('attainment_id',$step->id)->first();
-        if($attainments != null)
-            $attainments = AttainmentUsers::find($attainments->id);
-
-        if($attainments->state_id == 2)
-        {
-            $attainments->state_id = 1;
-            $attainments->save();
-            $user = Auth::user();
-            $user->state_id = 1;
-            $user->credits = $user->credits + $step->value;
-            $user->save();
+        if(Auth::user()->role_id == 1){
+            return redirect('homeAdmin');
         }
-    
-        if($countService > 1)
+
+        if($countService > 1){
     		  return redirect('profile');
-        else
-          return redirect('home')->with('coin',$step->value);
+        }else{
+            Auth::User()->update([
+                'state_id' => 1
+            ]);
+            return redirect('home')->with('coin',2);
+        }
+   }
+
+    private function saveTags($tags, $service){
+        $this->deleteTags($service);
+        if($tags){
+            foreach ($tags as $tag){
+                 $newTag = Tag::where('tag',$tag)->first();
+
+                if(empty($newTag)){
+                    $newTag = new Tag;
+                }
+
+                $newTag->tag = $tag;
+                $newTag->save();
+                $newTagService = new TagsService;
+                $newTagService->service_id = $service->id;
+                $newTagService->tag_id = $newTag->id;
+                $newTagService->save();
+            }
+        }
 
    }
 
+    private function deleteTags($service, $tags = []){
+        $list = $service->tags;
+        if(!empty($tags)){
+            $list = $list->whereIn("tag.id", $tags);
+        }
 
+        foreach($list as $tag){
+            $tag->delete();
+        }
+    }
 
    public function  uploadCover($file, $service){
       
@@ -273,30 +217,16 @@ class ServiceController extends Controller
    		
    }
 
-   public function saveTags($tags, $service){
 
-         if($tags){   
-
-            foreach ($tags as $tag){
-                 $newTag = Tag::where('tag',$tag)->first();
-
-                if(empty($newTag)){
-                    $newTag = new Tag; 
-                }
-
-                $newTag->tag = $tag;
-                $newTag->save();
-                $newTagService = new TagsService;
-                $newTagService->service_id = $service->id;
-                $newTagService->tag_id = $newTag->id;
-                $newTagService->save();
-            }
-        }     
-
-   }
     public function getTags(){
         $tags = json_encode(Tag::all('tag'));
         print ($tags);
+    }
+
+    static function getServiceActive(){
+        return Service::select("services.*")
+                    ->where('state_id' , 1)
+                    ->orderBy('services.created_at', 'desc');
     }
 
 }

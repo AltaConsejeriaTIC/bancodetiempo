@@ -21,7 +21,7 @@
 	                    <div class="col-xs-6 col-xs-offset-3">
 	                        <avatar :cover='myData.cover'>
 			                    <template scope="props">
-			                    	@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
+			                    	@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' =>Auth::user()->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
 		                        </template>	                        	
 		                     </avatar>
 	                    </div>                            
@@ -29,16 +29,19 @@
 	                <div v-show='noEdit'>
 		                <div class="row">
 		                    <div class="col-xs-12">
-		                        <h2 class="title1">{{$user->first_name." ".$user->last_name}}</h2>
+		                        <h2 class="title1">{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
 		                    </div>               
 		                </div>
 		                <div class="row">
 		                    <div class="col-xs-12">
-		                        <p class='paragraph4'>{{$user->aboutMe}}</p>
+		                        <p class='paragraph4'>{{Auth::user()->aboutMe}}</p>
 		                    </div>
 		                </div>                
 		                <div class="row">
-		                    <button class="col-xs-12 button1 background-active-color text-center"  @click='showEdit'>Editar Perfil</button>               
+                            <div class="col-xs-12">
+                                <button class="col-xs-12 button1 background-active-color text-center"  @click='showEdit'>{{ trans("profile.editProfile") }}</button>
+                            </div>
+
 		                </div>
 		                <div class="space10"></div>
                     <div class="row border ">
@@ -49,12 +52,12 @@
                         </p>                          
                         <p class="col-xs-10">
                           <span class="text-bold">
-                            {{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? "Dorado" : "Dorados" }}
+                            {{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? trans('nav.credit') : trans('nav.credits') }}
                           </span>
                             <span class="space4"></span>
-                            <span class="paragraph6">
-                            Cada dorado equivale a una hora de tu tiempo, y del tiempo de cualquier persona.
-                          </span>
+                                <span class="paragraph6">
+                                    {{trans('profile.descriptionCredits')}}
+                                </span>
                           <br>
 
                         </p>
@@ -63,19 +66,23 @@
                     </div>
                     <div class="space10"></div>
 		                <div class="row">
-		                    {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
-		                        <input type="hidden" name="token" value="{{ csrf_token() }}">                    
-		                        <deactivate></deactivate>
-		                    {!! Form::close() !!}
-		                    <button class="col-xs-12 button10 background-white" data-toggle="modal" data-target="#deactivate">Desactivar Cuenta</button>                    
+                            <div class="col-xs-12">
+                                 {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
+                                    <input type="hidden" name="token" value="{{ csrf_token() }}">
+                                    <deactivate></deactivate>
+                                {!! Form::close() !!}
+                                <button class="col-xs-12 button10 background-white" data-toggle="modal" data-target="#deactivate">{{ trans('profile.desactiveAccount') }}</button>
+                            </div>
 		                </div>
+
+
 	                </div>
 	               
                	<div v-show='edit' >
                	
                		<div class="row">
                			<div class="col-md-8 col-md-offset-2 text-center">
-               				<label for='avatar' class="button1 background-active-color text-center"  @click='showEdit'>Actualizar foto</label>
+               				<label for='avatar' class="button1 background-active-color text-center"  @click='showEdit'>{{ trans('profile.updateCover') }}</label>
                       <p class="avatarMsg hidden">El peso màximo de la imagen debe ser de 3 Megas.</p>
                			</div>
                		</div>
@@ -85,7 +92,7 @@
                         <register  profile='1'>
                         </register>
                         <div class="col-xs-12">
-                            <button class="col-xs-12 button10 background-white text-center" type='button' @click='hiddenEdit'>Cancelar</button>
+                            <button class="col-xs-12 button10 background-white text-center" type='button' @click='hiddenEdit'>{{ trans('profile.cancel') }}</button>
                         </div>
 
                     {!! Form::close() !!}
@@ -95,10 +102,10 @@
             <article class="col-md-4 col-xs-12 col-sm-6">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="title1">Mis Ofertas</h2>
+                        <h2 class="title1">{{ trans('profile.myServices') }}</h2>
                         <button class="col-xs-12 buttonService background-white" data-toggle="modal" data-target="#NewService">
                           <i class="fa fa-plus-square icons" aria-hidden="true"></i>
-                          <p>Publicar nueva oferta</p>
+                          <p>{{ trans("profile.newService") }}</p>
                         </button>                        
                         {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation' => '']) !!}
                           <newservice></newservice>
@@ -114,8 +121,28 @@
                       </div>                      
                     @endforeach                    
                 </div>
-            </article>	          
+            </article>
+            <article class="col-md-offset-4 col-md-8 panel-groups">
+               <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="title1">{{ trans('profile.myGroups') }}</h2>
+                        <button class="col-xs-12 buttonService background-white" @click='myData.newgroup = true'>
+                          <i class="fa fa-plus-square icons" aria-hidden="true"></i>
+                          <p>{{ trans("profile.newGroup") }}</p>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach($myGroups as $key => $group)
+                      <div class='col-md-6 col-xs-12 col-sm-6'>
+                          @include('partial/groupBox', array("edit" => 1))
+                      </div>
+                      @include("profile/partial/deleteGroup")
+                    @endforeach
+                </div>
+            </article>
+
     	</div>
     </section>  
-
+@include("profile/partial/formNewGroup")
 @endsection

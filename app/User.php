@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
 use App\Models\State;
 use App\Models\Role;
@@ -22,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name',  'email','email2', 'password', 'avatar', 'state_id', 'gender', 'credits','birthDate', 'aboutMe', 'role_id','privacy_policy'
+        'first_name', 'last_name',  'email','email2', 'password', 'avatar', 'state_id', 'gender', 'credits','birthDate', 'aboutMe', 'role_id','privacy_policy', 'ranking'
     ];
 
     /**
@@ -82,5 +83,46 @@ class User extends Authenticatable
         return $this->hasMany(Reports::class);
 
     }
+
+    static function recommendedServices(){
+        if(Auth::check()){
+            $allServices = Service::select('services.*')
+                                ->join('users','users.id','=','services.user_id')
+                                ->where('services.state_id' , 1)
+                                ->where('users.state_id', 1)
+                                ->whereIn("category_id", Auth::User()->interests)
+                                ->orderBy("created_at","desc");
+            return $allServices->get();
+        }else{
+            return null;
+        }
+    }
+
+    static function setRanking($user){
+
+        $user = User::find($user);
+
+        if($user->user_score->count() > 0){
+
+            print($user->user_score->count().'<br>');
+
+            $sum = 0;
+
+            foreach($user->user_score as $score){
+                $sum += $score->score;
+            }
+
+            $ranking = $sum/$user->user_score->count();
+
+            print($sum/$user->user_score->count()."<hr>");
+            $user->update([
+                "ranking" => $ranking
+            ]);
+
+        }
+
+    }
+
+
 
 }

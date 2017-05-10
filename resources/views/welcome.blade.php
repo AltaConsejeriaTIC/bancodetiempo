@@ -5,48 +5,38 @@
 	@include('nav', array('type' => 1))	
 
 	<section class='bannerHome row'>
-		<div class='cap'></div>
+		<div class='carousel' slider='3'>
+		    <div class="banner1">
+		        <img src="/images/banner/people1.png" alt="">
+		        <div class="description hidden">{{ trans('home.titleBanner1') }}</div>
+		    </div>
+		    <div class="banner2">
+		        <img src="/images/banner/people2.png" alt="">
+		        <div class="description hidden">{{ trans('home.titleBanner2') }}</div>
+		    </div>
+		    <div class="banner3">
+		        <img src="/images/banner/people1.png" alt="">
+		        <div class="description hidden">{{ trans('home.titleBanner3') }}</div>
+		    </div>
+		</div>
 		<div class="container">
 		
-			<article class='col-xs-12  col-sm-6 col-sm-offset-0 col-md-6 col-md-offset-0'>
-				
-				<div class='row'>
-				    <div class="space"></div>
-					<div class='col-xs-4 col-sm-3 col-md-3'>
-						@include('partial/imageProfile', array('cover' => 'images/foto_camila.png', 'id' => 'foto_camila', 'border' => '#fff', 'borderSize' => '0px'))
-					</div>
-					<div class='col-xs-7 col-sm-8 col-md-8'>
-						<h4 class='title3'>Camila (Abogada)</h4>
-						<p class='paragraph7'>Recibió una hora de cuentería de Juan</p>
-					</div>
-					
-				</div>
-				<div class='row'>
-				
-					<div class='col-xs-4 col-sm-3 col-md-3'>
-						@include('partial/imageProfile', array('cover' => 'images/foto_juan.png', 'id' => 'foto_juan', 'border' => '#fff', 'borderSize' => '0px'))
-					</div>
-					<div class='col-xs-7 col-sm-8 col-md-8'>
-						<h4 class='title3'>Juan (Cuentero)</h4>
-						<p class='paragraph7'>Obtuvo una asesoría en derecho penal de Camila</p>
-					</div>
-					
-				</div>
-				
+			<article class='col-xs-12  col-sm-6 col-sm-offset-0 col-md-4 col-md-offset-0'>
+
 			</article>
-			<article class='col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2'>
+			<article class='col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-4'>
 				
 				<div class="row">
-					<h1 class='title1 text-white col-xs-12'>¿PARA QUÉ EL DINERO SI PUEDES USAR TU TIEMPO?</h1>
+					<h1 class='title1 text-white col-xs-12' id='bannerDescription'>{{ trans('home.titleBanner') }}</h1>
 				</div>
 				
 				<div class="row">
-					<p class="paragraph1 text-white col-xs-12" >Invierte tus habilidades para obtener lo que otros ofrecen</p>
+					<!--<p class="paragraph1 text-white col-xs-12">{{ trans('home.descriptionBanner') }}</p>-->
 				</div>
 				<div class="space"></div>
 				<div class="row">
 				    <div class="col-xs-12 col-md-12">
-				        <button class='button1 background-active-green-color col-xs-12' data-toggle="modal" data-target="#login">Regístrate para empezar</button>
+				        <button class='button1 background-active-green-color col-xs-12' id='bt-register' @click='myData.login = true'>{{ trans('home.buttonBanner') }}</button>
 				    </div>
 
 				</div>
@@ -58,7 +48,7 @@
 	<section>
 		<div class="container">
 		
-			<h2 class='title1 text-center'>OFERTAS RECIENTES</h2>
+			<h2 class='title1 text-center'>{{ trans('home.title') }}</h2>
 		 
 		 	<article class='space40'>
 		 		
@@ -71,7 +61,7 @@
 				@endforeach
 		 	
 		 		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-12 not-padding ">
-					<a href="home"  class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>Explorar más ofertas</a>
+					<a href="home"  class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>{{ trans('home.button1') }}</a>
 		 		</div>
 		 	
 		 	</article>
@@ -89,7 +79,7 @@
 		<div class="container">
 				
 				<div class='row'>
-					<h2 class='title1 text-white text-center col-xs-12 col-md-12'>¡ÚNETE!</h2>
+					<h2 class='title1 text-white text-center col-xs-12 col-md-12'>{{ trans('home.titleLower') }}</h2>
 				</div>
 				
 				<div class='row'>
@@ -97,16 +87,16 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-xs-12 col-md-4" >
-						<a href="{{ url('loginRedes/facebook') }}" class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-facebook facebook">Regístrate con Facebook <i class="fa fa-facebook"></i></a>
+					<div class="col-xs-12 col-md-4 col-sm-6" >
+						<a href="{{ url('loginRedes/facebook') }}" class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-facebook facebook">{{ trans('home.registerFacebook') }}<i class="fa fa-facebook"></i></a>
 					</div>
 
-					<div class="col-xs-12 col-md-4" >
-						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-google google"> Regístrate con          Google  <i class="fa fa-google"></i></a>
+					<div class="col-xs-12 col-md-4 col-sm-6" >
+						<a href="{{ url('loginRedes/google') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-google google">{{ trans('home.registerGoogle') }}<i class="fa fa-google"></i></a>
 					</div>
 
-					<div class="col-xs-12 col-md-4" >
-						<a href="{{ url('loginRedes/linkedin') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-linkedin linkedin">Regístrate con Linkedin <i class="fa fa-linkedin"></i></a>
+					<div class="col-xs-12 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3" >
+						<a href="{{ url('loginRedes/linkedin') }}"  class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-linkedin linkedin">{{ trans('home.registerLinkedin') }}<i class="fa fa-linkedin"></i></a>
 					</div>
 				</div>
 				

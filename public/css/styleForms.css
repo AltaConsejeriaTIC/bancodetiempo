@@ -1,7 +1,7 @@
 label{
 	cursor:pointer;
 }
-.form-custom input[type='text'], .form-custom input[type='date'], .form-custom textarea{
+.form-custom input[type='text'], .form-custom input[type='date'], .form-custom input[type='number'], .form-custom textarea{
 	
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px !important;
@@ -142,6 +142,24 @@ checkbox square
 }
 
 /*
+checkbox list
+*/
+.form-custom input[type="checkbox"].list {
+    display:none
+}
+
+.form-custom input[type="checkbox"].list + label{
+	cursor:pointer;
+    padding: 10px 5px;
+}
+
+.form-custom input[type="checkbox"].list:checked + label{
+    background-color: rgba(156, 162, 169, 0.5);
+    color: #fff;
+}
+
+
+/*
 checkbox boxCheck
 */
 input[type=checkbox].boxCheck {
@@ -247,7 +265,6 @@ input[type=checkbox].boxCheck:checked + label i {
     display: block;
     overflow: hidden;
     margin-bottom: 20px;
-    width:100%;
 }
 
 .validation[validation='true'] + i{
@@ -291,7 +308,7 @@ input[type=checkbox].boxCheck:checked + label i {
     background: #fff;
     border-radius: 5px;
     overflow:hidden;
-    max-width:90%;
+    max-width:85%;
 }
 
 .multi-select.pick {
@@ -386,4 +403,26 @@ input[type=checkbox].boxCheck:checked + label i {
     padding: 10px 5px 0px 5px;
     font-size: 14px;
     margin-bottom: 0px;
+}
+
+.inputIntegrate{
+    font-family: 'Open Sans', sans-serif;
+	font-size: 16px !important;
+	color: #2c3e50 !important;
+	padding: 10px 12px;
+	border: solid 1px #2c3e50;
+	border-radius: 4px;
+	transition:all 1s;
+	resize: none;
+}
+
+.inputIntegrate > * {
+    float: left;
+    margin-right: 10px;
+}
+
+.inputIntegrate > input {
+    border: 0px !important;
+    margin: 0px;
+    padding: 0px !important;
 }

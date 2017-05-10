@@ -105,6 +105,12 @@
 			</div>
 			<div class='space'></div>
 			<div class="row">
+				<a href='/' class="col-xs-12  col-sm-12 button1 background-white text-center link1" >
+				Saltar este paso
+				</a>
+			</div>
+			<br>
+			<div class="row">
 				<button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
 				Publicar oferta
 				</button>
@@ -119,14 +125,16 @@
       data: function () {
           return helpers.Service().data;
       }, 
+        props: ['categories', 'tagsService'],
       mixins: [helpers.Helpers(),helpers.MethodsService()],
       mounted() {        		
           this.$parent.setMyData('totalChar', 250);
           this.$parent.setMyData('maxChar', 250);
-          this.$parent.setMyData('imageService', 'images/previewService.jpg');
+          this.$parent.setMyData('imageService', 'images/banner4.jpg');
           this.$parent.setMyData('serviceName', 'Titulo de la oferta');
           this.$parent.setMyData('descriptionService', 'Descripción de la oferta'); 	                       
           this.$parent.setMyData('tags', Array('PalabrasClave'));
+
       },      
       watch : {
 	        category : function (value) { 
@@ -152,7 +160,7 @@
     	methods: {
     		setTags: function(value){
     			this.tagService = value;	
-    			this.$parent.setMyData('tags', value);    			
+    			this.$parent.setMyData('tagsUser', value);
     		}
     	}
     }

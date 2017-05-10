@@ -1,25 +1,40 @@
 var Vue = require('vue');
 var VueResource = require('vue-resource');
 var helpers = require('./helpers');
+var categories = [];
+var tags = [];
+jQuery.ajax({
+    url : '/categories',
+    async : false,
+    context: this,
+    success : function(data){
+        categories =  JSON.parse(data);
+    }
+});
 
-Vue.component('modal', require('./components/Modal.vue'));
+jQuery.ajax({
+    url : '/tags',
+    async : false,
+    context: this,
+    success : function(data){
+        tags = JSON.parse(data);
+    }
+});
+window.categories = categories;
+window.tags = tags;
+
 Vue.component('input-tag', require('./components/InputTag.vue'));
 Vue.component('register', require('./components/Register.vue'));
 Vue.component('interest', require('./components/Interest.vue'));
 Vue.component('deactivate', require('./components/DeactivateAccount.vue'));
-Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('avatar', require('./components/ImageProfile.vue'));
-Vue.component('firstservice', require('./components/FirstService.vue'));
 Vue.component('editservice', require('./components/EditService.vue'));
 Vue.component('filtersCategories', require('./components/filtersCategories.vue'));
 Vue.component('contactmailmodal', require('./components/contactMailModal.vue'));
-Vue.component('generalmodal', require('./components/generalModal.vue')); 
-Vue.component('modaltimeoff', require('./components/modalTimeOff.vue'));
+Vue.component('generalmodal', require('./components/generalModal.vue'));
 Vue.component('sendmessage', require('./components/sendMessage.vue'));
-Vue.component('slider', require('./components/slider.vue'));
 Vue.component('deals', require('./components/Deal.vue'));
-
-
+Vue.component('newservice', require('./components/NewService.vue'));
 
 var app = new Vue({
 
@@ -39,6 +54,8 @@ var app = new Vue({
     mounted(){   	
     	scrollFixed();
     	scrollBottom();
+        this.setMyData('categories', categories);
+        this.setMyData('tags' , tags);
     }
     
 });

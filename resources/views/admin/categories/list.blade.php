@@ -36,7 +36,13 @@
 						        	<td>{{ $category->category }}</td>						        	
 						        	<td>
 						        		<a class="btn btn-raised btn-primary btn-xs" href="" title="Editar Categoría" data-toggle="modal" data-target="#update-dialog{{$category->id}}"><i class="material-icons">mode_edit</i></a>
-						        		<a class="btn btn-raised btn-primary btn-xs" href="" title="Más Detalles" data-toggle="modal" data-target="#show-dialog{{$category->id}}"><i class="material-icons">find_in_page</i></a>						        		
+						        		<a class="btn btn-raised btn-primary btn-xs" href="" title="Más Detalles" data-toggle="modal" data-target="#show-dialog{{$category->id}}"><i class="material-icons">find_in_page</i></a>
+						        		@if($category->services->count() == 0 && $category->interestUsers->count() == 0)
+                                            {!! Form::open(['route' => 'homeAdminCategory/delete', 'method' => 'post', 'style' => 'display:inline-block']) !!}
+                                                <input type="hidden" name="id_category" value="{{$category->id}}">
+						        		        <button class="btn btn-raised btn-primary btn-xs" type="submit" title="Eliminar" ><i class="material-icons">delete</i></button>
+						        		    {!! Form::close() !!}
+						        		@endif
 						        	</td>                 
 						        </tr>
 										@include('admin/categories/update')

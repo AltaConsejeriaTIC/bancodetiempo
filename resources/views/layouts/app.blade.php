@@ -67,6 +67,11 @@
             changeYear: true,
             yearRange: range
         });
+
+        @foreach(Illuminate\Support\Facades\Session::get("filters.tags", []) as $tag)
+            jQuery("a[tag='{{$tag->id}}']").css({'background-color':'#0f6783', 'border-color':'#0f6783', 'color':'#fff' })
+        @endforeach
+
     </script>
     @if(Route::current()->getUri() == 'conversation/{conversation_id}')
         <script src="{{ asset('js/mapsFunctions.js') }}"></script>

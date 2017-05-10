@@ -36,7 +36,7 @@
 					<div class='ranking left'>
 						<div class='left'>
 							@for($cont = 1 ; $cont <= 5 ; $cont++)
-								@if($cont <= $service->user->ranking)
+								@if($cont <= $service->ranking)
 									<span class='material-icons paragraph9'>grade</span>
 								@else
 									<span class='material-icons paragraph8 '>fiber_manual_record</span>
@@ -108,6 +108,20 @@
 							</avatar>
 						</div>
 					</div>
+					<div class="row">
+					    <div class='ranking'>
+                            <div class='left'>
+                                @for($cont = 1 ; $cont <= 5 ; $cont++)
+                                    @if($cont <= $service->user->ranking)
+                                        <span class='material-icons'>grade</span>
+                                    @else
+                                        <span class='material-icons paragraph4 '>fiber_manual_record</span>
+                                    @endif
+                                @endfor
+                            </div>
+                        </div>
+					</div>
+
 					<div >
 						<div class="row">
 							<div class="col-xs-12 text-center">
@@ -138,11 +152,25 @@
 								</div>
 							
 								<div class="col-xs-12 ">
-									<button class='col-xs-12 button1 background-active-color text-center' data-toggle="modal" data-target="#login">Comunícate con {{$user->first_name}}</button>
+									<button class='col-xs-12 button1 background-active-color text-center'  @click='myData.login = true'>Comunícate con {{$user->first_name}}</button>
 								</div>
 							@endif
 							
 						</div>
+					</div>
+					<div>
+					    <h1 class="title1">Comentarios</h1>
+					    @foreach($service->serviceScore as $commentary)
+					        @if($commentary->observation != '')
+                                <div class="row">
+                                    <div class="col-md-2 not-padding">
+                                        @include('partial/imageProfile', array('cover' => $commentary->user->avatar, 'id' =>$commentary->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                    </div>
+                                    <p class="col-md-8">{{$commentary->observation}}</p>
+                                </div>
+                                <br>
+					        @endif
+					    @endforeach
 					</div>
 
 				</article>
@@ -168,7 +196,7 @@
 	      			<div >
 		      			<div class="row">
 		      				<div class="col-md-12">
-		      					<textarea name="content" class='validation ' id="content" rows="10" placeholder='Ej. ¡Hola! Me llamo Joe, me gustaría tomar tu oferta ya que dentro de poco será mi matrimonio, y quiero conservar los mejores recuerdos de ese día. ¿Te parece bien si nos encontramos el Lunes, 6 de Agosto a las 3 PM en el Parque Simón Bolivar para realizar la actividad? Espero tu respuesta.'  data-validations='["required", "min:20", "max:250"]'></textarea>
+		      					<textarea name="content" class='validation col-xs-12' id="content" rows="10" placeholder='Ej. ¡Hola! Me llamo Joe, me gustaría tomar tu oferta ya que dentro de poco será mi matrimonio, y quiero conservar los mejores recuerdos de ese día. ¿Te parece bien si nos encontramos el Lunes, 6 de Agosto a las 3 PM en el Parque Simón Bolivar para realizar la actividad? Espero tu respuesta.'  data-validations='["required", "min:20", "max:250"]'></textarea>
 		      					<div class='clearfix'></div>
 		      					<div class="msg" errors='content'>
 									<p error='required'>Este campo es obligatorio.</p>

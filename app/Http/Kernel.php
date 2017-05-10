@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'userService' => \App\Http\Middleware\UserServiceMiddleware::class,        
         'register' => \App\Http\Middleware\RegisterMiddleware::class,
         'conversation' => \App\Http\Middleware\ConversationMiddleware::class,
+        'passRegister' => \App\Http\Middleware\PassRegisterMiddleware::class,
     ];
 }

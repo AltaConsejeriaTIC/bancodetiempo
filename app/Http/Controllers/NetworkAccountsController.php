@@ -21,31 +21,22 @@ class NetworkAccountsController extends Controller
 	public function login($provider = ''){
 
 		if(!$provider || $provider == ''){
-
 			return Redirect::route("login");
-
 		}
-
 		Session::put('last_url', str_replace("http://".$_SERVER['HTTP_HOST'], "", URL::previous()));
-
 		$function = "redirect".ucwords($provider);
-
 		return $this->$function();
 
 	}
 
-	public function validateLogout()
-	{
-		if(auth()->user())
-		{
+	public function validateLogout(){
+		if(auth()->user()){
 			auth()->logout();
 			return redirect('/');
-		}
-		else
-		{
+		}else{
 			return redirect('/');
 		}
-  }
+    }
 
 	public function showFrom(){
 
@@ -59,32 +50,7 @@ class NetworkAccountsController extends Controller
 
 		]);
 
-		if(Auth::user()->services->count() >= 1)
-    {
-      return redirect('/');
-    }
-    else
-    {
-    	if($user->privacy_policy == 0)
-			{
-				$pass1 = 'actual';
-				$pass2 = '';
-				$pass3 = '';			
-			}
-			else
-			{			
-				$pass1 = 'done';
-				if(Auth::user()->interests->count() >= 3)
-				{				
-					$pass2 = 'done';
-					$pass3 = 'actual';
-				}
-				else
-				{
-					$pass2 = 'actual';
-				}
-			}	
-    }	
+
 		return view('auth/register', compact('user','pass1','pass2','pass3'));
 	}
 
@@ -95,7 +61,7 @@ class NetworkAccountsController extends Controller
 				'provider' => $providerData['provider']
 		]);
 
-    $email = is_null($providerData['email']) ? $providerData['id']."@cambalachea.co" : $providerData['email'];
+        $email = is_null($providerData['email']) ? $providerData['id']."@cambalachea.co" : $providerData['email'];
 
 		$user = User::whereEmail($email)->first();
 
@@ -196,17 +162,13 @@ class NetworkAccountsController extends Controller
 	}
 
 	private function redirectGoogle(){
-
 		return Socialite::driver('google')->redirect();
-
 	}
 
 	private function redirectLinkedin(){
-
 		return Socialite::driver('linkedin')->fields([
 				'first_name', 'last_name', 'email', 'gender', 'birthday'
 		])->redirect();
-
 	}
 
 	private function getProviderDataFacebook(){
