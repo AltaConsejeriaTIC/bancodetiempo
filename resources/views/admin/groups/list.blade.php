@@ -84,9 +84,6 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    @include('admin/groups/show')
-                                    @include('admin/groups/update')
-                                    {{--@include('admin/services/reports')--}}
                                 @endforeach
 
                                 </tbody>
@@ -101,4 +98,9 @@
             </div>
         </div>
     </div>
+
+@foreach($groups as $group)
+    @include('admin/groups/show')
+    @include('admin/groups/update')
+@endforeach
 @endsection
