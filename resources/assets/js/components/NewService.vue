@@ -127,6 +127,7 @@
 								
 	            			</div>
                         </div>
+                        </div>
                         <div class="modal-footer">
                         </div>
                     </div>
@@ -134,7 +135,7 @@
             </div>
         </div>
     </div>
-</div>
+
 </template>
 <script>
     var helpers = require('./../helpers');
