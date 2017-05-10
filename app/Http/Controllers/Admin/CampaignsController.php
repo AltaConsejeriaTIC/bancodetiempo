@@ -20,7 +20,8 @@ class CampaignsController extends Controller
                 "Nombre" => $participant->participant->first_name." ".$participant->participant->last_name,
                 "Email" => $participant->participant->email2,
                 "Fecha inscripcion" => $participant->created_at,
-                "Asistencia" => $participant->presence ? "Si" : "No"
+                "Asistencia" => $participant->presence ? "Si" : "No",
+                "Tipo de inscripcion" => $participant->confrimed ? "Inscrito" : "Pre-inscrito"
             ];
         }
 
