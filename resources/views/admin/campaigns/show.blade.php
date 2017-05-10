@@ -58,6 +58,8 @@
                                             <tr>
                                                 <th>Nombre</th>
                                                 <th>Email</th>
+                                                <th>Tipo inscripcion</th>
+                                                <th>Asistencia</th>
                                                 <th>Fecha inscripcion</th>
                                             </tr>
                                         </thead>
@@ -66,6 +68,8 @@
                                             <tr>
                                                 <td>{{$participant->participant->first_name." ".$participant->participant->last_name}}</td>
                                                 <td>{{$participant->participant->email2}}</td>
+                                                <td>@if($participant->confirmed) Inscrito @else Pre-inscrito @endif</td>
+                                                <td>@if($participant->presence) Asistio @else No asistio @endif</td>
                                                 <td>{{$participant->created_at}}</td>
                                             </tr>
                                         @endforeach
