@@ -12,7 +12,9 @@ use App\Http\Controllers\Profile\ProfileController;
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('/', 'HomeController@indexNotRegister');
+Route::get('/', function(){
+    return view('mantenimiento');
+});
 Route::get('/index', 'HomeController@indexNotRegister');
 Route::get('/home', 'HomeController@index')->middleware('passRegister');
 Route::get('/content/{name}', 'ContentController@index');

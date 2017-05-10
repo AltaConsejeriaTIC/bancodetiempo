@@ -20,6 +20,7 @@
 							  	  <th>Servicio</th>
 							  	  <th>Demandante</th>
 							  	  <th>Ofertante</th>
+							  	  <th>Categoria</th>
 							  	  <th>Estado</th>
 							  	  <th>Fecha</th>
 							  	</tr>
@@ -28,11 +29,12 @@
 
 
 							     <tr>
-							        <td><input type="text" name='filterService' value="{{request('filterService')}}"></td>
-							        <td><input type="text" name="filterApplicant" value="{{request('filterApplicant')}}"></td>
-							        <td><input type="text" name="filterOfferer" value="{{request('filterOfferer')}}"></td>
+							        <td><input type="text" name='filterService' value="{{request('filterService')}}" style="width:80px"></td>
+							        <td><input type="text" name="filterApplicant" value="{{request('filterApplicant')}}" style="width:80px"></td>
+							        <td><input type="text" name="filterOfferer" value="{{request('filterOfferer')}}" style="width:80px"></td>
+							        <td></td>
 							        <td>
-							            <select name="filterState" onchange="jQuery('form').submit()">
+							            <select name="filterState" onchange="jQuery('form').submit()" style="width:80px">
 							                <option value=""></option>
 							                @foreach($states as $state)
 							                    <option value="{{$state->id}}" @if($state->id == request('filterState')) selected @endif>{{$state->state}}</option>
@@ -41,9 +43,9 @@
 							        </td>
 							        <td class="row">
                                        <div class="col-md-9">
-                                            <span>Fecha inicio</span>
+                                            <span>Fecha inicio</span><br>
                                             <input type="text" class="col-md-12 not-margin not-padding datepick" name="filtrerDateCreateStart" value="{{request('filtrerDateCreateStart')}}">
-                                            <span>Fecha fin</span>
+                                            <span>Fecha fin</span><br>
                                             <input type="text" class="col-md-12 not-margin not-padding datepick" name="filtrerDateCreateFinish" value="{{request('filtrerDateCreateFinish')}}">
                                        </div>
 
@@ -65,6 +67,7 @@
                                     <td>{{$deal->service->name}}</td>
                                     <td>{{$deal->user->first_name." ".$deal->user->last_name}}</td>
                                     <td>{{$deal->service->user->first_name." ".$deal->service->user->last_name}}</td>
+                                    <td>{{$deal->service->category->category}}</td>
                                     <td>{{$deal->dealStates->last()->state->state}}</td>
                                     <td>{{$deal->date}}</td>
                                     <td></td>
