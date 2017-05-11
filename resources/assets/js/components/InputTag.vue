@@ -40,6 +40,7 @@
     },
     mounted() {
         this.getTags()
+        this.$root.setMyData("tagsUser", [])
     },
     methods: {
       previewTags(tag){
@@ -79,6 +80,7 @@
       addNew(tag) {        
         if (tag && !this.tags.includes(tag) && this.validateIfNeeded(tag)) {
           this.tags.push(tag);
+            this.$root.myData.tagsUser.push(tag);
           this.tagChange();
         }
         this.newTag = '';
