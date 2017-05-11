@@ -52,6 +52,10 @@ Logo
     width: 85%;
 }
 
+img{
+    max-width: 100%;
+}
+
 /*
 Titles
 */
