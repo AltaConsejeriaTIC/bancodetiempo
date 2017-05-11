@@ -7,7 +7,7 @@ use App\User;
 
 class Groups extends Model
 {
-    protected  $fillable = ['name', 'image', 'description', 'creator_id', 'admin_id', 'state_id'];
+    protected  $fillable = ['name', 'image', 'description', 'creator_id', 'admin_id', 'state_id', 'facebook', 'twitter', 'linkedin', 'instagram'];
 
     public function creator(){
 
