@@ -302,6 +302,10 @@ Paragraphs
 	color:#90a1b5 !important;
 	word-wrap:break-word;
 }
+
+.text-primary-color{
+    color:#2c3e50;
+}
 /*
 Links
 */

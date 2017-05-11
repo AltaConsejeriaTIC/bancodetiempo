@@ -29,6 +29,29 @@
             </div>
             <br>
             <div class="row">
+                <div class="col-xs-12">
+                    <h4 class="title2">Nuestras redes sociales</h4>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-12">
+                    @if($group->facebook != '')
+                        <a href="https://www.facebook.com/{{$group->facebook}}" target="_blank" class="title2"><i class="fa fa-facebook"></i></a>
+                    @endif
+                    @if($group->twitter != '')
+                        <a href="https://twitter.com/{{$group->twitter}}" target="_blank" class="title2"><i class="fa fa-twitter"></i></a>
+                    @endif
+                    @if($group->linkedin != '')
+                        <a href="https://www.linkedin.com/in/{{$group->linkedin}}" target="_blank" class="title2"><i class="fa fa-linkedin"></i></a>
+                    @endif
+                    @if($group->instagram != '')
+                        <a href="https://www.instagram.com/{{$group->instagram}}" target="_blank" class="title2"><i class="fa fa-instagram"></i></a>
+                    @endif
+                </div>
+            </div>
+            <br>
+            <div class="row">
                 <div class="col-md-12">
                     <button type="button" class='button1 background-active-color col-xs-12 col-md-12' @click='myData.editgroup{{$group->id}} = "true"'>{{trans("groups.editGroups")}}</button>
                 </div>
