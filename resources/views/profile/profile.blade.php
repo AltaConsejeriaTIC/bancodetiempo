@@ -13,136 +13,34 @@
     @endif
     @include('nav',array('type' => 2))
     
-    <section class="row">
-        <div class="container">
-        	<div class='row'>
-	            <article class='col-md-4 col-xs-12 col-sm-6'>   	
-	                <div class="row">                
-	                    <div class="col-xs-6 col-xs-offset-3">
-	                        <avatar :cover='myData.cover'>
-			                    <template scope="props">
-			                    	@include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' =>Auth::user()->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
-		                        </template>	                        	
-		                     </avatar>
-	                    </div>                            
-	                </div>
-	                <div v-show='noEdit'>
-		                <div class="row">
-		                    <div class="col-xs-12">
-		                        <h2 class="title1">{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
-		                    </div>               
-		                </div>
-		                <div class="row">
-		                    <div class="col-xs-12">
-		                        <p class='paragraph4'>{{Auth::user()->aboutMe}}</p>
-		                    </div>
-		                </div>                
-		                <div class="row">
-                            <div class="col-xs-12">
-                                <button class="col-xs-12 button1 background-active-color text-center"  @click='showEdit'>{{ trans("profile.editProfile") }}</button>
-                            </div>
+<section class="row">
 
-		                </div>
-		                <div class="space10"></div>
-                    <div class="row border ">
-                      <div class="col-sm-12">                        
-                        <div class="space20"></div>
-                        <p class="col-xs-2">
-                          <img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav"></image> 
-                        </p>                          
-                        <p class="col-xs-10">
-                          <span class="text-bold">
-                            {{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? trans('nav.credit') : trans('nav.credits') }}
-                          </span>
-                            <span class="space4"></span>
-                                <span class="paragraph6">
-                                    {{trans('profile.descriptionCredits')}}
-                                </span>
-                          <br>
+    <div class="container">
 
-                        </p>
-                        <div class="space20"></div>        
-                      </div>
-                    </div>
-                    <div class="space10"></div>
-		                <div class="row">
-                            <div class="col-xs-12">
-                                 {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
-                                    <input type="hidden" name="token" value="{{ csrf_token() }}">
-                                    <deactivate></deactivate>
-                                {!! Form::close() !!}
-                                <button class="col-xs-12 button10 background-white" data-toggle="modal" data-target="#deactivate">{{ trans('profile.desactiveAccount') }}</button>
-                            </div>
-		                </div>
+        @include('profile.partial.detailProfile')
 
+        <ul class="nav nav-pills col-md-8 col-xs-12">
+            <li class="active">
+                <a href="#tabServices" data-toggle="tab">{{ trans('profile.services') }}</a>
+            </li>
+            <li>
+                <a href="#tabGroups" data-toggle="tab">{{ trans('profile.groups') }}</a>
+            </li>
+        </ul>
 
-	                </div>
-	               
-               	<div v-show='edit' >
-               	
-               		<div class="row">
-               			<div class="col-md-8 col-md-offset-2 text-center">
-               				<label for='avatar' class="button1 background-active-color text-center"  @click='showEdit'>{{ trans('profile.updateCover') }}</label>
-                      <p class="avatarMsg hidden">El peso màximo de la imagen debe ser de 3 Megas.</p>
-               			</div>
-               		</div>
-               		
-                    {!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form', 'form-validation' => '']) !!}
-                        <input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
-                        <register  profile='1'>
-                        </register>
-                        <div class="col-xs-12">
-                            <button class="col-xs-12 button10 background-white text-center" type='button' @click='hiddenEdit'>{{ trans('profile.cancel') }}</button>
-                        </div>
+        <div class="tab-content clearfix col-md-8">
+            <div class="tab-pane active" id="tabServices">
+                @include('profile.partial.tabService')
+            </div>
 
-                    {!! Form::close() !!}
+	       <div class="tab-pane" id="tabGroups">
+                @include('profile.partial.tabGroups')
+            </div>
+        </div>
 
-               	</div>
-            </article>
-            <article class="col-md-4 col-xs-12 col-sm-6">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="title1">{{ trans('profile.myServices') }}</h2>
-                        <button class="col-xs-12 buttonService background-white" data-toggle="modal" data-target="#NewService">
-                          <i class="fa fa-plus-square icons" aria-hidden="true"></i>
-                          <p>{{ trans("profile.newService") }}</p>
-                        </button>                        
-                        {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation' => '']) !!}
-                          <newservice></newservice>
-                        {!! Form::close() !!}
-                    </div>               
-                </div>
-            </article>
-            <article class="col-md-8 panel-services">
-                <div class="row">
-                    @foreach($services as $key => $service)                  
-                      <div class='col-md-6 col-xs-12 col-sm-6'>                            
-                          @include('partial/serviceBox', array("service" => $service, "edit" => "1"))                                            
-                      </div>                      
-                    @endforeach                    
-                </div>
-            </article>
-            <article class="col-md-offset-4 col-md-8 panel-groups">
-               <div class="row">
-                    <div class="col-md-6">
-                        <h2 class="title1">{{ trans('profile.myGroups') }}</h2>
-                        <button class="col-xs-12 buttonService background-white" @click='myData.newgroup = true'>
-                          <i class="fa fa-plus-square icons" aria-hidden="true"></i>
-                          <p>{{ trans("profile.newGroup") }}</p>
-                        </button>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach($myGroups as $key => $group)
-                      <div class='col-md-6 col-xs-12 col-sm-6'>
-                          @include('partial/groupBox', array("edit" => 1))
-                      </div>
-                      @include("profile/partial/deleteGroup")
-                    @endforeach
-                </div>
-            </article>
+    </div>
 
-    	</div>
-    </section>  
+</section>
+
 @include("profile/partial/formNewGroup")
 @endsection
