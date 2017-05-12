@@ -32,7 +32,7 @@
         <link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
         <script>
             window.Laravel = <?php echo json_encode([

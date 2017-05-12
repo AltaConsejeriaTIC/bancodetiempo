@@ -13,7 +13,7 @@
             </div>
             <br>
             <div class="row">
-                <button class="col-xs-12 button10 background-white text-center" @click='myData.deletegroup{{$group->id}} = false'>
+                <button type="button" class="col-xs-12 button10 background-white text-center" @click='myData.deletegroup{{$group->id}} = false'>
                     {{trans("groups.not")}}
                 </button>
             </div>

@@ -24,7 +24,11 @@ class GroupsController extends Controller
             'image' => $cover,
             'creator_id' => Auth::User()->id,
             'admin_id' => Auth::User()->id,
-            'state_id' => 1
+            'state_id' => 1,
+            'facebook' => $request->input('linkFacebook'),
+            'twitter' => $request->input('linkTwitter'),
+            'linkedin' => $request->input('linkLinkedin'),
+            'instagram' => $request->input('linkInstagram'),
         ]);
         $this->saveCollaborators($request->input('collaborators'), $group);
 
@@ -70,7 +74,11 @@ class GroupsController extends Controller
         $group->update([
             'name' => $request->input('nameGroup'),
             'description' => $request->input('descriptionGroup'),
-            'image' => $cover
+            'image' => $cover,
+            'facebook' => $request->input('linkFacebook'),
+            'twitter' => $request->input('linkTwitter'),
+            'linkedin' => $request->input('linkLinkedin'),
+            'instagram' => $request->input('linkInstagram'),
         ]);
 
         $this->updateCollaborators($request->input('collaborators'), $group);

@@ -36,8 +36,8 @@
                     <input type="text" name='nameGroup' class="col-xs-12 col-sm-12 col-md-12 validation" placeholder='{{ trans("profile.placeHolderNameGroup") }}' data-validations='["required", "max:50", "min:3"]' value='{{$group->name}}'>
                     <div class="msg" errors='nameGroup'>
                         <p error='required'>{{ trans('errors.required') }}</p>
-                        <p error='min'>{{trans('groups.errorMinName')}}</p>
-                        <p error='max'>{{trans('groups.errorMaxName')}}</p>
+                        <p error='min'>{{trans('errors.min', array('val' => 3))}}</p>
+                        <p error='max'>{{trans('errors.max', array('val' => 50))}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -47,8 +47,8 @@
                     <textarea name='descriptionGroup' rows='8' class="col-xs-12 col-sm-12 col-md-12 validation" data-validations='["required", "min:50", "max:250"]'  placeholder='{{ trans("profile.placeHolderDescriptionGroup") }}'>{{$group->description}}</textarea>
                     <div class="msg" errors='descriptionGroup'>
                         <p error='required'>{{ trans('errors.required') }}</p>
-                        <p error='min'>{{trans('groups.errorMinDescription')}}</p>
-                        <p error='max'>{{trans('groups.errorMaxDescription')}}</p>
+                        <p error='min'>{{trans('errors.min', ['val' => 50])}}</p>
+                        <p error='max'>{{trans('errors.max', ['val' => 250])}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -72,9 +72,12 @@
                        <button type="button" class="button1 background-active-color col-md-8 col-md-offset-2" v-show='!myData.linkFacebook' @click='setMyData("linkFacebook", true)'>
                            <i class="fa fa-facebook" style="font-size: 27px;float:left"></i>{{ trans("profile.link") }}
                        </button>
+                       @if($group->facebook != '')
+                           @{{setMyData("linkFacebook", true)}}
+                       @endif
                        <div class="inputIntegrate col-md-10 col-md-offset-1" v-show='myData.linkFacebook'>
                             <i class="fa fa-facebook" style="font-size: 27px"></i>
-                            <input type="text" class="text-center col-md-10" name="linkFacebook" placeholder='{{ trans("profile.placeHolderLinkFacebok") }}'>
+                            <input type="text" class="text-center col-md-10" name="linkFacebook" placeholder='{{ trans("profile.placeHolderLinkFacebok") }}' value="{{$group->facebook}}">
                        </div>
 
                    </div>
@@ -83,9 +86,12 @@
                        <button type="button" class="button1 background-active-color col-md-8 col-md-offset-2" v-show='!myData.linkTwitter' @click='setMyData("linkTwitter", true)'>
                            <i class="fa fa-twitter" style="font-size: 27px;float:left"></i>{{ trans("profile.link") }}
                        </button>
+                       @if($group->twitter != '')
+                           @{{setMyData("linkTwitter", true)}}
+                       @endif
                        <div class="inputIntegrate col-md-10 col-md-offset-1" v-show='myData.linkTwitter'>
                             <i class="fa fa-twitter" style="font-size: 27px"></i>
-                            <input type="text" class="text-center col-md-10" name="linkTwitter" placeholder='{{ trans("profile.placeHolderLinkTwitter") }}'>
+                            <input type="text" class="text-center col-md-10" name="linkTwitter" placeholder='{{ trans("profile.placeHolderLinkTwitter") }}' value="{{$group->twitter}}">
                        </div>
                    </div>
                    <br>
@@ -93,9 +99,12 @@
                        <button type="button" class="button1 background-active-color col-md-8 col-md-offset-2" v-show='!myData.linkLinkedin' @click='setMyData("linkLinkedin", true)'>
                            <i class="fa fa-linkedin" style="font-size: 27px;float:left"></i>{{ trans("profile.link") }}
                        </button>
+                       @if($group->linkedin != '')
+                           @{{setMyData("linkLinkedin", true)}}
+                       @endif
                        <div class="inputIntegrate col-md-10 col-md-offset-1" v-show='myData.linkLinkedin'>
                             <i class="fa fa-linkedin" style="font-size: 27px"></i>
-                            <input type="text" class="text-center col-md-10" name="linkLinkedin" placeholder='{{ trans("profile.placeHolderLinkLinkedin") }}'>
+                            <input type="text" class="text-center col-md-10" name="linkLinkedin" placeholder='{{ trans("profile.placeHolderLinkLinkedin") }}' value="{{$group->linkedin}}">
                        </div>
                    </div>
                    <br>
@@ -103,9 +112,12 @@
                        <button type="button" class="button1 background-active-color col-md-8 col-md-offset-2" v-show='!myData.linkInstagram' @click='setMyData("linkInstagram", true)'>
                            <i class="fa fa-instagram" style="font-size: 27px;float:left"></i>{{ trans("profile.link") }}
                        </button>
+                       @if($group->instagram != '')
+                           @{{setMyData("linkInstagram", true)}}
+                       @endif
                        <div class="inputIntegrate col-md-10 col-md-offset-1" v-show='myData.linkInstagram'>
                             <i class="fa fa-instagram" style="font-size: 27px"></i>
-                            <input type="text" class="text-center col-md-10" name="linkInstagram" placeholder='{{ trans("profile.placeHolderLinkInstagram") }}'>
+                            <input type="text" class="text-center col-md-10" name="linkInstagram" placeholder='{{ trans("profile.placeHolderLinkInstagram") }}' value="{{$group->instagram}}">
                        </div>
                    </div>
                 </div>

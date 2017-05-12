@@ -140,7 +140,7 @@
                             oferta</label><span class="text-opacity"> (Opcional)</span>
                     </div>
                     <div class="row">
-                        <input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 validation preview" id='"imageService{{$service->id}}'  data-validations='["maxFile:2500000"]'>
+                        <input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 validation preview" id='imageService{{$service->id}}'  data-validations='["maxFile:2500000"]'>
                            <label for='imageService{{$service->id}}' class='text-center col-xs-12 col-sm-12' style="background-image:url('{{$service->image}}')"><span>Sube una foto</span></label>
                            <div class="msg" errors='imageService'>
                                 <p error='max'>El peso màximo de la imagen debe ser de 3 Megas.</p>
