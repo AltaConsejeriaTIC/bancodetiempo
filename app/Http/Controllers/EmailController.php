@@ -99,7 +99,7 @@ class EmailController extends Controller
 
                 Mail::send('emailDaily', ["user" => $addressee], function ($message) use ($addressee)
                 {
-                    $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+                    $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
                     $message->subject('Notificación');
                     $message->to($addressee->email2);
                 });
