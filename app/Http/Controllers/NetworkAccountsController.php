@@ -50,8 +50,7 @@ class NetworkAccountsController extends Controller
 
 		]);
 
-
-		return view('auth/register', compact('user','pass1','pass2','pass3'));
+		return view('auth/register', compact('user'));
 	}
 
 	public function createUser($providerData){
