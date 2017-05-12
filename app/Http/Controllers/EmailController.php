@@ -76,7 +76,7 @@ class EmailController extends Controller
           $mail = $Addressee->email2;
           Mail::send('deals/dealEmail',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail)
           {
-            $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+            $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
             $message->subject('Notificación');
             $message->to($mail);
           });
