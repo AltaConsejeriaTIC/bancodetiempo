@@ -24,7 +24,9 @@
                                 <label for='conversationCkeck{{$conversation->id}}'></label>
                             </div>
                             <div class='col-md-1'>
-                                @include('partial/imageProfile', array('cover' =>$conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#0a475b', 'borderSize' => '2px'))
+                                <a href="/user/{{$conversation->applicant->id}}">
+                                    @include('partial/imageProfile', array('cover' =>$conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#0a475b', 'borderSize' => '2px'))
+                                </a>
                             </div>
                             <div class="col-md-2">
                                 <a href='/conversation/{{$conversation->id}}' class='paragraph4 text-bold'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</a>
@@ -42,7 +44,9 @@
                     <div class='visible-xs @if($conversation->lastMessage->state == 6 && $conversation->lastMessage->sender != Auth::user()->id) notRead @endif'>
                         <div class="row">
                             <div class="col-xs-2">
-                                @include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                <a href="/user/{{$conversation->applicant->id}}">
+                                    @include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                </a>
                             </div>
                             <div class="col-xs-10">
                                 <a href='/conversation/{{$conversation->id}}' class='paragraph4'>{{$conversation->applicant->first_name." ".$conversation->applicant->last_name}}</a>
@@ -85,7 +89,9 @@
                                 <label for='conversationCkeck{{$conversation->id}}'></label>
                             </div>
                             <div class='col-md-1'>
-                                @include('partial/imageProfile', array('cover' =>$conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#0a475b', 'borderSize' => '2px'))
+                                <a href="/user/{{$conversation->service->user->id}}">
+                                    @include('partial/imageProfile', array('cover' =>$conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#0a475b', 'borderSize' => '2px'))
+                                </a>
                             </div>
                             <div class="col-md-2">
                                 <a href='/conversation/{{$conversation->id}}' class='paragraph4 text-bold'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</a>
@@ -101,7 +107,9 @@
                     <div class='visible-xs @if($conversation->lastMessage->state == 6 && $conversation->lastMessage->sender != Auth::user()->id) notRead @endif'>
                         <div class="row">
                             <div class="col-xs-2">
-                                @include('partial/imageProfile', array('cover' =>$conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#0a475b', 'borderSize' => '2px'))
+                                <a href="/user/{{$conversation->service->user->id}}">
+                                    @include('partial/imageProfile', array('cover' =>$conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#0a475b', 'borderSize' => '2px'))
+                                </a>
                             </div>
                             <div class="col-xs-10">
                                 <a href='/conversation/{{$conversation->id}}' class='paragraph4'>{{$conversation->service->user->first_name." ".$conversation->service->user->last_name}}</a>
