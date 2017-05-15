@@ -15,7 +15,7 @@
 			<span class='category' onClick='app.__vue__.filterCategory({{$service->category->id}}, "{{$service->category->category}}")'>{{$service->category->category}}</span>
 			<a href="/service/{{$service->id}}">
 			<div class="cover">
-				<img src="{{$service->image}}" alt="" />
+				<img src="/{{$service->image}}" alt="" />
 			</div>
 			</a>
 		<div class='avatar'>
