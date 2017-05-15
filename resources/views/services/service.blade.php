@@ -101,11 +101,13 @@
 				<article class='col-md-4 col-xs-12 col-sm-6'>
 					<div class="row">
 						<div class="col-xs-6 col-xs-offset-3">
+						    <a href="/user/{{$service->user->id}}">
 							<avatar :cover='myData.cover'>
 								<template scope="props">
 									@include('partial/imageProfile', array('cover' => $user->avatar, 'id' =>$user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
 								</template>
 							</avatar>
+                            </a>
 						</div>
 					</div>
 					<div class="row">

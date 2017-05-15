@@ -13,18 +13,20 @@
 			{!!Form::close()!!}		
 		@endif			
 			<span class='category' onClick='app.__vue__.filterCategory({{$service->category->id}}, "{{$service->category->category}}")'>{{$service->category->category}}</span>
-			<a href="service/{{$service->id}}">
+			<a href="/service/{{$service->id}}">
 			<div class="cover">
 				<img src="{{$service->image}}" alt="" />
 			</div>
 			</a>
 		<div class='avatar'>
-
+            <a href="/user/{{$service->user->id}}">
             @if(isset($service->toArray()['user_id']))
                 @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#fff', 'borderSize' => '2px'))
             @endif
+            </a>
+
 		</div>
-			<a href="service/{{$service->id}}">
+			<a href="/service/{{$service->id}}">
 			<div class="content">
 				<h3 class='title title2'>{{$service->name}}</h3>
 				@if(isset($service->toArray()['user_id']))
