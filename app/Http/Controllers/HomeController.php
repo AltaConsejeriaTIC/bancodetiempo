@@ -38,7 +38,6 @@ class HomeController extends Controller{
         JavaScript::put([
             'categoriesJs' => $categories,
         ]);
-
         $campaigns = Campaigns::where('state_id', 1)->get()->where("groups.state_id", 1);
 
         return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin'));
@@ -47,18 +46,17 @@ class HomeController extends Controller{
     
     public function filter(Request $request){
 
+        $categories = Category::getCategoriesInUse();
     	$allServices = ServiceController::getServiceActive();
         $this->filterTags($allServices, $request->input('filter'));
     	$allServices = $allServices->paginate(12);
     	$recommendedServices = User::recommendedServices();
         $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
-
     	JavaScript::put([
-    			'categoriesJs' => CategoryController::getCategoriesActive(),
+    			'categoriesJs' => $categories
     	]);
-        $categories = CategoryController::getCategoriesActive();
-        $campaigns = Campaigns::where('state_id', 1)->get();
-    	return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin'))->with('i', ($request->input('page', 1) - 1) * 5);
+        $campaigns = Campaigns::where('state_id', 1)->get()->where("groups.state_id", 1);
+    	return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin'));
     }
 
     public function filterTags($allServices, $filter){
@@ -69,7 +67,6 @@ class HomeController extends Controller{
             $allServices->join('tags_services', 'services.id', 'tags_services.service_id');
             Session::flash('filters.tags', $idTags);
     		return $allServices->WhereIn('tags_services.tag_id', $idTags);
-
 		}else{
 			Session::pull('filters.tags');
             return $allServices;
