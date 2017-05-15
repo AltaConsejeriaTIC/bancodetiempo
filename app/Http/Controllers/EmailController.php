@@ -49,7 +49,7 @@ class EmailController extends Controller
     	$content = $request->input('content');
 
     	Mail::send('mailContact',["service" => $service, "userauth" => $userauth, "myImageProfile" => $myImageProfile, "imageProfile" => $imageProfile, "imageService" => $imageService,'content' => $content], function ($message) use ($mail){
-    		$message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+    		$message->from('bancodetiempo@cambalachea.co','Cambalachea!');
     		$message->subject('Notificación');
     		$message->to($mail);
     	});
@@ -76,7 +76,7 @@ class EmailController extends Controller
           $mail = $Addressee->email2;
           Mail::send('deals/dealEmail',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail)
           {
-            $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+            $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
             $message->subject('Notificación');
             $message->to($mail);
           });
@@ -99,7 +99,7 @@ class EmailController extends Controller
 
                 Mail::send('emailDaily', ["user" => $addressee], function ($message) use ($addressee)
                 {
-                    $message->from('evenvivelab_bog@unal.edu.co','Cambalachea!');
+                    $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
                     $message->subject('Notificación');
                     $message->to($addressee->email2);
                 });

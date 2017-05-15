@@ -67,11 +67,13 @@ export default {
 			if(filter == ''){
 				filter = 0;
 			}
-			this.$http.get('/service/category/'+filter).then(response => {
-				document.getElementById('filterAll').firstChild.innerHTML = response.body
-			  }, response => {
-			    console.log("error")
-			  });
+            jQuery.ajax({
+                    type: "GET",
+                    url: '/service/category/'+filter,
+                    success : function(data){
+                        document.getElementById('filterAll').firstChild.innerHTML = data
+                    }
+            });
 		},
 		toogleSelect:function(){
 			if(this.stateSelect == "pick"){
