@@ -166,7 +166,9 @@
 					        @if($commentary->observation != '')
                                 <div class="row">
                                     <div class="col-md-2 not-padding">
-                                        @include('partial/imageProfile', array('cover' => $commentary->user->avatar, 'id' =>$commentary->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                        <a href="/user/{{$commentary->user->id}}">
+                                            @include('partial/imageProfile', array('cover' => $commentary->user->avatar, 'id' =>$commentary->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                        </a>
                                     </div>
                                     <p class="col-md-8">{{$commentary->observation}}</p>
                                 </div>
