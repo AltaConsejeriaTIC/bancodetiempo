@@ -45,7 +45,7 @@
 
 </head>
 <body>
-    <div id="app">
+    <div>
       <!--Navbar-->
         <nav class="navbar navbar-default navbar-static-top">
           <div class="container">

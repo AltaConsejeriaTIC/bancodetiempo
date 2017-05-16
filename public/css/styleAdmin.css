@@ -163,3 +163,21 @@ ul.dropdown-menu li:hover {
 .report {
     background-color: darkred !important;
 }
+
+
+/*
+Reportes
+*/
+
+#fiels {
+    position: fixed;
+    background: #009688;
+    padding: 20px;
+    right: 2%;
+    top: 10%;
+}
+
+ul.fieldReport{
+    list-style: none;
+    padding: 0px;
+}

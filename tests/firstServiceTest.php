@@ -12,7 +12,6 @@ class firstServiceTest extends TestCase
      * @return void
      */
    public function testSeeService(){
-        $this->visit('service')
-            ->see('ofrecer');
+        $this->visit('service');
     }
 }

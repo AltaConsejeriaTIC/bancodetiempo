@@ -43,3 +43,8 @@ Route::resource('adminCampaigns', 'Admin\CampaignsController@showList');
 Route::put('adminCampaigns/update', 'Admin\CampaignsController@updateCampaignState');
 Route::resource('/adminCampaigns/participant/{campaign_id}/download', 'Admin\CampaignsController@downloadParticipant');
 
+
+Route::resource('/admin/reports', 'Admin\ReportsController@index');
+Route::post('/admin/createReport', 'Admin\ReportsController@create');
+Route::resource('/admin/makeReport', 'Admin\ReportsController@makeReport');
+Route::resource('/admin/report/{report_id}', 'Admin\ReportsController@showReport');
