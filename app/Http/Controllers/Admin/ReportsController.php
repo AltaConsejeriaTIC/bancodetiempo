@@ -48,22 +48,30 @@ class ReportsController extends Controller
         $fields = $request->fields;
         $principal = FieldsReportsAdmin::find(reset($fields));
         $class = new $principal->model();
-        $data = $class->all();
+        $data = $class->orderBy('id', 'asc')->get();
         foreach($data as $row){
             $newArray = [];
             foreach($fields as $field){
                 $dataField = FieldsReportsAdmin::find($field);
                 $parameter = $dataField->parameter;
-                $newArray[$dataField->name] = $row->$parameter;
+                $newArray[] = $parameter;
             }
-            $array[] = $newArray;
+            $array = $row->get($newArray);
         }
-        return $this->makeTable($array);
+        dd($array);
+        return $this->makeTable($array, $fields);
     }
 
-    private function makeTable($array){
+    private function makeTable($array, $fields){
 
-        $html = "<table>";
+        $html = "<table>
+                <tr>";
+
+        foreach($fields as $field){
+            $dataField = FieldsReportsAdmin::find($field);
+            $html .= "<td>".$dataField->name."</td>";
+        }
+        $html .= "</tr>";
 
         foreach($array as $row){
             $html .= "<tr>";
