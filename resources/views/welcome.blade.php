@@ -4,8 +4,6 @@
 
 @include('nav', array('type' => 1))
 
-@include('home.partial.popup')
-
 @include('home.partial.bannerHome')
 
 <section>

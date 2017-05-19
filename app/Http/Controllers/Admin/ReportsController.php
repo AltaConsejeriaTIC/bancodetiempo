@@ -50,16 +50,32 @@ class ReportsController extends Controller
         $class = new $principal->model();
         $data = $class->orderBy('id', 'asc')->get();
         foreach($data as $row){
-            $newArray = [];
+            $newArray = collect([]);
             foreach($fields as $field){
                 $dataField = FieldsReportsAdmin::find($field);
-                $parameter = $dataField->parameter;
-                $newArray[] = $parameter;
+                $newArray->push($dataField);
             }
-            $array = $row->get($newArray);
+            $array[] = $this->getParameters($row, $newArray, $principal);
         }
         dd($array);
         return $this->makeTable($array, $fields);
+    }
+
+    private function getParameters($data, $parameters, $principal){
+        $newData = [];
+
+        foreach($parameters as $parameter){
+            $thisParameter = $parameter->parameter;
+            if($principal->model == $parameter->model){
+                $newData[$thisParameter] = $data->$thisParameter;
+            }else{
+                $newData[$thisParameter] = $data->$thisParameter;
+            }
+
+        }
+
+        return $newData;
+
     }
 
     private function makeTable($array, $fields){

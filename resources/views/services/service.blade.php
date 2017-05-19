@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('metas')
+    <meta property="og:url" content="{{url()->current()}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{$service->name}}" />
+    <meta property="og:description" content="{{$service->description}}" />
+    <meta property="og:image" content="{{$service->image}}" />
+@endsection
+
 @section('content')
 
 	@if(session('response'))
@@ -84,6 +92,15 @@
                             @endforeach
                         </div>
 					</div>
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+
+                            <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse">Compartir</a></div>
+                        </div>
+
+                    </div>
 
 					<div class="row">
 						<hr class="  col-md-12 report_line hidden-xs">
