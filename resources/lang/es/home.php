@@ -23,5 +23,6 @@ return [
     'campaigns' => 'Campañas',
     'serviceAdmin' => 'Servicios de cambalachea',
     'services' => 'Servicios',
-    'groups' => 'Grupos'
+    'groups' => 'Grupos',
+    'persons' => 'Personas'
 ];
