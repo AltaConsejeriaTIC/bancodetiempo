@@ -50,4 +50,8 @@ class Groups extends Model
         return $this->hasMany(Campaigns::class);
     }
 
+    static function getActiveGroups(){
+        return Groups::where('state_id', 1)->orderBy('created_at', 'desc');
+    }
+
 }

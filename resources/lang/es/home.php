@@ -21,5 +21,7 @@ return [
     'all' => 'Todos',
     'Recommended' => 'Recomendados',
     'campaigns' => 'Campañas',
-    'serviceAdmin' => 'Servicios de cambalachea'
+    'serviceAdmin' => 'Servicios de cambalachea',
+    'services' => 'Servicios',
+    'groups' => 'Grupos'
 ];
