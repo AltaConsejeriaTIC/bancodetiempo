@@ -8,9 +8,12 @@
     @endif
 
     <div class="container">
-        <div class='row'>
-            @if(sizeof($persons) > 0)
-                <div class='row'>
+        @if(sizeof($persons) > 0)
+            <div class='panel panel-default'>
+                <div class="panel-heading">
+                    <h1 class="panel-title title1">{{ trans('home.persons') }}</h1>
+                </div>
+                <div class="panel-body">
                     @php($i = 0)
                     @while($i < sizeof($persons) )
 
@@ -50,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
     </div>
 @endsection
