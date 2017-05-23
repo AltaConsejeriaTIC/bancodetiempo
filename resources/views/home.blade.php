@@ -108,8 +108,7 @@
                                 @php($j = 0)
 
                                 @while($j < 3 && $k < sizeof($persons) )
-                                    @php($person = $persons[$i])
-
+                                    @php($person = $persons[$k])
                                     <a href="/user/{{$person->id}}">
                                         <div class='col-md-4 col-xs-12 col-sm-6'>
                                             <div style="width: 80px">
@@ -164,7 +163,7 @@
                                 @php($j = 0)
 
                                 @while($j < 3 && $k < sizeof($campaigns))
-                                    @php($campaign = $campaigns[$i])
+                                    @php($campaign = $campaigns[$k])
                                     <a href="/campaign/{{$campaign->id}}">
                                         <div class='col-md-4 col-xs-12 col-sm-6'>
                                             @include('partial/campaignBox', array("campaign" => $campaign))

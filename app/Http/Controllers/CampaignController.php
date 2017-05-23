@@ -154,13 +154,14 @@ class CampaignController extends Controller
         return redirect()->back();
     }
 
-    public function pay(Request $request){
+    public function pay(Request $request)
+    {
         $campaign = Campaigns::find($request->input('campaign_id'));
         $participants = $request->input('participantsPay');
 
-        foreach($participants as $participant){
+        foreach ($participants as $participant) {
             $thisParticipant = $campaign->participants->where('participant_id', $participant);
-            if($thisParticipant->count() > 0){
+            if ($thisParticipant->count() > 0) {
 
                 $thisParticipant->last()->update([
                     "presence" => 1
@@ -177,8 +178,8 @@ class CampaignController extends Controller
         }
 
         $campaign->update([
-                "credits" => 0,
-                "state_id" => 10
+            "credits" => 0,
+            "state_id" => 10
         ]);
 
         return redirect()->back();
@@ -196,13 +197,14 @@ class CampaignController extends Controller
         }
     }
 
-    public function enableInscriptions(){
+    public function enableInscriptions()
+    {
 
         $campaigns = Campaigns::whereBetween("date_donations", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where('allows_registration', 0)->get();
 
-        foreach($campaigns as $campaign){
+        foreach ($campaigns as $campaign) {
             $campaign->update([
-                "credits" => $campaign->credits*2,
+                "credits" => $campaign->credits * 2,
                 "allows_registration" => 1
             ]);
 
@@ -211,18 +213,26 @@ class CampaignController extends Controller
 
     }
 
-    private function SendEmailToPreInscribed($campaign){
-        foreach($campaign->participants as $participant){
+    private function SendEmailToPreInscribed($campaign)
+    {
+        foreach ($campaign->participants as $participant) {
             $mail = $participant->participant->email2;
-            print($mail."\n");
-            Mail::send('mailPreInscribed',["campaign" => $campaign, "participant" => $participant->participant], function ($message) use ($mail){
-                $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
+            print($mail . "\n");
+            Mail::send('mailPreInscribed', ["campaign" => $campaign, "participant" => $participant->participant], function ($message) use ($mail) {
+                $message->from('bancodetiempo@cambalachea.co', 'Cambalachea!');
                 $message->subject('Notificación');
                 $message->to($mail);
             });
         }
 
 
+    }
+
+    public function filter(Request $request)
+    {
+        $filter = $request->input('filter');
+        $campaigns = Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
+        return view('campaigns/list', compact('campaigns', 'filter'));
     }
 
 }

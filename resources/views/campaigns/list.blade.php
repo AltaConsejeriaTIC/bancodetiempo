@@ -15,21 +15,24 @@
                 </div>
                 <div class="panel-body">
                     @php($i = 0)
-                    @while($i < sizeof($campaigns) )
+                    @php($k = 0)
 
+                    @while($i < 4 && $k < sizeof($campaigns))
                         <div class="row">
                             @php($j = 0)
-                            @while($j < 3 && $i < sizeof($campaigns))
-                                @php($campaign = $campaigns[$i])
+
+                            @while($j < 3 && $k < sizeof($campaigns))
+                                @php($campaign = $campaigns[$k])
                                 <a href="/campaign/{{$campaign->id}}">
                                     <div class='col-md-4 col-xs-12 col-sm-6'>
                                         @include('partial/campaignBox', array("campaign" => $campaign))
                                     </div>
                                 </a>
-                                @php($i++)
+                                @php($k++)
                                 @php($j++)
                             @endwhile
                         </div>
+                        @php($i++)
                     @endwhile
                     <div class="row">
                         <div class="col-xs-12">

@@ -48,6 +48,7 @@ Route::get('/getTags', 'ServiceController@getTags');
 
 Route::get('/filter', 'HomeController@filter');
 Route::get('/person', 'PersonController@index');
+Route::get('/campaign', 'CampaignController@filter');
 Route::post('/subscribe', 'HomeController@subscribe');
 
 Route::get('/how', function(){

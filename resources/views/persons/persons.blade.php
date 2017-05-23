@@ -15,18 +15,20 @@
                 </div>
                 <div class="panel-body">
                     @php($i = 0)
-                    @while($i < sizeof($persons) )
+                    @php($k = 0)
+
+                    @while($i < 4 && $k < sizeof($persons) )
 
                         <div class="row">
                             @php($j = 0)
-                            @while($j < 3 && $i < sizeof($persons))
-                                @php($person = $persons[$i])
+
+                            @while($j < 3 && $k < sizeof($persons))
+                                @php($person = $persons[$k])
+
                                 <a href="/user/{{$person->id}}">
                                     <div class='col-md-4 col-xs-12 col-sm-6'>
                                         <div style="width: 80px">
-
                                             @include('partial/imageProfile', array('cover' => $person->avatar, 'id' =>$person->id, 'border' => '#0f6784', 'borderSize' => '3px'))
-
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12">
@@ -40,11 +42,15 @@
                                         </div>
                                     </div>
                                 </a>
-                                @php($i++)
+
+                                @php($k++)
                                 @php($j++)
                             @endwhile
+
+                            @php($i++)
                         </div>
                     @endwhile
+
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="text-center">
