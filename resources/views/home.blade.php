@@ -100,12 +100,16 @@
 
                     <div class="panel-body">
                         @php($i = 0)
-                        @while($i < sizeof($persons) )
+                        @php($k = 0)
+
+                        @while($i < 2 && $k < sizeof($persons))
 
                             <div class="row">
                                 @php($j = 0)
-                                @while($j < 3 && $i < sizeof($persons))
+
+                                @while($j < 3 && $k < sizeof($persons) )
                                     @php($person = $persons[$i])
+
                                     <a href="/user/{{$person->id}}">
                                         <div class='col-md-4 col-xs-12 col-sm-6'>
                                             <div style="width: 80px">
@@ -123,10 +127,12 @@
                                             </div>
                                         </div>
                                     </a>
-                                    @php($i++)
+                                    @php($k++)
                                     @php($j++)
                                 @endwhile
                             </div>
+
+                            @php($i++)
                         @endwhile
 
                         @if(sizeof($persons) >= 6)
@@ -145,23 +151,46 @@
                 </div>
             @endif
             @if(sizeof($campaigns) > 0)
-                <div class='row'>
-                    <h1 class="parrafo3">{{ trans('home.campaigns') }}</h1>
-                    @foreach($campaigns as $key => $campaign)
+                <div class='panel panel-default'>
+                    <div class="panel-heading">
+                        <h1 class="panel-title title1">{{ trans('home.campaigns') }}</h1>
+                    </div>
+                    <div class="panel-body">
+                        @php($i = 0)
+                        @php($k = 0)
 
-                        <div class='col-md-4 col-xs-12 col-sm-6'>
-                            @include('partial/campaignBox', array("service" => $campaign))
-                        </div>
+                        @while($i < 2 && $k < sizeof($campaigns))
+                            <div class="row">
+                                @php($j = 0)
 
-                    @endforeach
-                    <div class="text-center">
-                        {!! $campaigns->links('vendor.pagination.bootstrap-4') !!}
+                                @while($j < 3 && $k < sizeof($campaigns))
+                                    @php($campaign = $campaigns[$i])
+                                    <a href="/campaign/{{$campaign->id}}">
+                                        <div class='col-md-4 col-xs-12 col-sm-6'>
+                                            @include('partial/campaignBox', array("campaign" => $campaign))
+                                        </div>
+                                    </a>
+                                    @php($k++)
+                                    @php($j++)
+                                @endwhile
+                            </div>
+                            @php($i++)
+                        @endwhile
+                        @if(sizeof($campaigns) >= 6)
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="text-center">
+                                        <a href="/campaign/?filter={{$filter}}">
+                                            <button type="button" class="button1 background-active-color ">Ver mas
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endif
         </div>
     </div>
-
-
-
 @endsection

@@ -37,16 +37,17 @@ class HomeController extends Controller
 
         $categories = Category::getCategoriesInUse();
         $allServices = [];//Service::getServicesActive()->paginate(12);
-        $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
+        $serviceAdmin = [];
         $recommendedServices = User::recommendedServices();
-        $groups = Groups::getActiveGroups()->paginate(12);
+        $groups = [];
         $persons = [];
+        $filter='';
         JavaScript::put([
             'categoriesJs' => $categories,
         ]);
-        $campaigns = Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
+        $campaigns = [];
 
-        return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons'));
+        return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
     }
 
 
@@ -60,7 +61,7 @@ class HomeController extends Controller
         $recommendedServices = [];//User::recommendedServices();
         $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
         $groups = Groups::getActiveGroups()->paginate(12);
-        $persons = User::filter($request->input('filter'))->paginate(6);
+        $persons = User::filter($request->input('filter'))->paginate(12);
         JavaScript::put([
             'categoriesJs' => $categories
         ]);
