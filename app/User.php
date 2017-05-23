@@ -97,7 +97,7 @@ class User extends Authenticatable
                 ->where('users.state_id', 1)
                 ->whereIn("category_id", Auth::User()->interests)
                 ->orderBy("created_at", "desc");
-            return $allServices->get();
+            return $allServices;
         } else {
             return null;
         }

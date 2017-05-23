@@ -36,18 +36,18 @@ class HomeController extends Controller
     {
 
         $categories = Category::getCategoriesInUse();
-        $allServices = [];//Service::getServicesActive()->paginate(12);
+        $services = [];//Service::getServicesActive()->paginate(12);
         $serviceAdmin = [];
-        $recommendedServices = User::recommendedServices();
         $groups = [];
         $persons = [];
-        $filter='';
+        $campaigns = [];
+        $filter = '';
+        $recommendedServices = User::recommendedServices()->paginate(6);
         JavaScript::put([
             'categoriesJs' => $categories,
         ]);
-        $campaigns = [];
 
-        return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
+        return view('home', compact('services', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
     }
 
 
@@ -56,17 +56,19 @@ class HomeController extends Controller
         $filter = $request->input('filter');
         $recommendedServices = [];
         $categories = Category::getCategoriesInUse();
-        $allServices = ServiceController::getServiceActive();
-        $this->filterTags($allServices, $filter);
-        $allServices = $allServices->paginate(12);
+        $services = Service::select("services.*")->where('services.name', 'LIKE', "%$filter%")->where('state_id', 1)->orderBy('services.created_at', 'desc')->paginate(12);
+        //$this->filterTags($allServices, $filter);
+        //$allServices = $allServices->paginate(12);
         $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
         $groups = Groups::where('name', 'like', "%$filter%")->paginate(12);
-        $persons = User::filter($request->input('filter'))->paginate(12);
+        $persons = User::filter($filter)->paginate(12);
         $campaigns = Campaigns::select("campaigns.*")->where('campaigns.name', 'LIKE', "%$filter%")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
+
         JavaScript::put([
             'categoriesJs' => $categories
         ]);
-        return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
+
+        return view('home', compact('services', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
     }
 
     public function filterTags($allServices, $filter)
