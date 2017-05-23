@@ -190,7 +190,7 @@ CREATE TABLE `campaigns` (
   KEY `campaigns_state_id_foreign` (`state_id`),
   CONSTRAINT `campaigns_groups_id_foreign` FOREIGN KEY (`groups_id`) REFERENCES `groups` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `campaigns_state_id_foreign` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +199,7 @@ CREATE TABLE `campaigns` (
 
 LOCK TABLES `campaigns` WRITE;
 /*!40000 ALTER TABLE `campaigns` DISABLE KEYS */;
-INSERT INTO `campaigns` VALUES (1,'mysql-workbench','mysql-workbenchmysql-workbenchmysql-workbenchmysql-workbenchmysql-workbench','resources/user/user_446/services/campaign20170522453.gif',1,6,7,2,'2017-05-31 00:00:00','2017-05-27 00:00:00',1,1,'2017-04-24 20:19:24','2017-05-22 22:22:51');
+INSERT INTO `campaigns` VALUES (1,'1','mysql-workbenchmysql-workbenchmysql-workbenchmysql-workbenchmysql-workbench','resources/user/user_446/services/campaign20170522453.gif',1,6,7,2,'2017-05-31 00:00:00','2017-05-27 00:00:00',1,1,'2017-04-24 20:19:24','2017-05-22 22:22:51'),(2,'2','mysql-workbenchmysql-workbenchmysql-workbenchmysql-workbenchmysql-workbench','resources/user/user_446/services/campaign20170522453.gif',1,6,7,2,'2017-05-31 00:00:00','2017-05-27 00:00:00',1,1,'2017-04-24 20:19:24','2017-05-22 22:22:51'),(3,'3','mysql-workbenchmysql-workbenchmysql-workbenchmysql-workbenchmysql-workbench','resources/user/user_446/services/campaign20170522453.gif',1,6,7,2,'2017-05-31 00:00:00','2017-05-27 00:00:00',1,1,'2017-04-24 20:19:24','2017-05-22 22:22:51'),(4,'4','mysql-workbenchmysql-workbenchmysql-workbenchmysql-workbenchmysql-workbench','resources/user/user_446/services/campaign20170522453.gif',1,6,7,2,'2017-05-31 00:00:00','2017-05-27 00:00:00',1,1,'2017-04-24 20:19:24','2017-05-22 22:22:51'),(5,'5','mysql-workbenchmysql-workbenchmysql-workbenchmysql-workbenchmysql-workbench','resources/user/user_446/services/campaign20170522453.gif',1,6,7,2,'2017-05-31 00:00:00','2017-05-27 00:00:00',1,1,'2017-04-24 20:19:24','2017-05-22 22:22:51'),(6,'6','mysql-workbenchmysql-workbenchmysql-workbenchmysql-workbenchmysql-workbench','resources/user/user_446/services/campaign20170522453.gif',1,6,7,2,'2017-05-31 00:00:00','2017-05-27 00:00:00',1,1,'2017-04-24 20:19:24','2017-05-22 22:22:51'),(7,'7','mysql-workbenchmysql-workbenchmysql-workbenchmysql-workbenchmysql-workbench','resources/user/user_446/services/campaign20170522453.gif',1,6,7,2,'2017-05-31 00:00:00','2017-05-27 00:00:00',1,1,'2017-04-24 20:19:24','2017-05-22 22:22:51'),(8,'8','mysql-workbenchmysql-workbenchmysql-workbenchmysql-workbenchmysql-workbench','resources/user/user_446/services/campaign20170522453.gif',1,6,7,2,'2017-05-31 00:00:00','2017-05-27 00:00:00',1,1,'2017-04-24 20:19:24','2017-05-22 22:22:51');
 /*!40000 ALTER TABLE `campaigns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1048,4 +1048,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-22 12:30:30
+-- Dump completed on 2017-05-23 15:30:05

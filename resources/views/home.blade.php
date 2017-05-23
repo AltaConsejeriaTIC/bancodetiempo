@@ -155,27 +155,22 @@
                         <h1 class="panel-title title1">{{ trans('home.campaigns') }}</h1>
                     </div>
                     <div class="panel-body">
-                        @php($i = 0)
-                        @php($k = 0)
+                        <div class="row">
+                            @php($i = 0)
 
-                        @while($i < 2 && $k < sizeof($campaigns))
-                            <div class="row">
-                                @php($j = 0)
+                            @while($i < 6 && $i < sizeof($campaigns))
+                                @php($campaign = $campaigns[$i])
+                                <a href="/campaign/{{$campaign->id}}">
+                                    <div class='col-md-4 col-xs-12 col-sm-6'>
+                                        @include('partial/campaignBox', array("campaign" => $campaign))
+                                    </div>
+                                </a>
 
-                                @while($j < 3 && $k < sizeof($campaigns))
-                                    @php($campaign = $campaigns[$k])
-                                    <a href="/campaign/{{$campaign->id}}">
-                                        <div class='col-md-4 col-xs-12 col-sm-6'>
-                                            @include('partial/campaignBox', array("campaign" => $campaign))
-                                        </div>
-                                    </a>
-                                    @php($k++)
-                                    @php($j++)
-                                @endwhile
-                            </div>
-                            @php($i++)
-                        @endwhile
-                        @if(sizeof($campaigns) >= 6)
+                                @php($i++)
+                            @endwhile
+                        </div>
+
+                        @if(sizeof($campaigns) > 6)
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="text-center">
