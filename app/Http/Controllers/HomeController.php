@@ -54,18 +54,18 @@ class HomeController extends Controller
     public function filter(Request $request)
     {
         $filter = $request->input('filter');
+        $recommendedServices = [];
         $categories = Category::getCategoriesInUse();
         $allServices = ServiceController::getServiceActive();
         $this->filterTags($allServices, $filter);
         $allServices = $allServices->paginate(12);
-        $recommendedServices = [];//User::recommendedServices();
         $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
-        $groups = Groups::getActiveGroups()->paginate(12);
+        $groups = Groups::where('name', 'like', "%$filter%")->paginate(12);
         $persons = User::filter($request->input('filter'))->paginate(12);
+        $campaigns = Campaigns::select("campaigns.*")->where('campaigns.name', 'LIKE', "%$filter%")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
         JavaScript::put([
             'categoriesJs' => $categories
         ]);
-        $campaigns = Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
         return view('home', compact('allServices', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
     }
 

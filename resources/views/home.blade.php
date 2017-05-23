@@ -78,17 +78,40 @@
                 </div>
             @endif
             @if(sizeof($groups) > 0)
-                <div class='row'>
-                    <h1 class="parrafo3">{{ trans('home.groups') }}</h1>
-                    @foreach($groups as $key => $group)
+                <div class='panel panel-default'>
+                    <div class="panel-heading">
+                        <h1 class="panel-title title1">{{ trans('home.groups') }}</h1>
+                    </div>
 
-                        <div class='col-md-4 col-xs-12 col-sm-6'>
-                            @include('partial/groupBox')
+                    <div class="panel-body">
+                        <div class="row">
+                            @php($i = 0)
+
+                            @while($i < 6 && $i < sizeof($groups) )
+                                @php($group = $groups[$i])
+
+                                <a href="/group/{{$group->id}}">
+                                    <div class='col-md-4 col-xs-12 col-sm-6'>
+                                        @include('partial/groupBox')
+                                    </div>
+                                </a>
+
+                                @php($i++)
+                            @endwhile
                         </div>
 
-                    @endforeach
-                    <div class="text-center">
-                        {!! $groups->links('vendor.pagination.bootstrap-4') !!}
+                        @if(sizeof($groups) > 6)
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="text-center">
+                                        <a href="/groups/?filter={{$filter}}">
+                                            <button type="button" class="button1 background-active-color ">Ver mas
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endif

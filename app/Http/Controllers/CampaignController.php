@@ -231,7 +231,7 @@ class CampaignController extends Controller
     public function filter(Request $request)
     {
         $filter = $request->input('filter');
-        $campaigns = Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
+        $campaigns = Campaigns::select("campaigns.*")->where('campaigns.name', 'LIKE', "%$filter%")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
         return view('campaigns/list', compact('campaigns', 'filter'));
     }
 
