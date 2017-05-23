@@ -14,7 +14,7 @@ class PersonController extends Controller
     {
         $filter = $request->input('filter');
         $persons = User::filter($filter)->paginate(12);
-        return view('persons/persons', compact('persons', 'filter'));
+        return view('persons/list', compact('persons', 'filter'));
     }
 
 }
