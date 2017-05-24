@@ -44,32 +44,119 @@ class ReportsController extends Controller
     }
 
     public function makeReport(Request $request){
-        $array = [];
-        $fields = $request->fields;
-        $principal = FieldsReportsAdmin::find(reset($fields));
-        $class = new $principal->model();
-        $data = $class->orderBy('id', 'asc')->get();
-        foreach($data as $row){
-            $newArray = collect([]);
-            foreach($fields as $field){
-                $dataField = FieldsReportsAdmin::find($field);
-                $newArray->push($dataField);
+
+        $fields = $request->input('fields', []);
+        if(!empty($fields)){
+            $principal = FieldsReportsAdmin::find($fields[0]);
+
+            $model = new $principal->model();
+
+            $array = $this->orderData($this->getData($fields, $model, $request));
+
+            $array = $this->filter($array, $request->input('filters', []));
+
+            //dd($array);
+
+            if(!empty($array->toArray())){
+                return $this->makeTable($array->toArray());
+            }else{
+                return "<h2 class='title2 text-center'>sin resultados</h2>";
             }
-            $array[] = $this->getParameters($row, $newArray, $principal);
+
+        }else{
+            return "<h2 class='title2 text-center'>Debe seleccionar los campos que desea visualizar</h2>";
         }
-        dd($array);
-        return $this->makeTable($array, $fields);
+
     }
 
-    private function getParameters($data, $parameters, $principal){
-        $newData = [];
+    private function filter($data, $filters){
 
-        foreach($parameters as $parameter){
-            $thisParameter = $parameter->parameter;
-            if($principal->model == $parameter->model){
-                $newData[$thisParameter] = $data->$thisParameter;
+        return $data->filter(function ($item, $key) use ($filters)  {
+            $resp = 0;
+            foreach($filters as $nameFilter => $filter){
+                $filterData = FieldsReportsAdmin::where('name', $nameFilter)->get()->last();
+                $funtionFilter = "filter_".$filterData->type;
+
+                if($this->$funtionFilter($item[$nameFilter], $filter) === false ){
+                    $resp += 1;
+                }
+            }
+            if($resp == 0){
+                return $item;
+            }
+
+        });
+
+    }
+
+    private function getData($fields, $model, $request){
+
+        $array = collect([]);
+
+        $class = new \ReflectionClass(get_class($model));
+
+        $nameModel = $class->getShortName();
+
+        $orderBy = FieldsReportsAdmin::where('name', $request->orderBy)->get()->last()->parameter;
+
+        foreach($fields as $field){
+
+            $dataField = FieldsReportsAdmin::find($field);
+
+            $parameter = $dataField->parameter;
+
+            if(get_class($model) == $dataField->model){
+
+                $data = $model->select($parameter)->orderBy($orderBy, $request->order);
+
+                //$this->getFilter($data, $request->input('filters', []));
+
+                $value = ReportsController::printData($data, $dataField);
+
+                $array->put($dataField->name, $value);
+
             }else{
-                $newData[$thisParameter] = $data->$thisParameter;
+
+                $data = $model->orderBy($orderBy, $request->order);
+
+                //$this->getFilter($data, $request->input('filters', []));
+
+                $secondModel = new $dataField->model();
+
+                $array[$dataField->name] = $data->get()->map(function ($item, $key) use ($secondModel, $dataField, $nameModel)  {
+
+                    $relation = json_decode($dataField->relation)->$nameModel;
+
+                    $his = $relation->his;
+
+                    $response = $secondModel->select($dataField->parameter)->where($relation->my, $item->$his);
+
+                    $response = ReportsController::printData($response, $dataField);
+
+                    return $response;
+                });
+
+            }
+
+        }
+
+        return $array;
+    }
+
+    private function orderData($data){
+
+        $newData = collect([]);
+
+        foreach($data as $index => $row){
+
+            foreach($row as $i => $value){
+
+                if(!isset($newData[$i])){
+                    $newData->put($i, collect([]));
+                }
+
+                $newData[$i]->put($index, $value);
+
             }
 
         }
@@ -78,30 +165,147 @@ class ReportsController extends Controller
 
     }
 
-    private function makeTable($array, $fields){
+    static function printData($data, $dataField){
+        return $data->get()->map(function ($item, $key) use ($dataField)  {
+                $function = 'print_'.$dataField->print;
+                $parameter = $dataField->parameter;
+                //return ReportsController::$function($item->$parameter);
+                return $item->$parameter;
+        });
+    }
 
-        $html = "<table>
-                <tr>";
 
-        foreach($fields as $field){
-            $dataField = FieldsReportsAdmin::find($field);
-            $html .= "<td>".$dataField->name."</td>";
+    private function getFilter($data, $filters){
+
+        foreach($filters as $nameFilter => $filter){
+
+            $filterData = FieldsReportsAdmin::where('name', $nameFilter)->get()->last();
+
+            $funtionFilter = "filter_".$filterData->type;
+
+            $this->$funtionFilter($data, $filterData->parameter, $filter);
+
         }
-        $html .= "</tr>";
 
-        foreach($array as $row){
-            $html .= "<tr>";
+    }
 
-            foreach($row as $cell){
-                $html .= "<td>$cell</td>";
-            }
+    private function filter_text($data, $filter){
+        return stripos($data, $filter);
+    }
 
-            $html .= "</tr>";
-        }
+    private function filter_select($data,$filter){
+
+        return (preg_match("/^$filter/",$data) > 0);
+    }
+
+    private function filter_date($data, $filter){
+        $data = strtotime($data);
+        $filter = array_map("strtotime", $filter);
+        return $data >= $filter['from'] && $data <= $filter['to'];
+    }
+
+    private function filter_number($data, $filter){
+        return $data >= $filter['from'] && $data <= $filter['to'];
+    }
+
+    private function makeTable($array){
+
+        $html = "<table border='1'>";
+
+        $html .= $this->makeTableTitles(array_keys(head($array)));
+
+        $html .= $this->makeTableRows($array);
 
         $html .= "</table>";
 
         return $html;
 
+    }
+
+    private function makeTableTitles($titles){
+
+        $html = "<tr>";
+
+        foreach($titles as $title){
+            $html .= "<th>$title<button type='button' field='$title' class='material-icons order'>swap_vert</button></th>";
+        }
+
+        $html .= "</tr>";
+
+        return $html;
+
+    }
+
+    private function makeTableRows($data){
+
+        $html = '';
+
+        foreach($data as $row){
+
+            $html .= "<tr>";
+
+            $html .= $this->makeTableColumn($row);
+
+            $html .= "</tr>";
+
+        }
+
+        return $html;
+
+    }
+
+    private function makeTableColumn($row){
+
+        $html = "<tr>";
+
+        foreach($row as $column){
+
+            if(gettype($column) == "array"){
+                $html .= "<td>".$this->makeTableSubColumn($column)."</td>";
+            }else{
+                $html .= "<td>$column</td>";
+            }
+
+
+        }
+
+        $html .= "</tr>";
+
+        return $html;
+    }
+
+    private function makeTableSubColumn($column){
+
+        $html = '';
+
+        foreach($column as $subColumn){
+            $html .= "<p>$subColumn</p>";
+        }
+
+        return $html;
+
+    }
+
+    static function print_string($value){
+        $value = $value != '' ? "<p>$value</p>" : "";
+        return $value;
+    }
+
+    static function print_number($value){
+
+        return intval($value);
+    }
+
+    static function print_date($value){
+
+        return $value;
+    }
+
+    static function print_boolean($value){
+        $value = $value ? 'Si' : 'No';
+        return "<p>$value</p>";
+    }
+    static function print_image($value){
+        return "<p><img src='/$value'/ width='100px'></p>";
     }
 }
