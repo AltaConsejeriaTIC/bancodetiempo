@@ -47,6 +47,10 @@ Route::get('/service/category/{idCategory}', 'ServiceController@findCategories')
 Route::get('/getTags', 'ServiceController@getTags');
 
 Route::get('/filter', 'HomeController@filter');
+Route::get('/person', 'PersonController@index');
+Route::get('/campaign', 'CampaignController@filter');
+Route::get('/groups', 'GroupsController@filter');
+Route::get('/services', 'ServiceController@filter');
 Route::post('/subscribe', 'HomeController@subscribe');
 
 Route::get('/how', function(){
