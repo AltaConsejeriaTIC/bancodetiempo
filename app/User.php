@@ -40,14 +40,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Service::class);
     }
-<<<<<<< HEAD
     
     public function groups()
     {
        	return $this->hasMany(Groups::class, 'admin_id');
     }
-=======
->>>>>>> origin/developer
 
     public function messages()
     {
