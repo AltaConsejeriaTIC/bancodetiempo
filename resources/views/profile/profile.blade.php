@@ -28,7 +28,7 @@
             </li>
         </ul>
 
-        <div class="tab-content clearfix col-md-8">
+        <div class="tab-content clearfix col-md-8 col-xs-12">
             <div class="tab-pane active" id="tabServices">
                 @include('profile.partial.tabService')
             </div>
