@@ -590,7 +590,7 @@ DROP TABLE IF EXISTS `report_users`;
 /*!50001 DROP VIEW IF EXISTS `report_users`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `report_users` AS SELECT 
+/*!50001 CREATE VIEW `report_users` AS SELECT
  1 AS `id`,
  1 AS `userFirstName`,
  1 AS `userLastName`,

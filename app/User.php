@@ -12,6 +12,7 @@ use App\Models\InterestUser;
 use App\Models\Message;
 use App\Models\AttainmentUsers;
 use App\Models\UserScore;
+use App\Models\Groups;
 
 class User extends Authenticatable
 {
@@ -38,6 +39,11 @@ class User extends Authenticatable
     public function services()
     {
         return $this->hasMany(Service::class);
+    }
+    
+    public function groups()
+    {
+       	return $this->hasMany(Groups::class, 'admin_id');
     }
 
     public function messages()

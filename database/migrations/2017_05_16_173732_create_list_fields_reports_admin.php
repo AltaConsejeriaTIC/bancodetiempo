@@ -16,6 +16,12 @@ class CreateListFieldsReportsAdmin extends Migration
         Schema::create('fields_reports_admin', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('parameter');
+            $table->string('model');
+            $table->text('relation');
+            $table->string('type');
+            $table->text('options');
+            $table->string('print');
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreateListFieldsReportsAdmin extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports_admin');
+        Schema::dropIfExists('fields_reports_admin');
     }
 }

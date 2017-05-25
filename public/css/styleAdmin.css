@@ -175,9 +175,60 @@ Reportes
     padding: 20px;
     right: 2%;
     top: 10%;
+    display: inline-table;
+    cursor: pointer;
+    transition: all 0s;
 }
 
 ul.fieldReport{
     list-style: none;
     padding: 0px;
+}
+
+article#report {
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+    height: 700px;
+}
+
+#report > div{
+    display: inline-flex;
+    position: relative;
+    overflow: scroll;
+    height: 800px;
+    max-height: 90%;
+    padding: 15px;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+article#report > table {
+}
+
+article#report > table  th {
+    color: #fff;
+    background: #009688;
+    padding: 15px;
+    margin-top: 0px;
+}
+
+article#report > table  th button {
+    background: none;
+    border: 0px;
+    position: relative;
+}
+
+article#report > table td {
+    text-align: center;
+    padding: 15px 5px;
+}
+
+ul.form-custom.fieldReport .icon {
+    background: none;
+    border: 0px;
+    color: #fff;
+    font-size: 17px;
+    margin-left: 5px;
 }
