@@ -52,7 +52,7 @@ class CreateViewsReports extends Migration
                         c.category,
                         st.state
                         FROM services as s
-                        INNER JOIN categories AS c ON C.id = s.category_id
+                        INNER JOIN categories AS c ON c.id = s.category_id
                         INNER JOIN states AS st ON st.id = s.state_id");
 
     }
