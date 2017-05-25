@@ -54,8 +54,9 @@
                         </div>
                     </div>
                 </div>
+            @endif
         </div>
-        @endif
+
         @if(sizeof($services) > 0)
             <div class='panel panel-default'>
                 <div class="panel-heading">
