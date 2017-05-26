@@ -25,7 +25,7 @@ class FieldsReportsTableSeeder extends Seeder
             'name' => 'usuario_nombre',
             'parameter' => 'first_name',
             'model' => 'App\User',
-            'relation' => '{"Service" : {"his" :"user_id", "my" : "id"}}',
+            'relation' => '{"ReportService" : {"his" :"user_id", "my" : "id"}, "Groups" : {"his" : "admin_id", "my" : "id"}}',
             'type' => 'text',
             'options' => '',
             'print' => 'string'
@@ -34,7 +34,7 @@ class FieldsReportsTableSeeder extends Seeder
             'name' => 'usuario_apellido',
             'parameter' => 'last_name',
             'model' => 'App\User',
-            'relation' => '{"Service" : {"his" :"user_id", "my" : "id"}}',
+            'relation' => '{"ReportService" : {"his" :"user_id", "my" : "id"}, "Groups" : {"his" : "admin_id", "my" : "id"}}',
             'type' => 'text',
             'options' => '',
             'print' => 'string'
@@ -45,14 +45,14 @@ class FieldsReportsTableSeeder extends Seeder
             'model' => 'App\User',
             'relation' => '',
             'type' => 'text',
-            'options' => '{"Service" : {"his" :"user_id", "my" : "id"}}',
+            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
             'print' => 'string'
         ]);
         $this->create([
             'name' => 'usuario_genero',
             'parameter' => 'gender',
             'model' => 'App\User',
-            'relation' => '{"Service" : {"his" :"user_id", "my" : "id"}}',
+            'relation' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
             'type' => 'select',
             'options' => '{"male": "Male",   "female": "Female", "indeterminate" : "indeterminate" }',
             'print' => 'string'
@@ -63,7 +63,7 @@ class FieldsReportsTableSeeder extends Seeder
             'model' => 'App\User',
             'relation' => '',
             'type' => 'date',
-            'options' => '{"Service" : {"his" :"user_id", "my" : "id"}}',
+            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
             'print' => 'date'
         ]);
         $this->create([
@@ -72,7 +72,7 @@ class FieldsReportsTableSeeder extends Seeder
             'model' => 'App\User',
             'relation' => '',
             'type' => 'number',
-            'options' => '{"Service" : {"his" :"user_id", "my" : "id"}}',
+            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
             'print' => 'number'
         ]);
         $this->create([
@@ -81,7 +81,7 @@ class FieldsReportsTableSeeder extends Seeder
             'model' => 'App\User',
             'relation' => '',
             'type' => 'number',
-            'options' => '{"Service" : {"his" :"user_id", "my" : "id"}}',
+            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
             'print' => 'number'
         ]);
         $this->create([
@@ -90,7 +90,7 @@ class FieldsReportsTableSeeder extends Seeder
             'model' => 'App\Models\State',
             'relation' => '{"User" : {"his" :"state_id", "my" : "id"}}',
             'type' => 'select',
-            'options' => '{   1: "Activo",   2: "Inactivo",  3: "Bloqueado", 4: "pendiente"}',
+            'options' => '{   "1": "Activo",   "2": "Inactivo",  "3": "Bloqueado", "4": "pendiente"}',
             'print' => 'string'
         ]);
 
@@ -100,7 +100,7 @@ class FieldsReportsTableSeeder extends Seeder
             'model' => 'App\Models\UserReports',
             'relation' => '',
             'type' => 'date',
-            'options' => '{"Service" : {"his" :"user_id", "my" : "id"}}',
+            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
             'print' => 'string'
         ]);
         $this->create([
@@ -116,7 +116,7 @@ class FieldsReportsTableSeeder extends Seeder
         $this->create([
             'name' => 'service_name',
             'parameter' => 'name',
-            'model' => 'App\Models\Service',
+            'model' => 'App\Models\ReportService',
             'relation' => '{"User" : {"his" :"id", "my" : "user_id"}}',
             'type' => 'text',
             'options' => '',
@@ -126,7 +126,7 @@ class FieldsReportsTableSeeder extends Seeder
         $this->create([
             'name' => 'service_value',
             'parameter' => 'value',
-            'model' => 'App\Models\Service',
+            'model' => 'App\Models\ReportService',
             'relation' => '{"User" : {"his" :"id", "my" : "user_id"}}',
             'type' => 'number',
             'options' => '',
@@ -135,9 +135,27 @@ class FieldsReportsTableSeeder extends Seeder
         $this->create([
             'name' => 'service_creacion',
             'parameter' => 'created_at',
-            'model' => 'App\Models\Service',
+            'model' => 'App\Models\ReportService',
             'relation' => '{"User" : {"his" :"id", "my" : "user_id"}}',
             'type' => 'number',
+            'options' => '',
+            'print' => 'string'
+        ]);
+        $this->create([
+            'name' => 'service_category',
+            'parameter' => 'category',
+            'model' => 'App\Models\ReportService',
+            'relation' => '{"User" : {"his" :"id", "my" : "user_id"}}',
+            'type' => 'text',
+            'options' => '',
+            'print' => 'string'
+        ]);
+        $this->create([
+            'name' => 'grupos_nombre',
+            'parameter' => 'name',
+            'model' => 'App\Models\Groups',
+            'relation' => '{"User" : {"his" :"id", "my" : "admin_id"}}',
+            'type' => 'text',
             'options' => '',
             'print' => 'string'
         ]);
