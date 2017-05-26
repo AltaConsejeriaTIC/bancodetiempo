@@ -137,7 +137,7 @@ class User extends Authenticatable
 
     static function filter($filter)
     {
-        return User::where('first_name', 'LIKE', "%$filter%");
+        return User::where('first_name', 'LIKE', "%$filter%")->orWhere('last_name', 'LIKE', "%$filter%");
     }
 
 }
