@@ -248,4 +248,11 @@ class ServiceController extends Controller
         return view('services/list', compact('services', 'filter'));
     }
 
+    public function query(Request $request){
+        $term = $request->input('term');
+        $services = Service::select("services.name as label", "services.name as value")->where('services.name', 'LIKE', "%$term%")->where('state_id', 1)->orderBy('services.created_at', 'desc')->get()->take(6);
+
+        print $services->toJson();
+    }
+
 }

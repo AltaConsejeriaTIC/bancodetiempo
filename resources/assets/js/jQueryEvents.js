@@ -25,19 +25,7 @@ jQuery(document).ready(function(){
     }
     jQuery(".score").on("click", score);
 
-    setAutocomplete();
-
 });
-
-function setAutocomplete() {
-    var aut = jQuery('.filter').autocomplete({
-        source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"],
-        data: ["c++", "java1", "php", "coldfusion", "javascript1", "asp", "ruby"]
-    });
-
-    console.log(aut)
-
-}
 
 function bannerHome(){
     jQuery(".bannerHome .carousel").attr("banner", 0);

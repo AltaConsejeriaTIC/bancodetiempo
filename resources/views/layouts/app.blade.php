@@ -78,10 +78,8 @@
             yearRange: range
         });
 
-        var source=[];
-
         var aut = jQuery('.filter').autocomplete({
-            source: source
+            source: '/query-services'
         });
 
         @foreach(Illuminate\Support\Facades\Session::get("filters.tags", []) as $tag)
