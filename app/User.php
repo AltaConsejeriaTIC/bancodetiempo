@@ -102,10 +102,10 @@ class User extends Authenticatable
                 ->where('services.state_id', 1)
                 ->where('users.state_id', 1)
                 ->whereIn("category_id", Auth::User()->interests)
-                ->orderBy("created_at", "desc");
+                ->orderBy("created_at", "desc")->paginate(6);
             return $allServices;
         } else {
-            return null;
+            return [];
         }
     }
 

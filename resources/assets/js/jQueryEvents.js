@@ -23,10 +23,18 @@ jQuery(document).ready(function(){
     if(jQuery(".bannerHome").length){
        bannerHome();
     }
-    jQuery(".score").on("click", score)
+    jQuery(".score").on("click", score);
 
+    //setAutocomplete();
 
-})
+});
+
+function setAutocomplete() {
+    /*jQuery('.filter').autocomplete({
+        source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"],
+        data: ["c++", "java1", "php", "coldfusion", "javascript1", "asp", "ruby"]
+    });*/
+}
 
 function bannerHome(){
     jQuery(".bannerHome .carousel").attr("banner", 0);
