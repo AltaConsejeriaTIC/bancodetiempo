@@ -61,11 +61,11 @@
         </div>
     </body>
 
-    <!--  Scripts-->    
+    <!--  Scripts-->
 
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>    
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script>
         var date = new Date();
@@ -76,6 +76,12 @@
             changeMonth: true,
             changeYear: true,
             yearRange: range
+        });
+
+        var source=[];
+
+        var aut = jQuery('.filter').autocomplete({
+            source: source
         });
 
         @foreach(Illuminate\Support\Facades\Session::get("filters.tags", []) as $tag)
