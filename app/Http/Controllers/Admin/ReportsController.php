@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ReportsAdmin;
 use App\Models\FieldsReportsAdmin;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class ReportsController extends Controller
 {
@@ -348,5 +349,13 @@ class ReportsController extends Controller
     }
     static function print_image($value){
         return "<p><img src='/$value'/ width='100px'></p>";
+    }
+
+    public function newGetReport($parameters){
+        $array = [];
+        foreach($parameters as $model => $parameter){
+            $array[$parameter] = 0;
+        }
+        return $array;
     }
 }
