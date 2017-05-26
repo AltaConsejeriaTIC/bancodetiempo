@@ -46,5 +46,5 @@ Route::resource('/adminCampaigns/participant/{campaign_id}/download', 'Admin\Cam
 
 Route::resource('/admin/reports', 'Admin\ReportsController@index');
 Route::post('/admin/createReport', 'Admin\ReportsController@create');
-Route::resource('/admin/makeReport', 'Admin\ReportsController@makeReport');
+Route::resource('/admin/getReport', 'Admin\ReportsController@getReport');
 Route::get('/admin/report/{report_id}', 'Admin\ReportsController@showReport');

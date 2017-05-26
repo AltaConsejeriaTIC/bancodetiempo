@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ReportsController extends Controller
 {
+
+    protected $principal = [];
+
+    protected $fields = [];
+
+    protected $order = [];
+
     public function index(){
 
         $reports = ReportsAdmin::where('user_id', Auth::id())->get();
@@ -43,30 +50,118 @@ class ReportsController extends Controller
 
     }
 
-    public function makeReport(Request $request){
+    public function getReport(Request $request){
 
-        $fields = $request->input('fields', []);
+        $data = $this->makeReport(
+            $request->input('fields', []),
+            $request->input('filters', []),
+            ['orderBy' => $request->input('orderBy', []), 'order' => $request->input('order', [])]
+        );
+
+        if($data){
+            return $this->makeTable($data);
+        }else{
+            return "<h2 class='title2 text-center'>Sin resultados</h2>";
+        }
+
+
+    }
+
+    public function makeReport($fields, $filters, $order){
+
+        $this->fields = $fields;
+        $this->order = $order;
+        $this->filters = $filters;
+
         if(!empty($fields)){
-            $principal = FieldsReportsAdmin::find($fields[0]);
 
-            $model = new $principal->model();
+            $this->order['orderBy'] = FieldsReportsAdmin::where('name', $this->order['orderBy'])->get()->last()->parameter;
 
-            $array = $this->orderData($this->getData($fields, $model, $request));
+            $this->principal = FieldsReportsAdmin::where('name', $fields[0])->get()->last();
 
-            $array = $this->filter($array, $request->input('filters', []));
+            $array = $this->orderData($this->getData());
 
-            //dd($array);
+            $array = $this->filter($array, $filters);
 
             if(!empty($array->toArray())){
-                return $this->makeTable($array->toArray());
+                return $array->toArray();
             }else{
-                return "<h2 class='title2 text-center'>sin resultados</h2>";
+                return false;
             }
 
         }else{
-            return "<h2 class='title2 text-center'>Debe seleccionar los campos que desea visualizar</h2>";
+            return false;
         }
 
+    }
+
+    private function getData(){
+
+        $array = collect([]);
+
+        foreach($this->fields as $field){
+
+            $dataField = FieldsReportsAdmin::where('name', $field)->get()->last();
+
+            if($this->principal->model == $dataField->model){
+
+                $array->put($dataField->name, $this->getParameter($dataField));
+
+            }else{
+
+                $array[$dataField->name] = $this->getSubData($dataField);
+
+            }
+
+        }
+
+        return $array;
+    }
+
+    private function getParameter($dataField){
+
+        $model = new $this->principal->model();
+
+        $parameter = $dataField->parameter;
+
+        $data = $model->select($parameter)->orderBy($this->order['orderBy'], $this->order['order']);
+
+        return ReportsController::printData($data, $dataField);
+
+    }
+
+    private function getSubData($dataField){
+
+        $model = new $this->principal->model();
+
+        $nameModel = $this->getNameModel();
+
+        $parameter = $dataField->parameter;
+
+        $data = $model->orderBy($this->order['orderBy'], $this->order['order']);
+
+        $secondModel = new $dataField->model();
+
+        return $data->get()->map(function ($item, $key) use ($secondModel, $dataField, $nameModel)  {
+
+            $relation = json_decode($dataField->relation)->$nameModel;
+
+            $his = $relation->his;
+
+            $response = $secondModel->select($dataField->parameter)->where($relation->my, $item->$his);
+
+            $response = ReportsController::printData($response, $dataField);
+
+            return $response;
+        });
+
+    }
+
+    private function getNameModel(){
+
+        $class = new \ReflectionClass($this->principal->model);
+
+        return $class->getShortName();
     }
 
     private function filter($data, $filters){
@@ -87,60 +182,6 @@ class ReportsController extends Controller
 
         });
 
-    }
-
-    private function getData($fields, $model, $request){
-
-        $array = collect([]);
-
-        $class = new \ReflectionClass(get_class($model));
-
-        $nameModel = $class->getShortName();
-
-        $orderBy = FieldsReportsAdmin::where('name', $request->orderBy)->get()->last()->parameter;
-
-        foreach($fields as $field){
-
-            $dataField = FieldsReportsAdmin::find($field);
-
-            $parameter = $dataField->parameter;
-
-            if(get_class($model) == $dataField->model){
-
-                $data = $model->select($parameter)->orderBy($orderBy, $request->order);
-
-                //$this->getFilter($data, $request->input('filters', []));
-
-                $value = ReportsController::printData($data, $dataField);
-
-                $array->put($dataField->name, $value);
-
-            }else{
-
-                $data = $model->orderBy($orderBy, $request->order);
-
-                //$this->getFilter($data, $request->input('filters', []));
-
-                $secondModel = new $dataField->model();
-
-                $array[$dataField->name] = $data->get()->map(function ($item, $key) use ($secondModel, $dataField, $nameModel)  {
-
-                    $relation = json_decode($dataField->relation)->$nameModel;
-
-                    $his = $relation->his;
-
-                    $response = $secondModel->select($dataField->parameter)->where($relation->my, $item->$his);
-
-                    $response = ReportsController::printData($response, $dataField);
-
-                    return $response;
-                });
-
-            }
-
-        }
-
-        return $array;
     }
 
     private function orderData($data){

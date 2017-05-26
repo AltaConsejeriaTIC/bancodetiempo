@@ -35,6 +35,7 @@ class CreateViewsReports extends Migration
 
         DB::unprepared("CREATE VIEW report_insterest as
                         SELECT
+                        i.id,
                         i.user_id,
                         c.category
                         FROM interest_users as i
@@ -42,6 +43,7 @@ class CreateViewsReports extends Migration
 
         DB::unprepared("CREATE VIEW report_service as
                         SELECT
+                        s.id,
                         s.name,
                         s.value,
                         s.virtually,

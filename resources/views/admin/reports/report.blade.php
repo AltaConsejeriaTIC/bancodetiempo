@@ -35,7 +35,7 @@
                         @foreach($fields as $field)
 
                             <li>
-                                <input type="checkbox" value="{{$field->id}}" name="fields[]" class="square" id='field{{$field->id}}'>
+                                <input type="checkbox" value="{{$field->name}}" name="fields[]" class="square" id='field{{$field->id}}' field='{{$field->name}}'>
                                 <label for="field{{$field->id}}">{{$field->name}} @if($field->type != '')<button type="button" class="material-icons icon" @click='myData.filter{{$field->name}} = true'>visibility</button>@endif</label>
                             </li>
                             @if($field->type != '')
@@ -67,7 +67,7 @@
         '_token' : '{{ csrf_token() }}',
         'fields' : [],
         'order' : 'asc',
-        'orderBy' : 'usuario_nombre',
+        'orderBy' : '',
         'filters' : {}
     }
     jQuery(document).ready(start)
@@ -107,6 +107,7 @@
             delete data['fields'][index];
             reOrderFields();
         }
+        data.orderBy = data['fields'][0];
     }
 
     function reOrderFields(){
@@ -115,13 +116,14 @@
         for(var i in fields){
             data['fields'].push(fields[i]);
         }
+
     }
 
     function makeReport(){
 
         jQuery.ajax({
             type: "GET",
-            url: "/admin/makeReport",
+            url: "/admin/getReport",
             data: data,
             success: function(datos){
                 jQuery('#report').html(datos);
@@ -157,7 +159,6 @@
                 data['filters'][jQuery(this).attr('name')] = {'from' : '', 'to' : ''}
             }
             data['filters'][jQuery(this).attr('name')]['from'] = date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
-            console.log(data['filters']);
             to.datepicker( "option", "minDate", getDate( this ) );
         }),
         to = $( ".dateFilter .dateTo" ).datepicker({
@@ -171,7 +172,6 @@
                 data['filters'][jQuery(this).attr('name')] = {'from' : '', 'to' : ''}
             }
             data['filters'][jQuery(this).attr('name')]['to'] = date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
-            console.log(data['filters']);
             from.datepicker( "option", "maxDate", getDate( this ) );
         });
 

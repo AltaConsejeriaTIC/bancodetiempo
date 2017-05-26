@@ -5,10 +5,10 @@ use Styde\Seeder\BaseSeeder;
 class DatabaseSeeder extends BaseSeeder
 {
     protected $truncate = array(
-        'states','roles', 'users','network_accounts', 'categories', 'tags', 'services', 'tags_services', 'conversations', 'attainments','admin_contents'
+        'states','roles' ,'network_accounts', 'categories', 'tags', 'attainments','admin_contents', 'fields_reports_admin'
     );
 
     protected $seeders = array(
-        'State','Role','User', 'NetworkAccounts' , 'Category', 'Tags',  'Services', 'TagsService', 'Attainment' , 'AdminContent', 'BadObservation','TypeReport','FieldsReports'
+        'State','Role','User', 'NetworkAccounts' , 'Category', 'Tags', 'Attainment' , 'AdminContent', 'BadObservation','TypeReport','FieldsReports'
     );
 }
