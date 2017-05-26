@@ -14,38 +14,33 @@ class reportsAdmin extends TestCase
      * @return void
      */
 
-    public function testGetReportWithZeroParameter(){
+
+
+    public function testGetReport2OneParameter(){
         $class = new ReportsController();
-        $this->assertFalse($class->makeReport([], [], []));
+        $this->assertInternalType("array", $class->newGetReport([
+            "User" => "first_name"
+        ]));
     }
 
-    public function testGetReportWithOneParameterOneTable(){
+    public function testGetReport2OneParameterHasParameter(){
         $class = new ReportsController();
-        $this->assertInternalType("array", $class->makeReport(['usuario_nombre'], [], ['orderBy' => 'usuario_nombre', 'order' => 'asc']));
+
+        $resp = $class->newGetReport([
+            "User" => "first_name"
+        ]);
+
+        $this->assertArrayHasKey("first_name", $resp);
     }
 
-    public function testGetReportWithTwoParameterOneTable(){
-        $class = new ReportsController();
-        $this->assertInternalType("array", $class->makeReport(['usuario_nombre', 'usuario_apellido'], [], ['orderBy' => 'usuario_nombre', 'order' => 'asc']));
-    }
-
-    public function testGetReportWithTwoParameterTwoTable(){
+    public function testGetReport2OneParameterHasValue(){
         $class = new ReportsController();
 
-        $resp =  $class->makeReport(['usuario_nombre', 'usuario_apellido', 'service_name'], [], ['orderBy' => 'usuario_nombre', 'order' => 'asc']);
+        $resp = $class->newGetReport([
+            "User" => "first_name"
+        ]);
 
-        $this->assertArrayHasKey("service_name", head($resp));
-
-        $this->assertInternalType("array", head($resp)['service_name']);
-    }
-
-    public function testGetReportWithTwoParameterTwoTablePrincipalServices(){
-        $class = new ReportsController();
-        $resp = $class->makeReport(['service_name', 'service_value', 'usuario_nombre'], [], ['orderBy' => 'service_name', 'order' => 'asc']);
-
-        $this->assertArrayHasKey("usuario_nombre", head($resp));
-
-        $this->assertInternalType("array", head($resp)['usuario_nombre']);
+        $this->assertEquals("first_name", $resp);
     }
 
 }
