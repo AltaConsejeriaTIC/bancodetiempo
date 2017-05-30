@@ -19,11 +19,9 @@
 
                         @while($i < sizeof($campaigns))
                             @php($campaign = $campaigns[$i])
-                            <a href="/campaign/{{$campaign->id}}">
-                                <div class='col-md-4 col-xs-12 col-sm-6'>
-                                    @include('partial/campaignBox', array("campaign" => $campaign))
-                                </div>
-                            </a>
+                            <div class='col-md-4 col-xs-12 col-sm-6'>
+                                @include('partial/campaignBox', array("campaign" => $campaign))
+                            </div>
 
                             @php($i++)
                         @endwhile
