@@ -105,7 +105,7 @@ class GroupsController extends Controller
     public function filter(Request $request)
     {
         $filter = $request->input('filter');
-        $groups = Groups::where('name', 'like', '%$filter%')->paginate(12);
+        $groups = Groups::where('name', 'like', "%$filter%")->paginate(12);
         return view('groups/list', compact('groups', 'filter'));
     }
 
