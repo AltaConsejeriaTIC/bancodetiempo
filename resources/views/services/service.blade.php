@@ -5,7 +5,7 @@
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="{{$service->name}}"/>
     <meta property="og:description" content="{{$service->description}}"/>
-    <meta property="og:image" content="{{$service->image}}"/>
+    <meta property="og:image" content="{{url('/')}}/{{$service->image}}"/>
 @endsection
 
 @section('content')
