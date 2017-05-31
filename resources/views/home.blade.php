@@ -104,11 +104,9 @@
                         @while($i < 6 && $i < sizeof($groups) )
                             @php($group = $groups[$i])
 
-                            <a href="/group/{{$group->id}}">
-                                <div class='col-md-4 col-xs-12 col-sm-6'>
-                                    @include('partial/groupBox')
-                                </div>
-                            </a>
+                            <div class='col-md-4 col-xs-12 col-sm-6'>
+                                @include('partial/groupBox')
+                            </div>
 
                             @php($i++)
                         @endwhile
@@ -143,7 +141,8 @@
                         @while($i < 6 && $i < sizeof($persons) )
                             @php($person = $persons[$i])
 
-                            <a href="/user/{{$person->id}}">
+                            <a @if(is_null(Auth::User())) @click='myData.login = true'
+                               @else  href="/user/{{$person->id}}" @endif>
                                 <div class='col-md-4 col-xs-12 col-sm-6' style="min-height: 200px">
                                     <div style="width: 80px">
                                         @include('partial/imageProfile', array('cover' => $person->avatar, 'id' =>$person->id, 'border' => '#0f6784', 'borderSize' => '3px'))
@@ -192,11 +191,9 @@
 
                         @while($i < 6 && $i < sizeof($campaigns))
                             @php($campaign = $campaigns[$i])
-                            <a href="/campaign/{{$campaign->id}}">
-                                <div class='col-md-4 col-xs-12 col-sm-6'>
-                                    @include('partial/campaignBox', array("campaign" => $campaign))
-                                </div>
-                            </a>
+                            <div class='col-md-4 col-xs-12 col-sm-6'>
+                                @include('partial/campaignBox', array("campaign" => $campaign))
+                            </div>
 
                             @php($i++)
                         @endwhile

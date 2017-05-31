@@ -34,15 +34,16 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-
-        $categories = Category::getCategoriesInUse();
-        $services = [];//Service::getServicesActive()->paginate(12);
-        $serviceAdmin = [];
-        $groups = [];
-        $persons = [];
-        $campaigns = [];
         $filter = '';
-        $recommendedServices = User::recommendedServices()->paginate(6);
+        $categories = Category::getCategoriesInUse();
+        $recommendedServices = User::recommendedServices();
+        $services = Service::select("services.*")->where('services.name', 'LIKE', "%$filter%")->where('state_id', 1)->orderBy('services.created_at', 'desc')->paginate(12);
+        $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
+        $groups = Groups::where('name', 'like', "%$filter%")->paginate(12);
+        $persons = User::filter($filter)->paginate(12);
+        $campaigns = Campaigns::select("campaigns.*")->where('campaigns.name', 'LIKE', "%$filter%")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
+
+
         JavaScript::put([
             'categoriesJs' => $categories,
         ]);

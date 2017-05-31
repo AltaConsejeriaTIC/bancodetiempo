@@ -20,7 +20,8 @@
                         @while($i < sizeof($persons) )
                             @php($person = $persons[$i])
 
-                            <a href="/user/{{$person->id}}">
+                            <a @if(is_null(Auth::User())) @click='myData.login = true'
+                               @else href="/user/{{$person->id}}" @endif>
                                 <div class='col-md-4 col-xs-12 col-sm-6' style="min-height: 200px">
                                     <div style="width: 80px">
                                         @include('partial/imageProfile', array('cover' => $person->avatar, 'id' =>$person->id, 'border' => '#0f6784', 'borderSize' => '3px'))

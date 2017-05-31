@@ -10,7 +10,7 @@
             </div>
         @endif
         <span class='category'>{{$campaign->category->category}}</span>
-        <a href="/campaign/{{$campaign->id}}">
+        <a @if(is_null(Auth::User())) @click='myData.login = true' @else href="/campaign/{{$campaign->id}}" @endif>
             <div class="cover">
                 <img src="/{{$campaign->image}}" alt=""/>
             </div>
@@ -19,7 +19,7 @@
             @include('partial/imageProfile', array('cover' => $campaign->groups->image, 'id' => 'group'.$campaign->groups->id, 'border' => '#fff', 'borderSize' => '2px'))
         </div>
         <br>
-        <a href="/campaign/{{$campaign->id}}">
+        <a @if(is_null(Auth::User())) @click='myData.login = true' @else  href="/campaign/{{$campaign->id}}" @endif>
             <div class="content">
                 <h3 class='title title2'>{{$campaign->name}}</h3>
 

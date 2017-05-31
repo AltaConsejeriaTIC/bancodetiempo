@@ -23,10 +23,9 @@ jQuery(document).ready(function(){
     if(jQuery(".bannerHome").length){
        bannerHome();
     }
-    jQuery(".score").on("click", score)
+    jQuery(".score").on("click", score);
 
-
-})
+});
 
 function bannerHome(){
     jQuery(".bannerHome .carousel").attr("banner", 0);
