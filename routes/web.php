@@ -67,3 +67,4 @@ Route::get('/setRanking', function(){
         App\Models\Service::setRanking($user->id);
     }
 });
+Route::get('/test','Admin\ReportsController@newGetReport');

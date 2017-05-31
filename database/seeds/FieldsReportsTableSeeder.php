@@ -22,142 +22,108 @@ class FieldsReportsTableSeeder extends Seeder
     public function run()
     {
         $this->create([
-            'name' => 'usuario_nombre',
-            'parameter' => 'first_name',
-            'model' => 'App\User',
-            'relation' => '{"ReportService" : {"his" :"user_id", "my" : "id"}, "Groups" : {"his" : "admin_id", "my" : "id"}}',
+            'name' => 'Usuario nombre',
+            'parameter' => 'firstname',
             'type' => 'text',
             'options' => '',
-            'print' => 'string'
         ]);
         $this->create([
-            'name' => 'usuario_apellido',
-            'parameter' => 'last_name',
-            'model' => 'App\User',
-            'relation' => '{"ReportService" : {"his" :"user_id", "my" : "id"}, "Groups" : {"his" : "admin_id", "my" : "id"}}',
+            'name' => 'Usuario apellido',
+            'parameter' => 'lastname',
             'type' => 'text',
             'options' => '',
-            'print' => 'string'
         ]);
         $this->create([
-            'name' => 'usuario_email',
-            'parameter' => 'email2',
-            'model' => 'App\User',
-            'relation' => '',
+            'name' => 'Usuario email',
+            'parameter' => 'email',
             'type' => 'text',
-            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
-            'print' => 'string'
+            'options' => ''
         ]);
         $this->create([
-            'name' => 'usuario_genero',
+            'name' => 'Usuario genero',
             'parameter' => 'gender',
-            'model' => 'App\User',
-            'relation' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
             'type' => 'select',
-            'options' => '{"male": "Male",   "female": "Female", "indeterminate" : "indeterminate" }',
-            'print' => 'string'
+            'options' => '{"male": "Male",  "female": "Female", "indeterminate" : "indeterminate" }',
         ]);
         $this->create([
-            'name' => 'usuario_fechaNacimiento',
-            'parameter' => 'birthDate',
-            'model' => 'App\User',
-            'relation' => '',
+            'name' => 'Usuario fecha nacimiento',
+            'parameter' => 'birthdate',
             'type' => 'date',
-            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
-            'print' => 'date'
+            'options' => '',
         ]);
         $this->create([
-            'name' => 'usuario_dorados',
+            'name' => 'Usuario dorados',
             'parameter' => 'credits',
-            'model' => 'App\User',
-            'relation' => '',
             'type' => 'number',
-            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
-            'print' => 'number'
+            'options' => '',
         ]);
         $this->create([
-            'name' => 'usuario_calificacion',
+            'name' => 'Usuario calificacion',
             'parameter' => 'ranking',
-            'model' => 'App\User',
-            'relation' => '',
             'type' => 'number',
-            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
-            'print' => 'number'
+            'options' => '',
         ]);
         $this->create([
-            'name' => 'usuario_estado',
+            'name' => 'usuario estado',
             'parameter' => 'state',
-            'model' => 'App\Models\State',
-            'relation' => '{"User" : {"his" :"state_id", "my" : "id"}}',
             'type' => 'select',
-            'options' => '{   "1": "Activo",   "2": "Inactivo",  "3": "Bloqueado", "4": "pendiente"}',
-            'print' => 'string'
+            'options' => '{"1": "Activo", "2": "Inactivo", "3": "Bloqueado", "4": "pendiente"}'
         ]);
 
         $this->create([
-            'name' => 'usuario_fechaRegistro',
-            'parameter' => 'created_at',
-            'model' => 'App\Models\UserReports',
-            'relation' => '',
-            'type' => 'date',
-            'options' => '{"ReportService" : {"his" :"user_id", "my" : "id"}}',
-            'print' => 'string'
-        ]);
-        $this->create([
-            'name' => 'interest_name',
-            'parameter' => 'category',
-            'model' => 'App\Models\ReportInterest',
-            'relation' => '{"User" : {"his" : "id", "my" : "user_id"}}',
+            'name' => 'Intereses',
+            'parameter' => 'interest_name',
             'type' => 'text',
             'options' => '',
-            'print' => 'string'
         ]);
 
         $this->create([
-            'name' => 'service_name',
-            'parameter' => 'name',
-            'model' => 'App\Models\ReportService',
-            'relation' => '{"User" : {"his" :"id", "my" : "user_id"}}',
+            'name' => 'Servicio nombre',
+            'parameter' => 'service_name',
             'type' => 'text',
             'options' => '',
-            'print' => 'string'
         ]);
 
         $this->create([
-            'name' => 'service_value',
-            'parameter' => 'value',
-            'model' => 'App\Models\ReportService',
-            'relation' => '{"User" : {"his" :"id", "my" : "user_id"}}',
+            'name' => 'Servicio valor',
+            'parameter' => 'service_value',
             'type' => 'number',
-            'options' => '',
-            'print' => 'string'
+            'options' => ''
         ]);
+
         $this->create([
-            'name' => 'service_creacion',
-            'parameter' => 'created_at',
-            'model' => 'App\Models\ReportService',
-            'relation' => '{"User" : {"his" :"id", "my" : "user_id"}}',
-            'type' => 'number',
-            'options' => '',
-            'print' => 'string'
-        ]);
-        $this->create([
-            'name' => 'service_category',
-            'parameter' => 'category',
-            'model' => 'App\Models\ReportService',
-            'relation' => '{"User" : {"his" :"id", "my" : "user_id"}}',
+            'name' => 'Servicio tags',
+            'parameter' => 'service_tag_name',
             'type' => 'text',
-            'options' => '',
-            'print' => 'string'
+            'options' => ''
         ]);
+
         $this->create([
-            'name' => 'grupos_nombre',
-            'parameter' => 'name',
-            'model' => 'App\Models\Groups',
-            'relation' => '{"User" : {"his" :"id", "my" : "admin_id"}}',
+            'name' => 'Participante trato',
+            'parameter' => 'service_deal_participantName',
             'type' => 'text',
-            'options' => '',
-            'print' => 'string'
+            'options' => ''
+        ]);
+
+        $this->create([
+            'name' => 'Fecha trato',
+            'parameter' => 'service_deal_date',
+            'type' => 'text',
+            'options' => ''
+        ]);
+
+        $this->create([
+            'name' => 'Hora trato',
+            'parameter' => 'service_deal_time',
+            'type' => '',
+            'options' => ''
+        ]);
+
+        $this->create([
+            'name' => 'Grupo nombre',
+            'parameter' => 'group_name',
+            'type' => 'text',
+            'options' => ''
         ]);
     }
 }

@@ -8,6 +8,7 @@ use App\Models\ReportsAdmin;
 use App\Models\FieldsReportsAdmin;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\AllData;
 
 class ReportsController extends Controller
 {
@@ -37,6 +38,13 @@ class ReportsController extends Controller
 
     }
 
+    public function saveReport(Request $request, $report_id){
+        dd($request->all());
+        /*ReportsAdmin::find($report_id)->update([
+
+        ]);*/
+    }
+
     public function showReport($report_id){
 
         $report = ReportsAdmin::find($report_id);
@@ -53,11 +61,7 @@ class ReportsController extends Controller
 
     public function getReport(Request $request){
 
-        $data = $this->makeReport(
-            $request->input('fields', []),
-            $request->input('filters', []),
-            ['orderBy' => $request->input('orderBy', []), 'order' => $request->input('order', [])]
-        );
+        $data = $this->makeReport($request->input('fields', []), $request->input('filters', []));
 
         if($data){
             return $this->makeTable($data);
@@ -68,294 +72,154 @@ class ReportsController extends Controller
 
     }
 
-    public function makeReport($fields, $filters, $order){
+    public function makeReport($fields, $filters){
+        $array = [];
 
-        $this->fields = $fields;
-        $this->order = $order;
-        $this->filters = $filters;
+        $data = AllData::orderBy('id', 'asc');
 
-        if(!empty($fields)){
+        $this->getFilter($data, $filters);
 
-            $this->order['orderBy'] = FieldsReportsAdmin::where('name', $this->order['orderBy'])->get()->last()->parameter;
-
-            $this->principal = FieldsReportsAdmin::where('name', $fields[0])->get()->last();
-
-            $array = $this->orderData($this->getData());
-
-            $array = $this->filter($array, $filters);
-
-            if(!empty($array->toArray())){
-                return $array->toArray();
-            }else{
-                return false;
-            }
-
-        }else{
-            return false;
+        $fields[] = 'id';
+        if(strpos(implode(",", $fields), 'interest')){
+            $fields[] = 'interest_id';
+        }
+        if(strpos(implode(",", $fields), 'service')){
+            $fields[] = 'service_id';
+        }
+        if(strpos(implode(",", $fields), 'tag')){
+            $fields[] = 'service_tag_id';
         }
 
-    }
+        $data = $data->get($fields);
 
-    private function getData(){
+        foreach($data as $register){
+            foreach($register->toArray() as $key => $row){
 
-        $array = collect([]);
-
-        foreach($this->fields as $field){
-
-            $dataField = FieldsReportsAdmin::where('name', $field)->get()->last();
-
-            if($this->principal->model == $dataField->model){
-
-                $array->put($dataField->name, $this->getParameter($dataField));
-
-            }else{
-
-                $array[$dataField->name] = $this->getSubData($dataField);
-
+                $nameParameter = $this->getNameParameter($key, $register);
+                array_set($array[head($register->toArray()).$register->id], $nameParameter, $row);
             }
-
         }
-
         return $array;
-    }
-
-    private function getParameter($dataField){
-
-        $model = new $this->principal->model();
-
-        $parameter = $dataField->parameter;
-
-        $data = $model->select($parameter)->orderBy($this->order['orderBy'], $this->order['order']);
-
-        return ReportsController::printData($data, $dataField);
 
     }
-
-    private function getSubData($dataField){
-
-        $model = new $this->principal->model();
-
-        $nameModel = $this->getNameModel();
-
-        $parameter = $dataField->parameter;
-
-        $data = $model->orderBy($this->order['orderBy'], $this->order['order']);
-
-        $secondModel = new $dataField->model();
-
-        return $data->get()->map(function ($item, $key) use ($secondModel, $dataField, $nameModel)  {
-
-            $relation = json_decode($dataField->relation)->$nameModel;
-
-            $his = $relation->his;
-
-            $response = $secondModel->select($dataField->parameter)->where($relation->my, $item->$his);
-
-            $response = ReportsController::printData($response, $dataField);
-
-            return $response;
-        });
-
-    }
-
-    private function getNameModel(){
-
-        $class = new \ReflectionClass($this->principal->model);
-
-        return $class->getShortName();
-    }
-
-    private function filter($data, $filters){
-
-        return $data->filter(function ($item, $key) use ($filters)  {
-            $resp = 0;
-            foreach($filters as $nameFilter => $filter){
-                $filterData = FieldsReportsAdmin::where('name', $nameFilter)->get()->last();
-                $funtionFilter = "filter_".$filterData->type;
-
-                if($this->$funtionFilter($item[$nameFilter], $filter) === false ){
-                    $resp += 1;
-                }
-            }
-            if($resp == 0){
-                return $item;
-            }
-
-        });
-
-    }
-
-    private function orderData($data){
-
-        $newData = collect([]);
-
-        foreach($data as $index => $row){
-
-            foreach($row as $i => $value){
-
-                if(!isset($newData[$i])){
-                    $newData->put($i, collect([]));
-                }
-
-                $newData[$i]->put($index, $value);
-
-            }
-
-        }
-
-        return $newData;
-
-    }
-
-    static function printData($data, $dataField){
-        return $data->get()->map(function ($item, $key) use ($dataField)  {
-                $function = 'print_'.$dataField->print;
-                $parameter = $dataField->parameter;
-                //return ReportsController::$function($item->$parameter);
-                return $item->$parameter;
-        });
-    }
-
 
     private function getFilter($data, $filters){
 
-        foreach($filters as $nameFilter => $filter){
+        foreach($filters as $parameter => $filter){
 
-            $filterData = FieldsReportsAdmin::where('name', $nameFilter)->get()->last();
-
-            $funtionFilter = "filter_".$filterData->type;
-
-            $this->$funtionFilter($data, $filterData->parameter, $filter);
+            $field = FieldsReportsAdmin::where("parameter", $parameter)->get()->last();
+            if($field->type == 'text'){
+                $data->where($parameter, 'LIKE', "%$filter%");
+            }elseif($field->type == 'date' || $field->type == 'number'){
+                $data->whereBetween($parameter, $filter);
+            }elseif($field->type == 'select'){
+                $data->where($parameter, $filter);
+            }
 
         }
 
     }
 
-    private function filter_text($data, $filter){
-        return stripos($data, $filter);
+    private function getNameParameter($key, $data){
+
+        $key = explode("_", $key);
+        if(count($key) == 2){
+            $key = [
+                $key[0],
+                $data[$key[0]."_id"],
+                $key[1]
+            ];
+        }elseif(count($key) == 3){
+            $key = [
+                $key[0],
+                $data[$key[0]."_id"],
+                $key[1],
+                $data[$key[0]."_".$key[1]."_id"],
+                $key[2]
+            ];
+        }
+        return implode(".", $key);
+
     }
 
-    private function filter_select($data,$filter){
 
-        return (preg_match("/^$filter/",$data) > 0);
-    }
-
-    private function filter_date($data, $filter){
-        $data = strtotime($data);
-        $filter = array_map("strtotime", $filter);
-        return $data >= $filter['from'] && $data <= $filter['to'];
-    }
-
-    private function filter_number($data, $filter){
-        return $data >= $filter['from'] && $data <= $filter['to'];
-    }
-
-    private function makeTable($array){
+    public function makeTable($data){
 
         $html = "<table border='1'>";
 
-        $html .= $this->makeTableTitles(array_keys(head($array)));
+        $html .= "<tr>";
 
-        $html .= $this->makeTableRows($array);
-
-        $html .= "</table>";
-
-        return $html;
-
-    }
-
-    private function makeTableTitles($titles){
-
-        $html = "<tr>";
-
-        foreach($titles as $title){
-            $html .= "<th>$title<button type='button' field='$title' class='material-icons order'>swap_vert</button></th>";
+        foreach(array_keys(head($data)) as $title){
+            if($title == 'id')
+                continue;
+            $html .= "<th>$title</th>";
         }
 
         $html .= "</tr>";
-
-        return $html;
-
-    }
-
-    private function makeTableRows($data){
-
-        $html = '';
 
         foreach($data as $row){
 
             $html .= "<tr>";
 
-            $html .= $this->makeTableColumn($row);
+            foreach($row as $title => $cell){
+
+                if(gettype($cell) == 'array'){
+
+                    $html .= "<td>";
+                    $html .= "<table border='1'>";
+                        $html .= "<tr>";
+                        foreach(array_keys(head($cell)) as $title){
+                            if($title == 'id')
+                                continue;
+                            $html .= "<th>$title</th>";
+                        }
+                        $html .= "</tr>";
+
+                        foreach($cell as $subRow){
+                            $html .= $this->makeSubRow($subRow);
+                        }
+                    $html .= "</table>";
+                    $html .= "</td>";
+
+                }else{
+                    if($title == 'id')
+                        continue;
+                    $html .= "<td>$cell</td>";
+                }
+
+            }
 
             $html .= "</tr>";
 
         }
 
-        return $html;
+        $html .= "</table>";
+
+        print $html;
 
     }
 
-    private function makeTableColumn($row){
+    public function makeSubRow($row){
 
         $html = "<tr>";
-
-        foreach($row as $column){
-
-            if(gettype($column) == "array"){
-                $html .= "<td>".$this->makeTableSubColumn($column)."</td>";
-            }else{
-                $html .= "<td>$column</td>";
+            foreach($row as $key => $subCell){
+                if($key == 'id')
+                    continue;
+                if(gettype($subCell) != 'array'){
+                    $html .= "<td>$subCell</td>";
+                }else{
+                    $html .= "<td>";
+                    $html .= "<table>";
+                    $html .= $this->makeSubRow($subCell);
+                    $html .= "</table>";
+                    $html .= "</td>";
+                }
             }
-
-
-        }
-
         $html .= "</tr>";
 
         return $html;
-    }
-
-    private function makeTableSubColumn($column){
-
-        $html = '';
-
-        foreach($column as $subColumn){
-            $html .= "<p>$subColumn</p>";
-        }
-
-        return $html;
 
     }
 
-    static function print_string($value){
-        $value = $value != '' ? "<p>$value</p>" : "";
-        return $value;
-    }
 
-    static function print_number($value){
-
-        return intval($value);
-    }
-
-    static function print_date($value){
-
-        return $value;
-    }
-
-    static function print_boolean($value){
-        $value = $value ? 'Si' : 'No';
-        return "<p>$value</p>";
-    }
-    static function print_image($value){
-        return "<p><img src='/$value'/ width='100px'></p>";
-    }
-
-    public function newGetReport($parameters){
-        $array = [];
-        foreach($parameters as $model => $parameter){
-            $array[$parameter] = 0;
-        }
-        return $array;
-    }
 }

@@ -35,8 +35,8 @@
                         @foreach($fields as $field)
 
                             <li>
-                                <input type="checkbox" value="{{$field->name}}" name="fields[]" class="square" id='field{{$field->id}}' field='{{$field->name}}'>
-                                <label for="field{{$field->id}}">{{$field->name}} @if($field->type != '')<button type="button" class="material-icons icon" @click='myData.filter{{$field->name}} = true'>visibility</button>@endif</label>
+                                <input type="checkbox" value="{{$field->parameter}}" name="fields[]" class="square" id='field{{$field->id}}' field='{{$field->parameter}}'>
+                                <label for="field{{$field->id}}">{{$field->name}} @if($field->type != '')<button type="button" class="material-icons icon" @click='myData.filter{{$field->parameter}} = true'>visibility</button>@endif</label>
                             </li>
                             @if($field->type != '')
                                 @include("admin/reports/partial/filter".$field->type)
@@ -51,6 +51,7 @@
                     <input type="hidden" value="asc" name="order" id='order'>
                     <input type="hidden" value="id" name="orderBy" id="orderBy">
                     <button type="button" class="generate">Generar</button>
+                    <button type="button" class="save">Guardar</button>
                 </div>
             </div>
 
@@ -74,7 +75,8 @@
 
     function start(){
         jQuery(".fieldReport > li > input").on('change', setFields);
-        jQuery(".generate").on('click', makeReport)
+        jQuery(".generate").on('click', makeReport);
+        jQuery(".save").on('click', saveReport);
         jQuery("#fiels").draggable({ cursor: "crosshair" });
         jQuery(".order").on('click', orderChange);
         jQuery(".filter").on("change", addFilter);
@@ -119,10 +121,21 @@
 
     }
 
+    function saveReport(){
+        jQuery.ajax({
+            type: "POST",
+            url: "/admin/saveReport/{{ $report->id }}",
+            data: data,
+            success: function(datos){
+                jQuery("body").append(datos);
+            }
+        });
+    }
+
     function makeReport(){
 
         jQuery.ajax({
-            type: "GET",
+            type: "POST",
             url: "/admin/getReport",
             data: data,
             success: function(datos){

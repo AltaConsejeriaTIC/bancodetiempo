@@ -223,6 +223,7 @@ article#report > table  th button {
 article#report > table td {
     text-align: center;
     padding: 15px 5px;
+    vertical-align: top;
 }
 
 ul.form-custom.fieldReport .icon {
@@ -231,4 +232,21 @@ ul.form-custom.fieldReport .icon {
     color: #fff;
     font-size: 17px;
     margin-left: 5px;
+}
+
+article#report  table  td > ul {
+    display: table;
+    padding: 0px;
+    list-style: none;
+}
+
+article#report  table  td > ul > li {
+    float: left;
+    margin: 0px 5px;
+    display: block;
+}
+
+article#report > table td > table {
+    width: 100%;
+    margin: -14px auto;
 }

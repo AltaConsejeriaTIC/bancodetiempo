@@ -23,24 +23,5 @@ class reportsAdmin extends TestCase
         ]));
     }
 
-    public function testGetReport2OneParameterHasParameter(){
-        $class = new ReportsController();
-
-        $resp = $class->newGetReport([
-            "User" => "first_name"
-        ]);
-
-        $this->assertArrayHasKey("first_name", $resp);
-    }
-
-    public function testGetReport2OneParameterHasValue(){
-        $class = new ReportsController();
-
-        $resp = $class->newGetReport([
-            "User" => "first_name"
-        ]);
-
-        $this->assertEquals("first_name", $resp);
-    }
 
 }

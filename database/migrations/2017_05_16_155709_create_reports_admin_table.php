@@ -16,6 +16,9 @@ class CreateReportsAdminTable extends Migration
         Schema::create('reports_admin', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->text('fields')->nullable();
+            $table->text('filters')->nullable();
+            $table->text('order')->nullable();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

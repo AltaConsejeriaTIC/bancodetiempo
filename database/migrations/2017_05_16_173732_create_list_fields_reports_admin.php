@@ -17,11 +17,8 @@ class CreateListFieldsReportsAdmin extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('parameter');
-            $table->string('model');
-            $table->text('relation');
             $table->string('type');
             $table->text('options');
-            $table->string('print');
             $table->timestamps();
         });
     }
