@@ -8,6 +8,7 @@
         <div class="row">
 
             <div class="col-xs-12">
+                <h2 class="title2"> <a href="/admin/reports">Volver</a></h2>
                 <h1 class="title2">{{$report->name}}</h1>
             </div>
 
@@ -19,40 +20,41 @@
 
         </article>
 
-        <div id="fiels">
+        <div id="fields">
 
             <div class="row">
                 <div class="col-xs-12">
                     <h3 class="title2">
-                        Campos disponibles
+                        Campos disponibles <i class="material-icons text-white fieldsChange">remove</i>
                     </h3>
                 </div>
             </div>
+            <div id='boxFields'>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="form-custom fieldReport">
+                            @foreach($fields as $field)
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <ul class="form-custom fieldReport">
-                        @foreach($fields as $field)
-
-                            <li>
-                                <input type="checkbox" value="{{$field->parameter}}" name="fields[]" class="square" id='field{{$field->id}}' field='{{$field->parameter}}'>
-                                <label for="field{{$field->id}}">{{$field->name}} @if($field->type != '')<button type="button" class="material-icons icon" @click='myData.filter{{$field->parameter}} = true'>visibility</button>@endif</label>
-                            </li>
-                            @if($field->type != '')
-                                @include("admin/reports/partial/filter".$field->type)
-                            @endif
-                        @endforeach
-                    </ul>
+                                <li>
+                                    <input type="checkbox" value="{{$field->parameter}}" name="fields[]" class="square" id='field{{$field->id}}' field='{{$field->parameter}}'>
+                                    <label for="field{{$field->id}}">{{$field->name}} @if($field->type != '')<button type="button" class="material-icons icon" @click='myData.filter{{$field->parameter}} = true'>visibility</button>@endif</label>
+                                </li>
+                                @if($field->type != '')
+                                    @include("admin/reports/partial/filter".$field->type)
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <input type="hidden" value="asc" name="order" id='order'>
-                    <input type="hidden" value="id" name="orderBy" id="orderBy">
-                    <button type="button" class="generate">Generar</button>
-                    <button type="button" class="save">Guardar</button>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <input type="hidden" value="asc" name="order" id='order'>
+                        <input type="hidden" value="id" name="orderBy" id="orderBy">
+                        <button type="button" class="generate">Generar</button>
+                        <button type="button" class="save">Guardar</button>
+                    </div>
                 </div>
+
             </div>
 
         </div>
@@ -66,26 +68,58 @@
 <script>
     var data = {
         '_token' : '{{ csrf_token() }}',
-        'fields' : [],
-        'order' : 'asc',
-        'orderBy' : '',
-        'filters' : {}
+        'fields' : {!! is_null($report->fields) ? '[]' : $report->fields !!},
+        'order' : '{!! is_null($report->order) ? "asc" : json_decode($report->order)->order !!}',
+        'orderBy' : '{!! is_null($report->order) ? "id" : json_decode($report->order)->orderBy !!}',
+        'filters' : {!! is_null($report->filters) ? '{}' : $report->filters !!}
     }
+
     jQuery(document).ready(start)
 
     function start(){
         jQuery(".fieldReport > li > input").on('change', setFields);
         jQuery(".generate").on('click', makeReport);
         jQuery(".save").on('click', saveReport);
-        jQuery("#fiels").draggable({ cursor: "crosshair" });
+        jQuery("#fields").draggable({ cursor: "crosshair" });
         jQuery(".order").on('click', orderChange);
         jQuery(".filter").on("change", addFilter);
+        jQuery(".fieldsChange").on("click", changeBoxFilter)
         getDate();
+        markFields();
+        markFilters();
+        makeReport();
+    }
+
+    function markFields(){
+        for(var index in data.fields){
+            jQuery("input[field='"+data.fields[index]+"']").prop("checked", true)
+        }
+    }
+
+    function markFilters(){
+        for(var index in data.filters){
+            jQuery("input[name='"+index+"']").val(data.filters[index]);
+        }
+        for(var index in data.filters){
+            jQuery("select[name='"+index+"'] option[value='"+data.filters[index]+"']").prop("selected", true);
+        }
+    }
+
+    function changeBoxFilter(){
+        if(jQuery("#boxFields").hasClass('contract')){
+            jQuery("#boxFields").removeClass('contract');
+            jQuery(".fieldsChange").html('remove');
+
+        }else{
+            jQuery("#boxFields").addClass('contract');
+            jQuery(".fieldsChange").html('add');
+        }
     }
 
     function addFilter(){
         var index = jQuery(this).attr('name');
         var value = jQuery(this).val();
+
         i = index.split('.');
 
         if(i.length > 1){
@@ -93,10 +127,20 @@
             if(data['filters'][i[0]] === undefined){
                 data['filters'][i[0]] = {'from' : '', 'to' : ''};
             }
-            data['filters'][i[0]][i[1]] = value;
+            if(value == ''){
+                delete data['filters'][i[0]];
+            }else{
+                data['filters'][i[0]][i[1]] = value;
+            }
+
 
         }else{
-           data['filters'][index] = value;
+            if(value == ''){
+                delete data['filters'][index];
+            }else{
+                data['filters'][index] = value;
+            }
+
         }
 
     }

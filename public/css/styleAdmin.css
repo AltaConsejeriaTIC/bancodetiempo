@@ -169,7 +169,7 @@ ul.dropdown-menu li:hover {
 Reportes
 */
 
-#fiels {
+#fields {
     position: fixed;
     background: #009688;
     padding: 20px;
@@ -249,4 +249,13 @@ article#report  table  td > ul > li {
 article#report > table td > table {
     width: 100%;
     margin: -14px auto;
+}
+
+article#report > table table table td {
+    display: block;
+    text-align: left !important;
+}
+
+#boxFields.contract {
+    display: none;
 }

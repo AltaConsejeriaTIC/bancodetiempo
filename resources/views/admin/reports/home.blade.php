@@ -3,6 +3,7 @@
 @section('content')
 <div class="container" id="app">
     <div class="panel panel-default">
+        <h2 class="title2"> <a href="/homeAdmin">Volver</a></h2>
         <div class="row">
             <div class="col-xs-12">
                 <button type="button" class="btn btn-raised btn-primary" @click='myData.newreport = true'>Crear reporte</button>

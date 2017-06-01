@@ -39,10 +39,12 @@ class ReportsController extends Controller
     }
 
     public function saveReport(Request $request, $report_id){
-        dd($request->all());
-        /*ReportsAdmin::find($report_id)->update([
 
-        ]);*/
+        ReportsAdmin::find($report_id)->update([
+            'fields' => json_encode($request->input('fields', [])),
+            'filters' => json_encode($request->input('filters', ["" => ""])),
+            'order' => json_encode(['orderBy' => $request->input('orderBy', 'asc'), 'order' => $request->input('order', 'asc')]),
+        ]);
     }
 
     public function showReport($report_id){
@@ -61,7 +63,7 @@ class ReportsController extends Controller
 
     public function getReport(Request $request){
 
-        $data = $this->makeReport($request->input('fields', []), $request->input('filters', []));
+        $data = $this->makeReport($request->input('fields', []), $request->input('filters', []), $request->input('orderBy', 'id') ,$request->input('order', 'asc'));
 
         if($data){
             return $this->makeTable($data);
@@ -72,12 +74,30 @@ class ReportsController extends Controller
 
     }
 
-    public function makeReport($fields, $filters){
+    public function makeReport($fields, $filters, $orderBy, $order){
+
         $array = [];
 
-        $data = AllData::orderBy('id', 'asc');
+        $data = AllData::orderBy($orderBy, $order);
 
         $this->getFilter($data, $filters);
+
+        $fields = $this->getFields($fields);
+
+        $data = $data->get($fields);
+
+        foreach($data as $register){
+            foreach($register->toArray() as $key => $row){
+                $nameParameter = $this->getNameParameter($key, $register);
+                array_set($array[head($register->toArray()).$register->id], $nameParameter, $row);
+            }
+        }
+
+        return $array;
+
+    }
+
+    private function getFields($fields){
 
         $fields[] = 'id';
         if(strpos(implode(",", $fields), 'interest')){
@@ -90,16 +110,7 @@ class ReportsController extends Controller
             $fields[] = 'service_tag_id';
         }
 
-        $data = $data->get($fields);
-
-        foreach($data as $register){
-            foreach($register->toArray() as $key => $row){
-
-                $nameParameter = $this->getNameParameter($key, $register);
-                array_set($array[head($register->toArray()).$register->id], $nameParameter, $row);
-            }
-        }
-        return $array;
+        return $fields;
 
     }
 
@@ -145,14 +156,16 @@ class ReportsController extends Controller
 
     public function makeTable($data){
 
-        $html = "<table border='1'>";
+        $html = "<p>Total registros : ".count($data)."</p>";
+
+        $html .= "<table border='1'>";
 
         $html .= "<tr>";
 
         foreach(array_keys(head($data)) as $title){
             if($title == 'id')
                 continue;
-            $html .= "<th>$title</th>";
+            $html .= "<th>$title <button type='button' field='$title' class='material-icons order'>swap_vert</button></th></th>";
         }
 
         $html .= "</tr>";
@@ -171,12 +184,14 @@ class ReportsController extends Controller
                         foreach(array_keys(head($cell)) as $title){
                             if($title == 'id')
                                 continue;
-                            $html .= "<th>$title</th>";
+                            $html .= "<th>$title ";
                         }
                         $html .= "</tr>";
 
                         foreach($cell as $subRow){
+                            $html .= "<tr>";
                             $html .= $this->makeSubRow($subRow);
+                            $html .= "</tr>";
                         }
                     $html .= "</table>";
                     $html .= "</td>";
@@ -201,21 +216,20 @@ class ReportsController extends Controller
 
     public function makeSubRow($row){
 
-        $html = "<tr>";
+        $html = "";
             foreach($row as $key => $subCell){
                 if($key == 'id')
                     continue;
                 if(gettype($subCell) != 'array'){
-                    $html .= "<td>$subCell</td>";
+                    $html .= "<td style='width:100px;max-width: 100px;'>$subCell</td>";
                 }else{
-                    $html .= "<td>";
+                    $html .= "<td style='width:100px;max-width: 100px;'>";
                     $html .= "<table>";
                     $html .= $this->makeSubRow($subCell);
                     $html .= "</table>";
                     $html .= "</td>";
                 }
             }
-        $html .= "</tr>";
 
         return $html;
 
