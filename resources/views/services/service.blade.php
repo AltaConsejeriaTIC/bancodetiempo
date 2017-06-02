@@ -52,7 +52,7 @@
                                 @if($cont <= $service->ranking)
                                     <span class='material-icons paragraph9'>grade</span>
                                 @else
-                                    <span class='material-icons paragraph8 '>fiber_manual_record</span>
+                                    <span class='material-icons paragraph9 rankingInactive'>grade</span>
                                 @endif
                             @endfor
                         </div>
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="col-md-10">
                                     <p class="paragraph4 text-bold">{{$service->value}} <span> Dorados</span></p>
-                                    <p class="paragraph8 ">Cada dorado vale una hora de tu tiempo, y del tiempo de
+                                    <p class="paragraph4 ">Cada dorado vale una hora de tu tiempo, y del tiempo de
                                         cualquier persona.</p>
                                 </div>
                             </div>
@@ -101,21 +101,28 @@
                         </div>
                     </div>
 
+
+
                     <div class="row">
-
-                        <div class="col-xs-12">
-
-                            <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="button"
-                                 data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore"
-                                                                                target="_blank"
-                                                                                href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse">Compartir</a>
-                            </div>
-                        </div>
-
+                        <h1 class="title1">Comentarios</h1>
+                        <br>
+                        @foreach($service->serviceScore as $commentary)
+                            @if($commentary->observation != '')
+                                <div class="row">
+                                    <div class="col-xs-1 not-padding col-xs-offset-1">
+                                        <a href="/user/{{$commentary->user->id}}">
+                                            @include('partial/imageProfile', array('cover' => $commentary->user->avatar, 'id' =>$commentary->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                                        </a>
+                                    </div>
+                                    <p class="col-xs-8">{{$commentary->observation}}</p>
+                                </div>
+                                <br>
+                            @endif
+                        @endforeach
                     </div>
 
                     <div class="row">
-                        <hr class="  col-md-12 report_line hidden-xs">
+                        <hr class="col-md-12 report_line hidden-xs">
                         @if(!is_null(Auth::User()))
                             <a class="report" href="" title="Reportar Contenido" data-toggle="modal"
                                data-target="#update-dialog{{$service->id}}"><i class=" material-icons "
@@ -162,7 +169,7 @@
                                     @if($cont <= $service->user->ranking)
                                         <span class='material-icons'>grade</span>
                                     @else
-                                        <span class='material-icons paragraph4 '>fiber_manual_record</span>
+                                        <span class='material-icons rankingInactive'>grade</span>
                                     @endif
                                 @endfor
                             </div>
@@ -206,24 +213,18 @@
                                 </div>
                             @endif
 
+                            <div class="space"></div>
+
+                            <div class="col-xs-12">
+
+                                <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="button" data-size="small" data-mobile-iframe="true">
+                                    <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse">Compartir</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <div>
-                        <h1 class="title1">Comentarios</h1>
-                        @foreach($service->serviceScore as $commentary)
-                            @if($commentary->observation != '')
-                                <div class="row">
-                                    <div class="col-md-2 not-padding">
-                                        <a href="/user/{{$commentary->user->id}}">
-                                            @include('partial/imageProfile', array('cover' => $commentary->user->avatar, 'id' =>$commentary->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
-                                        </a>
-                                    </div>
-                                    <p class="col-md-8">{{$commentary->observation}}</p>
-                                </div>
-                                <br>
-                            @endif
-                        @endforeach
-                    </div>
+
 
                 </article>
 
