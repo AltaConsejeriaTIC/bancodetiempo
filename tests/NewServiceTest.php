@@ -16,7 +16,7 @@ class NewServiceTest extends TestCase
         Tag::create([
             'tag' => 'tagTest'
         ]);
-        $json = json_decode(file_get_contents(url('/').'/tags'));
+        $json = json_decode(file_get_contents(url('/') . '/tags'));
         $this->assertTrue(count($json) > 0);
         $this->assertTrue(end($json)->tag == 'tagTest');
     }
@@ -24,10 +24,7 @@ class NewServiceTest extends TestCase
     public function testCreateService()
     {
 
-        $user = User::find(2);
-        Auth()->login($user);
-        $this->assertTrue(Auth::check());
-
+        $this->testLogin();
         $this->post('/service/save', ['serviceName' => 'pruebaXXXXX',
             'descriptionService' => 'prueba prueba prueba prueba prueba prueba prueba prueba prueba',
             'modalityServicePresently' => 1,
@@ -38,15 +35,24 @@ class NewServiceTest extends TestCase
 
         $this->assertTrue($service->name == 'pruebaXXXXX');
     }
-    
+
+    public function testGetService()
+    {
+        $this->testCreateService();
+        $service = Service::all()->last();
+        $response = $this->call('GET','/service/' . $service->id);
+
+        //dd($service);
+        $this->assertEquals(200, $response->status());
+
+    }
+
     public function testEditService()
     {
-        $user = User::find(2);
-        Auth()->login($user);
-        $this->assertTrue(Auth::check());
+        $this->testLogin();
         $service = Service::all()->last();
 
-        $this->put('/service/save/'.$service->id, ['serviceName' => 'pruebaXXXXXEditada',
+        $this->put('/service/save/' . $service->id, ['serviceName' => 'pruebaXXXXXEditada',
             'descriptionService' => 'prueba prueba prueba prueba prueba prueba prueba prueba prueba',
             'modalityServicePresently' => 1,
             'valueService' => 2,
@@ -56,5 +62,41 @@ class NewServiceTest extends TestCase
         $service = Service::all()->last();
 
         $this->assertTrue($service->name == 'pruebaXXXXXEditada');
+    }
+
+    public function testDeleteService()
+    {
+
+        $this->testLogin();
+        $this->createService();
+        $originalService = $this->createService();
+
+        $this->get('/serviceDelete/' . $originalService->id);
+
+        $service = Service::all()->last();
+
+        $this->assertTrue($service->id != $originalService->id);
+    }
+
+    public function testLogin()
+    {
+        $user = User::find(2);
+        Auth()->login($user);
+        $this->assertTrue(Auth::check());
+    }
+
+    public function createService(){
+
+        return Service::create([
+            'name' => 'Service',
+            'description' => 'prueba prueba prueba prueba prueba prueba prueba prueba prueba',
+            'presently' => 1,
+            'image' => 'sadsa',
+            'virtually' => 0,
+            'value' => 2,
+            'category_id' => 2,
+            'state_id' => 1,
+            'user_id' => 2
+        ]);
     }
 }
