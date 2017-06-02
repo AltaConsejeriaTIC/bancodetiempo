@@ -29,12 +29,13 @@ class ReportsController extends Controller
 
     public function create(Request $request){
 
-        ReportsAdmin::create([
+        $report = ReportsAdmin::create([
             'name' => $request->nameReport,
+            'description' => $request->descriptionReport,
             'user_id' => Auth::id()
         ]);
 
-        return redirect()->back();
+        return redirect('/admin/report/'.$report->id);
 
     }
 

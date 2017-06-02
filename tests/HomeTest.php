@@ -3,6 +3,9 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\User;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 class HomeTest extends TestCase
 {
@@ -14,5 +17,22 @@ class HomeTest extends TestCase
     public function testExample()
     {
         $this->assertTrue(true);
+    }
+
+    public function testPrueba(){
+
+        $user = User::find(2);
+
+        auth()->login($user);
+
+        $this->assertTrue(Auth::check());
+
+    }
+
+
+
+    protected function setUp()
+    {
+        print("dd\n");
     }
 }

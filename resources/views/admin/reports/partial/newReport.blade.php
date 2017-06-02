@@ -16,6 +16,16 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-xs-12">
+                    <label for="nameReport">Descripción del reporte</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <textarea name="descriptionReport" class="col-xs-12" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12 text-center">
                     <button class="btn btn-raised btn-primary" type="submit" id="send">Crear reporte</button>
                 </div>
