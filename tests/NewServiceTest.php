@@ -46,8 +46,6 @@ class NewServiceTest extends TestCase
         $this->assertTrue(Auth::check());
         $service = Service::all()->last();
 
-        print($service->id);
-
         $this->put('/service/save/'.$service->id, ['serviceName' => 'pruebaXXXXXEditada',
             'descriptionService' => 'prueba prueba prueba prueba prueba prueba prueba prueba prueba',
             'modalityServicePresently' => 1,
@@ -56,7 +54,6 @@ class NewServiceTest extends TestCase
             'tagService' => 'est']);
 
         $service = Service::all()->last();
-        print_r($service);
 
         $this->assertTrue($service->name == 'pruebaXXXXXEditada');
     }

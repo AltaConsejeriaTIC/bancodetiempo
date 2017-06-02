@@ -6,7 +6,7 @@ return [
     'logout' => 'Cerrar Sesión',
     'credit' => 'Dorado',
     'credits' => 'Dorados',
-    'inputFind' => 'Encuentra ofertas, palabras clave y más...',
+    'inputFind' => 'Buscar en Bogotá Cambalachea',
     'newOffer' => 'Nueva oferta',
     'profile' => 'Perfil',
     'notifications' => 'Notificaciones'

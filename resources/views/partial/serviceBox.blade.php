@@ -25,13 +25,13 @@
             @if(is_null(Auth::User()))
                 <a @click='myData.login = true'>
                     @if(isset($service->toArray()['user_id']))
-                        @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#fff', 'borderSize' => '2px'))
+                        @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#677d95', 'borderSize' => '2px'))
                     @endif
                 </a>
             @else
                 <a href="/user/{{$service->user->id}}">
                     @if(isset($service->toArray()['user_id']))
-                        @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#fff', 'borderSize' => '2px'))
+                        @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#677d95', 'borderSize' => '2px'))
                     @endif
                 </a>
             @endif
@@ -39,6 +39,7 @@
         </div>
         <a href="/service/{{$service->id}}">
             <div class="content">
+               <br>
                 <h3 class='title title2'>{{$service->name}}</h3>
                 @if(isset($service->toArray()['user_id']))
                     <div class='ranking'>
@@ -47,7 +48,7 @@
                                 @if($cont <= $service->ranking)
                                     <span class='material-icons paragraph9'>grade</span>
                                 @else
-                                    <span class='material-icons paragraph8 in'>fiber_manual_record</span>
+                                    <span class='material-icons paragraph9 rankingInactive '>grade</span>
                                 @endif
                             @endfor
                         </div>
@@ -56,7 +57,7 @@
                 <div class="space15">
                 </div>
                 <p class='paragraph2'>{{str_limit($service->description, 100)}}</p>
-                <div class='col-xs-12  col-sm-12'>
+                <div class='col-xs-12  col-sm-12 not-padding'>
 
                     @if(!is_null($service->tags))
                         @foreach($service->tags as $tag)

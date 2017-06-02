@@ -1,7 +1,6 @@
 <article class="col-md-12 panel-groups">
     <div class="row">
         <div class="col-md-6">
-            <h2 class="title1">{{ trans('profile.myGroups') }}</h2>
             <button class="col-xs-12 buttonService background-white" @click='myData.newgroup = true'>
               <i class="fa fa-plus-square icons" aria-hidden="true"></i>
               <p>{{ trans("profile.newGroup") }}</p>

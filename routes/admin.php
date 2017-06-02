@@ -48,4 +48,5 @@ Route::resource('/admin/reports', 'Admin\ReportsController@index');
 Route::post('/admin/createReport', 'Admin\ReportsController@create');
 Route::resource('/admin/getReport', 'Admin\ReportsController@getReport');
 Route::post('/admin/saveReport/{report_id}', 'Admin\ReportsController@saveReport');
+Route::post('/admin/reports/delete', 'Admin\ReportsController@deleteReport');
 Route::get('/admin/report/{report_id}', 'Admin\ReportsController@showReport');

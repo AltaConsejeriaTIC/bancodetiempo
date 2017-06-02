@@ -257,6 +257,9 @@ Paragraphs
 	color: #2c3e50 !important;
 	word-wrap: break-word;
 	word-wrap: break-word;
+    min-height: 72px;
+    max-height: 72px;
+    overflow: hidden;
 }
 
 .paragraph3{
@@ -692,7 +695,7 @@ Service box
 .service-box .avatar {
     position: absolute;
     width: 25%;
-    top: 147px;
+    top: 165px;
     left: 5%;
 	z-index: 100;
 }
@@ -701,7 +704,7 @@ Service box
     position: relative;
     margin-top: 0px;
     margin-left: 100px;
-    min-height: 20px;
+    min-height: 65px;
 }
 
 .service-box .tags > a {
@@ -1361,4 +1364,8 @@ ul.listComplete {
     border-left: 1px solid #fff;
     margin-left: 20px;
     padding-left: 20px;
+}
+
+.rankingInactive{
+    opacity:0.5;
 }

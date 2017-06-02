@@ -3,6 +3,7 @@
 @section('content')
 <div class="container" id="app">
     <div class="panel panel-default">
+        <h2 class="title2"> <a href="/homeAdmin">Volver</a></h2>
         <div class="row">
             <div class="col-xs-12">
                 <button type="button" class="btn btn-raised btn-primary" @click='myData.newreport = true'>Crear reporte</button>
@@ -23,7 +24,14 @@
                 <ul>
                     @foreach($reports as $report)
 
-                        <li><a href="/admin/report/{{$report->id}}"> {{$report->name}} </a></li>
+                        <li>
+                            <a href="/admin/report/{{$report->id}}"> {{$report->name}} </a>
+                            <form action="/admin/reports/delete" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" value="{{$report->id}}" name="report_id">
+                                <button type="submit"><i class="material-icons">delete</i></button>
+                            </form>
+                        </li>
 
                     @endforeach
                 </ul>

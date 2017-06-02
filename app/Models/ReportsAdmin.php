@@ -9,7 +9,7 @@ class ReportsAdmin extends Model
 
     protected $table = 'reports_admin';
 
-    protected  $fillable = ['name', 'user_id'];
+    protected  $fillable = ['name', 'user_id', 'fields', 'filters', 'order'];
 
 
 }
