@@ -24,7 +24,14 @@
                 <ul>
                     @foreach($reports as $report)
 
-                        <li><a href="/admin/report/{{$report->id}}"> {{$report->name}} </a></li>
+                        <li>
+                            <a href="/admin/report/{{$report->id}}"> {{$report->name}} </a>
+                            <form action="/admin/reports/delete" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" value="{{$report->id}}" name="report_id">
+                                <button type="submit"><i class="material-icons">delete</i></button>
+                            </form>
+                        </li>
 
                     @endforeach
                 </ul>

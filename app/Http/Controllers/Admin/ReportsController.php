@@ -235,5 +235,13 @@ class ReportsController extends Controller
 
     }
 
+    public function deleteReport(Request $request){
+
+        ReportsAdmin::find($request->report_id)->delete();
+
+        return redirect()->back();
+
+    }
+
 
 }
