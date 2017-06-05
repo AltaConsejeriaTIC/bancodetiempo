@@ -1369,3 +1369,36 @@ ul.listComplete {
 .rankingInactive{
     opacity:0.5;
 }
+
+.ui-menu {
+    width: 285px !important;
+    list-style: none;
+    padding: 0px;
+    z-index: 200 !important;
+}
+
+.ui-menu > li {
+    padding: 10px;
+    margin: 5px auto;
+    color: #445870;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    cursor: pointer;
+}
+
+.ui-state-active{
+    background: none !important;
+    border: 0 !important;
+    color: #445870 !important;
+}
+
+.ui-menu > li:after {
+    content: "";
+    border-bottom: 1px solid #dfdfdf;
+    height: 10px;
+    display: block;
+}
+
+.ui-menu > li:hover {
+    background: #dfe4ea;
+}

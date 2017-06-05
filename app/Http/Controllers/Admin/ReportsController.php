@@ -64,14 +64,15 @@ class ReportsController extends Controller
 
     public function getReport(Request $request){
 
-        $data = $this->makeReport($request->input('fields', []), $request->input('filters', []), $request->input('orderBy', 'id') ,$request->input('order', 'asc'));
+        if(!empty($request->input('fields', []))){
+            $data = $this->makeReport($request->input('fields', []), $request->input('filters', []), $request->input('orderBy', 'id') ,$request->input('order', 'asc'));
 
-        if($data){
-            return $this->makeTable($data);
-        }else{
-            return "<h2 class='title2 text-center'>Sin resultados</h2>";
+            if($data){
+                return $this->makeTable($data);
+            }else{
+                return "<h2 class='title2 text-center'>Sin resultados</h2>";
+            }
         }
-
 
     }
 
@@ -101,14 +102,19 @@ class ReportsController extends Controller
     private function getFields($fields){
 
         $fields[] = 'id';
-        if(strpos(implode(",", $fields), 'interest')){
-            $fields[] = 'interest_id';
-        }
-        if(strpos(implode(",", $fields), 'service')){
-            $fields[] = 'service_id';
-        }
-        if(strpos(implode(",", $fields), 'tag')){
-            $fields[] = 'service_tag_id';
+
+        foreach($fields as $field){
+
+            $nameField = explode("_", $field);
+
+            if(count($nameField) > 1){
+                array_pop($nameField);
+                $newId = implode("_", $nameField)."_id";
+                if(!array_search($newId, $fields)){
+                    $fields[] = $newId;
+                }
+            }
+
         }
 
         return $fields;
@@ -154,22 +160,54 @@ class ReportsController extends Controller
 
     }
 
+    private function getTotal($data){
+
+        $html = "<div class='row'>";
+
+        $html .= "<div class='col-xs-12'>";
+
+        $html .= "<p class='bg-success col-xs-2 paragraph6 text-center'>Total registros : ".count($data)."</p>";
+
+        $html .= "</div>";
+
+        $html .= "</div>";
+
+        return $html;
+    }
+
+    private function getTitles($data, $titleParent = ''){
+
+        $html = "";
+        foreach(head($data) as $title => $value){
+            if(strpos($title, 'id') !== false){
+                continue;
+            }
+            $parameter = $titleParent != '' ? $titleParent."_".$title : $title;
+            if(gettype($value) == 'array'){
+                $html .= "<th>$title
+                        <table>";
+                $html .= "<tr>".$this->getTitles($value, $parameter)."</tr>";
+                $html .= "</table></th>";
+            }else{
+                $html .= "<th>$title
+                            <button type='button' field='$parameter' class='material-icons order'>swap_vert</button>
+                        </th>";
+            }
+
+
+        }
+
+        return $html;
+
+    }
 
     public function makeTable($data){
 
-        $html = "<p>Total registros : ".count($data)."</p>";
+        $html = $this->getTotal($data);
 
         $html .= "<table border='1'>";
 
-        $html .= "<tr>";
-
-        foreach(array_keys(head($data)) as $title){
-            if($title == 'id')
-                continue;
-            $html .= "<th>$title <button type='button' field='$title' class='material-icons order'>swap_vert</button></th></th>";
-        }
-
-        $html .= "</tr>";
+        $html .= "<tr>".$this->getTitles($data)."</tr>";
 
         foreach($data as $row){
 
@@ -180,14 +218,7 @@ class ReportsController extends Controller
                 if(gettype($cell) == 'array'){
 
                     $html .= "<td>";
-                    $html .= "<table border='1'>";
-                        $html .= "<tr>";
-                        foreach(array_keys(head($cell)) as $title){
-                            if($title == 'id')
-                                continue;
-                            $html .= "<th>$title ";
-                        }
-                        $html .= "</tr>";
+                    $html .= "<table>";
 
                         foreach($cell as $subRow){
                             $html .= "<tr>";
@@ -222,9 +253,9 @@ class ReportsController extends Controller
                 if($key == 'id')
                     continue;
                 if(gettype($subCell) != 'array'){
-                    $html .= "<td style='width:100px;max-width: 100px;'>$subCell</td>";
+                    $html .= "<td>$subCell</td>";
                 }else{
-                    $html .= "<td style='width:100px;max-width: 100px;'>";
+                    $html .= "<td>";
                     $html .= "<table>";
                     $html .= $this->makeSubRow($subCell);
                     $html .= "</table>";

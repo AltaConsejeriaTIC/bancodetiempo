@@ -5,20 +5,18 @@
 <div class="container" id="app">
     <div class="panel panel-default relative">
 
+        <div class="row  panel-heading">
+            <h2 class="title3"> <a href="/admin/reports">Volver</a></h2>
+        </div>
         <div class="row">
 
             <div class="col-xs-12">
-                <h2 class="title2"> <a href="/admin/reports">Volver</a></h2>
                 <h1 class="title2">{{$report->name}}</h1>
             </div>
 
         </div>
         <hr>
-        <article id='report'>
-
-
-
-        </article>
+        <article id='report'></article>
 
         <div id="fields">
 
