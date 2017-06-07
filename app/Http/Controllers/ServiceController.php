@@ -255,4 +255,75 @@ class ServiceController extends Controller
         print $services->toJson();
     }
 
+
+    public function getListService(Request $request){
+
+        $page = $request->input('page', 0);
+
+        $services = Service::getServicesActive()->orderBy('services.created_at', 'desc');
+
+        if($page != 0){
+            if($page != 1){
+                $services->offset(($page-1)*6);
+            }
+        }
+
+        $services =  $services->limit(6)->get();
+
+        return view('home.partial.allService', compact('services'));
+
+    }
+
+    public function getListServiceFeatured(Request $request){
+
+        $page = $request->input('page', 0);
+
+        $services = Service::getServicesActive()->orderBy('services.ranking', 'desc');
+
+        if($page != 0){
+            if($page != 1){
+                $services->offset(($page-1)*6);
+            }
+        }
+
+        $services =  $services->limit(6)->get();
+
+        return view('home.partial.listService', compact('services'));
+
+    }
+    public function getListServiceVirtual(Request $request){
+
+        $page = $request->input('page', 0);
+
+        $services = Service::getServicesActive()->where('virtually', 1)->orderBy('services.created_at', 'desc');
+
+        if($page != 0){
+            if($page != 1){
+                $services->offset(($page-1)*6);
+            }
+        }
+
+        $services =  $services->limit(6)->get();
+
+        return view('home.partial.listService', compact('services'));
+
+    }
+    public function getListServiceFaceToFace(Request $request){
+
+        $page = $request->input('page', 0);
+
+        $services = Service::getServicesActive()->where('presently', 1)->orderBy('services.created_at', 'desc');
+
+        if($page != 0){
+            if($page != 1){
+                $services->offset(($page-1)*6);
+            }
+        }
+
+        $services =  $services->limit(6)->get();
+
+        return view('home.partial.listService', compact('services'));
+
+    }
+
 }

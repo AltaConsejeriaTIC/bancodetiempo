@@ -36,19 +36,17 @@ class HomeController extends Controller
     {
         $filter = '';
         $categories = Category::getCategoriesInUse();
-        $recommendedServices = User::recommendedServices();
-        $services = Service::select("services.*")->where('services.name', 'LIKE', "%$filter%")->where('state_id', 1)->orderBy('services.created_at', 'desc')->paginate(12);
-        $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
-        $groups = Groups::where('name', 'like', "%$filter%")->paginate(12);
-        $persons = User::filter($filter)->paginate(12);
-        $campaigns = Campaigns::select("campaigns.*")->where('campaigns.name', 'LIKE', "%$filter%")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
-
+        $services = service::getServicesActive()->orderBy('services.created_at', 'desc')->get();
+        $featured = Service::getServicesActive()->orderBy('services.ranking', 'desc')->get();
+        $virtual = Service::getServicesActive()->where('virtually', 1)->orderBy('services.created_at', 'desc')->get();
+        $faceToFace = Service::getServicesActive()->where('presently', 1)->orderBy('services.created_at', 'desc')->get();
+        $campaigns = Campaigns::getCampaignsActive()->limit(4)->get();
 
         JavaScript::put([
             'categoriesJs' => $categories,
         ]);
 
-        return view('home', compact('services', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
+        return view('home', compact('services', 'featured', 'categories', 'campaigns', 'virtual', 'faceToFace'));
     }
 
 
@@ -69,7 +67,7 @@ class HomeController extends Controller
             'categoriesJs' => $categories
         ]);
 
-        return view('home', compact('services', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
+        return view('home/filter', compact('services', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
     }
 
     public function filterTags($allServices, $filter)

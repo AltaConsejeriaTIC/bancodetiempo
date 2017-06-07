@@ -23,9 +23,31 @@ jQuery(document).ready(function(){
     if(jQuery(".bannerHome").length){
        bannerHome();
     }
+
+    if(jQuery(".pagination").length){
+       jQuery('.pagination > li').on('click', getPagination);
+    }
+
     jQuery(".score").on("click", score);
 
 });
+
+function getPagination(){
+    page = jQuery(this).data('page');
+    route = jQuery(this).parent().data('route');
+    list = jQuery(this).parent().data('list');
+    jQuery(this).parent().children(".active").removeClass('active')
+    jQuery(this).addClass('active');
+    jQuery.ajax({
+        url: route,
+        type : 'GET',
+        data : {'page' : page},
+        success : function(response){
+            jQuery("#"+list+" .content").html(response);
+        }
+    });
+
+}
 
 function bannerHome(){
     jQuery(".bannerHome .carousel").attr("banner", 0);

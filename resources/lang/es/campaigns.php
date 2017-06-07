@@ -14,6 +14,10 @@ return [
     'preInscription' => "Pre inscribirme",
     'participants' => 'Participantes',
     'pay' => 'Pagar',
-    'delete' => 'Eliminar Campaña'
+    'delete' => 'Eliminar Campaña',
+    'date' => 'Fecha',
+    'time' => 'Hora',
+    'textCredits' => 'Participa en esta campaña y adquiere:',
+    'credits' => '<img src="http://localbancodetiempo.com/images/moneda.png" class="credit"> :val dorados'
 
 ];

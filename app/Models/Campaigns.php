@@ -41,4 +41,8 @@ class Campaigns extends Model
         }
     }
 
+    static function getCampaignsActive(){
+        return Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1);
+    }
+
 }

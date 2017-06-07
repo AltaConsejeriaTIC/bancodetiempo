@@ -71,8 +71,7 @@ class Service extends Model
         return Service::select('services.*')
                         ->join('users','users.id','=','services.user_id')
                         ->where('services.state_id' , 1)
-                        ->where('users.state_id', 1)
-                        ->orderByRaw("RAND()");
+                        ->where('users.state_id', 1);
     }
 
      static function setRanking($service){

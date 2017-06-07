@@ -24,5 +24,11 @@ return [
     'serviceAdmin' => 'Servicios de cambalachea',
     'services' => 'Servicios',
     'groups' => 'Grupos',
-    'persons' => 'Personas'
+    'persons' => 'Personas',
+    'allService' => 'Todas las Ofertas',
+    'all' => 'Todos',
+    'featured' => 'Destacados',
+    'virtual' => 'Virtuales',
+    'faceToFace' => 'Presenciales'
+
 ];

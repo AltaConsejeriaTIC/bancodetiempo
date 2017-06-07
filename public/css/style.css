@@ -257,8 +257,6 @@ Paragraphs
 	color: #2c3e50 !important;
 	word-wrap: break-word;
 	word-wrap: break-word;
-    min-height: 72px;
-    max-height: 72px;
     overflow: hidden;
 }
 
@@ -690,6 +688,11 @@ Service box
     width: 100%;
     position: absolute;
     left: 0px;
+}
+
+.service-box .paragrph2{
+    min-height: 72px;
+    max-height: 72px;
 }
 
 .service-box .avatar {
@@ -1401,4 +1404,45 @@ ul.listComplete {
 
 .ui-menu > li:hover {
     background: #dfe4ea;
+}
+
+
+.campaign-box {
+    display: block;
+    height: 250px;
+    margin: 10px auto;
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.24);
+    max-width: 100%;
+}
+
+.campaign-box > div {
+    display: block;
+    height: 100%;
+}
+
+.campaign-box .cover {
+    height: 100%;
+    display: block;
+    background-size: auto 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+.campaign-box .content {
+    display: block;
+    position: relative;
+    height: 150px;
+}
+
+.line {
+    height: 10px;
+    border-bottom: solid 0.5px #0f6784;
+}
+
+.campaign-box .textCredits{
+    color:#0f6784 !important;
+}
+.campaign-box .credit {
+    width: 20px;
 }

@@ -68,4 +68,8 @@ Route::get('/setRanking', function(){
         App\Models\Service::setRanking($user->id);
     }
 });
-Route::get('/test','Admin\ReportsController@newGetReport');
+
+Route::resource('/listService', 'ServiceController@getListService');
+Route::resource('/listServiceFeatured', 'ServiceController@getListServiceFeatured');
+Route::resource('/listServiceVirtual', 'ServiceController@getListServiceVirtual');
+Route::resource('/listServiceFaceToFace', 'ServiceController@getListServiceFaceToFace');
