@@ -270,7 +270,7 @@ class ServiceController extends Controller
 
         $services =  $services->limit(6)->get();
 
-        return view('home.partial.allService', compact('services'));
+        return view('home.partial.listService', compact('services'));
 
     }
 

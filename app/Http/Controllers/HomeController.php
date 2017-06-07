@@ -52,22 +52,25 @@ class HomeController extends Controller
 
     public function filter(Request $request)
     {
+
         $filter = $request->input('filter');
-        $recommendedServices = [];
+        $words = explode(" ", $filter);
         $categories = Category::getCategoriesInUse();
-        $services = Service::select("services.*")->where('services.name', 'LIKE', "%$filter%")->where('state_id', 1)->orderBy('services.created_at', 'desc')->paginate(12);
-        //$this->filterTags($allServices, $filter);
-        //$allServices = $allServices->paginate(12);
-        $serviceAdmin = ServiceAdmin::getServicesActive()->paginate(12);
-        $groups = Groups::where('name', 'like', "%$filter%")->paginate(12);
-        $persons = User::filter($filter)->paginate(12);
-        $campaigns = Campaigns::select("campaigns.*")->where('campaigns.name', 'LIKE', "%$filter%")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
+        $services = service::getServicesActive()
+            ->where("services.name", "LIKE", "%$filter%");
+            foreach($words as $word){
+                $services->orWhere("users.first_name", "LIKE", "%$word%");
+                $services->orWhere("users.last_name", "LIKE", "%$word%");
+            }
+        $services = $services->orderBy('services.created_at', 'desc')->get();
+
+        $campaigns = Campaigns::getCampaignsActive()->where("campaigns.name", "LIKE", "%$filter%")->get();
 
         JavaScript::put([
             'categoriesJs' => $categories
         ]);
 
-        return view('home/filter', compact('services', 'recommendedServices', 'categories', 'campaigns', 'serviceAdmin', 'groups', 'persons', 'filter'));
+        return view('home/filter', compact('services', 'categories', "campaigns"));
     }
 
     public function filterTags($allServices, $filter)
