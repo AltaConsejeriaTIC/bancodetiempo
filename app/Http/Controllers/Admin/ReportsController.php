@@ -175,28 +175,113 @@ class ReportsController extends Controller
 
         return $html;
     }
-
+//$html .= "<th>$title[0]<button type='button' field='$title[0]' class='material-icons order'>swap_vert</button></th>";
     private function getTitles($data, $titleParent = ''){
+        $titles = array_keys(array_dot($data));
+        $atitles = [];
+        $sTitles = [];
+        $ssTitles = [];
 
-        $html = "";
-        foreach(head($data) as $title => $value){
-            if(strpos($title, 'id') !== false){
-                continue;
-            }
-            $parameter = $titleParent != '' ? $titleParent."_".$title : $title;
-            if(gettype($value) == 'array'){
-                $html .= "<th>$title
-                        <table>";
-                $html .= "<tr>".$this->getTitles($value, $parameter)."</tr>";
-                $html .= "</table></th>";
-            }else{
-                $html .= "<th>$title
-                            <button type='button' field='$parameter' class='material-icons order'>swap_vert</button>
-                        </th>";
-            }
+        foreach($titles as $title){
+            $title = explode("..", $title);
+            if(last($title) != 'id'){
 
+                if(count($title) > 1){
+
+                    $atitles[$title[0]]['name'] = $title[0];
+                    $colspan = isset($atitles[$title[0]]['colspan']) ? $atitles[$title[0]]['colspan']+1 : 1;
+                    $atitles[$title[0]]['colspan'] = $colspan;
+
+                    $sTitles[$title[0]."_".$title[1]]['name'] = $title[1];
+                    $colspan = isset($sTitles[$title[0]."_".$title[1]]['colspan']) ? $sTitles[$title[0]."_".$title[1]]['colspan']+1 : 1;
+                    $sTitles[$title[0]."_".$title[1]]['colspan'] = $colspan;
+
+                    $ssTitles[$title[0]."_".$title[1]]['name'] = '';
+                    $colspan = isset($ssTitles[$title[0]."_".$title[1]]['colspan']) ? $ssTitles[$title[0]."_".$title[1]]['colspan']+1 : 1;
+                    $ssTitles[$title[0]."_".$title[1]]['colspan'] = $colspan;
+
+                    if(count($title) > 2){
+                        unset($ssTitles[$title[0]."_".$title[1]]);
+                        $ssTitles[$title[0]."_".$title[1]."_".$title[2]]['name'] = $title[2];
+                        $colspan = isset($ssTitles[$title[0]."_".$title[1]."_".$title[2]]['colspan']) ? $ssTitles[$title[0]."_".$title[1]."_".$title[2]]['colspan']+1 : 1;
+                        $ssTitles[$title[0]."_".$title[1]."_".$title[2]]['colspan'] = $colspan;
+
+                    }
+
+                }else{
+                    $atitles[$title[0]]['name'] = $title[0];
+                    $colspan = isset($atitles[$title[0]]['colspan']) ? $atitles[$title[0]]['colspan']+1 : 1;
+                    $atitles[$title[0]]['colspan'] = $colspan;
+
+                    $sTitles[$title[0]]['name'] = '';
+                    $colspan = isset($sTitles[$title[0]]['colspan']) ? $sTitles[$title[0]]['colspan']+1 : 1;
+                    $sTitles[$title[0]]['colspan'] = $colspan;
+
+                    $ssTitles[$title[0]]['name'] = '';
+                    $colspan = isset($ssTitles[$title[0]]['colspan']) ? $ssTitles[$title[0]]['colspan']+1 : 1;
+                    $ssTitles[$title[0]]['colspan'] = $colspan;
+                }
+
+
+
+            }
 
         }
+
+
+        $html = "<tr>";
+
+        foreach($atitles as $title){
+            $html .= "<th colspan='".$title["colspan"]."'>".$title["name"]."</th>";
+        }
+
+        $html .= "</tr>";
+
+
+
+        $html .= "<tr>";
+
+        foreach($sTitles as $title){
+            $html .= "<th colspan='".$title["colspan"]."'>".$title["name"]."</th>";
+        }
+
+        $html .= "</tr>";
+
+        $html .= "<tr>";
+
+        foreach($ssTitles as $title){
+            $html .= "<th colspan='".$title["colspan"]."'>".$title["name"]."</th>";
+        }
+
+        $html .= "</tr>";
+
+        return $html;
+    }
+
+    private function getSubTitles($titles){
+
+        $html = "<tr>";
+
+        foreach($titles as $subTitle => $value){
+            if(strpos($subTitle, 'id') !== false){
+                continue;
+            }
+            if(gettype($value) == 'array'){
+
+                foreach(head($value) as $name => $val){
+                    if(strpos($name, 'id') !== false){
+                        continue;
+                    }
+                    $html .= "<th>$name<button type='button' field='$name' class='material-icons order'>swap_vert</button></th>";
+                }
+
+            }else{
+                $html .= "<th></th>";
+            }
+
+        }
+
+        $html .= "</tr>";
 
         return $html;
 
@@ -208,7 +293,7 @@ class ReportsController extends Controller
 
         $html .= "<table border='1'>";
 
-        $html .= "<tr>".$this->getTitles($data)."</tr>";
+        $html .= $this->getTitles(head($data));
 
         foreach($data as $row){
 
@@ -217,8 +302,8 @@ class ReportsController extends Controller
             foreach($row as $title => $cell){
 
                 if(gettype($cell) == 'array'){
-
-                    $html .= "<td>";
+                    $html .= "<td></td>";
+                    /*$html .= "<td>";
                     $html .= "<table>";
 
                         foreach($cell as $subRow){
@@ -227,7 +312,7 @@ class ReportsController extends Controller
                             $html .= "</tr>";
                         }
                     $html .= "</table>";
-                    $html .= "</td>";
+                    $html .= "</td>";*/
 
                 }else{
                     if($title == 'id')
@@ -243,7 +328,7 @@ class ReportsController extends Controller
 
         $html .= "</table>";
 
-        print $html;
+        return $html;
 
     }
 
@@ -257,9 +342,9 @@ class ReportsController extends Controller
                     $html .= "<td>$subCell</td>";
                 }else{
                     $html .= "<td>";
-                    $html .= "<table>";
+                    //$html .= "<table>";
                     $html .= $this->makeSubRow($subCell);
-                    $html .= "</table>";
+                    //$html .= "</table>";
                     $html .= "</td>";
                 }
             }
@@ -280,15 +365,15 @@ class ReportsController extends Controller
         if(!empty($request->input('fields', []))){
             $data = $this->makeReport($request->input('fields', []), $request->input('filters', []), $request->input('orderBy', 'id') ,$request->input('order', 'asc'));
 
-            $this->makeFile($data);
+            $this->makeFile($this->makeTable($data));
         }
     }
 
-    private function makeFile($data){
-        Excel::create('GruposCambalachea' . date("Y-m-d"), function ($excel) use ($data) {
-            $excel->sheet('Grupos', function ($sheet) use ($data) {
-
-                $sheet->fromArray($data);
+    private function makeFile($table){
+        Excel::create('GruposCambalachea' . date("Y-m-d"), function ($excel) use ($table) {
+            $excel->sheet('Grupos', function ($sheet) use ($table) {
+                $sheet->loadView('admin/reports/excel', compact('table'));
+                //$sheet->fromArray($data);
 
             });
         })->download('xls');

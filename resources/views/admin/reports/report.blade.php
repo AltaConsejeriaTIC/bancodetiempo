@@ -31,16 +31,22 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <ul class="form-custom fieldReport">
-                            @foreach($fields as $field)
+                          <form action="/admin/downloadReport" method="post" id="filters">
+                             {{csrf_field()}}
+                              @foreach($fields as $field)
 
-                                <li>
-                                    <input type="checkbox" value="{{$field->parameter}}" name="fields[]" class="square" id='field{{$field->id}}' field='{{$field->parameter}}'>
-                                    <label for="field{{$field->id}}">{{$field->name}} @if($field->type != '')<button type="button" class="material-icons icon" @click='myData.filter{{$field->parameter}} = true'>visibility</button>@endif</label>
-                                </li>
-                                @if($field->type != '')
-                                    @include("admin/reports/partial/filter".$field->type)
-                                @endif
-                            @endforeach
+                                    <li>
+                                        <input type="checkbox" value="{{$field->parameter}}" name="fields[]" class="square" id='field{{$field->id}}' field='{{$field->parameter}}'>
+                                        <label for="field{{$field->id}}">{{$field->name}} @if($field->type != '')<button type="button" class="material-icons icon" @click='myData.filter{{$field->parameter}} = true'>visibility</button>@endif</label>
+                                    </li>
+                                    @if($field->type != '')
+                                        @include("admin/reports/partial/filter".$field->type)
+                                    @endif
+                                @endforeach
+                                <input type="hidden" name="order">
+                                <input type="hidden" name="orderBy">
+                          </form>
+
                         </ul>
                     </div>
                 </div>
@@ -77,7 +83,7 @@
     jQuery(document).ready(start)
 
     function start(){
-        jQuery(".fieldReport > li > input").on('change', setFields);
+        jQuery(".fieldReport li > input").on('change', setFields);
         jQuery(".generate").on('click', makeReport);
         jQuery(".save").on('click', saveReport);
         jQuery(".download").on('click', downloadReport);
@@ -179,14 +185,9 @@
 
     function downloadReport(){
 
-        jQuery.ajax({
-            type: "GET",
-            url: "/admin/downloadReport",
-            data: data,
-            success: function(datos){
-                jQuery('#report').html(datos);
-            }
-        });
+        jQuery("input[name='order']").val(data.order);
+        jQuery("input[name='orderBy']").val(data.orderBy);
+        jQuery("#filters").submit();
 
     }
 
