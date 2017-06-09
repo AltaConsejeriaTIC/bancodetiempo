@@ -29,6 +29,7 @@
 
         <!-- Custom styles -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/style-mobile.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
 
         <link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">

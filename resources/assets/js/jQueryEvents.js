@@ -30,6 +30,9 @@ jQuery(document).ready(function(){
 
     jQuery(".score").on("click", score);
 
+    jQuery("#openSearch").on("click", openSearch);
+    jQuery("#findMobile .close").on("click", closeSearch)
+
 });
 
 function getPagination(){
@@ -181,4 +184,12 @@ function listCategories(){
         }
     })
 
+}
+
+function openSearch(){
+    jQuery("#findMobile").addClass("active")
+}
+
+function closeSearch(){
+    jQuery("#findMobile").removeClass("active")
 }

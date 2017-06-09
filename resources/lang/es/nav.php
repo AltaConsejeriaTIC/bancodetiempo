@@ -9,6 +9,7 @@ return [
     'inputFind' => 'Buscar en Bogotá Cambalachea',
     'newOffer' => 'Nueva oferta',
     'profile' => 'Perfil',
-    'notifications' => 'Notificaciones'
+    'notifications' => 'Notificaciones',
+    'find' => 'Buscar'
 
 ];

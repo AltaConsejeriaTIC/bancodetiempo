@@ -1,5 +1,4 @@
 @import url('footer.css');
-@import url('style-mobile.css');
 @import url('nav.css');
 @import url('styleForms.css');
 @import url('font-awesome.css');
@@ -245,7 +244,7 @@ Buttons
 Paragraphs
 */
 .paragraph1 {
-	font-size:18px !important;
+	font-size:18px;
 	font-family: 'Source Sans Pro', sans-serif;
 	word-wrap: break-word;
 	color:#2c3e50 !important;
@@ -253,7 +252,7 @@ Paragraphs
 }
 
 .paragraph2 {
-	font-size: 16px !important;
+	font-size: 16px;
 	color: #2c3e50 !important;
 	word-wrap: break-word;
 	word-wrap: break-word;
@@ -261,7 +260,7 @@ Paragraphs
 }
 
 .paragraph3{
-	font-size:16px !important;
+	font-size:16px;
 	color:#2c3e50 !important;
     word-wrap: break-word;
 	word-wrap: break-word;
@@ -278,28 +277,28 @@ Paragraphs
 }
 
 .paragraph6{
-	font-size:12px !important;
+	font-size:12px;
 	color:#2c3e50 !important;
   word-wrap: break-word;
 }
 .paragraph7{
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 20px !important;
+	font-size: 20px;
 	color: #fff !important;
 	word-wrap: break-word;
 }
 .paragraph8{
-	font-size: 9px !important;
+	font-size: 9px;
 	color:#2c3e50 !important;
   	word-wrap: break-word;
 	}
 .paragraph9{
-	font-size: 20px !important;
+	font-size: 20px;
 	color:#2c3e50 !important;
 	word-wrap: break-word;
 }
 .paragraph10{
-	font-size:14px !important;
+	font-size:14px;
 	color:#90a1b5 !important;
 	word-wrap:break-word;
 }
@@ -347,7 +346,9 @@ Helpers
 	opacity:0.5;
 }
 
-
+.not-padding{
+    padding: 0px !important;
+}
 .not-padding-bottom{
 	padding-bottom:0px !important;
 }
@@ -1445,4 +1446,47 @@ ul.listComplete {
 }
 .campaign-box .credit {
     width: 20px;
+}
+
+#findMobile .shadow.findMobile {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#findMobile.active .shadow.findMobile {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#findMobile .box {
+    position: fixed;
+    top: -35%;
+    left: 0px;
+    width: 100%;
+    background: #001738;
+    padding: 10px 10px;
+}
+
+#findMobile.active .box {
+    top:0%;
+    z-index: 1000;
+}
+
+
+#findMobile {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+div#findMobile .close {
+    top: 5%;
+    position: absolute;
+    right: 5%;
+    z-index: 100;
+    border-color: #505050 !important;
+    transform: scale(0.7, 0.7);
 }
