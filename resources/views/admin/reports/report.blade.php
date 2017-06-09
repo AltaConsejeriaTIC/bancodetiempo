@@ -50,6 +50,8 @@
                         <input type="hidden" value="id" name="orderBy" id="orderBy">
                         <button type="button" class="generate">Generar</button>
                         <button type="button" class="save">Guardar</button>
+                        <br>
+                        <button type="button" class="download">Descargar</button>
                     </div>
                 </div>
 
@@ -78,6 +80,7 @@
         jQuery(".fieldReport > li > input").on('change', setFields);
         jQuery(".generate").on('click', makeReport);
         jQuery(".save").on('click', saveReport);
+        jQuery(".download").on('click', downloadReport);
         jQuery("#fields").draggable({ cursor: "crosshair" });
         jQuery(".order").on('click', orderChange);
         jQuery(".filter").on("change", addFilter);
@@ -174,10 +177,23 @@
         });
     }
 
+    function downloadReport(){
+
+        jQuery.ajax({
+            type: "GET",
+            url: "/admin/downloadReport",
+            data: data,
+            success: function(datos){
+                jQuery('#report').html(datos);
+            }
+        });
+
+    }
+
     function makeReport(){
 
         jQuery.ajax({
-            type: "POST",
+            type: "GET",
             url: "/admin/getReport",
             data: data,
             success: function(datos){

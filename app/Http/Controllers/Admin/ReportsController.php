@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ReportsAdmin;
 use App\Models\FieldsReportsAdmin;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use App\User;
 use App\Models\AllData;
 
@@ -40,10 +41,10 @@ class ReportsController extends Controller
     }
 
     public function saveReport(Request $request, $report_id){
-
+        $obj = (object) [];
         ReportsAdmin::find($report_id)->update([
             'fields' => json_encode($request->input('fields', [])),
-            'filters' => json_encode($request->input('filters', ["" => ""])),
+            'filters' => json_encode($request->input('filters', $obj)),
             'order' => json_encode(['orderBy' => $request->input('orderBy', 'asc'), 'order' => $request->input('order', 'asc')]),
         ]);
     }
@@ -275,5 +276,21 @@ class ReportsController extends Controller
 
     }
 
+    public function downloadReport(Request $request){
+        if(!empty($request->input('fields', []))){
+            $data = $this->makeReport($request->input('fields', []), $request->input('filters', []), $request->input('orderBy', 'id') ,$request->input('order', 'asc'));
 
+            $this->makeFile($data);
+        }
+    }
+
+    private function makeFile($data){
+        Excel::create('GruposCambalachea' . date("Y-m-d"), function ($excel) use ($data) {
+            $excel->sheet('Grupos', function ($sheet) use ($data) {
+
+                $sheet->fromArray($data);
+
+            });
+        })->download('xls');
+    }
 }

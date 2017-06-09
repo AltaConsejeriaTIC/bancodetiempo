@@ -263,3 +263,11 @@ article#report > table table table td {
 #boxFields.contract {
     display: none;
 }
+
+
+div#boxFields {
+    display: block;
+    position: relative;
+    height: 400px;
+    overflow: auto;
+}

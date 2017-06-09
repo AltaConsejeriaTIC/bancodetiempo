@@ -32,11 +32,11 @@
                 </ul>
             </div>
 
-            <div class='col-md-1 not-padding'>
+            <div class='col-md-1 col-xs-3 not-padding'>
                 <p class="paragraph10">{{ trans('home.filter') }}</p>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3 col-xs-9">
                 <filters-categories categories='{{ $categories }}'></filters-categories>
             </div>
         </div>

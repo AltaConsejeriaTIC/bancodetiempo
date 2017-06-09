@@ -50,8 +50,10 @@
     <nav class='navbar navbar-default navbar-static-top nav2'>
         <div class="container">
             <div class='row'>
-
-                <div class="col-xs-9  col-sm-3  col-md-3 padding-top">
+                <div class="col-xs-2 visible-xs paragraph1 text-white text-center">
+                    <i class="fa fa-search"></i>
+                </div>
+                <div class="col-xs-7  col-sm-3  col-md-3 ">
                     <a href="/index">
                         <img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo"/>
                     </a>
@@ -110,7 +112,7 @@
 
                 </div>
 
-                <ul class="menuMobile visible-xs col-xs-2 col-xs-offset-1">
+                <ul class="menuMobile visible-xs col-xs-2 text-right ">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false"><i class="fa fa-bars"></i></a>
