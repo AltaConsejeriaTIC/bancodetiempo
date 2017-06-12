@@ -46,6 +46,7 @@ Route::get('/service/category/{idCategory}', 'ServiceController@findCategories')
 
 Route::get('/getTags', 'ServiceController@getTags');
 
+Route::get('/filterTag', 'HomeController@filterTag');
 Route::get('/filter', 'HomeController@filter');
 Route::get('/person', 'PersonController@index');
 Route::get('/campaign', 'CampaignController@filter');

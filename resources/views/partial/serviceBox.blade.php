@@ -63,7 +63,7 @@
                         @foreach($service->tags as $tag)
                             @if($tag->service_id == $service->id)
                                 <a class="col-xs-6 input-tag button7 tag-margin" tag='{{ $tag->tag->id }}'
-                                   href='/filter?filter={{ $tag->tag->tag }}'>
+                                   href='/filterTag?filter={{ $tag->tag->tag }}'>
                                     <span>{{ $tag->tag->tag }}</span>
                                 </a>
                             @endif
