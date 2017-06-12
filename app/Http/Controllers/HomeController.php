@@ -58,10 +58,10 @@ class HomeController extends Controller
         $categories = Category::getCategoriesInUse();
         $services = service::getServicesActive()
             ->where("services.name", "LIKE", "%$filter%");
-            foreach($words as $word){
-                $services->orWhere("users.first_name", "LIKE", "%$word%");
-                $services->orWhere("users.last_name", "LIKE", "%$word%");
-            }
+        foreach ($words as $word) {
+            $services->orWhere("users.first_name", "LIKE", "%$word%");
+            $services->orWhere("users.last_name", "LIKE", "%$word%");
+        }
         $services = $services->orderBy('services.created_at', 'desc')->get();
 
         $campaigns = Campaigns::getCampaignsActive()->where("campaigns.name", "LIKE", "%$filter%")->get();
@@ -73,20 +73,20 @@ class HomeController extends Controller
         return view('home/filter', compact('services', 'categories', "campaigns"));
     }
 
-    public function filterTags($allServices, $filter)
+    public function filterTag(Request $request)
     {
+        $filter = $request->input('filter');
+        $categories = Category::getCategoriesInUse();
+        $campaigns = Campaigns::getCampaignsActive()->get();
+        $services = Service::getServicesActive();
 
         if ($filter != "") {
-            $filters = explode(" ", $filter);
-            $idTags = Tag::select("id")->whereIn('tag', $filters)->get();
-            $allServices->join('tags_services', 'services.id', 'tags_services.service_id');
-            Session::flash('filters.tags', $idTags);
-            return $allServices->WhereIn('tags_services.tag_id', $idTags);
-        } else {
-            Session::pull('filters.tags');
-            return $allServices;
+            $idTags = Tag::select("id")->where('tag', $filter)->get();
+            $services->join('tags_services', 'services.id', 'tags_services.service_id');
+            $services = $services->WhereIn('tags_services.tag_id', $idTags)->get();
         }
 
+        return view('home/filter-tags', compact('services', 'categories', "campaigns"));
     }
 
     public function filterText($allServices, $filter)
