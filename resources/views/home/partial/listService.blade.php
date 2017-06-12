@@ -6,9 +6,8 @@
         </div>
     @endforeach
 </div>
-<input type="hidden" id="filters" value="{!! isset($filters) ? implode(':', $filters) : 0 !!}">
 <div class="col-xs-12 text-center">
-    <ul class="pagination pagination-sm" data-list='all' data-route='/listService'>
+    <ul class="pagination pagination-sm" data-list='{{$box}}' data-route='{{$route}}' data-filter="{!! isset($filters) ? implode(':', $filters) : 0 !!}">
         @for($i = 1 ; $i <= ceil($services->count() / 6); $i ++)
 
           <li data-page='{{$i}}' @if($i == $page) class='active' @endif >

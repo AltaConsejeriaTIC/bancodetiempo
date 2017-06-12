@@ -39,7 +39,7 @@ function getPagination(){
     var page = jQuery(this).data('page');
     var route = jQuery(this).parent().data('route');
     var list = jQuery(this).parent().data('list');
-    var filters = jQuery("input#filters").val();
+    var filters = jQuery(this).parent().data('filter');
     jQuery(this).parent().children(".active").removeClass('active')
     jQuery(this).addClass('active');
     jQuery.ajax({

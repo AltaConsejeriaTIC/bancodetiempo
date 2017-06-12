@@ -62,19 +62,19 @@
 
         <article class="row tab-content">
             <div id='all' class='tab-pane fade in active all'>
-                @include('home.partial.listService', ['services' => $services, 'page' => 1])
+                @include('home.partial.listService', ['services' => $services, 'page' => 1, 'route' => 'listService', 'box' => 'all'])
             </div>
 
             <div id='featured' class="tab-pane fade featured">
-                @include('home.partial.listService', ['services' => $featured, 'page' => 1])
+                @include('home.partial.listService', ['services' => $featured, 'page' => 1, 'route' => 'listServiceFeatured', 'box' => 'featured'])
             </div>
 
             <div id='virtual' class="tab-pane fade virtual">
-                @include('home.partial.listService', ['services' => $virtual, 'page' => 1])
+                @include('home.partial.listService', ['services' => $virtual, 'page' => 1, 'route' => 'listServiceVirtual', 'box' => 'virtual'])
             </div>
 
             <div id='faceToFace' class="tab-pane fade faceToFace">
-                @include('home.partial.listService', ['services' => $faceToFace, 'page' => 1])
+                @include('home.partial.listService', ['services' => $faceToFace, 'page' => 1, 'route' => 'listServiceFaceToFace', 'box' => 'faceToFace'])
             </div>
 
         </article>

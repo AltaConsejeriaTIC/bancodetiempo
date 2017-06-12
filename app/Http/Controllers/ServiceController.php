@@ -270,7 +270,11 @@ class ServiceController extends Controller
 
         $services =  $services->get();
 
-        return view('home.partial.listService', compact('services', 'page', 'filters'));
+        $route = "/listService";
+
+        $box = 'all';
+
+        return view('home.partial.listService', compact('services', 'page', 'filters', 'route', 'box'));
 
     }
 
@@ -290,7 +294,11 @@ class ServiceController extends Controller
 
         $services =  $services->get();
 
-        return view('home.partial.listService', compact('services', 'page', 'filters'));
+        $route = "/listServiceFeatured";
+
+        $box = 'featured';
+
+        return view('home.partial.listService', compact('services', 'page', 'filters', 'route', 'box'));
 
     }
     public function getListServiceVirtual(Request $request){
@@ -308,7 +316,11 @@ class ServiceController extends Controller
 
         $services =  $services->get();
 
-        return view('home.partial.listService', compact('services', 'page', 'filters'));
+        $route = "/listServiceVirtual";
+
+        $box = 'virtual';
+
+        return view('home.partial.listService', compact('services', 'page', 'filters', 'route', 'box'));
 
     }
     public function getListServiceFaceToFace(Request $request){
@@ -326,7 +338,11 @@ class ServiceController extends Controller
 
         $services =  $services->get();
 
-        return view('home.partial.listService', compact('services', 'page', 'filters'));
+        $route = "/listServiceFaceToFace";
+
+        $box = 'faceToFace';
+
+        return view('home.partial.listService', compact('services', 'page', 'filters', 'route', 'box'));
 
     }
 
