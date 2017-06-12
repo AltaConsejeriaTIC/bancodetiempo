@@ -258,71 +258,75 @@ class ServiceController extends Controller
 
     public function getListService(Request $request){
 
-        $page = $request->input('page', 0);
+        $filters = $request->input('filter');
+        $filters = explode(":", $filters);
+        $page = $request->input('page', 1);
 
         $services = Service::getServicesActive()->orderBy('services.created_at', 'desc');
 
-        if($page != 0){
-            if($page != 1){
-                $services->offset(($page-1)*6);
-            }
+        if($filters[0] != 0){
+            $services = $services->whereIn('category_id', $filters);
         }
 
-        $services =  $services->limit(6)->get();
+        $services =  $services->get();
 
-        return view('home.partial.listService', compact('services'));
+        return view('home.partial.listService', compact('services', 'page', 'filters'));
 
     }
 
     public function getListServiceFeatured(Request $request){
 
+        $filters = $request->input('filter');
+        $filters = explode(":", $filters);
         $page = $request->input('page', 0);
 
         $services = Service::getServicesActive()->orderBy('services.ranking', 'desc');
 
-        if($page != 0){
-            if($page != 1){
-                $services->offset(($page-1)*6);
-            }
+
+        if($filters[0] != 0){
+
+            $services = $services->whereIn('category_id', $filters);
         }
 
-        $services =  $services->limit(6)->get();
+        $services =  $services->get();
 
-        return view('home.partial.listService', compact('services'));
+        return view('home.partial.listService', compact('services', 'page', 'filters'));
 
     }
     public function getListServiceVirtual(Request $request){
 
+        $filters = $request->input('filter');
+        $filters = explode(":", $filters);
         $page = $request->input('page', 0);
 
         $services = Service::getServicesActive()->where('virtually', 1)->orderBy('services.created_at', 'desc');
 
-        if($page != 0){
-            if($page != 1){
-                $services->offset(($page-1)*6);
-            }
+        if($filters[0] != 0){
+
+            $services = $services->whereIn('category_id', $filters);
         }
 
-        $services =  $services->limit(6)->get();
+        $services =  $services->get();
 
-        return view('home.partial.listService', compact('services'));
+        return view('home.partial.listService', compact('services', 'page', 'filters'));
 
     }
     public function getListServiceFaceToFace(Request $request){
 
+        $filters = $request->input('filter');
+        $filters = explode(":", $filters);
         $page = $request->input('page', 0);
 
         $services = Service::getServicesActive()->where('presently', 1)->orderBy('services.created_at', 'desc');
 
-        if($page != 0){
-            if($page != 1){
-                $services->offset(($page-1)*6);
-            }
+        if($filters[0] != 0){
+
+            $services = $services->whereIn('category_id', $filters);
         }
 
-        $services =  $services->limit(6)->get();
+        $services =  $services->get();
 
-        return view('home.partial.listService', compact('services'));
+        return view('home.partial.listService', compact('services', 'page', 'filters'));
 
     }
 

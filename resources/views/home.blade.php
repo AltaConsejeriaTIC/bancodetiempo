@@ -16,20 +16,21 @@
        </div>
 
         <div class="row">
-
+            @{{setMyData("urlFilter", "/listService")}}
+            @{{setMyData("tabFilter", "all")}}
             <div class="col-md-8">
                 <ul class="nav nav-pills">
                     <li role="presentation" class="active">
-                        <a href="#all" data-toggle="tab">{{ trans('home.all') }}</a>
+                        <a href=".all" data-toggle="tab" @click='setMyData("urlFilter", "/listService");setMyData("tabFilter", "all");'>{{ trans('home.all') }}</a>
                     </li>
                     <li role="presentation">
-                        <a href="#featured" data-toggle="tab">{{ trans('home.featured') }}</a>
+                        <a href=".featured" data-toggle="tab" @click='setMyData("urlFilter", "/listServiceFeatured");setMyData("tabFilter", "featured");'>{{ trans('home.featured') }}</a>
                     </li>
                     <li role="presentation">
-                        <a href="#virtual" data-toggle="tab">{{ trans('home.virtual') }}</a>
+                        <a href=".virtual" data-toggle="tab" @click='setMyData("urlFilter", "/listServiceVirtual");setMyData("tabFilter", "virtual");'>{{ trans('home.virtual') }}</a>
                     </li>
                     <li role="presentation">
-                       <a href="#faceToFace" data-toggle="tab">{{ trans('home.faceToFace') }}</a>
+                       <a href=".faceToFace" data-toggle="tab" @click='setMyData("urlFilter", "/listServiceFaceToFace");setMyData("tabFilter", "faceToFace");'>{{ trans('home.faceToFace') }}</a>
                     </li>
                 </ul>
             </div>
@@ -39,83 +40,41 @@
             </div>
 
             <div class="col-md-3 col-xs-8 ">
-                <filters-categories categories='{{ $categories }}'></filters-categories>
+                <article class="tab-content">
+                    <div class="all tab-pane fade active in">
+                        <filters-categories categories='{{ $categories }}' name='all'></filters-categories>
+                    </div>
+                    <div class="featured tab-pane fade">
+                        <filters-categories categories='{{ $categories }}' name='featured'></filters-categories>
+                    </div>
+
+                    <div class="virtual tab-pane fade">
+                        <filters-categories categories='{{ $categories }}' name='virtual'></filters-categories>
+                    </div>
+
+                    <div class="faceToFace tab-pane fade">
+                        <filters-categories categories='{{ $categories }}' name='faceToFace'></filters-categories>
+                    </div>
+                </article>
             </div>
         </div>
         <br>
 
         <article class="row tab-content">
-            <div id='all' class='tab-pane fade in active'>
-                <div class="content">
-                    @include('home.partial.listService', ['services' => $services->take(6)])
-                </div>
-
-                <div class="col-xs-12 text-center">
-                    <ul class="pagination pagination-sm" data-list='all' data-route='/listService'>
-                        @for($i = 1 ; $i <= ceil($services->count() / 6); $i ++)
-
-                          <li data-page='{{$i}}' @if($i == 1) class='active' @endif>
-                              <a href="#all">{{$i}}</a>
-                          </li>
-
-                        @endfor
-                    </ul>
-                </div>
-
+            <div id='all' class='tab-pane fade in active all'>
+                @include('home.partial.listService', ['services' => $services, 'page' => 1])
             </div>
 
-            <div id='featured' class="tab-pane fade">
-                <div class="content">
-                    @include('home.partial.listService', ['services' => $featured->take(6)])
-                </div>
-
-                <div class="col-xs-12 text-center">
-                    <ul class="pagination pagination-sm" data-list='featured' data-route='/listServiceFeatured'>
-                        @for($i = 1 ; $i <= ceil($featured->count() / 6); $i ++)
-
-                          <li data-page='{{$i}}' @if($i == 1) class='active' @endif>
-                              <a href="#all">{{$i}}</a>
-                          </li>
-
-                        @endfor
-                    </ul>
-                </div>
+            <div id='featured' class="tab-pane fade featured">
+                @include('home.partial.listService', ['services' => $featured, 'page' => 1])
             </div>
 
-            <div id='virtual' class="tab-pane fade">
-                <div class="content">
-                    @include('home.partial.listService', ['services' => $virtual->take(6)])
-                </div>
-
-                <div class="col-xs-12 text-center">
-                    <ul class="pagination pagination-sm" data-list='virtual' data-route='/listServiceVirtual'>
-                        @for($i = 1 ; $i <= ceil($virtual->count() / 6); $i ++)
-
-                          <li data-page='{{$i}}' @if($i == 1) class='active' @endif>
-                              <a href="#all">{{$i}}</a>
-                          </li>
-
-                        @endfor
-                    </ul>
-                </div>
+            <div id='virtual' class="tab-pane fade virtual">
+                @include('home.partial.listService', ['services' => $virtual, 'page' => 1])
             </div>
 
-            <div id='faceToFace' class="tab-pane fade">
-               <div class="content">
-                    @include('home.partial.listService', ['services' => $faceToFace->take(6)])
-                </div>
-
-                <div class="col-xs-12 text-center">
-                    <ul class="pagination pagination-sm" data-list='faceToFace' data-route='/listServiceFaceToFace'>
-                        @for($i = 1 ; $i <= ceil($faceToFace->count() / 6); $i ++)
-
-                          <li data-page='{{$i}}' @if($i == 1) class='active' @endif>
-                              <a href="#all">{{$i}}</a>
-                          </li>
-
-                        @endfor
-                    </ul>
-                </div>
+            <div id='faceToFace' class="tab-pane fade faceToFace">
+                @include('home.partial.listService', ['services' => $faceToFace, 'page' => 1])
             </div>
 
         </article>

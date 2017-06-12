@@ -299,28 +299,7 @@ class ReportsController extends Controller
 
             $html .= "<tr>";
 
-            foreach($row as $title => $cell){
-
-                if(gettype($cell) == 'array'){
-                    $html .= "<td></td>";
-                    /*$html .= "<td>";
-                    $html .= "<table>";
-
-                        foreach($cell as $subRow){
-                            $html .= "<tr>";
-                            $html .= $this->makeSubRow($subRow);
-                            $html .= "</tr>";
-                        }
-                    $html .= "</table>";
-                    $html .= "</td>";*/
-
-                }else{
-                    if($title == 'id')
-                        continue;
-                    $html .= "<td>$cell</td>";
-                }
-
-            }
+            $html .= $this->makerow($row);
 
             $html .= "</tr>";
 
@@ -329,6 +308,32 @@ class ReportsController extends Controller
         $html .= "</table>";
 
         return $html;
+
+    }
+
+    private function makeRow($data){
+        $numRow = $this->getMaxRows($data);
+
+
+    }
+
+    private function getMaxRows($data){
+
+        $rows = 0;
+
+        foreach($data as $row){
+            if(gettype($row) == 'array'){
+                if($rows <= count($row)){
+                    $rows = count($row);
+                }else{
+                    if($rows == 0){
+                        $rows = 1;
+                    }
+                }
+            }
+        }
+
+        return $rows;
 
     }
 

@@ -36,17 +36,19 @@ jQuery(document).ready(function(){
 });
 
 function getPagination(){
-    page = jQuery(this).data('page');
-    route = jQuery(this).parent().data('route');
-    list = jQuery(this).parent().data('list');
+    var page = jQuery(this).data('page');
+    var route = jQuery(this).parent().data('route');
+    var list = jQuery(this).parent().data('list');
+    var filters = jQuery("input#filters").val();
     jQuery(this).parent().children(".active").removeClass('active')
     jQuery(this).addClass('active');
     jQuery.ajax({
         url: route,
         type : 'GET',
-        data : {'page' : page},
+        data : {'page' : page, 'filter' : filters},
         success : function(response){
-            jQuery("#"+list+" .content").html(response);
+            jQuery("#"+list).html(response);
+            jQuery('.pagination > li').on('click', getPagination);
         }
     });
 
