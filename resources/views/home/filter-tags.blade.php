@@ -9,35 +9,48 @@
 
     <div class="container">
 
-       <div class="row">
-           <div class="col-xs-12">
-               <h2 class="paragraph1">{!! trans('home.searching', ['val' => Request::get('filter')]) !!}</h2>
-           </div>
-       </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="paragraph1">{!! trans('home.searching', ['val' => Request::get('filter')]) !!}</h2>
+            </div>
+        </div>
 
         <br>
 
-        <article class="row tab-content">
-            <div id='all' class="tab-pane fade in active">
-                <div class="content">
-                    @include('home.partial.listService', ['services' => $services->take(6)])
+        @if(sizeof($services) > 0)
+            <div class='panel panel-default'>
+                <div class="panel-heading">
+                    <h1 class="panel-title title1">{{ trans('home.services') }}</h1>
                 </div>
+                <div class="panel-body">
+                    <div class="row">
+                        @foreach($services as $key => $service)
+                            <div class='col-md-4 col-xs-12 col-sm-6'>
+                                @include('partial/serviceBox', array("service" => $service))
+                            </div>
+                        @endforeach
+                    </div>
 
-                <div class="col-xs-12 text-center">
-                    <ul class="pagination pagination-sm" data-list='all' data-route='/listService'>
-                        @for($i = 1 ; $i <= ceil($services->count() / 6); $i ++)
-
-                          <li data-page='{{$i}}' @if($i == 1) class='active' @endif>
-                              <a href="#all">{{$i}}</a>
-                          </li>
-
-                        @endfor
-                    </ul>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="text-center">
+                                {!! $services->appends(['filter' => $filter])->links('vendor.pagination.bootstrap-4') !!}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-        </article>
-
+        @endif
 
     </div>
+
+@endsection
+
+@section('metas')
+    <style>
+        a[tag="{{$tagId->id}}"] {
+            background-color: #0f6783;
+            color: white;
+        }
+    </style>
 @endsection

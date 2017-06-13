@@ -76,17 +76,16 @@ class HomeController extends Controller
     public function filterTag(Request $request)
     {
         $filter = $request->input('filter');
-        $categories = Category::getCategoriesInUse();
-        $campaigns = Campaigns::getCampaignsActive()->get();
         $services = Service::getServicesActive();
 
         if ($filter != "") {
             $idTags = Tag::select("id")->where('tag', $filter)->get();
+            $tagId = $idTags->first();
             $services->join('tags_services', 'services.id', 'tags_services.service_id');
-            $services = $services->WhereIn('tags_services.tag_id', $idTags)->get();
+            $services = $services->WhereIn('tags_services.tag_id', $idTags)->paginate(6);
         }
 
-        return view('home/filter-tags', compact('services', 'categories', "campaigns"));
+        return view('home/filter-tags', compact('services', 'filter', 'tagId'));
     }
 
     public function filterText($allServices, $filter)
