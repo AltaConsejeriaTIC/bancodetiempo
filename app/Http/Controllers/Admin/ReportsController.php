@@ -297,11 +297,7 @@ class ReportsController extends Controller
 
         foreach($data as $row){
 
-            $html .= "<tr>";
-
-            $html .= $this->makerow($row);
-
-            $html .= "</tr>";
+            $html .= $this->makerow(array_except($row, ['id']));
 
         }
 
@@ -312,8 +308,27 @@ class ReportsController extends Controller
     }
 
     private function makeRow($data){
+
         $numRow = $this->getMaxRows($data);
 
+        $html = "<tr>";
+
+        foreach($data as $row){
+
+            if(gettype($row) == "array"){
+
+                $html .= $this->makeSubRow($row);
+
+            }else{
+                $html .= "<td>$row</td>";
+            }
+
+        }
+
+        $html .= "</tr>";
+
+
+        return $html;
 
     }
 
@@ -333,26 +348,27 @@ class ReportsController extends Controller
             }
         }
 
-        return $rows;
+        return $rows+1;
 
     }
 
     public function makeSubRow($row){
 
-        $html = "";
-            foreach($row as $key => $subCell){
-                if($key == 'id')
-                    continue;
-                if(gettype($subCell) != 'array'){
-                    $html .= "<td>$subCell</td>";
-                }else{
-                    $html .= "<td>";
-                    //$html .= "<table>";
-                    $html .= $this->makeSubRow($subCell);
-                    //$html .= "</table>";
-                    $html .= "</td>";
-                }
+        $html = '';
+        $subCell = [];
+        foreach($row as $cell){
+            foreach(array_except($cell, ['id']) as $index => $c){
+                $subCell[$index][] = $c;
             }
+        }
+
+        foreach($subCell as $cell){
+            if(gettype(head($cell)) == 'array'){
+                $html .= $this->makeSubRow(head($cell));
+            }else{
+                $html .= "<td>".implode("<br>", $cell)."</td>";
+            }
+        }
 
         return $html;
 
