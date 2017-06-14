@@ -44,13 +44,13 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-md-4 col-sm-6" >
+                <div class="col-xs-12 col-md-4 col-sm-6 col-sm-offset-3" >
                     <a href="{{ url('loginRedes/facebook') }}" class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-facebook facebook">
                         {{ trans('home.registerFacebook') }}<i class="fa fa-facebook"></i>
                     </a>
                 </div>
 
-                <div class="col-xs-12 col-md-4 col-sm-6" >
+                <div class="col-xs-12 col-md-4 col-sm-6 col-sm-offset-3" >
                     <a href="{{ url('loginRedes/google') }}" class="col-xs-12 col-sm-12 col-md-12 button6 social-button social-button-google google">
                         {{ trans('home.registerGoogle') }}<i class="fa fa-google"></i>
                     </a>

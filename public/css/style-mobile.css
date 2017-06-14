@@ -99,8 +99,12 @@
     }
 
     ul.menuMobile ul.dropdown-menu {
-        left: -125px;
+        left: -100px;
+        background-color: #0a1e5f;
+    }
 
+    ul.dropdown-menu > li > a {
+        color: #fff;
     }
 
     .modal-content-box{

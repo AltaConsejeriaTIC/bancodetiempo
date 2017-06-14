@@ -14,26 +14,16 @@
 					<div class="row link-social-network">
 						<a href="/content/terms">{{ trans('footer.terms') }}</a>
 					</div>
-					<!--
-					<div class="row link-social-network">
-						<a href="/content/questions">Preguntas Frecuentes</a>
-					</div>
-					-->
 				</div>
 				<div class="col-md-5 col-sm-5 text-center">
 					<div class="row col-md-offset-2">
 							<div class="col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-3">
-								<div>
+								<div class="col-xs-4 col-xs-offset-2 col-sm-offset-0">
 									<a href="https://www.facebook.com/Cambalachea.co" target="_blank" class="circle-social-network text-center"><i class="fa fa-facebook icons-social-network" aria-hidden="true"></i></a>
 								</div>
-								<div>
+								<div class="col-xs-4">
 									<a href="https://twitter.com/cambalachea" target="_blank" class="circle-social-network text-center"><i class="fa fa-twitter icons-social-network" aria-hidden="true"></i></a>
 								</div>
-								<!--
-								<div>
-									<a class="circle-social-network text-center"><i class="fa fa-instagram icons-social-network" aria-hidden="true"></i></a>
-								</div>
-								-->
 							</div>
 							<div class="space10"></div>
 							<div class="row col-md-12">
@@ -46,10 +36,12 @@
 		<hr>
 		<div class="container">
 			<div class="row">
-                <div class="col-md-10 col-md-offset-1 text-center">
-                    <img src="{{ asset('images/logoFooter1.png') }}" alt="" class="line-r-v col-sm-4 col-xs-4 col-md-3">
-                    <img src="{{ asset('images/logoFooter2.png') }}" alt="" class=' col-sm-4  col-xs-4 col-md-4'>
-                    <img src="{{ asset('images/logoFooter3.png') }}" alt="" class="line-l-v  col-sm-4 col-xs-4 col-md-3">
+                <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 text-center ">
+                   <div class="flex-center">
+                        <img src="{{ asset('images/logoFooter1.png') }}" alt="" class="line-r-v col-sm-4 col-xs-4 col-md-3">
+                        <img src="{{ asset('images/logoFooter2.png') }}" alt="" class=' col-sm-4  col-xs-4 col-md-4'>
+                        <img src="{{ asset('images/logoFooter3.png') }}" alt="" class="line-l-v  col-sm-4 col-xs-4 col-md-3">
+                   </div>
                 </div>
 
 			</div>

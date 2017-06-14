@@ -21,7 +21,7 @@
         <article class='col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-4'>
 
             <div class="row">
-                <h1 class='title1 text-white col-xs-12' id='bannerDescription'>{{ trans('home.titleBanner') }}</h1>
+                <h1 class='title1 text-white col-xs-12' id='bannerDescription'></h1>
             </div>
             <div class="space"></div>
             <div class="row">
