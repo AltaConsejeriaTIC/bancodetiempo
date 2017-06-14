@@ -16,8 +16,10 @@
        </div>
 
         <div class="row">
-            @{{setMyData("urlFilter", "/listService")}}
-            @{{setMyData("tabFilter", "all")}}
+            <div class="hidden">
+                @{{setMyData("urlFilter", "/listService")}}
+                @{{setMyData("tabFilter", "all")}}
+            </div>
             <div class="col-md-8">
                 <ul class="nav nav-pills">
                     <li role="presentation" class="active">
