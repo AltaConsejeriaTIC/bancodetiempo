@@ -272,11 +272,11 @@ div#boxFields {
     overflow: auto;
 }
 
-article#report > table td > br {
+article#report > table td > span {
     display: block;
-    border-top: 0.1px solid #2c2c2c;
+    border-bottom: 0.1px solid #2c2c2c;
     width: 100%;
-    height: 1px;
-    content: "";
     margin: 5px 0px;
+    max-height: 50px;
+    min-height: 50px;
 }
