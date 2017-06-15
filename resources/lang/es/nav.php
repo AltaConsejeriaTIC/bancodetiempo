@@ -7,9 +7,12 @@ return [
     'credit' => 'Dorado',
     'credits' => 'Dorados',
     'inputFind' => 'Buscar en Bogotá Cambalachea',
-    'newOffer' => 'Nueva oferta',
-    'profile' => 'Perfil',
+    'newOffer' => 'Publicar nueva oferta',
+    'profile' => 'Ir al Perfil',
     'notifications' => 'Notificaciones',
+    'messages' => 'Mensajes',
+    'howitworks' => 'Cómo funciona',
     'find' => 'Buscar'
+
 
 ];

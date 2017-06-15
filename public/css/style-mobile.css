@@ -1,11 +1,10 @@
-@media (max-width: 450px){
-	.align
-		{
-			margin-right: 0px !important;
-    	margin-left: 0px !important;
-		}
+@media (max-width: 450px) {
+    .align {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
 
-	.bannerHome {
+    .bannerHome {
     }
 
     .bannerHome .carousel > div {
@@ -18,74 +17,77 @@
         width: 100%;
     }
 
-	.bannerRegister {
+    .bannerRegister {
         background-size: auto 100% !important;
         background-position: 50% 30% !important;
         padding-top: 100px !important;
     }
-	.bannerInterest{
-		background-size: 215% auto;
-    	background-position: 45% 40%;
-	}
 
-	.boxRegister {
-	    background-size: 350% auto;
-	    background-position: 45% 40%;
-	}
+    .bannerInterest {
+        background-size: 215% auto;
+        background-position: 45% 40%;
+    }
 
-	.bannerService {
-	    background-size: 470% auto;
-    	background-position: 50% 56%;
-	    padding-top: 120px;
-	}
+    .boxRegister {
+        background-size: 350% auto;
+        background-position: 45% 40%;
+    }
 
-	.button5 {
-    	font-size: 13px !important;
-	}
+    .bannerService {
+        background-size: 470% auto;
+        background-position: 50% 56%;
+        padding-top: 120px;
+    }
 
-	.button7 {
-    	font-size: 14px !important;
-	}
+    .button5 {
+        font-size: 13px !important;
+    }
 
-	.button9{
-		font-size:9.5px;
-	}
+    .button7 {
+        font-size: 14px !important;
+    }
 
-    .title1{
+    .button9 {
+        font-size: 9.5px;
+    }
+
+    .title1 {
         font-size: 25px !important;
     }
 
-	.title3{
-		font-size: 17px !important;
-		margin: 0;
-	}
+    .title3 {
+        font-size: 17px !important;
+        margin: 0;
+    }
 
-	.paragraph1{
-		font-size: 16px !important;
-		word-wrap: break-word;
-	}
-	.paragraph2{
-		font-size: 14px !important;
-		word-wrap: break-word;
-	}
-	.paragraph3{
-		font-size: 14px !important;
-		word-wrap: break-word;
-	}
+    .paragraph1 {
+        font-size: 16px !important;
+        word-wrap: break-word;
+    }
 
-	.paragraph4{
-		word-wrap: break-word;
-	}
+    .paragraph2 {
+        font-size: 14px !important;
+        word-wrap: break-word;
+    }
 
-	.paragraph7{
-		font-size: 17px !important;
-		word-wrap: break-word;
-	}
+    .paragraph3 {
+        font-size: 14px !important;
+        word-wrap: break-word;
+    }
 
-	.paragraph8{
-		font-size: 10px !important;
-		word-wrap: break-word;
-	}
+    .paragraph4 {
+        word-wrap: break-word;
+    }
+
+    .paragraph7 {
+        font-size: 17px !important;
+        word-wrap: break-word;
+    }
+
+    .paragraph8 {
+        font-size: 10px !important;
+        word-wrap: break-word;
+    }
 
     ul.menuMobile {
         list-style: none;
@@ -103,7 +105,7 @@
     ul.menuMobile > li > a > i {
         font-size: 25px;
         text-align: right;
-        color:#fff !important;
+        color: #fff !important;
     }
 
     ul.menuMobile ul.dropdown-menu {
@@ -113,11 +115,16 @@
         left: initial;
     }
 
+    .menuMobile .item-icon {
+        margin-right: 15px;
+        right: auto;
+    }
+
     ul.dropdown-menu > li > a {
         color: #fff;
     }
 
-    .modal-content-box{
+    .modal-content-box {
         width: 100% !important;
     }
 
@@ -133,7 +140,7 @@
         display: block !important;
     }
 
-    .nav-pills>li>a {
+    .nav-pills > li > a {
         font-size: 13px !important;
         padding: 7px;
         display: block;
@@ -166,7 +173,8 @@
         margin-left: initial;
         padding-left: initial;
     }
-    .nav{
+
+    .nav {
         padding-left: 15px !important;
     }
 
@@ -174,12 +182,16 @@
         height: 300px;
     }
 
-    .logoFooter{
+    .logoFooter {
         display: block !important;
         width: initial !important;
     }
 
     .logoFooter > img {
         margin-bottom: 20px;
+    }
+
+    .reset-font {
+        font-family: 'Source Sans Pro', sans-serif;
     }
 }

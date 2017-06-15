@@ -6,7 +6,7 @@
                 <i class="fa fa-search" id="openSearch"></i>
             </div>
 
-            <div class="col-xs-7 col-sm-3 col-md-3">
+            <div class="col-xs-8 col-sm-3 col-md-3">
                 <a href="/index">
                     <img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo"/>
                 </a>
@@ -14,7 +14,8 @@
 
             <div class='hidden-xs hidden-sm padding-top col-md-3'>
                 {!! Form::open(['url' => 'filter', 'method' => 'get']) !!}
-                <input type='text' class='filter col-md-12' name='filter' value='{{ Session::get("filters.text") }}' id='filter1' placeholder='{{ trans("nav.inputFind") }}'>
+                <input type='text' class='filter col-md-12' name='filter' value='{{ Session::get("filters.text") }}'
+                       id='filter1' placeholder='{{ trans("nav.inputFind") }}'>
                 <label for="filter1" class=" fa fa-search "></label>
                 {!! Form::close() !!}
             </div>
@@ -23,7 +24,8 @@
                 <div class="flex-center">
                     <div class="col-md-7 col-sm-7 padding-top not-margin bolsa-de-tiempo text-left">
                         <div class="space4"></div>
-                        <img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
+                        <img src="{{ asset('images/moneda.png') }}"
+                             class="not-padding moneda icon-nav text-center col-sm-2  col-md-2 "></image>
 
                         <p class="paragraph4 textpadding col-md-9 col-sm-7 text-white">{{ Auth::user()->credits }} {{ trans('nav.credits') }}</p>
                     </div>
@@ -66,20 +68,34 @@
 
             </div>
 
-            <ul class="menuMobile visible-xs col-xs-2 text-right ">
+            <ul class="menuMobile visible-xs col-xs-2 not-padding">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-bars"></i></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ url('profile') }}">{{ trans('nav.profile') }}</a>
+                            <a href="/inbox">
+                                <i class="material-icons notification item-icon">question_answer<span
+                                            class="reset-font">{{App\Helpers::getNotificationsUser()}}</span></i> {{ trans('nav.messages') }}
+                            </a>
                         </li>
                         <li>
-                            <a href="/inbox">{{ trans('nav.notifications') }}
-                                <span>{{App\Helpers::getNotificationsUser()}}</span></a>
+                            <a data-toggle="modal" data-target="#NewService">
+                                <i class="material-icons item-icon">add_circle</i> {{ trans('nav.newOffer') }}
+                            </a>
                         </li>
                         <li>
-                            <a href="{{ url('/validateLogout') }}" class="link1">{{ trans('nav.logout') }}</a>
+                            <a href="{{ url('profile') }}"><i
+                                        class="material-icons item-icon">account_circle</i> {{ trans('nav.profile') }}</a>
+                        </li>
+                        <li>
+                            <a href="/how">
+                                <i class="material-icons item-icon">info</i> {{ trans('nav.howitworks') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/validateLogout') }}"><i
+                                        class="material-icons item-icon">exit_to_app</i> {{ trans('nav.logout') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -97,20 +113,22 @@
     <div class="shadow findMobile"></div>
     <div class="box">
         {!! Form::open(['url' => 'filter', 'method' => 'get', 'class' => 'col-xs-12']) !!}
-            <div class="row">
-               <button type="button" @click='myData.newcampaign = false' class="close circle-shape"><span aria-hidden="true">×</span></button>
-                    <div class="col-xs-12">
-                        <input type='text' class='filter col-xs-12' name='filter' value='{{ Session::get("filters.text") }}' id='filter1' placeholder='{{ trans("nav.inputFind") }}'>
-                        <label for="filter1" class=" fa fa-search "></label>
-                    </div>
+        <div class="row">
+            <button type="button" @click='myData.newcampaign = false' class="close circle-shape"><span
+                        aria-hidden="true">×</span></button>
+            <div class="col-xs-12">
+                <input type='text' class='filter col-xs-12' name='filter' value='{{ Session::get("filters.text") }}'
+                       id='filter1' placeholder='{{ trans("nav.inputFind") }}'>
+                <label for="filter1" class=" fa fa-search "></label>
+            </div>
 
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="button9 col-xs-12">{{ trans('nav.find') }}</button>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button type="submit" class="button9 col-xs-12">{{ trans('nav.find') }}</button>
-                </div>
-            </div>
-            <br>
+        </div>
+        <br>
         {!! Form::close() !!}
     </div>
 </div>
