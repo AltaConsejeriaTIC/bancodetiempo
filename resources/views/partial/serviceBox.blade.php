@@ -56,7 +56,7 @@
                 @endif
                 <div class="space15">
                 </div>
-                <p class='paragraph2'>{{str_limit($service->description, 100)}}</p>
+                <p class='paragraph2 description'>{{str_limit($service->description, 100)}}</p>
                 <div class='col-xs-12  col-sm-12 not-padding'>
 
                     @if(!is_null($service->tags))

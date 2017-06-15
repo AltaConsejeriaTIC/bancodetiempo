@@ -174,4 +174,12 @@
         height: 300px;
     }
 
+    .logoFooter{
+        display: block !important;
+        width: initial !important;
+    }
+
+    .logoFooter > img {
+        margin-bottom: 20px;
+    }
 }

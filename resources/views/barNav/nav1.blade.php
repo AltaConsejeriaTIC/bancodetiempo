@@ -32,8 +32,7 @@
                     <a class="col-md-4 align-right"
                        href="{{ url('/validateLogout') }}">{{ trans('nav.logout') }}</a>
                 </div>
-                <a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1'
-                   href="{{ url('/validateLogout') }}"></a>
+                <a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1' href="{{ url('/validateLogout') }}"></a>
             @endif
         </div>
     </div>

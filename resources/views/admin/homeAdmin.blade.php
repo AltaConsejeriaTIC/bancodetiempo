@@ -50,6 +50,16 @@
 
             <div class="col-md-6">
                 <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Contenido dinamico</h3></div>
+                    <div class="panel-body">
+                        <p><br></p>
+                        <p><a href="/admin/dynamicContent" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
                     <div class="panel-heading"><h3>Administrar Contenidos</h3></div>
                     <div class="panel-body">
                         <p>Sección para gestionar las paginas de contenidos cambiantes.</p>

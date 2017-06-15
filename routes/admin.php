@@ -51,3 +51,8 @@ Route::post('/admin/saveReport/{report_id}', 'Admin\ReportsController@saveReport
 Route::post('/admin/reports/delete', 'Admin\ReportsController@deleteReport');
 Route::get('/admin/report/{report_id}', 'Admin\ReportsController@showReport');
 Route::resource('/admin/downloadReport', 'Admin\ReportsController@downloadReport');
+
+
+Route::get("/admin/dynamicContent", 'Admin\DynamicContentController@showList');
+Route::get("/admin/dynamicContent/{content_id}", 'Admin\DynamicContentController@editContent');
+Route::post("/admin/dynamicContent/edit", 'Admin\DynamicContentController@saveContent');

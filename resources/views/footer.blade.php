@@ -1,29 +1,33 @@
 <footer>
-	<div class="container text-white">
-		<div class="container">
+	<div class="container">
+	    {!! App\Models\DynamicContent::printContent('footer') !!}
+    </div>
+
+</footer>
+
+
+		<!--<div class="container">
 			<div class="row">
-				<div class="col-md-3 col-sm-3">
-					<div class="row link-social-network">
-						<a href="/how">{{ trans('footer.how') }}</a>
+				<div class="col-md-3 col-xs-6">
+					<div class="row">
+						<a href="/how" class="paragrap4 text-center">{{ trans('footer.how') }}</a>
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-3">
-					<div class="row link-social-network">
-						<a href="/content/privacity">{{ trans('footer.privacity') }}</a>
+				<div class="col-md-3  col-xs-6">
+					<div class="row">
+						<a href="/content/privacity"  class="paragraph4  text-center">{{ trans('footer.privacity') }}</a>
 					</div>
-					<div class="row link-social-network">
-						<a href="/content/terms">{{ trans('footer.terms') }}</a>
+					<br>
+					<div class="row">
+						<a href="/content/terms" class="paragraph4 text-center">{{ trans('footer.terms') }}</a>
 					</div>
+					<br>
 				</div>
-				<div class="col-md-5 col-sm-5 text-center">
+				<div class="col-md-5 col-xs-5 text-center">
 					<div class="row col-md-offset-2">
 							<div class="col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-3">
-								<div class="col-xs-4 col-xs-offset-2 col-sm-offset-0">
 									<a href="https://www.facebook.com/Cambalachea.co" target="_blank" class="circle-social-network text-center"><i class="fa fa-facebook icons-social-network" aria-hidden="true"></i></a>
-								</div>
-								<div class="col-xs-4">
 									<a href="https://twitter.com/cambalachea" target="_blank" class="circle-social-network text-center"><i class="fa fa-twitter icons-social-network" aria-hidden="true"></i></a>
-								</div>
 							</div>
 							<div class="space10"></div>
 							<div class="row col-md-12">
@@ -37,10 +41,10 @@
 		<div class="container">
 			<div class="row">
                 <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 text-center ">
-                   <div class="flex-center">
-                        <img src="{{ asset('images/logoFooter1.png') }}" alt="" class="line-r-v col-sm-4 col-xs-4 col-md-3">
-                        <img src="{{ asset('images/logoFooter2.png') }}" alt="" class=' col-sm-4  col-xs-4 col-md-4'>
-                        <img src="{{ asset('images/logoFooter3.png') }}" alt="" class="line-l-v  col-sm-4 col-xs-4 col-md-3">
+                   <div class="flex-center logoFooter">
+                        <img src="{{ asset('images/logoFooter1.png') }}" alt="" class="line-r-v col-sm-4 col-xs-12 col-md-3">
+                        <img src="{{ asset('images/logoFooter2.png') }}" alt="" class=' col-sm-4 col-xs-12 col-md-4'>
+                        <img src="{{ asset('images/logoFooter3.png') }}" alt="" class="line-l-v col-sm-4 col-xs-12 col-md-3">
                    </div>
                 </div>
 
@@ -48,7 +52,7 @@
 		</div>
 	</div>
 
-</footer>
+</footer>-->
 <generalmodal   name='login' :state='myData.login' state-init='false'>
     <div slot="modal" >
         <div class="modal-content-box">
