@@ -129,6 +129,7 @@ class NetworkAccountsController extends Controller
 		if($networkAccounts->existsUser())
 		{
 
+            Session()->put('GAEvent', ['event' => 'login', 'provider' => $provider]);
 			auth()->login($networkAccounts->getUser());
 			
 			if(auth()->user()->privacy_policy == 0){
