@@ -40,22 +40,6 @@ class NetworkAccountsController extends Controller
         }
     }
 
-    public function showFrom()
-    {
-
-        $user = User::findOrFail(Auth::user()->id);
-
-        JavaScript::put([
-            'userJs' => $user,
-            'dayJs' => is_null($user->birthDate) ? "0" : date("d", strtotime($user->birthDate)),
-            'mounthJs' => is_null($user->birthDate) ? "0" : date("m", strtotime($user->birthDate)),
-            'yearJs' => is_null($user->birthDate) ? "0" : date("Y", strtotime($user->birthDate)),
-
-        ]);
-
-        return view('auth/register', compact('user'));
-    }
-
     public function createUser($providerData)
     {
 
@@ -82,31 +66,32 @@ class NetworkAccountsController extends Controller
                 'aboutMe' => '',
                 'role_id' => 2
             ]);
+
+            $account->user()->associate($user);
+            $account->save();
+            $this->setAvatar($user, $providerData['avatar']);
         }
 
-        $account->user()->associate($user);
-        $account->save();
+        return true;
 
-        auth()->login($user);
+    }
 
-        $avatar = $this->getAvatar($providerData['avatar']);
+    private function setAvatar($user, $avatar){
+        $avatar = $this->getAvatar($avatar);
         if ($avatar) {
             $user->update([
                 'avatar' => $avatar
             ]);
         }
-
-
-        return true;
-
     }
+
 
     public function getAvatar($url)
     {
         if (!is_dir('resources/user/user_' . Auth::id())) {
             mkdir('resources/user/user_' . Auth::id(), 0777, true);
         }
-        $img = 'resources/user/user_' . Auth::id() . '/img' . Auth::id() . '.jpg';
+        $img = 'resources/user/user_' . Auth::id() . '/img' . Auth::id() . \date('YmdHis') . '.jpg';
         $file = fopen($img, "w+");
         if ($file != false) {
             file_put_contents($img, file_get_contents($url));
@@ -136,17 +121,18 @@ class NetworkAccountsController extends Controller
 
             Session()->put('GAEvent', ['event' => 'login', 'provider' => $provider]);
 
-            auth()->login($networkAccounts->getUser());
+            Auth()->login($networkAccounts->getUser());
 
-            if (auth()->user()->privacy_policy == 0) {
-                return redirect('register');
-            } else {
-                return Redirect::to(Session::get('last_url'));
-            }
+            return Redirect::to(Session::get('last_url'));
+
 
         } else {
 
             if ($this->createUser($providerData)) {
+
+                $networkAccounts->start($providerData);
+
+                Auth()->login($networkAccounts->getUser());
 
                 return redirect('register');
 

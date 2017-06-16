@@ -29,9 +29,8 @@ Route::get('admin','AdminController@AdminLogin')->middleware('guest');
 
 //Register process
 
-Route::get('/register', 'NetworkAccountsController@showFrom')->middleware('register', 'passRegister');
+Route::get('/register', 'RegisterController@showFrom')->middleware('register', 'passRegister');
 Route::post('/register/createUser', 'NetworkAccountsController@createUser');
-
 Route::put('profile/update', 'Profile\ProfileController@editProfile');
 Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
 Route::get("/interest", 'Profile\ProfileController@showFromInterest')->middleware('register', 'passRegister');
