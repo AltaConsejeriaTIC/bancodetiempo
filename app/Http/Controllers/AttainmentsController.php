@@ -12,15 +12,17 @@ class AttainmentsController extends Controller
     static function saveAttainment($attainment){
 
         if(Auth::user()->attainmentUsers->where('attainment_id', $attainment)->count() == 0){
-            $attaiment = Attainment::find($attainment);
+            $attainment = Attainment::find($attainment);
             Auth::user()->update([
-                'credits' => Auth::user()->credits + $attaiment->value
+                'credits' => Auth::user()->credits + $attainment->value
             ]);
             AttainmentUsers::create([
-                'attainment_id' => $attaiment->id,
+                'attainment_id' => $attainment->id,
                 'user_id' => Auth::id(),
                 'state_id' => 1
             ]);
+
+            session()->flash('attainment', $attainment);
         }
 
     }

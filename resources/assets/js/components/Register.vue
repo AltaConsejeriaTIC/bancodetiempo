@@ -90,14 +90,14 @@
             <div class="row not-margin" v-show='this.profile == 0'>
                 <div class='col-xs-12'>
                     <input type="checkbox" name="adult" value="1" id="adult" class="square validation" data-validations='["requiredCheck"]' v-if='this.profile == 0'>
-					<label for="adult">Confirmo que soy mayor de edad</label>
+					<label for="adult" class="paragraph10">Confirmo que soy <strong>mayor de edad</strong></label>
                 </div>
             </div>
 			
             <div class="row not-margin" v-show='this.profile == 0'>
                 <div class='col-xs-12'>
                     <input type="checkbox" name="terms" value="1" id="terms" class="square validation" v-model="terms" data-validations='["requiredCheck"]'>
-					<label for="terms">Aceptar los <a href="/content/terms" target="_blank">términos y condiciones</a> de la plataforma</label>
+					<label for="terms" class="paragraph10">Aceptar los <a href="/content/terms" target="_blank" class="paragraph2">términos y condiciones</a> de la plataforma</label>
                 </div>
             </div>
 

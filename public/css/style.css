@@ -612,7 +612,6 @@ Banner interest
 	background: url(../images/banner4.jpg);
 	background-size: 100% auto;
     background-position: 100% 30%;
-	height: 130px;
 }
 
 /*
@@ -1489,4 +1488,25 @@ div#findMobile .close {
     z-index: 100;
     border-color: #505050 !important;
     transform: scale(0.7, 0.7);
+}
+
+.popup .dialogBox {
+    background: #009fe3;
+    position: fixed;
+    top: 15%;
+    z-index: 1000;
+    width: 20%;
+    padding: 1% 2%;
+    color: #fff;
+    left: 40%;
+    border-radius: 5px;
+}
+
+.dialogBox > .arrow {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    top: -20%;
+    left: 50%;
 }
