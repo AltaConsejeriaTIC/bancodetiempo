@@ -56,8 +56,7 @@ class HomeController extends Controller
         $filter = $request->input('filter');
         $words = explode(" ", $filter);
         $categories = Category::getCategoriesInUse();
-        $services = service::getServicesActive()
-            ->where("services.name", "LIKE", "%$filter%");
+        $services = service::getServicesActive()->orderBy('services.created_at', 'desc')->where("services.name", "LIKE", "%$filter%");
         foreach ($words as $word) {
             $services->orWhere("users.first_name", "LIKE", "%$word%");
             $services->orWhere("users.last_name", "LIKE", "%$word%");

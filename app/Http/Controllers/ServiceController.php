@@ -346,4 +346,37 @@ class ServiceController extends Controller
 
     }
 
+    public function getListServiceWords(Request $request){
+
+        $filters = $request->input('filter');
+        $word = $request->input('words');
+        $words = explode(" ", $word);
+        $filters = explode(":", $filters);
+        $page = $request->input('page', 1);
+
+        $services = service::getServicesActive()->orderBy('services.created_at', 'desc')->where("services.name", "LIKE", "%$word%");
+
+        if($filters[0] != 0){
+            $services = $services->whereIn('category_id', $filters);
+        }
+
+        if($words[0] != ''){
+            foreach ($words as $word) {
+                $services->orWhere("users.first_name", "LIKE", "%$word%");
+                $services->orWhere("users.last_name", "LIKE", "%$word%");
+            }
+        }
+
+        $services =  $services->get();
+
+        $route = "/listServiceWords";
+
+        $box = 'all';
+
+        $words = $request->input('words');
+
+        return view('home.partial.listService', compact('services', 'page', 'filters', 'route', 'box', 'words'));
+
+    }
+
 }

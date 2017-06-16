@@ -74,3 +74,4 @@ Route::resource('/listService', 'ServiceController@getListService');
 Route::resource('/listServiceFeatured', 'ServiceController@getListServiceFeatured');
 Route::resource('/listServiceVirtual', 'ServiceController@getListServiceVirtual');
 Route::resource('/listServiceFaceToFace', 'ServiceController@getListServiceFaceToFace');
+Route::resource('/listServiceWords', 'ServiceController@getListServiceWords');

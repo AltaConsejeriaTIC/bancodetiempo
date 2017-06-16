@@ -7,7 +7,7 @@
     @endforeach
 </div>
 <div class="col-xs-12 text-center">
-    <ul class="pagination pagination-sm" data-list='{{$box}}' data-route='{{$route}}' data-filter="{!! isset($filters) ? implode(':', $filters) : 0 !!}">
+    <ul class="pagination pagination-sm" data-list='{{$box}}' data-route='{{$route}}' data-filter="{!! isset($filters) ? implode(':', $filters) : 0 !!}" data-words="{!! isset($words) ? $words : '' !!}">
         @for($i = 1 ; $i <= ceil($services->count() / 6); $i ++)
 
           <li data-page='{{$i}}' @if($i == $page) class='active' @endif >

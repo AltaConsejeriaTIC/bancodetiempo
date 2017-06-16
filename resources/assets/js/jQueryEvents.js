@@ -40,12 +40,13 @@ function getPagination(){
     var route = jQuery(this).parent().data('route');
     var list = jQuery(this).parent().data('list');
     var filters = jQuery(this).parent().data('filter');
+    var words = jQuery(this).parent().data('words');
     jQuery(this).parent().children(".active").removeClass('active')
     jQuery(this).addClass('active');
     jQuery.ajax({
         url: route,
         type : 'GET',
-        data : {'page' : page, 'filter' : filters},
+        data : {'page' : page, 'filter' : filters, 'words' : words},
         success : function(response){
             jQuery("#"+list).html(response);
             jQuery('.pagination > li').on('click', getPagination);

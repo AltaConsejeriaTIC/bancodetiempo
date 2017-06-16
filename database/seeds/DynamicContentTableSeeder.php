@@ -29,51 +29,52 @@ class DynamicContentTableSeeder extends Seeder
           "name" => "footer",
           "description" => "footer",
             "html" => '<div class="row">
-                    <div class="col-xs-6">
-                        <ul>
-                            <li class="paragraph6 text-white">Registrarse</li>
-                            <li class="paragraph6 text-white">Iniciar Sesión</li>
-                            <li class="paragraph6 text-white">¿Cómo funciona?</li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-6">
-                        <ul>
-                            <li class="paragraph6 text-white">Políticas de Privacidad</li>
-                            <li class="paragraph6 text-white">Términos y Condiciones</li>
-                            <li class="paragraph6 text-white"></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <span>
-                            <a href="https://www.facebook.com/Cambalachea.co" target="_blank" class="circle-social-network text-center col-xs-2 col-xs-offset-4">
-                               <i class="fa fa-facebook icons-social-network" aria-hidden="true"></i>
-                            </a>
-                        </span>
-                        <span>
-                            <a href="https://twitter.com/cambalachea" target="_blank" class="circle-social-network text-center col-xs-2">
-                                <i class="fa fa-twitter icons-social-network" aria-hidden="true"></i>
-                            </a>
-                        </span>
-                    </div>
-                </div>
-        <br>
-        <div class="row">
-        <div class="col-xs-12  text-center">
-        <p>¿Tienes sugerencias, dudas o comentarios?<br>
-        Contáctanos a evenvivelab_bog@unal.edu.co</p>
-        </div>
-        </div><br>
-        <div class="row">
-        <div class="col-xs-12">
-        <div class="flex-center logoFooter">
-             <img src="/images/logoFooter1.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-3">
-             <img src="/images/logoFooter2.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-4">
-             <img src="/images/logoFooter3.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-3">
-        </div>
-        </div>
-        </div>'
+	<div class="col-xs-6 col-sm-3">
+		<ul>
+			<li class="text-white" @click="myData.login = true">Registrarse</li>
+			<li class="text-white" @click="myData.login = true">Iniciar Sesión</li>
+			<li class="text-white"><a href="/how">¿Cómo funciona?</a></li>
+		</ul>
+	</div>
+	<div class="col-xs-6 col-sm-3">
+		<ul>
+			<li class="text-white"><a href="/content/privacity">Políticas de Privacidad</a></li>
+			<li class="text-white"><a href="/content/terms">Términos y Condiciones</a></li>
+			<li class="text-white"></li>
+		</ul>
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<div class="col-xs-12 text-center">
+			<span>
+				<a href="https://www.facebook.com/Cambalachea.co" target="_blank" class="circle-social-network text-center col-xs-2 col-xs-offset-4">
+				   <i class="fa fa-facebook icons-social-network" aria-hidden="true"></i>
+				</a>
+			</span>
+			<span>
+				<a href="https://twitter.com/cambalachea" target="_blank" class="circle-social-network text-center col-xs-2">
+					<i class="fa fa-twitter icons-social-network" aria-hidden="true"></i>
+				</a>
+			</span>
+		</div>
+		<div class="col-xs-12  text-center">
+			<p>¿Tienes sugerencias, dudas o comentarios?<br>
+			Contáctanos a evenvivelab_bog@unal.edu.co</p>
+		</div>
+	</div>
+
+
+</div>
+
+<hr>
+<div class="row">
+	<div class="col-xs-12 col-md-8 col-md-offset-2">
+		<div class="flex-center logoFooter">
+			<img src="/images/logoFooter3.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-4 col-sm-offset-0">
+			<img src="/images/logoFooter2.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-4 col-sm-offset-0">
+			<img src="/images/logoFooter1.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-4 col-sm-offset-0">
+		</div>
+	</div>
+</div>'
         ]);
     }
 }
