@@ -219,7 +219,7 @@ Buttons
     color: #212f3f;
     padding: 8px 9px;
     border-bottom: 3px solid #212f3f;
-    background-color: none !important;
+    background-color: initial !important;
 }
 
 .buttonService {
@@ -1530,6 +1530,11 @@ div#findMobile .close {
     transform: scale(0.7, 0.7);
 }
 
+.campaign button {
+    width: 100%;
+    max-width: 332px;
+}
+
 .campaign h1, p {
     font-family: 'Source Sans Pro', sans-serif;
 }
@@ -1609,10 +1614,49 @@ div#findMobile .close {
     font-size: 20px;
     color: #2c3e50;
 }
+
 .campaign .join p {
     font-size: 18px;
 }
 
 .campaign .join span {
     font-weight: bold;
+}
+
+.campaign .cancel-button {
+    color: #0f6784;
+    background-color: #ffffff;
+    border: solid 1px #0f6784;
+}
+
+.campaign .donation p {
+    font-weight: bold;
+    font-size: 18px;
+    color: #0f6784;
+}
+
+.campaign div.line {
+    height: 1px;
+    border-bottom: solid 1px #979797;
+}
+
+.popup .dialogBox {
+    background: #009fe3;
+    position: fixed;
+    top: 15%;
+    z-index: 1000;
+    width: 20%;
+    padding: 1% 2%;
+    color: #fff;
+    left: 40%;
+    border-radius: 5px;
+}
+
+.dialogBox > .arrow {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    top: -20%;
+    left: 50%;
 }

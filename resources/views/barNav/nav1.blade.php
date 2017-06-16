@@ -24,7 +24,8 @@
                     </li>
                 </ul>
             @elseif((!Auth::guest()))
-                <div class="hidden-xs col-sm-6 col-sm-offset-5 col-md-5 col-md-offset-2 text-right">
+                <div class="visible-md visible-lg col-sm-6 col-sm-offset-5 col-md-5 col-md-offset-2 text-right">
+                    <br>
                     <p class="col-md-6 col-md-offset-2 align-right">
                         <img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav"></image>
                         {{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? trans('nav.credit') : trans('nav.credits') }}
@@ -32,7 +33,11 @@
                     <a class="col-md-4 align-right"
                        href="{{ url('/validateLogout') }}">{{ trans('nav.logout') }}</a>
                 </div>
-                <a class='visible-xs fa fa-sign-out icon text-right col-xs-2 col-xs-offset-1' href="{{ url('/validateLogout') }}"></a>
+                <div class="hidden-md hidden-lg  col-xs-2 col-xs-offset-2 col-sm-offset-7 col-sm-1">
+                    <br>
+                    <a class='fa fa-sign-out icon text-right' href="{{ url('/validateLogout') }}"></a>
+                </div>
+
             @endif
         </div>
     </div>

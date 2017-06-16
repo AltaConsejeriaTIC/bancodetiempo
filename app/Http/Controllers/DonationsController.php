@@ -28,7 +28,7 @@ class DonationsController extends Controller
 
         $this->saveHistory($user->id, $campaign->id, $credits);
 
-        return redirect()->back();
+        return redirect()->back()->with('credits', $credits);
 
     }
 
