@@ -219,7 +219,7 @@ Buttons
     color: #212f3f;
     padding: 8px 9px;
     border-bottom: 3px solid #212f3f;
-    background-color: none !important;
+    background-color: initial !important;
 }
 
 .buttonService {
@@ -1615,4 +1615,25 @@ div#findMobile .close {
 
 .campaign .join span {
     font-weight: bold;
+}
+
+.popup .dialogBox {
+    background: #009fe3;
+    position: fixed;
+    top: 15%;
+    z-index: 1000;
+    width: 20%;
+    padding: 1% 2%;
+    color: #fff;
+    left: 40%;
+    border-radius: 5px;
+}
+
+.dialogBox > .arrow {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    top: -20%;
+    left: 50%;
 }

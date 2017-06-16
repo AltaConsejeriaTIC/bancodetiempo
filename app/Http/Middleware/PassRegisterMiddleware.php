@@ -15,34 +15,66 @@ class PassRegisterMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
+
+    protected $pass1;
+    protected $pass2;
+    protected $pass3;
+
     public function handle($request, Closure $next)
     {
-        if(Auth::check()){
-            $pass1 = Auth::user()->privacy_policy == 1 ? 1 : 0;
-            $pass2 = Auth::user()->interests->count() >= 1 ? 1 : 0;
-            $pass3 = Auth::user()->services->count() >= 1 ? 1 : 0;
-            $request->session()->put('pass1', $pass1);
-            $request->session()->put('pass2', $pass2);
-            $request->session()->put('pass3', $pass3);
-            if($pass1 == 0){
-                if($request->path() == 'register'){
-                    return $next($request);
-                }else{
-                    return redirect('register');
-                }
+        $this->pass1 = Auth::user()->privacy_policy == 1 ? 1 : 0;
+        $this->pass2 = Auth::user()->interests->count() >= 1 ? 1 : 0;
+        $this->pass3 = Auth::user()->services->count() >= 1 ? 1 : 0;
+        $request->session()->put('pass1', $this->pass1);
+        $request->session()->put('pass2', $this->pass2);
+        $request->session()->put('pass3', $this->pass3);
+
+        if($this->pass1 == 0 || $this->pass2 == 0){
+            $send = $this->send($request);
+
+            if($send === true){
+                return $next($request);
+            }else{
+
+                return $send;
             }
-            if($pass2 == 0){
-                if($request->path() == 'interest'){
-                    return $next($request);
-                }elseif($request->path() == 'register'){
-                    return $next($request);
-                }else{
-                    return redirect('interest');
-                }
-            }
-            return $next($request);
+        }
+        return $next($request);
+
+    }
+
+    private function send($request){
+
+        $function = "pass_".$request->path();
+
+        if($request->path() == 'service'){
+            return true;
         }
 
-        return $next($request);
+        if($request->path() != 'register' && $request->path() != 'interest'){
+            return redirect('register');
+        }
+        $response = $this->$function();
+
+        return $response;
+    }
+
+    public function pass_register(){
+
+        if($this->pass1 == 1){
+            return redirect('interest');
+        }else{
+            return true;
+        }
+
+    }
+    public function pass_interest(){
+
+        if($this->pass2 == 1){
+            return redirect('service');
+        }else{
+            return true;
+        }
+
     }
 }

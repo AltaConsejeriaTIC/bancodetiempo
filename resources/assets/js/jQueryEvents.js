@@ -8,6 +8,16 @@ jQuery(document).ready(function(){
        listCategories();
     }
 
+    if(jQuery(".popup").length){
+       jQuery(".popup .shadow").on("click", closePopup)
+    }
+
+    if(jQuery(".dialogBox").length){
+        var top = jQuery("#credits").position().top + jQuery("#credits").height();
+        jQuery(".dialogBox").css("top", top+"px");
+        jQuery("#credits").css("z-index", 1005);
+    }
+
     if(jQuery(".preview").length){
        jQuery(".preview").each(function(){
            jQuery(this).on('change' ,previewImage);
@@ -195,4 +205,8 @@ function openSearch(){
 
 function closeSearch(){
     jQuery("#findMobile").removeClass("active")
+}
+
+function closePopup(){
+    jQuery(".popup").fadeOut();
 }
