@@ -152,7 +152,8 @@ class ServiceController extends Controller
     private function saveTags($tags, $service)
     {
         $this->deleteTags($service);
-        if ($tags) {
+
+        if ($tags && sizeof($tags) > 0 && $tags[0] != '') {
             foreach ($tags as $tag) {
                 $newTag = Tag::where('tag', $tag)->first();
 
