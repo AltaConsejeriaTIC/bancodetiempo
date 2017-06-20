@@ -404,8 +404,10 @@ Helpers
 
 .flex-center {
     display: flex;
-    width: 100%;
     align-items: center;
+}
+.flex-center  p {
+    margin: 0px;
 }
 
 .not-overflow {
@@ -646,7 +648,7 @@ Banner interest
     background: url(../images/banner4.jpg);
     background-size: 100% auto;
     background-position: 100% 30%;
-    height: 130px;
+    height: 180px;
 }
 
 /*
@@ -927,8 +929,6 @@ notificacion icon
 */
 .notification {
     position: relative;
-    right: 30px;
-    padding-top: 10px;
     cursor: pointer;
 }
 
@@ -1619,7 +1619,7 @@ div#findMobile .close {
 
 .popup .dialogBox {
     background: #009fe3;
-    position: fixed;
+    position: absolute;
     top: 15%;
     z-index: 1000;
     width: 20%;

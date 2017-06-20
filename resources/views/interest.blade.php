@@ -4,7 +4,7 @@
 @include('nav', array('type' => 1))
 
 <section class='bannerInterest row'>
-        <br><br><br>
+        <div class="space"></div>
       <div class="row">
             <div class="col-xs-6 col-xs-offset-3" id='credits'>
                 <p class="paragraph1 text-white text-center"><strong>{{ trans('register.initialCredits') }}</strong></p>

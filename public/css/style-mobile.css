@@ -90,6 +90,7 @@
     }
 
     ul.menuMobile {
+        margin-bottom: 0px;
         list-style: none;
         text-align: center;
     }
@@ -193,5 +194,11 @@
 
     .reset-font {
         font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .popup .dialogBox {
+        top: 15%;
+        width: 80%;
+        left: 10%;
     }
 }
