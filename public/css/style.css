@@ -1530,6 +1530,11 @@ div#findMobile .close {
     transform: scale(0.7, 0.7);
 }
 
+.campaign button {
+    width: 100%;
+    max-width: 332px;
+}
+
 .campaign h1, p {
     font-family: 'Source Sans Pro', sans-serif;
 }
@@ -1609,12 +1614,30 @@ div#findMobile .close {
     font-size: 20px;
     color: #2c3e50;
 }
+
 .campaign .join p {
     font-size: 18px;
 }
 
 .campaign .join span {
     font-weight: bold;
+}
+
+.campaign .cancel-button {
+    color: #0f6784;
+    background-color: #ffffff;
+    border: solid 1px #0f6784;
+}
+
+.campaign .donation p {
+    font-weight: bold;
+    font-size: 18px;
+    color: #0f6784;
+}
+
+.campaign div.line {
+    height: 1px;
+    border-bottom: solid 1px #979797;
 }
 
 .popup .dialogBox {
@@ -1627,6 +1650,37 @@ div#findMobile .close {
     color: #fff;
     left: 40%;
     border-radius: 5px;
+}
+
+.campaign .partakers h1 {
+    font-weight: bold;
+    font-size: 18px;
+    color: #303030;
+}
+
+.campaign .partakers a {
+    color: #0f6784;
+    font-size: 18px;
+    text-decoration: underline !important;
+}
+
+.campaign .host {
+    font-family: Montserrat, sans-serif;
+    color: #2c3e50;
+}
+
+.campaign .host h1 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.campaign .host .name {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.campaign .host .admin-profile {
+    max-width: 120px;
 }
 
 .dialogBox > .arrow {
