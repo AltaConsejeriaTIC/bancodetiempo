@@ -130,6 +130,8 @@ class NetworkAccountsController extends Controller
 
             if ($this->createUser($providerData)) {
 
+                $providerData['email'] = is_null($providerData['email']) ? $providerData['id'] . "@cambalachea.co" : $providerData['email'];
+
                 $networkAccounts->start($providerData);
 
                 Auth()->login($networkAccounts->getUser());
