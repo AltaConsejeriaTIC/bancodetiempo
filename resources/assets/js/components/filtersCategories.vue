@@ -20,15 +20,16 @@ export default {
 	props:['categories', 'name'],
 	methods:{
 		filters:function(el){
-			if(el.srcElement.checked){
-				if(el.srcElement.id == 'all0'){
+            console.log("cambi")
+			if(el.target.checked){
+				if(el.target.id == 'all0'){
 					this.filter = [0]
 					this.filterList = {}
 					this.list = 'Todas las categorias'
 				}else{
 					delete this.filter[0]
 					delete this.filterList[0]
-					this.filterList[el.srcElement.value] = el.srcElement.id.split("_")[1]
+					this.filterList[el.target.value] = el.target.id.split("_")[1]
 					this.list = ''
 						for(var f in this.filterList){
 							
@@ -39,7 +40,7 @@ export default {
 				}
 				
 			}else{
-				delete this.filterList[el.srcElement.value]
+				delete this.filterList[el.target.value]
 				this.list = ''
 					for(var f in this.filterList){
 						

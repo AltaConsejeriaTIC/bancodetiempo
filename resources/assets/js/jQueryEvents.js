@@ -13,7 +13,7 @@ jQuery(document).ready(function(){
     }
 
     if(jQuery(".dialogBox").length){
-        var top = jQuery("#credits").position().top + jQuery("#credits").height();
+        var top = jQuery("#credits").parent().parent().position().top + jQuery("#credits").position().top + jQuery("#credits").height();
         jQuery(".dialogBox").css("top", top+"px");
         jQuery("#credits").css("z-index", 1005);
     }
@@ -146,7 +146,7 @@ function previewImage(e){
     var elemt = jQuery(e.target);
     var id =  e.target.id;
     var files = e.target.files;
-    var label = jQuery(e.target.labels[0]);
+    var label = jQuery("label[for='"+id+"']");
     if(files[0].size < 2000000){
         label.siblings(".error").remove();
         var image = new Image();
