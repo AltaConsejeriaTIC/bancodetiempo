@@ -38,12 +38,30 @@ jQuery(document).ready(function(){
        jQuery('.pagination > li').on('click', getPagination);
     }
 
+    if(jQuery(".transition").length){
+       jQuery('.buttonTransition').on('click', nextTransition);
+    }
+
     jQuery(".score").on("click", score);
 
     jQuery("#openSearch").on("click", openSearch);
     jQuery("#findMobile .close").on("click", closeSearch)
 
 });
+
+function nextTransition(){
+    var open = jQuery(this).data('open');
+    var next = jQuery(open);
+    var current = jQuery(".transition .active");
+    current.animate(current.data('out'), 500, "linear", function(){
+        setTimeout(function(){
+            jQuery(this).css("display", "none");
+        }, 500);
+    });
+    next.css("display", "block");
+    next.animate(next.data('in'), 500);
+
+}
 
 function getPagination(){
     var page = jQuery(this).data('page');

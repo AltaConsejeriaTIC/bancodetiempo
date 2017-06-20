@@ -8,7 +8,7 @@
 		<div class="space10"></div>
 		<div class="row">
 			<div class="col-md-3 col-md-offset-6 col-xs-8 text-right">
-				<button v-if="this.sender != this.applicant && (this.deal == 8 || this.deal == 0 || this.deal == 10 || this.deal == 11)" type="button" class='button1 background-active-green-color col-md-12' data-toggle="modal" data-target="#deal">Proponer acuerdo</button>
+				<button v-if="this.sender != this.applicant && (this.deal == 8 || this.deal == 0 || this.deal == 10 || this.deal == 11)" type="button" class='button1 background-active-green-color col-md-12 buttonTransition' data-open='#dealBox'>Proponer acuerdo</button>
 			</div>
 			<div class="col-md-2 col-xs-4">
 				<button type="button" class='button1 background-active-color col-md-12 send' v-on:click='send'>Enviar</button>

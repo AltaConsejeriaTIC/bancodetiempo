@@ -151,9 +151,6 @@
         list-style: none;
     }
 
-    .conversationBox .listMessages {
-        height: 350px !important;
-    }
 
     .listMessages > #messages > .row {
         margin-bottom: 5px;
