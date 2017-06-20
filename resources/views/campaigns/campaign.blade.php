@@ -152,34 +152,35 @@
 
         <article class="col-md-4">
             <div class="row">
-                <div class="col-xs-12">
-                    <h2 class="title1">{{trans('campaigns.participants')}}</h2>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($campaign->participants->where("confirmed", 1) as $participant)
-                    <div class="col-md-2">
-                        @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
-                        <p class='text-center'>{{$participant->participant->first_name." ".$participant->participant->last_name}}</p>
+                <div class="col-xs-12 partakers">
+                    <div>
+                        <h1 class="title1">Asistentes a la campaña:</h1>
+                        <a>2.500 personas asistirán</a>
                     </div>
-                @endforeach
-            </div>
 
+                    <div class="space15"></div>
+
+                    @foreach($campaign->participants->where("confirmed", 1) as $participant)
+                        <div class="col-xs-4">
+                            @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="space20"></div>
+            <div class="line"></div>
 
             <div class="row">
-                <div class="col-xs-6 col-xs-offset-3">
-                    @include('partial/imageProfile', array('cover' => $campaign->groups->image, 'id' =>$campaign->groups->id, 'border' => '#0f6784', 'borderSize' => '3px'))
-                </div>
-            </div>
-            <div>
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <h2 class="title1">{{$campaign->groups->name}}</h2>
+                <div class="col-xs-12 text-center host">
+                    <h1>Organiza</h1>
+                    <div class="row">
+                        <div class="col-xs-4 col-xs-offset-4">
+                            @include('partial/imageProfile', array('cover' => $campaign->groups->image, 'id' =>$campaign->groups->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                        </div>
                     </div>
+                    <h1 class="name">{{$campaign->groups->admin->first_name.' '.$campaign->groups->admin->last_name}}</h1>
                 </div>
-
             </div>
-
         </article>
 
     </div>

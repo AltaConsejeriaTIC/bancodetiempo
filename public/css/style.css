@@ -1652,6 +1652,37 @@ div#findMobile .close {
     border-radius: 5px;
 }
 
+.campaign .partakers h1 {
+    font-weight: bold;
+    font-size: 18px;
+    color: #303030;
+}
+
+.campaign .partakers a {
+    color: #0f6784;
+    font-size: 18px;
+    text-decoration: underline !important;
+}
+
+.campaign .host {
+    font-family: Montserrat, sans-serif;
+    color: #2c3e50;
+}
+
+.campaign .host h1 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.campaign .host .name {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.campaign .host .admin-profile {
+    max-width: 120px;
+}
+
 .dialogBox > .arrow {
     position: absolute;
     content: "";
