@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         @foreach($myGroups as $key => $group)
-          <div class='col-md-6 col-xs-12 col-sm-6'>
+          <div class='col-md-6 col-xs-12'>
               @include('partial/groupBox', array("edit" => 1))
           </div>
           @include("profile/partial/deleteGroup")

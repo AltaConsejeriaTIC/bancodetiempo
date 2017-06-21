@@ -30,7 +30,7 @@
 
         <div class="space10"></div>
 
-        <!--<div class="row border hidden">
+        <div class="row border">
 
             <div class="col-sm-12">
 
@@ -54,8 +54,8 @@
                 <div class="space20"></div>
 
             </div>
-        </div>-->
-
+        </div>
+        <br>
         <div class="row">
             <div class="col-xs-12">
                 <h4 class="col-xs-12">{{ trans("profile.myInterest") }}</h4>
