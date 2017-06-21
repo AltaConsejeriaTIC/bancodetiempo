@@ -51,6 +51,10 @@ img {
     max-width: 100%;
 }
 
+#app {
+    min-height: 800px;
+}
+
 /*
 Titles
 */
@@ -235,6 +239,13 @@ Buttons
     pointer-events: none;
     background: #b7bab7 !important;
     opacity: 0.7;
+}
+
+p.dialog {
+    background: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #979797;
 }
 
 /*
@@ -765,7 +776,7 @@ Detail Service
     background: rgba(0, 0, 0, 0.6);
     position: absolute;
     top: 2%;
-    right: 4%;
+    right: 8%;
     z-index: 10;
     color: #fff;
     border: solid 1px #18aada;
@@ -1209,9 +1220,7 @@ Animations
 }
 
 .image-service {
-    background: grey !important;
     max-height: 360px !important;
-    width: 100%;
     overflow: hidden;
 }
 
@@ -1474,6 +1483,17 @@ ul.listComplete {
 .campaign-box > div {
     display: block;
     height: 100%;
+}
+
+.campaign-box .description {
+    max-height: 45px;
+    min-height: 45px;
+}
+
+.campaign-box .title {
+    min-height: 45px;
+    max-height: 45px;
+    overflow: hidden;
 }
 
 .campaign-box .cover {

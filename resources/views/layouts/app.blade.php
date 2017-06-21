@@ -80,9 +80,10 @@
         @include('prependvarjs')
         <div id="app">
             @yield('content')
-            @include('footer')
             @include('partial.messageAttainments')
+            @include('partial.loginModal')
         </div>
+        @include('footer')
     </body>
 
     <!--  Scripts-->
