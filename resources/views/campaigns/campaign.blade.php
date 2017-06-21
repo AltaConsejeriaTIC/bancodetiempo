@@ -179,8 +179,51 @@
                         </div>
                     </div>
                     <h1 class="name">{{$campaign->groups->admin->first_name.' '.$campaign->groups->admin->last_name}}</h1>
+
+                    <div class="space20"></div>
+
+                    <h6 class="rate">Amabilidad, respeto y confianza
+                        <span>{{number_format($campaign->groups->admin->ranking, 1)}}</span></h6>
+                    <div class="text-left rating">
+                        @for($cont = 1 ; $cont <= 5 ; $cont++)
+                            @if($cont <= $campaign->groups->admin->ranking)
+                                <span class='material-icons'>star</span>
+                            @else
+                                <span class='material-icons'>star_border</span>
+                            @endif
+                        @endfor
+                    </div>
+                    <div class="space20"></div>
+
+                    <p class="description text-left">{{$campaign->groups->admin->aboutMe}}</p>
+
+                    <div class="space15"></div>
+
+                    <p class="description text-left">¿Te interesa ésta campaña?</p>
+
+                    <div class="space15"></div>
+
+                    <div class="col-xs-12 text-center">
+                        <button class='button1 background-active-color text-center'
+                                v-on:click='myData.inscription = true'>Comunícate
+                            con {{$campaign->groups->admin->first_name}}</button>
+                    </div>
                 </div>
             </div>
+            <div class="space15"></div>
+            <div class="line"></div>
+            <div class="space15"></div>
+
+            <div class="row">
+                <div class="col-xs-12 text-center sharing">
+                    <h2>Comparte esta campaña en:</h2>
+                    <div class="row"></div>
+                </div>
+            </div>
+
+            <div class="space15"></div>
+            <div class="line"></div>
+            <div class="space15"></div>
         </article>
 
     </div>

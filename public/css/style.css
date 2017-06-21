@@ -413,7 +413,8 @@ Helpers
     display: flex;
     align-items: center;
 }
-.flex-center  p {
+
+.flex-center p {
     margin: 0px;
 }
 
@@ -964,25 +965,27 @@ conversation box
     background: #0a475b;
     padding: 15px;
 }
+
 .conversationBox .message {
     position: relative;
     display: block;
     margin-bottom: 15px;
 }
 
-.listMessages{
-    top:0%;
+.listMessages {
+    top: 0%;
 }
 
 #dealBox {
     background: #f5f5f5;
-    top:200%;
+    top: 200%;
     opacity: 0;
     display: none;
 }
+
 #suggestedSites {
     background: #f5f5f5;
-    left:-150%;
+    left: -150%;
     opacity: 0;
     display: none;
 }
@@ -1000,7 +1003,7 @@ conversation box
     display: none;
 }
 
-#conversation > div.active{
+#conversation > div.active {
     display: block;
 }
 
@@ -1570,8 +1573,12 @@ div#findMobile .close {
     max-width: 332px;
 }
 
-.campaign h1, p {
+.campaign h1, h2, h6, p {
     font-family: 'Source Sans Pro', sans-serif;
+}
+
+.campaign .rating span {
+    font-size: 3rem;
 }
 
 .campaign .title {
@@ -1716,6 +1723,16 @@ div#findMobile .close {
 
 .campaign .host .admin-profile {
     max-width: 120px;
+}
+
+.campaign .host .rate {
+    font-size: 14px;
+    color: #001738;
+    text-align: left;
+}
+
+.campaign .host .rate span {
+    color: #90a1b5;
 }
 
 .dialogBox > .arrow {
