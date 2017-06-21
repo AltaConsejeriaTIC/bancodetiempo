@@ -53,12 +53,10 @@ function nextTransition(){
     var open = jQuery(this).data('open');
     var next = jQuery(open);
     var current = jQuery(".transition .active");
-    current.animate(current.data('out'), 500, "linear", function(){
-        setTimeout(function(){
-            jQuery(this).css("display", "none");
-        }, 500);
+    current.animate(current.data('out'), 500, function(){
+        jQuery(this).removeClass('active');
     });
-    next.css("display", "block");
+    next.addClass("active");
     next.animate(next.data('in'), 500);
 
 }

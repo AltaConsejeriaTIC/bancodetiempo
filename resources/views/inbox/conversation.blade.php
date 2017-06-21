@@ -13,7 +13,7 @@
 
 				<div class="col-md-1 col-xs-3">
                     <a href="/user/{{$conversation->service->user->id}}">
-                        @include('partial/imageProfile', array('cover' => $conversation->service->user->avatar, 'id' => $conversation->service->user->id, 'border' => '#fff', 'borderSize' => '1px'))
+                        @include('partial/imageProfile', array('cover' => $conversation->service->user->avatar, 'id' => 'profileImg', 'border' => '#fff', 'borderSize' => '1px'))
                     </a>
 				</div>
 				<div class='col-xs-9'>
@@ -25,7 +25,7 @@
 
 				<div class="col-md-1 col-xs-3">
 				    <a href="/user/{{$conversation->applicant->id}}">
-					    @include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => $conversation->applicant->id, 'border' => '#fff', 'borderSize' => '1px'))
+					    @include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => 'profileImg', 'border' => '#fff', 'borderSize' => '1px'))
                     </a>
 				</div>
 				<div class='col-xs-9'>
@@ -38,10 +38,11 @@
 		</div>
 
         <div id="conversation" class="row transition">
-            <div class='listMessages col-xs-12 active' data-in='{"top":"0%", "opacity":1}' data-out='{"top":"-100%", "opacity" : 0}'>
+            <div class='listMessages col-xs-12 active' id='listMessages' data-in='{"top":"0%", "opacity":1}' data-out='{"top":"-100%", "opacity" : 0}'>
                 <div id='messages' conversation='{{$conversation->id}}'></div>
             </div>
             @include('deals/formDeal')
+            @include('deals/suggestedSites')
         </div>
 
 		<div class='responseBox row'>

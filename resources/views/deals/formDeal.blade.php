@@ -1,4 +1,4 @@
-<div id="dealBox" class="col-xs-12 transition" data-in='{"top":"0%", "opacity":1}' data-out='{"top:200%", "opacity":0}'>
+<div id="dealBox" class="col-xs-12 transition" data-in='{"top":"0%", "opacity":1}' data-out='{"top":"200%", "opacity":0}'>
 
     {!! Form::open(['url' => '/deal', 'method' => 'post', 'class' => 'form-custom validation', 'form-validation']) !!}
         <div class="row">
@@ -36,6 +36,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <label for="dealLocation" class="paragraph10">Lugar</label>
+                <p><a class="buttonTransition" data-open='#suggestedSites'>{{trans('deals.suggestedSites')}}</a></p>
             </div>
         </div>
         <div class="row">
@@ -85,7 +86,11 @@
                 <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color">
                     Realizar Propuesta
                 </button>
-                <button class="col-xs-12 button10 background-white text-center"	data-dismiss="modal" aria-label="Close">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="col-xs-12 button10 background-white text-center buttonTransition" type="button" data-open='#listMessages'>
                     Cancelar
                 </button>
             </div>
