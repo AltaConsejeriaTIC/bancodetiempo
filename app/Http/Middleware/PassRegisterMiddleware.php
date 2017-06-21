@@ -22,6 +22,10 @@ class PassRegisterMiddleware
 
     public function handle($request, Closure $next)
     {
+        if(!Auth::check() && $request->path() == 'home'){
+            return $next($request);
+        }
+
         $this->pass1 = Auth::user()->privacy_policy == 1 ? 1 : 0;
         $this->pass2 = Auth::user()->interests->count() >= 1 ? 1 : 0;
         $this->pass3 = Auth::user()->services->count() >= 1 ? 1 : 0;

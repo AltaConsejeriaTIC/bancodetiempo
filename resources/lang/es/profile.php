@@ -26,6 +26,7 @@ return [
     'placeHolderLinkLinkedin' => 'Ingresa tu usuario de Linkedin',
     'placeHolderLinkInstagram' => 'Ingresa tu usuario de Instagram',
     'services' => 'Mis Ofertas',
-    'groups' => 'Mis Grupos'
+    'groups' => 'Mis Grupos',
+    'myInterest' => 'Mis intereses'
 
 ];

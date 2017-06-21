@@ -4,7 +4,7 @@
         <div class="col-xs-6 col-xs-offset-3">
             <avatar :cover='myData.cover'>
                 <template scope="props">
-                    @include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' =>'user'.Auth::user()->id, 'border' => '#fff', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
+                    @include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' =>'user'.Auth::user()->id, 'border' => '#0f6784', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
                 </template>
              </avatar>
         </div>
@@ -14,25 +14,23 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <h2 class="title1">{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
+                <h2 class="title1 text-center">{{Auth::user()->first_name." ".Auth::user()->last_name}}</h2>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-10 col-xs-offset-1">
                 <p class='paragraph4'>{{Auth::user()->aboutMe}}</p>
             </div>
         </div>
-
+        <br>
         <div class="row">
-            <div class="col-xs-12">
-                <button class="col-xs-12 button1 background-active-color text-center"  @click='showEdit'>{{ trans("profile.editProfile") }}</button>
-            </div>
+            <button class="col-xs-10 col-xs-offset-1 button1 background-active-color text-center"  @click='showEdit'>{{ trans("profile.editProfile") }}</button>
         </div>
 
         <div class="space10"></div>
 
-        <div class="row border">
+        <!--<div class="row border hidden">
 
             <div class="col-sm-12">
 
@@ -56,12 +54,22 @@
                 <div class="space20"></div>
 
             </div>
-        </div>
-
-        <div class="space10"></div>
+        </div>-->
 
         <div class="row">
             <div class="col-xs-12">
+                <h4 class="col-xs-12">{{ trans("profile.myInterest") }}</h4>
+
+                @foreach(Auth::User()->interests as $interest)
+
+                    <p class="col-xs-6 paragraph4">{{$interest->category->category}}</p>
+
+                @endforeach
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 hidden-xs">
                  {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
                     <deactivate></deactivate>
