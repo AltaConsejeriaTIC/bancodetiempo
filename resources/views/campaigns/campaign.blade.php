@@ -20,34 +20,30 @@
 
             <div class="row">
                 <div class="">
-                    <h2 class="title">{{$campaign->name}}</h2>
+                    <h1 class="title">{{$campaign->name}}</h1>
                 </div>
                 <div class="">
                     @if($campaign->allows_registration == 0)
-                        <h1 class="state">Estado: <span>En periodo de pre-inscripción y/o donaciones</span>
-                        </h1>
+                        <h3 class="state">Estado: <span>En periodo de pre-inscripción y/o donaciones</span>
+                        </h3>
                     @else
-                        <h1 class="state">Estado: <span>En periodo de inscripciones</span></h1>
+                        <h3 class="state">Estado: <span>En periodo de inscripciones</span></h3>
                     @endif
                 </div>
             </div>
 
             <div class="row">
-                <div class="">
-                    <p class="description">{{$campaign->description}}</p>
-                </div>
+                <p class="description">{{$campaign->description}}</p>
+                <div class="space20"></div>
             </div>
 
             <div class="row">
-                <div class="">
-                    <h1 class="date">Fecha: <span>{{date("F j Y", strtotime($campaign->date))}}</span></h1>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="">
-                    <h1 class="time">Hora: <span>{{date("g:i a", strtotime($campaign->date))}}</span></h1>
-                </div>
+                <h3 class="not-margin-y"><span
+                            class="text-bold">Fecha: </span>{{date("F j Y", strtotime($campaign->date))}}</h3>
+                <div class="space10"></div>
+                <h3 class="not-margin-y"><span
+                            class="text-bold">Hora: </span>{{date("g:i a", strtotime($campaign->date))}}</h3>
+                <div class="space20"></div>
             </div>
 
             {{--
@@ -76,10 +72,12 @@
             <div class="row">
                 <div class="join">
                     <h1>¿Cómo puedo participar?</h1>
-                    <p><span>Inscribirme:</span> Si deseas asistir a esta actividad, puedes inscribirte y el
+                    <p><span class="text-bold">Inscribirme:</span> Si deseas asistir a esta actividad, puedes
+                        inscribirte y el
                         administrador de la campaña te contactará por medio de tu inbox, para ultimar los detalles del
                         evento.</p>
-                    <p><span>Donaciones:</span> Puedes donar los dorados que desees a esta campaña, estos serán
+                    <p><span class="text-bold">Donaciones:</span> Puedes donar los dorados que desees a esta campaña,
+                        estos serán
                         descontados de tu bolsa y serán añadidos a la bolsa de la campaña para retribuir a los
                         asistentes de la actividad.</p>
                 </div>
@@ -152,9 +150,9 @@
 
         <article class="col-md-4">
             <div class="row">
-                <div class="col-xs-12 partakers">
+                <div class="partakers">
                     <div>
-                        <h1 class="title1">Asistentes a la campaña:</h1>
+                        <h1 class="">Asistentes a la campaña:</h1>
                         <a>2.500 personas asistirán</a>
                     </div>
 
@@ -171,14 +169,14 @@
             <div class="line"></div>
 
             <div class="row">
-                <div class="col-xs-12 text-center host">
-                    <h1>Organiza</h1>
+                <div class="text-center host">
+                    <h2 class="text-center text-bold montserrat-font">Organiza</h2>
                     <div class="row">
                         <div class="col-xs-4 col-xs-offset-4">
                             @include('partial/imageProfile', array('cover' => $campaign->groups->image, 'id' =>$campaign->groups->id, 'border' => '#0f6784', 'borderSize' => '3px'))
                         </div>
                     </div>
-                    <h1 class="name">{{$campaign->groups->admin->first_name.' '.$campaign->groups->admin->last_name}}</h1>
+                    <h1 class="name text-center montserrat-font">{{$campaign->groups->admin->first_name.' '.$campaign->groups->admin->last_name}}</h1>
 
                     <div class="space20"></div>
 
@@ -210,22 +208,35 @@
                     </div>
                 </div>
             </div>
+
             <div class="space15"></div>
             <div class="line"></div>
-            <div class="space15"></div>
 
             <div class="row">
-                <div class="col-xs-12 text-center sharing">
-                    <h2>Comparte esta campaña en:</h2>
-                    <div class="row"></div>
+                <div class="text-center sharing">
+                    <h3 class="text-bold text-left">Comparte esta campaña en:</h3>
+                    <div class="space15"></div>
+                    <div class="row">
+                        <button class="facebook">
+                            <img src="/images/facebook.svg">
+                        </button>
+                        <button class="twitter">
+                            <img src="/images/twitter.svg">
+                        </button>
+                        <button class="google">
+                            <img src="/images/google.svg">
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div class="space15"></div>
-            <div class="line"></div>
-            <div class="space15"></div>
+            <div class="report-content text-right">
+                <div class="line"></div>
+                <div class="space15"></div>
+                <a class="text-right"><i class='material-icons'>error</i> Reportar contenido</a>
+            </div>
         </article>
-
     </div>
     @include("campaigns/partial/donation")
     @include("campaigns/partial/inscription")

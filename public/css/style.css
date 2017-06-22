@@ -1553,18 +1553,39 @@ div#findMobile .close {
     max-width: 332px;
 }
 
-.campaign h1, h2, h6, p {
+.campaign h1, h2, h3, h6, p {
     font-family: 'Source Sans Pro', sans-serif;
+}
+
+.campaign h1 {
+    font-size: 28px;
+}
+
+.campaign h2 {
+    font-size: 20px;
+}
+
+.campaign h3 {
+    font-size: 18px;
+    color: #303030;
+}
+
+.campaign p {
+    font-size: 18px;
+    color: #303030;
 }
 
 .campaign .rating span {
     font-size: 3rem;
 }
 
+.campaign .montserrat-font {
+    font-family: Montserrat, sans-serif;
+}
+
 .campaign .title {
     font-family: Montserrat, sans-serif;
     font-weight: bold;
-    font-size: 28px;
     color: #2c3e50;
 }
 
@@ -1641,10 +1662,6 @@ div#findMobile .close {
     font-size: 18px;
 }
 
-.campaign .join span {
-    font-weight: bold;
-}
-
 .campaign .cancel-button {
     color: #0f6784;
     background-color: #ffffff;
@@ -1713,6 +1730,31 @@ div#findMobile .close {
 
 .campaign .host .rate span {
     color: #90a1b5;
+}
+
+.campaign .sharing button {
+    border-radius: 10px;
+    display: inline;
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin: 0 10px;
+}
+
+.campaign button.facebook {
+    background-color: #3b5994;
+}
+
+.campaign button.twitter {
+    background-color: #00aced;
+}
+
+.campaign button.google {
+    background-color: #cf4836;
+}
+
+.report-content a {
+    color: #999999;
 }
 
 .dialogBox > .arrow {
