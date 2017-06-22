@@ -57,11 +57,9 @@
             <div class="row">
                 <div class="dorados">
                     <h1 class="sub-title">Participa en esta campaña y adquiere:</h1>
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <img src="/images/moneda.png">
-                        </div>
-                        <div class="col-xs-10">
+                    <div class="dorados">
+                        <img src="/images/moneda.png">
+                        <div>
                             <h1>{{$campaign->credits}} dorados</h1>
                             <p>Cada dorado vale una hora de tu tiempo, y del tiempo de cualquier persona.</p>
                         </div>
