@@ -241,11 +241,19 @@ Buttons
     opacity: 0.7;
 }
 
-p.dialog {
+.dialog {
     background: #fff;
-    padding: 5px;
     border-radius: 5px;
-    border: 1px solid #979797;
+    padding-bottom: 5px;
+}
+
+.dialog .dialogHeader{
+    background: #d0e4ea;
+    padding: 0px 5px;
+}
+
+.dialog > p {
+    padding: 0px 10px;
 }
 
 /*
@@ -1740,6 +1748,6 @@ div#findMobile .close {
     content: "";
     width: 20px;
     height: 20px;
-    top: -20%;
+    top: -20px;
     left: 50%;
 }

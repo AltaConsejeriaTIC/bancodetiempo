@@ -14,7 +14,7 @@
                 <label for="filter1" class=" fa fa-search "></label>
                 {!! Form::close() !!}
             </div>
-            <div class="text-right col-md-4" id="container-nav-buttons">
+            <div class="text-right col-md-4 col-xs-5" id="container-nav-buttons">
                 <button class="button5" @click='myData.login = true'>{{ trans('nav.login') }}</button>
                 <button class="button9 buttonStart hidden-xs"
                         @click='myData.login = true'>{{ trans('nav.register') }}</button>
