@@ -50,6 +50,7 @@ jQuery(document).ready(function(){
 });
 
 function nextTransition(){
+    jQuery(".transition").scrollTop(0);
     var open = jQuery(this).data('open');
     var next = jQuery(open);
     var current = jQuery(".transition .active");

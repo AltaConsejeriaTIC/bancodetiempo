@@ -39,17 +39,15 @@
 
         <div id="conversation" class="row transition">
             <div class='listMessages col-xs-12 active' id='listMessages' data-in='{"top":"0%", "opacity":1}' data-out='{"top":"-100%", "opacity" : 0}'>
-                <div id='messages' conversation='{{$conversation->id}}'></div>
+                <div id='messages' class=" scrollBottom" conversation='{{$conversation->id}}'></div>
+                <div class='responseBox row'>
+                    <sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}' applicant="{{$conversation->applicant_id}}" deal="{{$dealState ? $dealState->state_id : 0}}"></sendmessage>
+
+                </div>
             </div>
             @include('deals/formDeal')
             @include('deals/suggestedSites')
         </div>
-
-		<div class='responseBox row'>
-			<sendmessage conversation='{{$conversation->id}}' token='{{ csrf_token() }}' sender='{{Auth::user()->id}}' applicant="{{$conversation->applicant_id}}" deal="{{$dealState ? $dealState->state_id : 0}}">
-			</sendmessage>
-
-		</div>
 	</div>
 @include("partial/observationForm")
 

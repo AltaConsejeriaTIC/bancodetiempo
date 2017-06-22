@@ -88,6 +88,7 @@
                 </button>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-xs-12">
                 <button class="col-xs-12 button10 background-white text-center buttonTransition" type="button" data-open='#listMessages'>
@@ -95,6 +96,7 @@
                 </button>
             </div>
         </div>
+        <deals token='{{ csrf_token() }}' service_id='{{$conversation->service_id}}' applicant="{{$conversation->applicant_id}}" conversation='{{$conversation->id}}'></deals>
     {!!Form::close()!!}
 
 </div>

@@ -1,4 +1,9 @@
 @media (max-width: 450px) {
+
+    #app {
+        min-height: 500px;
+    }
+
     .align {
         margin-right: 0px !important;
         margin-left: 0px !important;
