@@ -19,6 +19,19 @@
         </div>
 
         <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                @for($cont = 1 ; $cont <= 5 ; $cont++)
+                    @if($cont <= Auth::user()->ranking)
+                        <span class='material-icons paragraph9'>grade</span>
+                    @else
+                        <span class='material-icons paragraph9 rankingInactive'>grade</span>
+                    @endif
+                @endfor
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
             <div class="col-xs-10 col-xs-offset-1">
                 <p class='paragraph4'>{{Auth::user()->aboutMe}}</p>
             </div>

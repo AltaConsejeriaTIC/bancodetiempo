@@ -20,11 +20,11 @@
 
             <a @if(is_null(Auth::User())) @click='myData.login = true' @else  href="/campaign/{{$campaign->id}}" @endif>
                 <div class="content">
-                    <h3 class='title2'>{{$campaign->name}}</h3>
+                    <h3 class='title2 title'>{{$campaign->name}}</h3>
 
                     <div class="space15 hidden-xs">
                     </div>
-                    <p class='paragraph2'>{{str_limit($campaign->description, 100)}}</p>
+                    <p class='paragraph2 description'>{{str_limit($campaign->description, 90)}}</p>
                     <div class="col-xs-12 col-md-6 not-padding">
                         <p class='paragraph2'><strong>{{ trans('campaigns.date') }}:</strong> {{ date('j', strtotime($campaign->date)) . " de " .date('M', strtotime($campaign->date))}}</p>
                     </div>

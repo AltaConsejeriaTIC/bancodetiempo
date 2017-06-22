@@ -8,7 +8,7 @@ return [
     'modality' => 'Modalidad',
     'virtually' => 'Virtual',
     'presently' => 'Presencial',
-    'value' => 'Valor del servicio',
+    'value' => 'Adquiere esta oferta por',
     'category' => 'Categoría',
     'defaultCategory' => 'Debes seleccionar una categoría.',
     'tags' => 'Palabras clave',
@@ -16,5 +16,11 @@ return [
     'placeholderTags' => 'Ej. EstiloDeVida JuegosDeMesa Collar',
     'cover' => 'Foto de la oferta',
     'next' => 'Saltar este paso',
-    'publish' => 'publicar'
+    'publish' => 'publicar',
+    'textCredits' => 'Cada dorado vale una hora de tu tiempo, y del tiempo de cualquier persona.',
+    'offeredBy' => 'Ofertada por',
+    'question' => '¿Te interesa ésta oferta?',
+    'share' => 'Comparte esta oferta en',
+    'comments' => 'Comentarios de los usuarios',
+    'textRanking' => 'Amabilidad, respeto y confianza'
 ];

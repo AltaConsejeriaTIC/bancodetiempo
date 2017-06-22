@@ -26,21 +26,21 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-                        <p class='paragraph4'>{{$user->aboutMe}}</p>
-                    </div>
-                </div>
-
-                <div class='ranking'>
-					<div>
 						@for($cont = 1 ; $cont <= 5 ; $cont++)
 							@if($cont <= $user->ranking)
 								<span class='material-icons paragraph9'>grade</span>
 							@else
-								<span class='material-icons paragraph8 in'>fiber_manual_record</span>
+								<span class='material-icons paragraph9 rankingInactive'>grade</span>
 							@endif
 						@endfor
-					</div>
-				</div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class='paragraph4'>{{$user->aboutMe}}</p>
+                    </div>
+                </div>
 
             </div>
 
