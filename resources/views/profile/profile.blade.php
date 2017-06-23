@@ -15,7 +15,7 @@
                 <a href="#tabServices" data-toggle="tab" class="paragraph1">{{ trans('profile.services') }}</a>
             </li>
             <li>
-                <a href="#tabGroups" data-toggle="tab" class="paragraph1">{{ trans('profile.groups') }}</a>
+                <a href="#tabCampaings" data-toggle="tab" class="paragraph1">{{ trans('profile.campaigns') }}</a>
             </li>
         </ul>
 
@@ -24,8 +24,8 @@
                 @include('profile.partial.tabService')
             </div>
 
-	       <div class="tab-pane" id="tabGroups">
-                @include('profile.partial.tabGroups')
+	       <div class="tab-pane" id="tabCampaings">
+                @include('profile.partial.tabCampaigns')
             </div>
         </div>
 
@@ -43,5 +43,5 @@
 
 </div>
 
-@include("profile/partial/formNewGroup")
+@include("profile/partial/formNewCampaign")
 @endsection
