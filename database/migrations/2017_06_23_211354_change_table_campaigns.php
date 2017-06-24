@@ -15,8 +15,9 @@ class ChangeTableCampaigns extends Migration
      */
     public function up()
     {
+        $cols = DB::getSchemaBuilder()->getColumnListing('campaigns');
 
-        if(array_has(Campaigns::all()->last()->toArray(), 'groups_id')){
+        if(array_search('groups_id', $cols) !== false){
             $users = [];
             foreach(Campaigns::all() as $campaign){
                 $group = Groups::find($campaign->groups_id);

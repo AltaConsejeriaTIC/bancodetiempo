@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         @foreach($campaigns as $key => $campaign)
-          <div class='col-md-6 col-xs-12'>
+          <div class='col-xs-12'>
               @include('partial/campaignBox')
           </div>
 
