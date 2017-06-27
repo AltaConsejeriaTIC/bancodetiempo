@@ -139,7 +139,7 @@
             <div class="row">
                 @if($campaign->allows_registration == 0)
                     @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)
-                        @if($campaign->groups->admin_id != Auth::user()->id)
+                        @if($campaign->user->id != Auth::user()->id)
                             <div class="col-xs-12 text-center">
                                 <button class='col-xs-12 button1 background-active-color text-center'
                                         v-on:click='myData.preinscription = true'>¡Pre-inscribirme!
@@ -166,7 +166,7 @@
                     <div class="space20"></div>
                 @else
                     @if($campaign->participants->where('participant_id', Auth::id())->where("confirmed", 1)->count() == 0)
-                        @if($campaign->groups->admin_id != Auth::user()->id)
+                        @if($campaign->user->id != Auth::user()->id)
                             <div class="col-xs-12">
                                 <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
                             </div>
@@ -179,7 +179,7 @@
                         @endif
                     @endif
 
-                    @if($campaign->state_id == 12 && $campaign->groups->admin_id == Auth::user()->id)
+                    @if($campaign->state_id == 12 && $campaign->user->id == Auth::user()->id)
 
                         <div class="col-xs-12 text-center">
                             <button class='button1 background-active-color text-center'
@@ -225,18 +225,18 @@
                     <h2 class="text-center text-bold montserrat-font">Organiza</h2>
                     <div class="row">
                         <div class="col-xs-4 col-xs-offset-4">
-                            @include('partial/imageProfile', array('cover' => $campaign->groups->image, 'id' =>$campaign->groups->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                            @include('partial/imageProfile', array('cover' => $campaign->user->avatar, 'id' =>$campaign->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
                         </div>
                     </div>
-                    <h1 class="name text-center montserrat-font">{{$campaign->groups->admin->first_name.' '.$campaign->groups->admin->last_name}}</h1>
+                    <h1 class="name text-center montserrat-font">{{$campaign->user->first_name.' '.$campaign->user->last_name}}</h1>
 
                     <div class="space20"></div>
 
                     <h6 class="rate">Amabilidad, respeto y confianza
-                        <span>{{number_format($campaign->groups->admin->ranking, 1)}}</span></h6>
+                        <span>{{number_format($campaign->user->ranking, 1)}}</span></h6>
                     <div class="text-left rating">
                         @for($cont = 1 ; $cont <= 5 ; $cont++)
-                            @if($cont <= $campaign->groups->admin->ranking)
+                            @if($cont <= $campaign->user->ranking)
                                 <span class='material-icons'>star</span>
                             @else
                                 <span class='material-icons'>star_border</span>
@@ -245,7 +245,7 @@
                     </div>
                     <div class="space20"></div>
 
-                    <p class="description text-left">{{$campaign->groups->admin->aboutMe}}</p>
+                    <p class="description text-left">{{$campaign->user->aboutMe}}</p>
 
                     <div class="space15"></div>
 
@@ -256,7 +256,7 @@
                     <div class="col-xs-12 text-center">
                         <button class='button1 background-active-color text-center'
                                 v-on:click='myData.inscription = true'>Comunícate
-                            con {{$campaign->groups->admin->first_name}}</button>
+                            con {{$campaign->user->first_name}}</button>
                     </div>
                 </div>
             </div>

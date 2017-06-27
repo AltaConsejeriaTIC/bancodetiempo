@@ -56,3 +56,7 @@ Route::resource('/admin/downloadReport', 'Admin\ReportsController@downloadReport
 Route::get("/admin/dynamicContent", 'Admin\DynamicContentController@showList');
 Route::get("/admin/dynamicContent/{content_id}", 'Admin\DynamicContentController@editContent');
 Route::post("/admin/dynamicContent/edit", 'Admin\DynamicContentController@saveContent');
+
+Route::get("/admin/suggestedSites", 'Admin\SuggestedSitiesController@index');
+Route::post("/admin/suggestedSites/newCategory", 'Admin\SuggestedSitiesController@createCategory');
+

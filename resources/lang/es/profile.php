@@ -27,6 +27,7 @@ return [
     'placeHolderLinkInstagram' => 'Ingresa tu usuario de Instagram',
     'services' => 'Mis Ofertas',
     'groups' => 'Mis Grupos',
-    'myInterest' => 'Mis intereses'
+    'myInterest' => 'Mis intereses',
+    'campaigns' => 'Mis campañas'
 
 ];

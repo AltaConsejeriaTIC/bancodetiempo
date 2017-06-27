@@ -15,6 +15,7 @@ use App\Models\Attainment;
 use App\Models\Tag;
 use App\Models\Service;
 use App\Models\Groups;
+use App\Models\Campaigns;
 use JavaScript;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AttainmentsController;
@@ -30,14 +31,15 @@ class ProfileController extends Controller
 				'birthDateJs' => is_null($user->birthDate) ? "0000-00-00" :  $user->birthDate,
       ]);
 
-       $myGroups = Groups::groupsUser(Auth::user()->id);
-       return view('profile/profile', compact('services', 'myGroups'));
+       $campaigns = Campaigns::campaignsUser(Auth::user()->id)->get();
+       return view('profile/profile', compact('services', 'campaigns'));
     }
 
     public function showProfileUser($user_id){
         $user = User::find($user_id);
         $services = Service::where("user_id" , $user->id)->where('state_id' , 1)->orderBy("created_at","desc")->get();
-       return view('profile/profilePublic', compact('user', 'services', 'myGroups'));
+
+        return view('profile/profilePublic', compact('user', 'services', 'myGroups'));
     }
 
     public function  editProfilePicture(Request $request){

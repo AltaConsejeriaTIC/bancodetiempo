@@ -27,7 +27,7 @@ class CampaignController extends Controller
                 'name' => $request->input('nameCampaign'),
                 'description' => $request->input('descriptionCampaign'),
                 'image' => $cover,
-                'groups_id' => $request->input('group_id'),
+                'user_id' => Auth::id(),
                 'hours' => $request->input('hoursCampaign'),
                 'credits' => 0,
                 'category_id' => $request->input('categoryCampaign'),

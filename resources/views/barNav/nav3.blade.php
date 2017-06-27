@@ -1,13 +1,13 @@
  <nav class='navbar navbar-default navbar-static-top nav2'>
     <div class="container">
-        <div class='row'>
+        <div class='row flex-center'>
 
-            <div class="col-xs-7  col-sm-3  col-md-3 padding-top">
+            <div class="col-xs-7  col-sm-3  col-md-3">
                 <a href="/index">
                     <img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo"/>
                 </a>
             </div>
-            <div class='hidden-xs hidden-sm col-md-offset-1 padding-top col-md-3'>
+            <div class='hidden-xs hidden-sm col-md-offset-1 col-md-3'>
                 {!! Form::open(['url' => 'filter', 'method' => 'get']) !!}
                 <input type='text' class='filter col-md-12' name='filter' id='filter1'
                        placeholder='{{ trans("nav.inputFind") }}'>
