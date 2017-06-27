@@ -1,5 +1,79 @@
 @extends('layouts.app')
 
+@section('metas')
+    <meta property="og:url" content="{{url()->current()}}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{$campaign->name}}"/>
+    <meta property="og:description" content="{{$campaign->description}}"/>
+    <meta property="og:image" content="{{url('/')}}/{{$campaign->image}}"/>
+    <script>
+        function shareFb(url) {
+
+            FB.login(function (res) {
+                console.log(res);
+                FB.ui({
+                    method: 'share',
+                    href: url
+                }, function (response) {
+                });
+                /*FB.ui({
+                 method: 'share_open_graph',
+                 action_type: 'og.likes',
+                 action_properties: JSON.stringify({
+                 object: 'https://developers.facebook.com/docs/',
+                 })
+                 }, function (response) {
+                 console.log(response);
+                 }
+                 );
+                 */
+            }, {
+                auth_type: 'rerequest',
+                scope: 'publish_actions'
+            });
+
+            /*FB.getLoginStatus(function(response) {
+             if (response.status === 'connected') {
+             console.log('Logged in.');
+             }
+             else {
+             FB.login();
+             }
+             });
+
+
+
+             FB.api("/me", function(profile) {
+             console.log(profile);
+             if (profile.id) {
+             app_init();
+             } else {
+             alert("Problem connecting to Facebook");
+             }
+             });
+
+             FB.ui({
+             method: 'share_open_graph',
+             action_type: 'og.likes',
+             action_properties: JSON.stringify({
+             object:'http://localbancodetiempo.com/',
+             })
+             }, function(response){
+             // Debug response (optional)
+             console.log(response);
+             });
+
+             FB.ui({
+             method: 'share',
+             href: url
+             }, function (response) {
+             });
+
+             */
+        }
+    </script>
+@endsection
+
 @section('content')
 
     @if(!is_null(Auth::User()))
@@ -215,13 +289,20 @@
                     <h3 class="text-bold text-left">Comparte esta campaña en:</h3>
                     <div class="space15"></div>
                     <div class="row">
-                        <button class="facebook">
+                        {{--
+                        <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="button"
+                             data-size="small" data-mobile-iframe="true">
+                            <a class="fb-xfbml-parse-ignore" target="_blank"
+                               href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse">Compartir</a>
+                        </div>
+                        --}}
+                        <button class="button facebook" onclick="shareFb('{{url()->current()}}')">
                             <img src="/images/facebook.svg">
                         </button>
-                        <button class="twitter">
+                        <button class="button twitter">
                             <img src="/images/twitter.svg">
                         </button>
-                        <button class="google">
+                        <button class="button google">
                             <img src="/images/google.svg">
                         </button>
                     </div>
