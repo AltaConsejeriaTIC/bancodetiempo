@@ -42,7 +42,7 @@ class CreateCampaignsTable extends Migration
                 ->onUpdate('cascade');
         });
 
-        /*DB::unprepared("CREATE PROCEDURE `duplicateCreditsCampaign`()
+        DB::unprepared("CREATE PROCEDURE `duplicateCreditsCampaign`()
         BEGIN
         DECLARE campaign INT;
         DECLARE credit INT;
@@ -59,7 +59,7 @@ class CreateCampaignsTable extends Migration
 
         END");
 
-        DB::unprepared("CREATE EVENT `Campaign` ON SCHEDULE EVERY 1 MINUTE STARTS '2017-02-28 00:00:00' ENDS '2025-05-27 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL `duplicateCreditsCampaign`()");*/
+        DB::unprepared("CREATE EVENT `Campaign` ON SCHEDULE EVERY 1 MINUTE STARTS '2017-02-28 00:00:00' ENDS '2025-05-27 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL `duplicateCreditsCampaign`()");
 
     }
 
