@@ -8,48 +8,68 @@
     <meta property="og:image" content="{{url('/')}}/{{$campaign->image}}"/>
     <script>
         function shareFb(url) {
-            /*FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    console.log('Logged in.');
-                }
-                else {
-                    FB.login();
-                }
-            });
 
-            function myFacebookLogin() {
-                FB.login(function(){}, {scope: 'publish_actions'}, function (res) {
-                    console.log(res);
+            FB.login(function (res) {
+                console.log(res);
+                FB.ui({
+                    method: 'share',
+                    href: url
+                }, function (response) {
                 });
-            }
-
-            FB.api("/me", function(profile) {
-                console.log(profile);
-                if (profile.id) {
-                    app_init();
-                } else {
-                    alert("Problem connecting to Facebook");
-                }
+                /*FB.ui({
+                 method: 'share_open_graph',
+                 action_type: 'og.likes',
+                 action_properties: JSON.stringify({
+                 object: 'https://developers.facebook.com/docs/',
+                 })
+                 }, function (response) {
+                 console.log(response);
+                 }
+                 );
+                 */
+            }, {
+                auth_type: 'rerequest',
+                scope: 'publish_actions'
             });
 
-            FB.ui({
-                method: 'share_open_graph',
-                action_type: 'og.likes',
-                action_properties: JSON.stringify({
-                    object:'http://localbancodetiempo.com/',
-                })
-            }, function(response){
-                // Debug response (optional)
-                console.log(response);
-            });
-            */
+            /*FB.getLoginStatus(function(response) {
+             if (response.status === 'connected') {
+             console.log('Logged in.');
+             }
+             else {
+             FB.login();
+             }
+             });
 
-            FB.ui({
-                method: 'share',
-                href: url
-            }, function (response) {
-            });
 
+
+             FB.api("/me", function(profile) {
+             console.log(profile);
+             if (profile.id) {
+             app_init();
+             } else {
+             alert("Problem connecting to Facebook");
+             }
+             });
+
+             FB.ui({
+             method: 'share_open_graph',
+             action_type: 'og.likes',
+             action_properties: JSON.stringify({
+             object:'http://localbancodetiempo.com/',
+             })
+             }, function(response){
+             // Debug response (optional)
+             console.log(response);
+             });
+
+             FB.ui({
+             method: 'share',
+             href: url
+             }, function (response) {
+             });
+
+             */
         }
     </script>
 @endsection
