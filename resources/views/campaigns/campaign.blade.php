@@ -151,7 +151,7 @@
                 <div class="partakers">
                     <div>
                         <h1 class="">Asistentes a la campaña:</h1>
-                        <a>2.500 personas asistirán</a>
+                        <a>{{$campaign->participants->where("confirmed", 1)->count()}} personas asistirán</a>
                     </div>
 
                     <div class="space15"></div>
