@@ -6,6 +6,52 @@
     <meta property="og:title" content="{{$campaign->name}}"/>
     <meta property="og:description" content="{{$campaign->description}}"/>
     <meta property="og:image" content="{{url('/')}}/{{$campaign->image}}"/>
+    <script>
+        function shareFb(url) {
+            /*FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    console.log('Logged in.');
+                }
+                else {
+                    FB.login();
+                }
+            });
+
+            function myFacebookLogin() {
+                FB.login(function(){}, {scope: 'publish_actions'}, function (res) {
+                    console.log(res);
+                });
+            }
+
+            FB.api("/me", function(profile) {
+                console.log(profile);
+                if (profile.id) {
+                    app_init();
+                } else {
+                    alert("Problem connecting to Facebook");
+                }
+            });
+
+            FB.ui({
+                method: 'share_open_graph',
+                action_type: 'og.likes',
+                action_properties: JSON.stringify({
+                    object:'http://localbancodetiempo.com/',
+                })
+            }, function(response){
+                // Debug response (optional)
+                console.log(response);
+            });
+            */
+
+            FB.ui({
+                method: 'share',
+                href: url
+            }, function (response) {
+            });
+
+        }
+    </script>
 @endsection
 
 @section('content')
@@ -224,11 +270,13 @@
                     <div class="space15"></div>
                     <div class="row">
                         {{--
-                        <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="button" data-size="small" data-mobile-iframe="true">
-                            <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse">Compartir</a>
+                        <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="button"
+                             data-size="small" data-mobile-iframe="true">
+                            <a class="fb-xfbml-parse-ignore" target="_blank"
+                               href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse">Compartir</a>
                         </div>
                         --}}
-                        <button class="button facebook">
+                        <button class="button facebook" onclick="shareFb('{{url()->current()}}')">
                             <img src="/images/facebook.svg">
                         </button>
                         <button class="button twitter">
