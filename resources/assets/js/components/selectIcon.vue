@@ -908,7 +908,7 @@
 <script>
 export default {
     data() {
-      return {myicon:this.icon};
+      return {myicon : this.icon};
     },
 	props: ["icon"],
 	mounted(){
@@ -917,6 +917,9 @@ export default {
 	methods:{
 	},
     watch: {
+        icon:function(){
+            this.myicon = this.icon
+        },
         myicon:function(newicon){
             jQuery(".iconSites .active").removeClass("active");
             jQuery(".fa-"+newicon).parent().addClass('active')

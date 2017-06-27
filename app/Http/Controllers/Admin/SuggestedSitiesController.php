@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CategoriesSites;
+use App\Models\SuggestedSites;
 
 class SuggestedSitiesController extends Controller
 {
@@ -21,6 +22,60 @@ class SuggestedSitiesController extends Controller
         CategoriesSites::create([
             "name" => $request->input("name"),
             "icon" => $request->input("icon", 'bookmark')
+        ]);
+
+
+        return redirect()->back();
+    }
+
+    public function editCategory(Request $request){
+
+        CategoriesSites::find($request->input('categoryId'))->update([
+            "name" => $request->input("name"),
+            "icon" => $request->input("icon", 'bookmark')
+        ]);
+
+
+        return redirect()->back();
+    }
+
+    public function createSite(Request $request){
+
+        $this->validate($request, [
+            'name' => 'required|max:100',
+            'address' => 'required',
+            'coordinates' => 'required'
+        ]);
+
+         SuggestedSites::create([
+            "name" => $request->input("name"),
+            "address" => $request->input("address"),
+            "requirements" => $request->input("requirements"),
+            "contact" => $request->input("contact"),
+            "description" => $request->input("description"),
+            "coordinates" => $request->input("coordinates"),
+            "category_site_id" => $request->input("categoryId")
+        ]);
+
+
+        return redirect()->back();
+    }
+
+    public function editSite(Request $request){
+
+        $this->validate($request, [
+            'name' => 'required|max:100',
+            'address' => 'required',
+            'coordinates' => 'required'
+        ]);
+
+         SuggestedSites::find($request->input('siteId'))->update([
+            "name" => $request->input("name"),
+            "address" => $request->input("address"),
+            "requirements" => $request->input("requirements"),
+            "contact" => $request->input("contact"),
+            "description" => $request->input("description"),
+            "coordinates" => $request->input("coordinates")
         ]);
 
 
