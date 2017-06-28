@@ -280,3 +280,22 @@ article#report > table td > span {
     max-height: 50px;
     min-height: 50px;
 }
+
+.boxIcons {
+    position: relative;
+    display: block;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.iconSites > a {
+    text-decoration: none !important;
+    color: #000;
+    margin: 5px !important;
+    display: block;
+}
+
+.iconSites .active {
+    background: #009688;
+    color: #fff;
+}

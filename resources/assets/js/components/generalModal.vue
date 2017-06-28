@@ -10,12 +10,16 @@
 <script>
 
 export default {
-	props: ["name", "state", "stateInit", 'closeTime'],
+	props: ["name", "state", "stateInit", 'closeTime', 'time'],
 	mounted(){
 		var state = (this.stateInit === 'true');		
 		this.$parent.setMyData(this.name, state);
+        var _time = 6000;
+        if(this.time !== undefined){
+            _time = parseInt(this.time);
+        }
         if((this.closeTime === 'true')){
-            setTimeout(this.close, 6000);
+            setTimeout(this.close, _time);
         }
 	},
 	methods:{
