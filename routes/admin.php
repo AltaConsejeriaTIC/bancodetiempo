@@ -60,7 +60,9 @@ Route::post("/admin/dynamicContent/edit", 'Admin\DynamicContentController@saveCo
 Route::get("/admin/suggestedSites", 'Admin\SuggestedSitiesController@index');
 Route::post("/admin/suggestedSites/newCategory", 'Admin\SuggestedSitiesController@createCategory');
 Route::post("/admin/suggestedSites/editCategory", 'Admin\SuggestedSitiesController@editCategory');
+Route::post("/admin/suggestedSites/deleteCategory", 'Admin\SuggestedSitiesController@deleteCategory');
 
 Route::post("/admin/suggestedSites/newSite", 'Admin\SuggestedSitiesController@createSite');
 Route::post("/admin/suggestedSites/editSite", 'Admin\SuggestedSitiesController@editSite');
+Route::post("/admin/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController@deleteSite');
 

@@ -29,7 +29,7 @@
                                 <td @click='myData.editcategory = true;myData.nameCategory = "{{$category->name}}";myData.iconCategory = "{{$category->icon}}";myData.categoryId = {{$category->id}};'>{{$category->name}}</td>
                                 <td>
                                     <button type="button" class="btn btn-raised btn-primary btn-xs" title="Editar categoria" @click='myData.editcategory = true;myData.nameCategory = "{{$category->name}}";myData.iconCategory = "{{$category->icon}}";myData.categoryId = {{$category->id}};'><i class="material-icons">mode_edit</i></button>    
-                                    <button type="button" class="btn btn-raised btn-primary btn-xs" title="Borrar categoria"><i class="material-icons">delete</i></button>
+                                    <button type="button" class="btn btn-raised btn-primary btn-xs" title="Borrar categoria" @click='myData.deletecategory=true;myData.categoryId="{{$category->id}}";myData.categorySites="{{$category->sites->count()}}"'><i class="material-icons">delete</i></button>
                                 </td>
                             </tr>
                             <tr>
@@ -47,17 +47,26 @@
                                             <th>Acciones</th>
                                         </tr>
                                         @foreach($category->sites as $site)
-                                            <tr @click='myData.newsite = true;
+                                            <tr>
+                                                <td @click='myData.newsite = true;
                                                myData.siteName="{{$site->name}}";
                                                myData.siteAddress="{{$site->address}}";
                                                myData.siteRequirements="{{$site->requirements}}";
                                                myData.siteContact="{{$site->contact}}";
                                                myData.siteDescription="{{$site->description}}";
                                                myData.siteCoordinates="{{$site->coordinates}}";
-                                               myData.siteId = {{$site->id}}' onClick='loadSite();'>
-                                                <td>{{$site->name}}</td>
-                                                <td>{{$site->address}}</td>
-                                                <td></td>
+                                               myData.siteId = {{$site->id}}' onClick='loadSite();'>{{$site->name}}</td>
+                                                <td @click='myData.newsite = true;
+                                               myData.siteName="{{$site->name}}";
+                                               myData.siteAddress="{{$site->address}}";
+                                               myData.siteRequirements="{{$site->requirements}}";
+                                               myData.siteContact="{{$site->contact}}";
+                                               myData.siteDescription="{{$site->description}}";
+                                               myData.siteCoordinates="{{$site->coordinates}}";
+                                               myData.siteId = {{$site->id}}' onClick='loadSite();'>{{$site->address}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-raised btn-primary btn-xs" title="Borrar categoria" @click='myData.deletesite=true;myData.siteId = {{$site->id}}'><i class="material-icons">delete</i></button>
+                                                </td>
                                             </tr>
                                         @endforeach
                                    </table>
@@ -75,6 +84,8 @@
        @include('admin.suggestedSites.partial.newCategory')
        @include('admin.suggestedSites.partial.editCategory')
        @include('admin.suggestedSites.partial.newSite')
+       @include('admin.suggestedSites.partial.deleteCategory')
+       @include('admin.suggestedSites.partial.deleteSite')
 
     </div>
 
