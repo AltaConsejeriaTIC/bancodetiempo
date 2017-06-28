@@ -141,6 +141,16 @@ var allValidations = {
         return 0;
 
     },
+    dateFormat: function(it){
+        var expresion = new RegExp(/^\d{4}-\d{2}-\d{2}$/i);
+        if(!expresion.test(it.val())){
+            this.showError(it, 'dateFormat');
+            return 1;
+        }
+        this.hiddenError(it, 'dateFormat');
+        return 0;
+
+    },
     minYear : function(it, v){
         if(this.years(it.val()) < v){
             this.showError(it, 'min');

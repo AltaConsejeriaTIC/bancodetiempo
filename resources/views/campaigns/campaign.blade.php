@@ -237,12 +237,17 @@
                         <button class="button facebook" onclick="shareFb('{{url()->current()}}')">
                             <img src="/images/facebook.svg">
                         </button>
-                        <button class="button twitter">
-                            <img src="/images/twitter.svg">
-                        </button>
-                        <button class="button google">
-                            <img src="/images/google.svg">
-                        </button>
+                        <a href="https://twitter.com/intent/tweet?url={{url()->current()}}">
+                            <button class="button twitter">
+                                <img src="/images/twitter.svg">
+                            </button>
+                        </a>
+                        <a href="https://plus.google.com/share?url={{url()->current()}}" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                            <button class="button google">
+                                <img src="/images/google.svg">
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
