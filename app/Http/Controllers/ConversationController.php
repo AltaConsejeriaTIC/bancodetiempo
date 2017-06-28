@@ -79,7 +79,7 @@ class ConversationController extends Controller{
 
 		$deal = Deal::where("service_id","=",$conversation->service_id)->where("user_id","=",$conversation->applicant_id)->orderBy('id','desc')->first();
                     
-		$dealState = $this->getDealState($deal->id);
+		$dealState = $this->getDealState($deal);
 		
 		$categoriesSites = CategoriesSites::all();
 
@@ -99,7 +99,7 @@ class ConversationController extends Controller{
 	
 	private function getDealState($deal){
 		if($deal){
-			return DealState::where('deal_id', $deal)->orderBy('id','desc')->first();
+			return DealState::where('deal_id', $deal->id)->orderBy('id','desc')->first();
 		}else{
 			return null;
 		}
