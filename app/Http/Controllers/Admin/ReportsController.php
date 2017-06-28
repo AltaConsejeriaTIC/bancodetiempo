@@ -282,8 +282,6 @@ class ReportsController extends Controller
         Excel::create('GruposCambalachea' . date("Y-m-d"), function ($excel) use ($table) {
             $excel->sheet('Grupos', function ($sheet) use ($table) {
                 $sheet->loadView('admin/reports/excel', compact('table'));
-                //$sheet->fromArray($data);
-
             });
         })->download('xls');
     }

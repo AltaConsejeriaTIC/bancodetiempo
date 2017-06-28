@@ -24,10 +24,13 @@
 
                         @foreach($categories as $key => $category)
 
-                            <tr @click='myData.editcategory = true;myData.nameCategory = "{{$category->name}}";myData.iconCategory = "{{$category->icon}}";myData.categoryId = {{$category->id}};'>
-                                <td><i class="fa fa-{{$category->icon}} text-center" style="font-size:25px"></i></td>
-                                <td>{{$category->name}}</td>
-                                <td><button type="button" class="btn btn-raised btn-primary btn-xs" title="Editar estado"><i class="material-icons">mode_edit</i></button></td>
+                            <tr >
+                                <td @click='myData.editcategory = true;myData.nameCategory = "{{$category->name}}";myData.iconCategory = "{{$category->icon}}";myData.categoryId = {{$category->id}};'><i class="fa fa-{{$category->icon}} text-center" style="font-size:25px"></i></td>
+                                <td @click='myData.editcategory = true;myData.nameCategory = "{{$category->name}}";myData.iconCategory = "{{$category->icon}}";myData.categoryId = {{$category->id}};'>{{$category->name}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-raised btn-primary btn-xs" title="Editar categoria" @click='myData.editcategory = true;myData.nameCategory = "{{$category->name}}";myData.iconCategory = "{{$category->icon}}";myData.categoryId = {{$category->id}};'><i class="material-icons">mode_edit</i></button>    
+                                    <button type="button" class="btn btn-raised btn-primary btn-xs" title="Borrar categoria"><i class="material-icons">delete</i></button>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
