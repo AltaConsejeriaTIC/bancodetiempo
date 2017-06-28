@@ -6,6 +6,17 @@
     <meta property="og:title" content="{{$service->name}}"/>
     <meta property="og:description" content="{{$service->description}}"/>
     <meta property="og:image" content="{{url('/')}}/{{$service->image}}"/>
+    <script>
+        function shareFb(url) {
+            FB.ui({
+                method: 'share',
+                display: 'popup',
+                href: url
+            }, function (response) {
+                console.log(response);
+            });
+        }
+    </script>
 @endsection
 
 @section('content')
@@ -149,10 +160,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="button" data-size="small" data-mobile-iframe="true">
-                        <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse">Compartir</a>
-                    </div>
+                <div class="text-center sharing">
+                    <button class="button facebook" onclick="shareFb('{{url()->current()}}')">
+                        <img src="/images/facebook.svg">
+                    </button>
+                    <a href="https://twitter.com/intent/tweet?url={{url()->current()}}">
+                        <button class="button twitter">
+                            <img src="/images/twitter.svg">
+                        </button>
+                    </a>
+                    <a href="https://plus.google.com/share?url={{url()->current()}}" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                        <button class="button google">
+                            <img src="/images/google.svg">
+                        </button>
+                    </a>
                 </div>
             </div>
             <br>

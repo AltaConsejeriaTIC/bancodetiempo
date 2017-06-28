@@ -1843,7 +1843,7 @@ div#findMobile .close {
     color: #90a1b5;
 }
 
-.campaign .sharing .button {
+.sharing .button {
     border-radius: 10px;
     display: inline;
     height: 45px;
@@ -1852,15 +1852,15 @@ div#findMobile .close {
     margin: 0 10px;
 }
 
-.campaign .facebook {
+.sharing .facebook {
     background-color: #3b5994;
 }
 
-.campaign .twitter {
+.sharing .twitter {
     background-color: #00aced;
 }
 
-.campaign .google {
+.sharing .google {
     background-color: #cf4836;
 }
 
