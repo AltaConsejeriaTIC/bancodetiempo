@@ -14,6 +14,8 @@
                 @include('partial.errors')
             </div>
 
+
+
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3>Administrar Usuarios</h3></div>
@@ -35,6 +37,37 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Sitios sugeridos</h3></div>
+                    <div class="panel-body">
+                        <p><br></p>
+                        <p><a href="/admin/suggestedSites" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Generar Reportes</h3></div>
+                    <div class="panel-body">
+                        <p><br></p>
+                        <p><a href="/admin/reports" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>Contenido dinamico</h3></div>
+                    <div class="panel-body">
+                        <p><br></p>
+                        <p><a href="/admin/dynamicContent" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3>Administrar Contenidos</h3></div>

@@ -25,6 +25,13 @@
                     <p class="not-padding paragraph1 text-white col-xs-12 col-sm-12 col-md-12">{{trans("register.textWelcome")}}</p>
                 </div>
             </div>
+            <div class="row">
+	            <div class="col-xs-8 col-xs-offset-2" id='credits'>
+	                <p class="paragraph1 text-white text-center"><strong>{{ trans('register.initialCredits') }}</strong></p>
+	                <p class="paragraph1 text-white text-center"> <img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav"></image>
+                        {{ Auth::user()->credits ? Auth::user()->credits : 0 }} {{ Auth::user()->credits == 1 ? trans('nav.credit') : trans('nav.credits') }}</p>
+	            </div>
+	        </div>
         </article>
     </div>
 </section>

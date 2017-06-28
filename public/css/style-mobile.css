@@ -1,11 +1,15 @@
-@media (max-width: 450px){
-	.align
-		{
-			margin-right: 0px !important;
-    	margin-left: 0px !important;
-		}
+@media (max-width: 450px) {
 
-	.bannerHome {
+    #app {
+        min-height: 500px;
+    }
+
+    .align {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    .bannerHome {
     }
 
     .bannerHome .carousel > div {
@@ -18,92 +22,115 @@
         width: 100%;
     }
 
-	.bannerRegister {
+    .bannerRegister {
         background-size: auto 100% !important;
         background-position: 50% 30% !important;
         padding-top: 100px !important;
     }
-	.bannerInterest{
-		background-size: 215% auto;
-    	background-position: 45% 40%;
-	}
 
-	.boxRegister {
-	    background-size: 350% auto;
-	    background-position: 45% 40%;
-	}
+    .bannerInterest {
+        background-size: 215% auto;
+        background-position: 45% 40%;
+    }
 
-	.bannerService {
-	    background-size: 470% auto;
-    	background-position: 50% 56%;
-	    padding-top: 120px;
-	}
+    .boxRegister {
+        background-size: 350% auto;
+        background-position: 45% 40%;
+    }
 
-	.button5 {
-    	font-size: 13px !important;
-	}
+    .bannerService {
+        background-size: 470% auto;
+        background-position: 50% 56%;
+        padding-top: 120px;
+    }
 
-	.button7 {
-    	font-size: 14px !important;
-	}
+    .button5 {
+        font-size: 13px !important;
+    }
 
-	.button9{
-		font-size:9.5px;
-	}
+    .button7 {
+        font-size: 14px !important;
+    }
 
-    .title1{
+    .button9 {
+        font-size: 9.5px;
+    }
+
+    .title1 {
         font-size: 25px !important;
     }
 
-	.title3{
-		font-size: 17px !important;
-		margin: 0;
-	}
+    .title3 {
+        font-size: 17px !important;
+        margin: 0;
+    }
 
-	.paragraph1{
-		font-size: 16px !important;
-		word-wrap: break-word;
-	}
-	.paragraph2{
-		font-size: 14px !important;
-		word-wrap: break-word;
-	}
-	.paragraph3{
-		font-size: 14px !important;
-		word-wrap: break-word;
-	}
+    .paragraph1 {
+        font-size: 16px !important;
+        word-wrap: break-word;
+    }
 
-	.paragraph4{
-		word-wrap: break-word;
-	}
+    .paragraph2 {
+        font-size: 14px !important;
+        word-wrap: break-word;
+    }
 
-	.paragraph7{
-		font-size: 17px !important;
-		word-wrap: break-word;
-	}
+    .paragraph3 {
+        font-size: 14px !important;
+        word-wrap: break-word;
+    }
 
-	.paragraph8{
-		font-size: 10px !important;
-		word-wrap: break-word;
-	}
+    .paragraph4 {
+        word-wrap: break-word;
+    }
+
+    .paragraph7 {
+        font-size: 17px !important;
+        word-wrap: break-word;
+    }
+
+    .paragraph8 {
+        font-size: 10px !important;
+        word-wrap: break-word;
+    }
 
     ul.menuMobile {
-        padding: 0;
+        margin-bottom: 0px;
         list-style: none;
+        text-align: center;
+    }
+
+    ul.menuMobile li.dropdown {
+        padding: 15px;
+    }
+
+    ul.menuMobile li.dropdown.open {
+        background: #0a1e5f;
     }
 
     ul.menuMobile > li > a > i {
         font-size: 25px;
         text-align: right;
-        color:#fff !important;
+        color: #fff !important;
     }
 
     ul.menuMobile ul.dropdown-menu {
-        left: -125px;
-
+        right: 0px;
+        background-color: #0a1e5f;
+        margin: 0px;
+        left: initial;
     }
 
-    .modal-content-box{
+    .menuMobile .item-icon {
+        margin-right: 15px;
+        right: auto;
+    }
+
+    ul.dropdown-menu > li > a {
+        color: #fff;
+    }
+
+    .modal-content-box {
         width: 100% !important;
     }
 
@@ -119,7 +146,7 @@
         display: block !important;
     }
 
-    .nav-pills>li>a {
+    .nav-pills > li > a {
         font-size: 13px !important;
         padding: 7px;
         display: block;
@@ -129,9 +156,6 @@
         list-style: none;
     }
 
-    .conversationBox .listMessages {
-        height: 350px !important;
-    }
 
     .listMessages > #messages > .row {
         margin-bottom: 5px;
@@ -143,17 +167,40 @@
 
     .line-r-v {
         border-right: 0px solid #fff !important;
-        margin-right: 0px !important;
-        padding-right: 0px !important;
+        margin-right: initial;
+        padding-right: initial;
     }
 
     .line-l-v {
         border-left: 0px solid #fff !important;
-        margin-left: 0px !important;
-        padding-left: 0px !important;
+        margin-left: initial;
+        padding-left: initial;
     }
-    .nav{
+
+    .nav {
         padding-left: 15px !important;
     }
 
+    .campaign-box {
+        height: 300px;
+    }
+
+    .logoFooter {
+        display: block !important;
+        width: initial !important;
+    }
+
+    .logoFooter > img {
+        margin-bottom: 20px;
+    }
+
+    .reset-font {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .popup .dialogBox {
+        top: 15%;
+        width: 80%;
+        left: 10%;
+    }
 }

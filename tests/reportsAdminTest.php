@@ -4,15 +4,22 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class firstServiceTest extends TestCase
+use App\Http\Controllers\Admin\ReportsController;
+
+class reportsAdmin extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-   public function testSeeService(){
-        $this->visit('service')
-            ->see('ofrecer');
+
+
+     public function testExample()
+    {
+        $this->assertTrue(true);
     }
+
+
+
 }

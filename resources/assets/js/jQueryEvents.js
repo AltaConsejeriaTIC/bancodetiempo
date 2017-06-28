@@ -8,6 +8,16 @@ jQuery(document).ready(function(){
        listCategories();
     }
 
+    if(jQuery(".popup").length){
+       jQuery(".popup .shadow").on("click", closePopup)
+    }
+
+    if(jQuery(".dialogBox").length){
+        var top = jQuery("#credits").parent().parent().position().top + jQuery("#credits").position().top + jQuery("#credits").height();
+        jQuery(".dialogBox").css("top", top+"px");
+        jQuery("#credits").css("z-index", 1005);
+    }
+
     if(jQuery(".preview").length){
        jQuery(".preview").each(function(){
            jQuery(this).on('change' ,previewImage);
@@ -23,10 +33,54 @@ jQuery(document).ready(function(){
     if(jQuery(".bannerHome").length){
        bannerHome();
     }
-    jQuery(".score").on("click", score)
 
+    if(jQuery(".pagination").length){
+       jQuery('.pagination > li').on('click', getPagination);
+    }
 
-})
+    if(jQuery(".transition").length){
+       jQuery('.buttonTransition').on('click', nextTransition);
+    }
+
+    jQuery(".score").on("click", score);
+
+    jQuery("#openSearch").on("click", openSearch);
+    jQuery("#findMobile .close").on("click", closeSearch)
+
+});
+
+function nextTransition(){
+    jQuery(".transition").scrollTop(0);
+    var open = jQuery(this).data('open');
+    var next = jQuery(open);
+    var current = jQuery(".transition .active");
+    current.animate(current.data('out'), 500, function(){
+        jQuery(this).removeClass('active');
+    });
+    next.addClass("active");
+    next.animate(next.data('in'), 500);
+
+}
+
+function getPagination(){
+    var page = jQuery(this).data('page');
+    var route = jQuery(this).parent().data('route');
+    var list = jQuery(this).parent().data('list');
+    var filters = jQuery(this).parent().data('filter');
+    var words = jQuery(this).parent().data('words');
+    jQuery(this).parent().children(".active").removeClass('active')
+    jQuery(this).addClass('active');
+    jQuery.ajax({
+        url: route,
+        type : 'GET',
+        data : {'page' : page, 'filter' : filters, 'words' : words},
+        success : function(response){
+            jQuery("#"+list).html(response);
+            jQuery('.pagination > li').on('click', getPagination);
+        }
+    });
+
+}
 
 function bannerHome(){
     jQuery(".bannerHome .carousel").attr("banner", 0);
@@ -109,7 +163,7 @@ function previewImage(e){
     var elemt = jQuery(e.target);
     var id =  e.target.id;
     var files = e.target.files;
-    var label = jQuery(e.target.labels[0]);
+    var label = jQuery("label[for='"+id+"']");
     if(files[0].size < 2000000){
         label.siblings(".error").remove();
         var image = new Image();
@@ -160,4 +214,16 @@ function listCategories(){
         }
     })
 
+}
+
+function openSearch(){
+    jQuery("#findMobile").addClass("active")
+}
+
+function closeSearch(){
+    jQuery("#findMobile").removeClass("active")
+}
+
+function closePopup(){
+    jQuery(".popup").fadeOut();
 }

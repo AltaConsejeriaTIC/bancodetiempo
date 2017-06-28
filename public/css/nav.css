@@ -4,7 +4,6 @@
     background-color: transparent !important;
     position: absolute;
     width: 100%;
-    padding-top: 40px;
     padding-bottom:20px;
     top: 0px;
     left: 0px;
@@ -26,20 +25,19 @@
 /* --------------------bar user login---------------------*/
 .nav2 {
     background-color: #001738 !important;
-    padding-top: 10px;
     padding-bottom: 5px;
     z-index: 10 !important;
     display: block;
     position: initial;
+    margin-bottom: 0px;
 }
 
 
 .iconbar2{
-    padding-right: 20px;
     padding-top: 5px;
-    width: 83%;
-    left: 25%;
     position: relative;
+    margin: auto;
+    display: block;
 }
 @media (max-width: 450px){
 	
@@ -57,16 +55,15 @@
 input.filter {
     height: 36px;
     border: none;
-    width: 284px;
     border-radius: 4px;
     padding-left: 30px;
     color: #2c3e50;
 }
 
 input.filter + label {
-    position: relative;
-    top: -27px;
-    left: 10px;
+    position: absolute;
+    top: 10px;
+    left: 25px;
     font-size: 14px !important;
     color: #b7bab7 !important;
 }
@@ -76,7 +73,6 @@ input.filter::-webkit-input-placeholder {
     font-size: 12px !important;
 }
 .newservice{
-    height: 36px;
     width: 114px;
 }
 .iconmenu{
@@ -107,16 +103,6 @@ input.filter::-webkit-input-placeholder {
 }
 .padding-top{
     padding-top: 8px;
-}
-.icon-profile svg {
-    height: 54px !important;
-    padding-left: 44px;
-}
-.menu{
-    padding-left: 22px;
-    padding-right: 0px;
-    padding-top: 8px;
-    text-align: left;
 }
 
 .line-nav{

@@ -11,11 +11,12 @@ use App\Helpers;
 class GroupsController extends Controller
 {
     //post
-    public function create(Request $request){
+    public function create(Request $request)
+    {
 
-        $cover = Helpers::uploadImage($request->file('imageGroup'), 'group'.date("Ymd").rand(000,999), 'resources/user/user_'. Auth::User()->id . '/groups/');
+        $cover = Helpers::uploadImage($request->file('imageGroup'), 'group' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/groups/');
 
-        if(!$cover){
+        if (!$cover) {
             $cover = "images/no-image.jpg";
         }
         $group = Groups::create([
@@ -37,9 +38,10 @@ class GroupsController extends Controller
 
     }
 
-    private function saveCollaborators($collaborators, $group){
+    private function saveCollaborators($collaborators, $group)
+    {
         $collaborators = explode(",", $collaborators);
-        foreach($collaborators as $collaborator){
+        foreach ($collaborators as $collaborator) {
             Group_collaborators::create([
                 'groups_id' => $group->id,
                 'user_id' => $collaborator
@@ -47,27 +49,31 @@ class GroupsController extends Controller
         }
     }
 
-    private function updateCollaborators($collaborators, $group){
+    private function updateCollaborators($collaborators, $group)
+    {
         Group_collaborators::where("groups_id", $group->id)->delete();
         $this->saveCollaborators($collaborators, $group);
     }
 
-    private function deleteCollaborators($group){
+    private function deleteCollaborators($group)
+    {
         Group_collaborators::where("groups_id", $group->id)->delete();
     }
 
 
-    public function show($groupId){
+    public function show($groupId)
+    {
 
         $group = Groups::findOrFail($groupId);
 
         return view('groups/group', compact('group'));
     }
 
-    public function update(Request $request){
-        $cover = Helpers::uploadImage($request->file('imageGroup'), 'group'.date("Ymd").rand(000,999), 'resources/user/user_'. Auth::User()->id . '/groups/');
+    public function update(Request $request)
+    {
+        $cover = Helpers::uploadImage($request->file('imageGroup'), 'group' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/groups/');
 
-        if(!$cover){
+        if (!$cover) {
             $cover = "";
         }
         $group = Groups::find($request->input('group_id'));
@@ -87,12 +93,20 @@ class GroupsController extends Controller
 
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $group = Groups::find($request->input('group_id'));
         $this->deleteCollaborators($group);
         $group->delete();
 
         return redirect()->back();
+    }
+
+    public function filter(Request $request)
+    {
+        $filter = $request->input('filter');
+        $groups = Groups::where('name', 'like', "%$filter%")->paginate(12);
+        return view('groups/list', compact('groups', 'filter'));
     }
 
 }

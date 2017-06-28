@@ -21,5 +21,15 @@ return [
     'all' => 'Todos',
     'Recommended' => 'Recomendados',
     'campaigns' => 'Campañas',
-    'serviceAdmin' => 'Servicios de cambalachea'
+    'serviceAdmin' => 'Servicios de cambalachea',
+    'services' => 'Ofertas',
+    'groups' => 'Grupos',
+    'persons' => 'Personas',
+    'allService' => 'Todas las Ofertas',
+    'all' => 'Todos',
+    'featured' => 'Destacados',
+    'virtual' => 'Virtuales',
+    'faceToFace' => 'Presenciales',
+    'searching' => 'Buscando <strong>“:val”</strong> en'
+
 ];

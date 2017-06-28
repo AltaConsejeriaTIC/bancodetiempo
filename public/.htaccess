@@ -10,7 +10,7 @@
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
 	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule \.(gif|jpe?g|png|bmp) /images/no-image.jpg [NC,L]
+	RewriteRule \.(gif|jpe?g|png|bmp) /images/no-image.png [NC,L]
 	
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

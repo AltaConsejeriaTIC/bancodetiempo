@@ -29,9 +29,8 @@ Route::get('admin','AdminController@AdminLogin')->middleware('guest');
 
 //Register process
 
-Route::get('/register', 'NetworkAccountsController@showFrom')->middleware('register', 'passRegister');
+Route::get('/register', 'RegisterController@showFrom')->middleware('register', 'passRegister');
 Route::post('/register/createUser', 'NetworkAccountsController@createUser');
-
 Route::put('profile/update', 'Profile\ProfileController@editProfile');
 Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
 Route::get("/interest", 'Profile\ProfileController@showFromInterest')->middleware('register', 'passRegister');
@@ -42,12 +41,17 @@ Route::get('/serviceGuest/{serviceid}', 'ServiceController@showServiceGuest');
 
 Route::get('/service/{serviceid}', 'ServiceController@showService');
 
-Route::get('/guest', 'GuestHomeController@index');
 Route::get('/service/category/{idCategory}', 'ServiceController@findCategories');
 
 Route::get('/getTags', 'ServiceController@getTags');
 
+Route::get('/filterTag', 'HomeController@filterTag');
 Route::get('/filter', 'HomeController@filter');
+Route::get('/person', 'PersonController@index');
+Route::get('/campaign', 'CampaignController@filter');
+Route::get('/groups', 'GroupsController@filter');
+Route::get('/services', 'ServiceController@filter');
+Route::get('/query-services', 'ServiceController@query');
 Route::post('/subscribe', 'HomeController@subscribe');
 
 Route::get('/how', function(){
@@ -64,3 +68,9 @@ Route::get('/setRanking', function(){
         App\Models\Service::setRanking($user->id);
     }
 });
+
+Route::resource('/listService', 'ServiceController@getListService');
+Route::resource('/listServiceFeatured', 'ServiceController@getListServiceFeatured');
+Route::resource('/listServiceVirtual', 'ServiceController@getListServiceVirtual');
+Route::resource('/listServiceFaceToFace', 'ServiceController@getListServiceFaceToFace');
+Route::resource('/listServiceWords', 'ServiceController@getListServiceWords');

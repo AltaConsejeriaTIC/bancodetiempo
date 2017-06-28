@@ -1,124 +1,103 @@
 @extends('layouts.app')
 @section('content')
 
-	@if(!is_null(Auth::User()))
-		@include('nav',array('type' => 2))
-	@else
-		@include('nav',array('type' => 3))
-	@endif
+    @if(!is_null(Auth::User()))
+        @include('nav',array('type' => 2))
+    @else
+        @include('nav',array('type' => 3))
+    @endif
 
-	<div class="container">
-		<div class="row">
-		    <ul  class="nav nav-pills col-md-8 col-xs-12">
-				<li class="active">
-		        	<a  href="#filterAll" data-toggle="tab" class='parrafo3' v-on:click='filterCategory(0)'>{{ trans('home.all') }}</a>
-				</li>
-				<li class="hidden">
-		        	<a  href="#filterRecommended" data-toggle="tab" class='parrafo3'>{{ trans('home.Recommended') }}</a>
-				</li>
-				<li>
-				    <a  href="#filterCampaign" data-toggle="tab" class='parrafo3'>{{ trans('home.campaigns') }}</a>
-				</li>
-				<li>
-				    <a  href="#filterAdmin" data-toggle="tab" class='parrafo3'>{{ trans('home.serviceAdmin') }}</a>
-				</li>
-			</ul>
-			<div class='col-md-1 col-xs-5 not-padding'>
-				<p class="paragraph10">{{ trans('home.filter') }}</p>
-			</div>
-			<div class="col-md-3 col-xs-7">
-				<filters-categories categories='{{ $categories }}'></filters-categories>
-			</div>
-		</div>
-		<br>
+    <div class="container">
 
-		@if(count(Illuminate\Support\Facades\Session::get("filters.tags", [])) > 0)
-            <div class="row">
-                <div class="col-xs-12">
-                    <strong class="paragraph1">Filtros: </strong>
-                    @foreach(Illuminate\Support\Facades\Session::get("filters.tags", []) as $tag)
-                        <a tag="{{$tag->id}}" class="input-tag button7 tag-margin"><span>{{ App\Models\Tag::find($tag->id)->tag }}</span></a>
-                    @endforeach
-                    <a href='/filter'>Borrar filtros</a>
-                </div>
+       <div class="row">
+           <div class="col-xs-12">
+               <h2 class="title1">{{ trans('home.allService') }}</h2>
+           </div>
+       </div>
 
+        <div class="row">
+            <div class="hidden">
+                @{{setMyData("urlFilter", "/listService")}}
+                @{{setMyData("tabFilter", "all")}}
             </div>
-        @endif
-		<div class='row'>
+            <div class="col-md-8">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active">
+                        <a href=".all" data-toggle="tab" @click='setMyData("urlFilter", "/listService");setMyData("tabFilter", "all");'>{{ trans('home.all') }}</a>
+                    </li>
+                    <li role="presentation">
+                        <a href=".featured" data-toggle="tab" @click='setMyData("urlFilter", "/listServiceFeatured");setMyData("tabFilter", "featured");'>{{ trans('home.featured') }}</a>
+                    </li>
+                    <li role="presentation">
+                        <a href=".virtual" data-toggle="tab" @click='setMyData("urlFilter", "/listServiceVirtual");setMyData("tabFilter", "virtual");'>{{ trans('home.virtual') }}</a>
+                    </li>
+                    <li role="presentation">
+                       <a href=".faceToFace" data-toggle="tab" @click='setMyData("urlFilter", "/listServiceFaceToFace");setMyData("tabFilter", "faceToFace");'>{{ trans('home.faceToFace') }}</a>
+                    </li>
+                </ul>
+            </div>
 
-            <div class="tab-content clearfix col-xs-12">
-                <div class="tab-pane active" id="filterAll">
-                  <div class='row'>
-                    @foreach($allServices as $key => $service)
+            <div class='col-md-1 col-xs-4 not-padding'>
+                <p class="paragraph10">{{ trans('home.filter') }}</p>
+            </div>
 
-                      <div class='col-md-4 col-xs-12 col-sm-6'>
-                          @include('partial/serviceBox', array("service" => $service))
-                      </div>
-
-                    @endforeach
+            <div class="col-md-3 col-xs-8 ">
+                <article class="tab-content">
+                    <div class="all tab-pane fade active in">
+                        <filters-categories categories='{{ $categories }}' name='all'></filters-categories>
                     </div>
-                    <div class="text-center">
-                        {!! $allServices->links('vendor.pagination.bootstrap-4') !!}
+                    <div class="featured tab-pane fade">
+                        <filters-categories categories='{{ $categories }}' name='featured'></filters-categories>
                     </div>
+
+                    <div class="virtual tab-pane fade">
+                        <filters-categories categories='{{ $categories }}' name='virtual'></filters-categories>
+                    </div>
+
+                    <div class="faceToFace tab-pane fade">
+                        <filters-categories categories='{{ $categories }}' name='faceToFace'></filters-categories>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <br>
+
+        <article class="row tab-content">
+            <div id='all' class='tab-pane fade in active all'>
+                @include('home.partial.listService', ['services' => $services, 'page' => 1, 'route' => 'listService', 'box' => 'all'])
+            </div>
+
+            <div id='featured' class="tab-pane fade featured">
+                @include('home.partial.listService', ['services' => $featured, 'page' => 1, 'route' => 'listServiceFeatured', 'box' => 'featured'])
+            </div>
+
+            <div id='virtual' class="tab-pane fade virtual">
+                @include('home.partial.listService', ['services' => $virtual, 'page' => 1, 'route' => 'listServiceVirtual', 'box' => 'virtual'])
+            </div>
+
+            <div id='faceToFace' class="tab-pane fade faceToFace">
+                @include('home.partial.listService', ['services' => $faceToFace, 'page' => 1, 'route' => 'listServiceFaceToFace', 'box' => 'faceToFace'])
+            </div>
+
+        </article>
+
+        <div class="row">
+           <div class="col-xs-12">
+               <h2 class="title1">{{ trans('home.campaigns') }}</h2>
+           </div>
+       </div>
+
+        <article class="row">
+
+            @foreach($campaigns as $key => $campaign)
+                <div class='col-md-6 col-xs-12 col-sm-6'>
+                    @include('partial/campaignBox')
                 </div>
+            @endforeach
 
 
-                <div class="tab-pane hidden" id="filterRecommended">
-                    <div class='row'>
-                        @if($recommendedServices != '')
-                            @foreach($recommendedServices as $key => $service)
+        </article>
 
-                              <div class='col-md-4 col-xs-12 col-sm-6'>
-
-                                  @include('partial/serviceBox', array("service" => $service))
-
-                              </div>
-
-                            @endforeach
-                         @endif
-                    </div>
-                </div>
-
-                <div class="tab-pane" id="filterCampaign">
-                    <div class='row'>
-                        @if($campaigns != '')
-                            @foreach($campaigns as $key => $campaign)
-
-                              <div class='col-md-4 col-xs-12 col-sm-6'>
-
-                                  @include('partial/campaignBox')
-
-                              </div>
-
-                            @endforeach
-                         @endif
-                    </div>
-                </div>
-
-                <div class="tab-pane" id="filterAdmin">
-                    <div class='row'>
-
-                            @foreach($serviceAdmin as $key => $service)
-
-                              <div class='col-md-4 col-xs-12 col-sm-6'>
-
-                                  @include('partial/serviceBox', array("service" => $service))
-
-                              </div>
-
-                            @endforeach
-
-                    </div>
-                    <div class="text-center">
-                        {!! $serviceAdmin->links('vendor.pagination.bootstrap-4') !!}
-                    </div>
-                </div>
-
-	       </div>
-	    </div>
 
     </div>
-
-
-
 @endsection

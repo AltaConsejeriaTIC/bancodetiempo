@@ -163,3 +163,139 @@ ul.dropdown-menu li:hover {
 .report {
     background-color: darkred !important;
 }
+
+
+/*
+Reportes
+*/
+
+#fields {
+    position: fixed;
+    background: #009688;
+    padding: 20px;
+    right: 2%;
+    top: 10%;
+    display: inline-table;
+    cursor: pointer;
+    transition: all 0s;
+}
+
+ul.fieldReport{
+    list-style: none;
+    padding: 0px;
+}
+
+article#report {
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+    height: 700px;
+}
+
+#report > div.list{
+    display: inline-flex;
+    position: relative;
+    overflow: scroll;
+    height: 800px;
+    max-height: 90%;
+    padding: 15px;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+article#report > table {
+}
+
+article#report > table th {
+    color: #fff;
+    background: #009688;
+    padding: 5px 15px;
+    margin-top: 0px;
+    vertical-align: top;
+    text-align: center;
+    text-transform: capitalize;
+    border: 1px solid #fff;
+}
+
+article#report > table  th button {
+    background: none;
+    border: 0px;
+    position: relative;
+}
+
+article#report > table td {
+    text-align: center;
+    padding: 15px 0px;
+    vertical-align: top;
+}
+
+ul.form-custom.fieldReport .icon {
+    background: none;
+    border: 0px;
+    color: #fff;
+    font-size: 17px;
+    margin-left: 5px;
+}
+
+article#report  table  td > ul {
+    display: table;
+    padding: 0px;
+    list-style: none;
+}
+
+article#report  table  td > ul > li {
+    float: left;
+    margin: 0px 5px;
+    display: block;
+}
+
+article#report > table td > table {
+    width: 100%;
+    margin: -14px auto;
+}
+
+article#report > table table table td {
+    display: block;
+    text-align: left !important;
+}
+
+#boxFields.contract {
+    display: none;
+}
+
+
+div#boxFields {
+    display: block;
+    position: relative;
+    height: 400px;
+    overflow: auto;
+}
+
+article#report > table td > span {
+    display: block;
+    border-bottom: 0.1px solid #2c2c2c;
+    width: 100%;
+    margin: 5px 0px;
+    max-height: 50px;
+    min-height: 50px;
+}
+
+.boxIcons {
+    position: relative;
+    display: block;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.iconSites > a {
+    text-decoration: none !important;
+    color: #000;
+    margin: 5px !important;
+    display: block;
+}
+
+.iconSites .active {
+    background: #009688;
+    color: #fff;
+}

@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-        <meta http-equiv="Pragma" content="no-cache"/>
-        <meta http-equiv="Expires" content="0"/>
+
+        @yield('metas')
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,6 +27,7 @@
 
         <!-- Custom styles -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/style-mobile.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
 
         <link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">
@@ -40,22 +41,71 @@
             ]); ?>
         </script>
 
+        @if($_ENV['ENVIRONMENT']=='production')
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-100857967-1', 'auto');
+            ga('send', 'pageview');
+
+            @php($GAEvent = Session('GAEvent'))
+
+            @if($GAEvent)
+                    @if($GAEvent['event'] == 'login')
+                        ga('send', 'event', 'Login', 'Login Success', '{{$GAEvent['provider']}}', '1');
+                    @endif
+                    @if($GAEvent['event'] == 'signup')
+                        ga('send', 'event', 'Signup', 'Signup Success', '{{$GAEvent['provider']}}', '1');
+                    @endif
+                    console.log('{{$GAEvent['provider']}}');
+                    @php(Session::forget('GAEvent'))
+            @endif
+        </script>
+        @endif
+
     </head>
 
     <body >
+    <div id="fb-root"></div>
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1808137372794214',
+                    autoLogAppEvents: true,
+                    xfbml: false,
+                    version: 'v2.9'
+                });
+                FB.AppEvents.logPageView();
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/es_LA/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         @include('prependvarjs')
         <div id="app">
             @yield('content')
-            @include('footer')
             @include('partial.messageAttainments')
+            @include('partial.loginModal')
         </div>
+        @include('footer')
     </body>
 
-    <!--  Scripts-->    
+    <!--  Scripts-->
 
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>    
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script>
         var date = new Date();
@@ -66,6 +116,10 @@
             changeMonth: true,
             changeYear: true,
             yearRange: range
+        });
+
+        var aut = jQuery('.filter').autocomplete({
+            source: '/query-services'
         });
 
         @foreach(Illuminate\Support\Facades\Session::get("filters.tags", []) as $tag)

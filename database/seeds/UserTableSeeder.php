@@ -22,18 +22,22 @@ class UserTableSeeder extends Seeder
 
     public function run()
     { 
-      $this->create([
-          'first_name' => 'Admin',
-          'last_name' => 'Admin',
-          'email' => 'admin@admin.com',
-          'password'  => bcrypt('admin123'),
-          'gender' => '',
-          'birthDate' => null,
-          'aboutMe' => null,
-          'state_id' => 1,
-          'role_id' => 1,
-          'privacy_policy' => 1,
-          
-      ]);      
+        if(is_null(User::find(1))){
+            $this->create([
+                  'first_name' => 'Admin',
+                  'last_name' => 'Admin',
+                  'email' => 'admin@admin.com',
+                  'password'  => bcrypt('admin123'),
+                  'gender' => '',
+                  'birthDate' => null,
+                  'aboutMe' => null,
+                  'state_id' => 1,
+                  'role_id' => 1,
+                  'privacy_policy' => 1,
+
+              ]);
+        }
+
+
     }
 }

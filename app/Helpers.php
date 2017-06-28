@@ -76,6 +76,19 @@ class Helpers{
 
     }
 
+    static function intervalDate($date1, $date2 = 0){
+
+        if($date2 == 0){
+            $date2 = \date("Y-m-d");
+        }
+
+        $datetime1 = new \DateTime($date1);
+        $datetime2 = new \DateTime($date2);
+        $interval = $datetime1->diff($datetime2);
+        return $interval->format('%a');
+
+    }
+
 
 }
 ?>

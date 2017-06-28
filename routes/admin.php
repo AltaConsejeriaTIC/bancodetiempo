@@ -43,3 +43,24 @@ Route::resource('adminCampaigns', 'Admin\CampaignsController@showList');
 Route::put('adminCampaigns/update', 'Admin\CampaignsController@updateCampaignState');
 Route::resource('/adminCampaigns/participant/{campaign_id}/download', 'Admin\CampaignsController@downloadParticipant');
 
+
+Route::resource('/admin/reports', 'Admin\ReportsController@index');
+Route::post('/admin/createReport', 'Admin\ReportsController@create');
+Route::resource('/admin/getReport', 'Admin\ReportsController@getReport');
+Route::post('/admin/saveReport/{report_id}', 'Admin\ReportsController@saveReport');
+Route::post('/admin/reports/delete', 'Admin\ReportsController@deleteReport');
+Route::get('/admin/report/{report_id}', 'Admin\ReportsController@showReport');
+Route::resource('/admin/downloadReport', 'Admin\ReportsController@downloadReport');
+
+
+Route::get("/admin/dynamicContent", 'Admin\DynamicContentController@showList');
+Route::get("/admin/dynamicContent/{content_id}", 'Admin\DynamicContentController@editContent');
+Route::post("/admin/dynamicContent/edit", 'Admin\DynamicContentController@saveContent');
+
+Route::get("/admin/suggestedSites", 'Admin\SuggestedSitiesController@index');
+Route::post("/admin/suggestedSites/newCategory", 'Admin\SuggestedSitiesController@createCategory');
+Route::post("/admin/suggestedSites/editCategory", 'Admin\SuggestedSitiesController@editCategory');
+
+Route::post("/admin/suggestedSites/newSite", 'Admin\SuggestedSitiesController@createSite');
+Route::post("/admin/suggestedSites/editSite", 'Admin\SuggestedSitiesController@editSite');
+
