@@ -242,9 +242,12 @@
                                 <img src="/images/twitter.svg">
                             </button>
                         </a>
-                        <button class="button google">
-                            <img src="/images/google.svg">
-                        </button>
+                        <a href="https://plus.google.com/share?url={{url()->current()}}" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                            <button class="button google">
+                                <img src="/images/google.svg">
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
