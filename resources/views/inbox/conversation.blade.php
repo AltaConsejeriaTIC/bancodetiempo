@@ -47,6 +47,7 @@
             </div>
             @include('deals/formDeal')
             @include('deals/suggestedSites')
+            @include('deals/detailSite')
         </div>
 	</div>
 @include("partial/observationForm")

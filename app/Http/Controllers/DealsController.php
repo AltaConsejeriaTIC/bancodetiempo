@@ -109,15 +109,15 @@ class DealsController extends Controller
 
         $offerer = User::find($deal->service->user_id);
 
-        if($deal->response_applicant == 1 && $deal->response_offerer == 1){
+        if($deal->response_applicant === 1 && $deal->response_offerer === 1){
             $this->makeExchange($applicant, $offerer, $applicant->credits-$deal->value, $offerer->credits+$deal->value);
         }
 
-        if($deal->response_applicant == 1 && $deal->response_offerer == 0){
+        if($deal->response_applicant === 1 && $deal->response_offerer === 0){
             $this->makeExchange($applicant, $offerer, $applicant->credits-$deal->value, $offerer->credits+$deal->value);
         }
 
-        if($deal->response_applicant == 0 && $deal->response_offerer == 0){
+        if($deal->response_applicant === 0 && $deal->response_offerer === 0){
 
             if($deal->applicant_badObservations_id == 3 && $deal->offerer_badObservations_id == 2){
                 $this->makeExchange($applicant, $offerer, $applicant->credits-$deal->value, $offerer->credits+$deal->value);
