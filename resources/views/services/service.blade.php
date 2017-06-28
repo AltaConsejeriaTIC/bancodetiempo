@@ -135,7 +135,11 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button class='col-xs-12 button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunícate con {{$user->first_name}}</button>
+                	@if(Auth::check())
+                    	<button class='col-xs-12 button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunícate con {{$user->first_name}}</button>
+                    @else
+                    	<button class='col-xs-12 button1 background-active-color text-center' @click='myData.login = true'>Comunícate con {{$user->first_name}}</button>
+                   @endif
                 </div>
             </div>
             <br>
