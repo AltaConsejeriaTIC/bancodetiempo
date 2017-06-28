@@ -1,22 +1,28 @@
-<generalmodal  name='preinscription' :state='myData.preinscription' state-init='false'>
-    <div slot="modal" class='modal-container'>
-        <button type="button" @click='myData.preinscription = false' class="close circle-shape"><span aria-hidden="true">×</span></button>
-        {!! Form::open(['url' => 'preinscriptionParticipant', 'method' => 'post','enctype' => 'multipart/form-data', 'class' => 'form-custom', 'form-validation' => '']) !!}
-            <div class="row">
-                <h1 class="title1 text-center">{{ trans("campaigns.textPreinscription") }}</h1>
-            </div>
-            <div class="row">
-               <input type="hidden" name="campaign_id" value="{{$campaign->id}}">
-                <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-green-color" >
-                    {{trans("campaigns.preInscription")}}
+<generalmodal name='cancelpreinscription' :state='myData.cancelpreinscription' state-init='false'>
+    <div slot="modal" class='popup-dialog'>
+        <button type="button" @click='myData.cancelpreinscription = false' class="close circle-shape"><span
+                    aria-hidden="true">×</span></button>
+        {!! Form::open(['url' => 'cancelPreinscriptionParticipant', 'method' => 'post','enctype' => 'multipart/form-data', 'class' => 'form-custom', 'form-validation' => '']) !!}
+        <div class="row">
+            <h1 class="title text-center">Cancelar pre-inscripcion a la campaña</h1>
+        </div>
+        <div class="row">
+            <h1 class="message text-center">¿Deseas cancelar tu pre-inscripcion a la campaña “{{$campaign->name}}”?</h1>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <button type="submit" class="button1 button ok-button">
+                    Aceptar
                 </button>
             </div>
-            <br>
-            <div class="row">
-                <button type="button" class="col-xs-12 button10 background-white text-center" @click='myData.preinscription = false'>
+            <div class="col-xs-12 text-center">
+                <button type="button" class="button1 button cancel-button" @click='myData.cancelpreinscription = false'>
                     {{trans("campaigns.cancel")}}
                 </button>
             </div>
+        </div>
+        <input type="hidden" name="campaign_id" value="{{$campaign->id}}">
         {!! Form::close() !!}
     </div>
 </generalmodal>

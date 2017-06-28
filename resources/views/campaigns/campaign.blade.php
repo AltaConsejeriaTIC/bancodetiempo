@@ -263,5 +263,6 @@
     @include("campaigns/partial/donation")
     @include("campaigns/partial/inscription")
     @include("campaigns/partial/preinscription")
+    @include("campaigns/partial/cancelpreinscription")
     @include("campaigns/partial/pay")
 @endsection
