@@ -10,48 +10,28 @@
        </div>
    </div>
 
-   <div class="row">
-       <div class="col-xs-12">
-            <button data-toggle="collapse" data-target="#demo" class="suggestedButton text-left col-xs-12">
-                <i class="icon fa fa-laptop"></i>&nbsp;&nbsp;Puntos Vive Digital
-            </button>
-
-            <div id="demo" class="collapse sitesList">
-                Plazoleta Chorro de Quevedo<br>
-                Plaza de Bolívar<br>
-                Plaza de la Democracia<br>
-                Monumento a los Héroes Caídos de las Fuerzas Armadas<br>
-                Plaza de los Artesanos<br>
-                Plaza de las Nieves<br>
-                Monumento ‘Los Heroes’<br>
-                Plazoleta del Rosario<br>
-                Plaza contígua al Estadio Nemecio Camacho El Campín<br>
-                Plaza contígua a Maloka<br>
-                Plaza ‘Alfiles’ en Centro Comercial Gran Estación<br>
-            </div>
-       </div>
-   </div>
-
-   <div class="row">
-       <div class="col-xs-12">
-            <button data-toggle="collapse" data-target="#demo1" class="suggestedButton text-left col-xs-12">
-                <i class="icon fa fa-laptop"></i>&nbsp;&nbsp;Puntos Vive Digital <i class="iconState fa fa-plus"></i>
-            </button>
-
-            <div id="demo1" class="collapse sitesList">
-                Plazoleta Chorro de Quevedo<br>
-                Plaza de Bolívar<br>
-                Plaza de la Democracia<br>
-                Monumento a los Héroes Caídos de las Fuerzas Armadas<br>
-                Plaza de los Artesanos<br>
-                Plaza de las Nieves<br>
-                Monumento ‘Los Heroes’<br>
-                Plazoleta del Rosario<br>
-                Plaza contígua al Estadio Nemecio Camacho El Campín<br>
-                Plaza contígua a Maloka<br>
-                Plaza ‘Alfiles’ en Centro Comercial Gran Estación<br>
-            </div>
-       </div>
-   </div>
+	@foreach($categoriesSites as $index => $category)
+	
+		<div class="row">
+	       <div class="col-xs-12">
+	            <button data-toggle="collapse" data-target="#category{{$index}}" class="suggestedButton text-left col-xs-12">
+	                <i class="icon fa fa-{{$category->icon}}"></i>&nbsp;&nbsp;{{$category->name}} <i class="iconState fa fa-plus"></i>
+	            </button>
+	
+	            <div id="category{{$index}}" class="collapse sitesList">
+	            	<ul>
+	                @foreach($category->sites as $site)
+	                
+	                	<li class='buttonTransition' data-open='#detailSite'>{{$site->name}}</li>
+	                
+	                @endforeach
+	                </ul>
+	            </div>
+	       </div>
+		</div>
+	
+	@endforeach
+	
+   
 
 </div>
