@@ -29,7 +29,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
 
         <!-- Custom styles -->
-        <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/style.css?v1') }}" rel="stylesheet">
         <link href="{{ asset('/css/style-mobile.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
 
