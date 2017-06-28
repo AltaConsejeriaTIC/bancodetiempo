@@ -237,9 +237,11 @@
                         <button class="button facebook" onclick="shareFb('{{url()->current()}}')">
                             <img src="/images/facebook.svg">
                         </button>
-                        <button class="button twitter">
-                            <img src="/images/twitter.svg">
-                        </button>
+                        <a href="https://twitter.com/intent/tweet?url={{url()->current()}}">
+                            <button class="button twitter">
+                                <img src="/images/twitter.svg">
+                            </button>
+                        </a>
                         <button class="button google">
                             <img src="/images/google.svg">
                         </button>
