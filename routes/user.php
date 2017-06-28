@@ -48,6 +48,7 @@ Route::post('donation', 'DonationsController@transfer');
 
 Route::post('inscriptionParticipant', 'CampaignController@inscriptionParticipant');
 Route::post('preinscriptionParticipant', 'CampaignController@preinscriptionParticipant');
+Route::post('cancelPreinscriptionParticipant', 'CampaignController@cancelPreinscriptionParticipant');
 
 Route::post('serviceAdmin/{serviceId}', 'ServiceAdminController@index');
 

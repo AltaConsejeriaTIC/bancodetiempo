@@ -85,6 +85,16 @@ class CampaignController extends Controller
         return redirect()->back()->with('msg', 'Te has preinscrito con exito');
     }
 
+    public function cancelPreinscriptionParticipant(Request $request)
+    {
+        $campaignId = $request->input('campaign_id');
+        $userId = Auth::user()->id;
+
+        CampaignParticipants::where('campaigns_id', $campaignId)->where('participant_id', $userId)->delete();
+
+        return redirect()->back();
+    }
+
     private function getQuotasCampaign($campaign)
     {
         $quotas = $campaign->credits / $campaign->hours;

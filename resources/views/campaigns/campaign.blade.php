@@ -114,7 +114,7 @@
                     @else
                         <div class="col-xs-12 text-center">
                             <button class='button1 cancel-button text-center'
-                                    v-on:click='myData.preinscription = true'>Cancelar Pre-inscripción
+                                    v-on:click='myData.cancelpreinscription = true'>Cancelar Pre-inscripción
                             </button>
                         </div>
                     @endif
