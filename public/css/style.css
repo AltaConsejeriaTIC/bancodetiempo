@@ -241,6 +241,10 @@ Buttons
     opacity: 0.7;
 }
 
+.pointer{
+	cursor:pointer;
+}
+
 .dialog {
     background: #fff;
     border-radius: 5px;
