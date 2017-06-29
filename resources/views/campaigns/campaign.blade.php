@@ -79,7 +79,7 @@
                     <div class="dorados">
                         <img src="/images/moneda.png">
                         <div>
-                            <h1>{{$campaign->credits}} dorados</h1>
+                            <h1>{{$campaign->hours}} dorados</h1>
                             <p>Cada dorado vale una hora de tu tiempo, y del tiempo de cualquier persona.</p>
                         </div>
                     </div>

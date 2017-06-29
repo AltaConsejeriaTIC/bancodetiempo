@@ -10,7 +10,7 @@
 
         @include('profile.partial.detailProfile')
 
-        <ul class="nav nav-pills col-md-8 col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-0">
+        <ul class="nav nav-pills col-md-8 col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-0">
             <li class="active">
                 <a href="#tabServices" data-toggle="tab" class="paragraph1">{{ trans('profile.services') }}</a>
             </li>

@@ -1,5 +1,9 @@
 jQuery(document).ready(function(){
-
+	
+	resizeBody();	
+	
+	jQuery(window).resize(resizeBody);
+	
     if(jQuery("#messages").length){
        callMessages();
     }
@@ -47,6 +51,8 @@ jQuery(document).ready(function(){
     jQuery("#openSearch").on("click", openSearch);
     jQuery("#findMobile .close").on("click", closeSearch)
 
+    jQuery(".sendCoordinates").on("click", sendCoordinates)
+    
 });
 
 function nextTransition(){
@@ -226,4 +232,27 @@ function closeSearch(){
 
 function closePopup(){
     jQuery(".popup").fadeOut();
+}
+
+function sendCoordinates(){
+	var coordinates = jQuery(this).attr("coordinates");
+	coordinates = coordinates.split(",");
+	jQuery("#coordinates").val('{"lat" : '+coordinates[0]+',"lng" :'+coordinates[1]+'}');
+	var nameSite = jQuery(this).attr("nameSite");
+	jQuery("#place").val(nameSite);
+}
+
+function resizeBody(){
+	
+	var height = jQuery(window).height();
+	jQuery("#app").css({"min-height": height});
+	jQuery(".conversationBox").css({"height": height*0.9});
+	
+	if(height > 1200){
+		jQuery("#listMessages").css({"height": height*0.65});
+
+	}else{
+		jQuery("#listMessages").css({"height": height*0.52});
+	}
+	
 }

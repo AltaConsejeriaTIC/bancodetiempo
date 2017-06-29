@@ -2,7 +2,7 @@
 @foreach($conversation->message as $message)
 	@if($message->message != "¡Has enviado un propuesta!"  && $message->message != "Propuesta Aceptada")
 		<div class="row">
-			<div class="col-md-12 message @if($message->sender != Auth::User()->id) forMe @else fromMe @endif">
+			<div class="col-xs-12 message @if($message->sender != Auth::User()->id) forMe @else fromMe @endif">
 
 				@if($message->sender != Auth::User()->id)
 				 	@if($conversation->applicant_id == Auth::User()->id)

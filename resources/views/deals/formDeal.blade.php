@@ -1,37 +1,37 @@
 <div id="dealBox" class="col-xs-12 transition" data-in='{"top":"0%", "opacity":1}' data-out='{"top":"200%", "opacity":0}'>
 
-    {!! Form::open(['url' => '/deal', 'method' => 'post', 'class' => 'form-custom validation', 'form-validation']) !!}
+    {!! Form::open(['url' => '/deal', 'method' => 'post', 'class' => 'form-custom validation col-md-8 col-md-offset-2', 'form-validation']) !!}
         <div class="row">
             <div class="col-xs-12">
                 <h1 class="title1">Propuesta de acuerdo</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
-                <label for="dealDate" class="paragraph10">Fecha de realización del acuerdo</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <input type="text" name="dealDate" id="dealDate" placeholder="aaaa/mm/dd" class="validation datepick col-xs-12"  data-validations='["required", "afterToday", "dateFormat"]'>
-                <div class="msg" errors='dealDate'>
-                    <p error='afterToday'>No puedes proponer un acuerdo dias atras.</p>
-                    <p error='dateFormat'>Este campo debe tener el formato yyyy-mm-dd.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <label for="dealHour" class="paragraph10">Hora</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <input type="time" name="dealHour" id="dealHour" placeholder="hh:mm" class="validation col-xs-12"  data-validations='["required", "time", "afterTime"]' data-date='#dealDate' placeholder="yyyy-mm-dd">
-                <div class="msg" errors='dealHour'>
-                    <p error='time'>El formato no es valido.</p>
-                    <p error='afterTime'>Elige un hora diferente.</p>
-                </div>
+        	<div class='col-md-6 not-padding-left'>
+	            <div class="col-xs-12">
+	                <label for="dealDate" class="paragraph10">Fecha de realización del acuerdo</label>
+	            </div>
+	        
+	            <div class="col-xs-12">
+	                <input type="text" name="dealDate" id="dealDate" placeholder="aaaa/mm/dd" class="validation datepick col-xs-12"  data-validations='["required", "afterToday", "dateFormat"]'>
+	                <div class="msg" errors='dealDate'>
+	                    <p error='afterToday'>No puedes proponer un acuerdo dias atras.</p>
+	                    <p error='dateFormat'>Este campo debe tener el formato aaaa-mm-dd.</p>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="col-md-6 not-padding-left">
+	            <div class="col-xs-12">
+	                <label for="dealHour" class="paragraph10">Hora</label>
+	            </div>
+	        
+	            <div class="col-xs-12">
+	                <input type="time" name="dealHour" id="dealHour" placeholder="hh:mm" class="validation col-xs-12"  data-validations='["required", "time", "afterTime"]' data-date='#dealDate' placeholder="yyyy-mm-dd">
+	                <div class="msg" errors='dealHour'>
+	                    <p error='time'>El formato no es valido.</p>
+	                    <p error='afterTime'>Elige un hora diferente.</p>
+	                </div>
+	            </div>
             </div>
         </div>
         <div class="row">
@@ -75,6 +75,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <label for="observations" class="paragraph10">Observaciones</label><span class="opacity">(Opcional)</span>
+                <p class='paragraph4'>En caso de ser necesario, puedes escribir aqui una lista de las herramientas o implementos que debe llevar la persona interesada en tomar tu oferta.</p>
             </div>
         </div>
         <div class="row">

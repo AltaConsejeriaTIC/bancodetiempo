@@ -181,20 +181,18 @@
                                 </div>
                             </div>
 
-                            <div class='space'></div>
-
-                            <div class="row">
-                                <a href='/profile' class="col-xs-12  col-sm-12 button1 background-white text-center link1" >
-                                    {{trans('service.next')}}
-                                </a>
-                            </div>
-
                             <br>
 
                             <div class="row">
                                 <button type="submit" class="col-xs-12  col-sm-12 button1 background-active-color" >
                                     {{trans('service.publish')}}
                                 </button>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <a href='/home' class="col-xs-12  col-sm-12 button10 background-white text-center" >
+                                    {{trans('service.next')}}
+                                </a>
                             </div>
                         </div>
                     </div>

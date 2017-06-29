@@ -10,7 +10,7 @@
     <div class="row">
         @foreach($campaigns as $key => $campaign)
           <div class='col-xs-12'>
-              @include('partial/campaignBox')
+              @include('partial/campaignBox', ['edit' => 1])
           </div>
 
         @endforeach

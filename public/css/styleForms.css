@@ -1,7 +1,7 @@
 label{
 	cursor:pointer;
 }
-.form-custom input[type='text'], .form-custom input[type='date'], .form-custom input[type='number'], .form-custom textarea{
+.form-custom input[type='text'], .form-custom input[type='date'], .form-custom input[type='time'], .form-custom input[type='number'], .form-custom textarea{
 	
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px !important;
