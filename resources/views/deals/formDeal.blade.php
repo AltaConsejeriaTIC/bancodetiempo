@@ -13,9 +13,10 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <input type="text" name="dealDate" id="dealDate" placeholder="dd/mm/aaaa" class="validation datepick col-xs-12"  data-validations='["required", "afterToday"]'>
+                <input type="text" name="dealDate" id="dealDate" placeholder="aaaa/mm/dd" class="validation datepick col-xs-12"  data-validations='["required", "afterToday", "dateFormat"]'>
                 <div class="msg" errors='dealDate'>
                     <p error='afterToday'>No puedes proponer un acuerdo dias atras.</p>
+                    <p error='dateFormat'>Este campo debe tener el formato yyyy-mm-dd.</p>
                 </div>
             </div>
         </div>
@@ -26,10 +27,10 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <input type="time" name="dealHour" id="dealHour" placeholder="hh:mm" class="validation col-xs-12"  data-validations='["required", "time", "afterTime"]' data-date='#dealDate'>
+                <input type="time" name="dealHour" id="dealHour" placeholder="hh:mm" class="validation col-xs-12"  data-validations='["required", "time", "afterTime"]' data-date='#dealDate' placeholder="yyyy-mm-dd">
                 <div class="msg" errors='dealHour'>
                     <p error='time'>El formato no es valido.</p>
-                    <p error='afterTime'>elige un hora diferente.</p>
+                    <p error='afterTime'>Elige un hora diferente.</p>
                 </div>
             </div>
         </div>

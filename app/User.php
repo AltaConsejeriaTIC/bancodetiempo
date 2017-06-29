@@ -116,8 +116,6 @@ class User extends Authenticatable
 
         if ($user->user_score->count() > 0) {
 
-            print($user->user_score->count() . '<br>');
-
             $sum = 0;
 
             foreach ($user->user_score as $score) {
@@ -125,8 +123,7 @@ class User extends Authenticatable
             }
 
             $ranking = $sum / $user->user_score->count();
-
-            print($sum / $user->user_score->count() . "<hr>");
+            
             $user->update([
                 "ranking" => $ranking
             ]);

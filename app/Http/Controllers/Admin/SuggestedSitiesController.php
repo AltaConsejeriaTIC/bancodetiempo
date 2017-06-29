@@ -39,6 +39,13 @@ class SuggestedSitiesController extends Controller
         return redirect()->back();
     }
 
+    public function deleteCategory(Request $request){
+
+        CategoriesSites::find($request->input('categoryId'))->delete();
+
+        return redirect()->back();
+    }
+
     public function createSite(Request $request){
 
         $this->validate($request, [
@@ -79,6 +86,11 @@ class SuggestedSitiesController extends Controller
         ]);
 
 
+        return redirect()->back();
+    }
+
+    public function deleteSite(Request $request){
+        SuggestedSites::find($request->input('siteId'))->delete();
         return redirect()->back();
     }
 }

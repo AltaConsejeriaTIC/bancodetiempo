@@ -8,6 +8,8 @@ use App\Models\Conversations;
 use App\Models\Deal;
 use App\Models\DealState;
 use App\Http\Controllers\EmailController;
+use App\Models\SuggestedSites;
+use App\Models\CategoriesSites;
 
 class ConversationController extends Controller{
 
@@ -69,31 +71,38 @@ class ConversationController extends Controller{
 
 		$conversation = Conversations::find($id_conversation);
 
-		$messages = json_decode($conversation->message);
-
-		foreach ($messages as $key => $value) {
-            if($messages[$key]->sender != Auth::id()){
-                $messages[$key]->state = 5;
-            }
-		}
+		$messages = $this->getMessages($conversation->message);
 
 		$conversation->update([
 			"message" => json_encode($messages)
 		]);
 
-		$deal = Deal::where("service_id","=",$conversation->service_id)
-                    ->where("user_id","=",$conversation->applicant_id)
-                    ->orderBy('id','desc')
-                    ->first();
-		if($deal)
-			$dealState = DealState::where('deal_id','=',$deal->id)
-                                    ->orderBy('id','desc')
-                                    ->first();
-		else
-			$dealState = null;
+		$deal = Deal::where("service_id","=",$conversation->service_id)->where("user_id","=",$conversation->applicant_id)->orderBy('id','desc')->first();
+                    
+		$dealState = $this->getDealState($deal);
+		
+		$categoriesSites = CategoriesSites::all();
 
-		return view('inbox/conversation', compact("conversation","deal","dealState"));
+		return view('inbox/conversation', compact("conversation","deal","dealState", "categoriesSites"));
 
+	}
+	
+	private function getMessages($message){
+		$messages = json_decode($message);		
+		foreach ($messages as $key => $value) {
+			if($messages[$key]->sender != Auth::id()){
+				$messages[$key]->state = 5;
+			}
+		}		
+		return $messages;
+	}
+	
+	private function getDealState($deal){
+		if($deal){
+			return DealState::where('deal_id', $deal->id)->orderBy('id','desc')->first();
+		}else{
+			return null;
+		}
 	}
 
 	public function messagesConversation(Request $request, $id_conversation){

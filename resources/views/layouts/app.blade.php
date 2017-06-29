@@ -123,7 +123,9 @@
         <div id="app">
             @yield('content')
             @include('partial.messageAttainments')
-            @include('partial.loginModal')
+            @if(!Auth::check())
+           		@include('partial.loginModal')
+           	@endif
         </div>
         @include('footer')
     </body>

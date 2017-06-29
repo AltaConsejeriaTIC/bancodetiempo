@@ -241,13 +241,17 @@ Buttons
     opacity: 0.7;
 }
 
+.pointer{
+	cursor:pointer;
+}
+
 .dialog {
     background: #fff;
     border-radius: 5px;
     padding-bottom: 5px;
 }
 
-.dialog .dialogHeader{
+.dialog .dialogHeader {
     background: #d0e4ea;
     padding: 0px 5px;
 }
@@ -1046,6 +1050,7 @@ conversation box
 .suggestedButton[aria-expanded='true'] .iconState {
     background: #009fe3;
 }
+
 .suggestedButton[aria-expanded='true'] .iconState:before {
     content: "\f068";
     transform: rotateZ(180deg);
@@ -1843,7 +1848,7 @@ div#findMobile .close {
     color: #90a1b5;
 }
 
-.campaign .sharing .button {
+.sharing .button {
     border-radius: 10px;
     display: inline;
     height: 45px;
@@ -1852,15 +1857,15 @@ div#findMobile .close {
     margin: 0 10px;
 }
 
-.campaign .facebook {
+.sharing .facebook {
     background-color: #3b5994;
 }
 
-.campaign .twitter {
+.sharing .twitter {
     background-color: #00aced;
 }
 
-.campaign .google {
+.sharing .google {
     background-color: #cf4836;
 }
 
@@ -1875,4 +1880,51 @@ div#findMobile .close {
     height: 20px;
     top: -20px;
     left: 50%;
+}
+
+.popup-dialog {
+    width: 420px;
+    margin: auto;
+    padding: 11px 44px 33px 43px;
+    background-color: #fff;
+    transition: all .3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.popup-dialog .title {
+    font-family: Montserrat, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #001738;
+}
+
+.popup-dialog .message {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: #001738;
+}
+
+.popup-dialog .button {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    border-radius: 4px;
+    text-align: center;
+    width: 331px;
+    margin: 5px;
+}
+
+.popup-dialog .ok-button {
+    color: #ffffff;
+    background-color: #0f6784;
+}
+
+.popup-dialog .cancel-button {
+    background-color: #ffffff;
+    border: solid 1px #0f6784;
+    color: #0f6784;
 }
