@@ -11,21 +11,21 @@
             </div>
             @include("profile/partial/editService")
             {!! Form::model($service, ['url' => ['serviceDelete', $service->id], 'method' => 'get', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
-            @include('services.partial.deleteService')
+            	@include('services.partial.deleteService')
             {!!Form::close()!!}
         @endif
         <span class='category'
               onClick='app.__vue__.filterCategory({{$service->category->id}}, "{{$service->category->category}}")'>{{$service->category->category}}</span>
         <a href="/service/{{$service->id}}">
             <div class="cover">
-                <img src="/{{$service->image}}" alt=""/>
+                <img src="/getImg?img={{$service->image}}&w=400" alt=""/>
             </div>
         </a>
         <div class='avatar'>
             @if(is_null(Auth::User()))
                 <a @click='myData.login = true'>
                     @if(isset($service->toArray()['user_id']))
-                        @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#677d95', 'borderSize' => '2px'))
+                        @include('partial/imageProfile', array('cover' => 'getImg?img='.$service->user->avatar.'&w=200', 'id' => $service->user->id, 'border' => '#677d95', 'borderSize' => '2px'))
                     @endif
                 </a>
             @else

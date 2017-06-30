@@ -87,7 +87,7 @@
            </div>
        </div>
 
-        <article class="row">
+        <article class="row" id='campaigns'>
 
             @foreach($campaigns as $key => $campaign)
                 <div class='col-md-6 col-xs-12 col-sm-6'>

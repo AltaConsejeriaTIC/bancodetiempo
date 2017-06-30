@@ -37,7 +37,7 @@ class HomeController extends Controller
             'categoriesJs' => $categories,
         ]);
 
-        return view('home', compact('services', 'featured', 'categories', 'campaigns', 'virtual', 'faceToFace'));
+        return view('home/home', compact('services', 'featured', 'categories', 'campaigns', 'virtual', 'faceToFace'));
     }
 
 

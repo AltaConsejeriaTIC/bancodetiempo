@@ -11,7 +11,7 @@
         @endif
         <div class="col-md-4 col-xs-4 not-padding">
             <a @if(is_null(Auth::User())) @click='myData.login = true' @else href="/campaign/{{$campaign->id}}" @endif>
-                <div class="cover" style="background-image : url('/{{$campaign->image}}')">
+                <div class="cover" style="background-image : url('getImg?img={{$campaign->image}}&w=400')">
                 </div>
             </a>
         </div>

@@ -13,7 +13,7 @@ class ImageController extends Controller
 	protected $mime = '';
 	protected $image = '';
     public function getImage(Request $request){	
-    	$this->route = $request->input('img', 'images/no-image.png');
+    	$this->route = $request->input('img', '/images/no-image.png');
     	if(!file_exists($this->route)){
     		$this->route = 'images/no-image.png';
     	}

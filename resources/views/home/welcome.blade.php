@@ -40,10 +40,10 @@
 		<br>
         
 		<div class="row">
-			@foreach($lastServices as $key => $service)
+			@foreach($lastCampaigns as $key => $campaign)
 
-                <div class='col-md-4 col-xs-12 col-sm-6'>
-                    @include('partial/serviceBox', array("service" => $service))
+                <div class='col-md-6 col-xs-12 col-sm-6'>
+                    @include('partial/campaignBox')
                 </div>
 
             @endforeach
@@ -51,7 +51,7 @@
 		<div class="row">
 		
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-12">
-                <a href="home" class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>{{ trans('home.button2') }}</a>
+                <a href="home#campaigns" class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>{{ trans('home.button2') }}</a>
             </div>
 		
 		</div>  

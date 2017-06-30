@@ -37,7 +37,7 @@
             </div>
 
             <div class='hidden-xs col-xs-1 col-sm-1 text-right icon-profile padding-top'>
-                @include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' => Auth::user()->id, 'border' => '#fff', 'borderSize' => '1px'))
+                @include('partial/imageProfile', array('cover' => 'getImg?img='.Auth::user()->avatar.'&w=200', 'id' => 'myAvatar', 'border' => '#fff', 'borderSize' => '1px'))
             </div>
 
             <div class=' hidden-xs col-xs-2 col-sm-2 padding-top text-left dropdown'>
@@ -98,7 +98,7 @@
 </nav>
 
 {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation']) !!}
-<newservice :categories='this.myData.categories' :tags-service='this.myData.tags'></newservice>
+	<newservice :categories='this.myData.categories' :tags-service='this.myData.tags'></newservice>
 {!! Form::close() !!}
 <div class="clearfix"></div>
 <div id="findMobile">
