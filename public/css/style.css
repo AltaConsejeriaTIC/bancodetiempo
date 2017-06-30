@@ -15,6 +15,11 @@ a {
     text-decoration: none !important;
 }
 
+a:hover {
+    text-decoration: none !important;
+    color:initial !important;
+}
+
 section {
     position: relative;
     padding-top: 50px;
@@ -127,23 +132,18 @@ Buttons
 }
 
 .button4 {
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
-    color: #fff;
-    width: 132px;
-    height: 42px;
     border: solid 1px #18aada;
     border-radius: 4px;
     background: none;
+    padding: 7px 25px;
 }
 
 .button5 {
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
-    color: #fff;
-    padding: 16px 25px;
+    padding: 7px 25px;
     border-radius: 4px;
-    background: none;
+    background: transparent;
     border: none;
 }
 

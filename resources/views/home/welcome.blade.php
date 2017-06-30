@@ -8,25 +8,53 @@
 
 <section>
     <div class="container">
-
-        <h2 class='title1 text-center'>{{ trans('home.title') }}</h2>
-
-        <article class='space40'>
-
-            @foreach($lastServices as $key => $service)
+		<div class="row">
+			<div class="col-xs-12">
+				<h2 class='title1 text-center'>{{ trans('home.title') }}</h2>
+			</div>
+		</div>        
+		<br>
+        
+		<div class="row">
+			@foreach($lastServices as $key => $service)
 
                 <div class='col-md-4 col-xs-12 col-sm-6'>
                     @include('partial/serviceBox', array("service" => $service))
                 </div>
 
             @endforeach
-
-            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-12 not-padding ">
+		</div>
+		<div class="row">
+		
+			<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-12">
                 <a href="home"  class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>{{ trans('home.button1') }}</a>
             </div>
+		
+		</div>
+        <br>
+        <div class="row">
+			<div class="col-xs-12">
+				<h2 class='title1 text-center'>{{ trans('home.title2') }}</h2>
+			</div>
+		</div>        
+		<br>
+        
+		<div class="row">
+			@foreach($lastServices as $key => $service)
 
-        </article>
+                <div class='col-md-4 col-xs-12 col-sm-6'>
+                    @include('partial/serviceBox', array("service" => $service))
+                </div>
 
+            @endforeach
+		</div>
+		<div class="row">
+		
+			<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-12">
+                <a href="home" class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>{{ trans('home.button2') }}</a>
+            </div>
+		
+		</div>  
     </div>
 
 </section>

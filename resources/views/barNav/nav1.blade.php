@@ -8,10 +8,10 @@
                 </a>
             </div>
             @if((Auth::guest()))
-                <div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-3  text-right" id="container-nav-buttons">
+                <div class="hidden-xs col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-3  text-right">
+                	<br>
                     <button class="button5" @click='myData.login = true'>{{ trans('nav.login') }}</button>
-                    <button class="button4 hidden-xs"
-                            @click='myData.login = true'>{{ trans('nav.register') }}</button>
+                    <button class="button4 hidden-xs" @click='myData.login = true'>{{ trans('nav.register') }}</button>
                 </div>
                 <ul class="menuMobile visible-xs col-xs-2 col-xs-offset-2 not-padding">
                     <li class="dropdown">

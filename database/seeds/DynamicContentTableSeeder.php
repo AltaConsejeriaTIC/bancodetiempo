@@ -69,9 +69,9 @@ class DynamicContentTableSeeder extends Seeder
 <div class="row">
 	<div class="col-xs-12 col-md-8 col-md-offset-2">
 		<div class="flex-center logoFooter">
-			<img src="/images/logoFooter3.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-4 col-sm-offset-0">
-			<img src="/images/logoFooter2.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-4 col-sm-offset-0">
 			<img src="/images/logoFooter1.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-4 col-sm-offset-0">
+			<img src="/images/logoFooter2.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-4 col-sm-offset-0">
+			<img src="/images/logoFooter3.png" alt="" class="col-sm-4 col-xs-8 col-xs-offset-2 col-md-4 col-sm-offset-0">
 		</div>
 	</div>
 </div>'

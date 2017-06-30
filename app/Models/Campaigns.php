@@ -52,7 +52,7 @@ class Campaigns extends Model
     }
 
     static function getCampaignsActive(){
-        return Campaigns::select("campaigns.*")->where('campaigns.state_id', 1);
+        return Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->where('campaigns.date', '>=', 'CURDATE()');
     }
 
 }

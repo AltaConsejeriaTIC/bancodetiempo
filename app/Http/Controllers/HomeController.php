@@ -2,34 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Groups;
 use Illuminate\Http\Request;
 use App\Models\Service;
-use App\Models\InterestUser;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 use JavaScript;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Campaigns;
-use App\Models\ServiceAdmin;
 use App\Models\subscribers;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-
-    public function indexNotRegister()
-    {
-
-        if (Auth::check()) {
+    public function indexNotRegister(){
+        if (Auth::check()){
             return redirect('/home');
-        } else {
+        }else{
             $lastServices = Service::getServicesActive()->get()->take(6);
-            return view('welcome', compact('lastServices'));
+            $lastCampaigns = Campaigns::getCampaignsActive()->get()->take(6);
+            return view('home/welcome', compact('lastServices', 'lastCampaigns'));
         }
-
     }
 
     public function index(Request $request)
