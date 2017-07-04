@@ -17,11 +17,11 @@ class CampaignController extends Controller
 
         $cover = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/campaigns/');
         $today = new \DateTime(date("Y-m-d"));
-        $userDate = new \DateTime($request->input('dateCampaign'));
+        $userDate = new \DateTime($request->input('dateCampaign')." ".$request->input('timeCampaign'));
         $interval = $today->diff($userDate);
         $dayInterval = (int)ceil($interval->days / 2);
         $date_finish_donations = date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $request->input('hoursCampaign');
-
+		//dd($request->all());
         if ($cover) {
             $group = Campaigns::create([
                 'name' => $request->input('nameCampaign'),
@@ -32,7 +32,7 @@ class CampaignController extends Controller
                 'credits' => 0,
                 'category_id' => $request->input('categoryCampaign'),
                 'date_donations' => $date_finish_donations,
-                'date' => $request->input('dateCampaign') . " " . $request->input('hoursCampaign'),
+                'date' => $userDate,
                 'state_id' => 1
             ]);
         }

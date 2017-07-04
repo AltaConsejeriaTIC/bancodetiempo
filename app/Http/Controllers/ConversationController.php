@@ -24,6 +24,9 @@ class ConversationController extends Controller{
 			$messages = json_decode($conversation->message);
 
 			$conversationsMyService[$key]["lastMessage"] = $messages[count($messages)-1];
+			
+			$conversationsMyService[$key]["interval"] = $this->getInterval($conversation->updated_at);
+			
 		}
 
 		foreach ($conversations as  $key => $conversation) {
@@ -31,10 +34,38 @@ class ConversationController extends Controller{
 			$messages = json_decode($conversation->message);
 
 			$conversations[$key]["lastMessage"] = $messages[count($messages)-1];
+			
+			$conversations[$key]["interval"] = $this->getInterval($conversation->updated_at);
 		}
 
 		return view("inbox/inbox", compact("conversationsMyService", "conversations"));
 
+	}
+	
+	private function getInterval($date){
+		$datetime1 = new \DateTime($date);
+		$datetime2 = new \DateTime(\date("Y-m-d H:i:s"));
+		$interval = $datetime1->diff($datetime2);
+		
+		if($interval->y > 0){
+			return "Hace ".$interval->y." Años";
+		}
+		if($interval->m > 0){
+			return "Hace ".$interval->m." Meses";
+		}
+		if($interval->d > 0){
+			return "Hace ".$interval->d." Dias";
+		}
+		if($interval->h > 0){
+			return "Hace ".$interval->h." Horas";
+		}
+		if($interval->i > 0){
+			return "Hace ".$interval->i." Minutos";
+		}
+		if($interval->s > 0){
+			return "Hace ".$interval->s." Segundos";
+		}
+		
 	}
 
     public function getMyServices(){

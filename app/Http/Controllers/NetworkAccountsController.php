@@ -33,11 +33,10 @@ class NetworkAccountsController extends Controller
     public function validateLogout()
     {
         if (auth()->user()) {
-            auth()->logout();
-            return redirect('/');
-        } else {
-            return redirect('/');
-        }
+            auth()->logout();           
+        } 
+        return redirect('/');
+        
     }
 
     public function createUser($providerData)

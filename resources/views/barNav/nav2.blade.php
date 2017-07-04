@@ -27,7 +27,7 @@
                     <div class="hidden-xs not-padding text-center col-sm-6">
                         <button class="button9 newservice" data-toggle="modal" data-target="#NewService">{{ trans('nav.newOffer') }}</button>
                     </div>
-                    <div class="col-sm-1 not-padding" onclick='location.href="/inbox#received"'>
+                    <div class="col-sm-1 not-padding" onclick='location.href="/inbox"'>
                         @if(App\Helpers::getNotificationsUser()>0)
                             <i class="fa fa-envelope icon-nav notification text-left"><span>{{App\Helpers::getNotificationsUser()}}</span></i>
                         @else

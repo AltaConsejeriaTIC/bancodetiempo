@@ -76,16 +76,24 @@ function getPagination(){
     var words = jQuery(this).parent().data('words');
     jQuery(this).parent().children(".active").removeClass('active')
     jQuery(this).addClass('active');
-    jQuery.ajax({
+    getResponsePagination(page, filters, words);
+}
+
+function getResponsePagination(page, filters, words){
+	jQuery.ajax({
         url: route,
         type : 'GET',
         data : {'page' : page, 'filter' : filters, 'words' : words},
+        beforeSend: function(){
+        	jQuery("#"+list).html();
+        },
         success : function(response){
             jQuery("#"+list).html(response);
             jQuery('.pagination > li').on('click', getPagination);
+        },error : function(){
+        	getResponsePagination(page, filters, words);
         }
     });
-
 }
 
 function bannerHome(){

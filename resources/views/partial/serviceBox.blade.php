@@ -64,7 +64,7 @@
                             @if($tag->service_id == $service->id)
                                 <a class="col-xs-6 input-tag button7 tag-margin" tag='{{ $tag->tag->id }}'
                                    href='/filterTag?filter={{ $tag->tag->tag }}'>
-                                    <span>{{ $tag->tag->tag }}</span>
+                                    <span>{{ title_case($tag->tag->tag) }}</span>
                                 </a>
                             @endif
                         @endforeach
