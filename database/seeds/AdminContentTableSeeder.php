@@ -26,21 +26,27 @@ class AdminContentTableSeeder extends Seeder
 
         public function run()
         {
-            $this->create([
-                "name" => "Terminos y Condiciones",
-                "url" => "terms",
-                "description" => ""
-            ]);
-            $this->create([
-                "name" => "Políticas de Privacidad",
-                "url" => "privacity",
-                "description" => ""
-            ]);
-            $this->create([
-                "name" => "Preguntas Frecuentes",
-                "url" => "questions",
-                "description" => ""
-            ]);
+        	if(AdminContent::where('name', "Terminos y Condiciones")->get()->count() == 0){
+        		$this->create([
+        				"name" => "Terminos y Condiciones",
+        				"url" => "terms",
+        				"description" => ""
+        		]);
+        	}
+        	if(AdminContent::where('name', "Políticas de Privacidad")->get()->count() == 0){
+	            $this->create([
+	                "name" => "Políticas de Privacidad",
+	                "url" => "privacity",
+	                "description" => ""
+	            ]);
+        	}
+        	if(AdminContent::where('name', "Preguntas Frecuentes")->get()->count() == 0){
+	            $this->create([
+	                "name" => "Preguntas Frecuentes",
+	                "url" => "questions",
+	                "description" => ""
+	            ]);
+        	}
 
         }
 

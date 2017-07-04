@@ -67,11 +67,11 @@
                 <label for="birthdate" class="paragraph10">Fecha de nacimiento</label>                
             </div>         
             <div class="row not-margin">               	                
-                <input type='text' name='birthDate' class='datepick validation col-md-12' data-validations='["required", "minYear:18", "dateFormat"]' placeholder="yyyy-mm-dd">
+                <input type='text' name='birthDate' class='datepick validation col-md-12' data-validations='["required", "minYear:18", "dateFormat"]' placeholder="aaaa-mm-dd">
                 <div class="msg" errors='birthDate'>
 					<p error='required'>Este campo es obligatorio.</p>
 					<p error='min'>Debes ser mayor de edad para registrarte en Cambalachea.</p>
-					<p error='dateFormat'>Este campo debe tener el formato yyyy-mm-dd.</p>
+					<p error='dateFormat'>Este campo debe tener el formato aaaa-mm-dd.</p>
 				</div>
             </div>
 

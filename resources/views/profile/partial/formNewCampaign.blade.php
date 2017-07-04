@@ -46,11 +46,11 @@
         </div>
         <div class="row">
             <input type='text' name='dateCampaign' class='datepick validation'
-                   data-validations='["required", "afterToday", "dateFormat"]' placeholder="yyyy-mm-dd">
+                   data-validations='["required", "afterToday", "dateFormat"]' placeholder="aaaa-mm-dd">
             <div class="msg" errors='dateCampaign'>
                 <p error='required'>Este campo es obligatorio.</p>
                 <p error='afterToday'>La fecha de la campaña debe estar despues de hoy.</p>
-                <p error='dateFormat'>Este campo debe tener el formato yyyy-mm-dd.</p>
+                <p error='dateFormat'>Este campo debe tener el formato aaaa-mm-dd.</p>
             </div>
         </div>
 
