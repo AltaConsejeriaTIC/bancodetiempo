@@ -165,16 +165,21 @@
             </div>
             <div class="row">
                 <div class="text-center sharing">
-                    <button class="button facebook" onclick="shareFb('{{url()->current()}}')">
-                        <img src="/images/facebook.svg">
-                    </button>
-                    <a href="https://twitter.com/intent/tweet?url={{url()->current()}}">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" onclick="window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=250,width=600,top=150,left=500');return false;">
+                        <button class="button facebook">
+                            <img src="/images/facebook.svg">
+                        </button>
+                    </a>
+
+                    <a href="https://twitter.com/intent/tweet?url={{url()->current()}}&text={{$service->name}}" onclick="window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=250,width=600,top=150,left=500');return false;">
                         <button class="button twitter">
                             <img src="/images/twitter.svg">
                         </button>
                     </a>
                     <a href="https://plus.google.com/share?url={{url()->current()}}" onclick="javascript:window.open(this.href,
-  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600,top=150,left=500');return false;">
                         <button class="button google">
                             <img src="/images/google.svg">
                         </button>
