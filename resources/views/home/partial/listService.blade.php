@@ -15,7 +15,7 @@
         
         @php($lastPage = $page+5 > $lastPage ? $lastPage : $page+5)
         
-        @if($first != 1)
+        @if($first <= 1)
         	<li data-page='1'>
               <a href="#all">1</a>
           	</li>

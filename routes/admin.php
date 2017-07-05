@@ -8,12 +8,6 @@ Route::resource('homeAdminUser', 'Admin\UserController@showList');
 Route::resource('adminUser', 'AdminController');
 Route::put('adminUser/update', ['as' => 'adminUser/update', 'uses'=>'AdminController@update']);
 
-Route::get('homeAdminServices', 'AdminController@homeAdminServices');
-Route::get('homeAdminServices/reported', 'AdminController@showServicesReported');
-Route::post('homeAdminServices', ['as' => 'homeAdminServices', 'uses'=>'AdminController@homeAdminServices']);
-Route::post('homeAdminServices/reported', ['as' => 'homeAdminServices/reported', 'uses'=>'AdminController@showServicesReported']);
-Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'uses'=>'AdminController@updateServiceState']);
-
 Route::put('adminGroups/update', ['as' => 'adminGroups/update', 'uses'=>'AdminController@updateGroupState']);
 
 Route::resource('homeAdminCategory', 'CategoryController');
@@ -66,3 +60,11 @@ Route::post("/admin/suggestedSites/newSite", 'Admin\SuggestedSitiesController@cr
 Route::post("/admin/suggestedSites/editSite", 'Admin\SuggestedSitiesController@editSite');
 Route::post("/admin/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController@deleteSite');
 
+
+/** Services **/
+
+Route::get('homeAdminServices', 'Admin\ServicesController@homeAdminServices');
+Route::get('homeAdminServices/reported', 'AdminController@showServicesReported');
+Route::post('homeAdminServices', ['as' => 'homeAdminServices', 'uses'=>'Admin\ServicesController@homeAdminServices']);
+Route::post('homeAdminServices/reported', ['as' => 'homeAdminServices/reported', 'uses'=>'Admin\ServicesController@showServicesReported']);
+Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'uses'=>'Admin\ServicesController@updateServiceState']);
