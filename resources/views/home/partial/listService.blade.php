@@ -15,7 +15,7 @@
         
         @php($lastPage = $page+5 > $lastPage ? $lastPage : $page+5)
         
-        @if($first <= 1)
+        @if($first != 1 || $first == 0)
         	<li data-page='1'>
               <a href="#all">1</a>
           	</li>
@@ -32,7 +32,7 @@
 
         @endfor
         
-        @if(ceil($services->count() / 6) != $i)
+        @if(ceil($services->count() / 6) != $i-1 && ceil($services->count() / 6) != 0)
         	<li class='space'>
             	<a>...</a>
           	</li>
