@@ -51,9 +51,9 @@
                                                 <td @click='myData.newsite = true;
                                                myData.siteName="{{$site->name}}";
                                                myData.siteAddress="{{$site->address}}";
-                                               myData.siteRequirements="{{$site->requirements}}";
-                                               myData.siteContact="{{$site->contact}}";
-                                               myData.siteDescription="{{$site->description}}";
+                                               myData.siteRequirements="{!!$site->requirements!!}";
+                                               myData.siteContact="{!!$site->contact!!}";
+                                               myData.siteDescription="{!!$site->description!!}";
                                                myData.siteCoordinates="{{$site->coordinates}}";
                                                myData.siteId = {{$site->id}}' onClick='loadSite();'>{{$site->name}}</td>
                                                 <td @click='myData.newsite = true;

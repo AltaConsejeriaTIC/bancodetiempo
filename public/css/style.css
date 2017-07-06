@@ -60,6 +60,9 @@ img {
     min-height: 800px;
 }
 
+.pre{
+    white-space: pre-wrap;
+}
 /*
 Titles
 */

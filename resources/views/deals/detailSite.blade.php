@@ -28,17 +28,17 @@
 			   	
 			   	<div class="row">
 			   		<div class="col-xs-12">
-			   			<p><strong>{{ trans("deals.phones") }}:</strong> @{{myData.siteContact}}</p>
+                        <p class="pre"><strong>{{ trans("deals.phones") }}:</strong> @{{myData.siteContact}}</p>
 			   		</div>
 			   	</div>
 			   	<div class="row">
 			   		<div class="col-xs-12">
-			   			<p><strong>{{ trans("deals.description") }}:</strong> @{{myData.siteDescription}}</p>
+			   			<p class="pre"><strong>{{ trans("deals.description") }}:</strong> @{{myData.siteDescription}}</p>
 			   		</div>
 			   	</div>
 			   	<div class="row">
 			   		<div class="col-xs-12">
-			   			<p><strong>{{ trans("deals.requeriments") }}:</strong> @{{myData.siteRequirements}}</p>
+			   			<p class="pre"><strong>{{ trans("deals.requeriments") }}:</strong> @{{myData.siteRequirements}}</p>
 			   		</div>
 			   	</div>
 			   	<div class="row">

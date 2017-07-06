@@ -48,18 +48,23 @@ class SuggestedSitiesController extends Controller
 
     public function createSite(Request $request){
 
+
         $this->validate($request, [
             'name' => 'required|max:100',
             'address' => 'required',
             'coordinates' => 'required'
         ]);
 
+        $requirements = str_replace(PHP_EOL, '\ \r\n', $request->input("requirements"));
+        $contact = str_replace(PHP_EOL, '\ \r\n', $request->input("contact"));
+        $description = str_replace(PHP_EOL, '\ \r\n', $request->input("description"));
+
          SuggestedSites::create([
             "name" => $request->input("name"),
             "address" => $request->input("address"),
-            "requirements" => $request->input("requirements"),
-            "contact" => $request->input("contact"),
-            "description" => $request->input("description"),
+            "requirements" => $requirements,
+            "contact" => $contact,
+            "description" => $description,
             "coordinates" => $request->input("coordinates"),
             "category_site_id" => $request->input("categoryId")
         ]);

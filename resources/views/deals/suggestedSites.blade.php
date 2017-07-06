@@ -26,9 +26,9 @@
 		                	<li class='buttonTransition pointer' data-open='#detailSite' 
 		                	@click='putMyData("siteName", "{{$site->name}}");
 		                	putMyData("siteAddress", "{{$site->address}}");
-		                	putMyData("siteContact", "{{$site->contact}}");
-		                	putMyData("siteDescription", "{{$site->description}}");
-		                	putMyData("siteRequirements", "{{$site->requirements}}");
+		                	putMyData("siteContact", "{!!$site->contact!!}");
+		                	putMyData("siteDescription", "{!!$site->description!!}");
+		                	putMyData("siteRequirements", "{!!$site->requirements!!}");
 		                	putMyData("siteCoordinates", "{{$site->coordinates}}");
 		                	putMyData("siteIcon", "{{$category->icon}}");
 		                	edit= edit ? false : true;
