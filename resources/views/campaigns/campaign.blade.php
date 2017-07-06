@@ -97,7 +97,7 @@
                 </div>
                 <div class="space20"></div>
             </div>
-
+            @if(Auth::check())
             <div class="row">
                 @if($campaign->allows_registration == 0)
                     @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)
@@ -158,8 +158,9 @@
 
                 @endif
             </div>
+            @endif
 			<br>
-			<div class="report-content text-right">
+			<div class="report-content text-right" v-if='{{Auth::check()}}'>
                 <div class="line"></div>
                 <div class="space15"></div>
                 <a class="text-right"><i class='material-icons'>error</i> Reportar contenido</a>
@@ -204,9 +205,11 @@
                     <div class="space15"></div>
 
                     <div class="col-xs-12 text-center">
-                        <button class='button1 background-active-color text-center'
-                                v-on:click='myData.inscription = true'>Comunícate
-                            con {{$campaign->user->first_name}}</button>
+                        @if(Auth::check())
+                            <button class='button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunícate con {{$campaign->user->first_name}}</button>
+                        @else
+                            <button class='button1 background-active-color text-center' v-on:click='putMyData("login", true)'>Comunícate con {{$campaign->user->first_name}}</button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -236,29 +239,39 @@
                 	<h3 class="text-bold text-left">Comparte esta campaña en:</h3>
                 </div>
            	</div>
-            <div class="row sharing text-center">
-            	<button class="button facebook" onclick="shareFb('{{url()->current()}}')">
-                    <img src="/images/facebook.svg">
-				</button>
-                    <a href="https://twitter.com/intent/tweet?url={{url()->current()}}">
-                    	<button class="button twitter">
-                        	<img src="/images/twitter.svg">
+            <div class="row">
+                <div class="text-center sharing">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" onclick="window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=250,width=600,top=150,left=500');return false;">
+                        <button class="button facebook">
+                            <img src="/images/facebook.svg">
+                        </button>
+                    </a>
+
+                    <a href="https://twitter.com/intent/tweet?url={{url()->current()}}&text={{$campaign->name}}" onclick="window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=250,width=600,top=150,left=500');return false;">
+                        <button class="button twitter">
+                            <img src="/images/twitter.svg">
                         </button>
                     </a>
                     <a href="https://plus.google.com/share?url={{url()->current()}}" onclick="javascript:window.open(this.href,
-  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600,top=150,left=500');return false;">
                         <button class="button google">
                             <img src="/images/google.svg">
                         </button>
                     </a>
+                </div>
             </div>
 
             <div class="space15"></div>
         </article>
     </div>
-    @include("campaigns/partial/donation")
-    @include("campaigns/partial/inscription")
-    @include("campaigns/partial/preinscription")
-    @include("campaigns/partial/cancelpreinscription")
-    @include("campaigns/partial/pay")
+    @if(Auth::check())
+        @include("campaigns/partial/donation")
+        @include("campaigns/partial/inscription")
+        @include("campaigns/partial/preinscription")
+        @include("campaigns/partial/cancelpreinscription")
+        @include("campaigns/partial/pay")
+    @endif
+    @include('services/partial/modalMail', ['service' => $campaign])
 @endsection

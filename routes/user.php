@@ -42,8 +42,6 @@ Route::post('createCampaign', 'CampaignController@create');
 Route::post('updateCampaign', 'CampaignController@update');
 Route::put('deleteCampaign/{campaignId}', 'CampaignController@delete');
 
-Route::get('campaign/{campaignId}', 'CampaignController@show');
-
 Route::post('donation', 'DonationsController@transfer');
 
 Route::post('inscriptionParticipant', 'CampaignController@inscriptionParticipant');
