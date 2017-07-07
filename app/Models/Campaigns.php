@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Groups;
 use App\Models\State;
@@ -52,7 +53,7 @@ class Campaigns extends Model
     }
 
     static function getCampaignsActive(){
-        return Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->where('campaigns.date', '>=', \date('Y-m-d H:i:s'));
+        return Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->where('campaigns.date', '>=', DB::raw('curdate()'));
     }
 
 }
