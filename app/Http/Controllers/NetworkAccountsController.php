@@ -135,7 +135,7 @@ class NetworkAccountsController extends Controller
 
                 Auth()->login($networkAccounts->getUser());
 
-                return redirect('register');
+                return redirect('profile');
 
             }
 
