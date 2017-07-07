@@ -8,8 +8,6 @@ Route::resource('homeAdminUser', 'Admin\UserController@showList');
 Route::resource('adminUser', 'AdminController');
 Route::put('adminUser/update', ['as' => 'adminUser/update', 'uses'=>'AdminController@update']);
 
-Route::put('adminGroups/update', ['as' => 'adminGroups/update', 'uses'=>'AdminController@updateGroupState']);
-
 Route::resource('homeAdminCategory', 'CategoryController');
 Route::post('homeAdminCategory/show', ['as' => 'homeAdminCategory/show', 'uses'=>'CategoryController@show']);
 Route::put('homeAdminCategory/update', ['as' => 'homeAdminCategory/update', 'uses'=>'CategoryController@update']);
@@ -21,7 +19,6 @@ Route::post('changePassword', ['as' => 'changePassword', 'uses'=>'AdminControlle
 Route::resource('homeAdminContents', 'AdminController');
 Route::put('AdminController/updateContent', ['as' => 'homeAdminContents/update', 'uses'=>'AdminController@updateContent']);
 
-
 Route::get('historyDonations', 'AdminController@historyDonations');
 Route::post('historyDonations', 'AdminController@historyDonations');
 
@@ -30,8 +27,6 @@ Route::post('admin/service/save', 'ServiceAdminController@create');
 Route::put('admin/service/update', 'ServiceAdminController@update');
 
 Route::resource('listDeals', 'Admin\DealsController@showList');
-
-Route::resource('listGroups', 'Admin\GroupsController@showList');
 
 Route::resource('adminCampaigns', 'Admin\CampaignsController@showList');
 Route::put('adminCampaigns/update', 'Admin\CampaignsController@updateCampaignState');
