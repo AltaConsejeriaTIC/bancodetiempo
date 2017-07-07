@@ -54,9 +54,9 @@ class SuggestedSitesTest extends TestCase
         $site = SuggestedSites::where('name', '34a636fe432d8ebd8ef8ad3280031648');
 
         $this->assertTrue($site->get()->last()->name == '34a636fe432d8ebd8ef8ad3280031648');
-        $this->assertTrue(strpos('\ \r\n', $site->get()->last()->requirements) === false);
-        $this->assertTrue(strpos('\ \r\n', $site->get()->last()->contact) === false);
-        $this->assertTrue(strpos('\ \r\n', $site->get()->last()->description) === false);
+        $this->assertTrue(strpos($site->get()->last()->requirements, '\ \r\n') === false);
+        $this->assertTrue(strpos($site->get()->last()->contact, '\ \r\n') === false);
+        $this->assertTrue(strpos($site->get()->last()->description, '\ \r\n') === false);
 
         $site->delete();
     }
@@ -82,13 +82,12 @@ class SuggestedSitesTest extends TestCase
         ]);
 
         $site = SuggestedSites::where('name', '34a636fe432d8ebd8ef8ad3280031648');
-        print($site->get()->last()->requirements);
-        dd(strpos('\ \r\n', $site->get()->last()->requirements));
-        $this->assertTrue(strpos('\ \r\n', $site->get()->last()->requirements) !== false);
-        $this->assertTrue(strpos('\ \r\n', $site->get()->last()->contact) !== false);
-        $this->assertTrue(strpos('\ \r\n', $site->get()->last()->description) !== false);
 
+        $this->assertTrue(strpos($site->get()->last()->requirements, '\ \r\n') !== false);
+        $this->assertTrue(strpos($site->get()->last()->contact, '\ \r\n') !== false);
+        $this->assertTrue(strpos($site->get()->last()->description, '\ \r\n') !== false);
 
+        $site->delete();
 
     }
 }
