@@ -76,5 +76,6 @@ Route::resource('/listServiceFaceToFace', 'ServiceController@getListServiceFaceT
 Route::resource('/listServiceWords', 'ServiceController@getListServiceWords');
 
 Route::get('campaign/{campaignId}', 'CampaignController@show');
+Route::get('campaigns/list', 'CampaignController@showListAllCampaigns');
 
 Route::get('/getImg', 'ImageController@getImage');

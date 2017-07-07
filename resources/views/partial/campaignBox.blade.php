@@ -11,7 +11,7 @@
         @endif
         <div class="col-md-4 col-xs-4 not-padding">
             <a href="/campaign/{{$campaign->id}}">
-                <div class="cover" style="background-image : url('getImg?img={{$campaign->image}}&w=400')">
+                <div class="cover" style="background-image : url('/getImg?img={{$campaign->image}}&w=400')">
                 </div>
             </a>
         </div>

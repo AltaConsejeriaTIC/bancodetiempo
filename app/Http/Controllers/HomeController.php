@@ -31,7 +31,7 @@ class HomeController extends Controller
         $featured = Service::getServicesActive()->orderBy('services.ranking', 'desc')->get();
         $virtual = Service::getServicesActive()->where('virtually', 1)->orderBy('services.created_at', 'desc')->get();
         $faceToFace = Service::getServicesActive()->where('presently', 1)->orderBy('services.created_at', 'desc')->get();
-        $campaigns = Campaigns::getCampaignsActive()->limit(4)->get();
+        $campaigns = Campaigns::getCampaignsActive()->paginate(4);
 
         JavaScript::put([
             'categoriesJs' => $categories,

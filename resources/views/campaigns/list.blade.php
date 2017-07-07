@@ -8,34 +8,21 @@
     @endif
 
     <div class="container">
-        @if(sizeof($campaigns) > 0)
-            <div class='panel panel-default'>
-                <div class="panel-heading">
-                    <h1 class="panel-title title1">{{ trans('home.campaigns') }}</h1>
+
+        <article class="row" id='campaigns'>
+
+            @foreach($campaigns as $key => $campaign)
+                <div class='col-md-6 col-xs-12 col-sm-6'>
+                    @include('partial/campaignBox')
                 </div>
-                <div class="panel-body">
-                    <div class="row">
-                        @php($i = 0)
+            @endforeach
 
-                        @while($i < sizeof($campaigns))
-                            @php($campaign = $campaigns[$i])
-                            <div class='col-md-4 col-xs-12 col-sm-6'>
-                                @include('partial/campaignBox', array("campaign" => $campaign))
-                            </div>
-
-                            @php($i++)
-                        @endwhile
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="text-center">
-                                {!! $campaigns->appends(['filter' => $filter])->links('vendor.pagination.bootstrap-4') !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="clearfix"></div>
+            <div class="col xs 12 text-center">
+                {{$campaigns->links()}}
             </div>
-        @endif
+
+        </article>
+
     </div>
 @endsection

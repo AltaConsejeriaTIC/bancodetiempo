@@ -48,7 +48,6 @@ class SuggestedSitiesController extends Controller
 
     public function createSite(Request $request){
 
-
         $this->validate($request, [
             'name' => 'required|max:100',
             'address' => 'required',

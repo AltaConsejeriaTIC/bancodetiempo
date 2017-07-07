@@ -74,9 +74,9 @@
                 <h4 class="col-xs-12">{{ trans("profile.myInterest") }}</h4>
 
                 @foreach(Auth::User()->interests as $interest)
-
-                    <p class="col-xs-6 paragraph4">{{$interest->category->category}}</p>
-
+                    @if(!is_null($interest->category))
+                        <p class="col-xs-6 paragraph4">{{$interest->category->category}}</p>
+                    @endif
                 @endforeach
             </div>
         </div>

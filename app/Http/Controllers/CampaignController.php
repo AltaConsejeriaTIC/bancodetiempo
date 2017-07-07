@@ -245,4 +245,12 @@ class CampaignController extends Controller
         return view('campaigns/list', compact('campaigns', 'filter'));
     }
 
+    public function showListAllCampaigns(Request $request){
+
+        $campaigns = Campaigns::getCampaignsActive()->paginate(4);
+
+        return view('campaigns.list', compact('campaigns'));
+
+    }
+
 }

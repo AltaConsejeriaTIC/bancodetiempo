@@ -95,9 +95,19 @@
                 </div>
             @endforeach
 
+            <div class="clearfix"></div>
+            <div class="col xs 12 text-center">
+                <ul class="pagination pagination-sm">
+                @php($lastPageCampaigns = ceil($campaigns->total()/4) > 10 ? 10 : ceil($campaigns->total()/4))
+                @for($i = 1 ; $i <= $lastPageCampaigns; $i++)
+                    <li @if($i == 1) class='active' @endif>
+                        <a href="/campaigns/list?page={{$i}}">{{$i}}</a>
+                    </li>
+                @endfor
+                </ul>
+            </div>
 
         </article>
-
 
     </div>
 @endsection

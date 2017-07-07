@@ -38,10 +38,6 @@ jQuery(document).ready(function(){
        bannerHome();
     }
 
-    if(jQuery(".pagination").length){
-       jQuery('.pagination > li').on('click', getPagination);
-    }
-
     if(jQuery(".transition").length){
        jQuery('.buttonTransition').on('click', nextTransition);
     }
@@ -68,33 +64,7 @@ function nextTransition(){
 
 }
 
-function getPagination(){
-    var page = jQuery(this).data('page');
-    var route = jQuery(this).parent().data('route');
-    var list = jQuery(this).parent().data('list');
-    var filters = jQuery(this).parent().data('filter');
-    var words = jQuery(this).parent().data('words');
-    jQuery(this).parent().children(".active").removeClass('active')
-    jQuery(this).addClass('active');
-    getResponsePagination(page, filters, words);
-}
 
-function getResponsePagination(page, filters, words){
-	jQuery.ajax({
-        url: route,
-        type : 'GET',
-        data : {'page' : page, 'filter' : filters, 'words' : words},
-        beforeSend: function(){
-        	jQuery("#"+list).html();
-        },
-        success : function(response){
-            jQuery("#"+list).html(response);
-            jQuery('.pagination > li').on('click', getPagination);
-        },error : function(){
-        	getResponsePagination(page, filters, words);
-        }
-    });
-}
 
 function bannerHome(){
     jQuery(".bannerHome .carousel").attr("banner", 0);

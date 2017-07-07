@@ -19,6 +19,7 @@ elixir(function(mix) {
         'autoCompleteUsers.js',
         'validation.js',
         'jQueryEvents.js',
+        'modules/pagination.js',
         'app.js'],
     "public/js/app.js");
 
