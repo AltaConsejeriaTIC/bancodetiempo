@@ -14,7 +14,7 @@ use App\Http\Controllers\Profile\ProfileController;
 */
 Route::get('/', 'HomeController@indexNotRegister');
 Route::get('/index', 'HomeController@indexNotRegister');
-Route::get('/home', 'HomeController@index')->middleware('passRegister');
+Route::get('/home', 'HomeController@index');
 Route::get('/content/{name}', 'ContentController@index');
 
 //Social Loging
@@ -28,13 +28,8 @@ Auth::routes();
 Route::get('admin','AdminController@AdminLogin')->middleware('guest');
 
 //Register process
-
-Route::get('/register', 'RegisterController@showFrom')->middleware('register', 'passRegister');
-Route::post('/register/createUser', 'NetworkAccountsController@createUser');
 Route::put('profile/update', 'Profile\ProfileController@editProfile');
 Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
-Route::get("/interest", 'Profile\ProfileController@showFromInterest')->middleware('register', 'passRegister');
-Route::post("/interest", 'Profile\ProfileController@saveInterest');
 
 //Guest views
 Route::get('/serviceGuest/{serviceid}', 'ServiceController@showServiceGuest');
