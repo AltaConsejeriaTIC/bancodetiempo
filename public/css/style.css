@@ -1960,3 +1960,12 @@ div#findMobile .close {
 #suggestedSites li {
     margin-top: 5px;
 }
+
+
+.register-popup .error-message {
+    color:red;
+}
+
+.register-popup .terms {
+    color:red;
+}
