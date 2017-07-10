@@ -133,7 +133,6 @@
     <script src="{{ asset('js/materialize.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
-    <script src="{{ asset('js/bundle.js') }}"></script>
     
     <script>
         var date = new Date();
