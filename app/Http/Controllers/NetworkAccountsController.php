@@ -135,7 +135,9 @@ class NetworkAccountsController extends Controller
 
                 Auth()->login($networkAccounts->getUser());
 
-                return redirect('profile');
+                AttainmentsController::saveAttainment(1);
+
+                return redirect('home');
 
             }
 

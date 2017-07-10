@@ -79,12 +79,9 @@ class ProfileController extends Controller
         Auth::user()->email2 = $request->input('email2');
   	
         Auth::user()->save();
-        if(!empty(Auth::user()->interests->all())){			
-			return Redirect::to("profile");
-		}else{
-			AttainmentsController::saveAttainment(1);
-            return Redirect::to("/interest");
-		}
+
+        //AttainmentsController::saveAttainment(1);
+        return redirect()->back();
   	
 
 	}
