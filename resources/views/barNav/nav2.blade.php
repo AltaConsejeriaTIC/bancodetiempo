@@ -8,7 +8,7 @@
 
             <div class="col-xs-8 col-sm-3">
                 <a href="/index">
-                    <img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo"/>
+                    <img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" :style='{zIndex:myData.zindex}'/>
                 </a>
             </div>
 

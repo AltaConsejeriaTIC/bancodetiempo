@@ -1821,12 +1821,12 @@ div#findMobile .close {
 .popup .dialogBox {
     background: #009fe3;
     position: absolute;
-    top: 15%;
+    top: 8%;
     z-index: 1000;
     width: 20%;
     padding: 1% 2%;
     color: #fff;
-    left: 40%;
+    left: 10%;
     border-radius: 5px;
 }
 

@@ -30,7 +30,7 @@ class AttainmentTableSeeder extends Seeder
         $this->create([
             'attainments' => 'Register Step 1',
             'value' => '1',
-            'text' => '<b>¡Felicidades!</b><br>Has ganado tu primer dorado.<br>Elige tus intereses y gana un dorado más.'
+            'text' => '<b>¡Bienvenido a Cambalachea!</b><br>Has ganado tu primer dorado.<br>Completa tu <a href="/profile" class="link2">perfil</a> y gana un <br>dorado más.'
         ]);
         $this->create([
             'attainments' => 'Register Step 2',
@@ -40,7 +40,7 @@ class AttainmentTableSeeder extends Seeder
         $this->create([
             'attainments' => 'Register Step 3',
             'value' => '2',
-            'text' => '<b>¡Acabas de ganar 4 dorados!</b><br>A partir de este momento puedes tomar una oferta.'
+            'text' => '<b>¡Acabas de ganar 2 dorados!</b><br>A partir de este momento puedes tomar una oferta.'
         ]);        
     }
 }
