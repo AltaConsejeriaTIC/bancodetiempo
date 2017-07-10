@@ -24,6 +24,7 @@ window.categories = categories;
 window.tags = tags;
 
 Vue.component('input-tag', require('./components/InputTag.vue'));
+Vue.component('register', require('./components/Register.vue'));
 Vue.component('interest', require('./components/Interest.vue'));
 Vue.component('deactivate', require('./components/DeactivateAccount.vue'));
 Vue.component('avatar', require('./components/ImageProfile.vue'));

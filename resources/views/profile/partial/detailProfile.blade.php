@@ -105,8 +105,7 @@
 
         {!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form', 'form-validation' => '']) !!}
             <input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
-            <register  profile='1'>
-            </register>
+            @include('profile.partial.formEditProfile')
             <div class="col-xs-12">
                 <button class="col-xs-12 button10 background-white text-center" type='button' @click='hiddenEdit'>{{ trans('profile.cancel') }}</button>
             </div>
