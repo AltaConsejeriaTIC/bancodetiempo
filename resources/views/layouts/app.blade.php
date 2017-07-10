@@ -121,6 +121,7 @@
             @include('partial.messageAttainments')
             @if(!Auth::check())
            		@include('partial.loginModal')
+           		@include('partial.registerModal')
            	@endif
         </div>
         @include('footer')
@@ -132,6 +133,8 @@
     <script src="{{ asset('js/materialize.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/bundle.js') }}"></script>
+    
     <script>
         var date = new Date();
         var range = '1950:'+date.getFullYear();
