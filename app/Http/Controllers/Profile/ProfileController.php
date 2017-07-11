@@ -23,16 +23,10 @@ use App\Http\Controllers\AttainmentsController;
 class ProfileController extends Controller
 {
    public function showProfile(){
-      $user = User::find(auth::user()->id);
-      $services = Service::where("user_id" , Auth::id())->where('state_id' , 1)->orderBy("created_at","desc")->get();
-      
-      JavaScript::put([
-				'userJs'=> $user,
-				'birthDateJs' => is_null($user->birthDate) ? "0000-00-00" :  $user->birthDate,
-      ]);
-
-       $campaigns = Campaigns::campaignsUser(Auth::user()->id)->get();
-       return view('profile/profile', compact('services', 'campaigns'));
+        $user = User::find(auth::user()->id);
+        $services = Service::where("user_id" , Auth::id())->where('state_id' , 1)->orderBy("created_at","desc")->get();
+        $campaigns = Campaigns::campaignsUser(Auth::user()->id)->get();
+        return view('profile/profile', compact('services', 'campaigns'));
     }
 
     public function showProfileUser($user_id){
