@@ -9,7 +9,6 @@
              </avatar>
         </div>
     </div>
-
     <div v-show='noEdit'>
 
         <div class="row">
@@ -107,7 +106,7 @@
             <input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
             @include('profile.partial.formEditProfile')
             <div class="col-xs-12">
-                <button class="col-xs-12 button10 background-white text-center" type='button' @click='hiddenEdit'>{{ trans('profile.cancel') }}</button>
+                <button class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 button10 background-white text-center" type='button' @click='hiddenEdit'>{{ trans('profile.cancel') }}</button>
             </div>
         {!! Form::close() !!}
 
