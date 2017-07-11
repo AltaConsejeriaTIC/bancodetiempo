@@ -4,10 +4,12 @@ var inputs = [];
 var loginButtons;
 var registerTerms;
 var buttonOpenRegisterPopup;
+var buttonOpenRegisterPopup2;
 
 jQuery(document).ready(function () {
     inputs = ['#registerPopup-age', '#registerPopup-terms'];
     buttonOpenRegisterPopup = jQuery('#open-register-popup');
+    buttonOpenRegisterPopup2 = jQuery('#open-register-popup2');
     ageInput = jQuery('#registerPopup-age');
     termsInput = jQuery('#registerPopup-terms');
     loginButtons = jQuery('.modal-body-welcome');
@@ -16,6 +18,7 @@ jQuery(document).ready(function () {
     ageInput.click(checkAcceptedTerms);
     termsInput.click(checkAcceptedTerms);
     buttonOpenRegisterPopup.click(resetTerms);
+    buttonOpenRegisterPopup2.click(resetTerms);
 });
 
 function checkAcceptedTerms() {
