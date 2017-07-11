@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><h2>Lista de Campañas Registradas en el Sistema</h2></div>
                     <div class="panel-body">
-                        @include('partial.errors')
+                        @include('admin.partial.errors')
                         {!! Form::open(['url' => 'adminCampaigns', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
                         <div class="form-group">
                             <label>Nombre</label>

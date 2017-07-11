@@ -7,7 +7,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><h2>Lista de Ofertas Registrados en el Sistema</h2></div>
 					<div class="panel-body">
-						@include('partial.errors')
+						@include('admin.partial.errors')
 						{!! Form::open(['route' => 'homeAdminServices', 'method' => 'post', 'novalidate', 'class' => 'form-inline']) !!}
 							<div class="form-group">
 								<label>Nombre</label>

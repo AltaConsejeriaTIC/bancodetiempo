@@ -78,11 +78,7 @@
                       <h3>Propietario</h3>
                       <div class="row">
                         <div class="col-xs-6 col-xs-offset-3">
-                          <avatar :cover='myData.cover'>
-                            <template scope="props">
-                              @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' =>$service->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
-                            </template>
-                          </avatar>
+                            @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' =>$service->user->id, 'border' => '#0f6784', 'borderSize' => '3px'))
                         </div>
                       </div>
                       <div >
