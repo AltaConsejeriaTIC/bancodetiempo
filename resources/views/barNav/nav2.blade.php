@@ -6,7 +6,7 @@
                 <i class="fa fa-search" id="openSearch"></i>
             </div>
 
-            <div class="col-xs-8 col-sm-3">
+            <div class="col-xs-8 col-sm-3" id='logo'>
                 <a href="/index">
                     <img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" :style='{zIndex:myData.zindex}'/>
                 </a>

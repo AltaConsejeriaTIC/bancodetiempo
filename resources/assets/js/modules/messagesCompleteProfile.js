@@ -3,12 +3,11 @@ jQuery(document).ready(function(){
         jQuery("#messagesProfile .close").on('click', close);
     }
 });
-
-
 function close(){
-    jQuery("#messagesProfile").animate({height:"0px"}, 800, function(){
-
+    jQuery("#messagesProfile").animate({height:"0px"}, 400, function(){
         jQuery("#messagesProfile").remove();
-
+        jQuery.ajax({
+            url : "/hiddenMessagesCompleteProfile"
+        });
     })
 }

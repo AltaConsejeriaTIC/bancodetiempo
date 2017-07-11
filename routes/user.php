@@ -52,3 +52,7 @@ Route::post('serviceAdmin/{serviceId}', 'ServiceAdminController@index');
 Route::post('payParticipant', 'CampaignController@pay');
 
 Route::get('user/{user_id}', 'Profile\ProfileController@showProfileUser');
+
+Route::get('/hiddenMessagesCompleteProfile', function(){
+    session(['hiddenMessagesCompleteProfile' => true]);
+});
