@@ -24,6 +24,7 @@ class NetworkAccountsController extends Controller
         if (!$provider || $provider == '') {
             return Redirect::route("login");
         }
+
         Session::put('last_url', str_replace("http://" . $_SERVER['HTTP_HOST'], "", URL::previous()));
         $function = "redirect" . ucwords($provider);
         return $this->$function();
@@ -34,10 +35,10 @@ class NetworkAccountsController extends Controller
     {
         if (auth()->user()) {
             Session::flush();
-            auth()->logout();           
-        } 
+            auth()->logout();
+        }
         return redirect('/');
-        
+
     }
 
     public function createUser($providerData)
@@ -76,7 +77,8 @@ class NetworkAccountsController extends Controller
 
     }
 
-    private function setAvatar($user, $avatar){
+    private function setAvatar($user, $avatar)
+    {
         $avatar = $this->getAvatar($avatar);
         if ($avatar) {
             $user->update([
@@ -119,12 +121,13 @@ class NetworkAccountsController extends Controller
 
         if ($networkAccounts->existsUser()) {
 
-            Session()->put('GAEvent', ['event' => 'login', 'provider' => $provider]);
-
-            Auth()->login($networkAccounts->getUser());
-
-            return Redirect::to(Session::get('last_url'));
-
+            if ($networkAccounts->getUser()->state_id != 3) {
+                Session()->put('GAEvent', ['event' => 'login', 'provider' => $provider]);
+                Auth()->login($networkAccounts->getUser());
+                return Redirect::to(Session::get('last_url'));
+            } else {
+                return redirect("/home")->with('message', "El usuario con el que intento acceder a Cambalachea ha sido bloqueado.");
+            }
 
         } else {
 

@@ -9,6 +9,11 @@
 
     <div class="container">
 
+        @if(Session("message"))
+            {{Session("message")}}
+        @endif
+
+
        <div class="row">
            <div class="col-xs-12">
                <h2 class="title1">{{ trans('home.allService') }}</h2>
