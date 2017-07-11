@@ -32,6 +32,8 @@ return [
 	'featured' => 'Destacados',
 	'virtual' => 'Virtuales',
 	'faceToFace' => 'Presenciales',
-	'searching' => 'Buscando <strong>:val</strong> en'
+	'searching' => 'Buscando <strong>:val</strong> en',
+    'completeProfileMsg1' => 'Completa tu <a href="/profile" class="link2">perfil</a> y recibe un dorado',
+    'completeProfileMsg2' => 'Crea tu primera <a data-toggle="modal" data-target="#NewService" class="link2">oferta</a> y recibe dos dorados',
 
 ];

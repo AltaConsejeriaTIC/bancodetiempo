@@ -25,7 +25,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
 
         <!-- Custom styles -->
-        <link href="{{ asset('/css/style.css?v1') }}" rel="stylesheet">
+        <link href="{{ asset('/css/style.css?v2') }}" rel="stylesheet">
         <link href="{{ asset('/css/style-mobile.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
 
@@ -39,82 +39,12 @@
                 'csrfToken' => csrf_token(),
             ]); ?>
         </script>
-        @if($_ENV['ENVIRONMENT']=='production')
-            <script>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-100857967-1', 'auto');
-                ga('send', 'pageview');
-
-                @php($GAEvent = Session('GAEvent'))
-
-                @if($GAEvent)
-                        @if($GAEvent['event'] == 'login')
-                    ga('send', 'event', 'Login', 'Login Success', '{{$GAEvent['provider']}}', '1');
-                @endif
-                @if($GAEvent['event'] == 'signup')
-                    ga('send', 'event', 'Signup', 'Signup Success', '{{$GAEvent['provider']}}', '1');
-                @endif
-                    console.log('{{$GAEvent['provider']}}');
-                @php(Session::forget('GAEvent'))
-                @endif
-            </script>
-        @endif
-
-        @if($_ENV['ENVIRONMENT']=='production')
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-100857967-1', 'auto');
-            ga('send', 'pageview');
-
-            @php($GAEvent = Session('GAEvent'))
-
-            @if($GAEvent)
-                    @if($GAEvent['event'] == 'login')
-                        ga('send', 'event', 'Login', 'Login Success', '{{$GAEvent['provider']}}', '1');
-                    @endif
-                    @if($GAEvent['event'] == 'signup')
-                        ga('send', 'event', 'Signup', 'Signup Success', '{{$GAEvent['provider']}}', '1');
-                    @endif
-                    console.log('{{$GAEvent['provider']}}');
-                    @php(Session::forget('GAEvent'))
-            @endif
-        </script>
-        @endif
+        @include('partial.googleAnalytics')
 
     </head>
 
     <body >
     <div id="fb-root"></div>
-        <script>
-            window.fbAsyncInit = function () {
-                FB.init({
-                    appId: '1808137372794214',
-                    autoLogAppEvents: true,
-                    xfbml: false,
-                    version: 'v2.9'
-                });
-                FB.AppEvents.logPageView();
-            };
-
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {
-                    return;
-                }
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "//connect.facebook.net/es_LA/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
         @include('prependvarjs')
         <div id="app">
             @yield('content')

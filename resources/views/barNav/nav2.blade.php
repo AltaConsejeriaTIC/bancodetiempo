@@ -8,7 +8,7 @@
 
             <div class="col-xs-8 col-sm-3">
                 <a href="/index">
-                    <img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo"/>
+                    <img class="iconbar2" src="{{ asset('images/logo2.png') }}" alt="Logo" :style='{zIndex:myData.zindex}'/>
                 </a>
             </div>
 
@@ -96,6 +96,10 @@
         </div>
     </div>
 </nav>
+
+
+@include('partial.messagesCompleteProfile')
+
 
 {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation']) !!}
 	<newservice :categories='this.myData.categories' :tags-service='this.myData.tags'></newservice>
