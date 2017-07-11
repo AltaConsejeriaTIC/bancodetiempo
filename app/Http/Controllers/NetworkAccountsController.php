@@ -33,6 +33,7 @@ class NetworkAccountsController extends Controller
     public function validateLogout()
     {
         if (auth()->user()) {
+            Session::flush();
             auth()->logout();           
         } 
         return redirect('/');

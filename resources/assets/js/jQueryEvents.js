@@ -17,9 +17,9 @@ jQuery(document).ready(function(){
     }
 
     if(jQuery(".dialogBox").length){
-        var top = jQuery("#credits").parent().parent().position().top + jQuery("#credits").position().top + jQuery("#credits").height();
-        jQuery(".dialogBox").css("top", top+"px");
-        jQuery("#credits").css("z-index", 1005);
+        var top = jQuery("#logo").position().top + jQuery("#logo").height() + 20;
+        var left = jQuery("#logo").position().left + jQuery("#logo").width() - 200;
+        jQuery(".dialogBox").css({"top" : top+"px", "left" : left+"px"});
     }
 
     if(jQuery(".preview").length){

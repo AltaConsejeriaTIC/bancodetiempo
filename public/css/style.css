@@ -1825,7 +1825,7 @@ div#findMobile .close {
     position: absolute;
     top: 8%;
     z-index: 1000;
-    width: 20%;
+    width: 260px;
     padding: 1% 2%;
     color: #fff;
     left: 10%;

@@ -21,6 +21,7 @@ elixir(function(mix) {
         'validation.js',
         'jQueryEvents.js',
         'modules/pagination.js',
+        'modules/messagesCompleteProfile.js',
         'app.js'],
     "public/js/app.js");
 
