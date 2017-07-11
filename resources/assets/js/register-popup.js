@@ -1,4 +1,3 @@
-var errorMessage;
 var ageInput;
 var termsInput;
 var inputs = [];

@@ -11,14 +11,19 @@
                         <h1 class="title1">¡Registrate!</h1>
                     </div>
                     <div class="terms" id="register-terms">
-                        <div class="row">
+                        <div class="row form-custom">
                             <div class="col-xs-12">
-                                <input id="registerPopup-age" type="checkbox" name="age">
-                                <label for="registerPopup-age">Confirmo que soy mayor de edad</label>
+                                <p class="paragraph4">Para comenzar a cambalachear, por favor confirma la siguiente
+                                    información</p>
                             </div>
                             <div class="col-xs-12">
-                                <input type="checkbox" id="registerPopup-terms" name="terms">
-                                <label for="registerPopup-terms">Acepto los <a href="/content/terms">términos y condiciones</a> de la
+                                <input id="registerPopup-age" type="checkbox" class="square">
+                                <label for="registerPopup-age"> Confirmo que soy mayor de edad</label>
+                            </div>
+                            <div class="col-xs-12">
+                                <input type="checkbox" id="registerPopup-terms" class="square">
+                                <label for="registerPopup-terms">Acepto los <a href="/content/terms">términos y
+                                        condiciones</a> de la
                                     plataforma.</label>
                             </div>
                         </div>
