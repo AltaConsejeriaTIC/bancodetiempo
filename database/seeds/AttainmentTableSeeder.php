@@ -20,9 +20,7 @@ class AttainmentTableSeeder extends Seeder
 
     public function getDummyData(Generator $faker, array $custom = [])
     {        
-        return [
-                                              
-        ];        
+        return [];
     }   
 
     public function run()

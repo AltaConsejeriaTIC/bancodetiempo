@@ -1830,6 +1830,10 @@ div#findMobile .close {
     border-radius: 5px;
 }
 
+#messagesProfile{
+    overflow: hidden;
+}
+
 .campaign .partakers h1 {
     font-weight: bold;
     font-size: 18px;

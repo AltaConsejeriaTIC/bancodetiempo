@@ -97,6 +97,10 @@
     </div>
 </nav>
 
+
+@include('partial.messagesCompleteProfile')
+
+
 {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation']) !!}
 	<newservice :categories='this.myData.categories' :tags-service='this.myData.tags'></newservice>
 {!! Form::close() !!}
