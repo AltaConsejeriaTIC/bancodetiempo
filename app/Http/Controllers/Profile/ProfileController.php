@@ -66,6 +66,8 @@ class ProfileController extends Controller
 	 	$this->validateProfile($request);
 	 	$picture=$this->editProfilePicture($request);
 	 	
+        $oldAboutMe = Auth::user()->aboutMe;
+
 	 	if($picture !==false){
 	       Auth::user()->avatar = $picture;
         }
@@ -74,13 +76,14 @@ class ProfileController extends Controller
 		Auth::user()->last_name = $request->input('lastName');
 		Auth::user()->birthDate = $request->input('birthDate');
 		Auth::user()->aboutMe = $request->input("aboutMe");
-        Auth::user()->privacy_policy = $request->input('terms');
         Auth::user()->gender = $request->input('gender');
         Auth::user()->email2 = $request->input('email2');
   	
         Auth::user()->save();
 
-        //AttainmentsController::saveAttainment(1);
+        if($oldAboutMe == '' && Auth::user()->aboutMe != ''){
+            AttainmentsController::saveAttainment(2);
+        }
         return redirect()->back();
   	
 
@@ -92,7 +95,6 @@ class ProfileController extends Controller
 	 			'lastName' => 'required|min:3|alpha_spaces',
 	 			'gender' => 'required',
 	 			'aboutMe' => 'required|min:50|max:250',
-	            'terms' => 'required',
 	 			'image' => 'image|max:2000',
 	 			'avatar' => 'max:2000|image',
 	 			'email2' => 'required|email'
