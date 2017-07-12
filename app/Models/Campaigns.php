@@ -49,7 +49,7 @@ class Campaigns extends Model
     }
 
     static function campaignsUser($user_id){
-        return Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->where("user_id", $user_id);
+        return Campaigns::select("campaigns.*")->where("user_id", $user_id);
     }
 
     static function getCampaignsActive(){
