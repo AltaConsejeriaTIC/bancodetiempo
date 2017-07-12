@@ -21,7 +21,6 @@ class CampaignController extends Controller
         $interval = $today->diff($userDate);
         $dayInterval = (int)ceil($interval->days / 2);
         $date_finish_donations = date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $request->input('hoursCampaign');
-		//dd($request->all());
         if ($cover) {
             $group = Campaigns::create([
                 'name' => $request->input('nameCampaign'),
@@ -63,7 +62,7 @@ class CampaignController extends Controller
                 ]);
             } else {
                 $participant->update([
-                    "confirmed" => 1
+                    "confirmed" => true
                 ]);
             }
 
@@ -79,7 +78,7 @@ class CampaignController extends Controller
         $participant = CampaignParticipants::create([
             'campaigns_id' => $request->input('campaign_id'),
             'participant_id' => Auth::id(),
-            'confirmed' => false
+            'confirmed' => true
         ]);
 
         return redirect()->back()->with('msg', 'Te has preinscrito con exito');
