@@ -19,8 +19,10 @@ Route::get('/content/{name}', 'ContentController@index');
 
 //Social Loging
 
-Route::get('/loginRedes/{proveedor?}', 'NetworkAccountsController@login');
-Route::get('/callback/{proveedor?}', 'NetworkAccountsController@callback');
+Route::get('/loginRedes/{proveedor}', 'LoginController@login');
+Route::get('/registerRedes/{proveedor}', 'LoginController@register');
+Route::get('/callback/{proveedor}', 'LoginController@callback');
+Route::get('/validateLogout', 'LoginController@validateLogout');
 
 Auth::routes();
 
@@ -44,7 +46,6 @@ Route::get('/filterTag', 'HomeController@filterTag');
 Route::get('/filter', 'HomeController@filter');
 Route::get('/person', 'PersonController@index');
 Route::get('/campaign', 'CampaignController@filter');
-Route::get('/groups', 'GroupsController@filter');
 Route::get('/services', 'ServiceController@filter');
 Route::get('/query-services', 'ServiceController@query');
 Route::post('/subscribe', 'HomeController@subscribe');
@@ -52,8 +53,6 @@ Route::post('/subscribe', 'HomeController@subscribe');
 Route::get('/how', function(){
     return view("how");
 });
-
-Route::get('/validateLogout', 'NetworkAccountsController@validateLogout');
 
 Route::get('/tags','TagsController@jsonTags');
 Route::get('/categories','CategoryController@jsonCategories');

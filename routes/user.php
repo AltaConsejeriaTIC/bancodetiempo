@@ -32,11 +32,6 @@ Route::post('/report/create/{serviceid?}', 'ReportsController@create');
 
 Route::get('/find/users', 'UsersController@findUsers');
 
-Route::post('createGroup', 'GroupsController@create');
-Route::put('editGroup', 'GroupsController@update');
-Route::put('deleteGroup', 'GroupsController@delete');
-Route::get('group/{groupId}', 'GroupsController@show');
-
 Route::post('createCampaign', 'CampaignController@create');
 Route::post('updateCampaign', 'CampaignController@update');
 Route::put('deleteCampaign/{campaignId}', 'CampaignController@delete');
