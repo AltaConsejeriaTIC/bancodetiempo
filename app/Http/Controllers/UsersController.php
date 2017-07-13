@@ -33,7 +33,7 @@ class UsersController extends Controller
                 'first_name' => $providerData['first_name'],
                 'last_name' => $providerData['last_name'],
                 'avatar' => '',
-                'state_id' => 4,
+                'state_id' => 1,
                 'gender' => $providerData['gender'],
                 'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
                 'aboutMe' => '',
