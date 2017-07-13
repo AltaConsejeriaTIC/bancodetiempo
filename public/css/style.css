@@ -64,6 +64,30 @@ img {
     white-space: pre-wrap;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.opaque-background {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-block-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    width: 100%;
+    min-width: 310px;
+    max-width: 420px;
+}
+
 /*
 Titles
 */
@@ -1969,6 +1993,7 @@ div#findMobile .close {
 .register-popup .terms {
     margin: 30px 0;
 }
+
 .register-popup .terms p {
     font-size: 18px;
     margin-top: 10px;

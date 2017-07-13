@@ -10,7 +10,7 @@
     <div class="container">
 
         @if(Session("message"))
-            {{Session("message")}}
+            {{--@{{setMyData("blockedUser", true)}}--}}
         @endif
 
 
@@ -115,4 +115,5 @@
         </article>
 
     </div>
+    @include('home.partial.blockedUser');
 @endsection
