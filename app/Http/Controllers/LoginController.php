@@ -58,7 +58,8 @@ class LoginController extends Controller{
         }
     }
     private function getUSer(){
-        $user = User::where('email', $this->providerData['email'])->get()->last();
+        $email = is_null($this->providerData['email']) ? $this->providerData['id'] . "@cambalachea.co" : $this->providerData['email'];
+        $user = User::where('email', $email)->get()->last();
         if(is_null($user)){
             return false;
         }

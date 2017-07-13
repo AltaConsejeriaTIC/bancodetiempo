@@ -40,19 +40,12 @@ class CampaignController extends Controller
 
     }
 
-    public function show($campaignId)
-    {
-
+    public function show($campaignId){
         $campaign = Campaigns::findOrFail($campaignId);
-
         return view('campaigns/campaign', compact('campaign'));
     }
-
-    public function inscriptionParticipant(Request $request)
-    {
-
+    public function inscriptionParticipant(Request $request){
         if ($this->getQuotasAvailable($request->input('campaign_id')) > 0) {
-
             $participant = CampaignParticipants::where("participant_id", Auth::id())->where("campaigns_id", $request->input('campaign_id'));
             if ($participant->get()->count() == 0) {
                 $participant = CampaignParticipants::create([
@@ -60,17 +53,14 @@ class CampaignController extends Controller
                     'participant_id' => Auth::id(),
                     "confirmed" => 1
                 ]);
-            } else {
+            }else{
                 $participant->update([
                     "confirmed" => true
                 ]);
             }
-
             return redirect()->back()->with('msg', 'Te has inscrito con exito');
         }
-
         return redirect()->back()->with('msg', 'Ya no quedan cupos disponibles');
-
     }
 
     public function preinscriptionParticipant(Request $request)
