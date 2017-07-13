@@ -1,16 +1,9 @@
 <generalmodal name='newsite' :state='myData.newsite' state-init='true' close-time='true' time='500'>
-    <div slot="modal" class='panel'>
-        <form :action="myData.siteId == '' || myData.siteId === undefined ? '/admin/suggestedSites/newSite' : '/admin/suggestedSites/editSite' " method="post" id="filters" onkeypress="return event.keyCode != 13;">
+    <div slot="modal" class='panel' id='formSite'>
+        <form :action="myData.siteId == '' || myData.siteId === undefined ? '/admin/suggestedSites/newSite' : '/admin/suggestedSites/editSite' " method="post" id="sites_form" onkeypress="return event.keyCode != 13;">
             {{csrf_field()}}
             <div class="panel-heading">
-                <button type="button" @click='myData.newsite = false;
-                                               myData.siteName="";
-                                               myData.siteAddress="";
-                                               myData.siteRequirements="";
-                                               myData.siteContact="";
-                                               myData.siteDescription="";
-                                               myData.siteCoordinates="";
-                                               myData.siteId=""' class="close circle-shape"><span aria-hidden="true">×</span></button>
+                <button type="button" @click='myData.newsite = false;' class="close circle-shape closeForm"><span aria-hidden="true">×</span></button>
                 <div class="row">
                     <div class="col-xs-12">
                         <h2 class="title2">Nuevo sitio</h2>
@@ -22,7 +15,7 @@
                     <label for="name">Nombre:</label>
                 </div>
                 <div class="col-xs-8">
-                    <input class='col-xs-12' type="text" id="name" name="name" v-model='myData.siteName'>
+                    <input class='col-xs-12' type="text" id="editName" name="name">
                 </div>
             </div>
             <div class="row">
@@ -32,7 +25,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <input type="text" name='address' class="col-xs-12"  v-model='myData.siteAddress'>
+                    <input type="text" name='address' id='address' class="col-xs-12">
                 </div>
             </div>
             <div class="row">
@@ -42,7 +35,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <textarea name="requirements" class='col-xs-12' rows="4" v-model='myData.siteRequirements'></textarea>
+                    <textarea name="requirements" class='col-xs-12' rows="4" id='requirements'></textarea>
                 </div>
             </div>
             <div class="row">
@@ -52,7 +45,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <textarea name="contact" class='col-xs-12' rows="4" v-model='myData.siteContact'></textarea>
+                    <textarea name="contact" class='col-xs-12' rows="4" id='contact'></textarea>
                 </div>
             </div>
             <div class="row">
@@ -62,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <textarea name="description" class='col-xs-12' rows="4" v-model='myData.siteDescription'></textarea>
+                    <textarea name="description" class='col-xs-12' rows="4" id='description'></textarea>
                 </div>
             </div>
             <div class="row">
@@ -72,15 +65,15 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <input type="hidden" name='coordinates' id='coordinates' v-model='myData.siteCoordinates'>
+                    <input type="hidden" name='coordinates' id='coordinates' id='coordinates'>
                     <input type="text" id='siteName' style="width:100%;">
                     <div id="map"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-6">
-                    <input type="hidden" name="siteId" :value='myData.siteId'>
-                    <input type="hidden" name="categoryId" :value='myData.categoryId'>
+                    <input type="hidden" name="siteId" id='siteId'>
+                    <input type="hidden" name="categoryId" v-model='myData.categoryId'>
                     <button type="submit" class="btn btn-raised btn-primary col-xs-12">Generar</button>
                 </div>
                 <div class="col-xs-6">

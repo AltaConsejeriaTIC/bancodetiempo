@@ -54,16 +54,12 @@ class SuggestedSitiesController extends Controller
             'coordinates' => 'required'
         ]);
 
-        $requirements = str_replace(PHP_EOL, '\ \r\n', $request->input("requirements"));
-        $contact = str_replace(PHP_EOL, '\ \r\n', $request->input("contact"));
-        $description = str_replace(PHP_EOL, '\ \r\n', $request->input("description"));
-
          SuggestedSites::create([
             "name" => $request->input("name"),
             "address" => $request->input("address"),
-            "requirements" => $requirements,
-            "contact" => $contact,
-            "description" => $description,
+            "requirements" => $request->input("requirements"),
+            "contact" => $request->input("contact"),
+            "description" => $request->input("description"),
             "coordinates" => $request->input("coordinates"),
             "category_site_id" => $request->input("categoryId")
         ]);
