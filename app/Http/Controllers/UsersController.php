@@ -46,7 +46,7 @@ class UsersController extends Controller
     }
 
     private function setAvatar($user, $avatar){
-        $avatar = $this->getAvatar($avatar);
+        $avatar = $this->getAvatar($avatar, $user);
         if ($avatar) {
             $user->update([
                 'avatar' => $avatar
@@ -54,9 +54,9 @@ class UsersController extends Controller
         }
     }
 
-    private function getAvatar($url){
-        $this->createDirUser();
-        $img = 'resources/user/user_' . Auth::id() . '/img' . Auth::id() . \date('YmdHis') . '.jpg';
+    private function getAvatar($url, $user){
+        $this->createDirUser($user);
+        $img = 'resources/user/user_' . $user->id . '/img' . $user->id . \date('YmdHis') . '.jpg';
         $file = fopen($img, "w+");
         if ($file != false) {
             file_put_contents($img, file_get_contents($url));
@@ -66,9 +66,9 @@ class UsersController extends Controller
         }
     }
 
-    private function createDirUser(){
-        if (!is_dir('resources/user/user_' . Auth::id())) {
-            mkdir('resources/user/user_' . Auth::id(), 0777, true);
+    private function createDirUser($user){
+        if (!is_dir('resources/user/user_' . $user->id)) {
+            mkdir('resources/user/user_' . $user->id, 0777, true);
         }
     }
 }
