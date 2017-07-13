@@ -37,7 +37,8 @@ class UsersController extends Controller
                 'gender' => $providerData['gender'],
                 'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
                 'aboutMe' => '',
-                'role_id' => 2
+                'role_id' => 2,
+                'privacy_policy' => 1
         ]);
         $account->user()->associate($user);
         $account->save();

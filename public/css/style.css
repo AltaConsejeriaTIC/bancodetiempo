@@ -1986,3 +1986,7 @@ div#findMobile .close {
     color: #001738;
     text-decoration: underline !important;
 }
+
+[v-cloak]{
+    display: none;
+}
