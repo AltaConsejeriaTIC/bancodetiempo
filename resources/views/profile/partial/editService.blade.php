@@ -1,5 +1,5 @@
 <generalmodal  name='editService{{$service->id}}' :state='myData.editService{{$service->id}}' state-init='false'>
-        <div slot="modal" class='modal-container'>
+        <div slot="modal" class='modal-container' v-cloak>
 
             <div class="modal-body">
                <button type="button" @click='myData.editService{{$service->id}} = false' class="close circle-shape"><span aria-hidden="true">×</span></button>

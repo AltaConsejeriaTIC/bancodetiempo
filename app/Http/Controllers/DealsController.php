@@ -17,9 +17,7 @@ class DealsController extends Controller
     private $request;
 
     public function saveObservation(Request $request){
-
         $this->request = $request;
-
         if($this->request->input("scoreFrom") == "offerer"){
             $this->saveObservationOfferer();
         }elseif($request->input("scoreFrom") == "applicant"){
@@ -27,12 +25,10 @@ class DealsController extends Controller
         }
         $this->exchange($this->request->input("deal_id"));
         $deal = Deal::find($request->input("deal_id"));
-
         if(!is_null($deal->response_applicant) && !is_null($deal->response_offerer)){
             $this->createNewState($this->request->input("deal_id"), 10);
         }
         return redirect()->back()->with('response', true);
-
     }
 
     public function saveObservationOfferer(){

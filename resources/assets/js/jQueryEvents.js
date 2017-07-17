@@ -37,7 +37,26 @@ jQuery(document).ready(function(){
 
     jQuery(".sendCoordinates").on("click", sendCoordinates)
     
+    jQuery(".showDetailSite").on("click", showDetailSite)
+
 });
+
+function showDetailSite(){
+    var name = jQuery(this).find("[name='name']").val();
+    jQuery("#siteName").html(name)
+    var address = jQuery(this).find("[name='address']").val();
+    jQuery("#siteAddress").html(address)
+    var contact = jQuery(this).find("[name='contact']").val();
+    jQuery("#siteContact").html(contact)
+    var description = jQuery(this).find("[name='description']").val();
+    jQuery("#siteDescription").html(description)
+    var requirements = jQuery(this).find("[name='requirements']").val();
+    jQuery("#siteRequirements").html(requirements)
+    var coordinates = jQuery(this).find("[name='coordinates']").val();
+    jQuery("#siteCoordinates").attr('href', 'http://maps.google.com/?q='+coordinates);
+    jQuery(".sendCoordinates").attr("coordinates", coordinates);
+    jQuery(".sendCoordinates").attr("nameSite", name);
+}
 
 function nextTransition(){
     jQuery(".transition").scrollTop(0);

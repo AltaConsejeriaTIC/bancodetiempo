@@ -1,6 +1,6 @@
 @if(session('response'))
     <generalmodal name='notificationEmail' :state='myData.notificationEmail' state-init='true'>
-        <div slot="modal" class='box row'>
+        <div slot="modal" class='box row' v-cloak>
             <button type="button" class='close' v-on:click='myData.notificationEmail = false'><i
                         class='fa fa-close'></i></button>
             <h1 class='title1 col-md-12 text-center'>¡Notificación enviada!</h1>
@@ -19,7 +19,7 @@
 
 
 <contactmailmodal service='{{$service->id}}' :contact-mail='myData.contactMail'>
-    <div slot="modal" class='box row'>
+    <div slot="modal" class='box row' v-cloak>
         <button type="button" class='close' v-on:click='putMyData("contactMail", false)'><i class='fa fa-close'></i>
         </button>
         {!! Form::open(['url' => '/defaultsend/'.$service->id, 'method' => 'get', 'class' => 'form-custom col-md-10 col-md-offset-1', 'form-validation']) !!}

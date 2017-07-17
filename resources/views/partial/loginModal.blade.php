@@ -1,5 +1,5 @@
 <generalmodal   name='login' :state='myData.login' state-init='false'>
-    <div slot="modal" >
+    <div slot="modal" v-cloak>
         <div class="modal-content-box">
             <div class="modal-wrapper">
               <div class="modal-container">

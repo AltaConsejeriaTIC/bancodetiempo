@@ -23,16 +23,15 @@
 		            	<ul>
 		                @foreach($category->sites as $site)
 		                
-		                	<li class='buttonTransition pointer' data-open='#detailSite' 
-		                	@click='putMyData("siteName", "{{$site->name}}");
-		                	putMyData("siteAddress", "{{$site->address}}");
-		                	putMyData("siteContact", "{!!$site->contact!!}");
-		                	putMyData("siteDescription", "{!!$site->description!!}");
-		                	putMyData("siteRequirements", "{!!$site->requirements!!}");
-		                	putMyData("siteCoordinates", "{{$site->coordinates}}");
-		                	putMyData("siteIcon", "{{$category->icon}}");
-		                	edit= edit ? false : true;
-		                	'>{{$site->name}}</li>
+		                	<li class='buttonTransition pointer showDetailSite' data-open='#detailSite' @click='edit = edit ? false : true;'>
+		                	{{$site->name}}
+                              <input type="hidden" name='name' value="{{$site->name}}">
+                               <input type="hidden" name='address' value="{{$site->address}}">
+                               <input type="hidden" name='requirements' value="{{$site->requirements}}">
+                               <input type="hidden" name='contact' value="{{$site->contact}}">
+                               <input type="hidden" name='description' value="{{$site->description}}">
+                               <input type="hidden" name='coordinates' value="{{$site->coordinates}}">
+		                	</li>
 		                
 		                @endforeach
 		                </ul>

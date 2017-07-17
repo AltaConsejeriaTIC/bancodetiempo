@@ -36,10 +36,13 @@ class LoginController extends Controller{
         if(Session('action') == 'login'){
             return $this->userLogin();
         }elseif(Session('action') == 'register'){
-            return $this->userRegister();
+            if($this->getUser()){
+                return $this->userLogin();
+            }else{
+                return $this->userRegister();
+            }
         }
     }
-
     private function userLogin(){
         $user = $this->getUser();
         if($user){
@@ -54,15 +57,14 @@ class LoginController extends Controller{
             return redirect("/")->with('message', "Primero debes registrarte");
         }
     }
-
     private function getUSer(){
-        $user = User::where('email', $this->providerData['email'])->get()->last();
+        $email = is_null($this->providerData['email']) ? $this->providerData['id'] . "@cambalachea.co" : $this->providerData['email'];
+        $user = User::where('email', $email)->get()->last();
         if(is_null($user)){
             return false;
         }
         return $user;
     }
-
     private function userRegister(){
         $usersClass = new UsersController();
         $user = $usersClass->createUser($this->providerData);
