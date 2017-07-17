@@ -34,8 +34,17 @@ header .header-content {
     width: 100%;
 }
 
-buttom, a {
+button, a {
     cursor: pointer;
+}
+
+.secondary-color {
+    color: #001738;
+}
+
+.link {
+    color:#445870;
+    text-decoration: underline !important;
 }
 
 /*
