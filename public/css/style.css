@@ -38,14 +38,6 @@ button, a {
     cursor: pointer;
 }
 
-.secondary-color {
-    color: #001738;
-}
-
-.link {
-    color:#445870;
-    text-decoration: underline !important;
-}
 
 /*
 Logo
@@ -2021,6 +2013,54 @@ div#findMobile .close {
     text-decoration: underline !important;
 }
 
-[v-cloak]{
+[v-cloak] {
     display: none;
+}
+
+.title {
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+}
+
+.size-first {
+    font-size: 28px;
+}
+
+.size-second {
+    font-size: 24px;
+}
+
+.size-third {
+    font-size: 18px;
+}
+
+.size-fourth {
+    font-size: 14px;
+}
+
+.welcome .img {
+    max-width: 128px;
+}
+
+.primary-color {
+    color: #001136;
+}
+
+.secondary-color {
+    color: #001738;
+}
+
+.link {
+    color: #445870;
+    text-decoration: underline !important;
+}
+
+.margin-vertical-10 {
+    margin: 10px 0;
+}
+
+.inline-block {
+    display: inline-block;
+    margin: 10px;
+    max-width: 300px;
 }
