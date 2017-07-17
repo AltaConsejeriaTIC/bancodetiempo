@@ -47,7 +47,7 @@ class LoginController extends Controller{
         $user = $this->getUser();
         if($user){
             if($user->state_id == 3){
-                return redirect("/home")->with('message', "El usuario con el que intento acceder a Cambalachea ha sido bloqueado.");
+                return redirect("/")->with('blockedUser', true);
             }else{
                 Session()->put('GAEvent', ['event' => 'login', 'provider' => $this->providerData['provider']]);
                 Auth()->login($user);

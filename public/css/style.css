@@ -34,9 +34,10 @@ header .header-content {
     width: 100%;
 }
 
-buttom, a {
+button, a {
     cursor: pointer;
 }
+
 
 /*
 Logo
@@ -62,6 +63,30 @@ img {
 
 .pre {
     white-space: pre-wrap;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.opaque-background {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-block-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    width: 100%;
+    min-width: 310px;
+    max-width: 420px;
 }
 
 /*
@@ -1923,6 +1948,7 @@ div#findMobile .close {
 .register-popup .terms {
     margin: 30px 0;
 }
+
 .register-popup .terms p {
     font-size: 18px;
     margin-top: 10px;
@@ -1941,6 +1967,54 @@ div#findMobile .close {
     text-decoration: underline !important;
 }
 
-[v-cloak]{
+[v-cloak] {
     display: none;
+}
+
+.title {
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+}
+
+.size-first {
+    font-size: 28px;
+}
+
+.size-second {
+    font-size: 24px;
+}
+
+.size-third {
+    font-size: 18px;
+}
+
+.size-fourth {
+    font-size: 14px;
+}
+
+.welcome .img {
+    max-width: 128px;
+}
+
+.primary-color {
+    color: #001136;
+}
+
+.secondary-color {
+    color: #001738;
+}
+
+.link {
+    color: #445870;
+    text-decoration: underline !important;
+}
+
+.margin-vertical-10 {
+    margin: 10px 0;
+}
+
+.inline-block {
+    display: inline-block;
+    margin: 10px;
+    max-width: 300px;
 }

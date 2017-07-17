@@ -33,6 +33,7 @@ Vue.component('sendmessage', require('./components/sendMessage.vue'));
 Vue.component('deals', require('./components/Deal.vue'));
 Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('select-icon', require('./components/selectIcon.vue'));
+Vue.component('popup', require('./components/popup.vue'));
 
 var app = new Vue({
 
