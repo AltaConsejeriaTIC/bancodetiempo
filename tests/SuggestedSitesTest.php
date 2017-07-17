@@ -61,33 +61,6 @@ class SuggestedSitesTest extends TestCase
         $site->delete();
     }
 
-    public function testSuggestedSiteParsedRightly(){
-
-        $user = User::find(1);
-        Auth()->login($user);
 
 
-        $category = CategoriesSites::create([
-            'name' => 'prueba',
-            'icon' => 'bars'
-        ]);
-
-        $this->post('/admin/suggestedSites/newSite', ['name' => '34a636fe432d8ebd8ef8ad3280031648',
-            'address' => 'crr 88 # 55 - 66',
-            'requirements' => 'Papeles'.PHP_EOL.'Al día',
-            'contact' => 'Manuel'.PHP_EOL.'Daza',
-            'description' => 'sucio'.PHP_EOL.'y ya',
-            'coordinates' => '5126552, 5655545',
-            'categoryId' => $category->id,
-        ]);
-
-        $site = SuggestedSites::where('name', '34a636fe432d8ebd8ef8ad3280031648');
-
-        $this->assertTrue(strpos($site->get()->last()->requirements, '\ \r\n') !== false);
-        $this->assertTrue(strpos($site->get()->last()->contact, '\ \r\n') !== false);
-        $this->assertTrue(strpos($site->get()->last()->description, '\ \r\n') !== false);
-
-        $site->delete();
-
-    }
 }

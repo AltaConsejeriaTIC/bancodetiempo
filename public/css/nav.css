@@ -1,12 +1,12 @@
 @CHARSET "ISO-8859-1";
 
 .nav1 {
-    background-color: transparent !important;
-    position: absolute;
+    background-color: rgba(0, 17, 54, 0.5) !important;
+    position: fixed;
     width: 100%;
-    padding-bottom:20px;
     top: 0px;
     left: 0px;
+    transition: all 1s;
 }
 
 .nav1 img{
@@ -32,6 +32,9 @@
     margin-bottom: 0px;
 }
 
+.backgroundSolid{
+    background-color: rgba(0, 17, 54, 1) !important;
+}
 
 .iconbar2{
     padding-top: 5px;

@@ -1,13 +1,159 @@
-@media (min-width: 750px) {
+@media (min-width: 768px) {
 	
 	#conversation{
 		overflow: auto;
 		height: 81%;
 	}
+
+    ul.menuMobile {
+        margin-bottom: 0px;
+        list-style: none;
+        text-align: center;
+        padding: 0px;
+    }
+
+    ul.menuMobile li.dropdown {
+        padding: 10px;
+    }
+
+    ul.menuMobile li.dropdown.open {
+        background: #0a1e5f;
+    }
+
+    ul.menuMobile > li > a > i {
+        font-size: 25px;
+        text-align: right;
+        color: #fff !important;
+    }
+
+    ul.menuMobile ul.dropdown-menu {
+        right: 0px;
+        background-color: #0a1e5f;
+        margin: 0px;
+        left: initial;
+    }
+
+    .menuMobile .item-icon {
+        margin-right: 15px;
+        right: auto;
+    }
+
+    ul.dropdown-menu > li > a {
+        color: #fff;
+    }
+
+
+    .bannerHome {
+       height: 500px;
+    }
+
+    .bannerHome .lineUnion {
+        width: 15vw;
+        display: block;
+        position: absolute;
+        border-top: 2px solid #fff;
+        top: 5vh;
+        left: 80%;
+        padding-left: 10px;
+        text-align: center;
+    }
+
+    .bannerHome .lineUnion:before {
+        content: "";
+        display: block;
+        border: 3px solid #fff;
+        width: 13px;
+        height: 13px;
+        position: absolute;
+        top: -7px;
+        left: -10px;
+        border-radius: 50px;
+    }
+
+    .bannerHome .lineUnion:after {
+        content: "";
+        display: block;
+        border: 3px solid #fff;
+        width: 13px;
+        height: 13px;
+        position: absolute;
+        top: -7px;
+        right: -10px;
+        border-radius: 50px;
+    }
+
+    .bannerRegister {
+        background-size: 145% auto;
+        background-position: 55% 30%;
+        padding-top: 100px;
+    }
+
+    .bannerHome .carousel > div > img {
+        width: 50%;
+    }
+
+    .line-r-v {
+        border-right: 0px solid #fff !important;
+        margin-right: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .line-l-v {
+        border-left: 0px solid #fff !important;
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
 	
 }
 
-@media (max-width: 450px) {
+/*
+Media Querys
+*/
+@media (min-width: 992px) {
+    .container {
+        width: 1024px;
+    }
+
+    .bannerHome {
+        height: 650px;
+        position: relative;
+    }
+
+    .bannerRegister {
+        padding-top: 120px;
+    }
+
+    .bannerService {
+        padding-top: 120px;
+    }
+
+    .space40 {
+        margin-top: 40px;
+    }
+
+    .not-padding {
+        padding: 0px !important;
+    }
+
+    .nav-pills > li > a {
+        display: block;
+        padding-right: 20px;
+        font-size: 16px;
+    }
+
+    #conversation{
+		overflow: auto;
+		height: 90%;
+	}
+
+    .bannerHome .lineUnion {
+        width: 15vh !important;
+    }
+
+}
+
+
+@media (max-width: 767px) {
 
     #app {
         min-height: 500px;
@@ -19,16 +165,51 @@
     }
 
     .bannerHome {
+        height: 105vh;
     }
 
     .bannerHome .carousel > div {
         background-size: auto 100% !important;
-        background-position: 20% 0% !important;
+        background-position: 95% 0% !important;
     }
 
     .bannerHome .carousel > div > img {
         left: 0% !important;
         width: 100%;
+    }
+
+    .bannerHome .lineUnion {
+        height: 5vh;
+        display: block;
+        position: absolute;
+        border-left: 2px solid #fff;
+        top: 15vh;
+        left: 60%;
+        padding-left: 10px;
+    }
+
+    .bannerHome .lineUnion:before {
+        content: "";
+        display: block;
+        border: 3px solid #fff;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: -10px;
+        left: -6px;
+        border-radius: 50px;
+    }
+
+    .bannerHome .lineUnion:after {
+        content: "";
+        display: block;
+        border: 3px solid #fff;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        bottom: -10px;
+        left: -6px;
+        border-radius: 50px;
     }
 
     .bannerRegister {
@@ -107,10 +288,11 @@
         margin-bottom: 0px;
         list-style: none;
         text-align: center;
+        padding: 0px;
     }
 
     ul.menuMobile li.dropdown {
-        padding: 15px;
+        padding: 10px;
     }
 
     ul.menuMobile li.dropdown.open {
@@ -222,13 +404,13 @@
 		height: 80%;
     	overflow: auto;
 	}
-}
 
-@media (min-width: 1024px) {
-	
-	#conversation{
-		overflow: auto;
-		height: 90%;
-	}
-	
+    .flex-center-xs {
+        display: flex;
+        align-items: center;
+    }
+
+    .flex-center-xs p {
+        margin: 0px;
+    }
 }

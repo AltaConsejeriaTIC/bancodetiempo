@@ -44,7 +44,7 @@ Logo
 .logo {
     background: rgba(255, 255, 255, 0.7);
     display: block;
-    padding: 15px 0px 15px 0px;
+    padding: 10px 0px 10px 0px;
     border-radius: 0px 0px 5px 5px;
 }
 
@@ -666,6 +666,25 @@ h1#bannerDescription {
     background-image: url(/images/banner/back3.jpg);
 }
 
+.bannerHome .description {
+    background: rgba(0, 159, 227, 0.5);
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.position-bottom{
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    left: 0%;
+}
+
+.sponsors{
+    background: #001136;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 /*
 Banner Register
 */
@@ -1215,71 +1234,6 @@ conversation box
     z-index: 15000;
     max-height: 85%;
     overflow: auto;
-}
-
-/*
-Media Querys
-*/
-@media (min-width: 1024px) {
-    .container {
-        width: 1024px;
-    }
-
-    .bannerHome {
-        padding-top: 230px;
-    }
-
-    .bannerRegister {
-        padding-top: 120px;
-    }
-
-    .bannerService {
-        padding-top: 120px;
-    }
-
-    .space40 {
-        margin-top: 40px;
-    }
-
-    .not-padding {
-        padding: 0px !important;
-    }
-
-    .nav-pills > li > a {
-        display: block;
-        padding-right: 20px;
-        font-size: 16px;
-    }
-
-}
-
-@media (max-width: 768px) {
-    .bannerHome {
-        padding-top: 120px;
-    }
-
-    .bannerRegister {
-        background-size: 145% auto;
-        background-position: 55% 30%;
-        padding-top: 100px;
-    }
-
-    .bannerHome .carousel > div > img {
-        width: 50%;
-    }
-
-    .line-r-v {
-        border-right: 0px solid #fff !important;
-        margin-right: 0px !important;
-        padding-right: 0px !important;
-    }
-
-    .line-l-v {
-        border-left: 0px solid #fff !important;
-        margin-left: 0px !important;
-        padding-left: 0px !important;
-    }
-
 }
 
 /*

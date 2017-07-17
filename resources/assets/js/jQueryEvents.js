@@ -22,22 +22,25 @@ jQuery(document).ready(function(){
         jQuery(".dialogBox").css({"top" : top+"px", "left" : left+"px"});
     }
 
-    if(jQuery(".bannerHome").length){
-       bannerHome();
-    }
-
     if(jQuery(".transition").length){
        jQuery('.buttonTransition').on('click', nextTransition);
     }
 
     jQuery(".score").on("click", score);
-
     jQuery("#openSearch").on("click", openSearch);
     jQuery("#findMobile .close").on("click", closeSearch)
-
     jQuery(".sendCoordinates").on("click", sendCoordinates)
+    jQuery(".showDetailSite").on("click", showDetailSite);
     
-    jQuery(".showDetailSite").on("click", showDetailSite)
+    if(jQuery(".nav1").length){
+       jQuery(window).scroll(function(){
+           if(jQuery(this).scrollTop() > 650){
+               jQuery(".nav1").addClass('backgroundSolid');
+           }else{
+               jQuery(".nav1").removeClass('backgroundSolid');
+           }
+       })
+    }
 
 });
 
@@ -68,38 +71,6 @@ function nextTransition(){
     });
     next.addClass("active");
     next.animate(next.data('in'), 500);
-
-}
-
-
-
-function bannerHome(){
-    jQuery(".bannerHome .carousel").attr("banner", 0);
-    animationBanner();
-}
-
-function animationBanner(){
-    var actual = jQuery(".bannerHome .carousel").attr("banner");
-    var next = parseInt(actual)+1;
-    var description = jQuery("#bannerDescription");
-    if(actual == parseInt(jQuery(".bannerHome .carousel").attr("slider"))){
-        next = 1;
-    }
-
-    description.animate({opacity:0}, 100, function(){
-        var newText = jQuery(".bannerHome .carousel .banner"+next).children(".description").html();
-
-        setTimeout(function(){
-            description.html(newText);
-            description.animate({opacity:100}, 800);
-        }, 1000);
-    })
-
-    jQuery(".bannerHome .carousel .banner"+actual).removeClass("active");
-    jQuery(".bannerHome .carousel .banner"+next).addClass("active");
-
-    jQuery(".bannerHome .carousel").attr("banner", next);
-    setTimeout(animationBanner, 4000);
 
 }
 
