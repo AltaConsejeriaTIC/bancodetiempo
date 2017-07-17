@@ -8,17 +8,11 @@
     @endif
 
     <div class="container">
-
-        @if(Session("message"))
-            {{--@{{setMyData("blockedUser", true)}}--}}
-        @endif
-
-
-       <div class="row">
-           <div class="col-xs-12">
-               <h2 class="title1">{{ trans('home.allService') }}</h2>
-           </div>
-       </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="title1">{{ trans('home.allService') }}</h2>
+            </div>
+        </div>
 
         <div class="row">
             <div class="hidden">
@@ -28,16 +22,20 @@
             <div class="col-md-8">
                 <ul class="nav nav-pills">
                     <li role="presentation" class="active">
-                        <a href=".all" data-toggle="tab" @click='setMyData("urlFilter", "/listService");setMyData("tabFilter", "all");'>{{ trans('home.all') }}</a>
+                        <a href=".all" data-toggle="tab"
+                           @click='setMyData("urlFilter", "/listService");setMyData("tabFilter", "all");'>{{ trans('home.all') }}</a>
                     </li>
                     <li role="presentation">
-                        <a href=".featured" data-toggle="tab" @click='setMyData("urlFilter", "/listServiceFeatured");setMyData("tabFilter", "featured");'>{{ trans('home.featured') }}</a>
+                        <a href=".featured" data-toggle="tab"
+                           @click='setMyData("urlFilter", "/listServiceFeatured");setMyData("tabFilter", "featured");'>{{ trans('home.featured') }}</a>
                     </li>
                     <li role="presentation">
-                        <a href=".virtual" data-toggle="tab" @click='setMyData("urlFilter", "/listServiceVirtual");setMyData("tabFilter", "virtual");'>{{ trans('home.virtual') }}</a>
+                        <a href=".virtual" data-toggle="tab"
+                           @click='setMyData("urlFilter", "/listServiceVirtual");setMyData("tabFilter", "virtual");'>{{ trans('home.virtual') }}</a>
                     </li>
                     <li role="presentation">
-                       <a href=".faceToFace" data-toggle="tab" @click='setMyData("urlFilter", "/listServiceFaceToFace");setMyData("tabFilter", "faceToFace");'>{{ trans('home.faceToFace') }}</a>
+                        <a href=".faceToFace" data-toggle="tab"
+                           @click='setMyData("urlFilter", "/listServiceFaceToFace");setMyData("tabFilter", "faceToFace");'>{{ trans('home.faceToFace') }}</a>
                     </li>
                 </ul>
             </div>
@@ -87,10 +85,10 @@
         </article>
 
         <div class="row">
-           <div class="col-xs-12">
-               <h2 class="title1">{{ trans('home.campaigns') }}</h2>
-           </div>
-       </div>
+            <div class="col-xs-12">
+                <h2 class="title1">{{ trans('home.campaigns') }}</h2>
+            </div>
+        </div>
 
         <article class="row" id='campaigns'>
 
@@ -103,17 +101,15 @@
             <div class="clearfix"></div>
             <div class="col xs 12 text-center">
                 <ul class="pagination pagination-sm">
-                @php($lastPageCampaigns = ceil($campaigns->total()/4) > 10 ? 10 : ceil($campaigns->total()/4))
-                @for($i = 1 ; $i <= $lastPageCampaigns; $i++)
-                    <li @if($i == 1) class='active' @endif>
-                        <a href="/campaigns/list?page={{$i}}">{{$i}}</a>
-                    </li>
-                @endfor
+                    @php($lastPageCampaigns = ceil($campaigns->total()/4) > 10 ? 10 : ceil($campaigns->total()/4))
+                    @for($i = 1 ; $i <= $lastPageCampaigns; $i++)
+                        <li @if($i == 1) class='active' @endif>
+                            <a href="/campaigns/list?page={{$i}}">{{$i}}</a>
+                        </li>
+                    @endfor
                 </ul>
             </div>
 
         </article>
-
     </div>
-    @include('home.partial.blockedUser');
 @endsection

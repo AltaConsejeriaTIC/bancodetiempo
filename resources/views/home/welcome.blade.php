@@ -96,4 +96,7 @@
 
 
 
+@if(Session("blockedUser"))
+    @include('home.partial.blockedUser');
+@endif
 @endsection
