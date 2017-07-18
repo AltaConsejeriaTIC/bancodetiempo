@@ -2039,4 +2039,8 @@ div#findMobile .close {
     .welcome .size-second {
         font-size: 18px;
     }
+
+    .welcome .button1:active {
+        color: inherit;
+    }
 }
