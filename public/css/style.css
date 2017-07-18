@@ -1977,11 +1977,11 @@ div#findMobile .close {
 }
 
 .size-first {
-    font-size: 28px;
+    font-size: 18px;
 }
 
 .size-second {
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .size-third {
@@ -2017,4 +2017,26 @@ div#findMobile .close {
     display: inline-block;
     margin: 10px;
     max-width: 300px;
+}
+
+@media (min-width: 576px) {
+    .size-first {
+        font-size: 28px;
+    }
+
+    .size-second {
+        font-size: 24px;
+    }
+
+    .size-third {
+        font-size: 18px;
+    }
+
+    .size-fourth {
+        font-size: 14px;
+    }
+
+    .welcome .size-second {
+        font-size: 18px;
+    }
 }
