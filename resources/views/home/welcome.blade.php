@@ -27,7 +27,7 @@
                             un
                             dorado equivale a una hora.</i></p>
                 </div>
-                <a href="#saberMas" class="button1 background-active-green-color inline-block ">¿Quieres saber
+                <a href="/how" class="button1 background-active-green-color inline-block ">¿Quieres saber
                     más?</a>
             </div>
 
