@@ -27,13 +27,14 @@ class UsersController extends Controller
             'provider' => $providerData['provider']
         ]);
         $email = is_null($providerData['email']) ? $providerData['id'] . "@cambalachea.co" : $providerData['email'];
+        $state = is_null($providerData['email']) ? 4 : 1;
         $user = User::create([
                 'email' => $email,
                 'email2' => $providerData['email'],
                 'first_name' => $providerData['first_name'],
                 'last_name' => $providerData['last_name'],
                 'avatar' => '',
-                'state_id' => 1,
+                'state_id' => $state,
                 'gender' => $providerData['gender'],
                 'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
                 'aboutMe' => '',
@@ -71,5 +72,10 @@ class UsersController extends Controller
         if (!is_dir('resources/user/user_' . $user->id)) {
             mkdir('resources/user/user_' . $user->id, 0777, true);
         }
+    }
+
+    public function validateEmailUnique($email){
+
+        return !User::where('email2', $email)->get()->count() > 0;
     }
 }

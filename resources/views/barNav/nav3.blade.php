@@ -1,4 +1,4 @@
- <nav class='navbar navbar-default navbar-static-top nav2'>
+<nav class='navbar navbar-default navbar-static-top nav2'>
     <div class="container">
         <div class='row flex-center'>
 
