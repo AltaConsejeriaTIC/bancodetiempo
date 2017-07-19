@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-body-welcome" hidden>
+                    <div class="modal-body-welcome">
                         <p class="paragraph2">
                             Elige la opción que desees para registrarte.
                         </p>

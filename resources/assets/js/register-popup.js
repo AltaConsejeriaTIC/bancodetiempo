@@ -19,6 +19,8 @@ jQuery(document).ready(function () {
     termsInput.click(checkAcceptedTerms);
     buttonOpenRegisterPopup.click(resetTerms);
     buttonOpenRegisterPopup2.click(resetTerms);
+
+    disableButtons();
 });
 
 function checkAcceptedTerms() {
@@ -29,8 +31,9 @@ function checkAcceptedTerms() {
     }
 
     if (areElementsValid) {
-        loginButtons.fadeIn(500);
-        registerTerms.slideUp(300);
+        enableButtons();
+    } else {
+        disableButtons();
     }
 }
 
@@ -42,10 +45,41 @@ function isElementValid(input) {
 }
 
 function resetTerms() {
-    loginButtons.hide();
-    registerTerms.show();
+    disableButtons();
+    uncheckTerms();
+}
 
+function uncheckTerms() {
     for (var i in inputs) {
         jQuery(inputs[i]).prop('checked', false);
+    }
+}
+
+
+function disableButtons() {
+    var elements = loginButtons.find('a.social-button');
+
+    for (var i = 0; i < elements.length; i++) {
+        var element = jQuery(elements[i]);
+        element.addClass('button-disabled');
+        disableEnterKey(element);
+    }
+}
+
+function disableEnterKey(element) {
+    element.keydown(function (event) {
+        if (event.which === 13) {
+            event.preventDefault();
+        }
+    })
+}
+
+function enableButtons() {
+    var elements = loginButtons.find('a.social-button');
+
+    for (var i = 0; i < elements.length; i++) {
+        var element = jQuery(elements[i]);
+        element.removeClass('button-disabled');
+        element.off('keydown');
     }
 }
