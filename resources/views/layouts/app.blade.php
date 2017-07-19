@@ -50,7 +50,6 @@
             @yield('content')
             @include('partial.messageAttainments')
             @if(!Auth::check())
-           		@include('partial.loginModal')
            		@include('partial.registerModal')
            	@endif
         </div>

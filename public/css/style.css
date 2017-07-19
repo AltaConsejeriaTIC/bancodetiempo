@@ -2019,6 +2019,11 @@ div#findMobile .close {
     max-width: 300px;
 }
 
+.button-disabled {
+    pointer-events: none;
+    background-color: #8c8c8c;
+}
+
 @media (min-width: 576px) {
     .size-first {
         font-size: 28px;
