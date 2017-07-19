@@ -9,12 +9,12 @@
     <section>
         <div class="container welcome">
             <div class="text-center">
-                <h1 class="title size-third secondary-color">¡BOGOTÁ CAMBALACHEA ES EL BANCO DE TIEMPO DE LOS CIUDADANOS!</h1>
+                <h1 class="title size-first secondary-color">¡BOGOTÁ CAMBALACHEA ES EL BANCO DE TIEMPO DE LOS CIUDADANOS!</h1>
                 <div class="row">
                     <div class="col-md-2">
                         <img class="img" src="images/pig.png"/>
                     </div>
-                    <p class="col-md-10 text-left margin-vertical-10 primary-color size-fourth">En un banco de tiempo <strong>puedes
+                    <p class="col-md-10 text-left margin-vertical-10 primary-color size-second">En un banco de tiempo <strong>puedes
                             intercambiar
                             servicios por
                             tiempo y no por dinero.</strong>
@@ -27,7 +27,7 @@
                             un
                             dorado equivale a una hora.</i></p>
                 </div>
-                <a href="#saberMas" class="button1 background-active-green-color inline-block ">¿Quieres saber
+                <a href="/how" class="button1 background-active-green-color inline-block ">¿Quieres saber
                     más?</a>
             </div>
 
