@@ -15,7 +15,7 @@
                 {!! Form::close() !!}
             </div>
             <div class="text-right col-md-4 col-xs-5" id="container-nav-buttons">
-                <button class="button5" @click='myData.register = true'>{{ trans('nav.register') }}</button>
+                <button class="button4 margin-vertical-12" @click='myData.register = true'>{{ trans('nav.register') }}</button>
             </div>
 
         </div>

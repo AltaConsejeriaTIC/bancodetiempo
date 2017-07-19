@@ -9,7 +9,7 @@
             </div>
             <!--Nav desktop-->
             <div class="hidden-xs text-right col-sm-7 col-md-9">
-                <button id="open-register-popup" class="button4 hidden-xs" @click='myData.register = true'>{{ trans('nav.register') }}</button>
+                <button id="open-register-popup" class="button4 hidden-xs margin-vertical-12" @click='myData.register = true'>{{ trans('nav.register') }}</button>
             </div>
             <!--Nav mobile-->
             <div class="col-xs-3 col-xs-offset-1 visible-xs not-padding-right">
