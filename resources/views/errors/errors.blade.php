@@ -24,17 +24,22 @@
                 <h2 class="title2 text-center">Error</h2>
             </div>
         </div>
-
+        @if($_ENV['APP_DEBUG'] == 'true')
         <div class="row">
             <div class="col-xs-12">
-                <a onClick='jQuery("pre").slideDown()' class="paragraph2">Mostrar errores</a>
+                <a onClick='jQuery("#errors").slideToggle()' class="paragraph2">Mostrar errores</a>
             </div>
         </div>
 
-        <pre style='display:none;'>
-            {{dd($exception)}}
+
+        <pre style='display:none;' id='errors'>
+            <h3>{{$exception->getMessage()}}</h3>
+            <p>{{$exception->getFile()}} Linea {{$exception->getLine()}}</p>
+            <hr>{{$exception->getTraceAsString()}}
         </pre>
+        @endif
 
     </div>
 
 @endsection
+
