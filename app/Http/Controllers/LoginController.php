@@ -23,16 +23,13 @@ class LoginController extends Controller{
         return redirect('/');
     }
     public function callback($provider){
-
         $function = "getProviderData" . ucwords($provider);
         $this->providerData = NetworkAccountsController::$function();
-
         if($this->getUser()){
             return $this->userLogin();
         }else{
             return $this->userRegister();
         }
-
     }
     private function userLogin(){
         $user = $this->getUser();

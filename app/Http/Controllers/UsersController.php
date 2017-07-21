@@ -18,7 +18,6 @@ class UsersController extends Controller
             $json[$user['id']] = $user;
         }
         print(json_encode($json));
-
     }
 
     public function createUser($providerData){
@@ -27,14 +26,13 @@ class UsersController extends Controller
             'provider' => $providerData['provider']
         ]);
         $email = is_null($providerData['email']) ? $providerData['id'] . "@cambalachea.co" : $providerData['email'];
-        $state = is_null($providerData['email']) ? 4 : 1;
         $user = User::create([
                 'email' => $email,
                 'email2' => $providerData['email'],
                 'first_name' => $providerData['first_name'],
                 'last_name' => $providerData['last_name'],
                 'avatar' => '',
-                'state_id' => $state,
+                'state_id' => 4,
                 'gender' => $providerData['gender'],
                 'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
                 'aboutMe' => '',
@@ -75,7 +73,20 @@ class UsersController extends Controller
     }
 
     public function validateEmailUnique($email){
+        return !User::where('email2', $email)->where('id', '!=', 1)->get()->count() > 0;
+    }
 
-        return !User::where('email2', $email)->get()->count() > 0;
+    public function completeRegister(Request $request){
+         $this->validate($request, [
+	 			'email' => 'required|email',
+	 			'terms' => 'required',
+	 			'age' => 'required',
+         ]);
+        Auth::user()->email2 = $request->input('email');
+        Auth::user()->state_id = 1;
+        Auth::user()->privacy_policy = 1;
+        Auth::user()->save();
+        AttainmentsController::saveAttainment(1);
+        return redirect("/home");
     }
 }

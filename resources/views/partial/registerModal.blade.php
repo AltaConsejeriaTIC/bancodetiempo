@@ -35,7 +35,7 @@
                         <div class="modal-button-center">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <a href="/registerRedes/facebook" id="register-facebook"
+                                    <a href="/loginRedes/facebook" id="register-facebook"
                                        class="col-xs-12 col-md-12 button6 social-button facebook-login">Registrate con
                                         Facebook <i class="fa fa-facebook"></i></a>
                                 </div>
@@ -43,14 +43,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <a href="/registerRedes/google" id="register-google"
+                                    <a href="/loginRedes/google" id="register-google"
                                        class="col-xs-12 col-md-12 button6 social-button google-login">Registrate con
                                         Google <i class="fa fa-google"></i></a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <a href="/registerRedes/linkedin" id="register-linkedin"
+                                    <a href="/loginRedes/linkedin" id="register-linkedin"
                                        class="col-xs-12 col-md-12 button6 social-button linkedin-login">Registrate con
                                         Linkedin <i class="fa fa-linkedin"></i></a>
                                 </div>

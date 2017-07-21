@@ -75,17 +75,6 @@ class ProfileController extends Controller
         return redirect()->back();
 	}
 
-    public function editEmail2(Request $request){
-         $this->validate($request, [
-	 			'email' => 'required|email'
-         ]);
-        Auth::user()->email2 = $request->input('email');
-        Auth::user()->state_id = 1;
-        Auth::user()->save();
-        AttainmentsController::saveAttainment(1);
-        return redirect("/home");
-    }
-
     private function validateProfile($request){
         $this->validate($request, [
 	 			'firstName' => 'required|min:3|alpha_spaces',
