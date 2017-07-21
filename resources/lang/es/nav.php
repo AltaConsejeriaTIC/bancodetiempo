@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'register' => 'Accede',
+    'register' => 'Ingresar',
     'logout' => 'Cerrar Sesión',
     'credit' => 'Dorado',
     'credits' => 'Dorados',

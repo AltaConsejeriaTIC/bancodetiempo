@@ -27,8 +27,7 @@
                             un
                             dorado equivale a una hora.</i></p>
                 </div>
-                <a href="/how" class="button1 background-active-green-color inline-block ">¿Quieres saber
-                    más?</a>
+                <a href="/how" id='welcomeKnowMore' class="button1 background-active-green-color inline-block ">¿Quieres saber más?</a>
             </div>
 
             <br>
@@ -51,8 +50,7 @@
             <div class="row">
 
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-12">
-                    <a href="home"
-                       class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>{{ trans('home.button1') }}</a>
+                    <a href="home" id='welcomeMoreServices' class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>{{ trans('home.button1') }}</a>
                 </div>
 
             </div>
@@ -76,8 +74,7 @@
             <div class="row">
 
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-12">
-                    <a href="home#campaigns"
-                       class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>{{ trans('home.button2') }}</a>
+                    <a href="home#campaigns" id='welcomeMoreCamapigns' class='button1 background-active-color col-xs-12 col-md-4 col-md-offset-1 text-center'>{{ trans('home.button2') }}</a>
                 </div>
 
             </div>
