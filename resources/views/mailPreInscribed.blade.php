@@ -8,19 +8,19 @@
     </header>
     <section style='width:90%;position:relative;margin:auto;'>
         <article>
-            <h3 style='color:#4e4d61;font-family: "Open Sans", sans-serif;'>Hola {{$participant->first_name}}</h3>
-            <p style='color:#000;font-family: "Open Sans", sans-serif;'>Ya puedes inscribirte a la campaña {{$campaign->name}}.</p>
+            <h3 style='color:#4e4d61;font-family: "Open Sans", sans-serif;'>¡Hey {{$participant->first_name}}!</h3>
+            <p style='color:#000;font-family: "Open Sans", sans-serif;'>Ya haces parte de la campaña {{$campaign->name}}. Marca el día en tu calendario y prepárate para participar. ¡Muchas gracias por querer marcar la diferencia! .</p>
         </article>
         <hr style='display:block;width:100%;border:none;height:30px;'>
         <article>
             <p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>
                 Datos de contacto<br>
                 Dirección: Vivelab Bogotá Carrera 45 No. 26 - 33 <br>
-                Email: evenvivelab_bog@unal.edu.co<br>
+                Email: info@cambalachea.co<br>
             </p>
 
             <p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>Si tienes alguna pergunta,
-                inquietud o sugerencia, escríbenos al correo: evenvivelab_bog@unal.edu.co.</p>
+                inquietud o sugerencia, escríbenos al correo: info@cambalachea.co</p>
         </article>
     </section>
 
