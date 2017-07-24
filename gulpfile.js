@@ -16,7 +16,6 @@ require('laravel-elixir-vue-2');
 elixir(function(mix) {
 
     mix.webpack([
-            'register-popup.js',
         'autoCompleteUsers.js',
         'validation.js',
         'jQueryEvents.js',
