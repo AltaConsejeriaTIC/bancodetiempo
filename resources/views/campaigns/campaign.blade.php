@@ -33,7 +33,7 @@
 
             <div class="row">
                 <div class="col-md-12 text-center campaignCover">
-                    <img src="/{{$campaign->image}}"  alt="{{$campaign->name}}">
+                    <img src="/{{$campaign->image}}" alt="{{$campaign->name}}">
                 </div>
             </div>
 
@@ -52,37 +52,37 @@
             </div>
 
             <div class="row">
-            	<div class="col-xs-12">
-                	<p class="description">{{$campaign->description}}</p>
+                <div class="col-xs-12">
+                    <p class="description">{{$campaign->description}}</p>
                 </div>
             </div>
 
             <div class="row">
-            	<div class="col-xs-12">
-            		<p class='paragraph1'><strong>Fecha: </strong>{{date("F j Y", strtotime($campaign->date))}}</p>
-            	</div>
-            </div>
-            <div class="row">
-            	<div class="col-xs-12">
-            		<p class='paragraph1'><strong>Hora: </strong>{{date("g:i a", strtotime($campaign->date))}}</p>
-            	</div>
-            </div>
-			
-            <div class="row">
-            	<div class="col-xs-12">
-	                <div class="dorados">
-	                    <h1 class="sub-title">Participa en esta campaña y adquiere:</h1>
-	                    <div class="dorados">
-	                        <img src="/images/moneda.png">
-	                        <div>
-	                            <h1>{{$campaign->hours}} dorados</h1>
-	                            <p>Cada dorado vale una hora de tu tiempo, y del tiempo de cualquier persona.</p>
-	                        </div>
-	                    </div>
-	                </div>
+                <div class="col-xs-12">
+                    <p class='paragraph1'><strong>Fecha: </strong>{{date("F j Y", strtotime($campaign->date))}}</p>
                 </div>
             </div>
-			<div class="line"></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class='paragraph1'><strong>Hora: </strong>{{date("g:i a", strtotime($campaign->date))}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="dorados">
+                        <h1 class="sub-title">Participa en esta campaña y adquiere:</h1>
+                        <div class="dorados">
+                            <img src="/images/moneda.png">
+                            <div>
+                                <h1>{{$campaign->hours}} dorados</h1>
+                                <p>Cada dorado vale una hora de tu tiempo, y del tiempo de cualquier persona.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line"></div>
             <div class="row">
                 <div class="join col-xs-12">
                     <h1>¿Cómo puedo participar?</h1>
@@ -98,74 +98,80 @@
                 <div class="space20"></div>
             </div>
             @if(Auth::check())
-            <div class="row">
-                @if($campaign->allows_registration == 0)
-                    @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)
-                        @if($campaign->user->id != Auth::user()->id)
+                <div class="row">
+                    @if($campaign->allows_registration == 0)
+                        @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)
+                            @if($campaign->user->id != Auth::user()->id)
+                                <div class="col-xs-12 text-center">
+                                    <button class='button1 background-active-color text-center'
+                                            v-on:click='myData.preinscription = true'>{{ trans("campaigns.preInscription") }}
+                                    </button>
+                                </div>
+                            @endif
+                        @else
                             <div class="col-xs-12 text-center">
-                                <button class='button1 background-active-color text-center'
-                                        v-on:click='myData.preinscription = true'>¡Pre-inscribirme!
+                                <button class='button1 cancel-button text-center'
+                                        v-on:click='myData.cancelpreinscription = true'>{{ trans("campaigns.cancelInscription") }}
                                 </button>
                             </div>
                         @endif
-                    @else
-                        <div class="col-xs-12 text-center">
-                            <button class='button1 cancel-button text-center'
-                                    v-on:click='myData.cancelpreinscription = true'>Cancelar Pre-inscripción
-                            </button>
+                        <div class="space20"></div>
+                        <div class="col-xs-12 text-center donation">
+                            @php($credits = Session::get('credits'))
+                                @if(isset($credits))
+                                    <p>¡Haz donado {{$credits}} dorados a esta campaña!</p>
+                                @endif
+                                <button class='button1 background-active-color text-center'
+                                        v-on:click='myData.donation = true'>¡Donar Dorados!
+                                </button>
                         </div>
-                    @endif
-                    <div class="space20"></div>
-                    <div class="col-xs-12 text-center donation">
-                        @php($credits = Session::get('credits'))
-                        @if(isset($credits))
-                            <p>¡Haz donado {{$credits}} dorados a esta campaña!</p>
-                        @endif
-                        <button class='button1 background-active-color text-center'
-                                v-on:click='myData.donation = true'>¡Donar Dorados!
-                        </button>
-                    </div>
-                    <div class="space20"></div>
-                @else
-                    @if($campaign->participants->where('participant_id', Auth::id())->where("confirmed", 1)->count() == 0)
-                        @if($campaign->user->id != Auth::user()->id)
-                            <div class="col-xs-12">
-                                <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
+                        <div class="space20"></div>
+                    @else
+                        @if($campaign->participants->where('participant_id', Auth::id())->where("confirmed", 1)->count() == 0)
+                            @if($campaign->user->id != Auth::user()->id)
+                                <div class="col-xs-12">
+                                    <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
+                                </div>
+
+                                <div class="col-xs-12 text-center">
+                                    <button class='button1 background-active-color text-center'
+                                            v-on:click='myData.inscription = true'>{{ trans("campaigns.inscription") }}</button>
+                                </div>
+                                <br>
+                            @endif
+                        @else
+                            <div class="col-xs-12 text-center">
+                                <button class='button1 cancel-button text-center'
+                                        v-on:click='myData.cancelpreinscription = true'>Cancelar Inscripción
+                                </button>
                             </div>
+                        @endif
+
+                        @if($campaign->state_id == 12 && $campaign->user->id == Auth::user()->id)
 
                             <div class="col-xs-12 text-center">
                                 <button class='button1 background-active-color text-center'
-                                        v-on:click='myData.inscription = true'>{{ trans("campaigns.inscription") }}</button>
+                                        v-on:click='myData.pay = true'>{{ trans("campaigns.pay") }}</button>
                             </div>
                             <br>
                         @endif
+
+                        @if (session('msg'))
+                            <div class="msg text-center">
+                                <p>{{ session('msg') }}</p>
+                            </div>
+                        @endif
+
                     @endif
-
-                    @if($campaign->state_id == 12 && $campaign->user->id == Auth::user()->id)
-
-                        <div class="col-xs-12 text-center">
-                            <button class='button1 background-active-color text-center'
-                                    v-on:click='myData.pay = true'>{{ trans("campaigns.pay") }}</button>
-                        </div>
-                        <br>
-                    @endif
-
-                    @if (session('msg'))
-                        <div class="msg text-center">
-                            <p>{{ session('msg') }}</p>
-                        </div>
-                    @endif
-
-                @endif
-            </div>
+                </div>
             @endif
-			<br>
-			<div class="report-content text-right" v-if='{{Auth::check()}}'>
+            <br>
+            <div class="report-content text-right" v-if='{{Auth::check()}}'>
                 <div class="line"></div>
                 <div class="space15"></div>
                 <a class="text-right"><i class='material-icons'>error</i> Reportar contenido</a>
             </div>
-            
+
         </article>
 
         <article class="col-md-4">
@@ -193,8 +199,8 @@
                             @endif
                         @endfor
                     </div>
-                    
-					<div class="line"></div>
+
+                    <div class="line"></div>
 
                     <p class="description text-left">{{$campaign->user->aboutMe}}</p>
 
@@ -206,9 +212,13 @@
 
                     <div class="col-xs-12 text-center">
                         @if(Auth::check())
-                            <button class='button1 background-active-color text-center' v-on:click='putMyData("contactMail", true)'>Comunícate con {{$campaign->user->first_name}}</button>
+                            <button class='button1 background-active-color text-center'
+                                    v-on:click='putMyData("contactMail", true)'>Comunícate
+                                con {{$campaign->user->first_name}}</button>
                         @else
-                            <button class='button1 background-active-color text-center' v-on:click='putMyData("login", true)'>Comunícate con {{$campaign->user->first_name}}</button>
+                            <button class='button1 background-active-color text-center'
+                                    v-on:click='putMyData("login", true)'>Comunícate
+                                con {{$campaign->user->first_name}}</button>
                         @endif
                     </div>
                 </div>
@@ -216,7 +226,7 @@
             <br>
             <div class="line"></div>
 
-			<div class="row">
+            <div class="row">
                 <div class="partakers col-xs-12">
                     <div>
                         <h1 class="">Asistentes a la campaña:</h1>
@@ -236,9 +246,9 @@
 
             <div class="row">
                 <div class="col-xs-12">
-                	<h3 class="text-bold text-left">Comparte esta campaña en:</h3>
+                    <h3 class="text-bold text-left">Comparte esta campaña en:</h3>
                 </div>
-           	</div>
+            </div>
             <div class="row">
                 <div class="text-center sharing">
                     <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" onclick="window.open(this.href,
@@ -248,7 +258,8 @@
                         </button>
                     </a>
 
-                    <a href="https://twitter.com/intent/tweet?url={{url()->current()}}&text={{$campaign->name}}" onclick="window.open(this.href,
+                    <a href="https://twitter.com/intent/tweet?url={{url()->current()}}&text={{$campaign->name}}"
+                       onclick="window.open(this.href,
   '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=250,width=600,top=150,left=500');return false;">
                         <button class="button twitter">
                             <img src="/images/twitter.svg">
