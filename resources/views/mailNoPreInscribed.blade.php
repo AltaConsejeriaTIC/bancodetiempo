@@ -9,7 +9,7 @@
     <section style='width:90%;position:relative;margin:auto;'>
         <article>
             <h3 style='color:#4e4d61;font-family: "Open Sans", sans-serif;'>Hola {{$participant->first_name}}</h3>
-            <p style='color:#000;font-family: "Open Sans", sans-serif;'>Ya puedes inscribirte a la campaña {{$campaign->name}}.</p>
+            <p style='color:#000;font-family: "Open Sans", sans-serif;'>Lamentablemente no hubieron suficientes dorados para pagarte. Gracias por tu interés en la campaña {{$campaign->name}}.</p>
         </article>
         <hr style='display:block;width:100%;border:none;height:30px;'>
         <article>
