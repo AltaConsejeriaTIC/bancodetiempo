@@ -48,21 +48,10 @@ class CampaignController extends Controller
 
     public function inscriptionParticipant(Request $request)
     {
-        if ($this->getQuotasAvailable($request->input('campaign_id')) > 0) {
-            $participant = CampaignParticipants::where("participant_id", Auth::id())->where("campaigns_id", $request->input('campaign_id'));
-            if ($participant->get()->count() == 0) {
-                $participant = CampaignParticipants::create([
-                    'campaigns_id' => $request->input('campaign_id'),
-                    'participant_id' => Auth::id(),
-                    "confirmed" => 1
-                ]);
-            } else {
-                $participant->update([
-                    "confirmed" => true
-                ]);
-            }
+        if ($this->inscribePerson($request->input('campaign_id'), Auth::id())) {
             return redirect()->back()->with('msg', 'Te has inscrito con exito');
         }
+
         return redirect()->back()->with('msg', 'Ya no quedan cupos disponibles');
     }
 
@@ -203,7 +192,7 @@ class CampaignController extends Controller
     {
 
         $campaigns = Campaigns::whereBetween("date_donations", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where('allows_registration', 0)->get();
-
+        print(date("Y-m-d H:i:00"));
         foreach ($campaigns as $campaign) {
             $campaign->update([
                 "credits" => $campaign->credits * 2,
@@ -220,7 +209,7 @@ class CampaignController extends Controller
         foreach ($campaign->participants as $participant) {
             $mail = $participant->participant->email2;
 
-            if ($this->inscribePerson($campaign->id, $participant->id)) {
+            if ($this->inscribePerson($campaign->id, $participant->participant->id)) {
                 $this->sendEmail('mailPreInscribed', ["campaign" => $campaign, "participant" => $participant->participant], $mail);
             } else {
                 $this->sendEmail('mailNoPreInscribed', ["campaign" => $campaign, "participant" => $participant->participant], $mail);
@@ -249,8 +238,8 @@ class CampaignController extends Controller
             if ($participant->get()->count() == 0) {
                 CampaignParticipants::create([
                     'campaigns_id' => $campaignId,
-                    'participant_id' => Auth::id(),
-                    "confirmed" => false
+                    'participant_id' => $personId,
+                    "confirmed" => true
                 ]);
             } else {
                 $participant->update([
@@ -261,6 +250,7 @@ class CampaignController extends Controller
 
         return $areThereQuotas;
     }
+
 
     public
     function filter(Request $request)
