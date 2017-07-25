@@ -417,4 +417,9 @@ Media Querys
     .flex-center-xs p {
         margin: 0px;
     }
+
+    .dialogBoxInbox {
+        left:-35%;
+        width: 220px;
+    }
 }

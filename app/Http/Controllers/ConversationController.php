@@ -68,26 +68,30 @@ class ConversationController extends Controller{
         return $listServices;
     }
 
-	static public function newMessage($message,$conversation_id,$sender,$deal,$dealState){
+	static public function newMessage($message,$conversation_id,$sender,$deal,$dealState,$substitutionsNumber){
 		$conversation = Conversations::find($conversation_id);
 		$newMessage = json_decode($conversation->message);
-		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6,"deal" => $deal,"dealState" => $dealState];
+		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6, "deal" => $deal, "dealState" => $dealState, 'substitutionsNumber' => $substitutionsNumber];
 		$conversation->update([
 			"message" => json_encode($newMessage)
 		]);
 	}
 	public function saveMessage(Request $request){
         $message = $this->blockEmailSending($request->input('message'));
-        $message = $this->blockNumberPhoneSending($message);
-		ConversationController::newMessage($message, $request->input('conversation'), Auth::User()->id,0,0);
+        $substitutionsNumber = $message[1];
+        $message = $this->blockNumberPhoneSending($message[0]);
+        $substitutionsNumber += $message[1];
+		ConversationController::newMessage($message[0], $request->input('conversation'), Auth::User()->id,0,0, $substitutionsNumber);
 	}
     private function blockEmailSending($message){
         $regex = "/[\w-\.]{3,} ?@ ?([\w-]{2,}\.)*([\w-]{2,} ?\.) ?[\w-]{2,4}/";
-        return preg_replace($regex, 'xxxxxxx@xxxxxx', $message);
+        $text = preg_replace($regex, 'xxxxxxx@xxxxxx', $message, -1, $substitutionsNumber);
+        return [$text, $substitutionsNumber];
     }
     private function blockNumberPhoneSending($message){
         $regex = "/(\+? *5 *7(( *\d){10}|( *\d){7}))|( *\d){10}|( *\d){7}/";
-        return preg_replace($regex, ' xxxxxxx', $message);
+        $text = preg_replace($regex, ' xxxxxxx', $message, -1, $substitutionsNumber);
+        return [$text, $substitutionsNumber];
     }
 	public function showConversation($id_conversation){
 		$conversation = Conversations::find($id_conversation);
@@ -120,7 +124,6 @@ class ConversationController extends Controller{
 	}
 
 	public function messagesConversation(Request $request, $id_conversation){
-
 		$conversation = Conversations::find($id_conversation);
         $deal = $conversation->deals->last();
         $lastState = is_null($conversation->deals->last()) ? 0 : $conversation->deals->last()->dealStates->last()->state_id;

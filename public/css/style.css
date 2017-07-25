@@ -2040,6 +2040,27 @@ div#findMobile .close {
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
+.dialogBoxInbox {
+    background: #009fe3;
+    position: absolute;
+    z-index: 1000;
+    width: 360px;
+    padding: 1% 2%;
+    color: #fff;
+    border-radius: 5px;
+    display: block;
+    top:110%;
+}
+
+.dialogBoxInbox > .arrow {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    top: -20px;
+    left: 50%;
+}
+
 @media (min-width: 576px) {
     .size-first {
         font-size: 28px;
