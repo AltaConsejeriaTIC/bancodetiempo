@@ -48,7 +48,7 @@
                                         </tr>
                                         @foreach($category->sites as $site)
                                             <tr>
-                                                <td @click='myData.newsite = true;' class='openEdit'>
+                                                <td @click='myData.newsite = true;myData.siteId = {{$site->id}}' class='openEdit'>
                                                    {{$site->name}}
                                                    <input type="hidden" name='name' value="{{$site->name}}">
                                                    <input type="hidden" name='address' value="{{$site->address}}">
@@ -59,7 +59,7 @@
                                                    <input type="hidden" name='id' value="{{$site->id}}">
                                                    <input type="hidden" name='categoryId' v-model='myData.categoryId'>
                                                </td>
-                                                <td @click='myData.newsite = true;' class='openEdit'>
+                                                <td @click='myData.newsite = true;myData.siteId = {{$site->id}}' class='openEdit'>
                                                    {{$site->address}}
                                                    <input type="hidden" name='name' value="{{$site->name}}">
                                                    <input type="hidden" name='address' value="{{$site->address}}">
@@ -124,6 +124,12 @@
 
         marker.addListener('dragend', function() {
             jQuery("#coordinates").val(marker.position.lat()+","+marker.position.lng());
+            var geocoder = new google.maps.Geocoder;
+            geocoder.geocode({'location': marker.position}, function(results, status) {
+                if(status === 'OK') {
+                    document.getElementById('siteName').value = results[1].formatted_address;
+                }
+            });
         });
 
         var input = (document.getElementById('siteName'));
@@ -181,12 +187,20 @@
         jQuery("#coordinates").val("");
         jQuery("#siteId").val("");
         jQuery("#categoryId").val("");
+        jQuery("#siteName").val("");
     }
 
     function loadSite(){
         var position = jQuery("#coordinates").val().split(",");
         map.setCenter({lat: parseFloat(position[0]), lng : parseFloat(position[1])});
         marker.setPosition({lat: parseFloat(position[0]), lng : parseFloat(position[1])});
+        var geocoder = new google.maps.Geocoder;
+        var location = {lat : parseFloat(position[0]), lng : parseFloat(position[1])};
+        geocoder.geocode({'location': location}, function(results, status) {
+            if(status === 'OK') {
+                document.getElementById('siteName').value = results[1].formatted_address;
+            }
+        });
     }
 </script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhcDkWcXQ-qm6-1vZC8RDjJz0lUrXCAMw&callback=initMap&libraries=places"></script>

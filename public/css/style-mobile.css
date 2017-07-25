@@ -114,6 +114,10 @@ Media Querys
         width: 1024px;
     }
 
+    ul.dropdown-menu > li > a {
+        color: #333;
+    }
+
     .bannerHome {
         height: 650px;
         position: relative;

@@ -1,6 +1,6 @@
 <generalmodal name='newsite' :state='myData.newsite' state-init='true' close-time='true' time='500'>
     <div slot="modal" class='panel' id='formSite'>
-        <form :action="myData.siteId == '' || myData.siteId === undefined ? '/admin/suggestedSites/newSite' : '/admin/suggestedSites/editSite' " method="post" id="sites_form" onkeypress="return event.keyCode != 13;">
+        <form :action="myData.siteId == '' || myData.siteId === undefined ? '/admin/suggestedSites/newSite' : '/admin/suggestedSites/editSite' " method="post" id="sites_form" onkeypress="return event.keyCode != 13;" form-validation>
             {{csrf_field()}}
             <div class="panel-heading">
                 <button type="button" @click='myData.newsite = false;' class="close circle-shape closeForm"><span aria-hidden="true">×</span></button>
@@ -65,8 +65,11 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <input type="hidden" name='coordinates' id='coordinates' id='coordinates'>
+                    <input type="hidden" name='coordinates' id='coordinates' class="validation" data-validations='["required"]'>
                     <input type="text" id='siteName' style="width:100%;">
+                    <div errors="coordinates" class="msg">
+                        <p error="required" style="display: none;">Este campo es obligatorio.</p>
+                    </div>
                     <div id="map"></div>
                 </div>
             </div>

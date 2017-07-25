@@ -18,7 +18,6 @@ class UsersController extends Controller
             $json[$user['id']] = $user;
         }
         print(json_encode($json));
-
     }
 
     public function createUser($providerData){
@@ -33,7 +32,7 @@ class UsersController extends Controller
                 'first_name' => $providerData['first_name'],
                 'last_name' => $providerData['last_name'],
                 'avatar' => '',
-                'state_id' => 1,
+                'state_id' => 4,
                 'gender' => $providerData['gender'],
                 'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
                 'aboutMe' => '',
@@ -71,5 +70,23 @@ class UsersController extends Controller
         if (!is_dir('resources/user/user_' . $user->id)) {
             mkdir('resources/user/user_' . $user->id, 0777, true);
         }
+    }
+
+    public function validateEmailUnique($email){
+        return !User::where('email2', $email)->where('id', '!=', 1)->get()->count() > 0;
+    }
+
+    public function completeRegister(Request $request){
+         $this->validate($request, [
+	 			'email' => 'required|email',
+	 			'terms' => 'required',
+	 			'age' => 'required',
+         ]);
+        Auth::user()->email2 = $request->input('email');
+        Auth::user()->state_id = 1;
+        Auth::user()->privacy_policy = 1;
+        Auth::user()->save();
+        AttainmentsController::saveAttainment(1);
+        return redirect("/home");
     }
 }

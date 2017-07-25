@@ -14,13 +14,12 @@ use App\Http\Controllers\Profile\ProfileController;
 */
 Route::get('/', 'HomeController@indexNotRegister');
 Route::get('/index', 'HomeController@indexNotRegister');
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->middleware('userPending');
 Route::get('/content/{name}', 'ContentController@index');
 
 //Social Loging
 
 Route::get('/loginRedes/{proveedor}', 'LoginController@login');
-Route::get('/registerRedes/{proveedor}', 'LoginController@register');
 Route::get('/callback/{proveedor}', 'LoginController@callback');
 Route::get('/validateLogout', 'LoginController@validateLogout');
 
@@ -28,10 +27,6 @@ Auth::routes();
 
 //Route Access Admin Panel
 Route::get('admin','AdminController@AdminLogin')->middleware('guest');
-
-//Register process
-Route::put('profile/update', 'Profile\ProfileController@editProfile');
-Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
 
 //Guest views
 Route::get('/serviceGuest/{serviceid}', 'ServiceController@showServiceGuest');
@@ -73,3 +68,7 @@ Route::get('campaign/{campaignId}', 'CampaignController@show');
 Route::get('campaigns/list', 'CampaignController@showListAllCampaigns');
 
 Route::get('/getImg', 'ImageController@getImage');
+
+Route::get('/finalizeRegister', 'RegisterController@finalizeRegister');
+Route::put('profile/completeRegister', 'UsersController@completeRegister');
+

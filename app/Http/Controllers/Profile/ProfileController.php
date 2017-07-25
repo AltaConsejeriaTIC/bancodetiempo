@@ -56,31 +56,23 @@ class ProfileController extends Controller
     }
 
 	public function editProfile(Request $request){
-
 	 	$this->validateProfile($request);
 	 	$picture=$this->editProfilePicture($request);
-	 	
         $oldAboutMe = Auth::user()->aboutMe;
-
 	 	if($picture !==false){
 	       Auth::user()->avatar = $picture;
         }
-		
 		Auth::user()->first_name = $request->input('firstName');
 		Auth::user()->last_name = $request->input('lastName');
 		Auth::user()->birthDate = $request->input('birthDate');
 		Auth::user()->aboutMe = $request->input("aboutMe");
         Auth::user()->gender = $request->input('gender');
         Auth::user()->email2 = $request->input('email2');
-  	
         Auth::user()->save();
-
         if($oldAboutMe == '' && Auth::user()->aboutMe != ''){
             AttainmentsController::saveAttainment(2);
         }
         return redirect()->back();
-  	
-
 	}
 
     private function validateProfile($request){

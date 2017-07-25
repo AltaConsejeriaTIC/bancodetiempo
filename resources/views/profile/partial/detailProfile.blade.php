@@ -65,18 +65,6 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-xs-12">
-                <h4 class="col-xs-12">{{ trans("profile.myInterest") }}</h4>
-
-                @foreach(Auth::User()->interests as $interest)
-                    @if(!is_null($interest->category))
-                        <p class="col-xs-6 paragraph4">{{$interest->category->category}}</p>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-        <br>
-        <div class="row">
             <div class="col-xs-12 hidden-xs">
                  {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
                     <input type="hidden" name="token" value="{{ csrf_token() }}">

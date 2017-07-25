@@ -692,7 +692,6 @@ h1#bannerDescription {
 }
 
 .bannerHome .description {
-    background: rgba(0, 159, 227, 0.5);
     padding-top: 25px;
     padding-bottom: 25px;
 }
@@ -2004,6 +2003,10 @@ div#findMobile .close {
     color: #001738;
 }
 
+.margin-b-30 {
+    margin-bottom: 30px;
+}
+
 .link {
     color: #445870;
     text-decoration: underline !important;
@@ -2013,10 +2016,19 @@ div#findMobile .close {
     margin: 10px 0;
 }
 
+.margin-vertical-12 {
+    margin: 10px 0;
+}
+
 .inline-block {
     display: inline-block;
     margin: 10px;
     max-width: 300px;
+}
+
+.button-disabled {
+    pointer-events: none;
+    background-color: #8c8c8c;
 }
 
 @media (min-width: 576px) {

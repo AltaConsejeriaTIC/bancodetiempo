@@ -141,11 +141,13 @@
                     <p class="paragraph1 text-left hidden-xs">{{$service->user->aboutMe}}</p>
                 </div>
             </div>
+            @if(Auth::id() != $service->user->id)
             <div class="row">
                 <div class="col-xs-12">
                     <p class="paragraph1">{{ trans("service.question") }}</p>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-xs-12">
                 	@if(Auth::check())
@@ -155,6 +157,7 @@
                    @endif
                 </div>
             </div>
+            @endif
             <br>
             <div class="line visible-xs"></div>
             <div class="row">
@@ -167,21 +170,18 @@
             </div>
             <div class="row">
                 <div class="text-center sharing">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" onclick="window.open(this.href,
-  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=250,width=600,top=150,left=500');return false;">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" onclick="window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=250,width=600,top=150,left=500');return false;">
                         <button class="button facebook">
                             <img src="/images/facebook.svg">
                         </button>
                     </a>
 
-                    <a href="https://twitter.com/intent/tweet?url={{url()->current()}}&text={{$service->name}}" onclick="window.open(this.href,
-  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=250,width=600,top=150,left=500');return false;">
+                    <a href="https://twitter.com/intent/tweet?url={{url()->current()}}&text={{$service->name}}" onclick="window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=250,width=600,top=150,left=500');return false;">
                         <button class="button twitter">
                             <img src="/images/twitter.svg">
                         </button>
                     </a>
-                    <a href="https://plus.google.com/share?url={{url()->current()}}" onclick="javascript:window.open(this.href,
-  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600,top=150,left=500');return false;">
+                    <a href="https://plus.google.com/share?url={{url()->current()}}" onclick="javascript:window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600,top=150,left=500');return false;">
                         <button class="button google">
                             <img src="/images/google.svg">
                         </button>
@@ -236,7 +236,8 @@
     </div>
 </div>
 
-
-@include('services/partial/modalMail')
+@if(Auth::id() != $service->user->id)
+    @include('services/partial/modalMail')
+@endif
 
 @endsection

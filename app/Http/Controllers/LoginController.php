@@ -12,13 +12,6 @@ class LoginController extends Controller{
     protected $providerData;
     public function login($provider){
         Session::put('last_url', str_replace("http://" . $_SERVER['HTTP_HOST'], "", URL::previous()));
-        Session::put('action', 'login');
-        $function = "redirect" . ucwords($provider);
-        return NetworkAccountsController::$function();
-    }
-    public function register($provider){
-        Session::put('last_url', str_replace("http://" . $_SERVER['HTTP_HOST'], "", URL::previous()));
-        Session::put('action', 'register');
         $function = "redirect" . ucwords($provider);
         return NetworkAccountsController::$function();
     }
@@ -30,31 +23,22 @@ class LoginController extends Controller{
         return redirect('/');
     }
     public function callback($provider){
-
         $function = "getProviderData" . ucwords($provider);
         $this->providerData = NetworkAccountsController::$function();
-        if(Session('action') == 'login'){
+        if($this->getUser()){
             return $this->userLogin();
-        }elseif(Session('action') == 'register'){
-            if($this->getUser()){
-                return $this->userLogin();
-            }else{
-                return $this->userRegister();
-            }
+        }else{
+            return $this->userRegister();
         }
     }
     private function userLogin(){
         $user = $this->getUser();
-        if($user){
-            if($user->state_id == 3){
-                return redirect("/")->with('blockedUser', true);
-            }else{
-                Session()->put('GAEvent', ['event' => 'login', 'provider' => $this->providerData['provider']]);
-                Auth()->login($user);
-                return redirect(Session::get('last_url'));
-            }
+        if($user->state_id == 3){
+            return redirect("/")->with('blockedUser', true);
         }else{
-            return redirect("/")->with('message', "Primero debes registrarte");
+            Session()->put('GAEvent', ['event' => 'login', 'provider' => $this->providerData['provider']]);
+            Auth()->login($user);
+            return redirect(Session::get('last_url'));
         }
     }
     private function getUSer(){
@@ -67,9 +51,15 @@ class LoginController extends Controller{
     }
     private function userRegister(){
         $usersClass = new UsersController();
-        $user = $usersClass->createUser($this->providerData);
-        Auth()->login($user);
-        AttainmentsController::saveAttainment(1);
-        return redirect("/home");
+        if($usersClass->validateEmailUnique($this->providerData['email'])){
+            $user = $usersClass->createUser($this->providerData);
+            Auth()->login($user);
+            if(!is_null($this->providerData['email'])){
+                AttainmentsController::saveAttainment(1);
+            }
+            return redirect("/home");
+        }else{
+            return redirect(Session::get('last_url'))->with('errorLogin', 'Su email ya se encuentra registrado en otra cuenta');
+        }
     }
 }

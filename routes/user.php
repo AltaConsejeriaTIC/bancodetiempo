@@ -4,7 +4,8 @@
 // Route Profile
 Route::get('profile', 'Profile\ProfileController@showProfile');
 Route::post('profile/update', ['as' => 'profile/update', 'uses' => 'Profile\ProfileController@editProfile']);
-
+Route::put('profile/update', 'Profile\ProfileController@editProfile');
+Route::put('profile/updatePhoto', 'Profile\ProfileController@editProfile');
 //Mod Service
 
 Route::get('/serviceDelete/{serviceid}', 'ServiceController@deleteService');

@@ -59,6 +59,46 @@ class SuggestedSitesTest extends TestCase
         $this->assertTrue(strpos($site->get()->last()->description, '\ \r\n') === false);
 
         $site->delete();
+        $category->delete();
+    }
+
+    public function testEditSuggestedSite(){
+
+        $user = User::find(1);
+        Auth()->login($user);
+
+        $category = CategoriesSites::create([
+            'name' => 'prueba',
+            'icon' => 'bars'
+        ]);
+
+        $this->post('/admin/suggestedSites/newSite', ['name' => '34a636fe432d8ebd8ef8ad3280031648',
+            'address' => 'crr 88 # 55 - 66',
+            'requirements' => 'Papeles Al día',
+            'contact' => 'Manuel Daza',
+            'description' => 'sucio y ya',
+            'coordinates' => '5126552, 5655545',
+            'categoryId' => $category->id,
+        ]);
+
+        $site = SuggestedSites::where('name', '34a636fe432d8ebd8ef8ad3280031648')->get()->last();
+
+        $this->post('/admin/suggestedSites/editSite', ['name' => 'editado',
+            'address' => 'crr 88 # 55 - 66 editado',
+            'requirements' => 'Papeles Al día editado',
+            'contact' => 'Manuel Daza editado',
+            'description' => 'sucio y ya editado',
+            'coordinates' => '5126552, 5655545',
+            'siteId' => $site->id
+        ]);
+
+        $site = SuggestedSites::find($site->id);
+
+        $this->assertTrue($site->name == 'editado');
+        $this->assertTrue($site->address == 'crr 88 # 55 - 66 editado');
+
+        $site->delete();
+        $category->delete();
     }
 
 
