@@ -77,11 +77,18 @@ class ConversationController extends Controller{
 		]);
 	}
 	public function saveMessage(Request $request){
-        $message = $request->input('message');
-        $regex = "/[\w-\.]{3,}.@.([\w-]{2,}\.)*([\w-]{2,}.\.).[\w-]{2,4}/";
-        $message = preg_replace($regex, 'xxxxxxx@xxxxxx', $message);
+        $message = $this->blockEmailSending($request->input('message'));
+        $message = $this->blockNumberPhoneSending($message);
 		ConversationController::newMessage($message, $request->input('conversation'), Auth::User()->id,0,0);
 	}
+    private function blockEmailSending($message){
+        $regex = "/[\w-\.]{3,} ?@ ?([\w-]{2,}\.)*([\w-]{2,} ?\.) ?[\w-]{2,4}/";
+        return preg_replace($regex, 'xxxxxxx@xxxxxx', $message);
+    }
+    private function blockNumberPhoneSending($message){
+        $regex = "/(\+? *5 *7(( *\d){10}|( *\d){7}))|( *\d){10}|( *\d){7}/";
+        return preg_replace($regex, ' xxxxxxx', $message);
+    }
 	public function showConversation($id_conversation){
 		$conversation = Conversations::find($id_conversation);
 		$messages = $this->getMessages($conversation->message);
