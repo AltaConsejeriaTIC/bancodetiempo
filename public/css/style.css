@@ -375,6 +375,9 @@ Links
     color: #2c3e50 !important;
     text-decoration: underline !important;
 }
+.link3{
+    color:#0f6784;
+}
 
 /*
 Helpers
@@ -2029,6 +2032,11 @@ div#findMobile .close {
 .button-disabled {
     pointer-events: none;
     background-color: #8c8c8c;
+}
+
+#finalizeRegisterPanel {
+    background: #e3ecf1;
+    border: 1px solid #d2d2d2;
 }
 
 @media (min-width: 576px) {
