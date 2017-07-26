@@ -29,7 +29,7 @@ Route::put('admin/service/update', 'ServiceAdminController@update');
 Route::resource('listDeals', 'Admin\DealsController@showList');
 
 Route::resource('adminCampaigns', 'Admin\CampaignsController@showList');
-Route::put('adminCampaigns/update', 'Admin\CampaignsController@updateCampaignState');
+Route::post('adminCampaigns/update', 'Admin\CampaignsController@updateCampaignState');
 Route::resource('/adminCampaigns/participant/{campaign_id}/download', 'Admin\CampaignsController@downloadParticipant');
 
 
