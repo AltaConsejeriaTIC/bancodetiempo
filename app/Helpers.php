@@ -17,17 +17,22 @@ class Helpers{
 		$notifications = 0;
 		foreach ($conversationsMyService as  $key => $conversation) {
 			$messages = json_decode($conversation->message);
-			
-			$lastMessage = $messages[count($messages)-1];
-			if($lastMessage->state == 6 && $lastMessage->sender != Auth::User()->id){
-				$notifications += 1;
-			}
+			$count = count($messages);
+            if($count != 0){
+                $lastMessage = $messages[$count-1];
+                if($lastMessage->state == 6 && $lastMessage->sender != Auth::User()->id){
+                    $notifications += 1;
+                }
+            }
 		}
 		foreach ($conversations as  $key => $conversation) {
 			$messages = json_decode($conversation->message);
-            $lastMessage =  $messages[count($messages)-1];
-            if($lastMessage->state == 6 && $lastMessage->sender != Auth::User()->id){
-                $notifications += 1;
+            $count = count($messages);
+            if($count != 0){
+                $lastMessage =  $messages[$count-1];
+                if($lastMessage->state == 6 && $lastMessage->sender != Auth::User()->id){
+                    $notifications += 1;
+                }
             }
 		}
 		return $notifications;

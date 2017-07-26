@@ -55,7 +55,7 @@ class CampaignsController extends Controller
     {
         foreach ($campaign->participants as $campaignParticipant) {
             $participant = $campaignParticipant->participant;
-            $this->sendEmail('mailCancelCampaignParticipant', ["campaign" => $campaign, "participant" => $participant->participant], $participant->email2);
+            $this->sendEmail('mailCancelCampaignParticipant', ["campaign" => $campaign, "participant" => $participant], $participant->email2);
         }
 
         $this->sendEmail('mailCancelCampaignOwner', ["campaign" => $campaign, "participant" => $campaign->user], $campaign->user->email2);

@@ -7,7 +7,7 @@
     </header>
     <section style='width:90%;position:relative;margin:auto;'>
         <article>
-            <h3 style='color:#4e4d61;font-family: "Open Sans", sans-serif;'>Hola {{$participant->first_name}}</h3>
+            <h3 style='color:#4e4d61;font-family: "Open Sans", sans-serif;'>Hola Zumbambico {{$participant->first_name}}</h3>
             <p style='color:#000;font-family: "Open Sans", sans-serif;'>Lamentamos comunicarte que la
                 campaña {{$campaign->name}}, en la cual estabas participando <strong>ha sido cancelada</strong> por el administrador de
                     la plataforma.</p></p>
