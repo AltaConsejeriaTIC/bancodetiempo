@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title titleContent">Actualizar estado de la campaña</h4>
             </div>
-            {!!Form::model($campaign, ['url' => 'adminCampaigns/update', 'method'=> 'put'])!!}
+            {!!Form::model($campaign, ['url' => '/adminCampaigns/update', 'method'=> 'post'])!!}
             <div class="modal-body">
                 <div class="row">
                     {!!Form::hidden('id', $campaign->id)!!}
