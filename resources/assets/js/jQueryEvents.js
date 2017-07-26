@@ -3,10 +3,6 @@ jQuery(document).ready(function(){
 	resizeBody();	
 	
 	jQuery(window).resize(resizeBody);
-	
-    if(jQuery("#messages").length){
-       callMessages();
-    }
 
     if(jQuery("select.categories").length){
        listCategories();
@@ -84,23 +80,6 @@ function nextTransition(){
     next.addClass("active");
     next.animate(next.data('in'), 500);
 
-}
-
-function callMessages(){
-
-    jQuery.ajax({
-        url : '/messages/'+jQuery("#messages").attr('conversation'),
-        type : "GET",
-        data : "key="+jQuery("#keyConversation").val(),
-        success : function(data){
-            if(data != ""){
-                jQuery("#messages").html(data);
-                jQuery(".showModal").on("click", showModal);
-                jQuery(".hiddenModal").on("click", hiddenModal);
-            }
-        }
-    });
-    setTimeout(callMessages, 2000);
 }
 
 function showModal(){

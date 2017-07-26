@@ -1,5 +1,5 @@
 @foreach($conversations as $conversation)
-    <div class="row">
+    <div class="row showConversation" data-conversation='{{$conversation->id}}'>
         <!--Avatar-->
         <div class="col-xs-3 col-sm-5 col-md-3">
             @include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => 'cover'.$conversation->id, 'border' => '#0a475b', 'borderSize' => '1px'))

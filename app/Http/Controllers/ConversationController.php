@@ -125,16 +125,10 @@ class ConversationController extends Controller{
 
 	public function messagesConversation(Request $request, $id_conversation){
 		$conversation = Conversations::find($id_conversation);
-        $deal = $conversation->deals->last();
-        $lastState = is_null($conversation->deals->last()) ? 0 : $conversation->deals->last()->dealStates->last()->state_id;
-        $key = md5($conversation->message.$lastState);
+        $key = md5($conversation->message);
         if($request->input('key') != $key){
             $conversation["key"] = $key;
             $conversation["message"] = json_decode($conversation->message);
-            $deals = Deal::all();
-
-            $dealState = $this->getDealConversation($deal, $conversation);
-
             return view('inbox/messages', compact("conversation","deal","dealState","deals"));
         }else{
             print("");

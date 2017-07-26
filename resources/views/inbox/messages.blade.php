@@ -17,39 +17,31 @@
 						</div>
 					@endif
 				 @endif
-					@if($message->dealState == 8)
-						@include('deals/dealMessages')
-					@else
-						<div class='messageText col-md-8 col-xs-8' >
-							{{$message->message}}
-							@if($index == count($conversation->message)-1)
-                                @if($message->substitutionsNumber > 0)
-                                    <div class="dialogBoxInbox">
-                                        <span class="arrow">
-                                            <svg width='20' height='20'>
-                                              <polygon points="0,0 20,20 0,20" style="fill:#009fe3;stroke-width:0;fill-rule:evenodd;"></polygon>
-                                            </svg>
-                                        </span>
-                                        <span class="close" onClick='jQuery(".dialogBoxInbox").remove()'>x</span>
-                                        <strong>¡No compartimos tu información personal! :)</strong><br>
-                                        Por tu seguridad es mejor que uses este chat para cuadrar los detalles de tu intercambio.
-                                    </div>
-                                @endif
+
+                    <div class='messageText col-md-8 col-xs-8' >
+                        {{$message->message}}
+                        @if($index == count($conversation->message)-1)
+                            @if($message->substitutionsNumber > 0)
+                                <div class="dialogBoxInbox">
+                                    <span class="arrow">
+                                        <svg width='20' height='20'>
+                                          <polygon points="0,0 20,20 0,20" style="fill:#009fe3;stroke-width:0;fill-rule:evenodd;"></polygon>
+                                        </svg>
+                                    </span>
+                                    <span class="close" onClick='jQuery(".dialogBoxInbox").remove()'>x</span>
+                                    <strong>¡No compartimos tu información personal! :)</strong><br>
+                                    Por tu seguridad es mejor que uses este chat para cuadrar los detalles de tu intercambio.
+                                </div>
                             @endif
-						</div>
-					@endif
+                        @endif
+                    </div>
+
 			</div>
 		</div>
 	@endif
 
 
 @endfor
-
-@if(!is_null($dealState))
-    @if($dealState->state_id != 8)
-    	@include('deals/deal')
-    @endif
-@endif
 
 
 

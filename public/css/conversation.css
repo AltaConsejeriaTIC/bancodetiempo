@@ -1,13 +1,66 @@
 .conversation {
     background: #fff;
-    height: 100vh;
+    height: 85vh;
     border: 1px solid #e6e6e6;
+    padding-top: 15px;
+}
+
+.conversation > .box .fromMe .messageText {
+    position: relative;
+    display: block;
+    background: #0f6784;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    float: right;
+}
+
+.conversation > .box .forMe .messageText {
+    position: relative;
+    display: block;
+    background: #e5e5e5;
+    padding: 15px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.conversation .controllers {
+    position: absolute;
+    bottom: 0%;
+    width: 95%;
+    background: #e5e5e5;
+    padding: 10px 5px;
+}
+
+.conversation > .box {
+    height: 75vh;
+    position: relative;
+    overflow: auto;
+    padding: 5px 15px;
+}
+
+.conversation  > .box > .row {
+    margin-bottom: 5px;
+}
+
+.listConversation .row {
+    cursor: pointer;
 }
 
 @media (max-width: 767px) {
-   .conversation {
-        background: #fff;
-        height: 100vh;
-        border: 1px solid #e6e6e6;
+    .conversation {
+        display: none;
+        transition: all 1s;
     }
+    .conversation.active{
+        display: block;
+    }
+    .listConversation{
+        display: none;
+        transition: all 1s;
+    }
+    .listConversation.active{
+        display: block;
+    }
+
 }
