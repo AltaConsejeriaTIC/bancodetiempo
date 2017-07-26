@@ -1,0 +1,13 @@
+.conversation {
+    background: #fff;
+    height: 100vh;
+    border: 1px solid #e6e6e6;
+}
+
+@media (max-width: 767px) {
+   .conversation {
+        background: #fff;
+        height: 100vh;
+        border: 1px solid #e6e6e6;
+    }
+}
