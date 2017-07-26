@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaigns;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\State;
+use Session;
 
 class CampaignsController extends Controller
 {
@@ -28,14 +29,33 @@ class CampaignsController extends Controller
         $campaign->state_id = $request->state_id;
 
         if ($campaign->save()) {
-            if ($campaign->state_id != 1) {
-                $this->sendMailToParticipants($campaign);
+            if ($campaign->state_id == 3) {
+                $this->cancelCampaign($campaign);
             }
 
             Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
             return redirect()->back();
         }
 
+    }
+
+    public function cancelCampaign($campaign){
+        if($campaign->participants->count() > 0) {
+            $this->sendEmailToCampaignParticipants($campaign);
+        }
+
+        if($campaign->credits > 0) {
+            $this->giveBackCreditsToCampaignDonors($campaign);
+        }
+    }
+
+    public function sendEmailToCampaignParticipants($campaign){
+        print_r('Unimplemented yet');
+        dd($campaign->participants);
+    }
+
+    public function giveBackCreditsToCampaignDonors($campaign){
+        dd('Unimplemented yet');
     }
 
 
