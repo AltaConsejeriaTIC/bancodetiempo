@@ -42,7 +42,19 @@ jQuery(document).ready(function(){
        })
     }
 
+    scrollBottom();
+
 });
+
+function scrollBottom(){
+	var elemScroll = jQuery('.scrollBottom');
+	setTimeout(function(){
+		for(var e = 0; e < elemScroll.length; e++){
+			elemScroll[e].scrollTop = elemScroll[e].scrollHeight;
+		}
+	}, 500);
+
+}
 
 function showDetailSite(){
     var name = jQuery(this).find("[name='name']").val();

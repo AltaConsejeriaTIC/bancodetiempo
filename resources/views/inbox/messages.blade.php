@@ -30,6 +30,7 @@
                                               <polygon points="0,0 20,20 0,20" style="fill:#009fe3;stroke-width:0;fill-rule:evenodd;"></polygon>
                                             </svg>
                                         </span>
+                                        <span class="close" onClick='jQuery(".dialogBoxInbox").remove()'>x</span>
                                         <strong>¡No compartimos tu información personal! :)</strong><br>
                                         Por tu seguridad es mejor que uses este chat para cuadrar los detalles de tu intercambio.
                                     </div>
