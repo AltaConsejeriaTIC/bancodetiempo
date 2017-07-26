@@ -14,41 +14,34 @@ use App\Models\CategoriesSites;
 class ConversationController extends Controller{
 
 	public function index(){
-
-		$conversationsMyService = Conversations::whereIn("service_id", $this->getMyServices())->orderBy('updated_at', 'desc')->get();
-
-		$conversations = Conversations::where("applicant_id", Auth::user()->id)->orderBy('updated_at', 'desc')->get();
-
-		foreach ($conversationsMyService as  $key => $conversation) {
-
-			$messages = json_decode($conversation->message);
-
-			$conversationsMyService[$key]["lastMessage"] = $messages[count($messages)-1];
-			
-			$conversationsMyService[$key]["interval"] = $this->getInterval($conversation->updated_at);
-			
-		}
-
+		$conversationsMyService = $this->getConversationsMyService();
+		$conversations = $this->getConversationServicesInterestMe();
+		return view("inbox/inbox", compact("conversationsMyService", "conversations"));
+	}
+    private function getConversationsMyService(){
+        $conversations = Conversations::whereIn("service_id", $this->getMyServices())->orderBy('updated_at', 'desc')->get();
 		foreach ($conversations as  $key => $conversation) {
-
 			$messages = json_decode($conversation->message);
-
 			$conversations[$key]["lastMessage"] = $messages[count($messages)-1];
-			
 			$conversations[$key]["interval"] = $this->getInterval($conversation->updated_at);
 		}
-
-		return view("inbox/inbox", compact("conversationsMyService", "conversations"));
-
-	}
-	
+        return $conversations;
+    }
+    private function getConversationServicesInterestMe(){
+        $conversations = Conversations::where("applicant_id", Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+		foreach ($conversations as  $key => $conversation) {
+			$messages = json_decode($conversation->message);
+			$conversations[$key]["lastMessage"] = $messages[count($messages)-1];
+			$conversations[$key]["interval"] = $this->getInterval($conversation->updated_at);
+		}
+        return $conversations;
+    }
 	private function getInterval($date){
 		$datetime1 = new \DateTime($date);
 		$datetime2 = new \DateTime(\date("Y-m-d H:i:s"));
 		$interval = $datetime1->diff($datetime2);
-		
 		if($interval->y > 0){
-			return "Hace ".$interval->y." A�os";
+			return "Hace ".$interval->y." Años";
 		}
 		if($interval->m > 0){
 			return "Hace ".$interval->m." Meses";
@@ -65,57 +58,51 @@ class ConversationController extends Controller{
 		if($interval->s > 0){
 			return "Hace ".$interval->s." Segundos";
 		}
-		
 	}
-
     public function getMyServices(){
-
         $myServices = Auth::User()->services;
-
         $listServices = [];
-
         foreach($myServices as $services){
             $listServices[] = $services->id;
         }
-
         return $listServices;
-
     }
 
-	static public function newMessage($message,$conversation_id,$sender,$deal,$dealState)
-  {
+	static public function newMessage($message,$conversation_id,$sender,$deal,$dealState,$substitutionsNumber){
 		$conversation = Conversations::find($conversation_id);
 		$newMessage = json_decode($conversation->message);
-		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6,"deal" => $deal,"dealState" => $dealState];
-
+		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6, "deal" => $deal, "dealState" => $dealState, 'substitutionsNumber' => $substitutionsNumber];
 		$conversation->update([
 			"message" => json_encode($newMessage)
 		]);
-
 	}
-
 	public function saveMessage(Request $request){
-		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id,0,0);
+        $message = $this->blockEmailSending($request->input('message'));
+        $substitutionsNumber = $message[1];
+        $message = $this->blockNumberPhoneSending($message[0]);
+        $substitutionsNumber += $message[1];
+		ConversationController::newMessage($message[0], $request->input('conversation'), Auth::User()->id,0,0, $substitutionsNumber);
 	}
-
+    private function blockEmailSending($message){
+        $regex = "/[\w-\.]{3,} ?@ ?([\w-]{2,}\.)*([\w-]{2,} ?\.) ?[\w-]{2,4}/";
+        $text = preg_replace($regex, 'xxxxxxx@xxxxxx', $message, -1, $substitutionsNumber);
+        return [$text, $substitutionsNumber];
+    }
+    private function blockNumberPhoneSending($message){
+        $regex = "/(\+? *5 *7(( *\d){10}|( *\d){7}))|( *\d){10}|( *\d){7}/";
+        $text = preg_replace($regex, ' xxxxxxx', $message, -1, $substitutionsNumber);
+        return [$text, $substitutionsNumber];
+    }
 	public function showConversation($id_conversation){
-
 		$conversation = Conversations::find($id_conversation);
-
 		$messages = $this->getMessages($conversation->message);
-
 		$conversation->update([
 			"message" => json_encode($messages)
 		]);
-
 		$deal = Deal::where("service_id","=",$conversation->service_id)->where("user_id","=",$conversation->applicant_id)->orderBy('id','desc')->first();
-                    
 		$dealState = $this->getDealState($deal);
-		
 		$categoriesSites = CategoriesSites::all();
-
 		return view('inbox/conversation', compact("conversation","deal","dealState", "categoriesSites"));
-
 	}
 	
 	private function getMessages($message){
@@ -137,7 +124,6 @@ class ConversationController extends Controller{
 	}
 
 	public function messagesConversation(Request $request, $id_conversation){
-
 		$conversation = Conversations::find($id_conversation);
         $deal = $conversation->deals->last();
         $lastState = is_null($conversation->deals->last()) ? 0 : $conversation->deals->last()->dealStates->last()->state_id;
@@ -185,7 +171,7 @@ class ConversationController extends Controller{
 		$dealState->state_id = 4;
 		$dealState->save();
 
-		ConversationController::newMessage("¡Has enviado un propuesta!", $request->conversation, Auth::User()->id,$deal->id,$dealState->state_id);
+		ConversationController::newMessage("Â¡Has enviado un propuesta!", $request->conversation, Auth::User()->id,$deal->id,$dealState->state_id);
 
 		$email->sendMailDeal($deal->user_id,"new");
 		

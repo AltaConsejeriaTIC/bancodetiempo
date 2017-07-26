@@ -375,6 +375,9 @@ Links
     color: #2c3e50 !important;
     text-decoration: underline !important;
 }
+.link3{
+    color:#0f6784;
+}
 
 /*
 Helpers
@@ -2029,6 +2032,33 @@ div#findMobile .close {
 .button-disabled {
     pointer-events: none;
     background-color: #8c8c8c;
+}
+
+#finalizeRegisterPanel {
+    background: #e3ecf1;
+    border: 1px solid #d2d2d2;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.dialogBoxInbox {
+    background: #009fe3;
+    position: absolute;
+    z-index: 1000;
+    width: 360px;
+    padding: 1% 2%;
+    color: #fff;
+    border-radius: 5px;
+    display: block;
+    top:110%;
+}
+
+.dialogBoxInbox > .arrow {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    top: -20px;
+    left: 50%;
 }
 
 @media (min-width: 576px) {

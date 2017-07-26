@@ -1,5 +1,7 @@
 <input type="hidden" name="keyConversation" value="{{$conversation->key}}" id='keyConversation'>
-@foreach($conversation->message as $message)
+
+@for($index = 0; $index < count($conversation->message); $index++)
+    @php($message = $conversation->message[$index])
 	@if($message->message != "¡Has enviado un propuesta!"  && $message->message != "Propuesta Aceptada")
 		<div class="row">
 			<div class="col-xs-12 message @if($message->sender != Auth::User()->id) forMe @else fromMe @endif">
@@ -20,13 +22,27 @@
 					@else
 						<div class='messageText col-md-8 col-xs-8' >
 							{{$message->message}}
+							@if($index == count($conversation->message)-1)
+                                @if($message->substitutionsNumber > 0)
+                                    <div class="dialogBoxInbox">
+                                        <span class="arrow">
+                                            <svg width='20' height='20'>
+                                              <polygon points="0,0 20,20 0,20" style="fill:#009fe3;stroke-width:0;fill-rule:evenodd;"></polygon>
+                                            </svg>
+                                        </span>
+                                        <strong>¡No compartimos tu información personal! :)</strong><br>
+                                        Por tu seguridad es mejor que uses este chat para cuadrar los detalles de tu intercambio.
+                                    </div>
+                                @endif
+                            @endif
 						</div>
 					@endif
 			</div>
 		</div>
 	@endif
 
-@endforeach
+
+@endfor
 
 @if(!is_null($dealState))
     @if($dealState->state_id != 8)
