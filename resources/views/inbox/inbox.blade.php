@@ -19,14 +19,17 @@
 	<section class="tab-content">
         <article class="tab-pane fade active in" id="servicesInterested">
             <div class="row">
-                <div class="col-xs-12 panel">
+                <div class="col-xs-12 col-sm-5 col-md-4 panel">
                     @include('inbox.partial.listConversationsServicesInterested', ['conversations' => $conversations])
+                </div>
+                <div class="col-xs-12 conversation">
+                    conversation
                 </div>
             </div>
         </article>
         <article class="tab-pane fade" id="myServices">
             <div class="row">
-                <div class="col-xs-12 panel">
+                <div class="col-xs-12 col-sm-5 col-md-4 panel">
                     @include('inbox.partial.listConversationsMyServices', ['conversations' => $conversationsMyService])
                 </div>
             </div>
