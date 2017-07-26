@@ -68,7 +68,7 @@ class ConversationController extends Controller{
         return $listServices;
     }
 
-	static public function newMessage($message,$conversation_id,$sender,$deal,$dealState,$substitutionsNumber){
+	static public function newMessage($message,$conversation_id,$sender,$deal,$dealState,$substitutionsNumber = 0){
 		$conversation = Conversations::find($conversation_id);
 		$newMessage = json_decode($conversation->message);
 		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6, "deal" => $deal, "dealState" => $dealState, 'substitutionsNumber' => $substitutionsNumber];

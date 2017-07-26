@@ -1158,7 +1158,7 @@ conversation box
 
 .responseBox #response {
     border-radius: 5px;
-    height: 85px;
+    height: 40px;
 }
 
 .conversationBox .fromMe .messageText {

@@ -52,7 +52,6 @@ var app = new Vue({
     },
     mounted(){   	
     	scrollFixed();
-    	scrollBottom();
         this.setMyData('categories', categories);
         this.setMyData('tags' , tags);
     }
@@ -85,15 +84,5 @@ function scrollChange(){
 		}
 		
 	}
-}
-
-function scrollBottom(){
-	var elemScroll = document.getElementsByClassName('scrollBottom');
-	setTimeout(function(){
-		for(var e = 0; e < elemScroll.length; e++){
-			elemScroll[e].scrollTop = elemScroll[e].scrollHeight;
-		}
-	}, 500);
-	
 }
 
