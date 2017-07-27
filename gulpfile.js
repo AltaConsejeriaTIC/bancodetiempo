@@ -24,6 +24,7 @@ elixir(function(mix) {
         'modules/conversations.js',
         'modules/bannerHome.js',
         'modules/previewPhoto.js',
+        'modules/transitions.js',
         'app.js'],
     "public/js/app.js");
 

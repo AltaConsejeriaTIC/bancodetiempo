@@ -4,7 +4,7 @@ label{
 .form-custom input[type='text'], .form-custom input[type='date'], .form-custom input[type='time'], .form-custom input[type='number'], .form-custom textarea{
 	
 	font-family: 'Open Sans', sans-serif;
-	font-size: 16px !important;
+	font-size: 16px;
 	color: #2c3e50 !important;
 	padding: 10px 12px;
 	border: solid 1px #2c3e50;
@@ -97,6 +97,7 @@ Radio circle
     border-radius: 50%;
     font-size: 12px;
     padding: 1px 4px;
+    background: #fff;
 }
 
 .form-custom input[type="radio"].circle:checked + label:before {
