@@ -16,7 +16,7 @@
             <p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>
                 Datos de contacto<br>
                 Dirección: Vivelab Bogotá Carrera 45 No. 26 - 33 <br>
-                Email: info@cambalachea.co<br>
+                Email: <a href="mailto:info@cambalachea.co" style="color:#767676;">info@cambalachea.co</a><br>
             </p>
 
             <p style='color:#767676;font-size:12px;font-family: "Open Sans", sans-serif;'>Si tienes alguna pergunta,
