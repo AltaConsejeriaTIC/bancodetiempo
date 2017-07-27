@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaigns;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\State;
+use App\Models\HistoryDonations;
+use App\User;
 use Session;
 use Mail;
 
@@ -63,7 +65,13 @@ class CampaignsController extends Controller
 
     public function giveBackCreditsToCampaignDonors($campaign)
     {
-        dd('Unimplemented yet');
+        $historyDonations = HistoryDonations::where('campaign_id', $campaign->id)->get();
+
+        foreach ($historyDonations as $donation) {
+            User::find($donation->donor->id)->update(['credits' => $donation->donor->credits + $donation->credits]);
+            Campaigns::find($donation->campaign->id)->update(['credits' => $donation->campaign->credits - $donation->credits]);
+            HistoryDonations::find($donation->id)->delete();
+        }
     }
 
 
