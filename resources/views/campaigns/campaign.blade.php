@@ -166,11 +166,16 @@
                 </div>
             @endif
             <br>
-            <div class="report-content text-right" v-if='{{Auth::check()}}'>
-                <div class="line"></div>
-                <div class="space15"></div>
-                <a class="text-right"><i class='material-icons'>error</i> Reportar contenido</a>
-            </div>
+            @if(Auth::check())
+                <div class="report-content text-right" v-if='{{Auth::check()}}'>
+                    <div class="line"></div>
+                    <div class="space15"></div>
+                    <a class="text-right" href="" title="Reportar Contenido" data-toggle="modal"
+                       data-target="#update-dialog{{$campaign->id}}"><i class='material-icons'>error</i> Reportar
+                        contenido</a>
+                </div>
+                @include('/campaigns/report')
+            @endif
 
         </article>
 

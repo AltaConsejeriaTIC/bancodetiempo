@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Groups;
 use App\Models\Campaigns;
 use App\Models\CampaignParticipants;
+use App\Models\TypeReport;
+use App\Models\CampaignReport;
 use App\Helpers;
 use Mail;
 
@@ -40,10 +42,40 @@ class CampaignController extends Controller
 
     }
 
+
+
+    public function report(Request $request, $campaignId)
+    {
+        $user_report=(CampaignReport:: where([['user_id', '=', auth::user()->id],['campaign_id', '=', $campaignId],])->get());
+
+        if (count($user_report)==0) {
+            $report = CampaignReport::create([
+                'campaign_id' => $campaignId,
+                'user_id' => auth::user()->id,
+                'type_report_id' => $request->input('list'),
+                'observation' => $request->input('observacion')
+            ]);
+            $numReports=(CampaignReport:: where([['campaign_id', '=', $campaignId],])->get());
+
+            if (count($numReports) > 4) {
+                $service = Campaigns::find($campaignId);
+                $service->update([
+                    'state_id' => 3,
+                ]);
+            }
+
+            return redirect()->back()->with('report', true);
+        }
+
+        return redirect()->back()->with('reportOk', true);
+
+    }
+
     public function show($campaignId)
     {
         $campaign = Campaigns::findOrFail($campaignId);
-        return view('campaigns/campaign', compact('campaign'));
+        $listTypes = TypeReport::pluck('type', 'id');
+        return view('campaigns/campaign', compact('campaign', 'listTypes'));
     }
 
     public function inscriptionParticipant(Request $request)
