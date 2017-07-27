@@ -36,7 +36,6 @@ function sendMenssage(){
     var token = jQuery(this).find("input[name='_token']").val();
     if(message.length > 1){
         var data = {"message" : message, "conversation": conversationId, "sender" : sender, '_token' : token}
-        console.log(data)
         var e = this;
         jQuery.ajax({
             type: "POST",
@@ -63,6 +62,8 @@ function showConversation(){
     setTimeout(function(){
         jQuery(".conversation > .box").scrollTop(jQuery(".conversation > .box").prop('scrollHeight'));
     }, 200);
+    jQuery(".conversation .controllers").removeClass('hidden');
+    jQuery(".conversation .dealBox").removeClass('hidden');
     activity = true;
     callMessages();
 }
@@ -71,5 +72,7 @@ function closeConversation(){
     jQuery(".conversation").removeClass("active");
     jQuery(".listConversation").addClass("active");
     jQuery(".conversation > .box").html('');
+    jQuery(".conversation .controllers").addClass('hidden');
+    jQuery(".conversation .dealBox").addClass('hidden');
     activity = false;
 }
