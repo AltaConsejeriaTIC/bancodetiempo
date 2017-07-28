@@ -351,11 +351,6 @@ Media Querys
         list-style: none;
     }
 
-
-    .listMessages > #messages > .row {
-        margin-bottom: 5px;
-    }
-
     .bannerHome .carousel > div > img {
         width: 100% !important;
     }

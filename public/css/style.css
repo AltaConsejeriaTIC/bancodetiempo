@@ -1,8 +1,9 @@
 @import url('footer.css');
 @import url('nav.css');
+@import url('conversation.css');
 @import url('styleForms.css');
 @import url('font-awesome.css');
-@import url('conversation.css');
+
 /*-----------------Fonts--------------------*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro');
 
@@ -1035,24 +1036,7 @@ notificacion icon
     width: 22px;
 }
 
-/*
-conversation box
-*/
-.conversationBox {
-    background: #fff;
-    box-shadow: 1px 2px 8px #757575;
-}
 
-.conversationBox .head {
-    background: #0a475b;
-    padding: 15px;
-}
-
-.conversationBox .message {
-    position: relative;
-    display: block;
-    margin-bottom: 15px;
-}
 
 .listMessages {
     top: 0%;
@@ -1137,21 +1121,6 @@ conversation box
     background: #f5f5f5;
 }
 
-#conversation {
-    position: relative;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-#conversation > div {
-    position: absolute;
-    display: none;
-}
-
-#conversation > div.active {
-    display: block;
-}
-
 .responseBox {
     padding: 15px 0px;
     background: #ececec;
@@ -1162,24 +1131,7 @@ conversation box
     height: 40px;
 }
 
-.conversationBox .fromMe .messageText {
-    position: relative;
-    display: block;
-    background: #0f6784;
-    color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    float: right;
-}
 
-.conversationBox .forMe .messageText {
-    position: relative;
-    display: block;
-    background: #e5e5e5;
-    padding: 15px;
-    border-radius: 5px;
-    word-wrap: break-word;
-}
 
 #messages {
     height: 100%;

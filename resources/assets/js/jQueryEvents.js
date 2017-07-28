@@ -3,10 +3,6 @@ jQuery(document).ready(function(){
 	resizeBody();	
 	
 	jQuery(window).resize(resizeBody);
-	
-    if(jQuery("#messages").length){
-       callMessages();
-    }
 
     if(jQuery("select.categories").length){
        listCategories();
@@ -20,10 +16,6 @@ jQuery(document).ready(function(){
         var top = jQuery("#logo").position().top + jQuery("#logo").height() + 20;
         var left = jQuery("#logo").position().left + jQuery("#logo").width() - 200;
         jQuery(".dialogBox").css({"top" : top+"px", "left" : left+"px"});
-    }
-
-    if(jQuery(".transition").length){
-       jQuery('.buttonTransition').on('click', nextTransition);
     }
 
     jQuery(".score").on("click", score);
@@ -71,36 +63,6 @@ function showDetailSite(){
     jQuery("#siteCoordinates").attr('href', 'http://maps.google.com/?q='+coordinates);
     jQuery(".sendCoordinates").attr("coordinates", coordinates);
     jQuery(".sendCoordinates").attr("nameSite", name);
-}
-
-function nextTransition(){
-    jQuery(".transition").scrollTop(0);
-    var open = jQuery(this).data('open');
-    var next = jQuery(open);
-    var current = jQuery(".transition .active");
-    current.animate(current.data('out'), 500, function(){
-        jQuery(this).removeClass('active');
-    });
-    next.addClass("active");
-    next.animate(next.data('in'), 500);
-
-}
-
-function callMessages(){
-
-    jQuery.ajax({
-        url : '/messages/'+jQuery("#messages").attr('conversation'),
-        type : "GET",
-        data : "key="+jQuery("#keyConversation").val(),
-        success : function(data){
-            if(data != ""){
-                jQuery("#messages").html(data);
-                jQuery(".showModal").on("click", showModal);
-                jQuery(".hiddenModal").on("click", hiddenModal);
-            }
-        }
-    });
-    setTimeout(callMessages, 2000);
 }
 
 function showModal(){

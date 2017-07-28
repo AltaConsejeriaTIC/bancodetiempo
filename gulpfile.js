@@ -21,8 +21,10 @@ elixir(function(mix) {
         'jQueryEvents.js',
         'modules/pagination.js',
         'modules/messagesCompleteProfile.js',
+        'modules/conversations.js',
         'modules/bannerHome.js',
         'modules/previewPhoto.js',
+        'modules/transitions.js',
         'app.js'],
     "public/js/app.js");
 
