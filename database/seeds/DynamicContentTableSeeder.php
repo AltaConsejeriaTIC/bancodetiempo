@@ -33,8 +33,6 @@ class DynamicContentTableSeeder extends Seeder
 	            "html" => '<div class="row">
 		<div class="col-xs-6 col-sm-3">
 			<ul>
-				<li class="text-white" @click="myData.login = true">Registrarse</li>
-				<li class="text-white" @click="myData.login = true">Iniciar Sesión</li>
 				<li class="text-white"><a href="/how">¿Cómo funciona?</a></li>
 			</ul>
 		</div>
