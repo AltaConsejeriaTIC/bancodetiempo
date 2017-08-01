@@ -28,5 +28,10 @@ elixir(function(mix) {
         'app.js'],
     "public/js/app.js");
 
+    mix.styles([
+            'home.css',
+        ],
+    'public/css/site.css');
+
 
 });

@@ -6,7 +6,7 @@
 
     @include('home.partial.bannerHome')
 
-    <section>
+    <div class="boxPig">
         <div class="container welcome">
             <div class="text-center">
                 <h1 class="title size-first secondary-color">¡BOGOTÁ CAMBALACHEA ES EL BANCO DE TIEMPO DE LOS CIUDADANOS!</h1>
@@ -29,9 +29,11 @@
                 </div>
                 <a href="/how" id='welcomeKnowMore' class="button1 background-active-green-color inline-block ">¿Quieres saber más?</a>
             </div>
+        </div>
+    </div>
 
-            <br>
-
+    <section>
+        <div class="container welcome">
             <div class="row">
                 <div class="col-xs-12">
                     <h2 class='title1 text-center'>{{ trans('home.title') }}</h2>

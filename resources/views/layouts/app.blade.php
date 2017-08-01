@@ -28,6 +28,7 @@
         <link href="{{ asset('/css/style.css?v2') }}" rel="stylesheet">
         <link href="{{ asset('/css/style-mobile.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/site.css?v'.\date('Ymd')) }}" rel="stylesheet">
 
         <link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">
 

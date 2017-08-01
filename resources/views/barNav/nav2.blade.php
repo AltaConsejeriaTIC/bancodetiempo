@@ -1,3 +1,4 @@
+@php($state = (Auth::user()->state_id == 1))
 <nav class='navbar navbar-default navbar-static-top nav2'>
     <div class="container">
         <div class='row flex-center'>
@@ -14,20 +15,20 @@
 
             <div class='hidden-xs col-sm-3'>
                 {!! Form::open(['url' => 'filter', 'method' => 'get']) !!}
-                <input type='text' class='filter col-sm-12' name='filter' value='{{ Session::get("filters.text") }}' id='filter1' placeholder='{{ trans("nav.inputFind") }}'>
-                <label for="filter1" class=" fa fa-search "></label>
+                <input type='text' class='filter col-sm-12' name='filter' value='{{ Session::get("filters.text") }}' id='filter1' placeholder='{{ trans("nav.inputFind") }}' v-show='{{$state}}' v-cloak>
+                <label for="filter1" class=" fa fa-search " v-show='{{$state}}'></label>
                 {!! Form::close() !!}
             </div>
 
             <div class="hidden-xs col-sm-5 flex-center not-padding">
-                    <div class="col-sm-4 flex-center not-padding">
+                    <div class="col-sm-4 flex-center not-padding"   v-show='{{$state}}' v-cloak>
                         <img src="{{ asset('images/moneda.png') }}" class="not-padding moneda icon-nav text-center col-sm-2" />&nbsp;&nbsp;
                         <p class="paragraph4 text-white">Tienes<br>{{ Auth::user()->credits }} {{ trans('nav.credits') }}</p>
                     </div>
-                    <div class="hidden-xs not-padding text-center col-sm-6">
+                    <div class="hidden-xs not-padding text-center col-sm-6"   v-show='{{$state}}' v-cloak>
                         <button class="button9 newservice" data-toggle="modal" data-target="#NewService">{{ trans('nav.newOffer') }}</button>
                     </div>
-                    <div class="col-sm-1 not-padding" onclick='location.href="/inbox"'>
+                    <div class="col-sm-1 not-padding" onclick='location.href="/inbox"' v-show='{{$state}}' v-cloak>
                         @if(App\Helpers::getNotificationsUser()>0)
                             <i class="fa fa-envelope icon-nav notification text-left"><span>{{App\Helpers::getNotificationsUser()}}</span></i>
                         @else
@@ -65,13 +66,13 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-bars"></i></a>
                     <ul class="dropdown-menu">
-                        <li>
+                        <li v-show='{{$state}}'>
                             <a href="/inbox">
                                 <i class="material-icons notification item-icon">question_answer<span
                                             class="reset-font">{{App\Helpers::getNotificationsUser()}}</span></i> {{ trans('nav.messages') }}
                             </a>
                         </li>
-                        <li>
+                        <li v-show='{{$state}}'>
                             <a data-toggle="modal" data-target="#NewService">
                                 <i class="material-icons item-icon">add_circle</i> {{ trans('nav.newOffer') }}
                             </a>
