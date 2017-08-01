@@ -10,7 +10,7 @@ use App\User;
 
 class Deal extends Model
 {
-  protected  $fillable = ['user_id', 'service_id','date','time','location','value','description', 'conversations_id', 'response_applicant', 'response_offerer', 'applicant_badObservations_id', 'offerer_badObservations_id', 'applicant_observation', 'offerer_observation', 'coordinates'];
+  protected  $fillable = ['user_id', 'service_id','date','time','location','value','description', 'conversations_id', 'response_applicant', 'response_offerer', 'applicant_badObservations_id', 'offerer_badObservations_id', 'applicant_observation', 'offerer_observation', 'coordinates', 'state_id', 'creator_id'];
 
 
     public function conversations(){
@@ -31,6 +31,11 @@ class Deal extends Model
     }
 
     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function creator()
     {
         return $this->belongsTo(User::class);
     }

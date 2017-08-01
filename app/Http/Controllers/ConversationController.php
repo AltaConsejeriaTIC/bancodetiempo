@@ -104,11 +104,6 @@ class ConversationController extends Controller{
 		$categoriesSites = CategoriesSites::all();
 		return view('inbox/conversation', compact("conversation","deal","dealState", "categoriesSites"));
 	}
-
-    public function getDealConversation(Request $request){
-
-    }
-	
 	private function getMessages($message){
 		$messages = json_decode($message);		
 		foreach ($messages as $key => $value) {
@@ -118,7 +113,6 @@ class ConversationController extends Controller{
 		}		
 		return $messages;
 	}
-	
 	private function getDealState($deal){
 		if($deal){
 			return DealState::where('deal_id', $deal->id)->orderBy('id','desc')->first();
@@ -140,13 +134,39 @@ class ConversationController extends Controller{
 
 	}
 
-    public function getDealConversation($deal, $conversation){
-
-        if($deal){
-            return DealState::where('deal_id','=',$deal->id)->orderBy('id','desc')->first();
+    public function getDealConversation(Request $request){
+        $response = [];
+        $conversation = Conversations::find($request->conversation);
+        if(Auth::id() == $conversation->applicant_id || Auth::id() == $conversation->service->user_id){
+            $deal = $this->getDeal($conversation);
+            if($deal){
+                $response['state'] = 'ok';
+                $response['deal'] = $deal->id."_".$deal->state_id;
+                $response['deal_state'] = $deal->state_id;
+                $response['service'] = $deal->service->name;
+                $response['date'] = $deal->date." ".$deal->time;
+                $response['place'] = $deal->location;
+                $response['credits'] = $deal->value;
+                $response['observations'] = $deal->description;
+                $response['creator'] = $deal->creator_id;
+                $response['creator_name'] = $deal->creator->first_name;
+                $response['coordinates'] = $deal->coordinates;
+            }else{
+                $response['state'] = 'ok';
+                $response['deal'] = 'none';
+            }
         }else{
-			return null;
+            $response['state'] = 'error';
         }
+        return json_encode($response);
     }
+    private function getDeal($conversation){
+        $deal = Deal::where("conversations_id", $conversation->id)->get();
+        if($deal->count() == 0){
+            return false;
+        }else{
+            return $deal->last();
+        }
 
+    }
 }

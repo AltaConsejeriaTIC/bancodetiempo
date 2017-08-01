@@ -20,25 +20,30 @@ class DealsController extends Controller
     public function createDeal(Request $request)
 	{
         $conversation = Conversations::find($request->conversation);
+        $dealsConversation = Deal::where('conversations_id', $conversation->id)->whereIn('state_id', [4, 8, 12])->get();
+        if($dealsConversation == 0){
+            Deal::create([
+                'user_id' => $conversation->applicant_id,
+                'service_id' => $conversation->service_id,
+                'date' => $request->date,
+                'time' => '00:00:00',
+                'location' => $request->place,
+                'value' => $request->credits,
+                'description' => $request->observations,
+                'coordinates' => $request->coordinates,
+                'conversations_id' => $conversation->id,
+                'state_id' => 4,
+                'creator_id' => Auth::id()
+            ]);
 
-        Deal::create([
-            'user_id' => $conversation->applicant_id,
-            'service_id' => $conversation->service_id,
-            'date' => $request->date,
-            'time' => '00:00:00',
-            'location' => $request->place,
-            'value' => $request->credits,
-            'description' => $request->observations,
-            'coordinates' => $request->coordinates,
-            'conversations_id' => $conversation->id
-        ]);
+            /*$email = new EmailController;
 
-		/*$email = new EmailController;
+            ConversationController::newMessage("Â¡Has enviado un propuesta!", $request->conversation, Auth::User()->id,$deal->id,$dealState->state_id);
 
-		ConversationController::newMessage("Â¡Has enviado un propuesta!", $request->conversation, Auth::User()->id,$deal->id,$dealState->state_id);
+            $email->sendMailDeal($deal->user_id,"new");*/
+            dd("yes");
 
-		$email->sendMailDeal($deal->user_id,"new");*/
-		dd("yes");
+        }
 		return redirect()->back();
 	}
 

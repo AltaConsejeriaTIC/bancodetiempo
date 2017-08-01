@@ -71,5 +71,53 @@
                 </form>
             </div>
         </div>
+        <div class="dealDetail row hidden">
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="row">
+                    <h1 class="title1 text-center" id="dealMessage"></h1>
+                </div>
+                <div class="row">
+                    <p class="paragraph1 text-center" id="dealSubMessage"></p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><strong>Oferta: </strong><span id='dealNameService'></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><strong>Fecha del evento: </strong><span id='dealDate'></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><strong>Lugar: </strong><span id='dealPlace'></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><strong>Dorados: </strong><span id='dealCredits'></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><strong>Información adicional: </strong><span id='dealObservations'></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="dealMap"></div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="button4 background-white col-xs-6 col-xs-offset-3">Cancelar Cambalache</button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
     </div>
 </article>
+<input type="hidden" id='meId' value="{{Auth::id()}}">

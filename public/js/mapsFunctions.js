@@ -83,7 +83,6 @@ function showLocation(canvas, location) {
             .done(function (json) {
                 for (var p in json.results) {
                     var latlng = json.results[p].geometry.location;
-                    console.log(latlng);
                     var myOptions = {
                         zoom: 14,
                         center: latlng,

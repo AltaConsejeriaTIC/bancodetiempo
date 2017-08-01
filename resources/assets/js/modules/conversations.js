@@ -1,3 +1,7 @@
+var activity = false;
+var conversationId = 0;
+var deal = 0;
+var me = 0;
 jQuery(document).ready(function(){
     if(jQuery(".showConversation").length){
         jQuery(".showConversation").on("click", showConversation);
@@ -8,13 +12,9 @@ jQuery(document).ready(function(){
     if(jQuery("form.sendMenssages").length){
         jQuery("form.sendMenssages").on("submit", sendMenssage);
     }
-    if(jQuery("form.newDeal").length){
-        jQuery("form.newDeal").on("submit", createDeal);
-    }
+    me = jQuery("#meId").val();
 })
 
-var activity = false;
-var conversationId = 0;
 
 function callMessages(){
     if(!activity){
@@ -30,7 +30,7 @@ function callMessages(){
             }
         }
     });
-    setTimeout(callMessages, 2000, conversationId);
+    setTimeout(callMessages, 2000);
 }
 
 function sendMenssage(){
@@ -91,11 +91,13 @@ function createDeal(){
         "coordinates" : jQuery(this).find("[name='coordinates']").val(),
         "_token" : jQuery(this).find("[name='_token']").val()
     };
-    console.log(data)
     jQuery.ajax({
         type: "POST",
         url: "/deal",
         data: data,
+        beforeSend: function(){
+            jQuery("form.newDeal").off("submit");
+        },
         success: function(datos){
 
         }
@@ -108,14 +110,68 @@ function callDeals(){
         return false;
     }
     jQuery.ajax({
-        url : '/messages/'+conversationId,
+        url : '/getDeals',
+        data: {"conversation" : conversationId},
         type : "GET",
-        data : "key="+jQuery("#keyConversation").val(),
         success : function(data){
-            if(data != ""){
-                jQuery(".conversation > .box").html(data);
+            var data = JSON.parse(data);
+            if(data.deal != deal){
+                printDeal(data)
+                deal = data.deal;
             }
         }
     });
-    setTimeout(callMessages, 2000, conversationId);
+    setTimeout(callDeals, 2000);
+}
+
+function printDeal(data){
+    if(data.state == 'error'){
+        
+    }else{
+        if(data.deal == 'none'){
+            jQuery(".conversation .dealForm").removeClass('hidden');
+            jQuery("form.newDeal").on("submit", createDeal);
+        }else{
+            jQuery(".conversation .dealForm").addClass('hidden');
+            jQuery("form.newDeal").off("submit");
+            printDealDetails(data)
+        }
+    }
+}
+
+function printDealDetails(data){
+    var message = getMessageState(data)
+    jQuery("#dealMessage").html(message);    
+    jQuery("#dealNameService").html(data.service);    
+    jQuery("#dealDate").html(data.date);    
+    jQuery("#dealPlace").html(data.place);    
+    jQuery("#dealCredits").html(data.credits);    
+    jQuery("#dealObservations").html(data.observations);    
+    jQuery(".conversation .dealDetail").removeClass('hidden');
+    showMapDeal('dealMap', data.coordinates);
+}
+
+function getMessageState(data){
+    var message = '';
+    if(data.creator == me){
+        message = '¡Has enviado una propuesta de Cambalache!';
+    }else{
+        message = data.creator_name+' te ha enviado una propuesta de Cambalache!';
+    }
+    return message;
+}
+
+function removeDealDetails(data){
+    jQuery("#dealNameService").html('');    
+    jQuery("#dealDate").html('');    
+    jQuery("#dealPlace").html('');    
+    jQuery("#dealCredits").html('');    
+    jQuery("#dealObservations").html('');    
+    jQuery(".conversation .dealDetail").addClass('hidden');
+}
+
+function showMapDeal(canvas, coordinates) {
+    var coordinates = JSON.parse(coordinates);
+    jQuery("#"+canvas).html('<iframe  width="100%"  height="80"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDQ1hu4U00cnsBu_NCks2fg8CiIuVDD2E8&q='+coordinates.lat+','+coordinates.lng+'" allowfullscreen></iframe>');
+
 }
