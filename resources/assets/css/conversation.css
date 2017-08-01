@@ -92,7 +92,7 @@
 }
 
 .boxTimeDeal label{
-  font-size: 14px;
+  font-size: 13px;
   color: #445870;
 
 }
@@ -101,6 +101,12 @@
     padding: 5px 10px !important;
     font-size: 14px !important;
     margin-bottom: 0px !important;
+}
+
+.notRead {
+    background: #e3e9f3;
+    overflow: hidden;
+    padding: 1% 0px;
 }
 
 @media (max-width: 767px) {

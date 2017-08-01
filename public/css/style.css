@@ -1,6 +1,5 @@
 @import url('footer.css');
 @import url('nav.css');
-@import url('conversation.css');
 @import url('styleForms.css');
 @import url('font-awesome.css');
 
@@ -778,12 +777,6 @@ conversation
 
 #received > div {
     padding: 10px 20px 0px 20px;
-}
-
-.notRead {
-    background: #e3e9f3;
-    overflow: hidden;
-    padding: 1% 0px;
 }
 
 #received .header {

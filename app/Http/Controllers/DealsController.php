@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\Conversations;
 use App\Models\Deal;
 use App\Models\DealState;
 use App\Models\UserScore;
@@ -15,6 +16,31 @@ use Maatwebsite\Excel\Facades\Excel;
 class DealsController extends Controller
 {
     private $request;
+
+    public function createDeal(Request $request)
+	{
+        $conversation = Conversations::find($request->conversation);
+
+        Deal::create([
+            'user_id' => $conversation->applicant_id,
+            'service_id' => $conversation->service_id,
+            'date' => $request->date,
+            'time' => '00:00:00',
+            'location' => $request->place,
+            'value' => $request->credits,
+            'description' => $request->observations,
+            'coordinates' => $request->coordinates,
+            'conversations_id' => $conversation->id
+        ]);
+
+		/*$email = new EmailController;
+
+		ConversationController::newMessage("Â¡Has enviado un propuesta!", $request->conversation, Auth::User()->id,$deal->id,$dealState->state_id);
+
+		$email->sendMailDeal($deal->user_id,"new");*/
+		dd("yes");
+		return redirect()->back();
+	}
 
     public function saveObservation(Request $request){
         $this->request = $request;

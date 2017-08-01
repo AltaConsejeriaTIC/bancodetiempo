@@ -10,7 +10,7 @@ use App\User;
 
 class Deal extends Model
 {
-  protected  $fillable = ['user_id', 'service_id','date','time','location','value','description', 'response_applicant', 'response_offerer', 'applicant_badObservations_id', 'offerer_badObservations_id', 'applicant_observation', 'offerer_observation'];
+  protected  $fillable = ['user_id', 'service_id','date','time','location','value','description', 'conversations_id', 'response_applicant', 'response_offerer', 'applicant_badObservations_id', 'offerer_badObservations_id', 'applicant_observation', 'offerer_observation', 'coordinates'];
 
 
     public function conversations(){

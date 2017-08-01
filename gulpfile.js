@@ -30,6 +30,7 @@ elixir(function(mix) {
 
     mix.styles([
             'home.css',
+            'conversation.css',
         ],
     'public/css/site.css');
 

@@ -1,6 +1,4 @@
 <?php
-
-
 // Route Profile
 Route::get('profile', 'Profile\ProfileController@showProfile');
 Route::post('profile/update', ['as' => 'profile/update', 'uses' => 'Profile\ProfileController@editProfile']);
@@ -21,11 +19,11 @@ Route::get('/inbox', 'ConversationController@index');
 Route::get('/conversation/{conversation_id}', 'ConversationController@showConversation')->middleware('conversation');
 
 Route::get('/messages/{conversation_id}', 'ConversationController@messagesConversation');
+Route::get('/conversation/deal', 'ConversationController@getDealConversation');
 
 
 Route::post('/newMessage', 'ConversationController@saveMessage');
-Route::post('/deal', 'ConversationController@deal');
-Route::put('/deal', 'ConversationController@dealUpdate');
+Route::post('/deal', 'DealsController@createDeal');
 
 Route::post('/addObservation', 'DealsController@saveObservation');
 

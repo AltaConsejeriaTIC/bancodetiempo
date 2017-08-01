@@ -104,6 +104,10 @@ class ConversationController extends Controller{
 		$categoriesSites = CategoriesSites::all();
 		return view('inbox/conversation', compact("conversation","deal","dealState", "categoriesSites"));
 	}
+
+    public function getDealConversation(Request $request){
+
+    }
 	
 	private function getMessages($message){
 		$messages = json_decode($message);		
@@ -144,74 +148,5 @@ class ConversationController extends Controller{
 			return null;
         }
     }
-
-	public function deal(Request $request)
-	{
-		$email = new EmailController;
-        $deal = new Deal;
-        $deal->user_id = $request->applicant;
-        $deal->service_id = $request->service;
-        $deal->date = $request->dealDate;
-        $deal->time = $request->dealHour;
-        $deal->location = $request->dealLocation;
-        $deal->value = $request->valueService;
-        $deal->description = $request->observations;
-        $deal->conversations_id = $request->conversation;
-        $deal->coordinates = $request->coordinates;
-		$deal->save();
-
-		$dealState = new DealState;
-		$dealState->deal_id = $deal->id;
-		$dealState->state_id = 4;
-		$dealState->save();
-
-		ConversationController::newMessage("Â¡Has enviado un propuesta!", $request->conversation, Auth::User()->id,$deal->id,$dealState->state_id);
-
-		$email->sendMailDeal($deal->user_id,"new");
-		
-		return redirect()->back();
-	}
-
-	public function dealUpdate(Request $request)
-	{		
-		$dealState = new DealState;		
-    $email = new EmailController;
-
-    if(!is_null($request->agree))
-    {
-      $dealState->state_id = 7;
-      $dealState->deal_id = $request->deal;
-      $dealState->save();
-	    ConversationController::newMessage("Propuesta Aceptada", $request->conversation, Auth::User()->id,$request->deal,$dealState->state_id);
-
-    	if($request->applicant == Auth::id())
-    	{    	
-	      $email->sendMailDeal($request->userService,"agree");
-    	}
-    	if($request->userService == Auth::id())
-    	{    		
-    		$email->sendMailDeal($request->applicant,"agree");
-    	}
-		}
-
-		if(!is_null($request->decline))
-		{			
-			$dealState->state_id = 8;
-      $dealState->deal_id = $request->deal;
-      $dealState->save();
-      ConversationController::newMessage("Propuesta Cancelada", $request->conversation, Auth::User()->id,$request->deal,$dealState->state_id);
-      
-      if($request->applicant == Auth::id())
-    	{    	
-	      $email->sendMailDeal($request->userService,"decline");
-    	}
-    	if($request->userService == Auth::id())
-    	{    		
-    		$email->sendMailDeal($request->applicant,"decline");
-    	}
-		}
-		
-		return redirect()->back();
-	}
 
 }

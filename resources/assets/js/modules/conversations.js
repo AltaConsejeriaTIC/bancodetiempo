@@ -8,10 +8,14 @@ jQuery(document).ready(function(){
     if(jQuery("form.sendMenssages").length){
         jQuery("form.sendMenssages").on("submit", sendMenssage);
     }
+    if(jQuery("form.newDeal").length){
+        jQuery("form.newDeal").on("submit", createDeal);
+    }
 })
 
 var activity = false;
 var conversationId = 0;
+
 function callMessages(){
     if(!activity){
         return false;
@@ -31,7 +35,6 @@ function callMessages(){
 
 function sendMenssage(){
     var message = jQuery(this).find("#message").val();
-    var conversationId = jQuery(this).find("#conversationInput").val();
     var sender = jQuery(this).find("#senderInput").val();
     var token = jQuery(this).find("input[name='_token']").val();
     if(message.length > 1){
@@ -58,7 +61,6 @@ function showConversation(){
     conversationId = jQuery(this).data('conversation');
     jQuery(".listConversation").removeClass("active");
     conversation.addClass("active");
-    conversation.find("#conversationInput").val(conversationId);
     setTimeout(function(){
         jQuery(".conversation > .box").scrollTop(jQuery(".conversation > .box").prop('scrollHeight'));
     }, 200);
@@ -66,6 +68,7 @@ function showConversation(){
     jQuery(".conversation .dealBox").removeClass('hidden');
     activity = true;
     callMessages();
+    callDeals();
 }
 
 function closeConversation(){
@@ -75,4 +78,44 @@ function closeConversation(){
     jQuery(".conversation .controllers").addClass('hidden');
     jQuery(".conversation .dealBox").addClass('hidden');
     activity = false;
+}
+
+function createDeal(){
+
+    var data = {
+        "conversation" : conversationId,
+        "date" : jQuery(this).find("[name='date']").val(),
+        "place" : jQuery(this).find("[name='place']").val(),
+        "observations" : jQuery(this).find("[name='observations']").val(),
+        "credits" : jQuery(this).find("[name='credits']:checked").val(),
+        "coordinates" : jQuery(this).find("[name='coordinates']").val(),
+        "_token" : jQuery(this).find("[name='_token']").val()
+    };
+    console.log(data)
+    jQuery.ajax({
+        type: "POST",
+        url: "/deal",
+        data: data,
+        success: function(datos){
+
+        }
+    });
+    return false;
+}
+
+function callDeals(){
+    if(!activity){
+        return false;
+    }
+    jQuery.ajax({
+        url : '/messages/'+conversationId,
+        type : "GET",
+        data : "key="+jQuery("#keyConversation").val(),
+        success : function(data){
+            if(data != ""){
+                jQuery(".conversation > .box").html(data);
+            }
+        }
+    });
+    setTimeout(callMessages, 2000, conversationId);
 }

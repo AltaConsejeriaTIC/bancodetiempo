@@ -16,24 +16,25 @@
             </ul>
 	    </div>
 	</div>
-	<div class="tab-content">
+	<div class="tab-content col-xs-12 col-sm-5 col-md-4">
         <article class="tab-pane fade active in" id="servicesInterested">
             <div class="row relative">
-                <div class="col-xs-12 col-sm-5 col-md-4 panel listConversation active">
+                <div class="col-xs-12 panel listConversation active">
                     @include('inbox.partial.listConversationsServicesInterested', ['conversations' => $conversations])
                 </div>
-                @include('inbox.partial.conversation')
+
             </div>
         </article>
         <article class="tab-pane fade" id="myServices">
             <div class="row">
-                <div class="col-xs-12 col-sm-5 col-md-4 panel listConversation active">
+                <div class="col-xs-12 panel listConversation active">
                     @include('inbox.partial.listConversationsMyServices', ['conversations' => $conversationsMyService])
                 </div>
-                @include('inbox.partial.conversation')
+
             </div>
         </article>
     </div>
+    @include('inbox.partial.conversation')
 </div>
 
 @endsection
