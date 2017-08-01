@@ -23,16 +23,7 @@ jQuery(document).ready(function(){
     jQuery("#findMobile .close").on("click", closeSearch)
     jQuery(".sendCoordinates").on("click", sendCoordinates)
     jQuery(".showDetailSite").on("click", showDetailSite);
-    
-    if(jQuery(".nav1").length){
-       jQuery(window).scroll(function(){
-           if(jQuery(this).scrollTop() > 650){
-               jQuery(".nav1").addClass('backgroundSolid');
-           }else{
-               jQuery(".nav1").removeClass('backgroundSolid');
-           }
-       })
-    }
+
 
     scrollBottom();
 

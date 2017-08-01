@@ -685,16 +685,13 @@ h1#bannerDescription {
 }
 
 .bannerHome .carousel .banner1 {
-    background-image: url(/images/banner/back1.jpg);
+    background-image: url(/images/banner/back1.png);
 }
 
 .bannerHome .carousel .banner2 {
-    background-image: url(/images/banner/back2.jpg);
+    background-image: url(/images/banner/back2.png);
 }
 
-.bannerHome .carousel .banner3 {
-    background-image: url(/images/banner/back3.jpg);
-}
 
 .bannerHome .description {
     padding-top: 25px;
@@ -709,7 +706,7 @@ h1#bannerDescription {
 }
 
 .sponsors{
-    background: #001136;
+    background: #fff;
     padding-top: 15px;
     padding-bottom: 15px;
 }

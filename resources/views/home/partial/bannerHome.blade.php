@@ -124,9 +124,9 @@
     <div class="container">
         <div class="col-xs-12">
             <div class="flex-center">
-                <img src="/images/logoFooter1.png" alt="" class="col-xs-4 col-sm-2 col-sm-offset-3">
-                <img src="/images/logoFooter2.png" alt="" class="col-xs-4 col-sm-2">
-                <img src="/images/logoFooter3.png" alt="" class="col-xs-4 col-sm-2">
+                <img src="/images/banner/sponsor1.png" alt="" class="col-xs-4 col-sm-2 col-sm-offset-3">
+                <img src="/images/banner/sponsor2.png" alt="" class="col-xs-4 col-sm-3">
+                <img src="/images/banner/sponsor3.png" alt="" class="col-xs-4 col-sm-2">
             </div>
         </div>
     </div>
