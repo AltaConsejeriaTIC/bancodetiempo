@@ -42,54 +42,10 @@
         color: #fff;
     }
 
-
-    .bannerHome {
-       height: 500px;
-    }
-
-    .bannerHome .lineUnion {
-        width: 15vw;
-        display: block;
-        position: absolute;
-        border-top: 2px solid #fff;
-        top: 5vh;
-        left: 80%;
-        padding-left: 10px;
-        text-align: center;
-    }
-
-    .bannerHome .lineUnion:before {
-        content: "";
-        display: block;
-        border: 3px solid #fff;
-        width: 13px;
-        height: 13px;
-        position: absolute;
-        top: -7px;
-        left: -10px;
-        border-radius: 50px;
-    }
-
-    .bannerHome .lineUnion:after {
-        content: "";
-        display: block;
-        border: 3px solid #fff;
-        width: 13px;
-        height: 13px;
-        position: absolute;
-        top: -7px;
-        right: -10px;
-        border-radius: 50px;
-    }
-
     .bannerRegister {
         background-size: 145% auto;
         background-position: 55% 30%;
         padding-top: 100px;
-    }
-
-    .bannerHome .carousel > div > img {
-        width: 50%;
     }
 
     .line-r-v {
@@ -116,11 +72,6 @@ Media Querys
 
     ul.dropdown-menu > li > a {
         color: #333;
-    }
-
-    .bannerHome {
-        height: 650px;
-        position: relative;
     }
 
     .bannerRegister {
@@ -150,10 +101,6 @@ Media Querys
 		height: 90%;
 	}
 
-    .bannerHome .lineUnion {
-        width: 15vh !important;
-    }
-
 }
 
 
@@ -167,55 +114,6 @@ Media Querys
         margin-right: 0px !important;
         margin-left: 0px !important;
     }
-
-    .bannerHome {
-        height: 105vh;
-    }
-
-    .bannerHome .carousel > div {
-        background-size: auto 100% !important;
-        background-position: 95% 0% !important;
-    }
-
-    .bannerHome .carousel > div > img {
-        left: 0% !important;
-        width: 100%;
-    }
-
-    .bannerHome .lineUnion {
-        height: 5vh;
-        display: block;
-        position: absolute;
-        border-left: 2px solid #fff;
-        top: 15vh;
-        left: 60%;
-        padding-left: 10px;
-    }
-
-    .bannerHome .lineUnion:before {
-        content: "";
-        display: block;
-        border: 3px solid #fff;
-        width: 10px;
-        height: 10px;
-        position: absolute;
-        top: -10px;
-        left: -6px;
-        border-radius: 50px;
-    }
-
-    .bannerHome .lineUnion:after {
-        content: "";
-        display: block;
-        border: 3px solid #fff;
-        width: 10px;
-        height: 10px;
-        position: absolute;
-        bottom: -10px;
-        left: -6px;
-        border-radius: 50px;
-    }
-
     .bannerRegister {
         background-size: auto 100% !important;
         background-position: 50% 30% !important;
@@ -349,10 +247,6 @@ Media Querys
 
     ul.nav-pills {
         list-style: none;
-    }
-
-    .bannerHome .carousel > div > img {
-        width: 100% !important;
     }
 
     .line-r-v {

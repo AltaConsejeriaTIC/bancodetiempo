@@ -523,194 +523,6 @@ Helpers
     height: 100%;
 }
 
-.passNum {
-    border: 1px solid #90a1b5;
-    width: 25px;
-    display: block;
-    height: 25px;
-    border-radius: 50%;
-    padding-top: 2px;
-    color: #90a1b5;
-    font-weight: bold;
-    position: relative;
-    margin: auto;
-    font-size: 12px;
-}
-
-.pass, .pass > span, .pass > p, .pass > a, .pass > span:before {
-
-    color: #90a1b5;
-    cursor: pointer
-}
-
-.passActive > span {
-    border-color: #0f6784;
-    color: #fff;
-    background: #0f6784;
-}
-
-.passDone > span {
-    border-color: #2cba36;
-    color: #fff;
-    background: #2cba36;
-    text-indent: -1000px;
-}
-
-.passDone > span:before {
-    content: "\f00c";
-    display: block;
-    text-indent: initial;
-    font-family: FontAwesome;
-    color: #fff;
-    font-weight: 100;
-    padding-top: 2px;
-}
-
-.passActive > p {
-    color: #0f6784;
-}
-
-.passSpace:before {
-    content: "";
-    display: block;
-    width: 30px;
-    border-top: 2px solid #90a1b5;
-    top: 13px;
-    position: relative;
-    margin: auto;
-}
-
-/*
-RedesSociales
-*/
-.social-button {
-    margin-top: 10px;
-    text-align: left;
-}
-
-.social-button:hover, .social-button:focus {
-    color: #fff;
-}
-
-.social-button-facebook:hover, .social-button-facebook:focus {
-    color: #3b5994;
-}
-
-.social-button-google:hover, .social-button-google:focus {
-    color: #cf4836;
-}
-
-.social-button-linkedin:hover, .social-button-linkedin:focus {
-    color: #007bb2;
-}
-
-.social-button > i {
-    margin-right: 5px;
-    float: right;
-}
-
-.facebook-login {
-    background-color: #3b5998;
-}
-
-.google-login {
-    background-color: #d34836;
-}
-
-.linkedin-login {
-    background-color: #007bb6;
-}
-
-.facebook {
-    background-color: #fff;
-    color: #3b5994;
-    border: solid 2px #3b5994;
-}
-
-.google {
-    background-color: #fff;
-    color: #cf4836;
-    border: solid 2px #cf4836;
-}
-
-.linkedin {
-    background-color: #fff;
-    color: #007bb2;
-    border: solid 2px #007bb2;
-}
-
-/*
-Banner Home
-*/
-.bannerHome {
-
-}
-
-h1#bannerDescription {
-    min-height: 120px;
-}
-
-.bannerHome .carousel {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background: #00728f;
-}
-
-.bannerHome .carousel > div {
-    height: 100%;
-    width: 100%;
-    background-size: 100% 100%;
-    position: absolute;
-    opacity: 0;
-    transition: all 2s !important;
-}
-
-.bannerHome .carousel > div > img {
-    position: absolute;
-    bottom: 0%;
-    left: 50px;
-    opacity: 0;
-    transition: all 3s !important;
-}
-
-.bannerHome .carousel > div.active > img {
-    opacity: 100;
-}
-
-.bannerHome .carousel > div.active {
-    opacity: 100;
-}
-
-.bannerHome .carousel .banner1 {
-    background-image: url(/images/banner/back1.png);
-}
-
-.bannerHome .carousel .banner2 {
-    background-image: url(/images/banner/back2.png);
-}
-
-
-.bannerHome .description {
-    padding-top: 25px;
-    padding-bottom: 25px;
-}
-
-.position-bottom{
-    position: absolute;
-    width: 100%;
-    bottom: 0%;
-    left: 0%;
-}
-
-.sponsors{
-    background: #fff;
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-
 /*
 Banner Register
 */
@@ -1004,15 +816,6 @@ Ranking
 }
 
 /*
-Box register home
-*/
-.boxRegister {
-    background: url(../images/banner.png);
-    background-size: 130% auto;
-    background-position: 30% 40%;
-}
-
-/*
 notificacion icon
 */
 .notification {
@@ -1032,8 +835,6 @@ notificacion icon
     height: 22px;
     width: 22px;
 }
-
-
 
 .listMessages {
     top: 0%;
@@ -1127,8 +928,6 @@ notificacion icon
     border-radius: 5px;
     height: 40px;
 }
-
-
 
 #messages {
     height: 100%;
@@ -2009,30 +1808,4 @@ div#findMobile .close {
     height: 20px;
     top: -20px;
     left: 50%;
-}
-
-@media (min-width: 576px) {
-    .size-first {
-        font-size: 28px;
-    }
-
-    .size-second {
-        font-size: 24px;
-    }
-
-    .size-third {
-        font-size: 18px;
-    }
-
-    .size-fourth {
-        font-size: 14px;
-    }
-
-    .welcome .size-second {
-        font-size: 18px;
-    }
-
-    .welcome .button1:active {
-        color: inherit;
-    }
 }
