@@ -21,7 +21,7 @@ class DealsController extends Controller
 	{
         $conversation = Conversations::find($request->conversation);
         $dealsConversation = Deal::where('conversations_id', $conversation->id)->whereIn('state_id', [4, 8, 12])->get();
-        if($dealsConversation == 0){
+        if($dealsConversation->count() == 0){
             Deal::create([
                 'user_id' => $conversation->applicant_id,
                 'service_id' => $conversation->service_id,
@@ -44,7 +44,7 @@ class DealsController extends Controller
             dd("yes");
 
         }
-		return redirect()->back();
+		return '';
 	}
 
     public function saveObservation(Request $request){

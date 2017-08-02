@@ -96,7 +96,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <p><strong>Dorados: </strong><span id='dealCredits'></span></p>
+                        <p><strong>Dorados: </strong> <img src="http://localbancodetiempo.com/images/moneda.png" style="width: 15px;">&nbsp;&nbsp;<span id='dealCredits'></span> Dorados</p>
                     </div>
                 </div>
                 <div class="row">
