@@ -53,6 +53,9 @@
             @if(!Auth::check())
            		@include('partial.registerModal')
            	@endif
+           	@if(session('errorLogin'))
+           	    @include('partial.errorLogin')
+           	@endif
         </div>
         @include('footer')
     </body>
