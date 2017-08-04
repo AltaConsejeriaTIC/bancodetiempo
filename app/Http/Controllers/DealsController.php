@@ -20,7 +20,7 @@ class DealsController extends Controller
     public function createDeal(Request $request)
 	{
         $conversation = Conversations::find($request->conversation);
-        $dealsConversation = Deal::where('conversations_id', $conversation->id)->whereIn('state_id', [4, 8, 12])->get();
+        $dealsConversation = Deal::where('conversations_id', $conversation->id)->whereIn('state_id', [4, 7, 12])->get();
         if($dealsConversation->count() == 0){
             Deal::create([
                 'user_id' => $conversation->applicant_id,
@@ -41,11 +41,27 @@ class DealsController extends Controller
             ConversationController::newMessage("Â¡Has enviado un propuesta!", $request->conversation, Auth::User()->id,$deal->id,$dealState->state_id);
 
             $email->sendMailDeal($deal->user_id,"new");*/
-            dd("yes");
+            return '{"state" : "ok"}';
 
         }
-		return '';
+		return '{"state" : "error"}';
 	}
+    
+    public function cancelDeal(Request $request){
+        $deal = Deal::where('conversations_id', $request->conversation)->whereIn('state_id', [4, 7])->get()->last();
+        $deal->update([
+            'state_id' => 8
+        ]);
+        return '{"state" : "ok"}';
+    }
+    
+    public function aceptDeal(Request $request){
+        $deal = Deal::where('conversations_id', $request->conversation)->where('state_id', 4)->get()->last();
+        $deal->update([
+            'state_id' => 7
+        ]);
+        return '{"state" : "ok"}';
+    }
 
     public function saveObservation(Request $request){
         $this->request = $request;

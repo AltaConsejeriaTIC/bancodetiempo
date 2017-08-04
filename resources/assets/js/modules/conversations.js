@@ -15,7 +15,6 @@ jQuery(document).ready(function(){
     me = jQuery("#meId").val();
 })
 
-
 function callMessages(){
     if(!activity){
         return false;
@@ -67,6 +66,9 @@ function showConversation(){
     jQuery(".conversation .controllers").removeClass('hidden');
     jQuery(".conversation .dealBox").removeClass('hidden');
     activity = true;
+    
+    jQuery("#deal").addClass("active");
+    jQuery("article.dealBox").height(jQuery("[canvas].active").height()+30);
     callMessages();
     callDeals();
 }
@@ -97,6 +99,45 @@ function createDeal(){
         data: data,
         beforeSend: function(){
             jQuery("form.newDeal").off("submit");
+            
+        },
+        success: function(datos){
+            jQuery("form.newDeal").on("submit", createDeal);
+        }
+    });
+    return false;
+}
+
+function cancelDeal(){
+    var data = {
+        "conversation" : conversationId,
+        "_token" : jQuery(this).find("[name='_token']").val()
+    };
+    jQuery.ajax({
+        type: "POST",
+        url: "/cancelDeal",
+        data: data,
+        beforeSend: function(){
+            jQuery("form.cancelDeal").off("submit");
+        },
+        success: function(datos){
+
+        }
+    });
+    return false;
+}
+
+function aceptDeal(){
+    var data = {
+        "conversation" : conversationId,
+        "_token" : jQuery(this).find("[name='_token']").val()
+    };
+    jQuery.ajax({
+        type: "POST",
+        url: "/aceptDeal",
+        data: data,
+        beforeSend: function(){
+            jQuery("form.aceptDeal").off("submit");
         },
         success: function(datos){
 
@@ -118,6 +159,7 @@ function callDeals(){
             if(data.deal != deal){
                 printDeal(data)
                 deal = data.deal;
+                jQuery("form.cancelDeal").on("submit", cancelDeal);
             }
         }
     });
@@ -125,16 +167,19 @@ function callDeals(){
 }
 
 function printDeal(data){
+    jQuery("form.newDeal").on("submit", createDeal);
     if(data.state == 'error'){
         
     }else{
         if(data.deal == 'none'){
-            jQuery(".conversation .dealForm").removeClass('hidden');
-            jQuery("form.newDeal").on("submit", createDeal);
+            jQuery("#deal").addClass("active");
         }else{
-            jQuery(".conversation .dealForm").addClass('hidden');
-            jQuery("form.newDeal").off("submit");
+            jQuery("[canvas].active").removeClass("active");
+            jQuery("#dealDetail").addClass("active");
             printDealDetails(data)
+            var h = jQuery("[canvas].active").height()+30;
+            console.log(h);
+            jQuery("article.dealBox").height(h);
         }
     }
 }
@@ -148,17 +193,59 @@ function printDealDetails(data){
     jQuery("#dealCredits").html(data.credits);    
     jQuery("#dealObservations").html(data.observations);    
     jQuery(".conversation .dealDetail").removeClass('hidden');
+    showButtonCurrentAction(data);
     showMapDeal('dealMap', data.coordinates);
+}
+
+function showButtonCurrentAction(data){
+    jQuery(".buttonAction").addClass("hidden");
+    switch(data.deal_state){
+        case 4:
+            if(data.creator == me){
+                jQuery("#buttonCancelDeal").removeClass("hidden");
+            }else{
+                jQuery("form.aceptDeal").on("submit", aceptDeal);
+                jQuery("#buttonControlsDeal").removeClass("hidden"); 
+            }
+        break;
+        case 7:
+            jQuery("form.cancelDeal").on("submit", cancelDeal);
+            jQuery("#buttonCancelDeal").removeClass("hidden");
+        break;
+        case 8:
+            jQuery("#buttonNewDeal").removeClass("hidden");
+        break;
+    }
 }
 
 function getMessageState(data){
     var message = '';
-    if(data.creator == me){
-        message = '¡Has enviado una propuesta de Cambalache!';
-    }else{
-        message = data.creator_name+' te ha enviado una propuesta de Cambalache!';
+    switch(data.deal_state){
+        case 4:
+            message = getMessageStatePending(data);
+        break;
+        case 7:
+            message = getMessageStateAcepted(data);
+        break;
+        case 8:
+            message = getMessageStateCancel(data);
+        break;
     }
     return message;
+}
+
+function getMessageStatePending(data){
+    if(data.creator == me){
+       return '¡Has enviado una propuesta de Cambalache!';
+    }else{
+        return data.creator_name+' te ha enviado una propuesta de Cambalache!';
+    }
+}
+function getMessageStateCancel(data){
+    return '¡Tu propuesta fue rechazada!';  
+}
+function getMessageStateAcepted(data){
+    return '¡Tienes un Cambalache!';  
 }
 
 function removeDealDetails(data){

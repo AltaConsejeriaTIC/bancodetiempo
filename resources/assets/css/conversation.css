@@ -50,15 +50,6 @@
     padding-top: 10px;
 }
 
-.dealBox {
-    border: 1px solid #d2d2d2;
-}
-
-.dealBox [canvas] {
-    background: #e3ecf1;
-    padding: 15px 0px;
-}
-
 .boxTimeDeal {
     background: #c2d8e0;
     border: 1px solid #0f6784;
@@ -111,6 +102,36 @@
 
 .dealDetail {
     background: #e3ecf1;
+}
+
+
+.dealBox {
+    border: 1px solid #d2d2d2;
+    overflow: hidden;
+}
+
+.dealBox [canvas] {
+    background: #e3ecf1;
+    padding: 15px 0px;
+    position: absolute;
+    transition: all 1s;
+    width: 100%;
+}
+
+.deal {
+    left: -120%;
+}
+
+.dealForm {
+    left: 120%;
+}
+
+#dealDetail {
+    left: -120%;
+}
+
+.dealBox [canvas].active {
+    left: 2.5% !important;
 }
 
 @media (max-width: 767px) {

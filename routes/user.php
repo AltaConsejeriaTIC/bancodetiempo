@@ -24,6 +24,9 @@ Route::get('/getDeals', 'ConversationController@getDealConversation');
 
 Route::post('/newMessage', 'ConversationController@saveMessage');
 Route::post('/deal', 'DealsController@createDeal');
+Route::post('/cancelDeal', 'DealsController@cancelDeal');
+Route::post('/aceptDeal', 'DealsController@aceptDeal');
+
 
 Route::post('/addObservation', 'DealsController@saveObservation');
 

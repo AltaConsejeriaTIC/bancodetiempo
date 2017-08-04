@@ -1,15 +1,20 @@
 <article class="dealBox row hidden">
-    <div class="col-xs-12" transition>
-        <div class="deal active row hidden" canvas data-in='right' data-out='left'>
+    <div class="col-xs-12">
+        <div class="deal row" id='deal' canvas>
             <div class="col-xs-12">
                 <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <p><strong>Que no se te pase concretar tu Cambalache haciendo clic en el siguiente botón. Es el único  medio para recibir o entregar tus dorados.</strong></p>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-12 text-center">
-                        <button type="button" class="button1 background-active-color" transition-button data-open='.dealForm'>Proponer Cambalache</button>
+                        <button type="button" class="button1 background-active-color buttonTransition" data-open='#dealForm'>Proponer Cambalache</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="dealForm row" canvas data-in='left' data-out='right'>
+        <div class="dealForm row" id='dealForm' canvas>
             <div class="col-xs-12">
                 <form action="#" class="newDeal form-custom" method="get">
                     <div class="row">
@@ -65,13 +70,13 @@
                             <button type="submit" class="col-xs-12 button1 background-active-color">¡Proponer Cambalache!</button>
                         </div>
                         <div class="col-xs-5">
-                            <button type="button" class="col-xs-12 button4 backgropund-white">Cancelar</button>
+                            <button type="button" class="col-xs-12 button4 backgropund-white buttonTransition" data-open='#deal'>Cancelar</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="dealDetail row hidden">
+        <div class="dealDetail row" canvas id='dealDetail'>
             <div class="col-xs-10 col-xs-offset-1">
                 <div class="row">
                     <h1 class="title1 text-center" id="dealMessage"></h1>
@@ -111,8 +116,24 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <button type="button" class="button4 background-white col-xs-6 col-xs-offset-3">Cancelar Cambalache</button>
+                    <div class="col-xs-12 hidden buttonAction" id='buttonCancelDeal'>
+                        <form action="#" class="cancelDeal form-custom" method="post">
+                            {{ csrf_field() }}
+                            <button type="submit" class="button4 background-white col-xs-6 col-xs-offset-3">Cancelar Cambalache</button>
+                        </form>
+                    </div>
+                    <div class="col-xs-12 hidden buttonAction" id='buttonControlsDeal'>
+                        <form action="#" class="aceptDeal form-custom" method="post">
+                            {{ csrf_field() }}
+                            <button type="submit" class="button4 text-white background-active-color col-xs-5">Aceptar Cambalache</button>
+                        </form>
+                        <form action="#" class="cancelDeal form-custom" method="post">
+                            {{ csrf_field() }}
+                            <button type="submit" class="button4 background-white col-xs-5 col-xs-offset-2">Declinar Cambalache</button>
+                        </form>
+                    </div>
+                    <div class="col-xs-12 hidden buttonAction" id='buttonNewDeal'>
+                        <button type="button" class="button1 background-active-color col-xs-6 col-xs-offset-3 buttonTransition" data-open='#dealForm'>¡Proponer Nuevo Cambalache!</button>
                     </div>
                 </div>
                 <br>
