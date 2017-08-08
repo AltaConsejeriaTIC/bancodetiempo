@@ -16,19 +16,9 @@ class AddColumnStateTableDeals extends Migration
         Schema::table('deals', function (Blueprint $table) {
             $table->integer('state_id')->unsigned();
             $table->integer('creator_id')->unsigned();
+            $table->string('cancelObservation')->nullable();
         });
 
-        Schema::table('deals', function($table)
-        {
-          $table->foreign('state_id')
-                ->references('id')
-                ->on('states')
-                ->onUpdate('cascade');
-        $table->foreign('creator_id')
-                ->references('id')
-                ->on('users')
-                ->onUpdate('cascade');
-        });
     }
 
     /**
@@ -40,10 +30,9 @@ class AddColumnStateTableDeals extends Migration
     {
 
         Schema::table('deals', function(Blueprint $table) {
-            $table->dropForeign(['state_id']);
             $table->dropColumn('state_id');
-            $table->dropForeign(['creator_id']);
             $table->dropColumn('creator_id');
+            $table->dropColumn('cancelObservation');
        });
     }
 }

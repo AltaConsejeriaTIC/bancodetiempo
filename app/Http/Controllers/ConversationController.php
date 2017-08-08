@@ -68,27 +68,32 @@ class ConversationController extends Controller{
         return $listServices;
     }
 
-	static public function newMessage($message,$conversation_id,$sender,$deal,$dealState,$substitutionsNumber = 0){
-		$conversation = Conversations::find($conversation_id);
+	static public function newMessage($message,$conversation_id,$sender,$deal,$dealState){
+        $conversation = Conversations::find($conversation_id);
+        $sendingMessage = ConversationController::blockMessageSending($message);
 		$newMessage = json_decode($conversation->message);
-		$newMessage[] = ["message" => $message, "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6, "deal" => $deal, "dealState" => $dealState, 'substitutionsNumber' => $substitutionsNumber];
+		$newMessage[] = ["message" => $sendingMessage['message'], "date" => date("Y-m-d"), "time" => date("H:i:s"), "sender" => $sender, "state" => 6, "deal" => $deal, "dealState" => $dealState, 'substitutionsNumber' => $sendingMessage['substitutionsNumber']];
 		$conversation->update([
 			"message" => json_encode($newMessage)
 		]);
 	}
-	public function saveMessage(Request $request){
-        $message = $this->blockEmailSending($request->input('message'));
-        $substitutionsNumber = $message[1];
-        $message = $this->blockNumberPhoneSending($message[0]);
-        $substitutionsNumber += $message[1];
-		ConversationController::newMessage($message[0], $request->input('conversation'), Auth::User()->id,0,0, $substitutionsNumber);
+	public function saveMessage(Request $request){        
+		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id,0,0);
 	}
-    private function blockEmailSending($message){
+    static function blockMessageSending($message){
+        $message = ConversationController::blockEmailSending($message);
+        $substitutionsNumber = $message[1];
+        $message = ConversationController::blockNumberPhoneSending($message[0]);
+        $substitutionsNumber += $message[1];
+		
+        return ["message" => $message[0], "substitutionsNumber" => $substitutionsNumber];
+    }
+    static function blockEmailSending($message){
         $regex = "/[\w-\.]{3,} ?@ ?([\w-]{2,}\.)*([\w-]{2,} ?\.) ?[\w-]{2,4}/";
         $text = preg_replace($regex, 'xxxxxxx@xxxxxx', $message, -1, $substitutionsNumber);
         return [$text, $substitutionsNumber];
     }
-    private function blockNumberPhoneSending($message){
+    static function blockNumberPhoneSending($message){
         $regex = "/(\+? *5 *7(( *\d){10}|( *\d){7}))|( *\d){10}|( *\d){7}/";
         $text = preg_replace($regex, ' xxxxxxx', $message, -1, $substitutionsNumber);
         return [$text, $substitutionsNumber];

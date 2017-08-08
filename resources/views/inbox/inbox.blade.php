@@ -8,10 +8,10 @@
 	    <div class="col-xs-12">
 	        <ul class="nav nav-pills">
                 <li role="presentation" class="active">
-                    <a href="#servicesInterested" data-toggle="tab" class="closeConversation">Ofertas que deseo recibir</a>
+                    <a href="#servicesInterested" data-toggle="tab" class="closeConversation">Ofertas que deseo recibir <span class="notificationAlert">{{App\Helpers::getCountNotificationsServicicesInterest()}}</span></a>
                 </li>
                 <li role="presentation">
-                    <a href="#myServices" data-toggle="tab" class="closeConversation">Interesados en mis ofertas</a>
+                    <a href="#myServices" data-toggle="tab" class="closeConversation">Interesados en mis ofertas <span class="notificationAlert">{{App\Helpers::getCountNotificationsMyServices()}}</span></a>
                 </li>
             </ul>
 	    </div>

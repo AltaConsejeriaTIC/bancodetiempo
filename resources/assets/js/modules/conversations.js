@@ -13,7 +13,32 @@ jQuery(document).ready(function(){
         jQuery("form.sendMenssages").on("submit", sendMenssage);
     }
     me = jQuery("#meId").val();
+    jQuery("form.newDeal").on("submit", createDeal);
+    
+    jQuery.datetimepicker.setLocale('es');
+    jQuery('#dateDeal').datetimepicker();
 })
+
+function showConversation(){
+    closeConversation();
+    activeElements();
+    conversationId = jQuery(this).data('conversation');
+    jQuery("article.dealBox").height(jQuery("[canvas].active").height()+30);
+    activity = true;  
+    callMessages();
+    callDeals();
+}
+
+function activeElements(){
+    jQuery(".conversation").addClass("active")
+    jQuery(".listConversation").removeClass("active");
+    jQuery(".conversation .controllers").removeClass('hidden');
+    jQuery(".conversation .dealBox").removeClass('hidden');
+    jQuery("#deal").addClass("active");
+    setTimeout(function(){
+        jQuery(".conversation > .box").scrollTop(jQuery(".conversation > .box").prop('scrollHeight'));
+    }, 200);  
+}
 
 function callMessages(){
     if(!activity){
@@ -55,35 +80,53 @@ function sendMenssage(){
     return false;
 }
 
-function showConversation(){
-    var conversation = jQuery(".conversation");
-    conversationId = jQuery(this).data('conversation');
-    jQuery(".listConversation").removeClass("active");
-    conversation.addClass("active");
-    setTimeout(function(){
-        jQuery(".conversation > .box").scrollTop(jQuery(".conversation > .box").prop('scrollHeight'));
-    }, 200);
-    jQuery(".conversation .controllers").removeClass('hidden');
-    jQuery(".conversation .dealBox").removeClass('hidden');
-    activity = true;
-    
-    jQuery("#deal").addClass("active");
-    jQuery("article.dealBox").height(jQuery("[canvas].active").height()+30);
-    callMessages();
-    callDeals();
-}
-
 function closeConversation(){
     jQuery(".conversation").removeClass("active");
     jQuery(".listConversation").addClass("active");
     jQuery(".conversation > .box").html('');
     jQuery(".conversation .controllers").addClass('hidden');
     jQuery(".conversation .dealBox").addClass('hidden');
+    jQuery("[canvas].active").removeClass("active");
     activity = false;
 }
 
-function createDeal(){
+function callDeals(){
+    if(!activity){
+        return false;
+    }
+    jQuery.ajax({
+        url : '/getDeals',
+        data: {"conversation" : conversationId},
+        type : "GET",
+        success : function(data){
+            var data = JSON.parse(data);
+            if(data.deal != deal){
+                printDeal(data)
+                deal = data.deal;
+                jQuery("form.cancelDeal").on("submit", cancelDeal);
+            }
+        }
+    });
+    setTimeout(callDeals, 2000);
+}
 
+function printDeal(data){
+    if(data.state == 'error'){
+        
+    }else{
+        if(data.deal == 'none'){
+            jQuery("#deal").addClass("active");
+        }else{
+            jQuery("[canvas].active").removeClass("active");
+            jQuery("#dealDetail").addClass("active");
+            printDealDetails(data)
+            var h = jQuery("[canvas].active").height()+30;
+            jQuery("article.dealBox").height(h);
+        }
+    }
+}
+
+function createDeal(){
     var data = {
         "conversation" : conversationId,
         "date" : jQuery(this).find("[name='date']").val(),
@@ -98,10 +141,12 @@ function createDeal(){
         url: "/deal",
         data: data,
         beforeSend: function(){
-            jQuery("form.newDeal").off("submit");
-            
+            jQuery("#dealForm").find(".loadBox").addClass("active")
+            jQuery("form.newDeal").off("submit");            
         },
         success: function(datos){
+            jQuery("#dealForm").find(".loadBox").removeClass("active")
+            jQuery("form.newDeal").trigger("reset");
             jQuery("form.newDeal").on("submit", createDeal);
         }
     });
@@ -144,44 +189,6 @@ function aceptDeal(){
         }
     });
     return false;
-}
-
-function callDeals(){
-    if(!activity){
-        return false;
-    }
-    jQuery.ajax({
-        url : '/getDeals',
-        data: {"conversation" : conversationId},
-        type : "GET",
-        success : function(data){
-            var data = JSON.parse(data);
-            if(data.deal != deal){
-                printDeal(data)
-                deal = data.deal;
-                jQuery("form.cancelDeal").on("submit", cancelDeal);
-            }
-        }
-    });
-    setTimeout(callDeals, 2000);
-}
-
-function printDeal(data){
-    jQuery("form.newDeal").on("submit", createDeal);
-    if(data.state == 'error'){
-        
-    }else{
-        if(data.deal == 'none'){
-            jQuery("#deal").addClass("active");
-        }else{
-            jQuery("[canvas].active").removeClass("active");
-            jQuery("#dealDetail").addClass("active");
-            printDealDetails(data)
-            var h = jQuery("[canvas].active").height()+30;
-            console.log(h);
-            jQuery("article.dealBox").height(h);
-        }
-    }
 }
 
 function printDealDetails(data){

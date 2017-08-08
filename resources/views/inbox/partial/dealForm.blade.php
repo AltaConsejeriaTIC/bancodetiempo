@@ -15,6 +15,7 @@
             </div>
         </div>
         <div class="dealForm row" id='dealForm' canvas>
+            <div class="loadBox"></div>
             <div class="col-xs-12">
                 <form action="#" class="newDeal form-custom" method="get">
                     <div class="row">
@@ -25,7 +26,7 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <label for="">Fecha y hora de realización del acuerdo</label><br>
-                            <input type="text" name="date" placeholder='06/08/2017  9:45 AM' class="col-xs-12 datepick">
+                            <input type="text" name="date" placeholder='06/08/2017  9:45 AM' class="col-xs-12" id='dateDeal'>
                         </div>
                         <div class="col-xs-6">
                             <label for="">Lugar</label><br>

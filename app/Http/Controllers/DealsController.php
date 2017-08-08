@@ -21,12 +21,13 @@ class DealsController extends Controller
 	{
         $conversation = Conversations::find($request->conversation);
         $dealsConversation = Deal::where('conversations_id', $conversation->id)->whereIn('state_id', [4, 7, 12])->get();
+        $dataTime = explode(" ",$request->date);
         if($dealsConversation->count() == 0){
             Deal::create([
                 'user_id' => $conversation->applicant_id,
                 'service_id' => $conversation->service_id,
-                'date' => $request->date,
-                'time' => '00:00:00',
+                'date' => $dataTime[0],
+                'time' => $dataTime[1],
                 'location' => $request->place,
                 'value' => $request->credits,
                 'description' => $request->observations,
@@ -36,11 +37,13 @@ class DealsController extends Controller
                 'creator_id' => Auth::id()
             ]);
 
-            /*$email = new EmailController;
-
-            ConversationController::newMessage("Â¡Has enviado un propuesta!", $request->conversation, Auth::User()->id,$deal->id,$dealState->state_id);
-
-            $email->sendMailDeal($deal->user_id,"new");*/
+            $email = new EmailController;
+            if($conversation->applicant_id == Auth::id()){
+                $email->sendMailDeal($deal->service->user_id, "new");
+            }else{
+                $email->sendMailDeal($deal->user_id, "new");
+            }
+            
             return '{"state" : "ok"}';
 
         }

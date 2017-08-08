@@ -134,6 +134,38 @@
     left: 2.5% !important;
 }
 
+.loadBox {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loadBox.active{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.notificationAlert {
+    background: #ad3a38;
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: absolute;
+    color: #fff;
+    text-align: center;
+    font-weight: 200;
+    border-radius: 50%;
+    top: 0px;
+    right: 1ex;
+    font-size: 13px;
+}
+
 @media (max-width: 767px) {
     .conversation {
         display: none;
