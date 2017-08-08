@@ -155,6 +155,8 @@ class ConversationController extends Controller{
                 $response['observations'] = $deal->description;
                 $response['creator'] = $deal->creator_id;
                 $response['creator_name'] = $deal->creator->first_name;
+                $receptor = $deal->creator_id == $deal->user_id ? $deal->service->user : $deal->user;
+                $response['receptor_name'] = $receptor->first_name;
                 $response['coordinates'] = $deal->coordinates;
             }else{
                 $response['state'] = 'ok';

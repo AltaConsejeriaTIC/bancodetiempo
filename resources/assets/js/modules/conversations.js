@@ -116,12 +116,20 @@ function printDeal(data){
     }else{
         if(data.deal == 'none'){
             jQuery("#deal").addClass("active");
-        }else{
-            jQuery("[canvas].active").removeClass("active");
-            jQuery("#dealDetail").addClass("active");
-            printDealDetails(data)
-            var h = jQuery("[canvas].active").height()+30;
-            jQuery("article.dealBox").height(h);
+        }else{ 
+            if(data.deal_state == 12){
+                jQuery("[canvas].active").removeClass("active");
+                jQuery("#dealScore").addClass("active");
+                printDealObservations(data)
+                var h = jQuery("[canvas].active").height()+30;
+                jQuery("article.dealBox").height(h);
+            }else{
+                jQuery("[canvas].active").removeClass("active");
+                jQuery("#dealDetail").addClass("active");
+                printDealDetails(data)
+                var h = jQuery("[canvas].active").height()+30;
+                jQuery("article.dealBox").height(h);
+            }
         }
     }
 }
@@ -204,6 +212,13 @@ function printDealDetails(data){
     showMapDeal('dealMap', data.coordinates);
 }
 
+function printDealObservations(data){
+    var message = getMessageState(data);
+    jQuery("#dealObservationTitle").html(message);  
+    jQuery("#dealScoreMessage").html(message); 
+    jQuery(".idConversation").val(conversationId);
+}
+
 function showButtonCurrentAction(data){
     jQuery(".buttonAction").addClass("hidden");
     switch(data.deal_state){
@@ -222,6 +237,9 @@ function showButtonCurrentAction(data){
         case 8:
             jQuery("#buttonNewDeal").removeClass("hidden");
         break;
+        case 10:
+            jQuery("#buttonNewDeal").removeClass("hidden");
+        break;
     }
 }
 
@@ -236,6 +254,9 @@ function getMessageState(data){
         break;
         case 8:
             message = getMessageStateCancel(data);
+        break;
+        case 12:
+            message = getMessageStateRanking(data);
         break;
     }
     return message;
@@ -253,6 +274,13 @@ function getMessageStateCancel(data){
 }
 function getMessageStateAcepted(data){
     return '¡Tienes un Cambalache!';  
+}
+function getMessageStateRanking(data){
+    if(data.creator == me){
+        return '¡El Cambalache con '+data.receptor_name+' ha finalizado!';
+    }else{
+        return '¡El Cambalache con '+data.creator_name+' ha finalizado!';
+    }
 }
 
 function removeDealDetails(data){

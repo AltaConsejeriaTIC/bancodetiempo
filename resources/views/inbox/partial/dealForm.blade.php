@@ -140,6 +140,30 @@
                 <br>
             </div>
         </div>
+        <div id="dealScore" class="row" canvas>
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="row">
+                    <h1 class="title1 text-center" id="dealScoreMessage"></h1>
+                </div>
+                <div class="row">
+                    <p class="col-xs-12 paragraph4">Déjanos saber cómo fue tu experiencia con Kevin para realizar la asignación de Dorados. </p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="paragraph4">¿Se realizó el Cambalache?</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" @click='myData.observations = true' class='button1 background-active-color' >Si</button>
+                        <button type="button" @click='myData.badObservations = true' class='button1 background-active-green-color' >No</button>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
     </div>
 </article>
 <input type="hidden" id='meId' value="{{Auth::id()}}">
+
+@include("inbox.partial.observationForm")
