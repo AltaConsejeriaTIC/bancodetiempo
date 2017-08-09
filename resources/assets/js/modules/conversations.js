@@ -88,6 +88,7 @@ function closeConversation(){
     jQuery(".conversation .dealBox").addClass('hidden');
     jQuery("[canvas].active").removeClass("active");
     activity = false;
+    deal = 0;
 }
 
 function callDeals(){

@@ -54,7 +54,7 @@
                     </div>
                     <div class="row">
                        <div class="col-md-12">
-                           <textarea name="observation" class='validation' id="observation" cols="30" rows="10" placeholder="Ej. La calidad del servicio fue excelente, pasé un rato agradable y me divertí mucho aunque hubiera sido mejor comenzar con la actividad puntualmente." data-validations='["required", "min:10", "max:200"]'></textarea>
+                           <textarea name="observation" class='validation col-xs-12' id="observation" rows="4" placeholder="Ej. La calidad del servicio fue excelente, pasé un rato agradable y me divertí mucho aunque hubiera sido mejor comenzar con la actividad puntualmente." data-validations='["required", "min:10", "max:200"]'></textarea>
                        </div>
                     </div>
                     <div class="row">
