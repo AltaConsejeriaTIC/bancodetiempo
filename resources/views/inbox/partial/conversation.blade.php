@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-7 col-md-8 conversation">
+<div class="col-xs-12 col-sm-7 col-md-8" id='conversation'>
     <div class="row">
         <div class="col-xs-12 visible-xs">
             <a href="#" class='closeConversation'>
@@ -9,7 +9,7 @@
     @include('inbox.partial.dealForm')
     <div class="box">
     </div>
-    <div class="controllers hidden">
+    <div class="hidden" id='controllers'>
         <div class="row">
             <form action="#" class="sendMenssages" method="get">
                 <div class="col-xs-10">

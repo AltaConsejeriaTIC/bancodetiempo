@@ -148,6 +148,9 @@ class ConversationController extends Controller{
                 $response['state'] = 'ok';
                 $response['deal'] = $deal->id."_".$deal->state_id;
                 $response['deal_state'] = $deal->state_id;
+                $response['applicant'] = $deal->user_id;
+                $response['applicant_name'] = $deal->user->first_name;
+                $response['offerer_name'] = $deal->service->user->first_name;
                 $response['service'] = $deal->service->name;
                 $response['date'] = $deal->date." ".$deal->time;
                 $response['place'] = $deal->location;
@@ -158,6 +161,8 @@ class ConversationController extends Controller{
                 $receptor = $deal->creator_id == $deal->user_id ? $deal->service->user : $deal->user;
                 $response['receptor_name'] = $receptor->first_name;
                 $response['coordinates'] = $deal->coordinates;
+                $response['applicant_observation'] = $deal->applicant_observation;
+                $response['offerer_observation'] = $deal->offerer_observation;
             }else{
                 $response['state'] = 'ok';
                 $response['deal'] = 'none';

@@ -73,9 +73,9 @@ class DealsController extends Controller
         $this->conversation = Conversations::find($request->conversation);
         $this->deal = Deal::where('conversations_id', $request->conversation)->whereIn('state_id', [12])->get()->last();
         if($this->conversation->applicant_id == Auth::id()){
-            $this->saveObservationOfferer();
-        }else{
             $this->saveObservationApplicant();
+        }else{
+            $this->saveObservationOfferer();
         }
         
         if(!is_null($this->deal->response_applicant) && !is_null($this->deal->response_offerer)){
