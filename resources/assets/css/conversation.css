@@ -242,11 +242,15 @@
 
 @media (max-width: 767px) {
     #conversation {
+        height: 70vh;
         display: none;
         transition: all 1s;
     }
     #conversation.active{
         display: block;
+    }
+    #dealBox{
+        max-height: 60vh;
     }
     .listConversation{
         display: none;
@@ -254,6 +258,20 @@
     }
     .listConversation.active{
         display: block;
+    }
+    #dealForm {
+        height: 65ex;
+        overflow: auto;
+    }
+    #dealDetail {
+        height: 65ex;
+        overflow: auto;
+    }
+    .nav-pills > li > a {
+        font-size: 11px !important;
+    }
+    #conversation #controllers {
+        margin-left: -3.5%;
     }
 
 }

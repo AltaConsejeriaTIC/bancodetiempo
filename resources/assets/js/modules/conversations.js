@@ -27,7 +27,7 @@ function showConversation(){
     closeConversation();
     openConversation();
     conversationId = jQuery(this).data('conversation');
-    adjustBoxDeal();
+    adjustBox();
     activity = true;  
     callMessages();
     callDeals();
@@ -92,30 +92,30 @@ function printDealPending(){
         jQuery("form.aceptDeal").on("submit", aceptDeal);
         jQuery("#buttonControlsDeal").removeClass("hidden"); 
     }
-    adjustBoxDeal();
+    adjustBox();
 }
 function printDealAcepted(){    
     printDealDetails()
     jQuery("form.cancelDeal").on("submit", cancelDeal);
     jQuery("#buttonCancelDeal").removeClass("hidden");
-    adjustBoxDeal();
+    adjustBox();
 }
 function printDealCancel(){    
     printDealDetails()
     jQuery("#buttonNewDeal").removeClass("hidden");
-    adjustBoxDeal();
+    adjustBox();
 }
 function printDealFinish(){ 
     jQuery("#dealFinish").addClass("active");
     jQuery("#dealFinishTitle").html(getMessageState());
     jQuery("#dealUserObservation").html(getObservationsUsers());  
     jQuery("#dealFinish #buttonNewDeal").removeClass("hidden");
-    adjustBoxDeal();
+    adjustBox();
 }
 function printDealForRating(){
     jQuery("#dealScore").addClass("active");
     printDealObservations();
-    adjustBoxDeal();
+    adjustBox();
 }
 function printDealDetails(){
     jQuery("#dealDetail").addClass("active");
@@ -145,8 +145,9 @@ function printDealObservations(){
 }
 /*** helpers ****/
 
-function adjustBoxDeal(){
+function adjustBox(){
     jQuery("#dealBox").height(getHeightCanvas());
+    jQuery("#conversation .box").height(getHeightBoxConversation()-getHeightCanvas()-getHeightControllers()-60);    
 }
 function showMapDeal(canvas) {
     var coordinates = JSON.parse(responseDeal.coordinates);
@@ -154,6 +155,12 @@ function showMapDeal(canvas) {
 }
 function getHeightCanvas(){
     return jQuery("[canvas].active").height()+30;
+}
+function getHeightBoxConversation(){
+    return jQuery("#conversation").height();
+}
+function getHeightControllers(){
+    return jQuery("#controllers").height();
 }
 function getMessageState(){
     var message = '';
@@ -236,6 +243,7 @@ function callDeals(){
     }
     jQuery.ajax({
         url : '/getDeals',
+        async : false,
         data: {"conversation" : conversationId},
         type : "GET",
         success : function(response){
@@ -263,6 +271,7 @@ function createDeal(){
         type: "POST",
         url: "/deal",
         data: data,
+        async : false,
         beforeSend: function(){
             jQuery("#dealForm").find(".loadBox").addClass("active")
             jQuery("form.newDeal").off("submit");            
@@ -284,6 +293,7 @@ function aceptDeal(){
     jQuery.ajax({
         type: "POST",
         url: "/aceptDeal",
+        async : false,
         data: data,
         beforeSend: function(){
             jQuery("form.aceptDeal").off("submit");
@@ -303,6 +313,7 @@ function cancelDeal(){
     jQuery.ajax({
         type: "POST",
         url: "/cancelDeal",
+        async : false,
         data: data,
         beforeSend: function(){
             jQuery("form.cancelDeal").off("submit");
@@ -323,6 +334,7 @@ function sendMenssage(){
         jQuery.ajax({
             type: "POST",
             url: "/newMessage",
+            async : false,
             data: data,
             success: function(datos){
                 callMessages(conversationId);

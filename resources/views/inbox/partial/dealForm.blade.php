@@ -19,16 +19,16 @@
             <div class="col-xs-12">
                 <form action="#" class="newDeal form-custom" method="get">
                     <div class="row">
-                        <div class="col-xs-12 text-center">
+                        <div class="col-md-12 text-center">
                             <h1 class="title1">Propuesta de Cambalache</h1>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-md-6">
                             <label for="">Fecha y hora de realización del acuerdo</label><br>
                             <input type="text" name="date" placeholder='06/08/2017  9:45 AM' class="col-xs-12" id='dateDeal'>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-md-6">
                             <label for="">Lugar</label><br>
                             <input type="hidden" name="coordinates" id='coordinates'>
                             <input type="text" name="place" id='place' placeholder="Plazoleta Chorro de Quevedo" class="col-xs-12"><br>
@@ -37,11 +37,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-md-6">
                             <label for="">Recomendaciones adicionales</label><br>
                             <textarea name="observations" class='col-xs-12' rows="6" placeholder="Si aún te falta cuadrar algún detalle de tu Cambalache, ¡escríbelo aquí! "></textarea>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-md-6">
                             <div class="space15"></div>
                             <div class="space15"></div>
                             <div class="boxTimeDeal">
@@ -66,11 +66,11 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-xs-5 col-xs-offset-1">
+                        <div class="col-xs-12 col-md-5 col-md-offset-1">
                            {{ csrf_field() }}
-                            <button type="submit" class="col-xs-12 button1 background-active-color">¡Proponer Cambalache!</button>
+                            <button type="submit" class="col-xs-10 col-xs-offset-2 col-md-12 col-md-offset-1 button1 background-active-color">¡Proponer Cambalache!</button>
                         </div>
-                        <div class="col-xs-5">
+                        <div class="col-md-5 hidden-xs">
                             <button type="button" class="col-xs-12 button4 backgropund-white buttonTransition" data-open='#deal'>Cancelar</button>
                         </div>
                     </div>
