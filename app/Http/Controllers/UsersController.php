@@ -74,7 +74,8 @@ class UsersController extends Controller
     }
 
     public function validateEmailUnique($email){
-        return User::where('email2', $email)->where('id', '!=', 1)->get()->count() == 0;
+        $user = User::where('email2', $email)->where('id', '!=', 1)->get();
+        return $user->count() == 0 || $user->last()->id == Auth::id();
     }
 
     public function completeRegister(Request $request){

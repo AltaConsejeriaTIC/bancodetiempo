@@ -1,6 +1,7 @@
 <generalmodal name='observations' :state='myData.observations' state-init='false'>
     <div slot="modal" v-cloak>
         <div class='panel'>
+          <button type="button" class="close circle-shape" @click='myData.observations = false'><span aria-hidden="true">&times;</span></button>
            {!! Form::open(['url' => '/addObservation', 'method' => 'post', 'class' => 'form-custom', 'form-validation' => '']) !!}
                 <div class="content">
                     <div class="row">
@@ -81,6 +82,7 @@
 <generalmodal name='badObservations' :state='myData.badObservations' state-init='false'>
     <div slot="modal" v-cloak>
         <div class='panel'>
+               <button type="button" class="close circle-shape" @click='myData.badObservations = false'><span aria-hidden="true">&times;</span></button>
                 {!! Form::open(['url' => '/addObservation', 'method' => 'post', 'class' => 'form-custom', 'form-validation' => '']) !!}
                 <div class="content">
                     <div class="row">
@@ -111,7 +113,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-12">
-                           <button type="button" class='button10 background-white col-md-12 hiddenModal' modal='form-bad-observation'>Cancelar</button>
+                           <button type="button" class='button10 background-white col-md-12' modal='form-bad-observation' @click='myData.badObservations = false'>Cancelar</button>
                        </div>
                     </div>
                     <br>
