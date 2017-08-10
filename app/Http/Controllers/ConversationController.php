@@ -148,7 +148,7 @@ class ConversationController extends Controller{
         return ["message" => $message[0], "substitutionsNumber" => $substitutionsNumber];
     }
     static function blockEmailSending($message){
-        $regex = "/[\w-\.]{3,} ?@ ?([\w-]{2,}\.)*([\w-]{2,} ?\.) ?[\w-]{2,4}/";
+        $regex = "/[\w-\.]{3,} ?@ ?([\w-]{2,}\.)*([\w-]{2,} ?\.?) ?[\w-]{2,4}/";
         $text = preg_replace($regex, 'xxxxxxx@xxxxxx', $message, -1, $substitutionsNumber);
         return [$text, $substitutionsNumber];
     }
