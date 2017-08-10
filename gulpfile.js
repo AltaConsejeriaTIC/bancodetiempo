@@ -31,6 +31,7 @@ elixir(function(mix) {
     mix.styles([
             'home.css',
             'conversation.css',
+            'campaigns.css',
             'jquery.datetimepicker.css'
         ],
     'public/css/site.css');

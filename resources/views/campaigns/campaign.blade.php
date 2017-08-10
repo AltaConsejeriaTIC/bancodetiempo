@@ -101,74 +101,65 @@
                 </div>
                 <div class="space20"></div>
             </div>
-            @if(Auth::check() && $campaign->state_id == 1)
-                <div class="row">
-                    @if($campaign->allows_registration == 0)
-                        @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)
-                            @if($campaign->user->id != Auth::user()->id)
-                                <div class="col-xs-12 text-center">
-                                    <button class='button1 background-active-color text-center'
-                                            v-on:click='myData.preinscription = true'>{{ trans("campaigns.preInscription") }}
-                                    </button>
-                                </div>
-                            @endif
-                        @else
-                            <div class="col-xs-12 text-center">
-                                <button class='button1 cancel-button text-center'
-                                        v-on:click='myData.cancelpreinscription = true'>{{ trans("campaigns.cancelInscription") }}
-                                </button>
-                            </div>
-                        @endif
-                        <div class="space20"></div>
-                        <div class="col-xs-12 text-center donation">
-                            @php($credits = Session::get('credits'))
-                                @if(isset($credits))
-                                    <p>¡Haz donado {{$credits}} dorados a esta campaña!</p>
-                                @endif
-                                <button class='button1 background-active-color text-center'
-                                        v-on:click='myData.donation = true'>¡Donar Dorados!
-                                </button>
-                        </div>
-                        <div class="space20"></div>
+            <div class="row">
+            @if(Auth::check() && $campaign->state_id == 1 && $campaign->user->id != Auth::user()->id)
+                @if($campaign->allows_registration == 0)
+                    @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)                            
+                        <div class="col-xs-12 text-center">
+                            <button class='button1 background-active-color text-center'
+                                    v-on:click='myData.preinscription = true'>{{ trans("campaigns.preInscription") }}
+                            </button>
+                        </div>                            
                     @else
-                        @if($campaign->participants->where('participant_id', Auth::id())->where("confirmed", 1)->count() == 0)
-                            @if($campaign->user->id != Auth::user()->id)
-                                <div class="col-xs-12">
-                                    <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
-                                </div>
-
-                                <div class="col-xs-12 text-center">
-                                    <button class='button1 background-active-color text-center'
-                                            v-on:click='myData.inscription = true'>{{ trans("campaigns.inscription") }}</button>
-                                </div>
-                                <br>
-                            @endif
-                        @else
-                            <div class="col-xs-12 text-center">
-                                <button class='button1 cancel-button text-center'
-                                        v-on:click='myData.cancelpreinscription = true'>Cancelar Inscripción
-                                </button>
-                            </div>
-                        @endif
-
-                        @if($campaign->state_id == 12 && $campaign->user->id == Auth::user()->id)
-
-                            <div class="col-xs-12 text-center">
-                                <button class='button1 background-active-color text-center'
-                                        v-on:click='myData.pay = true'>{{ trans("campaigns.pay") }}</button>
-                            </div>
-                            <br>
-                        @endif
-
-                        @if (session('msg'))
-                            <div class="msg text-center">
-                                <p>{{ session('msg') }}</p>
-                            </div>
-                        @endif
-
+                        <div class="col-xs-12 text-center">
+                            <button class='button1 cancel-button text-center'
+                                    v-on:click='myData.cancelpreinscription = true'>{{ trans("campaigns.cancelInscription") }}
+                            </button>
+                        </div>
                     @endif
-                </div>
+                    
+                    <div class="space20"></div>
+                    <div class="col-xs-12 text-center donation">
+                        @php($credits = Session::get('credits'))
+                            @if(isset($credits))
+                                <p>¡Haz donado {{$credits}} dorados a esta campaña!</p>
+                            @endif
+                            <button class='button1 background-active-color text-center'
+                                    v-on:click='myData.donation = true'>¡Donar Dorados!
+                            </button>
+                    </div>
+                    <div class="space20"></div>
+                    
+                @else
+                        
+                    @if($campaign->participants->where('participant_id', Auth::id())->where("confirmed", 1)->count() == 0)
+                        <div class="col-xs-12">
+                            <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
+                        </div>
+
+                        <div class="col-xs-12 text-center">
+                            <button class='button1 background-active-color text-center' v-on:click='myData.inscription = true'>{{ trans("campaigns.inscription") }}</button>
+                        </div>
+                        <br>
+                    @else
+                        <div class="col-xs-12 text-center">
+                            <button class='button1 cancel-button text-center'
+                                    v-on:click='myData.cancelpreinscription = true'>Cancelar Inscripción
+                            </button>
+                        </div>
+                    @endif
+                @endif
             @endif
+
+            @if($campaign->state_id == 12 && $campaign->user->id == Auth::user()->id)
+                <div class="col-xs-12 text-center">
+                    <button class='button1 background-active-color text-center' v-on:click='myData.pay = true'>{{ trans("campaigns.pay") }}</button>
+                </div>
+                <br>
+                @include("campaigns/partial/pay")
+            @endif
+            </div>
+            
             <br>
             @if(Auth::check())
                 <div class="report-content text-right" v-if='{{Auth::check()}}'>
@@ -291,7 +282,7 @@
         @include("campaigns/partial/inscription")
         @include("campaigns/partial/preinscription")
         @include("campaigns/partial/cancelpreinscription")
-        @include("campaigns/partial/pay")
+        
     @endif
     @include('services/partial/modalMail', ['service' => $campaign])
 @endsection
