@@ -46,7 +46,11 @@
                         <h3 class="state">Estado: <span>En periodo de pre-inscripción y/o donaciones</span>
                         </h3>
                     @else
-                        <h3 class="state">Estado: <span>En periodo de inscripciones</span></h3>
+                       @if($campaign->state_id == 1)
+                            <h3 class="state">Estado: <span>En periodo de inscripciones</span></h3>
+                        @else
+                            <h3 class="state">Estado: <span>Finalizada</span></h3>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -97,7 +101,7 @@
                 </div>
                 <div class="space20"></div>
             </div>
-            @if(Auth::check())
+            @if(Auth::check() && $campaign->state_id == 1)
                 <div class="row">
                     @if($campaign->allows_registration == 0)
                         @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)
