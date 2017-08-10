@@ -41,7 +41,7 @@
                             <img src="/images/banner/people3.png" alt="Camila">
                         </div>
                         <div class="col-xs-7 col-sm-12">
-                            <p class="paragraph4 text-white text-center">Camila <strong>sabe Inglés y quiere aprender</strong> sobre sistemas.</p>
+                            <p class="paragraph4 text-white text-center">Alejandro <strong>quiere jugar fútbol y desea practicar</strong> su Inglés</p>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             <img src="/images/banner/people1.png" alt="Camila">
                         </div>
                         <div class="col-xs-7 col-sm-12">
-                            <p class="paragraph4 text-white text-center">Camila <strong>sabe Inglés y quiere aprender</strong> sobre sistemas.</p>
+                            <p class="paragraph4 text-white text-center">Camila <strong>recibió una hora</strong> de asesoría sobre sistemas de Manuel</p>
                         </div>
                         <div class="lineUnion">
                              <p class='title2 not-margin text-white'><img src="/images/moneda.png" class="relative" alt="moneda" > +1</p>
@@ -89,7 +89,7 @@
                             <img src="/images/banner/people2.png" alt="Camila">
                         </div>
                         <div class="col-xs-7 col-sm-12">
-                            <p class="paragraph4 text-white text-center">Manuel <strong>sabe de sistemas y quiere jugar fútbol</strong> con alguien</p>
+                            <p class="paragraph4 text-white text-center">Manuel jugó fútbol <strong>por dos horas</strong> con Alejandro</p>
                         </div>
                         <div class="lineUnion">
                             <p class='title2 not-margin text-white'>
@@ -104,7 +104,7 @@
                             <img src="/images/banner/people3.png" alt="Camila">
                         </div>
                         <div class="col-xs-7 col-sm-12">
-                            <p class="paragraph4 text-white text-center">Camila <strong>sabe Inglés y quiere aprender</strong> sobre sistemas.</p>
+                            <p class="paragraph4 text-white text-center">Alejandro <strong>tiene dos dorados</strong> para practicar inglés con Camila</p>
                         </div>
                     </div>
                 </div>

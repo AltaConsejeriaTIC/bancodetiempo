@@ -44,11 +44,10 @@ class EmailController extends Controller
   			$imageService = "http://" . $_SERVER ['SERVER_NAME']."/".$service->image;
       }else{
       		$imageService = $service->image;
-      }
+      }  
+    	$content = ConversationController::blockMessageSending($request->input('content'));
 
-    	$content = $request->input('content');
-
-    	Mail::send('mailContact',["service" => $service, "userauth" => $userauth, "myImageProfile" => $myImageProfile, "imageProfile" => $imageProfile, "imageService" => $imageService,'content' => $content], function ($message) use ($mail){
+    	Mail::send('mailContact',["service" => $service, "userauth" => $userauth, "myImageProfile" => $myImageProfile, "imageProfile" => $imageProfile, "imageService" => $imageService,'content' => $content["message"]], function ($message) use ($mail){
     		$message->from('bancodetiempo@cambalachea.co','Cambalachea!');
     		$message->subject('Notificación');
     		$message->to($mail);
@@ -64,8 +63,7 @@ class EmailController extends Controller
             ]);
         }
 
-        ConversationController::newMessage($content, $conversation->id, Auth::User()->id,0,0);
-    	
+        ConversationController::newMessage($content["message"], $conversation->id, Auth::User()->id);    	
 
     	return redirect()->back()->with('response', true);    	
     }
@@ -77,7 +75,7 @@ class EmailController extends Controller
           Mail::send('deals/dealEmail',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail)
           {
             $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
-            $message->subject('Notificación');
+            $message->subject('Te han enviado una propuesta');
             $message->to($mail);
           });
           return redirect()->back();

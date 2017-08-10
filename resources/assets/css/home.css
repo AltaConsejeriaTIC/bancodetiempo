@@ -21,10 +21,13 @@ h1#bannerDescription {
 .bannerHome .carousel > div {
     height: 100%;
     width: 100%;
-    background-size: 100% 100%;
+    background-size: auto 500px;
     position: absolute;
     opacity: 0;
     transition: all 2s !important;
+    background-repeat: no-repeat;
+    background-color: #12355A;
+    background-position: center;
 }
 
 .bannerHome .carousel > div > img {
@@ -44,11 +47,11 @@ h1#bannerDescription {
 }
 
 .bannerHome .carousel .banner1 {
-    background-image: url(/images/banner/back1.png);
+    background-image: url(/images/banner/back1.jpg);
 }
 
 .bannerHome .carousel .banner2 {
-    background-image: url(/images/banner/back2.png);
+    background-image: url(/images/banner/back2.jpg);
 }
 
 
@@ -217,7 +220,7 @@ RedesSociales
 
 @media (min-width: 992px) {
      .bannerHome {
-        height: 650px;
+        height: 500px;
         position: relative;
     }
     .bannerHome .lineUnion {

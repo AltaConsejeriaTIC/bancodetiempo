@@ -22,14 +22,16 @@ elixir(function(mix) {
         'modules/pagination.js',
         'modules/messagesCompleteProfile.js',
         'modules/conversations.js',
+        'modules/transition.js',
         'modules/bannerHome.js',
         'modules/previewPhoto.js',
-        'modules/transitions.js',
         'app.js'],
     "public/js/app.js");
 
     mix.styles([
             'home.css',
+            'conversation.css',
+            'jquery.datetimepicker.css'
         ],
     'public/css/site.css');
 

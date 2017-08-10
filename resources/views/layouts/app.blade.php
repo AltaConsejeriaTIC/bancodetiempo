@@ -53,6 +53,9 @@
             @if(!Auth::check())
            		@include('partial.registerModal')
            	@endif
+           	@if(session('errorLogin'))
+           	    @include('partial.errorLogin')
+           	@endif
         </div>
         @include('footer')
     </body>
@@ -61,8 +64,9 @@
 
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/jquery.datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('js/app.js?v='.\date('Ymd')) }}"></script>
 
     <script>
         var date = new Date();
@@ -84,7 +88,7 @@
         @endforeach
 
     </script>
-    @if(Route::current()->getUri() == 'conversation/{conversation_id}')
+    @if(Route::current()->getUri() == 'inbox')
         <script src="{{ asset('js/mapsFunctions.js') }}"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA&libraries=places"></script>
     @endif

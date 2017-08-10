@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\User;
+use App\Models\NetworkAccounts;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\URL;
 
@@ -59,7 +60,14 @@ class LoginController extends Controller{
             }
             return redirect("/home");
         }else{
-            return redirect(Session::get('last_url'))->with('errorLogin', 'Su email ya se encuentra registrado en otra cuenta');
+            $idUser = User::where('email2', $this->providerData['email'])->get()->last()->id;
+            $account = NetworkAccounts::where('user_id', $idUser)->get();
+            
+            $provider = '';
+            if(!is_null($account) && $account->count() > 0){
+                $provider = $account->last()->provider;
+            }
+            return redirect(Session::get('last_url'))->with('errorLogin', 'Su email ya se encuentra registrado con '.$provider.' en otra cuenta');
         }
     }
 }

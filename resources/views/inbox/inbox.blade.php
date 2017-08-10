@@ -8,32 +8,33 @@
 	    <div class="col-xs-12">
 	        <ul class="nav nav-pills">
                 <li role="presentation" class="active">
-                    <a href="#servicesInterested" data-toggle="tab" class="closeConversation">Ofertas que deseo recibir</a>
+                    <a href="#servicesInterested" data-toggle="tab" class="closeConversation">Ofertas que deseo recibir <span class="notificationAlert">{{App\Helpers::getCountNotificationsServicicesInterest()}}</span></a>
                 </li>
                 <li role="presentation">
-                    <a href="#myServices" data-toggle="tab" class="closeConversation">Interesados en mis ofertas</a>
+                    <a href="#myServices" data-toggle="tab" class="closeConversation">Interesados en mis ofertas <span class="notificationAlert">{{App\Helpers::getCountNotificationsMyServices()}}</span></a>
                 </li>
             </ul>
 	    </div>
 	</div>
-	<div class="tab-content">
+	<div class="tab-content col-xs-12 col-sm-5 col-md-4">
         <article class="tab-pane fade active in" id="servicesInterested">
             <div class="row relative">
-                <div class="col-xs-12 col-sm-5 col-md-4 panel listConversation active">
+                <div class="col-xs-12 panel listConversation active">
                     @include('inbox.partial.listConversationsServicesInterested', ['conversations' => $conversations])
                 </div>
-                @include('inbox.partial.conversation')
+
             </div>
         </article>
         <article class="tab-pane fade" id="myServices">
             <div class="row">
-                <div class="col-xs-12 col-sm-5 col-md-4 panel listConversation active">
+                <div class="col-xs-12 panel listConversation active">
                     @include('inbox.partial.listConversationsMyServices', ['conversations' => $conversationsMyService])
                 </div>
-                @include('inbox.partial.conversation')
+
             </div>
         </article>
     </div>
+    @include('inbox.partial.conversation')
 </div>
 
 @endsection

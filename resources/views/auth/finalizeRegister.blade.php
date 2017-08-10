@@ -17,12 +17,12 @@
 
             <div class="row">
                 <div class="col-xs-12">
-                    <h1 class="title1 text-center">¡Gracias por vincular tu cuenta!</h1>
+                    <h1 class="title1 text-center">¡Falta poco para Cambalachear!</h1>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
-                    <p class="paragraph4 text-center">Continúa con el registro confirmando la siguiente información:</p>
+                <div class="col-xs-8 col-xs-offset-2">
+                    <p class="paragraph4 text-center"><strong>Confirma el correo donde recibirás notificaciones para que no le pierdas la pista a tus Cambalaches.</strong></p>
                 </div>
             </div>
             {!! Form::open(['url' => '/profile/completeRegister', 'method' => 'put', 'form-validation', 'class' => 'form-custom']) !!}
