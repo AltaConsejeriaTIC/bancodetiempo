@@ -112,7 +112,6 @@ class ConversationController extends Controller{
         }else{
             return $deal->last();
         }
-
     }
 
     public function messagesConversation(Request $request){

@@ -282,6 +282,12 @@ function createDeal(){
             jQuery("#dealForm").find(".loadBox").removeClass("active")
             jQuery("form.newDeal").trigger("reset");
             jQuery("form.newDeal").on("submit", createDeal);
+        },
+        error: function(){
+            callDeals();
+            jQuery("#dealForm").find(".loadBox").removeClass("active")
+            jQuery("form.newDeal").trigger("reset");
+            jQuery("form.newDeal").on("submit", createDeal);
         }
     });
     return false;
