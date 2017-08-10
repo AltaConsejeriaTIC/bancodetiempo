@@ -151,8 +151,12 @@ function adjustBox(){
     jQuery("#conversation .box").height(getHeightBoxConversation()-getHeightCanvas()-getHeightControllers()-60);    
 }
 function showMapDeal(canvas) {
-    var coordinates = JSON.parse(responseDeal.coordinates);
-    jQuery("#"+canvas).html('<iframe  width="100%"  height="80"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDQ1hu4U00cnsBu_NCks2fg8CiIuVDD2E8&q='+coordinates.lat+','+coordinates.lng+'" allowfullscreen></iframe>');
+    if(responseDeal.coordinates != ''){
+        var coordinates = JSON.parse(responseDeal.coordinates);
+        jQuery("#"+canvas).html('<iframe  width="100%"  height="80"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDQ1hu4U00cnsBu_NCks2fg8CiIuVDD2E8&q='+coordinates.lat+','+coordinates.lng+'" allowfullscreen></iframe>');
+    }else{
+        jQuery("#"+canvas).html('');
+    }
 }
 function getHeightCanvas(){
     return jQuery("[canvas].active").height()+30;
@@ -281,12 +285,14 @@ function createDeal(){
             callDeals();
             jQuery("#dealForm").find(".loadBox").removeClass("active")
             jQuery("form.newDeal").trigger("reset");
+            jQuery("#coordinates").val('');
             jQuery("form.newDeal").on("submit", createDeal);
         },
         error: function(){
             callDeals();
             jQuery("#dealForm").find(".loadBox").removeClass("active")
             jQuery("form.newDeal").trigger("reset");
+            jQuery("#coordinates").val('');
             jQuery("form.newDeal").on("submit", createDeal);
         }
     });
