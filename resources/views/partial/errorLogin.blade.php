@@ -1,5 +1,5 @@
 <popup name='errorLogin' :state='myData.errorLogin' state-init='true'>
-    <div slot="body">
+    <div slot="body" v-cloak>
         <div class="modal-container">
             <div class="modal-header">
                 <button type="button" class="close circle-shape" @click='myData.errorLogin = false'><span

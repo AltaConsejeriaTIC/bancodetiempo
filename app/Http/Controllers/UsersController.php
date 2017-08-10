@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Models\NetworkAccounts;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
@@ -37,7 +38,7 @@ class UsersController extends Controller
                 'birthDate' => $providerData['birthdate'] == '' ? NULL : date("Y-m-d", strtotime($providerData['birthdate'])),
                 'aboutMe' => '',
                 'role_id' => 2,
-                'privacy_policy' => 1
+                'privacy_policy' => 0
         ]);
         $account->user()->associate($user);
         $account->save();
@@ -73,7 +74,7 @@ class UsersController extends Controller
     }
 
     public function validateEmailUnique($email){
-        return !User::where('email2', $email)->where('id', '!=', 1)->get()->count() > 0;
+        return User::where('email2', $email)->where('id', '!=', 1)->get()->count() == 0;
     }
 
     public function completeRegister(Request $request){
@@ -82,11 +83,22 @@ class UsersController extends Controller
 	 			'terms' => 'required',
 	 			'age' => 'required',
          ]);
-        Auth::user()->email2 = $request->input('email');
-        Auth::user()->state_id = 1;
-        Auth::user()->privacy_policy = 1;
-        Auth::user()->save();
-        AttainmentsController::saveAttainment(1);
-        return redirect("/home");
+        if($this->validateEmailUnique($request->email)){
+            Auth::user()->email2 = $request->input('email');
+            Auth::user()->state_id = 1;
+            Auth::user()->privacy_policy = 1;
+            Auth::user()->save();
+            AttainmentsController::saveAttainment(1);
+            return redirect("/home");
+        }else{
+            $idUser = User::where('email2', $request->email)->get()->last()->id;
+            $account = NetworkAccounts::where('user_id', $idUser)->get();
+            
+            $provider = '';
+            if(!is_null($account) && $account->count() > 0){
+                $provider = $account->last()->provider;
+            }
+            return redirect("/finalizeRegister")->with('errorLogin', 'Su email ya se encuentra registrado con '.$provider.' en otra cuenta');
+        }
     }
 }
