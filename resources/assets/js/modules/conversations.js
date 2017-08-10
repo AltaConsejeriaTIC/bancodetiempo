@@ -3,7 +3,7 @@ var conversationId = 0;
 var deal = 0;
 var me = 0;
 var responseDeal = [];
-
+var token = '';
 jQuery(document).ready(init)
 
 function init(){
@@ -17,6 +17,7 @@ function init(){
         jQuery("form.sendMenssages").on("submit", sendMenssage);
     }
     me = jQuery("#meId").val();
+    token = jQuery("input[name='_token']").val();
     jQuery("form.newDeal").on("submit", createDeal);
     /* datapicker */
     jQuery.datetimepicker.setLocale('es'); 
@@ -226,9 +227,9 @@ function callMessages(){
         return false;
     }
     jQuery.ajax({
-        url : '/messages/'+conversationId,
-        type : "GET",
-        data : "key="+jQuery("#keyConversation").val(),
+        url : '/messages',
+        type : "POST",
+        data : {"key" : jQuery("#keyConversation").val(), 'conversationId' : conversationId, '_token' : token},
         success : function(data){
             if(data != ""){
                 jQuery("#conversation > .box").html(data);
@@ -244,8 +245,8 @@ function callDeals(){
     jQuery.ajax({
         url : '/getDeals',
         async : false,
-        data: {"conversation" : conversationId},
-        type : "GET",
+        data: {"conversation" : conversationId, "_token" : token},
+        type : "POST",
         success : function(response){
             responseDeal = JSON.parse(response);
             if(responseDeal.deal != deal){
@@ -265,7 +266,7 @@ function createDeal(){
         "observations" : jQuery(this).find("[name='observations']").val(),
         "credits" : jQuery(this).find("[name='credits']:checked").val(),
         "coordinates" : jQuery(this).find("[name='coordinates']").val(),
-        "_token" : jQuery(this).find("[name='_token']").val()
+        "_token" : token
     };
     jQuery.ajax({
         type: "POST",
@@ -277,6 +278,7 @@ function createDeal(){
             jQuery("form.newDeal").off("submit");            
         },
         success: function(datos){
+            callDeals();
             jQuery("#dealForm").find(".loadBox").removeClass("active")
             jQuery("form.newDeal").trigger("reset");
             jQuery("form.newDeal").on("submit", createDeal);
@@ -288,7 +290,7 @@ function createDeal(){
 function aceptDeal(){
     var data = {
         "conversation" : conversationId,
-        "_token" : jQuery(this).find("[name='_token']").val()
+        "_token" : token
     };
     jQuery.ajax({
         type: "POST",
@@ -308,7 +310,7 @@ function aceptDeal(){
 function cancelDeal(){
     var data = {
         "conversation" : conversationId,
-        "_token" : jQuery(this).find("[name='_token']").val()
+        "_token" : token
     };
     jQuery.ajax({
         type: "POST",
@@ -327,7 +329,6 @@ function cancelDeal(){
 function sendMenssage(){
     var message = jQuery(this).find("#message").val();
     var sender = jQuery(this).find("#senderInput").val();
-    var token = jQuery(this).find("input[name='_token']").val();
     if(message.length > 1){
         var data = {"message" : message, "conversation": conversationId, "sender" : sender, '_token' : token}
         var e = this;
@@ -339,7 +340,8 @@ function sendMenssage(){
             success: function(datos){
                 callMessages(conversationId);
                 setTimeout(function(){
-                    jQuery(".conversation > .box").scrollTop(jQuery(".conversation > .box").prop('scrollHeight'));
+                    var scroll = jQuery("#conversation .box").prop('scrollHeight');
+                    jQuery("#conversation .box").scrollTop(scroll);
                 }, 200);
             }
         })

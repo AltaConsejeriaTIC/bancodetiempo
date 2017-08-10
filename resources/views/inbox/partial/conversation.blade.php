@@ -10,14 +10,11 @@
     <div class="box">
     </div>
     <div class="hidden" id='controllers'>
-        <div class="row">
+        <div class="row not-margin">
             <form action="#" class="sendMenssages" method="get">
-                <div class="col-xs-10">
+                <div class="col-xs-12">
                     <input name="message" id="message" class="col-xs-12" placeholder="Escribe tu mensaje aquí…">
                     <input type="hidden" id='senderInput' value="{{Auth::id()}}">
-                    {{ csrf_field() }}
-                </div>
-                <div class="col-xs-2">
                     <button type="submit">
                        <i class="fa fa-send" style="color:#0f6784"></i>
                     </button>
@@ -26,4 +23,5 @@
             </form>
         </div>
     </div>
+    {{ csrf_field() }}
 </div>

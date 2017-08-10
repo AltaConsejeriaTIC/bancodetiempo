@@ -63,8 +63,7 @@ class EmailController extends Controller
             ]);
         }
 
-        ConversationController::newMessage($content["message"], $conversation->id, Auth::User()->id,0,0);
-    	
+        ConversationController::newMessage($content["message"], $conversation->id, Auth::User()->id);    	
 
     	return redirect()->back()->with('response', true);    	
     }

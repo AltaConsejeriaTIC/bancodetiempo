@@ -18,8 +18,8 @@ Route::get('/inbox', 'ConversationController@index');
 
 Route::get('/conversation/{conversation_id}', 'ConversationController@showConversation')->middleware('conversation');
 
-Route::get('/messages/{conversation_id}', 'ConversationController@messagesConversation');
-Route::get('/getDeals', 'ConversationController@getDealConversation');
+Route::post('/messages', 'ConversationController@messagesConversation');
+Route::post('/getDeals', 'ConversationController@getDealConversation');
 
 
 Route::post('/newMessage', 'ConversationController@saveMessage');

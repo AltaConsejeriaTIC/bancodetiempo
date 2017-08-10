@@ -67,7 +67,7 @@
                     <br>
                     <div class="row">
                         <div class="col-xs-12 col-md-5 col-md-offset-1">
-                           {{ csrf_field() }}
+                           
                             <button type="submit" class="col-xs-10 col-xs-offset-2 col-md-12 col-md-offset-1 button1 background-active-color">¡Proponer Cambalache!</button>
                         </div>
                         <div class="col-md-5 hidden-xs">
@@ -102,7 +102,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <p><strong>Dorados: </strong> <img src="http://localbancodetiempo.com/images/moneda.png" style="width: 15px;">&nbsp;&nbsp;<span id='dealCredits'></span> Dorados</p>
+                        <p><strong>Dorados: </strong> <img src="/images/moneda.png" style="width: 15px;">&nbsp;&nbsp;<span id='dealCredits'></span> Dorados</p>
                     </div>
                 </div>
                 <div class="row">
@@ -119,17 +119,17 @@
                 <div class="row">
                     <div class="col-xs-12 hidden buttonAction" id='buttonCancelDeal'>
                         <form action="#" class="cancelDeal form-custom" method="post">
-                            {{ csrf_field() }}
+                            
                             <button type="submit" class="button4 background-white col-xs-6 col-xs-offset-3">Cancelar Cambalache</button>
                         </form>
                     </div>
                     <div class="col-xs-12 hidden buttonAction" id='buttonControlsDeal'>
                         <form action="#" class="aceptDeal form-custom" method="post">
-                            {{ csrf_field() }}
+                            
                             <button type="submit" class="button4 text-white background-active-color col-xs-5">Aceptar Cambalache</button>
                         </form>
                         <form action="#" class="cancelDeal form-custom" method="post">
-                            {{ csrf_field() }}
+                            
                             <button type="submit" class="button4 background-white col-xs-5 col-xs-offset-2">Declinar Cambalache</button>
                         </form>
                     </div>
