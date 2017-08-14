@@ -22,6 +22,7 @@ elixir(function(mix) {
         'modules/pagination.js',
         'modules/messagesCompleteProfile.js',
         'modules/conversations.js',
+        'modules/suggestedSites.js',
         'modules/transition.js',
         'modules/bannerHome.js',
         'modules/previewPhoto.js',
