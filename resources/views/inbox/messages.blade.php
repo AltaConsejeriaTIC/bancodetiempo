@@ -20,7 +20,7 @@
                 <div class='messageText col-md-8 col-xs-8' >
                     {{$message->message}}
                     @if($index == count($conversation->message)-1)
-                        @if($message->substitutionsNumber > 0)
+                        @if(isset($message->substitutionsNumber) && $message->substitutionsNumber > 0)
                             <div class="dialogBoxInbox">
                                 <span class="arrow">
                                     <svg width='20' height='20'>
