@@ -86,14 +86,8 @@
             <div class="row">
                 <div class="join col-xs-12">
                     <h1>¿Cómo puedo participar?</h1>
-                    <p><span class="text-bold">Inscribirme:</span> Si deseas asistir a esta actividad, puedes
-                        inscribirte y el
-                        administrador de la campaña te contactará por medio de tu inbox, para ultimar los detalles del
-                        evento.</p>
-                    <p><span class="text-bold">Donaciones:</span> Puedes donar los dorados que desees a esta campaña,
-                        estos serán
-                        descontados de tu bolsa y serán añadidos a la bolsa de la campaña para retribuir a los
-                        asistentes de la actividad.</p>
+                    <p><span class="text-bold">Donaciones:</span> Puedes donar los dorados que desees a esta campaña para retribuir a los cambalacheros que asistan a esta actividad; estos serán descontados de tus dorados disponibles.</p>
+                    <p><span class="text-bold">Pre-inscribirme:</span> Si deseas asistir a esta actividad, puedes pre-inscribirte y una vez se cierre el periodo de donaciones, confirmaremos tu inscripción a través de tu correo electrónico.</p>
                 </div>
                 <div class="space20"></div>
             </div>
@@ -193,8 +187,6 @@
 
                     <div class="space20"></div>
 
-                    <h6 class="rate">Amabilidad, respeto y confianza
-                        <span>{{number_format($campaign->user->ranking, 1)}}</span></h6>
                     <div class="text-left rating">
                         @for($cont = 1 ; $cont <= 5 ; $cont++)
                             @if($cont <= $campaign->user->ranking)
@@ -211,21 +203,7 @@
 
                     <div class="space15"></div>
 
-                    <p class="description text-left">¿Te interesa ésta campaña?</p>
-
-                    <div class="space15"></div>
-
-                    <div class="col-xs-12 text-center">
-                        @if(Auth::check())
-                            <button class='button1 background-active-color text-center'
-                                    v-on:click='putMyData("contactMail", true)'>Comunícate
-                                con {{$campaign->user->first_name}}</button>
-                        @else
-                            <button class='button1 background-active-color text-center'
-                                    v-on:click='putMyData("login", true)'>Comunícate
-                                con {{$campaign->user->first_name}}</button>
-                        @endif
-                    </div>
+                    
                 </div>
             </div>
             <br>
