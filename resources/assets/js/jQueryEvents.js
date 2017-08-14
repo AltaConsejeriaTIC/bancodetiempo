@@ -21,9 +21,6 @@ jQuery(document).ready(function(){
     jQuery(".score").on("click", score);
     jQuery("#openSearch").on("click", openSearch);
     jQuery("#findMobile .close").on("click", closeSearch)
-    jQuery(".sendCoordinates").on("click", sendCoordinates)
-    jQuery(".showDetailSite").on("click", showDetailSite);
-
 
     scrollBottom();
 
@@ -37,23 +34,6 @@ function scrollBottom(){
 		}
 	}, 500);
 
-}
-
-function showDetailSite(){
-    var name = jQuery(this).find("[name='name']").val();
-    jQuery("#siteName").html(name)
-    var address = jQuery(this).find("[name='address']").val();
-    jQuery("#siteAddress").html(address)
-    var contact = jQuery(this).find("[name='contact']").val();
-    jQuery("#siteContact").html(contact)
-    var description = jQuery(this).find("[name='description']").val();
-    jQuery("#siteDescription").html(description)
-    var requirements = jQuery(this).find("[name='requirements']").val();
-    jQuery("#siteRequirements").html(requirements)
-    var coordinates = jQuery(this).find("[name='coordinates']").val();
-    jQuery("#siteCoordinates").attr('href', 'http://maps.google.com/?q='+coordinates);
-    jQuery(".sendCoordinates").attr("coordinates", coordinates);
-    jQuery(".sendCoordinates").attr("nameSite", name);
 }
 
 function showModal(){
@@ -111,14 +91,6 @@ function closeSearch(){
 
 function closePopup(){
     jQuery(".popup").fadeOut();
-}
-
-function sendCoordinates(){
-	var coordinates = jQuery(this).attr("coordinates");
-	coordinates = coordinates.split(",");
-	jQuery("#coordinates").val('{"lat" : '+coordinates[0]+',"lng" :'+coordinates[1]+'}');
-	var nameSite = jQuery(this).attr("nameSite");
-	jQuery("#place").val(nameSite);
 }
 
 function resizeBody(){

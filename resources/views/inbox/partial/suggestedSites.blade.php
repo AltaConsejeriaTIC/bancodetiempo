@@ -1,8 +1,8 @@
-<div id="suggestedSites" class="transition col-xs-12" data-in='{"left":"0%", "opacity":1}' data-out='{"left":"150%", "opacity":0}'>
+<div id="suggestedSites" class="row" canvas>
    <div class="col-md-8 col-md-offset-2">
 	   <div class="row">
 	       <div class="col-xs-12">
-	           <p class="paragraph1 buttonTransition pointer" data-open='#dealBox'><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{trans("deals.back")}}</p>
+	           <p class="paragraph1 buttonTransition pointer" data-open='#dealForm'><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{trans("deals.back")}}</p>
 	       </div>
 	   </div>
 	   <div class="row">
@@ -23,9 +23,10 @@
 		            	<ul>
 		                @foreach($category->sites as $site)
 		                
-		                	<li class='buttonTransition pointer showDetailSite' data-open='#detailSite' @click='edit = edit ? false : true;'>
+		                	<li class='buttonTransition pointer showDetailSite' data-open='#detailSite'>
 		                	{{$site->name}}
-                              <input type="hidden" name='name' value="{{$site->name}}">
+                               <input type="hidden" name='icon' value="fa-{{$category->icon}}">
+                               <input type="hidden" name='name' value="{{$site->name}}">
                                <input type="hidden" name='address' value="{{$site->address}}">
                                <input type="hidden" name='requirements' value="{{$site->requirements}}">
                                <input type="hidden" name='contact' value="{{$site->contact}}">

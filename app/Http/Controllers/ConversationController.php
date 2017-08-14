@@ -16,7 +16,8 @@ class ConversationController extends Controller{
 	public function index(){
 		$conversationsMyService = $this->getConversationsMyService();
 		$conversations = $this->getConversationServicesInterestMe();
-		return view("inbox/inbox", compact("conversationsMyService", "conversations"));
+        $categoriesSites = CategoriesSites::all();
+		return view("inbox/inbox", compact("conversationsMyService", "conversations", "categoriesSites"));
 	}
         private function getConversationsMyService(){
             $conversations = Conversations::whereIn("service_id", $this->getMyServices())->orderBy('updated_at', 'desc')->get();
