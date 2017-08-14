@@ -68,18 +68,16 @@ class EmailController extends Controller
     	return redirect()->back()->with('response', true);    	
     }
 
-    public function sendMailDeal($Addressee,$action)
-        {
+    public function sendMailDeal($Addressee,$action){
           $Addressee = User::findOrFail($Addressee);
-          $mail = $Addressee->email2;
-          Mail::send('deals/dealEmail',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail)
-          {
+          $mail = $Addressee->email2;        
+          Mail::send('emails/deal',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail){
             $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
             $message->subject('Te han enviado una propuesta');
             $message->to($mail);
           });
           return redirect()->back();
-        }
+    }
 
     public function sendMailDaily()
     {      

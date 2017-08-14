@@ -5,7 +5,7 @@
             @include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' =>'user'.Auth::user()->id, 'border' => '#0f6784', 'borderSize' => '3px', 'extra' => ['svg' => 'for=avatar']))
         </div>
     </div>
-    <div v-show='noEdit'>
+    <div v-show='noEdit' v-cloak>
 
         <div class="row">
             <div class="col-xs-12">
@@ -77,7 +77,7 @@
 
     </div>
 
-    <div v-show='edit'>
+    <div v-show='edit' v-cloak>
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
