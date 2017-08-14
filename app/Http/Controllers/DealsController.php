@@ -41,9 +41,9 @@ class DealsController extends Controller
 
             $email = new EmailController;
             if($conversation->applicant_id == Auth::id()){
-                $email->sendMailDeal($deal->service->user_id, "new");
+                $email->sendMailDeal($conversation->service->user_id, "new");
             }else{
-                $email->sendMailDeal($deal->user_id, "new");
+                $email->sendMailDeal($conversation->applicant_id, "new");
             }
             
             return '{"state" : "ok"}';
@@ -61,10 +61,19 @@ class DealsController extends Controller
     }
     
     public function aceptDeal(Request $request){
+        $conversation = Conversations::find($request->conversation);
         $deal = Deal::where('conversations_id', $request->conversation)->where('state_id', 4)->get()->last();
         $deal->update([
             'state_id' => 7
         ]);
+        if($deal->creator_id != Auth::id()){
+            $email = new EmailController;
+           if($conversation->applicant_id == $deal->creator_id){
+                $email->sendMailDeal($conversation->applicant_id, "acepted");
+            }else{
+                $email->sendMailDeal($conversation->service->user_id, "acepted");
+            }
+        }
         return '{"state" : "ok"}';
     }
 
