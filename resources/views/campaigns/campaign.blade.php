@@ -85,9 +85,13 @@
             <div class="line"></div>
             <div class="row">
                 <div class="join col-xs-12">
-                    <h1>¿Cómo puedo participar?</h1>
-                    <p><span class="text-bold">Donaciones:</span> Puedes donar los dorados que desees a esta campaña para retribuir a los cambalacheros que asistan a esta actividad; estos serán descontados de tus dorados disponibles.</p>
-                    <p><span class="text-bold">Pre-inscribirme:</span> Si deseas asistir a esta actividad, puedes pre-inscribirte y una vez se cierre el periodo de donaciones, confirmaremos tu inscripción a través de tu correo electrónico.</p>
+                    @if($campaign->allows_registration == 0)
+                        <h1>¿Cómo puedo participar?</h1>
+                        <p><span class="text-bold">Donaciones:</span> Puedes donar los dorados que desees a esta campaña para retribuir a los cambalacheros que asistan a esta actividad; estos serán descontados de tus dorados disponibles.</p>
+                        <p><span class="text-bold">Pre-inscribirme:</span> Si deseas asistir a esta actividad, puedes pre-inscribirte y una vez se cierre el periodo de donaciones, confirmaremos tu inscripción a través de tu correo electrónico.</p>
+                    @else
+                        <p><span class="text-bold">Inscribirme:</span> Puedes inscribirte y asistir a esta actividad en la fecha y hora señaladas.</p>
+                    @endif
                 </div>
                 <div class="space20"></div>
             </div>
