@@ -3,10 +3,6 @@ jQuery(document).ready(function(){
 	resizeBody();	
 	
 	jQuery(window).resize(resizeBody);
-	
-    if(jQuery("#messages").length){
-       callMessages();
-    }
 
     if(jQuery("select.categories").length){
        listCategories();
@@ -17,122 +13,47 @@ jQuery(document).ready(function(){
     }
 
     if(jQuery(".dialogBox").length){
-        var top = jQuery("#credits").parent().parent().position().top + jQuery("#credits").position().top + jQuery("#credits").height();
-        jQuery(".dialogBox").css("top", top+"px");
-        jQuery("#credits").css("z-index", 1005);
-    }
-
-    if(jQuery(".preview").length){
-       jQuery(".preview").each(function(){
-           jQuery(this).on('change' ,previewImage);
-       })
-    }
-
-    if(jQuery(".previewSvg").length){
-       jQuery(".previewSvg").each(function(){
-           jQuery(this).on('change' ,previewImageSvg);
-       })
-    }
-
-    if(jQuery(".bannerHome").length){
-       bannerHome();
-    }
-
-    if(jQuery(".pagination").length){
-       jQuery('.pagination > li').on('click', getPagination);
-    }
-
-    if(jQuery(".transition").length){
-       jQuery('.buttonTransition').on('click', nextTransition);
+        var top = jQuery("#logo").position().top + jQuery("#logo").height() + 20;
+        var left = jQuery("#logo").position().left + jQuery("#logo").width() - 200;
+        jQuery(".dialogBox").css({"top" : top+"px", "left" : left+"px"});
     }
 
     jQuery(".score").on("click", score);
-
     jQuery("#openSearch").on("click", openSearch);
     jQuery("#findMobile .close").on("click", closeSearch)
-
     jQuery(".sendCoordinates").on("click", sendCoordinates)
-    
+    jQuery(".showDetailSite").on("click", showDetailSite);
+
+
+    scrollBottom();
+
 });
 
-function nextTransition(){
-    jQuery(".transition").scrollTop(0);
-    var open = jQuery(this).data('open');
-    var next = jQuery(open);
-    var current = jQuery(".transition .active");
-    current.animate(current.data('out'), 500, function(){
-        jQuery(this).removeClass('active');
-    });
-    next.addClass("active");
-    next.animate(next.data('in'), 500);
+function scrollBottom(){
+	var elemScroll = jQuery('.scrollBottom');
+	setTimeout(function(){
+		for(var e = 0; e < elemScroll.length; e++){
+			elemScroll[e].scrollTop = elemScroll[e].scrollHeight;
+		}
+	}, 500);
 
 }
 
-function getPagination(){
-    var page = jQuery(this).data('page');
-    var route = jQuery(this).parent().data('route');
-    var list = jQuery(this).parent().data('list');
-    var filters = jQuery(this).parent().data('filter');
-    var words = jQuery(this).parent().data('words');
-    jQuery(this).parent().children(".active").removeClass('active')
-    jQuery(this).addClass('active');
-    jQuery.ajax({
-        url: route,
-        type : 'GET',
-        data : {'page' : page, 'filter' : filters, 'words' : words},
-        success : function(response){
-            jQuery("#"+list).html(response);
-            jQuery('.pagination > li').on('click', getPagination);
-        }
-    });
-
-}
-
-function bannerHome(){
-    jQuery(".bannerHome .carousel").attr("banner", 0);
-    animationBanner();
-}
-
-function animationBanner(){
-    var actual = jQuery(".bannerHome .carousel").attr("banner");
-    var next = parseInt(actual)+1;
-    var description = jQuery("#bannerDescription");
-    if(actual == parseInt(jQuery(".bannerHome .carousel").attr("slider"))){
-        next = 1;
-    }
-
-    description.animate({opacity:0}, 100, function(){
-        var newText = jQuery(".bannerHome .carousel .banner"+next).children(".description").html();
-
-        setTimeout(function(){
-            description.html(newText);
-            description.animate({opacity:100}, 800);
-        }, 1000);
-    })
-
-    jQuery(".bannerHome .carousel .banner"+actual).removeClass("active");
-    jQuery(".bannerHome .carousel .banner"+next).addClass("active");
-
-    jQuery(".bannerHome .carousel").attr("banner", next);
-    setTimeout(animationBanner, 4000);
-
-}
-
-function callMessages(){
-
-    jQuery.ajax({
-        url : '/messages/'+jQuery("#messages").attr('conversation'),
-        type : "GET",
-        data : "key="+jQuery("#keyConversation").val(),
-        success : function(data){
-            if(data != ""){
-                jQuery("#messages").html(data);
-                jQuery(".showModal").on("click", showModal);
-                jQuery(".hiddenModal").on("click", hiddenModal);
-            }
-        }
-    });
-    setTimeout(callMessages, 2000);
+function showDetailSite(){
+    var name = jQuery(this).find("[name='name']").val();
+    jQuery("#siteName").html(name)
+    var address = jQuery(this).find("[name='address']").val();
+    jQuery("#siteAddress").html(address)
+    var contact = jQuery(this).find("[name='contact']").val();
+    jQuery("#siteContact").html(contact)
+    var description = jQuery(this).find("[name='description']").val();
+    jQuery("#siteDescription").html(description)
+    var requirements = jQuery(this).find("[name='requirements']").val();
+    jQuery("#siteRequirements").html(requirements)
+    var coordinates = jQuery(this).find("[name='coordinates']").val();
+    jQuery("#siteCoordinates").attr('href', 'http://maps.google.com/?q='+coordinates);
+    jQuery(".sendCoordinates").attr("coordinates", coordinates);
+    jQuery(".sendCoordinates").attr("nameSite", name);
 }
 
 function showModal(){
@@ -163,48 +84,6 @@ function score(){
         jQuery("#"+input+" + label > .star"+s).addClass("check")
         s -= 1;
     }
-}
-
-function previewImage(e){
-    var elemt = jQuery(e.target);
-    var id =  e.target.id;
-    var files = e.target.files;
-    var label = jQuery("label[for='"+id+"']");
-    if(files[0].size < 2000000){
-        label.siblings(".error").remove();
-        var image = new Image();
-        var reader = new FileReader();
-         reader.onload = (e) => {
-             label.css("background-image", "url('"+e.target.result+"')")
-             if(elemt.data('mirror') !== undefined){
-                 jQuery(elemt.data('mirror')).attr("src", e.target.result);
-             }
-         };
-        reader.readAsDataURL(files[0]);
-    }else{
-        label.after("<p class='msg error'>El peso màximo de la imagen debe ser de 3 Megas.</p>")
-    }
-
-}
-
-function previewImageSvg(e){
-    var id =  e.target.id;
-    var files = e.target.files;
-    var elemt = jQuery(e.target);
-    var label = jQuery(e.target.labels[0]);
-    var svg = jQuery("svg[for='"+elemt.attr('id')+"']");
-    if(files[0].size < 2000000){
-        label.siblings(".error").remove();
-        var image = new Image();
-        var reader = new FileReader();
-         reader.onload = (e) => {
-             svg.find('image').attr("xlink:href", e.target.result);
-         };
-        reader.readAsDataURL(files[0]);
-    }else{
-        label.after("<p class='msg error'>El peso màximo de la imagen debe ser de 3 Megas.</p>")
-    }
-
 }
 
 function listCategories(){

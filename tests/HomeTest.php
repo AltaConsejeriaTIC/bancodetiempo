@@ -18,21 +18,4 @@ class HomeTest extends TestCase
     {
         $this->assertTrue(true);
     }
-
-    public function testPrueba(){
-
-        $user = User::find(2);
-
-        auth()->login($user);
-
-        $this->assertTrue(Auth::check());
-
-    }
-
-
-
-    protected function setUp()
-    {
-        print("dd\n");
-    }
 }

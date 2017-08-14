@@ -3,6 +3,17 @@
 use App\Models\AttainmentUsers;
 use App\Models\Service;
 use App\Models\TagsService;
+use App\Models\Conversations;
+use App\Models\Group_collaborators;
+use App\Models\Groups;
+use App\Models\CampaignParticipants;
+use App\Models\Campaigns;
+use App\Models\HistoryDonations;
+use App\Models\UserScore;
+use App\Models\NetworkAccounts;
+use App\Models\Deal;
+use App\Models\DealState;
+use App\Models\ServiceScore;
 use App\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -13,17 +24,6 @@ use Illuminate\Support\Facades\DB;
 
 class NewServiceTest extends TestCase
 {
-    public function testDAOTags()
-    {
-        Tag::create([
-            'tag' => 'tagTest'
-        ]);
-        $json = json_decode(file_get_contents(url('/') . '/tags'));
-        $this->assertTrue(count($json) > 0);
-        $this->assertTrue(end($json)->tag == 'tagTest');
-    }
-
-
     public function testCreateService()
     {
         $this->deleteAllServices();
@@ -40,6 +40,10 @@ class NewServiceTest extends TestCase
 
         $service = Service::all()->last();
         $this->assertTrue($service->name == 'pruebaXXXXX');
+
+        $tag = tag::all();
+        $this->assertTrue($tag->count() > 0);
+        $this->assertTrue($tag->last()->tag == 'est');
     }
 
     public function testGetService()
@@ -123,12 +127,26 @@ class NewServiceTest extends TestCase
     public function deleteAllUser()
     {
         AttainmentUsers::where('id', '>', 0)->delete();
+        Group_collaborators::where('id', '>', 0)->delete();
+        Groups::where('id', '>', 0)->delete();
+        CampaignParticipants::where('id', '>', 0)->delete();
+        HistoryDonations::where('id', '>', 0)->delete();
+        NetworkAccounts::where('id', '>', 0)->delete();
+        Campaigns::where('id', '>', 0)->delete();
+        UserScore::where('id', ">", 0)->delete();
         User::where('role_id', '!=', 1)->delete();
     }
 
     public function deleteAllServices()
     {
         TagsService::where('id', '>', 0)->delete();
+
+        DealState::where('id', '>', 0)->delete();
+        Deal::where('id', '>', 0)->delete();
+        Conversations::where('id', '>', 0)->delete();
+        ServiceScore::where('service_id', '>', 0)->delete();
         Service::where('state_id', '=', 1)->delete();
+
+
     }
 }

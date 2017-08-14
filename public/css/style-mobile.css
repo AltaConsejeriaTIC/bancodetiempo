@@ -1,13 +1,110 @@
-@media (min-width: 750px) {
+@media (min-width: 768px) {
 	
 	#conversation{
 		overflow: auto;
 		height: 81%;
 	}
+
+    ul.menuMobile {
+        margin-bottom: 0px;
+        list-style: none;
+        text-align: center;
+        padding: 0px;
+    }
+
+    ul.menuMobile li.dropdown {
+        padding: 10px;
+    }
+
+    ul.menuMobile li.dropdown.open {
+        background: #0a1e5f;
+    }
+
+    ul.menuMobile > li > a > i {
+        font-size: 25px;
+        text-align: right;
+        color: #fff !important;
+    }
+
+    ul.menuMobile ul.dropdown-menu {
+        right: 0px;
+        background-color: #0a1e5f;
+        margin: 0px;
+        left: initial;
+    }
+
+    .menuMobile .item-icon {
+        margin-right: 15px;
+        right: auto;
+    }
+
+    ul.dropdown-menu > li > a {
+        color: #fff;
+    }
+
+    .bannerRegister {
+        background-size: 145% auto;
+        background-position: 55% 30%;
+        padding-top: 100px;
+    }
+
+    .line-r-v {
+        border-right: 0px solid #fff !important;
+        margin-right: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .line-l-v {
+        border-left: 0px solid #fff !important;
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
 	
 }
 
-@media (max-width: 450px) {
+/*
+Media Querys
+*/
+@media (min-width: 992px) {
+    .container {
+        width: 1024px;
+    }
+
+    ul.dropdown-menu > li > a {
+        color: #333;
+    }
+
+    .bannerRegister {
+        padding-top: 120px;
+    }
+
+    .bannerService {
+        padding-top: 120px;
+    }
+
+    .space40 {
+        margin-top: 40px;
+    }
+
+    .not-padding {
+        padding: 0px !important;
+    }
+
+    .nav-pills > li > a {
+        display: block;
+        padding-right: 20px;
+        font-size: 16px;
+    }
+
+    #conversation{
+		overflow: auto;
+		height: 90%;
+	}
+
+}
+
+
+@media (max-width: 767px) {
 
     #app {
         min-height: 500px;
@@ -17,20 +114,6 @@
         margin-right: 0px !important;
         margin-left: 0px !important;
     }
-
-    .bannerHome {
-    }
-
-    .bannerHome .carousel > div {
-        background-size: auto 100% !important;
-        background-position: 20% 0% !important;
-    }
-
-    .bannerHome .carousel > div > img {
-        left: 0% !important;
-        width: 100%;
-    }
-
     .bannerRegister {
         background-size: auto 100% !important;
         background-position: 50% 30% !important;
@@ -107,10 +190,11 @@
         margin-bottom: 0px;
         list-style: none;
         text-align: center;
+        padding: 0px;
     }
 
     ul.menuMobile li.dropdown {
-        padding: 15px;
+        padding: 10px;
     }
 
     ul.menuMobile li.dropdown.open {
@@ -165,15 +249,6 @@
         list-style: none;
     }
 
-
-    .listMessages > #messages > .row {
-        margin-bottom: 5px;
-    }
-
-    .bannerHome .carousel > div > img {
-        width: 100% !important;
-    }
-
     .line-r-v {
         border-right: 0px solid #fff !important;
         margin-right: initial;
@@ -222,13 +297,18 @@
 		height: 80%;
     	overflow: auto;
 	}
-}
 
-@media (min-width: 1024px) {
-	
-	#conversation{
-		overflow: auto;
-		height: 90%;
-	}
-	
+    .flex-center-xs {
+        display: flex;
+        align-items: center;
+    }
+
+    .flex-center-xs p {
+        margin: 0px;
+    }
+
+    .dialogBoxInbox {
+        left:-35%;
+        width: 220px;
+    }
 }

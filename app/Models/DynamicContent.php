@@ -10,7 +10,12 @@ class DynamicContent extends Model
 
     static function printContent($name){
 
-        return DynamicContent::where('name', $name)->get()->last()->html;
+    	$content = DynamicContent::where('name', $name)->get()->last();
+    	if(is_null($content)){
+    		return  "";
+    	}else{
+    		return $content->html;
+    	} 
 
     }
 }

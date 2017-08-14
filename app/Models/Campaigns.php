@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Groups;
 use App\Models\State;
@@ -48,11 +49,11 @@ class Campaigns extends Model
     }
 
     static function campaignsUser($user_id){
-        return Campaigns::getCampaignsActive()->where("user_id", $user_id);
+        return Campaigns::select("campaigns.*")->where("user_id", $user_id);
     }
 
     static function getCampaignsActive(){
-        return Campaigns::select("campaigns.*")->where('campaigns.state_id', 1);
+        return Campaigns::select("campaigns.*")->where('campaigns.state_id', 1)->where('campaigns.date', '>=', DB::raw('curdate()'));
     }
 
 }

@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                @include('partial.errors')
+                @include('admin.partial.errors')
             </div>
 
 
@@ -31,8 +31,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3>Administrar Categorias</h3></div>
                     <div class="panel-body">
-                        <p>Sección para gestionar categorias a las que pertenecen los servicios que ofrece el
-                            sistema.</p>
+                        <p>Sección para gestionar categorias a las que pertenecen los <br>servicios que ofrece el
+                            sistema.<br></p>
                         <p><a href="/homeAdminCategory" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
                     </div>
                 </div>
@@ -83,15 +83,6 @@
                     <div class="panel-body">
                         <p>Sección para gestionar todas las ofertas.</p>
                         <p><a href="/homeAdminServices" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h3>Administrar Grupos</h3></div>
-                    <div class="panel-body">
-                        <p>Sección para gestionar todos los grupos.</p>
-                        <p><a href="/listGroups" class="btn btn-raised btn-primary btn-lg">Ingresar</a></p>
                     </div>
                 </div>
             </div>

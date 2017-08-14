@@ -13,6 +13,7 @@ use App\Models\Message;
 use App\Models\AttainmentUsers;
 use App\Models\UserScore;
 use App\Models\Groups;
+use App\Models\NetworkAccounts;
 
 class User extends Authenticatable
 {
@@ -35,6 +36,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function networkAccount()
+    {
+        return $this->belongsTo(NetworkAccounts::class, 'user_id', 'id');
+    }
 
     public function services()
     {

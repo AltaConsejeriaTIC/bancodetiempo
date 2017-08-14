@@ -7,7 +7,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><h2>Lista de Usuarios Registrados en el Sistema</h2></div>
 					<div class="panel-body">
-						@include('partial.errors')
+						@include('admin.partial.errors')
 
 
 						<div class="col-md-2 form-group navbar-right">

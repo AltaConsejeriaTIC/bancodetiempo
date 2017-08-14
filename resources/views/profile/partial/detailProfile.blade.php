@@ -2,15 +2,10 @@
 
     <div class="row">
         <div class="col-xs-6 col-xs-offset-3">
-            <avatar :cover='myData.cover'>
-                <template scope="props">
-                    @include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' =>'user'.Auth::user()->id, 'border' => '#0f6784', 'borderSize' => '3px', 'extra' => array('image' => ':xlink:href=props.cover')))
-                </template>
-             </avatar>
+            @include('partial/imageProfile', array('cover' => Auth::user()->avatar, 'id' =>'user'.Auth::user()->id, 'border' => '#0f6784', 'borderSize' => '3px', 'extra' => ['svg' => 'for=avatar']))
         </div>
     </div>
-
-    <div v-show='noEdit'>
+    <div v-show='noEdit' v-cloak>
 
         <div class="row">
             <div class="col-xs-12">
@@ -70,18 +65,6 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-xs-12">
-                <h4 class="col-xs-12">{{ trans("profile.myInterest") }}</h4>
-
-                @foreach(Auth::User()->interests as $interest)
-
-                    <p class="col-xs-6 paragraph4">{{$interest->category->category}}</p>
-
-                @endforeach
-            </div>
-        </div>
-        <br>
-        <div class="row">
             <div class="col-xs-12 hidden-xs">
                  {!! Form::open(['url' => 'deactivateAccount', 'method' => 'post', 'class' => 'form-custom col-xs-12 col-sm-12']) !!}
                     <input type="hidden" name="token" value="{{ csrf_token() }}">
@@ -94,21 +77,20 @@
 
     </div>
 
-    <div v-show='edit'>
+    <div v-show='edit' v-cloak>
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
-                <label for='avatar' class="button1 background-active-color text-center"  @click='showEdit'>{{ trans('profile.updateCover') }}</label>
+                <label for='avatar' class="button1 background-active-color text-center">{{ trans('profile.updateCover') }}</label>
                 <p class="avatarMsg hidden">El peso màximo de la imagen debe ser de 3 Megas.</p>
             </div>
         </div>
 
         {!! Form::open(['url' => 'profile/update', 'method' => 'put','enctype' => 'multipart/form-data', 'role' => 'form', 'class' => 'form-custom', 'id' => 'form', 'form-validation' => '']) !!}
-            <input type="file" name='avatar' id='avatar' class='hidden' @change='this.previewPhoto'/>
-            <register  profile='1'>
-            </register>
+            <input type="file" name='avatar' id='avatar' class='hidden previewSvg'/>
+            @include('profile.partial.formEditProfile')
             <div class="col-xs-12">
-                <button class="col-xs-12 button10 background-white text-center" type='button' @click='hiddenEdit'>{{ trans('profile.cancel') }}</button>
+                <button class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 button10 background-white text-center" type='button' @click='hiddenEdit'>{{ trans('profile.cancel') }}</button>
             </div>
         {!! Form::close() !!}
 

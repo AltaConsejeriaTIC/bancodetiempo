@@ -1,4 +1,4 @@
- <nav class='navbar navbar-default navbar-static-top nav2'>
+<nav class='navbar navbar-default navbar-static-top nav2'>
     <div class="container">
         <div class='row flex-center'>
 
@@ -15,9 +15,7 @@
                 {!! Form::close() !!}
             </div>
             <div class="text-right col-md-4 col-xs-5" id="container-nav-buttons">
-                <button class="button5" @click='myData.login = true'>{{ trans('nav.login') }}</button>
-                <button class="button9 buttonStart hidden-xs"
-                        @click='myData.login = true'>{{ trans('nav.register') }}</button>
+                <button id="open-register-popup" class="button4 margin-vertical-12" @click='myData.login = true'>{{ trans('nav.register') }}</button>
             </div>
 
         </div>

@@ -2,7 +2,7 @@
 @section('content')
     <div class="col-md-6 col-md-offset-2">
         <div class="row">
-            @include('partial.errors')
+            @include('admin.partial.errors')
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h2>Cambio de Contraseña Usuario {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h2>

@@ -1,5 +1,5 @@
 <generalmodal  name='editService{{$service->id}}' :state='myData.editService{{$service->id}}' state-init='false'>
-        <div slot="modal" class='modal-container'>
+        <div slot="modal" class='modal-container' v-cloak>
 
             <div class="modal-body">
                <button type="button" @click='myData.editService{{$service->id}} = false' class="close circle-shape"><span aria-hidden="true">×</span></button>
@@ -15,10 +15,7 @@
                             la oferta (Max. 50 caracteres)</label>
                     </div>
                     <div class="row">
-                        <input type="text" name="serviceName" autofocus
-                            placeholder="Ej. Clase de Inglés, Asesoría penal…"
-                            class="col-xs-12 col-sm-12 col-md-12 validation" value='{{$service->name}}' maxlength="50"
-                            data-validations='["required", "min:3", "max:50"]'>
+                        <input type="text" name="serviceName" autofocus placeholder="Ej. Clase de Inglés, Asesoría penal…" class="col-xs-12 col-sm-12 col-md-12 validation" value='{{$service->name}}' maxlength="50" data-validations='["required", "min:3", "max:50"]'>
                         <i class='icon' for='serviceName'></i>
                         <div class="msg" errors='serviceName'>
                             <p error='required'>Este campo es obligatorio.</p>
@@ -59,11 +56,11 @@
                         </div>
                         <div class="col-xs-6 col-sm-6 not-padding ">
                             <input type="checkbox" name="modalityServicePresently"
-                                value="1" id="modalityServicePresently{{$service->ids}}"
+                                value="1" id="modalityServicePresently{{$service->id}}"
                                 class="square validation"
                                 @if($service->presently) checked @endif
                                 data-validations='["requiredIfNot:modalityServiceVirtually"]'>
-                            <label for="modalityServicePresently{{$service->ids}}">Presencial</label>
+                            <label for="modalityServicePresently{{$service->id}}">Presencial</label>
                         </div>
                     </div>
                     <div class="row">
@@ -79,32 +76,32 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6">
-                            <input type="radio" name="valueService" value="1" id="time1{{$service->id}}"
+                            <input type="radio" name="valueService" value="1" id="edit_time1{{$service->id}}"
                                 @if($service->value == 1) checked @endif
                                 class="circle validation"
                                 data-validations='["required"]'>
-                            <label for="time1{{$service->id}}">1 Hora</label>
+                            <label for="edit_time1{{$service->id}}">1 Hora</label>
                         </div>
                         <div class="col-xs-6 col-sm-6">
-                            <input type="radio" name="valueService" value="2" id="time2{{$service->id}}"
+                            <input type="radio" name="valueService" value="2" id="edit_time2{{$service->id}}"
                                 @if($service->value == 2) checked @endif
                                 class="circle validation"
-                                data-validations='["required"]'> <label for="'time2{{$service->id}}">2 Horas</label>
+                                data-validations='["required"]'> <label for="edit_time2{{$service->id}}">2 Horas</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6">
-                            <input type="radio" name="valueService" value="3" id="time3{{$service->id}}"
+                            <input type="radio" name="valueService" value="3" id="edit_time3{{$service->id}}"
                                 class="circle validation"
                                 @if($service->value == 3) checked @endif
                                 data-validations='["required"]'>
-                                <label for="time3{{$service->id}}">3 Horas</label>
+                                <label for="edit_time3{{$service->id}}">3 Horas</label>
                         </div>
                         <div class="col-xs-6 col-sm-6">
-                            <input type="radio" name="valueService" value="4" id="time4{{$service->id}}"
+                            <input type="radio" name="valueService" value="4" id="edit_time4{{$service->id}}"
                                 @if($service->value == 4) checked @endif
                                 class="circle validation"
-                                data-validations='["required"]'> <label for="time4{{$service->id}}">4 Horas</label>
+                                data-validations='["required"]'> <label for="edit_time4{{$service->id}}">4 Horas</label>
                         </div>
                     </div>
                     <div class="row">

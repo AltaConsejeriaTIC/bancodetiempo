@@ -73,30 +73,18 @@ class Service extends Model
                         ->where('services.state_id' , 1)
                         ->where('users.state_id', 1);
     }
-
-     static function setRanking($service){
-
+    static function setRanking($service){
         $service = Service::find($service);
-
         if($service->serviceScore->count() > 0){
-
-            print($service->serviceScore->count().'<br>');
-
             $sum = 0;
-
             foreach($service->serviceScore as $score){
                 $sum += $score->score;
             }
-
             $ranking = $sum/$service->serviceScore->count();
-
-            print($sum/$service->serviceScore->count()."<hr>");
             $service->update([
                 "ranking" => $ranking
             ]);
-
         }
-
     }
 	
 }

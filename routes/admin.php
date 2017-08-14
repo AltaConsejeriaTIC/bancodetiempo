@@ -8,14 +8,6 @@ Route::resource('homeAdminUser', 'Admin\UserController@showList');
 Route::resource('adminUser', 'AdminController');
 Route::put('adminUser/update', ['as' => 'adminUser/update', 'uses'=>'AdminController@update']);
 
-Route::get('homeAdminServices', 'AdminController@homeAdminServices');
-Route::get('homeAdminServices/reported', 'AdminController@showServicesReported');
-Route::post('homeAdminServices', ['as' => 'homeAdminServices', 'uses'=>'AdminController@homeAdminServices']);
-Route::post('homeAdminServices/reported', ['as' => 'homeAdminServices/reported', 'uses'=>'AdminController@showServicesReported']);
-Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'uses'=>'AdminController@updateServiceState']);
-
-Route::put('adminGroups/update', ['as' => 'adminGroups/update', 'uses'=>'AdminController@updateGroupState']);
-
 Route::resource('homeAdminCategory', 'CategoryController');
 Route::post('homeAdminCategory/show', ['as' => 'homeAdminCategory/show', 'uses'=>'CategoryController@show']);
 Route::put('homeAdminCategory/update', ['as' => 'homeAdminCategory/update', 'uses'=>'CategoryController@update']);
@@ -27,7 +19,6 @@ Route::post('changePassword', ['as' => 'changePassword', 'uses'=>'AdminControlle
 Route::resource('homeAdminContents', 'AdminController');
 Route::put('AdminController/updateContent', ['as' => 'homeAdminContents/update', 'uses'=>'AdminController@updateContent']);
 
-
 Route::get('historyDonations', 'AdminController@historyDonations');
 Route::post('historyDonations', 'AdminController@historyDonations');
 
@@ -37,10 +28,8 @@ Route::put('admin/service/update', 'ServiceAdminController@update');
 
 Route::resource('listDeals', 'Admin\DealsController@showList');
 
-Route::resource('listGroups', 'Admin\GroupsController@showList');
-
 Route::resource('adminCampaigns', 'Admin\CampaignsController@showList');
-Route::put('adminCampaigns/update', 'Admin\CampaignsController@updateCampaignState');
+Route::post('adminCampaigns/update', 'Admin\CampaignsController@updateCampaignState');
 Route::resource('/adminCampaigns/participant/{campaign_id}/download', 'Admin\CampaignsController@downloadParticipant');
 
 
@@ -66,3 +55,11 @@ Route::post("/admin/suggestedSites/newSite", 'Admin\SuggestedSitiesController@cr
 Route::post("/admin/suggestedSites/editSite", 'Admin\SuggestedSitiesController@editSite');
 Route::post("/admin/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController@deleteSite');
 
+
+/** Services **/
+
+Route::get('homeAdminServices', 'Admin\ServicesController@homeAdminServices');
+Route::get('homeAdminServices/reported', 'AdminController@showServicesReported');
+Route::post('homeAdminServices', ['as' => 'homeAdminServices', 'uses'=>'Admin\ServicesController@homeAdminServices']);
+Route::post('homeAdminServices/reported', ['as' => 'homeAdminServices/reported', 'uses'=>'Admin\ServicesController@showServicesReported']);
+Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'uses'=>'Admin\ServicesController@updateServiceState']);

@@ -2,6 +2,7 @@
 @import url('nav.css');
 @import url('styleForms.css');
 @import url('font-awesome.css');
+
 /*-----------------Fonts--------------------*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro');
 
@@ -13,6 +14,11 @@ body {
 
 a {
     text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: initial !important;
 }
 
 section {
@@ -29,9 +35,10 @@ header .header-content {
     width: 100%;
 }
 
-buttom, a {
+button, a {
     cursor: pointer;
 }
+
 
 /*
 Logo
@@ -39,7 +46,7 @@ Logo
 .logo {
     background: rgba(255, 255, 255, 0.7);
     display: block;
-    padding: 15px 0px 15px 0px;
+    padding: 10px 0px 10px 0px;
     border-radius: 0px 0px 5px 5px;
 }
 
@@ -53,6 +60,34 @@ img {
 
 #app {
     min-height: 800px;
+}
+
+.pre {
+    white-space: pre-wrap;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.opaque-background {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-block-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    width: 100%;
+    min-width: 310px;
+    max-width: 420px;
 }
 
 /*
@@ -127,23 +162,18 @@ Buttons
 }
 
 .button4 {
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
-    color: #fff;
-    width: 132px;
-    height: 42px;
     border: solid 1px #18aada;
     border-radius: 4px;
     background: none;
+    padding: 7px 25px;
 }
 
 .button5 {
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
-    color: #fff;
-    padding: 16px 25px;
+    padding: 7px 25px;
     border-radius: 4px;
-    background: none;
+    background: transparent;
     border: none;
 }
 
@@ -241,8 +271,8 @@ Buttons
     opacity: 0.7;
 }
 
-.pointer{
-	cursor:pointer;
+.pointer {
+    cursor: pointer;
 }
 
 .dialog {
@@ -346,6 +376,9 @@ Links
     color: #2c3e50 !important;
     text-decoration: underline !important;
 }
+.link3{
+    color:#0f6784;
+}
 
 /*
 Helpers
@@ -416,8 +449,9 @@ Helpers
 .background-active-color {
     background-color: #0f6784 !important;
 }
+
 .border-active {
-    border:1px solid #0f6784 !important;
+    border: 1px solid #0f6784 !important;
 }
 
 .background-white {
@@ -486,179 +520,6 @@ Helpers
     left: 0px;
     width: 100%;
     height: 100%;
-}
-
-.passNum {
-    border: 1px solid #90a1b5;
-    width: 25px;
-    display: block;
-    height: 25px;
-    border-radius: 50%;
-    padding-top: 2px;
-    color: #90a1b5;
-    font-weight: bold;
-    position: relative;
-    margin: auto;
-    font-size: 12px;
-}
-
-.pass, .pass > span, .pass > p, .pass > a, .pass > span:before {
-
-    color: #90a1b5;
-    cursor: pointer
-}
-
-.passActive > span {
-    border-color: #0f6784;
-    color: #fff;
-    background: #0f6784;
-}
-
-.passDone > span {
-    border-color: #2cba36;
-    color: #fff;
-    background: #2cba36;
-    text-indent: -1000px;
-}
-
-.passDone > span:before {
-    content: "\f00c";
-    display: block;
-    text-indent: initial;
-    font-family: FontAwesome;
-    color: #fff;
-    font-weight: 100;
-    padding-top: 2px;
-}
-
-.passActive > p {
-    color: #0f6784;
-}
-
-.passSpace:before {
-    content: "";
-    display: block;
-    width: 30px;
-    border-top: 2px solid #90a1b5;
-    top: 13px;
-    position: relative;
-    margin: auto;
-}
-
-/*
-RedesSociales
-*/
-.social-button {
-    margin-top: 10px;
-    text-align: left;
-}
-
-.social-button:hover, .social-button:focus {
-    color: #fff;
-}
-
-.social-button-facebook:hover, .social-button-facebook:focus {
-    color: #3b5994;
-}
-
-.social-button-google:hover, .social-button-google:focus {
-    color: #cf4836;
-}
-
-.social-button-linkedin:hover, .social-button-linkedin:focus {
-    color: #007bb2;
-}
-
-.social-button > i {
-    margin-right: 5px;
-    float: right;
-}
-
-.facebook-login {
-    background-color: #3b5998;
-}
-
-.google-login {
-    background-color: #d34836;
-}
-
-.linkedin-login {
-    background-color: #007bb6;
-}
-
-.facebook {
-    background-color: #fff;
-    color: #3b5994;
-    border: solid 2px #3b5994;
-}
-
-.google {
-    background-color: #fff;
-    color: #cf4836;
-    border: solid 2px #cf4836;
-}
-
-.linkedin {
-    background-color: #fff;
-    color: #007bb2;
-    border: solid 2px #007bb2;
-}
-
-/*
-Banner Home
-*/
-.bannerHome {
-
-}
-
-h1#bannerDescription {
-    min-height: 120px;
-}
-
-.bannerHome .carousel {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background: #00728f;
-}
-
-.bannerHome .carousel > div {
-    height: 100%;
-    width: 100%;
-    background-size: 100% 100%;
-    position: absolute;
-    opacity: 0;
-    transition: all 2s !important;
-}
-
-.bannerHome .carousel > div > img {
-    position: absolute;
-    bottom: 0%;
-    left: 50px;
-    opacity: 0;
-    transition: all 3s !important;
-}
-
-.bannerHome .carousel > div.active > img {
-    opacity: 100;
-}
-
-.bannerHome .carousel > div.active {
-    opacity: 100;
-}
-
-.bannerHome .carousel .banner1 {
-    background-image: url(/images/banner/back1.jpg);
-}
-
-.bannerHome .carousel .banner2 {
-    background-image: url(/images/banner/back2.jpg);
-}
-
-.bannerHome .carousel .banner3 {
-    background-image: url(/images/banner/back3.jpg);
 }
 
 /*
@@ -779,6 +640,13 @@ Service box
     margin-top: 0px;
     margin-left: 100px;
     min-height: 65px;
+    max-height: 65px;
+    overflow: hidden;
+}
+
+.pagination-sm > li.space > a {
+    background: transparent;
+    border: 0px;
 }
 
 .service-box .tags > a {
@@ -911,12 +779,6 @@ conversation
     padding: 10px 20px 0px 20px;
 }
 
-.notRead {
-    background: #e3e9f3;
-    overflow: hidden;
-    padding: 1% 0px;
-}
-
 #received .header {
     border: 1px solid #979797;
     background: #e7e7e7;
@@ -947,15 +809,6 @@ Ranking
 }
 
 /*
-Box register home
-*/
-.boxRegister {
-    background: url(../images/banner.png);
-    background-size: 130% auto;
-    background-position: 30% 40%;
-}
-
-/*
 notificacion icon
 */
 .notification {
@@ -976,122 +829,10 @@ notificacion icon
     width: 22px;
 }
 
-/*
-conversation box
-*/
-.conversationBox {
-    background: #fff;
-    box-shadow: 1px 2px 8px #757575;
-}
-
-.conversationBox .head {
-    background: #0a475b;
-    padding: 15px;
-}
-
-.conversationBox .message {
-    position: relative;
-    display: block;
-    margin-bottom: 15px;
-}
-
 .listMessages {
     top: 0%;
 }
 
-#listMessages {
-    padding-top: 10px;
-    height: 500px;
-}
-
-#dealBox {
-    background: #f5f5f5;
-    top: 200%;
-    opacity: 0;
-    display: none;
-    padding-bottom: 20px;
-}
-
-#suggestedSites {
-    background: #f5f5f5;
-    left: 150%;
-    opacity: 0;
-    display: none;
-    height: 500px;
-}
-
-#suggestedSites .row {
-    margin-top: 2px;
-}
-
-.suggestedButton {
-    background: #0f6784;
-    color: #fff;
-    font-weight: bold;
-    border: 0px;
-    height: 35px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-}
-
-.suggestedButton .icon {
-    font-size: 20px;
-}
-
-.suggestedButton .iconState {
-    position: absolute;
-    right: 0%;
-    height: 100%;
-    width: 35px;
-    display: flex;
-    top: 0%;
-    align-items: center;
-    border-radius: 5px;
-    background: #083d4f;
-    transition: all 1S;
-}
-
-.suggestedButton .iconState:before {
-    margin: auto;
-    transform: rotateZ(0deg);
-    transition: all 1S;
-}
-
-.suggestedButton[aria-expanded='true'] .iconState {
-    background: #009fe3;
-}
-
-.suggestedButton[aria-expanded='true'] .iconState:before {
-    content: "\f068";
-    transform: rotateZ(180deg);
-}
-
-#suggestedSites .sitesList {
-    background: #fff;
-    border: 1px solid #0f6784;
-    padding-bottom: 15px;
-    border-radius: 5px;
-}
-
-#detailSite{
-	background: #f5f5f5;
-}
-
-#conversation {
-    position: relative;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-#conversation > div {
-    position: absolute;
-    display: none;
-}
-
-#conversation > div.active {
-    display: block;
-}
 
 .responseBox {
     padding: 15px 0px;
@@ -1100,26 +841,7 @@ conversation box
 
 .responseBox #response {
     border-radius: 5px;
-    height: 85px;
-}
-
-.conversationBox .fromMe .messageText {
-    position: relative;
-    display: block;
-    background: #0f6784;
-    color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    float: right;
-}
-
-.conversationBox .forMe .messageText {
-    position: relative;
-    display: block;
-    background: #e5e5e5;
-    padding: 15px;
-    border-radius: 5px;
-    word-wrap: break-word;
+    height: 40px;
 }
 
 #messages {
@@ -1203,71 +925,6 @@ conversation box
     z-index: 15000;
     max-height: 85%;
     overflow: auto;
-}
-
-/*
-Media Querys
-*/
-@media (min-width: 1024px) {
-    .container {
-        width: 1024px;
-    }
-
-    .bannerHome {
-        padding-top: 230px;
-    }
-
-    .bannerRegister {
-        padding-top: 120px;
-    }
-
-    .bannerService {
-        padding-top: 120px;
-    }
-
-    .space40 {
-        margin-top: 40px;
-    }
-
-    .not-padding {
-        padding: 0px !important;
-    }
-
-    .nav-pills > li > a {
-        display: block;
-        padding-right: 20px;
-        font-size: 16px;
-    }
-
-}
-
-@media (max-width: 768px) {
-    .bannerHome {
-        padding-top: 120px;
-    }
-
-    .bannerRegister {
-        background-size: 145% auto;
-        background-position: 55% 30%;
-        padding-top: 100px;
-    }
-
-    .bannerHome .carousel > div > img {
-        width: 50%;
-    }
-
-    .line-r-v {
-        border-right: 0px solid #fff !important;
-        margin-right: 0px !important;
-        padding-right: 0px !important;
-    }
-
-    .line-l-v {
-        border-left: 0px solid #fff !important;
-        margin-left: 0px !important;
-        padding-left: 0px !important;
-    }
-
 }
 
 /*
@@ -1811,13 +1468,17 @@ div#findMobile .close {
 .popup .dialogBox {
     background: #009fe3;
     position: absolute;
-    top: 15%;
+    top: 8%;
     z-index: 1000;
-    width: 20%;
+    width: 260px;
     padding: 1% 2%;
     color: #fff;
-    left: 40%;
+    left: 10%;
     border-radius: 5px;
+}
+
+#messagesProfile {
+    overflow: hidden;
 }
 
 .campaign .partakers h1 {
@@ -1942,11 +1603,124 @@ div#findMobile .close {
     color: #0f6784;
 }
 
-
 #suggestedSites ul {
     list-style: none;
 }
 
 #suggestedSites li {
     margin-top: 5px;
+}
+
+.register-popup .terms {
+    margin: 30px 0;
+}
+
+.register-popup .terms p {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.register-popup .terms label {
+    font-size: 14px;
+    color: #90a1b5;
+}
+
+.register-popup .terms label a {
+    font-weight: bold;
+    color: #001738;
+    text-decoration: underline !important;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.title {
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+}
+
+.size-first {
+    font-size: 18px;
+}
+
+.size-second {
+    font-size: 16px;
+}
+
+.size-third {
+    font-size: 18px;
+}
+
+.size-fourth {
+    font-size: 14px;
+}
+
+.welcome .img {
+    max-width: 128px;
+}
+
+.primary-color {
+    color: #001136;
+}
+
+.secondary-color {
+    color: #001738;
+}
+
+.margin-b-30 {
+    margin-bottom: 30px;
+}
+
+.link {
+    color: #445870;
+    text-decoration: underline !important;
+}
+
+.margin-vertical-10 {
+    margin: 10px 0;
+}
+
+.margin-vertical-12 {
+    margin: 10px 0;
+}
+
+.inline-block {
+    display: inline-block;
+    margin: 10px;
+    max-width: 300px;
+}
+
+.button-disabled {
+    pointer-events: none;
+    background-color: #8c8c8c;
+}
+
+#finalizeRegisterPanel {
+    background: #e3ecf1;
+    border: 1px solid #d2d2d2;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.dialogBoxInbox {
+    background: #009fe3;
+    position: absolute;
+    z-index: 1000;
+    width: 360px;
+    padding: 1% 2%;
+    color: #fff;
+    border-radius: 5px;
+    display: block;
+    top:110%;
+}
+
+.dialogBoxInbox > .arrow {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    top: -20px;
+    left: 50%;
 }

@@ -18,29 +18,35 @@
 
             <div>
 
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h2 class="title1">{{$user->first_name." ".$user->last_name}}</h2>
-                    </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="title1">{{$user->first_name." ".$user->last_name}}</h2>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-xs-12">
-						@for($cont = 1 ; $cont <= 5 ; $cont++)
-							@if($cont <= $user->ranking)
-								<span class='material-icons paragraph9'>grade</span>
-							@else
-								<span class='material-icons paragraph9 rankingInactive'>grade</span>
-							@endif
-						@endfor
-                    </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="paragraph4">Amabilidad, respeto y confianza</p>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p class='paragraph4'>{{$user->aboutMe}}</p>
-                    </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    @for($cont = 1 ; $cont <= 5 ; $cont++)
+                        @if($cont <= $user->ranking)
+                            <span class='material-icons paragraph5'>grade</span>
+                        @else
+                            <span class='material-icons paragraph5 rankingInactive'>grade</span>
+                        @endif
+                    @endfor
                 </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class='paragraph4'>{{$user->aboutMe}}</p>
+                </div>
+            </div>
 
             </div>
 

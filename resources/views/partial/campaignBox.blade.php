@@ -10,15 +10,15 @@
             </div>
         @endif
         <div class="col-md-4 col-xs-4 not-padding">
-            <a @if(is_null(Auth::User())) @click='myData.login = true' @else href="/campaign/{{$campaign->id}}" @endif>
-                <div class="cover" style="background-image : url('/{{$campaign->image}}')">
+            <a href="/campaign/{{$campaign->id}}">
+                <div class="cover" style="background-image : url('/getImg?img={{$campaign->image}}&w=400')">
                 </div>
             </a>
         </div>
 
         <div class="col-md-8 col-xs-8">
 
-            <a @if(is_null(Auth::User())) @click='myData.login = true' @else  href="/campaign/{{$campaign->id}}" @endif>
+            <a href="/campaign/{{$campaign->id}}">
                 <div class="content">
                     <h3 class='title2 title'>{{$campaign->name}}</h3>
 

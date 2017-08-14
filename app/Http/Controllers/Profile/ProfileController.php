@@ -23,16 +23,10 @@ use App\Http\Controllers\AttainmentsController;
 class ProfileController extends Controller
 {
    public function showProfile(){
-      $user = User::find(auth::user()->id);
-      $services = Service::where("user_id" , Auth::id())->where('state_id' , 1)->orderBy("created_at","desc")->get();
-      
-      JavaScript::put([
-				'userJs'=> $user,
-				'birthDateJs' => is_null($user->birthDate) ? "0000-00-00" :  $user->birthDate,
-      ]);
-
-       $campaigns = Campaigns::campaignsUser(Auth::user()->id)->get();
-       return view('profile/profile', compact('services', 'campaigns'));
+        $user = User::find(auth::user()->id);
+        $services = Service::where("user_id" , Auth::id())->where('state_id' , 1)->orderBy("created_at","desc")->get();
+        $campaigns = Campaigns::campaignsUser(Auth::user()->id)->get();
+        return view('profile/profile', compact('services', 'campaigns'));
     }
 
     public function showProfileUser($user_id){
@@ -62,31 +56,23 @@ class ProfileController extends Controller
     }
 
 	public function editProfile(Request $request){
-
 	 	$this->validateProfile($request);
 	 	$picture=$this->editProfilePicture($request);
-	 	
+        $oldAboutMe = Auth::user()->aboutMe;
 	 	if($picture !==false){
 	       Auth::user()->avatar = $picture;
         }
-		
 		Auth::user()->first_name = $request->input('firstName');
 		Auth::user()->last_name = $request->input('lastName');
 		Auth::user()->birthDate = $request->input('birthDate');
 		Auth::user()->aboutMe = $request->input("aboutMe");
-        Auth::user()->privacy_policy = $request->input('terms');
         Auth::user()->gender = $request->input('gender');
         Auth::user()->email2 = $request->input('email2');
-  	
         Auth::user()->save();
-        if(!empty(Auth::user()->interests->all())){			
-			return Redirect::to("profile");
-		}else{
-			AttainmentsController::saveAttainment(1);
-            return Redirect::to("/interest");
-		}
-  	
-
+        if($oldAboutMe == '' && Auth::user()->aboutMe != ''){
+            AttainmentsController::saveAttainment(2);
+        }
+        return redirect()->back();
 	}
 
     private function validateProfile($request){
@@ -95,7 +81,6 @@ class ProfileController extends Controller
 	 			'lastName' => 'required|min:3|alpha_spaces',
 	 			'gender' => 'required',
 	 			'aboutMe' => 'required|min:50|max:250',
-	            'terms' => 'required',
 	 			'image' => 'image|max:2000',
 	 			'avatar' => 'max:2000|image',
 	 			'email2' => 'required|email'

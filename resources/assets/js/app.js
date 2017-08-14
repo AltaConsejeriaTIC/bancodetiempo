@@ -24,10 +24,7 @@ window.categories = categories;
 window.tags = tags;
 
 Vue.component('input-tag', require('./components/InputTag.vue'));
-Vue.component('register', require('./components/Register.vue'));
-Vue.component('interest', require('./components/Interest.vue'));
 Vue.component('deactivate', require('./components/DeactivateAccount.vue'));
-Vue.component('avatar', require('./components/ImageProfile.vue'));
 Vue.component('editservice', require('./components/EditService.vue'));
 Vue.component('filtersCategories', require('./components/filtersCategories.vue'));
 Vue.component('contactmailmodal', require('./components/contactMailModal.vue'));
@@ -36,6 +33,7 @@ Vue.component('sendmessage', require('./components/sendMessage.vue'));
 Vue.component('deals', require('./components/Deal.vue'));
 Vue.component('newservice', require('./components/NewService.vue'));
 Vue.component('select-icon', require('./components/selectIcon.vue'));
+Vue.component('popup', require('./components/popup.vue'));
 
 var app = new Vue({
 
@@ -54,7 +52,6 @@ var app = new Vue({
     },
     mounted(){   	
     	scrollFixed();
-    	scrollBottom();
         this.setMyData('categories', categories);
         this.setMyData('tags' , tags);
     }
@@ -87,15 +84,5 @@ function scrollChange(){
 		}
 		
 	}
-}
-
-function scrollBottom(){
-	var elemScroll = document.getElementsByClassName('scrollBottom');
-	setTimeout(function(){
-		for(var e = 0; e < elemScroll.length; e++){
-			elemScroll[e].scrollTop = elemScroll[e].scrollHeight;
-		}
-	}, 500);
-	
 }
 

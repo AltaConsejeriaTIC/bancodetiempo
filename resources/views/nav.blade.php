@@ -11,3 +11,4 @@
     @include('barNav.nav3')
 
 @endif
+@include('partial.messagesSystem')

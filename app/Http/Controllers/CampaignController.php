@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Groups;
 use App\Models\Campaigns;
 use App\Models\CampaignParticipants;
+use App\Models\TypeReport;
+use App\Models\CampaignReport;
 use App\Helpers;
 use Mail;
 
@@ -17,11 +19,10 @@ class CampaignController extends Controller
 
         $cover = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/campaigns/');
         $today = new \DateTime(date("Y-m-d"));
-        $userDate = new \DateTime($request->input('dateCampaign'));
+        $userDate = new \DateTime($request->input('dateCampaign') . " " . $request->input('timeCampaign'));
         $interval = $today->diff($userDate);
         $dayInterval = (int)ceil($interval->days / 2);
         $date_finish_donations = date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $request->input('hoursCampaign');
-
         if ($cover) {
             $group = Campaigns::create([
                 'name' => $request->input('nameCampaign'),
@@ -32,7 +33,7 @@ class CampaignController extends Controller
                 'credits' => 0,
                 'category_id' => $request->input('categoryCampaign'),
                 'date_donations' => $date_finish_donations,
-                'date' => $request->input('dateCampaign') . " " . $request->input('hoursCampaign'),
+                'date' => $userDate,
                 'state_id' => 1
             ]);
         }
@@ -41,37 +42,49 @@ class CampaignController extends Controller
 
     }
 
+
+
+    public function report(Request $request, $campaignId)
+    {
+        $user_report=(CampaignReport:: where([['user_id', '=', auth::user()->id],['campaign_id', '=', $campaignId],])->get());
+
+        if (count($user_report)==0) {
+            $report = CampaignReport::create([
+                'campaign_id' => $campaignId,
+                'user_id' => auth::user()->id,
+                'type_report_id' => $request->input('list'),
+                'observation' => $request->input('observacion')
+            ]);
+            $numReports=(CampaignReport:: where([['campaign_id', '=', $campaignId],])->get());
+
+            if (count($numReports) > 4) {
+                $service = Campaigns::find($campaignId);
+                $service->update([
+                    'state_id' => 3,
+                ]);
+            }
+
+            return redirect()->back()->with('report', true);
+        }
+
+        return redirect()->back()->with('reportOk', true);
+
+    }
+
     public function show($campaignId)
     {
-
         $campaign = Campaigns::findOrFail($campaignId);
-
-        return view('campaigns/campaign', compact('campaign'));
+        $listTypes = TypeReport::pluck('type', 'id');
+        return view('campaigns/campaign', compact('campaign', 'listTypes'));
     }
 
     public function inscriptionParticipant(Request $request)
     {
-
-        if ($this->getQuotasAvailable($request->input('campaign_id')) > 0) {
-
-            $participant = CampaignParticipants::where("participant_id", Auth::id())->where("campaigns_id", $request->input('campaign_id'));
-            if ($participant->get()->count() == 0) {
-                $participant = CampaignParticipants::create([
-                    'campaigns_id' => $request->input('campaign_id'),
-                    'participant_id' => Auth::id(),
-                    "confirmed" => 1
-                ]);
-            } else {
-                $participant->update([
-                    "confirmed" => 1
-                ]);
-            }
-
+        if ($this->inscribePerson($request->input('campaign_id'), Auth::id())) {
             return redirect()->back()->with('msg', 'Te has inscrito con exito');
         }
 
         return redirect()->back()->with('msg', 'Ya no quedan cupos disponibles');
-
     }
 
     public function preinscriptionParticipant(Request $request)
@@ -104,7 +117,7 @@ class CampaignController extends Controller
     private function getQuotasAvailable($campaign_id)
     {
         $campaign = Campaigns::find($campaign_id);
-        $totalParticipants = $campaign->participants->count();
+        $totalParticipants = $campaign->participants->where('confirmed', true)->count();
         return $this->getQuotasCampaign($campaign) - $totalParticipants;
     }
 
@@ -211,7 +224,7 @@ class CampaignController extends Controller
     {
 
         $campaigns = Campaigns::whereBetween("date_donations", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where('allows_registration', 0)->get();
-
+        print(date("Y-m-d H:i:00"));
         foreach ($campaigns as $campaign) {
             $campaign->update([
                 "credits" => $campaign->credits * 2,
@@ -227,22 +240,66 @@ class CampaignController extends Controller
     {
         foreach ($campaign->participants as $participant) {
             $mail = $participant->participant->email2;
-            print($mail . "\n");
-            Mail::send('mailPreInscribed', ["campaign" => $campaign, "participant" => $participant->participant], function ($message) use ($mail) {
-                $message->from('bancodetiempo@cambalachea.co', 'Cambalachea!');
-                $message->subject('Notificación');
-                $message->to($mail);
-            });
+
+            if ($this->inscribePerson($campaign->id, $participant->participant->id)) {
+                $this->sendEmail('mailPreInscribed', ["campaign" => $campaign, "participant" => $participant->participant], $mail);
+            } else {
+                $this->sendEmail('mailNoPreInscribed', ["campaign" => $campaign, "participant" => $participant->participant], $mail);
+            }
         }
-
-
     }
 
-    public function filter(Request $request)
+
+    private function sendEmail($templateId, $emailParams, $toEmail)
+    {
+        Mail::send($templateId, $emailParams, function ($message) use ($toEmail) {
+            $message->from('bancodetiempo@cambalachea.co', 'Cambalachea!');
+            $message->subject('Notificación');
+            $message->to($toEmail);
+        });
+    }
+
+    private function inscribePerson($campaignId, $personId)
+    {
+        $quotas = $this->getQuotasAvailable($campaignId);
+        $areThereQuotas = $quotas > 0;
+
+        if ($areThereQuotas) {
+            $participant = CampaignParticipants::where("participant_id", $personId)->where("campaigns_id", $campaignId);
+
+            if ($participant->get()->count() == 0) {
+                CampaignParticipants::create([
+                    'campaigns_id' => $campaignId,
+                    'participant_id' => $personId,
+                    "confirmed" => true
+                ]);
+            } else {
+                $participant->update([
+                    "confirmed" => true
+                ]);
+            }
+        }
+
+        return $areThereQuotas;
+    }
+
+
+    public
+    function filter(Request $request)
     {
         $filter = $request->input('filter');
         $campaigns = Campaigns::select("campaigns.*")->where('campaigns.name', 'LIKE', "%$filter%")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
         return view('campaigns/list', compact('campaigns', 'filter'));
+    }
+
+    public
+    function showListAllCampaigns(Request $request)
+    {
+
+        $campaigns = Campaigns::getCampaignsActive()->paginate(4);
+
+        return view('campaigns.list', compact('campaigns'));
+
     }
 
 }

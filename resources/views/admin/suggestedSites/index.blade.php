@@ -48,22 +48,28 @@
                                         </tr>
                                         @foreach($category->sites as $site)
                                             <tr>
-                                                <td @click='myData.newsite = true;
-                                               myData.siteName="{{$site->name}}";
-                                               myData.siteAddress="{{$site->address}}";
-                                               myData.siteRequirements="{{$site->requirements}}";
-                                               myData.siteContact="{{$site->contact}}";
-                                               myData.siteDescription="{{$site->description}}";
-                                               myData.siteCoordinates="{{$site->coordinates}}";
-                                               myData.siteId = {{$site->id}}' onClick='loadSite();'>{{$site->name}}</td>
-                                                <td @click='myData.newsite = true;
-                                               myData.siteName="{{$site->name}}";
-                                               myData.siteAddress="{{$site->address}}";
-                                               myData.siteRequirements="{{$site->requirements}}";
-                                               myData.siteContact="{{$site->contact}}";
-                                               myData.siteDescription="{{$site->description}}";
-                                               myData.siteCoordinates="{{$site->coordinates}}";
-                                               myData.siteId = {{$site->id}}' onClick='loadSite();'>{{$site->address}}</td>
+                                                <td @click='myData.newsite = true;myData.siteId = {{$site->id}}' class='openEdit'>
+                                                   {{$site->name}}
+                                                   <input type="hidden" name='name' value="{{$site->name}}">
+                                                   <input type="hidden" name='address' value="{{$site->address}}">
+                                                   <input type="hidden" name='requirements' value="{{$site->requirements}}">
+                                                   <input type="hidden" name='contact' value="{{$site->contact}}">
+                                                   <input type="hidden" name='description' value="{{$site->description}}">
+                                                   <input type="hidden" name='coordinates' value="{{$site->coordinates}}">
+                                                   <input type="hidden" name='id' value="{{$site->id}}">
+                                                   <input type="hidden" name='categoryId' v-model='myData.categoryId'>
+                                               </td>
+                                                <td @click='myData.newsite = true;myData.siteId = {{$site->id}}' class='openEdit'>
+                                                   {{$site->address}}
+                                                   <input type="hidden" name='name' value="{{$site->name}}">
+                                                   <input type="hidden" name='address' value="{{$site->address}}">
+                                                   <input type="hidden" name='requirements' value="{{$site->requirements}}">
+                                                   <input type="hidden" name='contact' value="{{$site->contact}}">
+                                                   <input type="hidden" name='description' value="{{$site->description}}">
+                                                   <input type="hidden" name='coordinates' value="{{$site->coordinates}}">
+                                                   <input type="hidden" name='id' value="{{$site->id}}">
+                                                   <input type="hidden" name='categoryId' v-model='myData.categoryId'>
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-raised btn-primary btn-xs" title="Borrar categoria" @click='myData.deletesite=true;myData.siteId = {{$site->id}}'><i class="material-icons">delete</i></button>
                                                 </td>
@@ -118,6 +124,12 @@
 
         marker.addListener('dragend', function() {
             jQuery("#coordinates").val(marker.position.lat()+","+marker.position.lng());
+            var geocoder = new google.maps.Geocoder;
+            geocoder.geocode({'location': marker.position}, function(results, status) {
+                if(status === 'OK') {
+                    document.getElementById('siteName').value = results[1].formatted_address;
+                }
+            });
         });
 
         var input = (document.getElementById('siteName'));
@@ -144,10 +156,51 @@
         });
 
       }
+
+    jQuery(".openEdit").on("click", loadform);
+    jQuery(".openEdit").on("click", loadSite);
+    jQuery(".closeForm").on("click", closeForm);
+
+    function loadform(){
+        var name = jQuery(this).find("[name='name']").val();
+        jQuery("#editName").val(name);
+        var address = jQuery(this).find("[name='address']").val();
+        jQuery("#address").val(address);
+        var requirements = jQuery(this).find("[name='requirements']").val();
+        jQuery("#requirements").val(requirements);
+        var contact = jQuery(this).find("[name='contact']").val();
+        jQuery("#contact").val(contact);
+        var description = jQuery(this).find("[name='description']").val();
+        jQuery("#description").val(description);
+        var coordinates = jQuery(this).find("[name='coordinates']").val();
+        jQuery("#coordinates").val(coordinates);
+        var id = jQuery(this).find("[name='id']").val();
+        jQuery("#siteId").val(id);
+    }
+
+    function closeForm(){
+        jQuery("#editName").val("");
+        jQuery("#address").val("");
+        jQuery("#requirements").val("");
+        jQuery("#contact").val("");
+        jQuery("#description").val("");
+        jQuery("#coordinates").val("");
+        jQuery("#siteId").val("");
+        jQuery("#categoryId").val("");
+        jQuery("#siteName").val("");
+    }
+
     function loadSite(){
         var position = jQuery("#coordinates").val().split(",");
         map.setCenter({lat: parseFloat(position[0]), lng : parseFloat(position[1])});
         marker.setPosition({lat: parseFloat(position[0]), lng : parseFloat(position[1])});
+        var geocoder = new google.maps.Geocoder;
+        var location = {lat : parseFloat(position[0]), lng : parseFloat(position[1])};
+        geocoder.geocode({'location': location}, function(results, status) {
+            if(status === 'OK') {
+                document.getElementById('siteName').value = results[1].formatted_address;
+            }
+        });
     }
 </script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhcDkWcXQ-qm6-1vZC8RDjJz0lUrXCAMw&callback=initMap&libraries=places"></script>
