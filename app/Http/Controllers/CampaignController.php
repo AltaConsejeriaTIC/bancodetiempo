@@ -25,7 +25,7 @@ class CampaignController extends Controller
     }
     public function create(Request $request){
         $cover = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/campaigns/');
-        $date_finish_donations = getDateDonations($request->input('dateCampaign'), $request->input('timeCampaign'),$request->input('hoursCampaign'));
+        $date_finish_donations = $this->getDateDonations($request->input('dateCampaign'), $request->input('timeCampaign'),$request->input('hoursCampaign'));
         if ($cover) {
             Campaigns::create([
                 'name' => $request->input('nameCampaign'),
