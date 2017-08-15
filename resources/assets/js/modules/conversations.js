@@ -25,9 +25,12 @@ function init(){
 }
 
 function showConversation(){
+    jQuery(".reading").removeClass("reading");
     closeConversation();
     openConversation();
     conversationId = jQuery(this).data('conversation');
+    jQuery(this).removeClass("notRead");
+    jQuery(this).addClass("reading");
     adjustBox();
     activity = true;  
     callMessages();

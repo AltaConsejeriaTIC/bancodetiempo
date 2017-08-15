@@ -8,6 +8,8 @@
                 <button class="icons-button" @click="myData.deleteCampaign{{$campaign->id}}=true"><i
                             class="fa fa-trash-o"></i></button>
             </div>
+            @include('campaigns/partial/editCampaign', array("$campaign" => $campaign))
+            @include('campaigns/partial/deleteCampaign', array("$campaign" => $campaign))
         @endif
         <div class="col-md-4 col-xs-4 not-padding">
             <a href="/campaign/{{$campaign->id}}">
@@ -43,6 +45,5 @@
         </div>
 
     </div>
-    @include('campaigns/partial/editCampaign', array("$campaign" => $campaign))
-    @include('campaigns/partial/deleteCampaign', array("$campaign" => $campaign))
+    
 @endif

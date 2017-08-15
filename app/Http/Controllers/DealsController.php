@@ -41,9 +41,9 @@ class DealsController extends Controller
 
             $email = new EmailController;
             if($conversation->applicant_id == Auth::id()){
-                $email->sendMailDeal($conversation->service->user_id, "new");
+                $email->sendMailDeal($conversation->service->user_id,$conversation->applicant_id, $conversation->service, "new");
             }else{
-                $email->sendMailDeal($conversation->applicant_id, "new");
+                $email->sendMailDeal($conversation->applicant_id,$conversation->service->user_id, $conversation->service, "new");
             }
             
             return '{"state" : "ok"}';
@@ -69,9 +69,9 @@ class DealsController extends Controller
         if($deal->creator_id != Auth::id()){
             $email = new EmailController;
            if($conversation->applicant_id == $deal->creator_id){
-                $email->sendMailDeal($conversation->applicant_id, "acepted");
+                $email->sendMailDeal($conversation->applicant_id,$conversation->service->user_id, $conversation->service, "acepted");
             }else{
-                $email->sendMailDeal($conversation->service->user_id, "acepted");
+                $email->sendMailDeal($conversation->service->user_id,$conversation->applicant_id, $conversation->service, "acepted");
             }
         }
         return '{"state" : "ok"}';
@@ -174,7 +174,7 @@ class DealsController extends Controller
         $date = new \DateTime(date('Y').'-'.date('m').'-'.(date('d')-3));
         $deals = Deal::where('date', '<=', $date->format('Y-m-d'))->where('time', '<=', date("H:i:s"))->get();
         foreach($deals as $deal){
-            if($deal->dealStates->last()->state_id == 12){
+            if($deal->state_id == 12){
                 $this->createNewState($deal->id, 10);
                  if($deal->response_applicant == null && $deal->response_offerer == null){
                      $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
@@ -187,6 +187,22 @@ class DealsController extends Controller
                  }
             }
         }
+    }
+    
+    public function changeDealsForRanking(){
+        
+        $deals = Deal::where("date", "<=", \date("Y-m-d"))->where("time", "<=", \date('H:i:s'))->where("state_id", 7)->get();
+        if($deals->count() > 0){
+            foreach($deals as $deal){
+                $deal->update([
+                    "state_id" => 12
+                ]);
+                $email = new EmailController;
+                $email->sendMailDeal($deal->user_id,$deal->service->user_id, $deal->service, "ranking");
+                $email->sendMailDeal($deal->service->user_id,$deal->user_id, $deal->service, "ranking");                
+            }
+        }
+        
     }
 
 }

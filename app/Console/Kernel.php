@@ -26,10 +26,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        /*$schedule->call(function (){
+        $schedule->call(function (){
             $email = new EmailController();
             $email->sendMailDaily();
-        })->twiceDaily(1);*/
+        })->everyFiveMinutes();
 
         $schedule->call(function (){
             $deals = new DealsController();
@@ -49,6 +49,11 @@ class Kernel extends ConsoleKernel
         $schedule->call(function (){
             $campaign = new CampaignController();
             $campaign->enableInscriptions();
+        })->everyMinute();
+        
+        $schedule->call(function (){
+            $deals = new DealsController();
+            $deals->changeDealsForRanking();
         })->everyMinute();
 
     }

@@ -68,40 +68,52 @@ class EmailController extends Controller
     	return redirect()->back()->with('response', true);    	
     }
 
-    public function sendMailDeal($Addressee,$action){
-          $Addressee = User::findOrFail($Addressee);
-          $mail = $Addressee->email2;        
-          Mail::send('emails/deal',["Addressee" => $Addressee, "action" => $action], function ($message) use ($mail){
-            $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
-            $message->subject('Te han enviado una propuesta');
+    public function sendMailDeal($Addressee,$sender,$service,$action){
+        $Addressee = User::findOrFail($Addressee);
+        $sender = User::findOrFail($sender);
+        $mail = $Addressee->email2;
+        $subject = '';
+        switch($action){
+            case 'new':
+               $subject = 'Te han enviado una propuesta';     
+            break;
+            case 'acepted':
+               $subject = $sender->first_name.' ha aceptado tu propuesta';     
+            break;
+            case 'ranking':
+                $subject = 'Califica el trato con '.$sender->first_name; 
+            break;
+        }          
+        Mail::send('emails/deal',["Addressee" => $Addressee, "action" => $action, "sender" => $sender, "service" => $service], function ($message) use ($mail, $subject){
+            $message->from('info@cambalachea.co','Cambalachea!');
+            $message->subject($subject);
             $message->to($mail);
-          });
-          return redirect()->back();
+        });
+        return redirect()->back();
     }
 
-    public function sendMailDaily()
-    {      
+    public function sendMailDaily(){    
+        $receptors = collect([]);
         $Conversations = Conversations::all();
-
         foreach($Conversations as $conversation){
-            $message = json_decode($conversation->message);
-            $lastMessage = end($message);
-            if($lastMessage->state == 6){
-                if($lastMessage->sender != $conversation->applicant_id){
-                    $addressee = $conversation->applicant;
+            $message = collect(json_decode($conversation->message))->last(); 
+            if($message->state == 6){
+                $receptor = $conversation->applicant_id == $message->sender ? $conversation->service->user_id : $conversation->applicant_id;
+                if($receptors->has($receptor)){                                    
+                    $receptors[$receptor] += 1;
                 }else{
-                    $addressee = $conversation->service->user;
+                    $receptors->put($receptor, 1);
                 }
-
-                Mail::send('emailDaily', ["user" => $addressee], function ($message) use ($addressee)
-                {
-                    $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
-                    $message->subject('Notificación');
-                    $message->to($addressee->email2);
-                });
             }
         }
-
+        foreach($receptors as $receptor => $notifications){
+            $receptor = User::find($receptor);
+            Mail::send('emailDaily', ["notifications" => $notifications, "user" => $receptor], function ($message) use ($receptor){
+                $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
+                $message->subject('Notificación');
+                $message->to($receptor->email2);
+            });
+        }
     }
    
 }

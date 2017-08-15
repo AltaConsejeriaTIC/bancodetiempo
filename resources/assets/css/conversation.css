@@ -60,6 +60,11 @@
     margin-bottom: 5px;
 }
 
+.listConversation {
+    height: 80vh;
+    overflow: auto;
+}
+
 .listConversation > .row {
     cursor: pointer;
     margin-left: -15px !important;
@@ -112,9 +117,17 @@
 }
 
 .notRead {
-    background: #e3e9f3;
+    background: #0f6784;
     overflow: hidden;
     padding: 1% 0px;
+}
+
+.notRead p {
+    color: #fff !important;
+}
+
+.reading{
+    background: #e3ecf1;
 }
 
 .dealDetail {
