@@ -11,7 +11,7 @@
             @include('campaigns/partial/editCampaign', array("$campaign" => $campaign))
             @include('campaigns/partial/deleteCampaign', array("$campaign" => $campaign))
         @endif
-        <div class="col-md-4 col-xs-4 not-padding">
+        <div class="col-md-4 col-xs-4 not-padding cover">
             <a href="/campaign/{{$campaign->id}}">
                 <div class="cover" style="background-image : url('/getImg?img={{$campaign->image}}&w=400')">
                 </div>

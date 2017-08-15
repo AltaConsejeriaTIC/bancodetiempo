@@ -1240,7 +1240,7 @@ ul.listComplete {
     max-width: 100%;
 }
 
-.campaign-box > div {
+.campaign-box .cover {
     display: block;
     height: 100%;
 }
@@ -1339,47 +1339,6 @@ div#findMobile .close {
 
 #messagesProfile {
     overflow: hidden;
-}
-
-.campaign .partakers h1 {
-    font-weight: bold;
-    font-size: 18px;
-    color: #303030;
-}
-
-.campaign .partakers a {
-    color: #0f6784;
-    font-size: 18px;
-    text-decoration: underline !important;
-}
-
-.campaign .host {
-    font-family: Montserrat, sans-serif;
-    color: #2c3e50;
-}
-
-.campaign .host h1 {
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.campaign .host .name {
-    font-weight: bold;
-    font-size: 28px;
-}
-
-.campaign .host .admin-profile {
-    max-width: 120px;
-}
-
-.campaign .host .rate {
-    font-size: 14px;
-    color: #001738;
-    text-align: left;
-}
-
-.campaign .host .rate span {
-    color: #90a1b5;
 }
 
 .sharing .button {
