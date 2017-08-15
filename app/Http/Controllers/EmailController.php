@@ -105,11 +105,18 @@ class EmailController extends Controller
                 $receptors[$receptor]["messages"]->push(["sender" => user::find($message->sender), "message" => $message->message]);
             }
         }
-        
         foreach($receptors as $receptor){
-            Mail::send('emailDaily', ["receptor" => $receptor], function ($message) use ($receptor){
-                $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
-                $message->subject('Notificación');
+            
+            if($receptor["messages"]->count() > 1){
+                $subject = "¡ ".$receptor["messages"][0]["sender"]->first_name;
+                $subject .= ", ".$receptor["messages"][1]["sender"]->first_name;
+                $subject .= " y otros cambalacheros desean comunicarse contigo en Bogotá Cambalachea!";
+            }else{
+                $subject = "¡ ".$receptor["messages"][0]["sender"]->first_name." está interesado en tomar una de tus ofertas en Bogotá Cambalachea¡";
+            }
+            Mail::send('emailDaily', ["receptor" => $receptor], function ($message) use ($receptor, $subject){
+                $message->from('info@cambalachea.co','Cambalachea!');
+                $message->subject($subject);
                 $message->to($receptor["user"]->email2);
             });
         }

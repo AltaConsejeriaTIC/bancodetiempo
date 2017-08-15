@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'userService' => \App\Http\Middleware\UserServiceMiddleware::class,
         'conversation' => \App\Http\Middleware\ConversationMiddleware::class,
         'userPending' => \App\Http\Middleware\UserPendingMiddleware::class,
+        'userAccess' => \App\Http\Middleware\SessionActivedMiddleware::class,
     ];
 }

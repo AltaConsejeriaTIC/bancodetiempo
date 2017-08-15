@@ -2,7 +2,7 @@
     @section('title')
         <h3>Hola {{$receptor["user"]->first_name}}!</h3>
         <br>
-        <h3>Tienes <strong>{{$receptor["messages"]->count()}}</strong> nuevos mensajes en la plataforma</h3>
+        <h3>Tienes <strong>{{$receptor["messages"]->count()}}</strong> nuevos mensajes en Bogotá Cambalachea, puedes responderlos ingresando a tu inbox:</h3>
     @endsection
     @section('content')
         @foreach($receptor["messages"] as $index => $message)
