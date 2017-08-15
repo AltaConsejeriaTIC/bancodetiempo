@@ -99,19 +99,18 @@ class EmailController extends Controller
             $message = collect(json_decode($conversation->message))->last(); 
             if($message->state == 6){
                 $receptor = $conversation->applicant_id == $message->sender ? $conversation->service->user_id : $conversation->applicant_id;
-                if($receptors->has($receptor)){                                    
-                    $receptors[$receptor] += 1;
-                }else{
-                    $receptors->put($receptor, 1);
-                }
+                if(!$receptors->has($receptor)){                                    
+                    $receptors->put($receptor, collect(["user" => user::find($receptor), "messages" => collect([])]));
+                }                    
+                $receptors[$receptor]["messages"]->push(["sender" => user::find($message->sender), "message" => $message->message]);
             }
         }
-        foreach($receptors as $receptor => $notifications){
-            $receptor = User::find($receptor);
-            Mail::send('emailDaily', ["notifications" => $notifications, "user" => $receptor], function ($message) use ($receptor){
+        
+        foreach($receptors as $receptor){
+            Mail::send('emailDaily', ["receptor" => $receptor], function ($message) use ($receptor){
                 $message->from('bancodetiempo@cambalachea.co','Cambalachea!');
                 $message->subject('Notificación');
-                $message->to($receptor->email2);
+                $message->to($receptor["user"]->email2);
             });
         }
     }
