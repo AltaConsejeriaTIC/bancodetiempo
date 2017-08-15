@@ -26,45 +26,30 @@ class CampaignsController extends Controller
         return view('admin/campaigns/list', compact('campaigns', 'states'));
     }
 
-    public function updateCampaignState(Request $request)
-    {
+    public function updateCampaignState(Request $request){
         $campaign = Campaigns::find($request->id);
         $campaign->state_id = $request->state_id;
-
         if ($campaign->save()) {
             if ($campaign->state_id == 3) {
                 $this->cancelCampaign($campaign);
             }
-
             Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
             return redirect()->back();
         }
-
     }
 
-    public function cancelCampaign($campaign)
-    {
+    public function cancelCampaign($campaign){
         if ($campaign->participants->count() > 0) {
-            $this->sendEmailToCampaignStakeholders($campaign);
+            CampaignsController::sendEmailToCampaignStakeholders($campaign);
+            CampaignsController::removeParticipantsCampaignBlock($campaign);
         }
-
         if ($campaign->credits > 0) {
             $this->giveBackCreditsToCampaignDonors($campaign);
         }
     }
 
-    public function sendEmailToCampaignStakeholders($campaign)
-    {
-        foreach ($campaign->participants as $campaignParticipant) {
-            $participant = $campaignParticipant->participant;
-            $this->sendEmail('mailCancelCampaignParticipant', ["campaign" => $campaign, "participant" => $participant], $participant->email2);
-        }
 
-        $this->sendEmail('mailCancelCampaignOwner', ["campaign" => $campaign, "participant" => $campaign->user], $campaign->user->email2);
-    }
-
-    public function giveBackCreditsToCampaignDonors($campaign)
-    {
+    public function giveBackCreditsToCampaignDonors($campaign){
         $historyDonations = HistoryDonations::where('campaign_id', $campaign->id)->get();
 
         foreach ($historyDonations as $donation) {
@@ -100,13 +85,24 @@ class CampaignsController extends Controller
             });
         })->download('xls');
     }
+    static function sendEmailToCampaignStakeholders($campaign)    {
+        foreach ($campaign->participants as $campaignParticipant) {
+            $participant = $campaignParticipant->participant;
+            CampaignsController::sendEmail('mailCancelCampaignParticipant', ["campaign" => $campaign, "participant" => $participant], $participant->email2);
+        }
+        CampaignsController::sendEmail('mailCancelCampaignOwner', ["campaign" => $campaign, "participant" => $campaign->user], $campaign->user->email2);
+    }
 
-    private function sendEmail($templateId, $emailParams, $toEmail)
-    {
+    static function sendEmail($templateId, $emailParams, $toEmail){
         Mail::send($templateId, $emailParams, function ($message) use ($toEmail) {
             $message->from('info@cambalachea.co', 'Cambalachea!');
             $message->subject('Notificación');
             $message->to($toEmail);
         });
+    }
+    static function removeParticipantsCampaignBlock($campaign){
+        foreach($campaign->participants as $participant){
+            $participant->delete();
+        }
     }
 }

@@ -11,20 +11,23 @@ use App\Models\TypeReport;
 use App\Models\CampaignReport;
 use App\Helpers;
 use Mail;
+use App\Http\Controllers\Admin\CampaignsController as adminCampaign;
 
 class CampaignController extends Controller
 {
-    public function create(Request $request)
-    {
-
+    public function show($campaignId){
+        $campaign = Campaigns::findOrFail($campaignId);
+        if($campaign->state_id == 3){
+            return redirect("/");
+        }
+        $listTypes = TypeReport::pluck('type', 'id');
+        return view('campaigns/campaign', compact('campaign', 'listTypes'));
+    }
+    public function create(Request $request){
         $cover = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/campaigns/');
-        $today = new \DateTime(date("Y-m-d"));
-        $userDate = new \DateTime($request->input('dateCampaign') . " " . $request->input('timeCampaign'));
-        $interval = $today->diff($userDate);
-        $dayInterval = (int)ceil($interval->days / 2);
-        $date_finish_donations = date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $request->input('hoursCampaign');
+        $date_finish_donations = getDateDonations($request->input('dateCampaign'), $request->input('timeCampaign'),$request->input('hoursCampaign'));
         if ($cover) {
-            $group = Campaigns::create([
+            Campaigns::create([
                 'name' => $request->input('nameCampaign'),
                 'description' => $request->input('descriptionCampaign'),
                 'image' => $cover,
@@ -33,53 +36,44 @@ class CampaignController extends Controller
                 'credits' => 0,
                 'category_id' => $request->input('categoryCampaign'),
                 'date_donations' => $date_finish_donations,
-                'date' => $userDate,
+                'date' => $request->input('dateCampaign')." ".$request->input('timeCampaign'),
                 'state_id' => 1
             ]);
         }
-
         return redirect()->back();
-
     }
-
-
-
-    public function report(Request $request, $campaignId)
-    {
-        $user_report=(CampaignReport:: where([['user_id', '=', auth::user()->id],['campaign_id', '=', $campaignId],])->get());
-
+    private function getDateDonations($date, $time, $hours){
+        $today = new \DateTime(date("Y-m-d"));
+        $userDate = new \DateTime($date . " " . $time);
+        $interval = $today->diff($userDate);
+        $dayInterval = (int)ceil($interval->days / 2);
+        return date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $hours;
+    }
+    public function report(Request $request, $campaignId){
+        $user_report = CampaignReport::where('user_id', auth::user()->id)->where('campaign_id', $campaignId)->get();
         if (count($user_report)==0) {
-            $report = CampaignReport::create([
+            CampaignReport::create([
                 'campaign_id' => $campaignId,
-                'user_id' => auth::user()->id,
+                'user_id' => auth::id(),
                 'type_report_id' => $request->input('list'),
                 'observation' => $request->input('observacion')
             ]);
-            $numReports=(CampaignReport:: where([['campaign_id', '=', $campaignId],])->get());
-
-            if (count($numReports) > 4) {
-                $service = Campaigns::find($campaignId);
-                $service->update([
-                    'state_id' => 3,
-                ]);
-            }
-
+            $this->blockCampaign($campaignId);
             return redirect()->back()->with('report', true);
         }
-
         return redirect()->back()->with('reportOk', true);
-
     }
-
-    public function show($campaignId)
-    {
-        $campaign = Campaigns::findOrFail($campaignId);
-        $listTypes = TypeReport::pluck('type', 'id');
-        return view('campaigns/campaign', compact('campaign', 'listTypes'));
+    private function blockCampaign($campaignId){
+        if (CampaignReport::where('campaign_id', $campaignId)->get()->count() > 4){
+            $campaign = Campaigns::find($campaignId);
+            $campaign->update([
+                'state_id' => 3,
+            ]);
+            adminCampaign::sendEmailToCampaignStakeholders($campaign);
+            adminCampaign::removeParticipantsCampaignBlock($campaign);
+        }   
     }
-
-    public function inscriptionParticipant(Request $request)
-    {
+    public function inscriptionParticipant(Request $request){
         if ($this->inscribePerson($request->input('campaign_id'), Auth::id())) {
             return redirect()->back()->with('msg', 'Te has inscrito con exito');
         }
@@ -140,9 +134,7 @@ class CampaignController extends Controller
         }
     }
 
-    public function update(Request $request)
-    {
-
+    public function update(Request $request){
         $today = new \DateTime(date("Y-m-d"));
         $userDate = new \DateTime($request->input('dateCampaign'));
         $interval = $today->diff($userDate);
@@ -164,7 +156,6 @@ class CampaignController extends Controller
             'image' => $uploadedImage,
             'state_id' => 1
         ]);
-
         return redirect()->back();
     }
 
@@ -220,9 +211,7 @@ class CampaignController extends Controller
         }
     }
 
-    public function enableInscriptions()
-    {
-
+    public function enableInscriptions(){
         $campaigns = Campaigns::whereBetween("date_donations", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where('allows_registration', 0)->get();
         print(date("Y-m-d H:i:00"));
         foreach ($campaigns as $campaign) {
@@ -230,10 +219,8 @@ class CampaignController extends Controller
                 "credits" => $campaign->credits * 2,
                 "allows_registration" => 1
             ]);
-
             $this->SendEmailToPreInscribed($campaign);
         }
-
     }
 
     private function SendEmailToPreInscribed($campaign)
@@ -283,23 +270,15 @@ class CampaignController extends Controller
         return $areThereQuotas;
     }
 
-
-    public
-    function filter(Request $request)
-    {
+    public function filter(Request $request){
         $filter = $request->input('filter');
         $campaigns = Campaigns::select("campaigns.*")->where('campaigns.name', 'LIKE', "%$filter%")->where('campaigns.state_id', 1)->join("groups", "groups.id", "campaigns.groups_id")->where("groups.state_id", 1)->paginate(12);
         return view('campaigns/list', compact('campaigns', 'filter'));
     }
 
-    public
-    function showListAllCampaigns(Request $request)
-    {
-
+    public function showListAllCampaigns(Request $request){
         $campaigns = Campaigns::getCampaignsActive()->paginate(4);
-
         return view('campaigns.list', compact('campaigns'));
-
     }
 
 }

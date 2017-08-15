@@ -6,15 +6,17 @@
                 <h1 class="title1 text-center">{{ trans("campaigns.participants") }}</h1>
             </div>
             @foreach($campaign->participants as $participant)
-                <div class="row">
-                    <input type="checkbox" name="participantsPay[]" value='{{$participant->participant->id}}' class="square" id="participant{{$participant->participant->id}}">
-                    <label for="participant{{$participant->participant->id}}" class='col-md-12'>
-                        <div class="col-md-2">
-                            @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' => $participant->participant->id, 'border' => '#0f6784', 'borderSize' => '1px'))
-                        </div>
-                        <div class="col-md-9">{{$participant->participant->first_name." ".$participant->participant->last_name}}</div>
-                    </label>
-                </div>
+                @if($participant->confirmed == 1)
+                    <div class="row">
+                        <input type="checkbox" name="participantsPay[]" value='{{$participant->participant->id}}' class="square" id="participant{{$participant->participant->id}}">
+                        <label for="participant{{$participant->participant->id}}" class='col-md-12'>
+                            <div class="col-md-2">
+                                @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' => $participant->participant->id, 'border' => '#0f6784', 'borderSize' => '1px'))
+                            </div>
+                            <div class="col-md-9">{{$participant->participant->first_name." ".$participant->participant->last_name}}</div>
+                        </label>
+                    </div>
+                @endif
             @endforeach
             <br>
             <div class="row">
