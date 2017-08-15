@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-class SessionActivedMiddleware
+class NotAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,10 @@ class SessionActivedMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::check()){
-            return redirect("/");
+        if(Auth::check()){
+            if(Auth::user()->role_id != 2){
+                return redirect("/homeAdmin");
+            }
         }
         
         return $next($request);

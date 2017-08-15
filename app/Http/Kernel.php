@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'conversation' => \App\Http\Middleware\ConversationMiddleware::class,
         'userPending' => \App\Http\Middleware\UserPendingMiddleware::class,
         'userAccess' => \App\Http\Middleware\SessionActivedMiddleware::class,
+        'notAdmin' => \App\Http\Middleware\NotAdminMiddleware::class,
     ];
 }
