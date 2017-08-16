@@ -43,11 +43,17 @@ class CampaignController extends Controller
         return redirect()->back();
     }
     private function getDateDonations($date, $time, $hours){
-        $today = new \DateTime(date("Y-m-d"));
+        $current = \date("Y-m-d H:i:s");
+        $today = new \DateTime($current);
         $userDate = new \DateTime($date . " " . $time);
         $interval = $today->diff($userDate);
         $dayInterval = (int)ceil($interval->days / 2);
-        return date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $hours;
+        $hoursInterval = (int)ceil($interval->h / 2);
+        $day = strtotime("+$dayInterval day", strtotime($current));
+        $day = \date('Y-m-d', $day);
+        $hour = strtotime("+$hoursInterval hour", strtotime($current));
+        $hour = \date("H:i:s", $hour);
+        return $day." ".$hour;
     }
     public function report(Request $request, $campaignId){
         $user_report = CampaignReport::where('user_id', auth::user()->id)->where('campaign_id', $campaignId)->get();
@@ -212,8 +218,7 @@ class CampaignController extends Controller
     }
 
     public function enableInscriptions(){
-        $campaigns = Campaigns::whereBetween("date_donations", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where('allows_registration', 0)->get();
-        print(date("Y-m-d H:i:00"));
+        $campaigns = Campaigns::where("date_donations", "<=" ,date("Y-m-d H:i:59"))->where('allows_registration', 0)->get();
         foreach ($campaigns as $campaign) {
             $campaign->update([
                 "credits" => $campaign->credits * 2,
