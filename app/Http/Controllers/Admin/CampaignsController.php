@@ -40,8 +40,8 @@ class CampaignsController extends Controller
 
     public function cancelCampaign($campaign){
         if ($campaign->participants->count() > 0) {
-            CampaignsController::sendEmailToCampaignStakeholders($campaign);
             CampaignsController::removeParticipantsCampaignBlock($campaign);
+            CampaignsController::sendEmailToCampaignStakeholders($campaign);
         }
         if ($campaign->credits > 0) {
             $this->giveBackCreditsToCampaignDonors($campaign);

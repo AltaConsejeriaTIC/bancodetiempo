@@ -22,6 +22,11 @@ function init(){
     /* datapicker */
     jQuery.datetimepicker.setLocale('es'); 
     jQuery('#dateDeal').datetimepicker();
+    jQuery(window).resize(function(){
+        setTimeout(function(){
+            adjustBox();
+        }, 500);
+    });
 }
 
 function showConversation(){
