@@ -47,8 +47,8 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
         
         $schedule->call(function (){
-            $campaign = new CampaignController();
-            $campaign->refuseDeal();
+            $deals = new DealsController();
+            $deals->refuseDeal();
         })->everyMinute();
 
         $schedule->call(function (){

@@ -208,7 +208,7 @@ class CampaignController extends Controller
 
     public function changeState()
     {
-        $campaigns = Campaigns::where("date", , "<=" ,date("Y-m-d H:i:59"))->where('allows_registration', 1)->where("state_id", 1)->get();
+        $campaigns = Campaigns::where("date", "<=" ,date("Y-m-d H:i:59"))->where('allows_registration', 1)->where("state_id", 1)->get();
         foreach ($campaigns as $campaign) {
             $campaign->update([
                 "state_id" => 12

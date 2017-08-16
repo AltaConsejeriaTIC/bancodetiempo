@@ -38,6 +38,7 @@ function showConversation(){
 }
 function openConversation(){
     jQuery("#conversation").addClass("active");
+    jQuery("#conversation > .box").removeClass("hidden");
     jQuery(".listConversation").removeClass("active");
     jQuery("#conversation #controllers").removeClass('hidden');
     jQuery("#conversation #dealBox").removeClass('hidden');
@@ -49,6 +50,7 @@ function openConversation(){
 }
 function closeConversation(){
     jQuery("#conversation").removeClass("active");
+    jQuery("#conversation > .box").addClass("hidden");
     jQuery(".listConversation").addClass("active");
     jQuery("#conversation > .box").html('');
     jQuery("#conversation #controllers").addClass('hidden');
