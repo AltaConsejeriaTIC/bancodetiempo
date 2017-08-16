@@ -172,22 +172,32 @@ class DealsController extends Controller
 
     public function exchangeForTime(){
         $date = new \DateTime(date('Y').'-'.date('m').'-'.(date('d')-3));
-        $deals = Deal::where('date', '<=', $date->format('Y-m-d'))->where('time', '<=', date("H:i:s"))->get();
+        $deals = Deal::where('date', '<=', $date->format('Y-m-d'))->where('time', '<=', date("H:i:s"))->where("state_id", 12)->get();
         foreach($deals as $deal){
-            if($deal->state_id == 12){
-                $this->createNewState($deal->id, 10);
-                 if($deal->response_applicant == null && $deal->response_offerer == null){
-                     $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
-                 }
-                if($deal->response_applicant == 1 && $deal->response_offerer == null){
-                     $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
-                 }
-                if($deal->response_applicant == null && $deal->response_offerer == 1){
-                     $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
-                 }
-            }
+            if($deal->response_applicant == null && $deal->response_offerer == null){
+                 $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
+             }
+            if($deal->response_applicant == 1 && $deal->response_offerer == null){
+                 $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
+             }
+            if($deal->response_applicant == null && $deal->response_offerer == 1){
+                 $this->makeExchange($deal->user, $deal->service->user, $deal->user->credits-$deal->value, $deal->service->user->credits+$deal->value);
+             }
+            $deal->update([
+                "state_id" => 10
+            ]);            
         }
-    }
+    }    
+    
+    public function refuseDeal(){
+        $date = new \DateTime(date('Y-m').'-'.(date('d')-3)." ".date("H:i:s"));
+        $deals = Deal::where('created_at', '<=', $date->format('Y-m-d H:i:s'))->where("state_id", 4)->get();
+        foreach($deals as $deal){
+            $deal->update([
+                "state_id" => 8
+            ]);            
+        }
+    }  
     
     public function changeDealsForRanking(){
         

@@ -45,6 +45,11 @@ class Kernel extends ConsoleKernel
             $campaign = new CampaignController();
             $campaign->changeState();
         })->everyMinute();
+        
+        $schedule->call(function (){
+            $campaign = new CampaignController();
+            $campaign->refuseDeal();
+        })->everyMinute();
 
         $schedule->call(function (){
             $campaign = new CampaignController();

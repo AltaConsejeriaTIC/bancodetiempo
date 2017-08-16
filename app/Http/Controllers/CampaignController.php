@@ -208,8 +208,7 @@ class CampaignController extends Controller
 
     public function changeState()
     {
-        $campaigns = Campaigns::whereBetween("date", [date("Y-m-d H:i:00"), date("Y-m-d H:i:59")])->where("state_id", 1)->get();
-        print(date("Y-m-d H:i:00"));
+        $campaigns = Campaigns::where("date", , "<=" ,date("Y-m-d H:i:59"))->where('allows_registration', 1)->where("state_id", 1)->get();
         foreach ($campaigns as $campaign) {
             $campaign->update([
                 "state_id" => 12
@@ -218,7 +217,7 @@ class CampaignController extends Controller
     }
 
     public function enableInscriptions(){
-        $campaigns = Campaigns::where("date_donations", "<=" ,date("Y-m-d H:i:59"))->where('allows_registration', 0)->get();
+        $campaigns = Campaigns::where("date_donations", "<=" ,date("Y-m-d H:i:59"))->where('allows_registration', 0)->where("state_id", 1)->get();
         foreach ($campaigns as $campaign) {
             $campaign->update([
                 "credits" => $campaign->credits * 2,
@@ -240,7 +239,6 @@ class CampaignController extends Controller
             }
         }
     }
-
 
     private function sendEmail($templateId, $emailParams, $toEmail)
     {

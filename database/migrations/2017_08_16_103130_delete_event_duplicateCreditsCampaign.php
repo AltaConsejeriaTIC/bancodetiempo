@@ -15,6 +15,8 @@ class DeleteEventDuplicateCreditsCampaign extends Migration
     {
         DB::unprepared("DROP EVENT IF EXISTS `Campaign`");
         DB::unprepared("DROP PROCEDURE IF EXISTS `duplicateCreditsCampaign`");
+        DB::unprepared("DROP EVENT IF EXISTS `changeToFinishDeal`");
+        DB::unprepared("DROP PROCEDURE IF EXISTS `finishDeal`");
     }
 
     /**
