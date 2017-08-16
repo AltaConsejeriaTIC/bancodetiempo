@@ -94,7 +94,7 @@ class EmailController extends Controller
 
     public function sendMailDaily(){    
         $receptors = collect([]);
-        $Conversations = Conversations::all();
+        $Conversations = Conversations::whereBetween("updated_at", [date("Y-m-d 00:00:00"), date("Y-m-d 23:59:59")])->get();
         foreach($Conversations as $conversation){
             $message = collect(json_decode($conversation->message))->last(); 
             if($message->state == 6){
@@ -105,6 +105,7 @@ class EmailController extends Controller
                 $receptors[$receptor]["messages"]->push(["sender" => user::find($message->sender), "message" => $message->message]);
             }
         }
+        
         foreach($receptors as $receptor){
             
             if($receptor["messages"]->count() > 1){
