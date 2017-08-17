@@ -50,6 +50,7 @@ class CampaignController extends Controller
         $dayInterval = (int)ceil($interval->days / 2);
         $hoursInterval = (int)ceil($interval->h / 2);
         $day = strtotime("+$hoursInterval hour", strtotime($current));
+        $day = strtotime("+$dayInterval hour", $day);
         $day = \date("Y-m-d H:i:s", $day);
         return $day;
     }
