@@ -1,0 +1,178 @@
+.campaign h1, h2, h3, h6, p {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.campaign h1 {
+    font-size: 28px;
+}
+
+.campaign h2 {
+    font-size: 20px;
+}
+
+.campaign h3 {
+    font-size: 18px;
+    color: #303030;
+}
+
+.campaign p {
+    font-size: 18px;
+    color: #303030;
+}
+
+.campaign .rating span {
+    font-size: 3rem;
+}
+
+.campaign .montserrat-font {
+    font-family: Montserrat, sans-serif;
+}
+
+.campaign .title {
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.campaign .state {
+    font-weight: bold;
+    font-size: 18px;
+    color: #2c3e50;
+    margin-top: 10px;
+}
+
+.campaign .state span {
+    color: #228b22;
+    font-weight: bold;
+}
+
+.campaign .description {
+    color: #303030;
+    font-weight: normal;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.campaign .date {
+    font-weight: bold;
+    font-size: 18px;
+    color: #2c3e50;
+    margin-top: 10px;
+}
+
+.campaign .date span {
+    font-weight: normal;
+}
+
+.campaign .time {
+    font-weight: bold;
+    font-size: 18px;
+    color: #2c3e50;
+    margin-top: 5px;
+}
+
+.campaign .time span {
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.campaign .dorados {
+    margin-top: 10px;
+}
+
+.campaign .dorados img {
+    vertical-align: top;
+    width: 34px;
+    margin-right: 5px;
+}
+
+.campaign .dorados div {
+    display: inline-block;
+    vertical-align: top;
+    max-width: calc(100% - 42px);
+    overflow-wrap: break-word;
+}
+
+.campaign .dorados h1 {
+    font-weight: bold;
+    font-size: 18px;
+    color: #0f6784;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.campaign .dorados .sub-title {
+    margin-bottom: 12px;
+}
+
+.campaign .join h1 {
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #2c3e50;
+}
+
+.campaign .join p {
+    font-size: 18px;
+}
+
+.campaign .cancel-button {
+    color: #0f6784;
+    background-color: #ffffff;
+    border: solid 1px #0f6784;
+}
+
+.campaign .donation p {
+    font-weight: bold;
+    font-size: 18px;
+    color: #0f6784;
+}
+
+.campaign div.line {
+    height: 1px;
+    border-bottom: solid 1px #979797;
+}
+
+.campaign .partakers h1 {
+    font-weight: bold;
+    font-size: 18px;
+    color: #303030;
+}
+
+.campaign .partakers a {
+    color: #0f6784;
+    font-size: 18px;
+    text-decoration: underline !important;
+}
+
+.campaign .host {
+    font-family: Montserrat, sans-serif;
+    color: #2c3e50;
+}
+
+.campaign .host h1 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.campaign .host .name {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.campaign .host .admin-profile {
+    max-width: 120px;
+}
+
+.campaign .host .rate {
+    font-size: 14px;
+    color: #001738;
+    text-align: left;
+}
+
+.campaign .host .rate span {
+    color: #90a1b5;
+}
+.campaignCover img {
+    width: 100%;
+}

@@ -1,5 +1,4 @@
 @if(isset($service))
-
     <div class='service-box'>
         @if(isset($edit))
             <div class="col-md-5 icons-button-content">
@@ -14,8 +13,7 @@
             	@include('services.partial.deleteService')
             {!!Form::close()!!}
         @endif
-        <span class='category'
-              onClick='app.__vue__.filterCategory({{$service->category->id}}, "{{$service->category->category}}")'>{{$service->category->category}}</span>
+        <span class='category' onClick='app.__vue__.filterCategory({{$service->category_id}}, "{{$service->category->category}}")'>{{$service->category->category}}</span>
         <a href="/service/{{$service->id}}">
             <div class="cover">
                 <img src="/getImg?img={{$service->image}}&w=400" alt=""/>

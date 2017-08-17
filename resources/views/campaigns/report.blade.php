@@ -1,7 +1,7 @@
 
 @if(session('report'))
     <generalmodal  name='notificationReport' :state='myData.notificationReport' state-init='true'>
-        <div slot="modal" class='box row'>
+        <div slot="modal" class='box row' v-cloak>
             <button type="button" class='close'  v-on:click='myData.notificationReport = false'><i class='fa fa-close'></i></button>
             <h1 class='title1 col-md-12 text-center'>¡Reporte enviado!</h1>
             <p class='text-center col-md-12'>Tu reporte se ha realizado con exito.</p>
@@ -14,7 +14,7 @@
 
 @if(session('reportOk'))
     <generalmodal  name='notificationReportOk' :state='myData.notificationReportOk' state-init='true'>
-        <div slot="modal" class='box row'>
+        <div slot="modal" class='box row' v-cloak>
             <button type="button" class='close'  v-on:click='myData.notificationReportOk = false'><i class='fa fa-close'></i></button>
             <h1 class='title1 col-md-12 text-center'>¡Ya reportaste esta oferta anteriormente!</h1>
             <p class='text-center col-md-12'>Gracias por ayudar en nuestra comunidad.</p>
@@ -25,7 +25,7 @@
     </generalmodal>
 @endif
 <div id="update-dialog{{$campaign->id}}" class="modal fade" tabindex="-1" style="display: none;">
-    <div class="modal-box" role="document">
+    <div class="modal-box" role="document" v-cloak>
         <div class="modal-content-box">
             <div class="modal-wrapper">
                 <div class="modal-container">

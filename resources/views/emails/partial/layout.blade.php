@@ -10,7 +10,10 @@
 			 @yield('title')
 		</article>
 		<article style='width:90%;position:relative;margin:auto;background:#e9e9e9;border-radius:5px;padding: 25px;'>
-			@yield('content')
+		    <div style='width: 50%;position: relative;margin: auto;padding: 25px; margin-bottom: 25px;text-align: center;overflow: hidden;'>		        
+			    @yield('content')
+		    </div>
+		    @yield('action')
 		</article>
 	</section>
 	<footer>

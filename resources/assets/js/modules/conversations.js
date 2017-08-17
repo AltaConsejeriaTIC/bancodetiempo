@@ -22,12 +22,20 @@ function init(){
     /* datapicker */
     jQuery.datetimepicker.setLocale('es'); 
     jQuery('#dateDeal').datetimepicker();
+    jQuery(window).resize(function(){
+        setTimeout(function(){
+            adjustBox();
+        }, 500);
+    });
 }
 
 function showConversation(){
+    jQuery(".reading").removeClass("reading");
     closeConversation();
     openConversation();
     conversationId = jQuery(this).data('conversation');
+    jQuery(this).removeClass("notRead");
+    jQuery(this).addClass("reading");
     adjustBox();
     activity = true;  
     callMessages();
@@ -35,6 +43,7 @@ function showConversation(){
 }
 function openConversation(){
     jQuery("#conversation").addClass("active");
+    jQuery("#conversation > .box").removeClass("hidden");
     jQuery(".listConversation").removeClass("active");
     jQuery("#conversation #controllers").removeClass('hidden');
     jQuery("#conversation #dealBox").removeClass('hidden');
@@ -46,6 +55,7 @@ function openConversation(){
 }
 function closeConversation(){
     jQuery("#conversation").removeClass("active");
+    jQuery("#conversation > .box").addClass("hidden");
     jQuery(".listConversation").addClass("active");
     jQuery("#conversation > .box").html('');
     jQuery("#conversation #controllers").addClass('hidden');
