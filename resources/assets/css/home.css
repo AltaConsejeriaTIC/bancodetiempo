@@ -147,6 +147,26 @@ RedesSociales
     border: solid 2px #007bb2;
 }
 
+.welcome ul.nav.nav-pills {
+    display: table;
+    position: relative;
+    margin: auto;
+}
+
+.welcome ul.nav.nav-pills li > a {
+    font-size: 25px;
+}
+
+.welcome ul.nav.nav-pills li:not(:last-child):after {
+    content: "";
+    position: absolute;
+    height: 80%;
+    top: 10%;
+    right: 0%;
+    background: #dbdbdb;
+    width: 2px;
+}
+
 @media (min-width: 768px) {
     .bannerHome {
        height: 500px;
