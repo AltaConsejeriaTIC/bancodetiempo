@@ -49,11 +49,9 @@ class CampaignController extends Controller
         $interval = $today->diff($userDate);
         $dayInterval = (int)ceil($interval->days / 2);
         $hoursInterval = (int)ceil($interval->h / 2);
-        $day = strtotime("+$dayInterval day", strtotime($current));
-        $day = \date('Y-m-d', $day);
-        $hour = strtotime("+$hoursInterval hour", strtotime($current));
-        $hour = \date("H:i:s", $hour);
-        return $day." ".$hour;
+        $day = strtotime("+$hoursInterval hour", strtotime($current));
+        $day = \date("Y-m-d H:i:s", $day);
+        return $day;
     }
     public function report(Request $request, $campaignId){
         $user_report = CampaignReport::where('user_id', auth::user()->id)->where('campaign_id', $campaignId)->get();

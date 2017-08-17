@@ -173,3 +173,6 @@
 .campaign .host .rate span {
     color: #90a1b5;
 }
+.campaignCover img {
+    width: 100%;
+}
