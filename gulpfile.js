@@ -30,10 +30,22 @@ elixir(function(mix) {
     "public/js/app.js");
 
     mix.styles([
+            'bootstrap-material-design.min.css',            
+            'bootstrap.min.css',
+            'jquery.datetimepicker.css',
+            'ripples.min.css',
+            'style.css',
+            'footer.css',
+            'nav.css',
+            'styleForms.css',
+            'font-awesome.css',
+            'style-mobile.css',
+            'modal.css',
+            'jquery-ui.css',
             'home.css',
             'conversation.css',
             'campaigns.css',
-            'jquery.datetimepicker.css'
+            'fonts.css',            
         ],
     'public/css/site.css');
 
