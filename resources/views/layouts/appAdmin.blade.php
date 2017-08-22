@@ -17,31 +17,17 @@
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Bootstrap Material Design -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-material-design.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/summernote.css') }}">
 
     <!-- Custom styles -->
-    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/styleForms.css') }}" rel="stylesheet">
-     <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/styleAdmin.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/site.css') }}" rel="stylesheet">
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
-    <!-- Disable Cache Browsers -->
-    <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="cache-control" content="no-store" />
-    <meta http-equiv="cache-control" content="must-revalidate" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-    <meta http-equiv="pragma" content="no-cache" />
 
 </head>
 <body>
