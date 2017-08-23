@@ -23,6 +23,7 @@
     <!-- Custom styles -->
     <link href="{{ asset('/css/styleAdmin.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/site.css') }}" rel="stylesheet">
+    <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -94,7 +95,6 @@
     </div>
 
     <!-- Scripts -->    
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
     <script src="{{ asset('/js/material.min.js') }}"></script>   

@@ -20,13 +20,15 @@ function init(){
     token = jQuery("input[name='_token']").val();
     jQuery("form.newDeal").on("submit", createDeal);
     /* datapicker */
-    jQuery.datetimepicker.setLocale('es'); 
-    jQuery('#dateDeal').datetimepicker();
-    jQuery(window).resize(function(){
-        setTimeout(function(){
-            adjustBox();
-        }, 500);
-    });
+    if(jQuery("#dateDeal").length){
+        jQuery.datetimepicker.setLocale('es'); 
+        jQuery('#dateDeal').datetimepicker();
+        jQuery(window).resize(function(){
+            setTimeout(function(){
+                adjustBox();
+            }, 500);
+        });
+    }
 }
 
 function showConversation(){

@@ -28,7 +28,6 @@ class DealsController extends Controller
                         ->join('services', 'services.id', '=', 'deals.service_id')
                         ->join("users", "users.id", "=", "deals.user_id")
                         ->join("users as offerer", "offerer.id", "=", "services.user_id")
-                        ->leftJoin('deal_states', 'deal_states.id', '=', DB::raw("(SELECT id FROM deal_states WHERE deal_id = deals.id order by id desc limit 0,1)"));
         if($filterService != ''){
             $deals->where("services.name", "LIKE", "%$filterService%");
         }
@@ -39,7 +38,7 @@ class DealsController extends Controller
             $deals->whereRaw("(offerer.first_name LIKE '%$filterOfferer%' OR offerer.last_name LIKE '%$filterOfferer%')");
         }
         if($filterState != ''){
-            $deals->where("deal_states.state_id", $filterState);
+            $deals->where("deal.state_id", $filterState);
         }
         if($filtrerDateCreateStart != '' && $filtrerDateCreateFinish != ''){
             $deals->whereBetween('deals.created_at', [$filtrerDateCreateStart, $filtrerDateCreateFinish]);

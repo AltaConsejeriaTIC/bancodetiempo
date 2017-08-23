@@ -53,7 +53,7 @@
                         <h3>Estado</h3>
                     </div>
                     <div class="row">
-                        <p>{{$deal->dealStates->last()->state->state}}</p>
+                        <p>{{$deal->state->state}}</p>
                     </div>
                 </div>
             </div>
