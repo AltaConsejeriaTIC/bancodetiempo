@@ -27,7 +27,7 @@ class DealsController extends Controller
         $deals = Deal::select("deals.*")
                         ->join('services', 'services.id', '=', 'deals.service_id')
                         ->join("users", "users.id", "=", "deals.user_id")
-                        ->join("users as offerer", "offerer.id", "=", "services.user_id")
+                        ->join("users as offerer", "offerer.id", "=", "services.user_id");
         if($filterService != ''){
             $deals->where("services.name", "LIKE", "%$filterService%");
         }
