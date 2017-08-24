@@ -14,7 +14,7 @@ use App\Http\Controllers\Profile\ProfileController;
 */
 Route::get('/', 'HomeController@indexNotRegister');
 Route::get('/index', 'HomeController@indexNotRegister');
-Route::get('/home', 'HomeController@index')->middleware('userPending');
+Route::get('/home', 'HomeController@index')->middleware('userPending', 'notAdmin');
 Route::get('/content/{name}', 'ContentController@index');
 
 //Social Loging
@@ -29,9 +29,7 @@ Auth::routes();
 Route::get('admin','AdminController@AdminLogin')->middleware('guest');
 
 //Guest views
-Route::get('/serviceGuest/{serviceid}', 'ServiceController@showServiceGuest');
-
-Route::get('/service/{serviceid}', 'ServiceController@showService');
+Route::get('/service/{serviceid}', 'ServiceController@showService')->middleware('userPending', 'notAdmin');
 
 Route::get('/service/category/{idCategory}', 'ServiceController@findCategories');
 
@@ -47,7 +45,7 @@ Route::post('/subscribe', 'HomeController@subscribe');
 
 Route::get('/how', function(){
     return view("how");
-});
+})->middleware('notAdmin');
 
 Route::get('/tags','TagsController@jsonTags');
 Route::get('/categories','CategoryController@jsonCategories');
@@ -64,7 +62,7 @@ Route::resource('/listServiceVirtual', 'ServiceController@getListServiceVirtual'
 Route::resource('/listServiceFaceToFace', 'ServiceController@getListServiceFaceToFace');
 Route::resource('/listServiceWords', 'ServiceController@getListServiceWords');
 
-Route::get('campaign/{campaignId}', 'CampaignController@show');
+Route::get('campaign/{campaignId}', 'CampaignController@show')->middleware('userPending', 'notAdmin');
 Route::get('campaigns/list', 'CampaignController@showListAllCampaigns');
 
 Route::get('/getImg', 'ImageController@getImage');

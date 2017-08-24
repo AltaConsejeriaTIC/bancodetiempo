@@ -26,15 +26,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        /*$schedule->call(function (){
+        $schedule->call(function (){
             $email = new EmailController();
             $email->sendMailDaily();
-        })->twiceDaily(1);*/
+        })->hourly();
 
         $schedule->call(function (){
             $deals = new DealsController();
             $deals->exchangeForTime();
-        })->hourly();
+        })->everyMinute();
 
         $schedule->call(function (){
             $campaign = new CampaignController();
@@ -45,10 +45,20 @@ class Kernel extends ConsoleKernel
             $campaign = new CampaignController();
             $campaign->changeState();
         })->everyMinute();
+        
+        $schedule->call(function (){
+            $deals = new DealsController();
+            $deals->refuseDeal();
+        })->everyMinute();
 
         $schedule->call(function (){
             $campaign = new CampaignController();
             $campaign->enableInscriptions();
+        })->everyMinute();
+        
+        $schedule->call(function (){
+            $deals = new DealsController();
+            $deals->changeDealsForRanking();
         })->everyMinute();
 
     }

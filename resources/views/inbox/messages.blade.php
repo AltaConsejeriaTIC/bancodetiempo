@@ -29,7 +29,7 @@
                                 </span>
                                 <span class="close" onClick='jQuery(".dialogBoxInbox").remove()'>x</span>
                                 <strong>¡No compartimos tu información personal! :)</strong><br>
-                                Por tu seguridad es mejor que uses este chat para cuadrar los detalles de tu intercambio.
+                                Es mejor que uses este chat para cuadrar los detalles de tu Cambalache, luego usa el botón ‘Proponer Cambalache’ ubicado en la parte superior de esta ventana.
                             </div>
                         @endif
                     @endif

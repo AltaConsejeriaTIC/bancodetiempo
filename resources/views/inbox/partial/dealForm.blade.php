@@ -33,7 +33,7 @@
                             <input type="hidden" name="coordinates" id='coordinates'>
                             <input type="text" name="place" id='place' placeholder="Plazoleta Chorro de Quevedo" class="col-xs-12"><br>
                             <div id="map_canvas" class="map"></div>
-                            <a href="" class="hidden"><i class="fa fa-map-marker" aria-hidden="true"></i> Ver listado de sitios sugeridos</a>
+                            <a href="" class="buttonTransition" data-open='#suggestedSites' onclick='return false'><i class="fa fa-map-marker" aria-hidden="true"></i> Ver listado de sitios sugeridos</a>
                         </div>
                     </div>
                     <div class="row">
@@ -180,6 +180,9 @@
             
             </div>
         </div>
+        
+        @include('inbox.partial.suggestedSites')
+        @include('inbox.partial.detailSite')
         
     </div>
 </article>

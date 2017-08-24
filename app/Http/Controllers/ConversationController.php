@@ -16,7 +16,8 @@ class ConversationController extends Controller{
 	public function index(){
 		$conversationsMyService = $this->getConversationsMyService();
 		$conversations = $this->getConversationServicesInterestMe();
-		return view("inbox/inbox", compact("conversationsMyService", "conversations"));
+        $categoriesSites = CategoriesSites::all();
+		return view("inbox/inbox", compact("conversationsMyService", "conversations", "categoriesSites"));
 	}
         private function getConversationsMyService(){
             $conversations = Conversations::whereIn("service_id", $this->getMyServices())->orderBy('updated_at', 'desc')->get();
@@ -118,11 +119,21 @@ class ConversationController extends Controller{
         $conversation = Conversations::find($request->conversationId);
         $key = md5($conversation->message);
         if($request->input('key') != $key){
+            $this->messagesMarkRead($conversation);
             $conversation["key"] = $key;
             $conversation["message"] = json_decode($conversation->message);
             return view('inbox/messages', compact("conversation"));
         }
     }
+        private function messagesMarkRead($conversation){
+            $messages = collect(json_decode($conversation->message));
+            if($messages->last()->state == 6 && $messages->last()->sender != Auth::id()){
+                $messages->last()->state = 5;
+            }
+            $conversation->update([
+                'message' => $messages->toJson()
+            ]);
+        }
 /** static functions**/
 
     static public function newMessage($message,$conversation_id,$sender){

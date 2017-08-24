@@ -7,7 +7,7 @@
         </div>
     </div>
     @include('inbox.partial.dealForm')
-    <div class="box">
+    <div class="box hidden">
     </div>
     <div class="hidden" id='controllers'>
         <div class="row not-margin">
