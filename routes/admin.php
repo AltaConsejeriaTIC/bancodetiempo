@@ -59,7 +59,7 @@ Route::post("/admin/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController
 /** Services **/
 
 Route::get('homeAdminServices', 'Admin\ServicesController@homeAdminServices');
-Route::get('homeAdminServices/reported', 'AdminController@showServicesReported');
+Route::get('homeAdminServices/reported', 'Admin\ServicesController@showServicesReported');
 Route::post('homeAdminServices', ['as' => 'homeAdminServices', 'uses'=>'Admin\ServicesController@homeAdminServices']);
 Route::post('homeAdminServices/reported', ['as' => 'homeAdminServices/reported', 'uses'=>'Admin\ServicesController@showServicesReported']);
 Route::put('homeAdminServices/update', ['as' => 'homeAdminServices/update', 'uses'=>'Admin\ServicesController@updateServiceState']);
