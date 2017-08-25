@@ -64,21 +64,16 @@ class ServiceController extends Controller
     }
 
 
-    public function showService($serviceId)
-    {
-
+    public function showService($serviceId){
         $categories = Category::all('id', 'category');
-        $service = Service::where('id', $serviceId)->where('state_id', 1)->firstOrFail();
-        $user = User::find($service->user_id);
-        $listTypes = TypeReport::pluck('type', 'id');
-        JavaScript::put([
-            'userJs' => $user,
-            'categoriesJs' => $categories,
-        ]);
-
-        return view('services/service', compact('categories', 'service', 'method', 'user', 'listTypes'));
-
-
+        $service = Service::where('id', $serviceId)->where('state_id', 1)->first();
+        if(!is_null($service)){ 
+            $user = User::find($service->user_id);
+            $listTypes = TypeReport::pluck('type', 'id');
+            return view('services/service', compact('categories', 'service', 'method', 'user', 'listTypes'));
+        }else{
+            return view('services/serviceBlock');
+        }
     }
 
     public function update($id, Request $request)
