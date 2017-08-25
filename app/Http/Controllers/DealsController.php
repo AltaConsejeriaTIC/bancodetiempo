@@ -191,7 +191,7 @@ class DealsController extends Controller
     
     public function refuseDeal(){
         $date = new \DateTime(date('Y-m').'-'.(date('d')-3)." ".date("H:i:s"));
-        $deals = Deal::where('created_at', '<=', $date->format('Y-m-d H:i:s'))->whereRaw("date <= ".date("Y-m-d")." AND time <= ".date("H:i:s"))->where("state_id", 4)->get();
+        $deals = Deal::where('created_at', '<=', $date->format('Y-m-d H:i:s'))->whereRaw("date <= '".date("Y-m-d")."' AND time <= '".date("H:i:s")."'")->where("state_id", 4)->get();
         foreach($deals as $deal){
             $deal->update([
                 "state_id" => 8
