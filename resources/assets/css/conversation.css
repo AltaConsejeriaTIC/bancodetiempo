@@ -4,8 +4,7 @@
     border: 1px solid #e3ecf1;
     background-image: url(/images/previewInbox.png);
     background-repeat: no-repeat;
-    background-size: 50%;
-    background-position: 45% 25%;
+    background-size: 100%;
     overflow: hidden;
 }
 
