@@ -17,11 +17,11 @@ elixir(function(mix) {
 
     mix.webpack([
         'autoCompleteUsers.js',
-        'validation.js',
         'jQueryEvents.js',
         'modules/pagination.js',
         'modules/messagesCompleteProfile.js',
         'modules/conversations.js',
+        'validation.js',
         'modules/suggestedSites.js',
         'modules/transition.js',
         'modules/bannerHome.js',
