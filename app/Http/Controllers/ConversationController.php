@@ -25,6 +25,7 @@ class ConversationController extends Controller{
                 $messages = json_decode($conversation->message);
                 $conversations[$key]["lastMessage"] = $messages[count($messages)-1];
                 $conversations[$key]["interval"] = $this->getInterval($conversation->updated_at);
+                $conversations[$key]["notRead"] = ($conversation->lastMessage->state == 6 && $conversation->lastMessage->sender != Auth::user()->id) || $this->pendingDeal($conversation);
             }
             return $conversations;
         }
@@ -34,6 +35,7 @@ class ConversationController extends Controller{
                 $messages = json_decode($conversation->message);
                 $conversations[$key]["lastMessage"] = $messages[count($messages)-1];
                 $conversations[$key]["interval"] = $this->getInterval($conversation->updated_at);
+                $conversations[$key]["notRead"] = ($conversation->lastMessage->state == 6 && $conversation->lastMessage->sender != Auth::user()->id) || $this->pendingDeal($conversation);
             }
             return $conversations;
         }
@@ -68,6 +70,18 @@ class ConversationController extends Controller{
                 }
                 return $listServices;
             }
+        private function pendingDeal($conversation){
+            if($conversation->deals->count() > 0){
+                $deal = $conversation->deals->last();
+                if($deal->state_id == 4 && $deal->creator_id != Auth::id() || $deal->state_id == 12){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
 	
     public function saveMessage(Request $request){        
 		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id);

@@ -1,5 +1,7 @@
 @foreach($conversations as $conversation)
-    <div class="row showConversation @if($conversation->lastMessage->state == 6 && $conversation->lastMessage->sender != Auth::user()->id) notRead @endif" data-conversation='{{$conversation->id}}'>
+    <div class="row showConversation 
+       @if($conversation->notRead) notRead @endif
+       " data-conversation='{{$conversation->id}}'>
         <!--Avatar-->
         <div class="col-xs-3 col-sm-5 col-md-3">
             @include('partial/imageProfile', array('cover' => $conversation->applicant->avatar, 'id' => 'cover'.$conversation->id, 'border' => '#0a475b', 'borderSize' => '1px'))

@@ -160,7 +160,7 @@ function printDealObservations(){
 
 function adjustBox(){
     jQuery("#dealBox").height(getHeightCanvas());
-    jQuery("#conversation .box").height(getHeightBoxConversation()-getHeightCanvas()-getHeightControllers()-60);    
+    jQuery("#conversation .box").height(getHeightBoxConversation()-getHeightCanvas()-getHeightControllers()-30);    
 }
 function showMapDeal(canvas) {
     if(responseDeal.coordinates != ''){
@@ -260,7 +260,6 @@ function callDeals(){
     }
     jQuery.ajax({
         url : '/getDeals',
-        async : false,
         data: {"conversation" : conversationId, "_token" : token},
         type : "POST",
         success : function(response){
