@@ -168,12 +168,19 @@ class ConversationController extends Controller{
     static function blockMessageSending($message){
         $message = ConversationController::blockEmailSending($message);
         $substitutionsNumber = $message[1];
+        $message = ConversationController::blockEmailSendingForDomain($message);
+        $substitutionsNumber = $message[1];
         $message = ConversationController::blockNumberPhoneSending($message[0]);
         $substitutionsNumber += $message[1];		
         return ["message" => $message[0], "substitutionsNumber" => $substitutionsNumber];
     }
     static function blockEmailSending($message){
         $regex = "/[\w-\.]{3,} ?@ ?([\w-]{2,}\.)*([\w-]{2,} ?\.?) ?[\w-]{2,4}/";
+        $text = preg_replace($regex, 'xxxxxxx@xxxxxx', $message, -1, $substitutionsNumber);
+        return [$text, $substitutionsNumber];
+    }
+    static function blockEmailSendingForDomain($message){
+        $regex = "/[\w-\.]{3,} ?@ *(gmail|yahoo|hotmail|outlook)\.* ?[\w-]{2,4}/";
         $text = preg_replace($regex, 'xxxxxxx@xxxxxx', $message, -1, $substitutionsNumber);
         return [$text, $substitutionsNumber];
     }
