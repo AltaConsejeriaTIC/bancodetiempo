@@ -210,7 +210,7 @@
 
 #suggestedSites {
     background: #f5f5f5;
-    left: 150%;
+    left: -150%;
     height: 500px;
     overflow: auto;
 }
@@ -271,7 +271,7 @@
 
 #detailSite {
     background: #f5f5f5;
-    left: 150%;
+    left: -150%;
 }
 @media (max-width: 767px) {
     #conversation {

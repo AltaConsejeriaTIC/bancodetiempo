@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 class Helpers{
 	
 	static function getNotificationsUser(){		
-        return Helpers::getCountNotificationsMyServices() + Helpers::getCountNotificationsServicicesInterest();			
+        return Helpers::getCountNotificationsMyServices() + Helpers::getCountNotificationsServicicesInterest() + Helpers::getCountNotificationsDealsInterest() + Helpers::getCountNotificationsDealsMyServices();			
 	}
     
     static function getCountNotificationsMyServices(){
@@ -43,6 +43,43 @@ class Helpers{
             if($count != 0){
                 $lastMessage =  $messages[$count-1];
                 if($lastMessage->state == 6 && $lastMessage->sender != Auth::User()->id){
+                    $notifications += 1;
+                }
+            }
+		}
+		return $notifications;
+    }
+    
+    static function getCountNotificationsDealsMyServices(){
+        $notifications = 0;
+        
+        $myServices = Auth::User()->services;
+        $listServices = [];
+        foreach($myServices as $services){
+            $listServices[] = $services->id;
+        }
+        $conversationsMyService = Conversations::whereIn("service_id", $listServices)->get();
+		
+		foreach ($conversationsMyService as  $key => $conversation) {
+			if($conversation->deals->count() > 0){
+                $deal = $conversation->deals->last();
+                if($deal->state_id == 4 && $deal->creator_id != Auth::id() || $deal->state_id == 12){
+                    $notifications += 1;
+                }
+            }
+		}
+        
+        return $notifications;
+    }
+    
+    static function getCountNotificationsDealsInterest(){
+        $conversations = Conversations::where("applicant_id", Auth::user()->id)->get();
+		$notifications = 0;
+        
+        foreach ($conversations as  $key => $conversation) {
+            if($conversation->deals->count() > 0){
+                $deal = $conversation->deals->last();
+                if($deal->state_id == 4 && $deal->creator_id != Auth::id() || $deal->state_id == 12){
                     $notifications += 1;
                 }
             }

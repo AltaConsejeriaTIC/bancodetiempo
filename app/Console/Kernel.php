@@ -30,12 +30,7 @@ class Kernel extends ConsoleKernel
             $email = new EmailController();
             $email->sendMailDaily();
         })->hourly();
-
-        $schedule->call(function (){
-            $deals = new DealsController();
-            $deals->exchangeForTime();
-        })->everyMinute();
-
+        
         $schedule->call(function (){
             $campaign = new CampaignController();
             $campaign->sendReminder();
@@ -54,6 +49,11 @@ class Kernel extends ConsoleKernel
         $schedule->call(function (){
             $campaign = new CampaignController();
             $campaign->enableInscriptions();
+        })->everyMinute();
+        
+        $schedule->call(function (){
+            $deals = new DealsController();
+            $deals->exchangeForTime();
         })->everyMinute();
         
         $schedule->call(function (){

@@ -30,7 +30,9 @@ header .header-content {
 button, a {
     cursor: pointer;
 }
-
+label{
+    font-weight: initial;
+}
 
 /*
 Logo

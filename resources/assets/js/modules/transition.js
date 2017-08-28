@@ -9,8 +9,10 @@ function transition(){
     adjustBox();
 }
 function adjustBox(){
-    jQuery("#dealBox").height(getHeightCanvas());
-    jQuery("#conversation .box").height(getHeightBoxConversation()-getHeightCanvas()-getHeightControllers()-60);    
+    
+    jQuery("#dealBox").height(getHeightCanvas());    
+    jQuery("#conversation .box").height(getHeightBoxConversation()-getHeightCanvas()-getHeightControllers()-30);
+      
 }
 function getHeightCanvas(){
     return jQuery("[canvas].active").height()+30;

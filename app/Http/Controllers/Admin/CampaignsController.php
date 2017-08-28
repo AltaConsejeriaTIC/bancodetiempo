@@ -85,7 +85,7 @@ class CampaignsController extends Controller
             });
         })->download('xls');
     }
-    static function sendEmailToCampaignStakeholders($campaign)    {
+    static function sendEmailToCampaignStakeholders($campaign){
         foreach ($campaign->participants as $campaignParticipant) {
             $participant = $campaignParticipant->participant;
             CampaignsController::sendEmail('mailCancelCampaignParticipant', ["campaign" => $campaign, "participant" => $participant], $participant->email2);
@@ -96,7 +96,7 @@ class CampaignsController extends Controller
     static function sendEmail($templateId, $emailParams, $toEmail){
         Mail::send($templateId, $emailParams, function ($message) use ($toEmail) {
             $message->from('info@cambalachea.co', 'Cambalachea!');
-            $message->subject('Notificación');
+            $message->subject('la campaña '.$emailParams["campaign"]->name. " fue cancelada");
             $message->to($toEmail);
         });
     }
