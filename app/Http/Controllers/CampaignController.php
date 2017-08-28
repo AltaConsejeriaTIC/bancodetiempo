@@ -130,9 +130,9 @@ class CampaignController extends Controller
             foreach ($campaign->participants as $participant) {
                 $email = $participant->participant->email2;
 
-                Mail::send('mailReminder', ['user' => $participant->participant, 'campaign' => $campaign], function ($message) use ($email) {
+                Mail::send('mailReminder', ['user' => $participant->participant, 'campaign' => $campaign], function ($message) use ($email, $campaign) {
                     $message->from('evenvivelab_bog@unal.edu.co', 'Cambalachea!');
-                    $message->subject('Notificación');
+                    $message->subject('Recordatorio Campaña '.$campaign->name);
                     $message->to($email);
                 });
             }
@@ -241,9 +241,9 @@ class CampaignController extends Controller
 
     private function sendEmail($templateId, $emailParams, $toEmail)
     {
-        Mail::send($templateId, $emailParams, function ($message) use ($toEmail) {
+        Mail::send($templateId, $emailParams, function ($message) use ($toEmail, $emailParams) {
             $message->from('bancodetiempo@cambalachea.co', 'Cambalachea!');
-            $message->subject('Notificación');
+            $message->subject('Inscripción a la campaña '.$emailParams[$campaign]->name);
             $message->to($toEmail);
         });
     }
