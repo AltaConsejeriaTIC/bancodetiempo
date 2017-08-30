@@ -168,7 +168,7 @@ class ConversationController extends Controller{
     static function blockMessageSending($message){
         $message = ConversationController::blockEmailSending($message);
         $substitutionsNumber = $message[1];
-        $message = ConversationController::blockEmailSendingForDomain($message);
+        $message = ConversationController::blockEmailSendingForDomain($message[0]);
         $substitutionsNumber = $message[1];
         $message = ConversationController::blockNumberPhoneSending($message[0]);
         $substitutionsNumber += $message[1];		
