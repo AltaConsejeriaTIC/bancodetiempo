@@ -18,7 +18,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro" rel="stylesheet">
 
         <!-- Custom styles -->
-        <link href="{{ asset('/css/site.css?v'.\date('Ymd')) }}" rel="stylesheet">
+        <link href="{{ asset('/css/site.css?v'.\date('YmdHi')) }}" rel="stylesheet">
         <!-- Scripts -->
         <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
 
