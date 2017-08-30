@@ -180,7 +180,7 @@ class ConversationController extends Controller{
         return [$text, $substitutionsNumber];
     }
     static function blockEmailSendingForDomain($message){
-        $regex = "/[\w-\.]{3,} ?@ *(gmail|yahoo|hotmail|outlook)\.* ?[\w-]{2,4}/";
+        $regex = "/[\w-\.]{3,} *[ |@] ?(gmail|yahoo|hotmail|outlook)\.* ?[\w-]{2,4}/";
         $text = preg_replace($regex, 'xxxxxxx@xxxxxx', $message, -1, $substitutionsNumber);
         return [$text, $substitutionsNumber];
     }
