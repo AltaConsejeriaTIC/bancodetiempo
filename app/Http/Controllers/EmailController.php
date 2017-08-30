@@ -27,8 +27,8 @@ class EmailController extends Controller
         $imageService = url("/").$service->image;
         
     	$content = ConversationController::blockMessageSending($request->input('content'));
-
-    	Mail::send('mailContact',["service" => $service, "userauth" => Auth::user(), "myImageProfile" => $myImageProfile, "imageProfile" => $imageProfile, "imageService" => $imageService,'content' => $content["message"]], function ($message) use ($mail, $service){
+        
+    	Mail::send('mailContact',["service" => $service, "myImageProfile" => $myImageProfile, "imageProfile" => $imageProfile, "imageService" => $imageService,'content' => $content["message"]], function ($message) use ($mail, $service){
     		$message->from('bancodetiempo@cambalachea.co','Cambalachea!');
     		$message->subject(Auth::user()->first_name." esta interesado en tu oferta ".$service->name);
     		$message->to($mail);
