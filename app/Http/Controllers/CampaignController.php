@@ -243,7 +243,7 @@ class CampaignController extends Controller
     {
         Mail::send($templateId, $emailParams, function ($message) use ($toEmail, $emailParams) {
             $message->from('bancodetiempo@cambalachea.co', 'Cambalachea!');
-            $message->subject('Inscripción a la campaña '.$emailParams[$campaign]->name);
+            $message->subject('Inscripción a la campaña '.$emailParams['campaign']->name);
             $message->to($toEmail);
         });
     }
