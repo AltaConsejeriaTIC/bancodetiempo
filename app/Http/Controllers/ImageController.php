@@ -8,7 +8,7 @@ class ImageController extends Controller
 {
 	protected $route = '';
 	protected $imageSize = '';
-	protected $resize = [];
+	protected $resize = '';
 	protected $imageType = '';
 	protected $mime = '';
 	protected $image = '';
@@ -47,7 +47,7 @@ class ImageController extends Controller
 	
 	private function createImage(){
 		$function = 'imagecreatefrom'.$this->imageType;
-		$image = $function($this->route);
+		$image = @$function($this->route);
 		
 		imageAlphaBlending($image, true);
 		imageSaveAlpha($image, true);
