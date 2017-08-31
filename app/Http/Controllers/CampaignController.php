@@ -42,11 +42,33 @@ class CampaignController extends Controller
         }
         return redirect()->back();
     }
+    
+    public function update(Request $request){
+        $date_finish_donations = $this->getDateDonations($request->input('dateCampaign'), $request->input('timeCampaign'),$request->input('hoursCampaign'));
+        $uploadedImage = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/services/');
+        if (!$uploadedImage) {
+            $uploadedImage = "";
+        }
+        $campaign = Campaigns::find($request->input("campaign_id"))->update([
+            'name' => $request->input('nameCampaign'),
+            'description' => $request->input('descriptionCampaign'),
+            'date' => $request->input('dateCampaign') . " " . $request->input('timeCampaign'),
+            'hours' => $request->input('hoursCampaign'),
+            'category_id' => $request->input('categoryCampaign'),
+            'date_donations' => $date_finish_donations,
+            'image' => $uploadedImage,
+            'state_id' => 1,
+            'allows_registration' => 0,
+        ]);
+        return redirect()->back();
+    }
+    
+    
+    
     private function getDateDonations($date, $time, $hours){
         $today = new \DateTime(\date("Y-m-d H:i:s"));
         $userDate = new \DateTime($date . " " . $time);
         $interval = $today->diff($userDate);
-        print_r($interval);
         $interval->y = $interval->y / 2;
         $interval->m = $interval->m / 2;
         $interval->d = $interval->d / 2;
@@ -74,6 +96,7 @@ class CampaignController extends Controller
         if (CampaignReport::where('campaign_id', $campaignId)->get()->count() > 4){
             $campaign = Campaigns::find($campaignId);
             $campaign->update([
+                'allows_registration' => 0,
                 'state_id' => 3,
             ]);
             adminCampaign::sendEmailToCampaignStakeholders($campaign);
@@ -84,7 +107,6 @@ class CampaignController extends Controller
         if ($this->inscribePerson($request->input('campaign_id'), Auth::id())) {
             return redirect()->back()->with('msg', 'Te has inscrito con exito');
         }
-
         return redirect()->back()->with('msg', 'Ya no quedan cupos disponibles');
     }
 
@@ -139,31 +161,6 @@ class CampaignController extends Controller
                 });
             }
         }
-    }
-
-    public function update(Request $request){
-        $today = new \DateTime(date("Y-m-d"));
-        $userDate = new \DateTime($request->input('dateCampaign'));
-        $interval = $today->diff($userDate);
-        $dayInterval = (int)ceil($interval->days / 2);
-        $date_finish_donations = date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $request->input('timeCampaign');
-
-        $uploadedImage = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/services/');
-        if (!$uploadedImage) {
-            $uploadedImage = "";
-        }
-
-        $campaign = Campaigns::find($request->input("campaign_id"))->update([
-            'name' => $request->input('nameCampaign'),
-            'description' => $request->input('descriptionCampaign'),
-            'date' => $request->input('dateCampaign') . " " . $request->input('timeCampaign'),
-            'hours' => $request->input('hoursCampaign'),
-            'category_id' => $request->input('categoryCampaign'),
-            'date_donations' => $date_finish_donations,
-            'image' => $uploadedImage,
-            'state_id' => 1
-        ]);
-        return redirect()->back();
     }
 
     public function delete($campaignId)
