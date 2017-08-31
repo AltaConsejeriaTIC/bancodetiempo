@@ -8,7 +8,7 @@ class ImageController extends Controller
 {
 	protected $route = '';
 	protected $imageSize = '';
-	protected $resize = '';
+	protected $resize = [];
 	protected $imageType = '';
 	protected $mime = '';
 	protected $image = '';
