@@ -46,7 +46,6 @@ class ImageController extends Controller
 	}
 	
 	private function createImage(){
-        var_dump(gd_info());die();
 		$function = 'imagecreatefrom'.$this->imageType;
 		$image = $function($this->route);
 		
