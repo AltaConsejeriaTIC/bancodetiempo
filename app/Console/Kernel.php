@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function (){
             $email = new EmailController();
             $email->sendMailDaily();
-        })->hourly();
+        })->twiceDaily(23);
         
         $schedule->call(function (){
             $campaign = new CampaignController();
