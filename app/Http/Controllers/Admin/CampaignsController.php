@@ -39,10 +39,10 @@ class CampaignsController extends Controller
     }
 
     public function cancelCampaign($campaign){
-        if ($campaign->participants->count() > 0) {
-            CampaignsController::removeParticipantsCampaignBlock($campaign);
-            CampaignsController::sendEmailToCampaignStakeholders($campaign);
-        }
+        
+        CampaignsController::removeParticipantsCampaignBlock($campaign);
+        CampaignsController::sendEmailToCampaignStakeholders($campaign);
+        
         if ($campaign->credits > 0) {
             $this->giveBackCreditsToCampaignDonors($campaign);
         }
@@ -94,7 +94,7 @@ class CampaignsController extends Controller
     }
 
     static function sendEmail($templateId, $emailParams, $toEmail){
-        Mail::send($templateId, $emailParams, function ($message) use ($toEmail) {
+        Mail::send($templateId, $emailParams, function ($message) use ($toEmail, $emailParams) {
             $message->from('info@cambalachea.co', 'Cambalachea!');
             $message->subject('la campaña '.$emailParams["campaign"]->name. " fue cancelada");
             $message->to($toEmail);
