@@ -43,15 +43,17 @@ class CampaignController extends Controller
         return redirect()->back();
     }
     private function getDateDonations($date, $time, $hours){
-        $current = \date("Y-m-d H:i:s");
-        $today = new \DateTime($current);
+        $today = new \DateTime(\date("Y-m-d H:i:s"));
         $userDate = new \DateTime($date . " " . $time);
         $interval = $today->diff($userDate);
-        $dayInterval = (int)ceil($interval->days / 2);
-        $hoursInterval = (int)ceil($interval->h / 2);
-        $day = strtotime("+$hoursInterval hour", strtotime($current));
-        $day = strtotime("+$dayInterval hour", $day);
-        $day = \date("Y-m-d H:i:s", $day);
+        print_r($interval);
+        $interval->y = $interval->y / 2;
+        $interval->m = $interval->m / 2;
+        $interval->d = $interval->d / 2;
+        $interval->h = $interval->h / 2;
+        $interval->i = $interval->i / 2;
+        $userDate->sub($interval);
+        $day = $userDate->format('Y-m-d H:i:s');
         return $day;
     }
     public function report(Request $request, $campaignId){
