@@ -39,6 +39,11 @@ class Deal extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id', 'id');
+    }
 
     public function dealStates()
     {

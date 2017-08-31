@@ -17,11 +17,11 @@ elixir(function(mix) {
 
     mix.webpack([
         'autoCompleteUsers.js',
-        'validation.js',
         'jQueryEvents.js',
         'modules/pagination.js',
         'modules/messagesCompleteProfile.js',
         'modules/conversations.js',
+        'validation.js',
         'modules/suggestedSites.js',
         'modules/transition.js',
         'modules/bannerHome.js',
@@ -30,10 +30,22 @@ elixir(function(mix) {
     "public/js/app.js");
 
     mix.styles([
+            'bootstrap-material-design.min.css',            
+            'bootstrap.min.css',
+            'jquery.datetimepicker.css',
+            'ripples.min.css',
+            'font-awesome.css',
+            'styleForms.css',
+            'style.css',
+            'style-mobile.css',
+            'footer.css',
+            'nav.css',
+            'modal.css',
+            'jquery-ui.css',
             'home.css',
             'conversation.css',
             'campaigns.css',
-            'jquery.datetimepicker.css'
+            'fonts.css',            
         ],
     'public/css/site.css');
 

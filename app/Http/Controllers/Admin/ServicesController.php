@@ -11,8 +11,10 @@ use Session;
 class ServicesController extends Controller
 {
     public function homeAdminServices(Request $request){
-        $services = Service::orderBy('updated_at', 'desc');
-        $services = $request->find != '' ? $services->where('name', 'LIKE', "%$request->find%") : $services;
+        $services = Service::orderBy('services.created_at', 'desc');
+        $services = $request->findName != '' ? $services->where('services.name', 'LIKE', "%$request->findName%") : $services;
+        $services = $request->findUser != '' ? $services->join("users", "users.id", "services.user_id")->where('users.first_name', 'LIKE', "%$request->findUser%")->orWhere("users.last_name", "like", "%$request->findUser%") : $services;
+        $services = $request->findDateCreateStart != '' && $request->findDateCreateFinish != '' ? $services->whereBetween('services.created_at', [$request->findDateCreateStart, $request->findDateCreateFinish]) : $services;
         $services = $services->paginate(6);
         $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
         return view('admin/services/list', compact('services', 'states'));

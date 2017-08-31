@@ -27,11 +27,19 @@
                         <div class="col-xs-12 col-md-6">
                             <label for="">Fecha y hora de realización del acuerdo</label><br>
                             <input type="text" name="date" placeholder='06/08/2017  9:45 AM' class="col-xs-12" id='dateDeal'>
+                             <div class="msg" errors='date'>
+                                <p error='afterCurrentDateTime'>No puedes proponer un acuerdo dias atras.</p>
+                                <p error='required'>Este campo es obligatorio.</p>
+                            </div>
                         </div>
                         <div class="col-xs-12 col-md-6">
                             <label for="">Lugar</label><br>
                             <input type="hidden" name="coordinates" id='coordinates'>
-                            <input type="text" name="place" id='place' placeholder="Plazoleta Chorro de Quevedo" class="col-xs-12"><br>
+                            <input type="text" name="place" id='place' placeholder="Plazoleta Chorro de Quevedo" class="col-xs-12">
+                            <div class="msg" errors='place'>
+                                <p error='required'>Este campo es obligatorio.</p>
+                            </div>
+                            <br>
                             <div id="map_canvas" class="map"></div>
                             <a href="" class="buttonTransition" data-open='#suggestedSites' onclick='return false'><i class="fa fa-map-marker" aria-hidden="true"></i> Ver listado de sitios sugeridos</a>
                         </div>
@@ -61,6 +69,9 @@
                                     <p class='text3'>Tu oferta costará</p>
                                     <p class='paragraph4'><img src="/images/moneda.png" alt="moneda" width="20px"> <span class="text4"><span id="valueCredits">0</span> Dorados</span></p>
                                 </div>
+                            </div>
+                            <div class="msg" errors='credits'>
+                                <p error='required'>Este campo es obligatorio.</p>
                             </div>
                         </div>
                     </div>

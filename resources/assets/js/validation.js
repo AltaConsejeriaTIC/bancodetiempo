@@ -110,6 +110,20 @@ var allValidations = {
         this.hiddenError(it, 'afterToday');
         return 0;
     },
+    afterCurrentDateTime:function(it){
+        dateTimeUser = it.val().split(" ");
+        dateUser = dateTimeUser[0].split("-")
+        timeUser = dateTimeUser[1].split(":")
+        var today = new Date();
+        var date = new Date(dateUser[0], dateUser[1]-1, dateUser[2], timeUser[0], timeUser[1]+5, timeUser[2]);
+
+        if(+date < +today){
+            this.showError(it, 'afterCurrentDateTime');
+            return 1;
+        }
+        this.hiddenError(it, 'afterCurrentDateTime');
+        return 0;
+    },
     afterTime:function(it){
         timeUser = it.val().split(":")
         var today = new Date();
@@ -251,7 +265,6 @@ function validation(){
 }
 
 function validationGeneal(){
-
     var allErrors = 0;
     jQuery(this).find(".validation").each(function(){
 

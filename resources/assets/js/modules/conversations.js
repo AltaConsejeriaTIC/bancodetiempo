@@ -20,13 +20,15 @@ function init(){
     token = jQuery("input[name='_token']").val();
     jQuery("form.newDeal").on("submit", createDeal);
     /* datapicker */
-    jQuery.datetimepicker.setLocale('es'); 
-    jQuery('#dateDeal').datetimepicker();
-    jQuery(window).resize(function(){
-        setTimeout(function(){
-            adjustBox();
-        }, 500);
-    });
+    if(jQuery("#dateDeal").length){
+        jQuery.datetimepicker.setLocale('es'); 
+        jQuery('#dateDeal').datetimepicker();
+        jQuery(window).resize(function(){
+            setTimeout(function(){
+                adjustBox();
+            }, 500);
+        });
+    }
 }
 
 function showConversation(){
@@ -74,6 +76,7 @@ function printDeal(){
             printDealAccordingState();
         }
     }
+    adjustBox();
 }
 function printDealAccordingState(){  
     jQuery(".buttonAction").addClass("hidden")
@@ -138,6 +141,7 @@ function printDealDetails(){
     jQuery("#dealObservations").html(responseDeal.observations);    
     jQuery("#conversation #dealDetail").removeClass('hidden');
     showMapDeal('dealMap');
+    adjustBox();
 }
 function printDealObservations(){
     var message = getMessageState();
@@ -153,13 +157,10 @@ function printDealObservations(){
             jQuery("#controlsObservations").addClass("hidden");
         }
     }
+    adjustBox();
 }
 /*** helpers ****/
 
-function adjustBox(){
-    jQuery("#dealBox").height(getHeightCanvas());
-    jQuery("#conversation .box").height(getHeightBoxConversation()-getHeightCanvas()-getHeightControllers()-60);    
-}
 function showMapDeal(canvas) {
     if(responseDeal.coordinates != ''){
         var coordinates = JSON.parse(responseDeal.coordinates);
@@ -167,6 +168,10 @@ function showMapDeal(canvas) {
     }else{
         jQuery("#"+canvas).html('');
     }
+}
+function adjustBox(){
+    jQuery("#dealBox").height(getHeightCanvas());
+    jQuery("#conversation .box").height(getHeightBoxConversation()-getHeightCanvas()-getHeightControllers()-30);    
 }
 function getHeightCanvas(){
     return jQuery("[canvas].active").height()+30;
@@ -258,7 +263,6 @@ function callDeals(){
     }
     jQuery.ajax({
         url : '/getDeals',
-        async : false,
         data: {"conversation" : conversationId, "_token" : token},
         type : "POST",
         success : function(response){
@@ -273,40 +277,73 @@ function callDeals(){
     setTimeout(callDeals, 2000);
 }
 function createDeal(){
-    var data = {
-        "conversation" : conversationId,
-        "date" : jQuery(this).find("[name='date']").val(),
-        "place" : jQuery(this).find("[name='place']").val(),
-        "observations" : jQuery(this).find("[name='observations']").val(),
-        "credits" : jQuery(this).find("[name='credits']:checked").val(),
-        "coordinates" : jQuery(this).find("[name='coordinates']").val(),
-        "_token" : token
-    };
-    jQuery.ajax({
-        type: "POST",
-        url: "/deal",
-        data: data,
-        async : false,
-        beforeSend: function(){
-            jQuery("#dealForm").find(".loadBox").addClass("active")
-            jQuery("form.newDeal").off("submit");            
-        },
-        success: function(datos){
-            callDeals();
-            jQuery("#dealForm").find(".loadBox").removeClass("active")
-            jQuery("form.newDeal").trigger("reset");
-            jQuery("#coordinates").val('');
-            jQuery("form.newDeal").on("submit", createDeal);
-        },
-        error: function(){
-            callDeals();
-            jQuery("#dealForm").find(".loadBox").removeClass("active")
-            jQuery("form.newDeal").trigger("reset");
-            jQuery("#coordinates").val('');
-            jQuery("form.newDeal").on("submit", createDeal);
-        }
-    });
+    if(validateDeal(jQuery(this))){
+        var data = {
+            "conversation" : conversationId,
+            "date" : jQuery(this).find("[name='date']").val(),
+            "place" : jQuery(this).find("[name='place']").val(),
+            "observations" : jQuery(this).find("[name='observations']").val(),
+            "credits" : jQuery(this).find("[name='credits']:checked").val(),
+            "coordinates" : jQuery(this).find("[name='coordinates']").val(),
+            "_token" : token
+        };
+        jQuery.ajax({
+            type: "POST",
+            url: "/deal",
+            data: data,
+            async : false,
+            beforeSend: function(){
+                jQuery("#dealForm").find(".loadBox").addClass("active")
+                jQuery("form.newDeal").off("submit");            
+            },
+            success: function(datos){
+                callDeals();
+                jQuery("#dealForm").find(".loadBox").removeClass("active")
+                jQuery("form.newDeal").trigger("reset");
+                jQuery("#coordinates").val('');
+                jQuery("form.newDeal").on("submit", createDeal);
+            },
+            error: function(){
+                callDeals();
+                jQuery("#dealForm").find(".loadBox").removeClass("active")
+                jQuery("form.newDeal").trigger("reset");
+                jQuery("#coordinates").val('');
+                jQuery("form.newDeal").on("submit", createDeal);
+            }
+        });
+    }
     return false;
+}
+
+function validateDeal(el){
+    jQuery(".msg > p").css("display", "none");
+    var errors = 0;
+    if(el.find("[name='date']").val() == ''){
+        jQuery(".msg[errors='date'] > [error='required']").css("display", "block");
+        errors = 1;
+    }else{
+        dateTimeUser = el.find("[name='date']").val().split(" ");
+        dateUser = dateTimeUser[0].split("/");
+        timeUser = dateTimeUser[1].split(":");        
+        var today = new Date();
+        var date = new Date(dateUser[0], dateUser[1]-1, dateUser[2], timeUser[0], timeUser[1], "00");
+        if(+date < +today){
+            jQuery(".msg[errors='date'] > [error='afterCurrentDateTime']").css("display", "block");
+            errors = 1;
+        }
+    }
+    
+    if(el.find("[name='place']").val() == ''){
+        jQuery(".msg[errors='place'] > [error='required']").css("display", "block");
+        errors = 1;
+    }
+    
+    if(el.find(".boxTimeDeal").find("[name='credits']:checked").length == 0){
+        jQuery(".msg[errors='credits'] > [error='required']").css("display", "block");
+        errors = 1;
+    }
+    adjustBox();
+    return errors == 0;
 }
 
 function aceptDeal(){

@@ -25,6 +25,7 @@ class ConversationController extends Controller{
                 $messages = json_decode($conversation->message);
                 $conversations[$key]["lastMessage"] = $messages[count($messages)-1];
                 $conversations[$key]["interval"] = $this->getInterval($conversation->updated_at);
+                $conversations[$key]["notRead"] = ($conversation->lastMessage->state == 6 && $conversation->lastMessage->sender != Auth::user()->id) || $this->pendingDeal($conversation);
             }
             return $conversations;
         }
@@ -34,6 +35,7 @@ class ConversationController extends Controller{
                 $messages = json_decode($conversation->message);
                 $conversations[$key]["lastMessage"] = $messages[count($messages)-1];
                 $conversations[$key]["interval"] = $this->getInterval($conversation->updated_at);
+                $conversations[$key]["notRead"] = ($conversation->lastMessage->state == 6 && $conversation->lastMessage->sender != Auth::user()->id) || $this->pendingDeal($conversation);
             }
             return $conversations;
         }
@@ -68,6 +70,18 @@ class ConversationController extends Controller{
                 }
                 return $listServices;
             }
+        private function pendingDeal($conversation){
+            if($conversation->deals->count() > 0){
+                $deal = $conversation->deals->last();
+                if($deal->state_id == 4 && $deal->creator_id != Auth::id() || $deal->state_id == 12){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
 	
     public function saveMessage(Request $request){        
 		ConversationController::newMessage($request->input('message'), $request->input('conversation'), Auth::User()->id);
@@ -154,12 +168,19 @@ class ConversationController extends Controller{
     static function blockMessageSending($message){
         $message = ConversationController::blockEmailSending($message);
         $substitutionsNumber = $message[1];
+        $message = ConversationController::blockEmailSendingForDomain($message[0]);
+        $substitutionsNumber = $message[1];
         $message = ConversationController::blockNumberPhoneSending($message[0]);
         $substitutionsNumber += $message[1];		
         return ["message" => $message[0], "substitutionsNumber" => $substitutionsNumber];
     }
     static function blockEmailSending($message){
         $regex = "/[\w-\.]{3,} ?@ ?([\w-]{2,}\.)*([\w-]{2,} ?\.?) ?[\w-]{2,4}/";
+        $text = preg_replace($regex, 'xxxxxxx@xxxxxx', $message, -1, $substitutionsNumber);
+        return [$text, $substitutionsNumber];
+    }
+    static function blockEmailSendingForDomain($message){
+        $regex = "/(gmail|yahoo|hotmail|outlook)(\.* ?[\w-]{2,4})*/";
         $text = preg_replace($regex, 'xxxxxxx@xxxxxx', $message, -1, $substitutionsNumber);
         return [$text, $substitutionsNumber];
     }

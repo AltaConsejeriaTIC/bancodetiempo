@@ -42,16 +42,40 @@ class CampaignController extends Controller
         }
         return redirect()->back();
     }
+    
+    public function update(Request $request){
+        $date_finish_donations = $this->getDateDonations($request->input('dateCampaign'), $request->input('timeCampaign'),$request->input('hoursCampaign'));
+        $uploadedImage = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/services/');
+        if (!$uploadedImage) {
+            $uploadedImage = "";
+        }
+        $campaign = Campaigns::find($request->input("campaign_id"))->update([
+            'name' => $request->input('nameCampaign'),
+            'description' => $request->input('descriptionCampaign'),
+            'date' => $request->input('dateCampaign') . " " . $request->input('timeCampaign'),
+            'hours' => $request->input('hoursCampaign'),
+            'category_id' => $request->input('categoryCampaign'),
+            'date_donations' => $date_finish_donations,
+            'image' => $uploadedImage,
+            'state_id' => 1,
+            'allows_registration' => 0,
+        ]);
+        return redirect()->back();
+    }
+    
+    
+    
     private function getDateDonations($date, $time, $hours){
-        $current = \date("Y-m-d H:i:s");
-        $today = new \DateTime($current);
+        $today = new \DateTime(\date("Y-m-d H:i:s"));
         $userDate = new \DateTime($date . " " . $time);
         $interval = $today->diff($userDate);
-        $dayInterval = (int)ceil($interval->days / 2);
-        $hoursInterval = (int)ceil($interval->h / 2);
-        $day = strtotime("+$hoursInterval hour", strtotime($current));
-        $day = strtotime("+$dayInterval hour", $day);
-        $day = \date("Y-m-d H:i:s", $day);
+        $interval->y = $interval->y / 2;
+        $interval->m = $interval->m / 2;
+        $interval->d = $interval->d / 2;
+        $interval->h = $interval->h / 2;
+        $interval->i = $interval->i / 2;
+        $userDate->sub($interval);
+        $day = $userDate->format('Y-m-d H:i:s');
         return $day;
     }
     public function report(Request $request, $campaignId){
@@ -72,6 +96,7 @@ class CampaignController extends Controller
         if (CampaignReport::where('campaign_id', $campaignId)->get()->count() > 4){
             $campaign = Campaigns::find($campaignId);
             $campaign->update([
+                'allows_registration' => 0,
                 'state_id' => 3,
             ]);
             adminCampaign::sendEmailToCampaignStakeholders($campaign);
@@ -82,7 +107,6 @@ class CampaignController extends Controller
         if ($this->inscribePerson($request->input('campaign_id'), Auth::id())) {
             return redirect()->back()->with('msg', 'Te has inscrito con exito');
         }
-
         return redirect()->back()->with('msg', 'Ya no quedan cupos disponibles');
     }
 
@@ -130,38 +154,13 @@ class CampaignController extends Controller
             foreach ($campaign->participants as $participant) {
                 $email = $participant->participant->email2;
 
-                Mail::send('mailReminder', ['user' => $participant->participant, 'campaign' => $campaign], function ($message) use ($email) {
+                Mail::send('mailReminder', ['user' => $participant->participant, 'campaign' => $campaign], function ($message) use ($email, $campaign) {
                     $message->from('evenvivelab_bog@unal.edu.co', 'Cambalachea!');
-                    $message->subject('Notificación');
+                    $message->subject('Recordatorio Campaña '.$campaign->name);
                     $message->to($email);
                 });
             }
         }
-    }
-
-    public function update(Request $request){
-        $today = new \DateTime(date("Y-m-d"));
-        $userDate = new \DateTime($request->input('dateCampaign'));
-        $interval = $today->diff($userDate);
-        $dayInterval = (int)ceil($interval->days / 2);
-        $date_finish_donations = date('Y-m-d', strtotime("+$dayInterval day", strtotime(date("Y-m-d")))) . " " . $request->input('timeCampaign');
-
-        $uploadedImage = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/services/');
-        if (!$uploadedImage) {
-            $uploadedImage = "";
-        }
-
-        $campaign = Campaigns::find($request->input("campaign_id"))->update([
-            'name' => $request->input('nameCampaign'),
-            'description' => $request->input('descriptionCampaign'),
-            'date' => $request->input('dateCampaign') . " " . $request->input('timeCampaign'),
-            'hours' => $request->input('hoursCampaign'),
-            'category_id' => $request->input('categoryCampaign'),
-            'date_donations' => $date_finish_donations,
-            'image' => $uploadedImage,
-            'state_id' => 1
-        ]);
-        return redirect()->back();
     }
 
     public function delete($campaignId)
@@ -241,9 +240,9 @@ class CampaignController extends Controller
 
     private function sendEmail($templateId, $emailParams, $toEmail)
     {
-        Mail::send($templateId, $emailParams, function ($message) use ($toEmail) {
+        Mail::send($templateId, $emailParams, function ($message) use ($toEmail, $emailParams) {
             $message->from('bancodetiempo@cambalachea.co', 'Cambalachea!');
-            $message->subject('Notificación');
+            $message->subject('Inscripción a la campaña '.$emailParams['campaign']->name);
             $message->to($toEmail);
         });
     }

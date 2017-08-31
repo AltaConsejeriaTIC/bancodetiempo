@@ -13,27 +13,14 @@
         <title>Cambalachea</title>
 
         <!-- Fonts-->
-        <link rel="stylesheet" type="text/css" href="{{asset('/css/fonts.css')}}">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
-
-        <!-- Bootstrap Material Design-->
-        <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-material-design.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('/css/ripples.min.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro" rel="stylesheet">
 
         <!-- Custom styles -->
-        <link href="{{ asset('/css/style.css?v2') }}" rel="stylesheet">
-        <link href="{{ asset('/css/style-mobile.css') }}" rel="stylesheet">
-        <link href="{{ asset('/css/modal.css') }}" rel="stylesheet">
-        <link href="{{ asset('/css/site.css?v'.\date('Ymd')) }}" rel="stylesheet">
-
-        <link href="{{ asset('/css/jquery-ui.css') }}" rel="stylesheet">
-
+        <link href="{{ asset('/css/site.css?v'.\date('YmdHi')) }}" rel="stylesheet">
         <!-- Scripts -->
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
 
         <script>
             window.Laravel = <?php echo json_encode([

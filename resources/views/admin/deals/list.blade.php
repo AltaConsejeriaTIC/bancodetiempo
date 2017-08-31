@@ -61,35 +61,36 @@
                                     </td>
                                 </tr>
 
-
+                            @if($deals->count() > 0)
 						      @foreach($deals as $deal)
                                 <tr v-on:click='myData.deal{{$deal->id}} = true'>
                                     <td>{{$deal->service->name}}</td>
                                     <td>{{$deal->user->first_name." ".$deal->user->last_name}}</td>
                                     <td>{{$deal->service->user->first_name." ".$deal->service->user->last_name}}</td>
                                     <td>{{$deal->service->category->category}}</td>
-                                    <td>{{$deal->dealStates->last()->state->state}}</td>
+                                    <td>{{$deal->state->state}}</td>
                                     <td>{{$deal->date}}</td>
                                     <td></td>
                                 </tr>
 						      @endforeach
+				            @endif
 						    </tbody>
 						  </table>
 						  {!! Form::close() !!}
 						</div>
-
+                        @if($deals->count() > 0)
 						<div class="col-md-12 pagination">
 							{!! $deals->render() !!}
 						</div>
+						@endif
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 @foreach($deals as $deal)
     @include("admin/deals/partial/details")
 @endforeach
+	</div>
 
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 @endsection

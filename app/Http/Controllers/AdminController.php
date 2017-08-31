@@ -165,9 +165,9 @@ class AdminController extends Controller
         foreach ($campaign->participants as $participant) {
             $email = $participant->participant->email2;
 
-            Mail::send('mailCancelCampaign', ["campaign" => $campaign, "participant" => $participant->participant], function ($message) use ($email) {
+            Mail::send('mailCancelCampaign', ["campaign" => $campaign, "participant" => $participant->participant], function ($message) use ($email, $campaign) {
                 $message->from('evenvivelab_bog@unal.edu.co', 'Cambalachea!');
-                $message->subject('Notificación');
+                $message->subject('La campaña '. $campaign->name." fue cancelada");
                 $message->to($email);
             });
         }
