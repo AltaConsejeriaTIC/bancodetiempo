@@ -46,8 +46,8 @@ class ImageController extends Controller
 	}
 	
 	private function createImage(){
-		$function = 'imagecreatefrom'.$this->imageType;
-		$image = \$function($this->route);
+		$function = '\imagecreatefrom'.$this->imageType;
+		$image = $function($this->route);
 		
 		imageAlphaBlending($image, true);
 		imageSaveAlpha($image, true);
