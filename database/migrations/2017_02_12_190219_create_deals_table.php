@@ -1,4 +1,4 @@
-*<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -40,6 +40,6 @@ class CreateDealsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('deals');
+        Schema::dropIfExists('deals');
     }
 }

@@ -1,0 +1,316 @@
+#conversation {
+    background: #e3ecf1;
+    height: 80vh;
+    border: 1px solid #e3ecf1;
+    background-image: url(/images/previewInbox.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+}
+
+#conversation > .box .fromMe .messageText {
+    position: relative;
+    display: block;
+    background: #0f6784;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    float: right;
+}
+
+#conversation > .box .forMe .messageText {
+    position: relative;
+    display: block;
+    background: #e5e5e5;
+    padding: 15px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+#conversation #controllers {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    background: #e5e5e5;
+    padding: 10px 5px;
+    margin-left: -15px;
+}
+
+#controllers .sendMenssages button {
+    border: 0px;
+    background: transparent;
+    width: 5%;
+    text-align: center;
+    height: 40px;
+}
+
+#controllers .sendMenssages input#message {
+    border: 0px;
+    width: 95%;
+    height: 40px;
+    border-radius: 5px;
+}
+
+#conversation > .box {
+    height: 60vh;
+    position: relative;
+    overflow: auto;
+    padding: 5px 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+    background: #fff;
+}
+
+#conversation  > .box > .row {
+    margin-bottom: 5px;
+}
+
+.listConversation {
+    height: 80vh;
+    overflow: auto;
+}
+
+.listConversation > .row {
+    cursor: pointer;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+    padding-top: 10px;
+}
+
+.boxTimeDeal {
+    background: #c2d8e0;
+    border: 1px solid #0f6784;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.boxTimeDeal .text1{
+  font-size: 12px;
+  font-weight: 600;
+  color: #303030;
+
+}
+
+.boxTimeDeal .text2{
+  font-size: 12px;
+  color: #0f6784;
+
+}
+.boxTimeDeal .text3{
+  font-size: 12px;
+  color: #303030;
+
+}
+.boxTimeDeal .text4{
+    font-size: 12px;
+    color: #0f6784;
+    font-weight: 600;
+}
+
+.boxTimeDeal label{
+  font-size: 1.7ex;
+  color: #445870;
+
+}
+
+.dealForm input[type='text'], .dealForm input[type='date'], .dealForm input[type='time'], .dealForm input[type='number'], .dealForm textarea {
+    padding: 5px 10px !important;
+    font-size: 14px !important;
+    margin-bottom: 0px !important;
+}
+
+.notRead {
+    background: #0f6784;
+    overflow: hidden;
+    padding: 1% 0px;
+}
+
+.notRead p {
+    color: #fff !important;
+}
+
+.reading{
+    background: #e3ecf1;
+}
+
+.dealDetail {
+    background: #e3ecf1;
+}
+
+
+#dealBox {
+    border: 1px solid #d2d2d2;
+    background: #e3ecf1;
+}
+
+#dealBox [canvas] {
+    background: #e3ecf1;
+    padding: 15px 0px;
+    position: absolute;
+    transition: all 1s;
+    width: 100%;
+}
+
+.deal {
+    left: -120%;
+}
+
+.dealForm {
+    left: 120%;
+}
+
+#dealDetail {
+    left: -120%;
+}
+
+#dealScore{
+    left: 120%;
+}
+
+#dealBox [canvas].active {
+    left: 2.5% !important;
+}
+#dealFinish {
+    left: 120%;
+}
+
+.loadBox {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loadBox.active{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.notificationAlert {
+    background: #ad3a38;
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: absolute;
+    color: #fff;
+    text-align: center;
+    font-weight: 200;
+    border-radius: 50%;
+    top: 0px;
+    right: 1ex;
+    font-size: 13px;
+}
+
+#suggestedSites {
+    background: #f5f5f5;
+    left: -150%;
+    height: 500px;
+    overflow: auto;
+}
+
+#suggestedSites .row {
+    margin-top: 2px;
+}
+
+.suggestedButton {
+    background: #0f6784;
+    color: #fff;
+    font-weight: bold;
+    border: 0px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.suggestedButton .icon {
+    font-size: 20px;
+}
+
+.suggestedButton .iconState {
+    position: absolute;
+    right: 0%;
+    height: 100%;
+    width: 35px;
+    display: flex;
+    top: 0%;
+    align-items: center;
+    border-radius: 5px;
+    background: #083d4f;
+    transition: all 1S;
+}
+
+.suggestedButton .iconState:before {
+    margin: auto;
+    transform: rotateZ(0deg);
+    transition: all 1S;
+}
+
+.suggestedButton[aria-expanded='true'] .iconState {
+    background: #009fe3;
+}
+
+.suggestedButton[aria-expanded='true'] .iconState:before {
+    content: "\f068";
+    transform: rotateZ(180deg);
+}
+
+#suggestedSites .sitesList {
+    background: #fff;
+    border: 1px solid #0f6784;
+    padding-bottom: 15px;
+    border-radius: 5px;
+}
+
+#detailSite {
+    background: #f5f5f5;
+    left: -150%;
+}
+@media (max-width: 767px) {
+    #conversation {
+        height: 70vh;
+        display: none;
+        transition: all 1s;
+    }
+    #conversation.active{
+        display: block;
+    }
+    #dealBox{
+        max-height: 60vh;
+    }
+    .listConversation{
+        display: none;
+        transition: all 1s;
+    }
+    .listConversation.active{
+        display: block;
+    }
+    #dealForm {
+        height: 65ex;
+        overflow: auto;
+    }
+    #dealDetail {
+        height: 65ex;
+        overflow: auto;
+    }
+    .nav-pills > li > a {
+        font-size: 11px !important;
+    }
+    #conversation #controllers {
+        margin-left: -3.5%;
+    }
+
+}
+
+@media (max-width: 500px) {
+    #conversation {
+        height: 85vh;
+    }
+}

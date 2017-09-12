@@ -17,11 +17,10 @@
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Bootstrap Material Design -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" type="text/css" href="css/site.css">
     <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
     <!-- Custom styles -->
     <link href="css/styleAdmin.css" rel="stylesheet">
-    <link href="css/modal.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ asset('js/vue.js') }}"></script>   

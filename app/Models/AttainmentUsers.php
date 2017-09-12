@@ -10,19 +10,18 @@ use User;
 class AttainmentUsers extends Model
 {
 	
-	public function state()
-  {
-    return $this->belongsTo(State::class);
-  }	
+    protected  $fillable = ['attainment_id', 'user_id', 'state_id'];
 
-  public function user()
-  {
-    return $this->belongsTo(User::class);
-  }	
+    public function state(){
+        return $this->belongsTo(State::class);
+    }
 
-  public function attainment()
-  {
-    return $this->belongsTo(Attainment::class);
-  }	
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function attainment(){
+        return $this->belongsTo(Attainment::class);
+    }
 
 }

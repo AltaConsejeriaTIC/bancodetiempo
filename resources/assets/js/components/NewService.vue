@@ -102,17 +102,13 @@
 	            			</div>
 	            			<div class="row">				
 								<input-tag class="col-xs-12  col-sm-12 no-input" :on-change="setTags" placeholder="Ej. EstiloDeVida JuegosDeMesa Collar" validate="text" :tags="tags"></input-tag>
-								<input type="hidden" name="tagService" v-model="tagService">
 							</div>
 	            			<div class="row">
-	            				<label for="imageService" class="paragraph10">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>
+	            				<label for="imageServices" class="paragraph10">Foto de la oferta</label><span class="text-opacity"> (Opcional)</span>
 	            			</div>
 	            			<div class="row">    		
-	            				<input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 validation" id='imageService' @change='previewPhotoService'  data-validations='["maxFile:2500000"]'>
+	            				<input type="file" name="imageService" class="boxPhoto1 col-xs-12 col-sm-12 col-md-12 validation preview" id='imageService'  data-validations='["maxFile:2500000"]'>
                                <label for="imageService" class='text-center col-xs-12 col-sm-12' v-bind:class="{'text-white' : imageService!='', 'load' : imageService!=''}" :style="{ backgroundImage: 'url(' + imageService + ')' }"><span>Sube una foto</span></label>
-                               <div class="msg" errors='imageService'>
-                                    <p error='max'>El peso màximo de la imagen debe ser de 3 Megas.</p>
-                                </div>
 	            			</div>
 	            			<div class='space15'></div>
 	            			<div class="row">
@@ -129,7 +125,8 @@
 									Cancelar
 								</button>
 								
-	            			</div>                   	                        
+	            			</div>
+                        </div>
                         </div>
                         <div class="modal-footer">
                         </div>
@@ -138,29 +135,27 @@
             </div>
         </div>
     </div>
+
 </template>
 <script>
     var helpers = require('./../helpers');
 
-    export default {       
+    export default {
          data: function () {
             return helpers.Service().data;
         }, 
+        props: ['categories', 'tagsService'],
         mixins: [helpers.Helpers(),helpers.MethodsService()],
-        mounted() {             
-            this.$parent.setMyData('totalChar', 250);
-            this.$parent.setMyData('maxChar', 250);
+        mounted() {
             this.$parent.setMyData('imageService', 'images/previewService.jpg');
             this.$parent.setMyData('serviceName', 'Titulo de la oferta');
             this.$parent.setMyData('descriptionService', 'Descripción de la oferta');
             this.$parent.setMyData('tags', Array('PalabrasClave'));
-
-            this.tagService = '';
         },
     	methods: {
-    		setTags: function(value){    			
-    			this.tagService = value;	
-    			this.$parent.setMyData('tags', value);    			
+    		setTags: function(value){
+    			this.tagService = value;
+    			this.$parent.setMyData('tags', value);
     		}
     	}
     }

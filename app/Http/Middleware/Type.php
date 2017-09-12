@@ -48,7 +48,7 @@ abstract class Type
 
     $this->auth->user()->state_id = 1;
     //activate Services
-    $idservice = Service::select('id')->whereUserId($this->auth->user()->id)->get();
+    $idservice = Service::select('id')->whereUserId($this->auth->user()->id)->where('state_id', 2)->get();
     
     foreach ($idservice as $id) 
     {   

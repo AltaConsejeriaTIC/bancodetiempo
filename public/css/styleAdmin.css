@@ -1,157 +1,301 @@
-.profileImg
-{
-	width: 20%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  margin-left: 40%;
-  border-radius: 50%;
+.profileImg {
+    width: 20%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 40%;
+    border-radius: 50%;
 }
 
-.titleContent
-{
-	font-size: 200%;
-	font-weight: bold;
-	margin: 1%;
+.titleContent {
+    font-size: 200%;
+    font-weight: bold;
+    margin: 1%;
 }
 
-.subTitle
-{
-	text-align: center;
+.subTitle {
+    text-align: center;
 }
 
-.modalPanel
-{
-	margin: 2%;
+.modalPanel {
+    margin: 2%;
 }
 
-.titleNav
-{
-	font-weight: bold;
+.titleNav {
+    font-weight: bold;
 }
 
 .vue-input-tag-wrapper .input-tag {
-	background-color: initial;
-	color: initial;
-	border: 1px solid #999999;
-	border-radius: 4px;
-	display: inline-block;
-	font-size: 13px;
-	font-weight: 400;
-	margin-bottom: 4px;
-	margin-right: 4px;
-	padding: 3px;
+    background-color: initial;
+    color: initial;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    padding: 3px;
 }
+
 ul.dropdown-menu li:hover {
-	background: rgba(15, 103, 132,0.7);
+    background: rgba(15, 103, 132, 0.7);
 }
-.no-input > input{
-	border: none !important;
-	display: initial !important;
-	overflow: initial !important;
-	margin-bottom: 0px !important;
+
+.no-input > input {
+    border: none !important;
+    display: initial !important;
+    overflow: initial !important;
+    margin-bottom: 0px !important;
 }
 
 .vue-input-tag-wrapper .input-tag .remove {
-	color: initial !important;
+    color: initial !important;
 }
 
 .vue-input-tag-wrapper {
-	background-color: #fff;
-	border: 1px solid #ccc;
-	cursor: text;
-	text-align: left;
-	-webkit-appearance: textfield;
-	border-radius: 4px;
-	padding: 0px 7px;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 16px;
-	color: #2c3e50;
-	white-space: nowrap;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: text;
+    text-align: left;
+    -webkit-appearance: textfield;
+    border-radius: 4px;
+    padding: 0px 7px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #2c3e50;
+    white-space: nowrap;
 }
 
 .vue-input-tag-wrapper::-webkit-scrollbar {
-	display:none;
+    display: none;
 }
 
 .input-tag:before {
-	content: "#";
+    content: "#";
 }
 
 .vue-input-tag-wrapper .input-tag .remove {
-	cursor: pointer;
-	font-weight: bold;
-	color: #638421;
+    cursor: pointer;
+    font-weight: bold;
+    color: #638421;
 }
 
 .vue-input-tag-wrapper .input-tag .remove:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .vue-input-tag-wrapper .input-tag .remove::before {
-	content: " x";
+    content: " x";
 }
 
 .vue-input-tag-wrapper .new-tag {
-	background: transparent;
-	border: 0;
-	color: #777;
-	font-size: 13px;
-	font-weight: 400;
-	margin-bottom: 6px;
-	margin-top: 1px;
-	outline: none;
-	padding: 4px;
-	padding-left: 0;
+    background: transparent;
+    border: 0;
+    color: #777;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    margin-top: 1px;
+    outline: none;
+    padding: 4px;
+    padding-left: 0;
 }
 
 .vue-input-tag-wrapper.read-only {
-	cursor: default;
+    cursor: default;
 }
 
-.tag-margin{
-	margin-right: 12.5px;
-	margin-bottom: 5px;
-	width: auto;
-}
-.space10{
-	display: block;
-	clear: both;
-	height: 10px;
-	width: 100%;
+.tag-margin {
+    margin-right: 12.5px;
+    margin-bottom: 5px;
+    width: auto;
 }
 
-.title3{
-	font-size: 17px !important;
-	margin: 0;
+.space10 {
+    display: block;
+    clear: both;
+    height: 10px;
+    width: 100%;
 }
 
-.paragraph1{
-	font-size: 16px !important;
-	word-wrap: break-word;
-}
-.paragraph2{
-	font-size: 14px !important;
-	word-wrap: break-word;
-}
-.paragraph3{
-	font-size: 14px !important;
-	word-wrap: break-word;
+.space5 {
+    display: block;
+    clear: both;
+    height: 5px;
+    width: 100%;
 }
 
-.paragraph4{
-	font-size: 10.5px !important;
-	word-wrap: break-word;
+.title3 {
+    font-size: 17px !important;
+    margin: 0;
 }
 
-.paragraph7{
-	font-size: 17px !important;
-	word-wrap: break-word;
+.paragraph1 {
+    font-size: 16px !important;
+    word-wrap: break-word;
 }
 
-.paragraph8{
-	font-size: 8px !important;
-	word-wrap: break-word;
+.paragraph2 {
+    font-size: 14px !important;
+    word-wrap: break-word;
 }
+
+.paragraph3 {
+    font-size: 14px !important;
+    word-wrap: break-word;
+}
+
+.paragraph4 {
+    font-size: 10.5px !important;
+    word-wrap: break-word;
+}
+
+.paragraph7 {
+    font-size: 17px !important;
+    word-wrap: break-word;
+}
+
+.paragraph8 {
+    font-size: 8px !important;
+    word-wrap: break-word;
+}
+
 .report {
-	background-color: darkred !important;
+    background-color: darkred !important;
+}
+
+
+/*
+Reportes
+*/
+
+#fields {
+    position: fixed;
+    background: #009688;
+    padding: 20px;
+    right: 2%;
+    top: 10%;
+    display: inline-table;
+    cursor: pointer;
+    transition: all 0s;
+}
+
+ul.fieldReport{
+    list-style: none;
+    padding: 0px;
+}
+
+article#report {
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+    height: 700px;
+}
+
+#report > div.list{
+    display: inline-flex;
+    position: relative;
+    overflow: scroll;
+    height: 800px;
+    max-height: 90%;
+    padding: 15px;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+article#report > table {
+}
+
+article#report > table th {
+    color: #fff;
+    background: #009688;
+    padding: 5px 15px;
+    margin-top: 0px;
+    vertical-align: top;
+    text-align: center;
+    text-transform: capitalize;
+    border: 1px solid #fff;
+}
+
+article#report > table  th button {
+    background: none;
+    border: 0px;
+    position: relative;
+}
+
+article#report > table td {
+    text-align: center;
+    padding: 15px 0px;
+    vertical-align: top;
+}
+
+ul.form-custom.fieldReport .icon {
+    background: none;
+    border: 0px;
+    color: #fff;
+    font-size: 17px;
+    margin-left: 5px;
+}
+
+article#report  table  td > ul {
+    display: table;
+    padding: 0px;
+    list-style: none;
+}
+
+article#report  table  td > ul > li {
+    float: left;
+    margin: 0px 5px;
+    display: block;
+}
+
+article#report > table td > table {
+    width: 100%;
+    margin: -14px auto;
+}
+
+article#report > table table table td {
+    display: block;
+    text-align: left !important;
+}
+
+#boxFields.contract {
+    display: none;
+}
+
+
+div#boxFields {
+    display: block;
+    position: relative;
+    height: 400px;
+    overflow: auto;
+}
+
+article#report > table td > span {
+    display: block;
+    border-bottom: 0.1px solid #2c2c2c;
+    width: 100%;
+    margin: 5px 0px;
+    max-height: 50px;
+    min-height: 50px;
+}
+
+.boxIcons {
+    position: relative;
+    display: block;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.iconSites > a {
+    text-decoration: none !important;
+    color: #000;
+    margin: 5px !important;
+    display: block;
+}
+
+.iconSites .active {
+    background: #009688;
+    color: #fff;
 }

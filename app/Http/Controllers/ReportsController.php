@@ -27,7 +27,7 @@ class ReportsController extends Controller
             if (count($numReports) > 4) {
                 $service = Service::find($serviceId);
                 $service->update([
-                    'state_id' => 2,
+                    'state_id' => 3,
                 ]);
             }
             return redirect()->back()->with('report', true);

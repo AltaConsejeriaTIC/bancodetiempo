@@ -14,5 +14,40 @@ require('laravel-elixir-vue-2');
  */
 
 elixir(function(mix) {
-    mix.webpack(['jQueryEvents.js', 'app.js'], "public/js/app.js");
+
+    mix.webpack([
+        'autoCompleteUsers.js',
+        'jQueryEvents.js',
+        'modules/pagination.js',
+        'modules/messagesCompleteProfile.js',
+        'modules/conversations.js',
+        'validation.js',
+        'modules/suggestedSites.js',
+        'modules/transition.js',
+        'modules/bannerHome.js',
+        'modules/previewPhoto.js',
+        'app.js'],
+    "public/js/app.js");
+
+    mix.styles([
+            'bootstrap-material-design.min.css',            
+            'bootstrap.min.css',
+            'jquery.datetimepicker.css',
+            'ripples.min.css',
+            'font-awesome.css',
+            'styleForms.css',
+            'style.css',
+            'style-mobile.css',
+            'footer.css',
+            'nav.css',
+            'modal.css',
+            'jquery-ui.css',
+            'home.css',
+            'conversation.css',
+            'campaigns.css',
+            'fonts.css',            
+        ],
+    'public/css/site.css');
+
+
 });

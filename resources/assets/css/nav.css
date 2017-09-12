@@ -1,0 +1,123 @@
+@CHARSET "ISO-8859-1";
+
+.nav1 {
+    background-color: rgba(0, 17, 54, 1) !important;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    transition: all 1s;
+}
+
+.nav1 img{
+	max-width:100%;
+}
+
+.nav1 a{
+  font-size: 16px;
+	color: #fff;
+}
+
+.nav1 .icon {
+    font-size: 28px;
+}
+
+/* --------------------bar user login---------------------*/
+.nav2 {
+    background-color: #001738 !important;
+    padding-bottom: 5px;
+    z-index: 10 !important;
+    display: block;
+    position: initial;
+    margin-bottom: 0px;
+}
+
+.iconbar2{
+    padding-top: 5px;
+    position: relative;
+    margin: auto;
+    display: block;
+}
+@media (max-width: 450px){
+	
+
+}
+
+@media (min-width: 1024px){
+	
+	.nav2 .container {
+	    width: 1180px;
+	    max-width:90%;
+	}
+}
+
+input.filter {
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    padding-left: 30px;
+    color: #2c3e50;
+}
+
+input.filter + label {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    font-size: 14px !important;
+    color: #b7bab7 !important;
+}
+
+input.filter::-webkit-input-placeholder {
+    color: #b7bab7;
+    font-size: 12px !important;
+}
+.newservice{
+    width: 114px;
+}
+.iconmenu{
+    padding-left: 10px !important;
+    color: white;
+    font-size: 24px !important;
+}
+.bolsa-de-tiempo{
+    padding-left:28px;
+}
+.moneda{
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+.coinSmall{
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+.textpadding{
+    padding-left: 5px;
+    padding-top: 4px;
+}
+.buttonStart{
+    height: 42px;
+    width: 154px;
+}
+.padding-top{
+    padding-top: 8px;
+}
+
+.line-nav{
+    font-size: 33px;
+  top: -16px;
+}
+
+.align-right{
+    font-size: 18px;
+    text-align: right;
+    right: -25px;
+    top: -1px;
+}
+
+.align-left{
+    font-size: 18px;
+    text-align: left;
+    left: -12px;
+}

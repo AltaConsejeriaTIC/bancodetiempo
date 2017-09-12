@@ -1,0 +1,314 @@
+@media (min-width: 768px) {
+	
+	#conversation{
+		overflow: auto;
+		height: 81%;
+	}
+
+    ul.menuMobile {
+        margin-bottom: 0px;
+        list-style: none;
+        text-align: center;
+        padding: 0px;
+    }
+
+    ul.menuMobile li.dropdown {
+        padding: 10px;
+    }
+
+    ul.menuMobile li.dropdown.open {
+        background: #0a1e5f;
+    }
+
+    ul.menuMobile > li > a > i {
+        font-size: 25px;
+        text-align: right;
+        color: #fff !important;
+    }
+
+    ul.menuMobile ul.dropdown-menu {
+        right: 0px;
+        background-color: #0a1e5f;
+        margin: 0px;
+        left: initial;
+    }
+
+    .menuMobile .item-icon {
+        margin-right: 15px;
+        right: auto;
+    }
+
+    ul.dropdown-menu > li > a {
+        color: #fff;
+    }
+
+    .bannerRegister {
+        background-size: 145% auto;
+        background-position: 55% 30%;
+        padding-top: 100px;
+    }
+
+    .line-r-v {
+        border-right: 0px solid #fff !important;
+        margin-right: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .line-l-v {
+        border-left: 0px solid #fff !important;
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
+	
+}
+
+/*
+Media Querys
+*/
+@media (min-width: 992px) {
+    .container {
+        width: 1024px;
+    }
+
+    ul.dropdown-menu > li > a {
+        color: #333;
+    }
+
+    .bannerRegister {
+        padding-top: 120px;
+    }
+
+    .bannerService {
+        padding-top: 120px;
+    }
+
+    .space40 {
+        margin-top: 40px;
+    }
+
+    .not-padding {
+        padding: 0px !important;
+    }
+
+    .nav-pills > li > a {
+        display: block;
+        padding-right: 20px;
+        font-size: 16px;
+    }
+
+    #conversation{
+		overflow: auto;
+		height: 90%;
+	}
+
+}
+
+
+@media (max-width: 767px) {
+
+    #app {
+        min-height: 500px;
+    }
+
+    .align {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+    .bannerRegister {
+        background-size: auto 100% !important;
+        background-position: 50% 30% !important;
+        padding-top: 100px !important;
+    }
+
+    .bannerInterest {
+        background-size: 215% auto;
+        background-position: 45% 40%;
+    }
+
+    .boxRegister {
+        background-size: 350% auto;
+        background-position: 45% 40%;
+    }
+
+    .bannerService {
+        background-size: 470% auto;
+        background-position: 50% 56%;
+        padding-top: 120px;
+    }
+
+    .button5 {
+        font-size: 13px !important;
+    }
+
+    .button7 {
+        font-size: 14px !important;
+    }
+
+    .button9 {
+        font-size: 9.5px;
+    }
+
+    .title1 {
+        font-size: 25px !important;
+    }
+
+    .title3 {
+        font-size: 17px !important;
+        margin: 0;
+    }
+
+    .paragraph1 {
+        font-size: 16px !important;
+        word-wrap: break-word;
+    }
+
+    .paragraph2 {
+        font-size: 14px !important;
+        word-wrap: break-word;
+    }
+
+    .paragraph3 {
+        font-size: 14px !important;
+        word-wrap: break-word;
+    }
+
+    .paragraph4 {
+        word-wrap: break-word;
+    }
+
+    .paragraph7 {
+        font-size: 17px !important;
+        word-wrap: break-word;
+    }
+
+    .paragraph8 {
+        font-size: 10px !important;
+        word-wrap: break-word;
+    }
+
+    ul.menuMobile {
+        margin-bottom: 0px;
+        list-style: none;
+        text-align: center;
+        padding: 0px;
+    }
+
+    ul.menuMobile li.dropdown {
+        padding: 10px;
+    }
+
+    ul.menuMobile li.dropdown.open {
+        background: #0a1e5f;
+    }
+
+    ul.menuMobile > li > a > i {
+        font-size: 25px;
+        text-align: right;
+        color: #fff !important;
+    }
+
+    ul.menuMobile ul.dropdown-menu {
+        right: 0px;
+        background-color: #0a1e5f;
+        margin: 0px;
+        left: initial;
+    }
+
+    .menuMobile .item-icon {
+        margin-right: 15px;
+        right: auto;
+    }
+
+    ul.dropdown-menu > li > a {
+        color: #fff;
+    }
+
+    .modal-content-box {
+        width: 100% !important;
+    }
+
+    .modal-container {
+        width: 100% !important;
+        /*padding: 40px 0px !important;*/
+    }
+
+    .modal-header .close {
+        float: none !important;
+        position: relative !important;
+        margin: auto !important;
+        display: block !important;
+    }
+
+    .nav-pills > li > a {
+        font-size: 13px !important;
+        padding: 7px;
+        display: block;
+    }
+
+    ul.nav-pills {
+        list-style: none;
+    }
+
+    .line-r-v {
+        border-right: 0px solid #fff !important;
+        margin-right: initial;
+        padding-right: initial;
+    }
+
+    .line-l-v {
+        border-left: 0px solid #fff !important;
+        margin-left: initial;
+        padding-left: initial;
+    }
+
+    .nav {
+        padding-left: 15px !important;
+    }
+
+    .campaign-box {
+        height: 300px;
+    }
+
+    .logoFooter {
+        display: block !important;
+        width: initial !important;
+    }
+
+    .logoFooter > img {
+        margin-bottom: 20px;
+    }
+
+    .reset-font {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .popup .dialogBox {
+        top: 15%;
+        width: 80%;
+        left: 10%;
+    }
+    
+    .responseBox #response {
+	    border-radius: 5px;
+	    height: 30px;
+	}
+    
+    #conversation{
+		height: 80%;
+    	overflow: auto;
+	}
+
+    .flex-center-xs {
+        display: flex;
+        align-items: center;
+    }
+
+    .flex-center-xs p {
+        margin: 0px;
+    }
+
+    .dialogBoxInbox {
+        left:-35%;
+        width: 220px;
+    }
+}

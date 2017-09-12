@@ -7,7 +7,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Inciar Sesión</div>
           <div class="panel-body">
-            @include('partial.errors')
+            @include('admin.partial.errors')
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}" novalidate="novalidate">
               
               

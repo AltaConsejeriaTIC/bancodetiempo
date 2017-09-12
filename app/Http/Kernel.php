@@ -54,9 +54,10 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'user' => \App\Http\Middleware\UserMiddleware::class,        
-        'IncompleteRegister' => \App\Http\Middleware\IncompleteRegisterMiddleware::class,
-        'userService' => \App\Http\Middleware\UserServiceMiddleware::class,        
-        'register' => \App\Http\Middleware\RegisterMiddleware::class,
+        'userService' => \App\Http\Middleware\UserServiceMiddleware::class,
         'conversation' => \App\Http\Middleware\ConversationMiddleware::class,
+        'userPending' => \App\Http\Middleware\UserPendingMiddleware::class,
+        'userAccess' => \App\Http\Middleware\SessionActivedMiddleware::class,
+        'notAdmin' => \App\Http\Middleware\NotAdminMiddleware::class,
     ];
 }
