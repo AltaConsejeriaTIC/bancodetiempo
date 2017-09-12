@@ -38,7 +38,7 @@ class DealsController extends Controller
             $deals->whereRaw("(offerer.first_name LIKE '%$filterOfferer%' OR offerer.last_name LIKE '%$filterOfferer%')");
         }
         if($filterState != ''){
-            $deals->where("deal.state_id", $filterState);
+            $deals->where("deals.state_id", $filterState);
         }
         if($filtrerDateCreateStart != '' && $filtrerDateCreateFinish != ''){
             $deals->whereBetween('deals.created_at', [$filtrerDateCreateStart, $filtrerDateCreateFinish]);
