@@ -12,6 +12,9 @@
             @include('campaigns/partial/deleteCampaign', array("$campaign" => $campaign))
         @endif
         <div class="col-md-4 col-xs-4 not-padding cover">
+            @if($campaign->user->group == 1)
+                <i class="iconGroups fa fa-users"  data-toggle="tooltip" title='Esta campaña pertenece a un grupo'></i>
+            @endif
             <a href="/campaign/{{$campaign->id}}">
                 <div class="cover" style="background-image : url('/getImg?img={{$campaign->image}}&w=400')">
                 </div>

@@ -13,8 +13,9 @@
             	@include('services.partial.deleteService')
             {!!Form::close()!!}
         @endif
-        
+        @if($service->user->group == 1)
         <i class="iconGroups fa fa-users"  data-toggle="tooltip" title='Esta oferta pertenece a un grupo'></i>
+        @endif
         <span class='category' onClick='app.__vue__.filterCategory({{$service->category_id}}, "{{$service->category->category}}")'>{{$service->category->category}}</span>
         <a href="/service/{{$service->id}}">
             <div class="cover">

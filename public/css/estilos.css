@@ -47,6 +47,7 @@
     text-align: center;
     position: relative;
     border:0px !important;
+    z-index: 15;
 }
 
 .ui-tooltip:before{
