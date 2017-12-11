@@ -88,6 +88,7 @@ class UsersController extends Controller
             Auth::user()->email2 = $request->input('email');
             Auth::user()->state_id = 1;
             Auth::user()->privacy_policy = 1;
+            Auth::user()->group = $request->group;
             Auth::user()->save();
             AttainmentsController::saveAttainment(1);
             return redirect("/home");

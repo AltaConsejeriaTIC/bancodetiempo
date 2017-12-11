@@ -19,6 +19,7 @@
 
         <!-- Custom styles -->
         <link href="{{ asset('/css/site.css?v'.\date('YmdHi')) }}" rel="stylesheet">
+        <link href="{{ asset('/css/estilos.css?v'.\date('YmdHi')) }}" rel="stylesheet">
         <!-- Scripts -->
         <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
 
