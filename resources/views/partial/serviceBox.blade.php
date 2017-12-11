@@ -13,6 +13,8 @@
             	@include('services.partial.deleteService')
             {!!Form::close()!!}
         @endif
+        
+        <i class="iconGroups fa fa-users"  data-toggle="tooltip" title='Esta oferta pertenece a un grupo'></i>
         <span class='category' onClick='app.__vue__.filterCategory({{$service->category_id}}, "{{$service->category->category}}")'>{{$service->category->category}}</span>
         <a href="/service/{{$service->id}}">
             <div class="cover">
@@ -23,13 +25,13 @@
             @if(is_null(Auth::User()))
                 <a @click='myData.login = true'>
                     @if(isset($service->toArray()['user_id']))
-                        @include('partial/imageProfile', array('cover' => 'getImg?img='.$service->user->avatar.'&w=200', 'id' => $service->user->id, 'border' => '#677d95', 'borderSize' => '2px'))
+                        @include('partial/imageProfile', array('cover' => 'getImg?img='.$service->user->avatar.'&w=200', 'id' => $service->user->id, 'border' => '#009fe3', 'borderSize' => '4px'))
                     @endif
                 </a>
             @else
                 <a href="/user/{{$service->user->id}}">
                     @if(isset($service->toArray()['user_id']))
-                        @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#677d95', 'borderSize' => '2px'))
+                        @include('partial/imageProfile', array('cover' => $service->user->avatar, 'id' => $service->user->id, 'border' => '#009fe3', 'borderSize' => '4px'))
                     @endif
                 </a>
             @endif
@@ -70,5 +72,10 @@
                 </div>
             </div>
         </a>
+        @if($service->user->group == 1)
+            <div class="filete">
+                Grupo
+            </div>
+        @endif
     </div>
 @endif
