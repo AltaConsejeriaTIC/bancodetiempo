@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Models\TokensPush;
 use App\Models\NetworkAccounts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -102,5 +103,14 @@ class UsersController extends Controller
             }
             return redirect("/finalizeRegister")->with('errorLogin', 'Su email ya se encuentra registrado con '.$provider.' en otra cuenta');
         }
+    }
+    
+    public function saveTokenPush(Request $request){
+        TokensPush::create([
+            "token" => $request->token,
+            "user_id" => Auth::id()
+        ]);
+        
+        return response()->json(['errors' => false]);
     }
 }

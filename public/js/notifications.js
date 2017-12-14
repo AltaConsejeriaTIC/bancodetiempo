@@ -64,7 +64,14 @@ jQuery(document).ready(function(){
   function sendTokenToServer(currentToken) {
     if (!isTokenSentToServer()) {
       console.log('Sending token to server...');
-      // TODO(developer): Send the current token to your server.
+      jQuery.ajax({
+          url: "saveTokenPushUser",
+          method: "get",
+          data : {token : currentToken},
+          success : function(resp){
+              
+          }
+      })
       setTokenSentToServer(true);
     } else {
       console.log('Token already sent to server so won\'t send it again ' +
@@ -128,10 +135,12 @@ jQuery(document).ready(function(){
 
   function updateUIForPushEnabled(currentToken) {
       console("hacer cuando token ya existe")
+      jQuery("#btnPush").addClass("hide");
   }
 
   function updateUIForPushPermissionRequired() {
     console.log("hacer cuando token es requerido");
+    jQuery("#btnPush").removeClass("hide");
   }
 
   resetUI();

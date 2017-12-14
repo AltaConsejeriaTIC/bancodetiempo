@@ -71,4 +71,5 @@ button.btn-notificationPush {
     left: 0px;
     text-decoration: underline;
     cursor: pointer;
+    z-index: 1002;
 } 

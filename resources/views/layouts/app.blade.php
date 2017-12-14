@@ -33,7 +33,7 @@
     </head>
 
     <body >
-    <button class="btn-notificationPush" id='btnPush' onclick="requestPermission()">
+    <button class="btn-notificationPush hide" id='btnPush' onclick="requestPermission()">
         Bogotá Cambalachea necesita tu permiso para habilitar las notificaciones de escritorio
     </button>
     <div id="fb-root"></div>
