@@ -33,6 +33,9 @@
     </head>
 
     <body >
+    <button class="btn-notificationPush" id='btnPush' onclick="requestPermission()">
+        Bogotá Cambalachea necesita tu permiso para habilitar las notificaciones de escritorio
+    </button>
     <div id="fb-root"></div>
         @include('prependvarjs')
         <div id="app">
@@ -80,5 +83,9 @@
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA&libraries=places"></script>
     @endif
         <script src="{{ asset('js/sitio.js') }}"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
         <script src="{{ asset('js/notifications.js') }}"></script>
 </html>

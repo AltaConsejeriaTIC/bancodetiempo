@@ -60,3 +60,15 @@
     transform: rotate(45deg);
     border-radius: 0px 0% 50% 0%;
 }
+button.btn-notificationPush {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    padding: 5px;
+    color: #fff;
+    background: red;
+    border: 0px;
+    left: 0px;
+    text-decoration: underline;
+    cursor: pointer;
+} 
