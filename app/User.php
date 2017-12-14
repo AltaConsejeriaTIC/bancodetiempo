@@ -14,6 +14,7 @@ use App\Models\AttainmentUsers;
 use App\Models\UserScore;
 use App\Models\Groups;
 use App\Models\NetworkAccounts;
+use App\Models\TokensPush;
 
 class User extends Authenticatable
 {
@@ -45,6 +46,11 @@ class User extends Authenticatable
     public function services()
     {
         return $this->hasMany(Service::class);
+    }
+    
+    public function tokens()
+    {
+        return $this->hasMany(TokensPush::class);
     }
     
     public function groups()
