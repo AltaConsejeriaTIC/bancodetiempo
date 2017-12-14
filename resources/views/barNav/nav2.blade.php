@@ -129,3 +129,7 @@
         {!! Form::close() !!}
     </div>
 </div>
+
+<button class="btn-notificationPush hide" id='btnPush'>
+    Bogotá Cambalachea necesita tu permiso para habilitar las notificaciones de escritorio
+</button>
