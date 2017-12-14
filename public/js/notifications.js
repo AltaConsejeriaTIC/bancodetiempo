@@ -136,7 +136,7 @@ jQuery(document).ready(function(){
   }
 
   function updateUIForPushEnabled(currentToken) {
-      console("hacer cuando token ya existe")
+      console.log("hacer cuando token ya existe")
       jQuery("#btnPush").addClass("hide");
   }
 
