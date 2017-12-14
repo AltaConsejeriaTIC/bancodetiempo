@@ -8,6 +8,8 @@ jQuery(document).ready(function(){
     }*/
     //var noti = new Notification( title, extra)
     
+    jQuery("#btnPush").on("click", requestPermission);
+    
     var config = {
         apiKey: "AIzaSyD-y5oAdUDspdNDac2uxVJxThzihJhlOzk",
         authDomain: "tommy-accesorios.firebaseapp.com",
