@@ -14,6 +14,7 @@
     opacity: 1;
 }
 .service-box .filete {
+    position: absolute;
     bottom: 0px;
     width: 100%;
     background: #009fe3;
@@ -60,8 +61,6 @@
     border-radius: 0px 0% 50% 0%;
 }
 button.btn-notificationPush {
-    position: absolute;
-    top: 0px;
     width: 100%;
     padding: 5px;
     color: #fff;
