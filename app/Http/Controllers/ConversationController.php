@@ -10,6 +10,7 @@ use App\Models\DealState;
 use App\Http\Controllers\EmailController;
 use App\Models\SuggestedSites;
 use App\Models\CategoriesSites;
+use Mail;
 
 class ConversationController extends Controller{
 
@@ -158,9 +159,23 @@ class ConversationController extends Controller{
             "message" => $sendingMessage['message'],
             "date" => date("Y-m-d"),
             "time" => date("H:i:s"),
-            "sender" => $sender, "state" => 6,
+            "sender" => $sender, 
+            "state" => 6,
             'substitutionsNumber' => $sendingMessage['substitutionsNumber']
         ];
+        if(count($newMessage) > 1){
+            if($conversation->applicant_id == $sender){
+                $addressee = $conversation->service->user;
+            }else{
+                $addressee = $conversation->applicant;
+            }
+        
+            Mail::send('emails.conversation', ['addressee' => $addressee, "service" => $conversation->service, "sender" => Auth::user(), "msg" => $sendingMessage['message']], function ($m) use ($addressee) {
+                $m->from('info@cambalachea.co', 'Bogotá Cambalachea');
+                $m->to($addressee->email2, $addressee->first_name)->subject('Respuesta en la conversacion con '.Auth::user()->first_name);
+            });
+        }
+        
         $conversation->update([
             "message" => json_encode($newMessage)
         ]);

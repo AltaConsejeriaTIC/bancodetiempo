@@ -14,7 +14,7 @@ class AddColumnGroupInUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('group');
+            $table->boolean('group')->default(0);
         });
     }
 
