@@ -14,3 +14,6 @@
 .bg-white-middle {
     background: rgba(255, 255, 255, 0.8);
 }
+.container-admin {
+    margin-left: 300px;
+}
