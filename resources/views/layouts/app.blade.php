@@ -19,6 +19,7 @@
 
         <!-- Custom styles -->
         <link href="{{ asset('/css/site.css?v'.\date('YmdHi')) }}" rel="stylesheet">
+        <link href="{{ asset('/css/estilos.css?v'.\date('YmdHi')) }}" rel="stylesheet">
         <!-- Scripts -->
         <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
 
@@ -32,6 +33,7 @@
     </head>
 
     <body >
+    
     <div id="fb-root"></div>
         @include('prependvarjs')
         <div id="app">
@@ -78,4 +80,10 @@
         <script src="{{ asset('js/mapsFunctions.js') }}"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA&libraries=places"></script>
     @endif
+        <script src="{{ asset('js/sitio.js') }}"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
+        <script src="{{ asset('js/notifications.js') }}"></script>
 </html>
