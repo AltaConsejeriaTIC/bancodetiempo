@@ -42,6 +42,16 @@
             </div>
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2">
+                        <input type="radio" name="group" id="group1" value="0" class="btnRadio" checked>
+                        <label for="group1" class="col-xs-6">Persona</label>
+                    
+                        <input type="radio" name="group" id="group2" value="1" class="btnRadio">
+                        <label for="group2" class=" col-xs-6">Grupo</label>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
                     <input id="registerPopup-age" name='age' type="checkbox" class="square validation"  data-validations='["requiredCheck"]'>
                     <label for="registerPopup-age" class="paragraph4"> Confirmo que <strong>soy mayor de edad</strong></label>
                     <div class="msg" errors='age'>

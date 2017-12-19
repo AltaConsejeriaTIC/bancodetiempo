@@ -10,6 +10,7 @@ use App\Models\DealState;
 use App\Http\Controllers\EmailController;
 use App\Models\SuggestedSites;
 use App\Models\CategoriesSites;
+use Mail;
 
 class ConversationController extends Controller{
 
@@ -158,13 +159,76 @@ class ConversationController extends Controller{
             "message" => $sendingMessage['message'],
             "date" => date("Y-m-d"),
             "time" => date("H:i:s"),
-            "sender" => $sender, "state" => 6,
+            "sender" => $sender, 
+            "state" => 6,
             'substitutionsNumber' => $sendingMessage['substitutionsNumber']
         ];
+        if(count($newMessage) > 1){
+            if($conversation->applicant_id == $sender){
+                $addressee = $conversation->service->user;
+            }else{
+                $addressee = $conversation->applicant;
+            }
+        
+            Mail::send('emails.conversation', ['addressee' => $addressee, "service" => $conversation->service, "sender" => Auth::user(), "msg" => $sendingMessage['message']], function ($m) use ($addressee) {
+                $m->from('info@cambalachea.co', 'Bogotá Cambalachea');
+                $m->to($addressee->email2, $addressee->first_name)->subject('Respuesta en la conversacion con '.Auth::user()->first_name);
+            });
+            
+            ConversationController::sendNotificationPush($addressee, $conversation->service);
+            
+        }
+        
         $conversation->update([
             "message" => json_encode($newMessage)
         ]);
     }
+    
+    static function sendNotificationPush($addressee, $service){
+        
+        foreach($addressee->tokens as $token){
+            
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => "https://fcm.googleapis.com/fcm/send",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => '{
+                                        "notification": {
+                                        "title": "Nuevo mensaje en Bogotá Cambalachea",
+                                        "body": "'.Auth::user()->first_name.' ha respondido en la oferta '.$service->name.'",
+                                        "icon": "https://scontent-mia3-2.xx.fbcdn.net/v/t1.0-1/p200x200/18199351_292705817842611_4689648123779858983_n.png?oh=62a22d446953b10a4eaa34fc618d4e04&oe=5A8F4810",
+                                        "click_action": "'.url("/").'/inbox"
+                                        },
+                                        "to" : "'.$token->token.'"
+                                        }',
+              CURLOPT_HTTPHEADER => array(
+                "authorization: key=AIzaSyBt6FCHrt0HrptNtBa3Wic8Mbe8RM70Khk",
+                "cache-control: no-cache",
+                "content-type: application/json",
+                "postman-token: adff424c-0e1b-b492-0e64-b8850ae04baf"
+              ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+        
+            
+        }
+        
+        
+        
+        
+    }
+    
     static function blockMessageSending($message){
         $message = ConversationController::blockEmailSending($message);
         $substitutionsNumber = $message[1];

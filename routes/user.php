@@ -54,3 +54,5 @@ Route::get('user/{user_id}', 'Profile\ProfileController@showProfileUser');
 Route::get('/hiddenMessagesCompleteProfile', function(){
     session(['hiddenMessagesCompleteProfile' => true]);
 });
+
+Route::get("/saveTokenPushUser", "UsersController@saveTokenPush");

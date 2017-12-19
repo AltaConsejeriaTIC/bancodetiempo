@@ -97,7 +97,9 @@
         </div>
     </div>
 </nav>
-
+<button class="btn-notificationPush hide" id='btnPush'>
+    Bogotá Cambalachea necesita tu permiso para habilitar las notificaciones de escritorio
+</button>
 @if($state)
     @include('partial.messagesCompleteProfile')
 @endif
@@ -129,3 +131,5 @@
         {!! Form::close() !!}
     </div>
 </div>
+
+
