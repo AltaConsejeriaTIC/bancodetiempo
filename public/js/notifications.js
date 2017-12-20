@@ -64,7 +64,7 @@ jQuery(document).ready(function(){
 
   
   function sendTokenToServer(currentToken) {
-    if (!isTokenSentToServer()) {
+    if (!isTokenSentToServer(currentToken)) {
       console.log('Sending token to server...');
       jQuery.ajax({
           url: "saveTokenPushUser",
@@ -82,8 +82,19 @@ jQuery(document).ready(function(){
 
   }
 
-  function isTokenSentToServer() {
-    return window.localStorage.getItem('sentToServer') == 1;
+  function isTokenSentToServer(currentToken) {
+    var resp;
+    jQuery.ajax({
+        url : "tokenInServer",
+        method : "get",
+        asyn : false,
+        data : {token : currentToken},
+        success : function(data){
+            console.log(data)
+            resp = data.respuesta;
+        }
+    });  
+    return resp;
   }
 
   function setTokenSentToServer(sent) {

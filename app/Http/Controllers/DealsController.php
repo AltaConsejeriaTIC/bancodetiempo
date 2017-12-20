@@ -12,6 +12,7 @@ use App\Models\UserScore;
 use App\Models\Service;
 use App\Models\ServiceScore;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\ConversationController;
 
 class DealsController extends Controller
 {
@@ -41,10 +42,14 @@ class DealsController extends Controller
 
             $email = new EmailController;
             if($conversation->applicant_id == Auth::id()){
+                $addressee = $conversation->service->user;
                 $email->sendMailDeal($conversation->service->user_id,$conversation->applicant_id, $conversation->service, "new");
             }else{
+                $addressee = $conversation->applicant;
                 $email->sendMailDeal($conversation->applicant_id,$conversation->service->user_id, $conversation->service, "new");
             }
+            
+            ConversationController::sendNotificationPush($addressee, $conversation->service, 1);
             
             return '{"state" : "ok"}';
 

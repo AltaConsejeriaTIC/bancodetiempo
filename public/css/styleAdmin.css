@@ -1,3 +1,6 @@
+body{
+    background-color: #e8ebf0 !important;
+}
 #loginAdmin {
     height: 100%;
     position: fixed;
@@ -13,7 +16,4 @@
 }
 .bg-white-middle {
     background: rgba(255, 255, 255, 0.8);
-}
-.container-admin {
-    margin-left: 300px;
 }

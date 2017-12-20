@@ -113,4 +113,13 @@ class UsersController extends Controller
         
         return response()->json(['errors' => false]);
     }
+    
+    public function tokenInServer(Request $request){
+        $resp = ["respuesta" => false];
+        $token = TokensPush::where("user_id", Auth::id())->where("token", $request->token)->get();
+        if(!is_null($token)){
+            $resp["respuesta"] = true;
+        }
+        return response()->json($resp);
+    }
 }
