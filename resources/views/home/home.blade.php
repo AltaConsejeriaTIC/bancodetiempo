@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@if(Auth:check())
+@if(Auth::check())
     @section("script")
         <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
