@@ -198,6 +198,14 @@ class ConversationController extends Controller{
                 $message = Auth::user()->first_name ." ha enviado una propuesta para la oferta ".$service->name;
                 $title = "Nueva propuesta en Bogotá Cambalachea";
             break;
+            case 2:
+                $message = Auth::user()->first_name ." ha rechazado la propuesta para la oferta ".$service->name;
+                $title = "Propuesta rechazada en Bogotá Cambalachea";
+            break;
+            case 3:
+                $message = Auth::user()->first_name ." ha aceptado la propuesta para la oferta ".$service->name;
+                $title = "Propuesta aceptada en Bogotá Cambalachea";
+            break;
         }
         
         

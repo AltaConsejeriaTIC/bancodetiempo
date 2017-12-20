@@ -62,6 +62,17 @@ class DealsController extends Controller
         $deal->update([
             'state_id' => 8
         ]);
+        
+        $conversation = Conversations::find($request->conversation);
+        
+        if($conversation->applicant_id == Auth::id()){
+            $addressee = $conversation->service->user;
+        }else{
+            $addressee = $conversation->applicant;
+        }
+        
+        ConversationController::sendNotificationPush($addressee, $conversation->service, 2);
+        
         return '{"state" : "ok"}';
     }
     
@@ -79,6 +90,15 @@ class DealsController extends Controller
                 $email->sendMailDeal($conversation->service->user_id,$conversation->applicant_id, $conversation->service, "acepted");
             }
         }
+        
+        if($conversation->applicant_id == Auth::id()){
+            $addressee = $conversation->service->user;
+        }else{
+            $addressee = $conversation->applicant;
+        }
+        
+        ConversationController::sendNotificationPush($addressee, $conversation->service, 3);
+        
         return '{"state" : "ok"}';
     }
 
