@@ -19,8 +19,13 @@ function busqueda(){
         }
     })
     console.log(url)
+    jQuery("#download").val("")
     window.location.href = url;
     
+}
+
+function download(){
+    jQuery("#download").val(1)
 }
 
 function rangoFecha(fecha){

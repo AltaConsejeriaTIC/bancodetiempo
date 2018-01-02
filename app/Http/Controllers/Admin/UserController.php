@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Helpers;
 use App\Models\State;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -41,7 +42,7 @@ class UserController extends Controller
             $users->whereBetween("created_at", $fecha);
         }
         
-        if($request->download == 1){
+        if($request->download != ""){
             $this->exportExcel($users->get());
         }
         
@@ -65,7 +66,11 @@ class UserController extends Controller
                 'Descripcion' => $user->aboutMe,
                 'Dorados' => $user->credits,
                 'Ranking' => $user->ranking,
-                'Estado' => $user->state->state
+                'Estado' => $user->state->state,
+                'Servicios ofertados' => $user->services->count(),
+                'Servicios adquiridos' => Helpers::countDealsFinished($user),
+                'Tipo usuario' => $user->group == 0 ? "Persona" : "Grupo",
+                'Fecha de creación' => $user->created_at
             ];
         }
 

@@ -40,9 +40,11 @@
                                         <option value="2" @if(Request::get('tipo') == 2) selected @endif>Grupos</option>
                                     </select>
                                 </div>
-                                <div class="col-7"></div>
+                                <div class="col-7 text-right">
+                                    <button type="button" class="fa fa-download btn btn-info" onClick='download();busqueda();'></button>
+                                </div>
                                 <div class="col-2">
-                                    <p class="">
+                                    <p class="btn btn-outline-success">
                                         Total: {!! $users->total() !!}
                                     </p>
                                 </div>
@@ -106,6 +108,7 @@
 					    </div>
 					     <input type="hidden" class="" name="page" value="{{Request::get('page')}}">
 					     <input type="hidden" class="control" name="fecha" id="rangoFecha" value="{{Request::get('fecha')}}">
+					     <input type="hidden" class="control" name="download" id="download" value="">
 					    <div class="col-12 pagination pg-bluegrey">             
 							{!! $users->appends(["tipo" => Request::get('tipo'), "name" => Request::get('name'),"lastName" => Request::get('lastName'), "email" => Request::get('email'), "state" => Request::get('state')])->render('vendor.pagination.bootstrap-4') !!}         
 						</div>
