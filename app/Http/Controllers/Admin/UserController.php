@@ -13,16 +13,20 @@ class UserController extends Controller
 
     public function showList(Request $request)
     {
-        $name = $request->input('filterName');
-        $lastName = $request->input('filterLastName');
-        $email = $request->input('filterEmail');
-        $filterState = $request->input('filterState');
+        $tipo = $request->input('tipo');
+        $name = $request->input('name');
+        $lastName = $request->input('lastName');
+        $email = $request->input('email');
+        $filterState = $request->input('state');
         $orderDateCreate = $request->input('orderDateCreate');
         $filtrerDateCreateStart = $request->input('filtrerDateCreateStart');
         $filtrerDateCreateFinish = $request->input('filtrerDateCreateFinish');
         $download = $request->input('download');
         $users = User::with('state', 'role');
         $states = State::statesForUsers()->pluck('state', 'id');
+        if($tipo != ''){
+            $users->where('group', $tipo == 1 ? 0 : 1);
+        }
         if($name != ''){
             $users->where('first_name', 'LIKE', "%$name%");
         }

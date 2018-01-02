@@ -1,6 +1,6 @@
 @extends('layouts.appAdmin')
 @section('script')
-    
+    <script src="/js/admin.js"></script>
 @endsection
 @section('content') 
     <div class="py-1 px-3">
@@ -11,21 +11,46 @@
 						<h4>Reportes de usuarios</h4>
 						<div class="box box-block bg-white">
 							<h5 class="mb-1">Usuarios</h5>
+                        
+                            <div class="row">
+                                <div class="col-xs-3 form-group">
+                                    Tipo usuario: 
+                                    <select name="tipo" id="tipo" class="form-control control">
+                                        <option value="">Todos</option>
+                                        <option value="1" @if(Request::get('tipo') == 1) selected @endif>Personas</option>
+                                        <option value="2" @if(Request::get('tipo') == 2) selected @endif>Grupos</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-9">
+                                    <p class="">
+                                        Total: {!! $users->total() !!}
+                                    </p>
+                                </div>
+                            </div>
+                        
 				            <table class="table table-striped table-bordered dataTable" id="table-3" role="grid" aria-describedby="table-3_info">
 									<thead>
 										<tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="table-3" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" style="width: 206.25px;" aria-sort="ascending">Nombres</th>
                                             <th class="sorting" tabindex="0" aria-controls="table-3" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 264.25px;">Apellidos</th>
                                             <th class="sorting" tabindex="0" aria-controls="table-3" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237.25px;">Email</th>
-                                            <th class="sorting" tabindex="0" aria-controls="table-3" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 175.25px;">Rol</th>
+                                            <th class="sorting" tabindex="0" aria-controls="table-3" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 175.25px;">Estado</th>
                                             <th class="sorting" tabindex="0" aria-controls="table-3" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 127.25px;">Fecha creación</th>
 										</tr>
 										<tr>
-										    <th rowspan="1" colspan="1"><input type="text" class="form-control" placeholder="Search Rendering engine"></th>
-										    <th rowspan="1" colspan="1"><input type="text" class="form-control" placeholder="Search Browser"></th>
-										    <th rowspan="1" colspan="1"><input type="text" class="form-control" placeholder="Search Platform(s)"></th>
-										    <th rowspan="1" colspan="1"><input type="text" class="form-control" placeholder="Search Engine version"></th>
-										    <th rowspan="1" colspan="1"><input type="text" class="form-control" placeholder="Search CSS grade"></th>
+										    <th rowspan="1" colspan="1"><input type="text" class="form-control control" placeholder="Nombres" name='name' value="{{Request::get('name')}}"></th>
+										    <th rowspan="1" colspan="1"><input type="text" class="form-control control" placeholder="Apellidos" name="lastName" value="{{Request::get('lastName')}}"></th>
+										    <th rowspan="1" colspan="1"><input type="text" class="form-control control" placeholder="Email" name='email' value="{{Request::get('email')}}"></th>
+										    <th rowspan="1" colspan="1">
+										        <select name="state" id="state" class="form-control control">
+										            <option value=""></option>
+										            <option value="1" @if(Request::get('state') == 1) selected @endif>Activo</option>
+										            <option value="2" @if(Request::get('state') == 2) selected @endif>Inactivo</option>
+										            <option value="3" @if(Request::get('state') == 3) selected @endif>Bloqueado</option>
+										            <option value="4" @if(Request::get('state') == 4) selected @endif>Pendiente</option>
+										        </select>
+										    </th>
+										    <th rowspan="1" colspan="1"><input type="text" class="form-control" placeholder="Fecha creación"></th>
 								        </tr>
 									</thead>
 									<tbody>
@@ -34,14 +59,18 @@
                                             <td>{{ $user->first_name }}</td>
                                             <td>{{ $user->last_name }}</td>
                                             <td>{{ $user->email2 }}</td>
-                                            <td>{{ $user->state->state }}</td>
-                                            <td>{{ $user->role->role }}</td>  
+                                            <td>{{ $user->state->state }}</td> 
                                             <td>{{ $user->created_at }}</td>               
                                         </tr>
                                         @endforeach
 								    </tbody>
 								</table>
 					    </div>
+					     <input type="hidden" class="" name="page" value="{{Request::get('page')}}">
+					    <div class="col-md-12 pagination pg-bluegrey">             
+							{!! $users->appends(["tipo" => Request::get('tipo')])->render() !!}         
+						</div>
+					    
 				    </div>
         </div>
         
@@ -146,7 +175,6 @@
 			</div>
 		</div>-->
 	</div> 
-</div>
 
 
 
