@@ -11,45 +11,38 @@ use Maatwebsite\Excel\Facades\Excel;
 class UserController extends Controller
 {
 
-    public function showList(Request $request)
-    {
-        $tipo = $request->input('tipo');
-        $name = $request->input('name');
-        $lastName = $request->input('lastName');
-        $email = $request->input('email');
-        $filterState = $request->input('state');
-        $orderDateCreate = $request->input('orderDateCreate');
-        $filtrerDateCreateStart = $request->input('filtrerDateCreateStart');
-        $filtrerDateCreateFinish = $request->input('filtrerDateCreateFinish');
-        $download = $request->input('download');
-        $users = User::with('state', 'role');
-        $states = State::statesForUsers()->pluck('state', 'id');
-        if($tipo != ''){
-            $users->where('group', $tipo == 1 ? 0 : 1);
+    public function showList(Request $request){
+        
+        $users = User::select("users.*")->with('state', 'role');
+        
+        if($request->tipo != ''){
+            $users->where('group', $request->tipo == 1 ? 0 : 1);
         }
-        if($name != ''){
-            $users->where('first_name', 'LIKE', "%$name%");
+        if($request->name != ''){
+            $users->where('first_name', 'LIKE', "%$request->name%");
         }
-        if($lastName != ''){
-            $users->where('last_name', 'LIKE', "%$lastName%");
+        if($request->lastName != ''){
+            $users->where('last_name', 'LIKE', "%$request->lastName%");
         }
-        if($email != ''){
-            $users->where('email2', 'LIKE', "%$email%");
+        if($request->email != ''){
+            $users->where('email2', 'LIKE', "%$request->email%");
         }
-        if($filterState != ''){
-            $users->where('state_id', $filterState);
+        if($request->state != ''){
+            $users->where('state_id', $request->state);
         }
-        if($orderDateCreate != ''){
-            $users->orderBy('created_at', $orderDateCreate);
+        if($request->ofertados != ''){
+            $users->whereRaw("(SELECT count(*) FROM services where user_id = users.id) = $request->ofertados");
         }
-        if($filtrerDateCreateStart != '' && $filtrerDateCreateFinish != ''){
-            $users->whereBetween('created_at', [$filtrerDateCreateStart, $filtrerDateCreateFinish]);
+        if($request->adquiridos != ''){
+            $users->whereRaw("(SELECT count(*) FROM conversations INNER JOIN deals on deals.conversations_id = conversations.id where applicant_id = users.id AND deals.state_id = 10) = $request->adquiridos");
         }
-        if($download == 1){
+        
+        if($request->download == 1){
             $this->exportExcel($users->get());
-
         }
-        $users = $users->paginate(6);
+        
+        $users = $users->paginate(20);
+        
         return view('admin/users/list', compact('users', 'states'));
 
     }

@@ -141,6 +141,21 @@ class Helpers{
         return $interval->format('%a');
 
     }
+    
+    static function countDealsFinished($user){
+        $total = 0;
+        if($user->conversations->count() != 0){
+            foreach($user->conversations as $conversation){
+                foreach($conversation->deals as $deal){
+                    if($deal->state_id == 10){
+                        $total += 1;
+                    }
+                }
+            }
+        }
+        return $total;
+                                                
+    }
 
 
 }

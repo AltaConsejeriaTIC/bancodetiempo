@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
+use App\Models\Conversations;
 use App\Models\State;
 use App\Models\Role;
 use App\Models\InterestUser;
@@ -78,7 +79,7 @@ class User extends Authenticatable
     public function conversations()
     {
 
-        return $this->hasMany(conversations::class);
+        return $this->hasMany(conversations::class, "applicant_id", "id");
 
     }
 
