@@ -1,6 +1,25 @@
 @extends('layouts.appAdmin')
+@section('estilos')
+    <link rel="stylesheet" href="/css/daterangepicker.css">
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+@endsection
 @section('script')
     <script src="/js/admin.js"></script>
+    <script src="/js/bootstrap-datepicker.min.js"></script>
+    <script src="/js/moment.js"></script>
+    <script src="/js/daterangepicker.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#rango-fecha').daterangepicker({
+                buttonClasses: ['btn', 'btn-sm'],
+                applyClass: 'btn-success',
+                cancelClass: 'btn-inverse',
+            }, function(start, end, label) {
+                rangoFecha(start.format('YYYY-MM-DD') + '|' + end.format('YYYY-MM-DD') );
+                busqueda();
+            });
+        })
+    </script>
 @endsection
 @section('content') 
     <div class="py-1 px-3">
@@ -66,7 +85,7 @@
                                                 <input type="text" class="form-control control" placeholder="" name="adquiridos" value="{{Request::get('adquiridos')}}">
                                             </th>
 										    <th rowspan="1" colspan="1">
-                                                <input type="text" class="form-control" placeholder="Fecha creación">
+                                                <input class="form-control" type="text" name="fecha" id="rango-fecha" value="{{App\Helpers::rangoFecha(Request::get('fecha'))}}">
                                             </th>
 								        </tr>
 									</thead>
@@ -86,6 +105,7 @@
 								</table>
 					    </div>
 					     <input type="hidden" class="" name="page" value="{{Request::get('page')}}">
+					     <input type="hidden" class="control" name="fecha" id="rangoFecha" value="{{Request::get('fecha')}}">
 					    <div class="col-12 pagination pg-bluegrey">             
 							{!! $users->appends(["tipo" => Request::get('tipo'), "name" => Request::get('name'),"lastName" => Request::get('lastName'), "email" => Request::get('email'), "state" => Request::get('state')])->render('vendor.pagination.bootstrap-4') !!}         
 						</div>

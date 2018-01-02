@@ -36,6 +36,10 @@ class UserController extends Controller
         if($request->adquiridos != ''){
             $users->whereRaw("(SELECT count(*) FROM conversations INNER JOIN deals on deals.conversations_id = conversations.id where applicant_id = users.id AND deals.state_id = 10) = $request->adquiridos");
         }
+        if($request->fecha != ''){
+            $fecha = explode("|", $request->fecha);
+            $users->whereBetween("created_at", $fecha);
+        }
         
         if($request->download == 1){
             $this->exportExcel($users->get());

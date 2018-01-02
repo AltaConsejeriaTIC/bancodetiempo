@@ -22,3 +22,7 @@ function busqueda(){
     window.location.href = url;
     
 }
+
+function rangoFecha(fecha){
+    jQuery("#rangoFecha").val(fecha)
+}

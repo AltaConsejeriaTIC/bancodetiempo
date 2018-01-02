@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/admin/core.css">
     <link rel="stylesheet" href="/css/admin/sidebar.css">
     <link rel="stylesheet" href="/css/styleAdmin.css">
+    @yield('estilos')
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),

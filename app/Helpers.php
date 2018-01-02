@@ -156,6 +156,17 @@ class Helpers{
         return $total;
                                                 
     }
+    
+    static function rangoFecha($fecha){
+        if($fecha != ''){
+            $fecha = explode("|", $fecha);
+            $fecha1 = date("m/d/Y", strtotime($fecha[0]));
+            $fecha2 = date("m/d/Y", strtotime($fecha[1]));
+            return $fecha1." - ".$fecha2;
+        }else{
+            return "";
+        }
+    }
 
 
 }
