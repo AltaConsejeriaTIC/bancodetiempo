@@ -56,6 +56,9 @@ Route::post("/admin/suggestedSites/editSite", 'Admin\SuggestedSitiesController@e
 Route::post("/admin/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController@deleteSite');
 
 
+Route::get("getDetailUsers", 'Admin\UserController@getDetail');
+
+
 /** Services **/
 
 Route::get('homeAdminServices', 'Admin\ServicesController@homeAdminServices');

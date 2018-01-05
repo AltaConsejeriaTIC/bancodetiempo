@@ -9,6 +9,7 @@
     <script src="/js/moment.js"></script>
     <script src="/js/daterangepicker.js"></script>
     <script>
+        var token = "{{ csrf_token() }}";
         jQuery(document).ready(function(){
             jQuery('#rango-fecha').daterangepicker({
                 buttonClasses: ['btn', 'btn-sm'],
@@ -18,6 +19,7 @@
                 rangoFecha(start.format('YYYY-MM-DD') + '|' + end.format('YYYY-MM-DD') );
                 busqueda();
             });
+            jQuery("#table-users tbody tr").on("click", modalDetailUsers)
         })
     </script>
 @endsection
@@ -50,7 +52,7 @@
                                 </div>
                             </div>
                         
-				            <table class="table table-striped table-bordered dataTable" id="table-3" role="grid" aria-describedby="table-3_info">
+				            <table class="table table-striped table-bordered dataTable" id="table-users" role="grid" aria-describedby="table-3_info">
 									<thead>
 										<tr role="row">
                                             <th >Nombres</th>
@@ -93,7 +95,7 @@
 									</thead>
 									<tbody>
                                         @foreach($users as $user)
-                                        <tr>
+                                        <tr data-user='{{$user->id}}'>
                                             <td>{{ $user->first_name }}</td>
                                             <td>{{ $user->last_name }}</td>
                                             <td>{{ $user->email2 }}</td>
@@ -119,6 +121,93 @@
       
 	</div> 
 
+<div class="modal fade detailBox" tabindex="-1" role="dialog" aria-labelledby="detalle" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-4">
+        <div class="row">
+            <div class="col-2">
+                <img src="/images/no-image.png" alt="avatar" id="d-avatar">
+            </div>
+            <div class="col-10">
+                <h4 id="d-name"></h4>
+                <div class="row">
+                   <div class="col-6">
+                       <i id="sex" class="fa fa-male col-6"></i>
+                   </div>
+                   <div class="col-6">
+                       <strong>Dorados: </strong> <span id="d-dorados"></span>
+                   </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Tipo usuario: </strong> <span id="d-tipo"></span>
+                    </div>
+                    <div class="col-6">
+                        <strong>Fecha nacieniento: </strong> <span id="d-birthDate"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Email: </strong> <span id="d-email"></span>
+                    </div>
+                    <div class="col-6">
+                        <p><strong>Estado: </strong> <span id="d-estado"></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <strong>Description:</strong>
+                        <p id="d-about"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                       <h6>Servicios ofertados</h6>
+                        <table class="table table-striped table-bordered dataTable" id="table-servicios1" role="grid" aria-describedby="table-3_info">
+									<thead>
+										<tr role="row">
+                                            <th>Nombre</th>
+                                            <th>Valor</th>
+                                            <th>Modalidad</th>
+                                            <th>Categoria</th>
+                                            <th>Estado</th>
+										</tr>
+									</thead>
+									<tbody>                                        
+                                        
+								    </tbody>
+								</table>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                       <h6>Servicios adquiridos</h6>
+                        <table class="table table-striped table-bordered dataTable" id="table-servicios2" role="grid" aria-describedby="table-3_info">
+                            <thead>
+                                <tr role="row">
+                                    <th>Nombre</th>
+                                    <th>Valor</th>
+                                    <th>Modalidad</th>
+                                    <th>Categoria</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                        
 
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6"></div>
+                    <div class="col-6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
 
 @endsection

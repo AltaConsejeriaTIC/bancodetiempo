@@ -83,5 +83,55 @@ class UserController extends Controller
         })->download('xls');
 
     }
+    
+    public function getDetail(Request $request){
+        $user = User::find($request->user);
+        $json = [
+            "aboutMe" => $user->aboutMe,
+            "avatar" => $user->avatar,
+            "birthDate" => $user->birthDate,
+            "created_at" => $user->created_at,
+            "credits" => $user->credits,
+            "email" => $user->email2,
+            "name" => $user->first_name." ".$user->last_name,
+            "gender" => $user->gender,
+            "group" => $user->group,
+            "ranking" => $user->ranking,
+            "state" => $user->state->state
+        ];
+        
+        foreach($user->services as $service){
+            $modalidad = $service->virtually === 1 ? "Virtual" : "";
+            $modalidad = $modalidad != "" ? " / " : "";
+            $modalidad = $service->presently === 1 ? "Presencial" : "";
+            
+            $json["serviciosOfrecidos"][] = [
+                "nombre" => $service->name,
+                "valor" => $service->value,
+                "modalidad" => $modalidad,
+                "categoria" => $service->category->category,
+                "estado" => $service->state->state
+            ];
+        }
+        
+        if($user->conversations->count() != 0){
+            foreach($user->conversations as $conversation){
+                foreach($conversation->deals as $deal){
+                    $modalidad = $deal->service->virtually === 1 ? "Virtual" : "";
+                    $modalidad = $modalidad != "" ? " / " : "";
+                    $modalidad = $deal->service->presently === 1 ? "Presencial" : "";
+                    $json["serviciosAdquiridos"][] = [
+                        "nombre" => $deal->service->name,
+                        "valor" => $deal->value,
+                        "modalidad" => $modalidad,
+                        "categoria" => $service->category->category,
+                        "estado" => $deal->state->state
+                    ];
+                }
+            }
+        }
+        
+        return response()->json($json);
+    }
 
 }
