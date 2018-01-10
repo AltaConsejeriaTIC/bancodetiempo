@@ -12,6 +12,7 @@ use App\Http\Controllers\Profile\ProfileController;
 | to using a Closure or controller method. Build something great!
 |
 */
+
 Route::get('/', 'HomeController@indexNotRegister');
 Route::get('/index', 'HomeController@indexNotRegister');
 Route::get('/home', 'HomeController@index')->middleware('userPending', 'notAdmin');
@@ -69,4 +70,5 @@ Route::get('/getImg', 'ImageController@getImage');
 
 Route::get('/finalizeRegister', 'RegisterController@finalizeRegister');
 Route::put('profile/completeRegister', 'UsersController@completeRegister');
+
 

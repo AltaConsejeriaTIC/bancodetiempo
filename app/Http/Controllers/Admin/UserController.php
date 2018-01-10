@@ -65,7 +65,7 @@ class UserController extends Controller
                 'Fecha Nacimiento' => $user->birthDate,
                 'Descripcion' => $user->aboutMe,
                 'Dorados' => $user->credits,
-                'Ranking' => $user->ranking,
+                'Ranking' => is_null($user->ranking) ? 0 : $user->ranking,
                 'Estado' => $user->state->state,
                 'Servicios ofertados' => $user->services->count(),
                 'Servicios adquiridos' => Helpers::countDealsFinished($user),
@@ -94,10 +94,14 @@ class UserController extends Controller
             "credits" => $user->credits,
             "email" => $user->email2,
             "name" => $user->first_name." ".$user->last_name,
+            "first_name" => $user->first_name,
+            "last_name" => $user->last_name,
             "gender" => $user->gender,
             "group" => $user->group,
-            "ranking" => $user->ranking,
-            "state" => $user->state->state
+            "ranking" => is_null($user->ranking) ? 0 : $user->ranking,
+            "state" => $user->state->state,
+            "state_id" => $user->state_id,
+            "id" => $user->id
         ];
         
         foreach($user->services as $service){
@@ -132,6 +136,16 @@ class UserController extends Controller
         }
         
         return response()->json($json);
+    }
+    
+    public function updateUser(Request $request){
+        $user = User::find($request->id);
+        $user->update([
+            "first_name" => $request->name,
+            "last_name" => $request->lastname,
+            "email" => $request->email,
+            "state_id" => $request->state
+        ]);
     }
 
 }
