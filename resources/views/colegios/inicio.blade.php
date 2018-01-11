@@ -13,10 +13,10 @@
                 <h6 class="text-white">Abre una cuenta</h6>
                 <div class="row">
                     <div class="col-6 text-center">
-                        <a href="" class="btn btn-dark rounded-0 col-10">Soy estudiante</a>
+                        <a href="#" class="btn btn-dark bg-cambalachea rounded-0 text-lg px-5">Soy estudiante</a>
                     </div>
                     <div class="col-6 text-center">
-                        <a href="" class="btn btn-dark rounded-0 col-10">Soy administrador</a>
+                        <a href="/registro-admin" class="btn btn-dark bg-cambalachea rounded-0 text-lg px-4">Soy administrador</a>
                     </div>
                 </div>
             </div>

@@ -14,16 +14,16 @@
     <div>
         <div class="row">
             <div class="col-4 form-group">
-                <label for="" class="text-white text-sm">Usuario</label>
+                <label for="" class="text-white text-sm mb-0">Usuario</label>
                 <input type="text" class="form-control rounded-0 text-sm">
             </div>
             <div class="col-4 form-group">
-                <label for="" class="text-white text-sm">Ccontraseña</label>
+                <label for="" class="text-white text-sm mb-0">Ccontraseña</label>
                 <input type="text" class="form-control rounded-0 text-sm">
-                <a class="text-white text-xs st--5">¿Olvidaste la contraseña?</a>
+                <a class="text-white text-xs position-absolute">¿Olvidaste la contraseña?</a>
             </div>
             <div class="col-4">
-                <p class="text-white text-sm">&nbsp;</p>
+                <p class="text-white text-sm mb-2">&nbsp;</p>
                 <button type="button" class="btn btn-info rounded-0 text-sm">Iniciar sesión</button>
             </div>
         </div>
