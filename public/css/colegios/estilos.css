@@ -42,3 +42,53 @@
     text-align: center;
     padding: 30px;
 }
+
+.panel{
+    background: #f2f5f6;
+}
+
+.campaign-box {
+    height: 250px;
+    margin: 10px auto;
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.24);
+    max-width: 100%;
+}
+.campaign-box a{
+    text-decoration: none;
+}
+.campaign-box .description {
+    max-height: 45px;
+    min-height: 45px;
+}
+
+.campaign-box .title {
+    min-height: 45px;
+    max-height: 45px;
+    overflow: hidden;
+}
+
+.campaign-box .cover {
+    height: 100%;
+    display: block;
+    background-size: auto 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+.campaign-box .content {
+    display: block;
+    position: relative;
+    height: 150px;
+}
+
+.campaign-box .description, .campaign-box .title {
+    min-height: 45px;
+    max-height: 45px;
+    overflow: hidden;
+}
+
+.campaign-box .line {
+    border-top: 1px solid #003459;
+}

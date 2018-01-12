@@ -60,5 +60,7 @@ class Kernel extends HttpKernel
         'userAccess' => \App\Http\Middleware\SessionActivedMiddleware::class,
         'notAdmin' => \App\Http\Middleware\NotAdminMiddleware::class,
         'loginColegios' => \App\Http\Middleware\Colegios\LoginMiddleware::class,
+        'redirectUser' => \App\Http\Middleware\Colegios\RedirectUser::class,
+        'adminColegios' => \App\Http\Middleware\Colegios\AdminMiddleware::class,
     ];
 }

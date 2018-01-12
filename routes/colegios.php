@@ -18,12 +18,14 @@ Route::group(array('middleware' => ['web'], 'domain' => env('APP_SUBDOMAIN', "co
     
     Route::get('/', function() {
         return view("colegios/inicio");
-    })->middleware('loginColegios');;
+    })->middleware('loginColegios');
     
-    Route::get("/registro-admin", "Colegios\AdminController@registroForm");
-    Route::post("/registro-admin", "Colegios\AdminController@registro");
+    Route::get("/registro-admin", "Colegios\RegisterController@registroFormAdmin");
+    Route::post("/registro-admin", "Colegios\RegisterController@registroAdmin");
     Route::get("/inicio", function(){
        return "inicio"; 
-    });
+    })->middleware('redirectUser');
+    
+    Route::get("/panel", "Colegios\AdminController@index");
     
 });

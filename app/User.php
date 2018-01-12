@@ -16,6 +16,7 @@ use App\Models\UserScore;
 use App\Models\Groups;
 use App\Models\NetworkAccounts;
 use App\Models\TokensPush;
+use App\Models\ColegioUsuario;
 
 class User extends Authenticatable
 {
@@ -105,6 +106,15 @@ class User extends Authenticatable
 
         return $this->hasMany(Reports::class);
 
+    }
+    
+    public function colegioUsuario()
+    {
+        return $this->belongsTo(ColegioUsuario::class, "id", "user_id");
+    }
+    
+    public function colegio(){
+        return $this->ColegioUsuario->colegio;
     }
 
     static function recommendedServices()
