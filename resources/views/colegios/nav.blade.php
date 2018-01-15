@@ -12,21 +12,24 @@
       </li>
     </ul>
     <div>
+        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
         <div class="row">
+            {{ csrf_field() }}
             <div class="col-4 form-group">
-                <label for="" class="text-white text-sm mb-0">Usuario</label>
-                <input type="text" class="form-control rounded-0 text-sm">
+                <label for="" class="text-white text-sm mb-0">Email</label>
+                <input type="text" name="email" class="form-control rounded-0 text-sm">
             </div>
             <div class="col-4 form-group">
                 <label for="" class="text-white text-sm mb-0">Ccontraseña</label>
-                <input type="text" class="form-control rounded-0 text-sm">
+                <input type="text" name="password" class="form-control rounded-0 text-sm">
                 <a class="text-white text-xs position-absolute">¿Olvidaste la contraseña?</a>
             </div>
             <div class="col-4">
                 <p class="text-white text-sm mb-2">&nbsp;</p>
-                <button type="button" class="btn btn-info rounded-0 text-sm">Iniciar sesión</button>
+                <button type="submit" class="btn btn-info rounded-0 text-sm">Iniciar sesión</button>
             </div>
         </div>
+        </form>
     </div>
   </div>
 </nav>

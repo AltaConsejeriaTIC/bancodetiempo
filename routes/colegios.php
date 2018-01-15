@@ -27,5 +27,6 @@ Route::group(array('middleware' => ['web'], 'domain' => env('APP_SUBDOMAIN', "co
     })->middleware('redirectUser');
     
     Route::get("/panel", "Colegios\AdminController@index");
+    Route::post("/login", "Colegios\LoginController@login");
     
 });

@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Colegios;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Validator;
+use App\Models\Colegio;
+use App\Models\ColegioUsuario;
+use App\User;
 
 class RegisterController extends Controller
 {
@@ -57,7 +61,7 @@ class RegisterController extends Controller
         
         Auth()->login($user);
         
-        return redirect("/");
+        return redirect("/inicio");
     }
     
     private function validarColegio($colegio){        
