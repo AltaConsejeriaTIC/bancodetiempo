@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Groups;
 use App\Models\State;
 use App\Models\CampaignParticipants;
+use App\Models\CampaignColegio;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class Campaigns extends Model
 {
@@ -38,14 +40,17 @@ class Campaigns extends Model
         return $this->hasMany(CampaignParticipants::class);
     }
 
-    public function setImageAttribute($value)
-    {
+    public function setImageAttribute($value){
 
         if (!empty($value) && $value != '') {
 
             $this->attributes['image'] = $value;
 
         }
+    }
+    
+    public function campaignEnableInSchool(){
+        return CampaignColegio::where("campaign_id", $this->id)->where("colegio_id", Auth::user()->colegio()->id)->get()->count() > 0;
     }
 
     static function campaignsUser($user_id){

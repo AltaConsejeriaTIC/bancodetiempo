@@ -3,6 +3,7 @@ namespace App;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Conversations;
 use Illuminate\Http\Request;
+use App\Models\CampaignColegio;
 class Helpers{
 	
 	static function getNotificationsUser(){		
@@ -167,7 +168,6 @@ class Helpers{
             return "";
         }
     }
-
-
+    
 }
 ?>

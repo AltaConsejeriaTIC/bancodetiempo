@@ -17,7 +17,7 @@
                 <p class="text-white text-right" style="cursor:pointer" data-toggle="dropdown">Hola <strong>{{Auth::user()->first_name . " " . Auth::user()->last_namer}}</strong> <img src="/getImg?img={{Auth::user()->avatar}}&w=200" class="col-2" alt=""></p>
                 <div class="col-12">
                     <div class="row justify-content-end">
-                        <div class="col-6">
+                        <div class="col-8">
                             <div class="dropdown-menu">
                                 <ul class="nav">
                                     <a class='dropdown-item'>Mi perfil</a>

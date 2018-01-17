@@ -28,5 +28,7 @@ Route::group(array('middleware' => ['web'], 'domain' => env('APP_SUBDOMAIN', "co
     
     Route::get("/panel", "Colegios\AdminController@index");
     Route::post("/login", "Colegios\LoginController@login");
+    Route::post("/addCampaignToSchool", "Colegios\AdminController@addCampaignToSchool");
+    Route::post("/removeCampaignToSchool", "Colegios\AdminController@removeCampaignToSchool");
     
 });

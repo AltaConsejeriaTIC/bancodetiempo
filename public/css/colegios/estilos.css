@@ -92,3 +92,22 @@
 .campaign-box .line {
     border-top: 1px solid #003459;
 }
+
+.btn_campaign_add {
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    right: 0%;
+}
+.btn_campaign_remove {
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    right: 0%;
+}
