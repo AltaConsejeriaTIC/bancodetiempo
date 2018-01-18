@@ -12,7 +12,7 @@
       </li>
     </ul>
     <div>
-        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+        <form class="form-horizontal" method="POST" action="/login">
         <div class="row">
             {{ csrf_field() }}
             <div class="col-4 form-group">
@@ -20,7 +20,7 @@
                 <input type="text" name="email" class="form-control rounded-0 text-sm">
             </div>
             <div class="col-4 form-group">
-                <label for="" class="text-white text-sm mb-0">Ccontraseña</label>
+                <label for="" class="text-white text-sm mb-0">Contraseña</label>
                 <input type="text" name="password" class="form-control rounded-0 text-sm">
                 <a class="text-white text-xs position-absolute">¿Olvidaste la contraseña?</a>
             </div>

@@ -25,5 +25,6 @@ Route::get("/inicio", function(){
 
 Route::get("/panel", "Colegios\AdminController@index");
 Route::post("/login", "Colegios\LoginController@login");
+Route::post("/logout", "Colegios\LoginController@logout");
 Route::post("/addCampaignToSchool", "Colegios\AdminController@addCampaignToSchool");
 Route::post("/removeCampaignToSchool", "Colegios\AdminController@removeCampaignToSchool");

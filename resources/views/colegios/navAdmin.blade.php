@@ -14,7 +14,7 @@
     <div>
         <div class="row justify-content-end">
             <div class="col-12">
-                <p class="text-white text-right" style="cursor:pointer" data-toggle="dropdown">Hola <strong>{{Auth::user()->first_name . " " . Auth::user()->last_namer}}</strong> <img src="/getImg?img={{Auth::user()->avatar}}&w=200" class="col-2" alt=""></p>
+                <p class="text-white text-right" style="cursor:pointer" data-toggle="dropdown">Hola <strong>{{Auth::user()->first_name . " " . Auth::user()->last_namer}}</strong> <img src="{{route("getImage")}}?img={{Auth::user()->avatar}}&w=200" class="col-2" alt=""></p>
                 <div class="col-12">
                     <div class="row justify-content-end">
                         <div class="col-8">
@@ -22,8 +22,8 @@
                                 <ul class="nav">
                                     <a class='dropdown-item'>Mi perfil</a>
                                     <a class='dropdown-item'>Cambiar contraseña</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Cerrar sesión</a>
-                                    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Cerrar sesión</a>
+                                    <form id="frm-logout" action="/logout" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
                                 </ul>
