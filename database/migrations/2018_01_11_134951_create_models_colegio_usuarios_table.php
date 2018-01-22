@@ -28,6 +28,6 @@ class CreateModelsColegioUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('models_colegio_usuarios');
+        Schema::dropIfExists('colegio_usuarios');
     }
 }

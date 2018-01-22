@@ -54,6 +54,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::group([
             'middleware' => ['web'],
             'namespace' => $this->namespace,
+            'domain' => env('APP_DOMAIN', "cambalachea.co"),
         ], function ($router) {
             require base_path('routes/web.php');
         });
@@ -62,8 +63,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapColegiosRoutes()
     {
         Route::group([
-            'middleware' => [],
+            'middleware' => ["web"],
             'namespace' => $this->namespace,
+            'domain' => env('APP_SUBDOMAIN', "colegios").".".env('APP_DOMAIN', "camblcambalacheaachea.co"),
         ], function ($router) {
             require base_path('routes/colegios.php');
         });
@@ -80,7 +82,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => ['web','auth','admin'],
-            'namespace' => $this->namespace,            
+            'namespace' => $this->namespace, 
+            'domain' => env('APP_DOMAIN', "cambalachea.co"),
         ], function ($router) {
             require base_path('routes/admin.php');
         });
@@ -97,7 +100,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => ['web','userAccess','notAdmin','userPending'],
-            'namespace' => $this->namespace,            
+            'namespace' => $this->namespace, 
+            'domain' => env('APP_DOMAIN', "cambalachea.co"),
         ], function ($router) {
             require base_path('routes/user.php');
         });
@@ -107,7 +111,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'middleware' => ['web','auth','userService'],
-            'namespace' => $this->namespace,            
+            'namespace' => $this->namespace,  
+            'domain' => env('APP_DOMAIN', "cambalachea.co"),
         ], function ($router) {
             require base_path('routes/service.php');
         });

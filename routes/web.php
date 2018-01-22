@@ -66,7 +66,7 @@ Route::resource('/listServiceWords', 'ServiceController@getListServiceWords');
 Route::get('campaign/{campaignId}', 'CampaignController@show')->middleware('userPending', 'notAdmin');
 Route::get('campaigns/list', 'CampaignController@showListAllCampaigns');
 
-Route::get('/getImg', 'ImageController@getImage');
+Route::get('/getImg', 'ImageController@getImage')->name("getImage");
 
 Route::get('/finalizeRegister', 'RegisterController@finalizeRegister');
 Route::put('profile/completeRegister', 'UsersController@completeRegister');

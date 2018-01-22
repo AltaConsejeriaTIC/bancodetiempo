@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelsColegiosTable extends Migration
+class CreateCampaignColegiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateModelsColegiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('colegios', function (Blueprint $table) {
+        Schema::create('campaign_colegios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("name");
-            $table->string("url");
+            $table->integer('campaign_id');
+            $table->integer('colegio_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateModelsColegiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('colegios');
+        Schema::dropIfExists('campaign_colegios');
     }
 }

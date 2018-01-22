@@ -15,7 +15,9 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        
+        if(Auth::check()){
+            return redirect("inicio");
+        }
         return $next($request);
     }
 }
