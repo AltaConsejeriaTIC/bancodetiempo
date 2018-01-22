@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 
 @include('nav',array('type' => 2))
@@ -44,4 +45,10 @@
 </div>
 
 @include("profile/partial/formNewCampaign")
+
+@section('script')
+    <script src="{{ asset('js/mapsFunctions.js') }}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA&libraries=places"></script>
+@endsection
+
 @endsection
