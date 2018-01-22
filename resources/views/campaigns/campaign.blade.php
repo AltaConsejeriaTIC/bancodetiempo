@@ -60,7 +60,18 @@
                     <p class="description">{{$campaign->description}}</p>
                 </div>
             </div>
-
+            
+            @if($campaign->location != '')
+            <div class="row">
+                <div class="col-xs-12">
+                   @php
+                       $coordinates = json_decode($campaign->coordinates);
+                   @endphp
+                    <p class='paragraph1'><strong>Lugar: </strong><a href="http://maps.google.com/?q={{$coordinates->lat}},{{$coordinates->lng}}" target="_blank">{{$campaign->location}}</a></p>
+                </div>
+            </div>
+            @endif
+            
             <div class="row">
                 <div class="col-xs-12">
                     <p class='paragraph1'><strong>Fecha: </strong>{{date("F j Y", strtotime($campaign->date))}}</p>
@@ -118,7 +129,7 @@
                     
                     <div class="space20"></div>
                     <div class="col-xs-12 text-center donation">
-                        @php($credits = Session::get('credits'))
+                        @php($credits = Session::get('credits'))@endphp
                             @if(isset($credits))
                                 <p>¡Haz donado {{$credits}} dorados a esta campaña!</p>
                             @endif

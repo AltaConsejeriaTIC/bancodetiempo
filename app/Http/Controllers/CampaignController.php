@@ -24,6 +24,7 @@ class CampaignController extends Controller
         return view('campaigns/campaign', compact('campaign', 'listTypes'));
     }
     public function create(Request $request){
+        
         $cover = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/campaigns/');
         $date_finish_donations = $this->getDateDonations($request->input('dateCampaign'), $request->input('timeCampaign'),$request->input('hoursCampaign'));
         if ($cover) {
@@ -37,7 +38,9 @@ class CampaignController extends Controller
                 'category_id' => $request->input('categoryCampaign'),
                 'date_donations' => $date_finish_donations,
                 'date' => $request->input('dateCampaign')." ".$request->input('timeCampaign'),
-                'state_id' => 1
+                'state_id' => 1,
+                'location' => $request->location,
+                'coordinates' => $request->coordinates,
             ]);
         }
         return redirect()->back();

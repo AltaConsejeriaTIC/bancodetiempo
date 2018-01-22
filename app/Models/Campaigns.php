@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Campaigns extends Model
 {
-    protected $fillable = ['name', 'description', 'image', 'groups_id', 'category_id', 'credits', 'hours', 'date', 'date_donations', 'state_id', 'allows_registration', 'user_id'];
+    protected $fillable = ['name', 'description', 'image', 'groups_id', 'category_id', 'credits', 'hours', 'date', 'date_donations', 'state_id', 'allows_registration', 'user_id', 'location', 'coordinates'];
 
     public function groups()
     {
