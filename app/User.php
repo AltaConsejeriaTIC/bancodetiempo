@@ -116,6 +116,10 @@ class User extends Authenticatable
     public function colegio(){
         return $this->ColegioUsuario->colegio;
     }
+    
+    public function setBirthDateAttribute($value){
+        $this->attributes['birthDate'] = date("Y-m-d", strtotime($value));
+    }
 
     static function recommendedServices()
     {

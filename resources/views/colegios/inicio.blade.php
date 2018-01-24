@@ -9,7 +9,7 @@
                 <h6 class="text-white font-weight-bold ml-5">Abre una cuenta</h6>
                 <div class="row">
                     <div class="col-md text-center">
-                        <a href="#" class="btn btn-dark bg-register rounded text-lg font-weight-bold px-4 my-2">¡Soy estudiante!</a>
+                        <a href="/registro-estudiante" class="btn btn-dark bg-register rounded text-lg font-weight-bold px-4 my-2">¡Soy estudiante!</a>
                     </div>
                     <div class="col-md text-center">
                         <a href="/registro-admin" class="btn btn-dark bg-register rounded text-lg font-weight-bold px-4 my-2">¡Soy administrador!</a>

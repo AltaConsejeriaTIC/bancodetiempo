@@ -21,7 +21,7 @@ class RedirectUser
             if(Auth::User()->role_id == 1){
                 return redirect("/panel");
             }else{
-                return $next($request);
+                return redirect("/panel-estudiante");
             }
             
         }else{

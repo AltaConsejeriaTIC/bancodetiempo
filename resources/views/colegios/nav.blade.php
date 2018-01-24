@@ -7,7 +7,7 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarContent">
 		<div class="navbar-nav mr-auto"></div>
-		<form class="row form-inline my-2 my-lg-0">
+		<form action="/login" method="post" class="row form-inline my-2 my-lg-0">
 			{{ csrf_field() }}
 			<div class="col-md">
 				<label for="" class="text-white text-sm d-block">Email</label>
