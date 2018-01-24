@@ -111,6 +111,10 @@
                             <label for="email">Correo electronico: *</label>
                             <input type="email" class="form-control text-sm" name="email" id="email" value="{{old('email')}}" required>
                         </div>
+                        <div class="col-6">
+                            <label for="documento">Nunero de documeto: *</label>
+                            <input type="text" class="form-control text-sm" name="documento" id="documento" value="{{old('documento')}}" required>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-6">

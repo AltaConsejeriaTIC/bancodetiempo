@@ -78,7 +78,8 @@ class RegisterController extends Controller
             "terminos" => "required",
             "fecha" => "required",
             "curso" => "required",
-            "genero" => "required"
+            "genero" => "required",
+            "documento" => "required",
         ]);
         
         $user = User::create([
@@ -92,7 +93,8 @@ class RegisterController extends Controller
             "privacy_policy" => 1,
             "plataforma" => 2,
             "birthDate" => $request->fecha,
-            "gender" => $request->genero
+            "gender" => $request->genero,
+            "document" => $request->documento
         ]);
         
         $colegioUsuario = ColegioUsuario::create([
