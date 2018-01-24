@@ -223,18 +223,33 @@
 
             <div class="row">
                 <div class="partakers col-xs-12">
-                    <div>
-                        <h1 class="">Asistentes a la campaña:</h1>
-                        <a>{{$campaign->participants->where("confirmed", 1)->count()}} personas asistirán</a>
-                    </div>
-
-                    <div class="space15"></div>
-
-                    @foreach($campaign->participants->where("confirmed", 1) as $participant)
-                        <div class="col-xs-4">
-                            @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                    @if($campaign->allows_registration == 0)
+                        <div>
+                            <h1 class="">Preinscritos a la campaña:</h1>
+                            <a>{{$campaign->participants->count()}} personas preinscritas</a>
                         </div>
-                    @endforeach
+
+                        <div class="space15"></div>
+
+                        @foreach($campaign->participants as $participant)
+                            <div class="col-xs-4">
+                                @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                            </div>
+                        @endforeach
+                    @else
+                        <div>
+                            <h1 class="">Asistentes a la campaña:</h1>
+                            <a>{{$campaign->participants->where("confirmed", 1)->count()}} personas asistirán</a>
+                        </div>
+
+                        <div class="space15"></div>
+
+                        @foreach($campaign->participants->where("confirmed", 1) as $participant)
+                            <div class="col-xs-4">
+                                @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                            </div>
+                        @endforeach                    
+                    @endif
                 </div>
             </div>
 
