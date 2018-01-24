@@ -3,7 +3,7 @@
 /vendor
 /.idea
 /public/resources/user
-/laradock
+laradock/
 Homestead.json
 Homestead.yaml
 .env
