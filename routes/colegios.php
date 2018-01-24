@@ -32,3 +32,7 @@ Route::post("/addCampaignToSchool", "Colegios\AdminController@addCampaignToSchoo
 Route::post("/removeCampaignToSchool", "Colegios\AdminController@removeCampaignToSchool");
 
 Route::get("/panel-estudiante", "Colegios\StudentController@index");
+
+
+
+Route::get("/campaign/{campaignId}", "Colegios\CampaignsController@showCampaign");

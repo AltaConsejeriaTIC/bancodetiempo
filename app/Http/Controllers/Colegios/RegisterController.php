@@ -8,6 +8,7 @@ use Validator;
 use App\Models\Colegio;
 use App\Models\ColegioUsuario;
 use App\User;
+use App\Helpers;
 
 class RegisterController extends Controller
 {
@@ -24,7 +25,7 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             "colegio" => "required",
             "password" => "required",
-            "email" => "required|email|unique:users,email",
+            "email" => "required|email|unique:users,email|unique:users,email2",
             "name" => "required",
             "terminos" => "required"
         ]);
@@ -58,13 +59,18 @@ class RegisterController extends Controller
             "plataforma" => 2
         ]);
         
+        if(!is_null($request->file("foto"))){
+            $cover = Helpers::uploadImage($request->file('foto'), 'user' . date("Ymd") . rand(000, 999), 'resources/user/user_' . $user->id . '/cover/');
+            $user->update([
+                "avatar" => $cover
+            ]);
+        }
+        
         $colegioUsuario = ColegioUsuario::create([
             "colegio_id" => $colegio->id,
             "user_id" => $user->id
         ]);
-        
         Auth()->login($user);
-        
         return redirect("/inicio");
     }
     
@@ -73,7 +79,7 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             "colegio" => "required",
             "password" => "required",
-            "email" => "required|email|unique:users,email",
+            "email" => "required|email|unique:users,email|unique:users,email2",
             "name" => "required",
             "terminos" => "required",
             "fecha" => "required",
@@ -81,6 +87,7 @@ class RegisterController extends Controller
             "genero" => "required",
             "documento" => "required",
         ]);
+        
         
         $user = User::create([
             "first_name" => $request->name,
@@ -96,6 +103,14 @@ class RegisterController extends Controller
             "gender" => $request->genero,
             "document" => $request->documento
         ]);
+        
+        if(!is_null($request->file("foto"))){
+            $cover = Helpers::uploadImage($request->file('foto'), 'user' . date("Ymd") . rand(000, 999), 'resources/user/user_' . $user->id . '/cover/');
+            $user->update([
+                "avatar" => $cover
+            ]);
+        }     
+        
         
         $colegioUsuario = ColegioUsuario::create([
             "colegio_id" => $request->colegio,

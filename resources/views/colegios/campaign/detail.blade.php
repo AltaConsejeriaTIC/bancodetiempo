@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appColegios')
 
 @section('metas')
     <meta property="og:url" content="{{url()->current()}}"/>
@@ -21,11 +21,7 @@
 
 @section('content')
 
-    @if(!is_null(Auth::User()))
-        @include('nav',array('type' => 2))
-    @else
-        @include('nav',array('type' => 3))
-    @endif
+    @include('colegios.navAdmin')
 
     <div class="container campaign" xmlns:v-on="http://www.w3.org/1999/xhtml">
 
@@ -130,7 +126,7 @@
                     <div class="space20"></div>
                     <div class="col-xs-12 text-center donation">
                         @php
-                           $credits = Session::get('credits')
+                            $credits = Session::get('credits')   
                         @endphp
                             @if(isset($credits))
                                 <p>¡Haz donado {{$credits}} dorados a esta campaña!</p>
