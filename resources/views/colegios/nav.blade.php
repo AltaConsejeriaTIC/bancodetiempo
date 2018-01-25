@@ -10,7 +10,7 @@
 		<form action="/login" method="post" class="row form-inline my-2 my-lg-0">
 			{{ csrf_field() }}
 			<div class="col-md mb-md-4">
-				<label for="" class="text-white text-sm d-block">Email</label>
+				<label for="" class="text-white text-sm d-block">Correo</label>
 				<input type="text" name="email" class="form-control rounded text-sm">
 			</div>
 			<div class="col-md">

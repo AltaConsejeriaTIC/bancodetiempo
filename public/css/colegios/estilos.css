@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:700|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro');
 .navbar label{
 	font-family: 'Source Sans Pro', sans-serif;
 }
@@ -23,8 +23,14 @@
 .registroAdmin{
 	background-image: url("/images/fondoColegios.jpg");
 	background-color: #003459;
-	background-size: 100%;
+	background-size: cover;
 	min-height: 600px;
+	font-family: 'Montserrat', sans-serif;
+}
+.registroAdmin button{
+	background-color: white;
+	color: #008abc;
+	border-color: #008abc;
 }
 .bg-login-btn{
 	background-color: #00a1e6;
