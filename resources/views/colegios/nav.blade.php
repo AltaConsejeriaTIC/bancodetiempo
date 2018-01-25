@@ -16,8 +16,9 @@
 			<div class="col-md">
 				<label for="" class="text-white text-sm d-block">Contraseña</label>
 				<input type="password" name="password" class="form-control rounded text-sm">
-				<a class="text-white text-xs position-absolute">¿Olvidaste la contraseña?</a>
-				<!-- <a class="text-white text-xs d-md-block">¿Olvidaste la contraseña?</a> -->
+				<br class="d-none d-sm-block">
+				<!-- <a class="text-white text-xs position-absolute">¿Alvidaste la contraseña?</a> -->
+				<a class="text-white text-xs">¿Olvidaste la contraseña?</a>
 			</div>
 			<div class="col-md mt-md-3">
 				<button type="submit" class="btn bg-login-btn text-white rounded text-sm">Iniciar sesión</button>

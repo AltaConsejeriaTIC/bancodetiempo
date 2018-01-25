@@ -16,7 +16,7 @@
 .inicio{
 	background-image: url("/images/fondoColegios.jpg");
 	background-color: #003459;
-	background-size: 100%;
+	background-size: cover;
 	height: 600px;
 	font-family: 'Montserrat', sans-serif;
 }
