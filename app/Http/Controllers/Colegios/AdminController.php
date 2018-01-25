@@ -39,6 +39,10 @@ class AdminController extends Controller
         return redirect()->back()->with("msg", "Campaña habilitada con exito");
     }
     
+    public function profile(){
+        dd("perfilAdmin");
+    }
+    
     public function removeCampaignToSchool(Request $request){
         $campaignColegio = CampaignColegio::where("campaign_id", $request->campaign_id)->where("colegio_id", Auth::user()->colegio()->id)->delete();
        return redirect()->back()->with("msg", "Campaña deshabilitada con exito");

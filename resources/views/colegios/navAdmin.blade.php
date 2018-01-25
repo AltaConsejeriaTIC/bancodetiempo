@@ -20,7 +20,7 @@
                         <div class="col-8">
                             <div class="dropdown-menu">
                                 <ul class="nav">
-                                    <a class='dropdown-item'>Mi perfil</a>
+                                    <a class='dropdown-item' href="/perfil">Mi perfil</a>
                                     <a class='dropdown-item'>Cambiar contraseña</a>
                                     <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Cerrar sesión</a>
                                     <form id="frm-logout" action="/logout" method="POST" style="display: none;">

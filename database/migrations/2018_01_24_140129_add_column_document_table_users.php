@@ -15,6 +15,7 @@ class AddColumnDocumentTableUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('document')->nullable();
+            $table->string('course')->nullable();
         });
     }
 
@@ -25,8 +26,9 @@ class AddColumnDocumentTableUsers extends Migration
      */
     public function down()
     {
-        Schema::table('campaigns', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('document');
+            $table->dropColumn('course');
         });
     }
 }

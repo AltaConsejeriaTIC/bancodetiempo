@@ -33,6 +33,14 @@ Route::post("/removeCampaignToSchool", "Colegios\AdminController@removeCampaignT
 
 Route::get("/panel-estudiante", "Colegios\StudentController@index");
 
-
-
 Route::get("/campaign/{campaignId}", "Colegios\CampaignsController@showCampaign");
+Route::get("/perfil", function(){
+    if(Auth::user()->role_id == 1){
+        $admin  = new App\Http\Controllers\Colegios\AdminController();
+        return 
+            $admin->profile();
+    }else{
+        $student = new App\Http\Controllers\Colegios\StudentController();
+        return $student->profile();        
+    }
+});

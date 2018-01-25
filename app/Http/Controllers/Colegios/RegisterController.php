@@ -101,7 +101,8 @@ class RegisterController extends Controller
             "plataforma" => 2,
             "birthDate" => $request->fecha,
             "gender" => $request->genero,
-            "document" => $request->documento
+            "document" => $request->documento,
+            "course" => $request->curso
         ]);
         
         if(!is_null($request->file("foto"))){

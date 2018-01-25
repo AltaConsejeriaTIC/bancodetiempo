@@ -19,6 +19,6 @@ class StudentController extends Controller
     }
     
     public function profile(){
-        return view("calegios/estudiantes/perfil");
+        return view("colegios/estudiante/perfil");
     }
 }
