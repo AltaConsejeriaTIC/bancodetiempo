@@ -19,14 +19,14 @@
                 }
             },
             messages : {
-                colegio : "Debe seleccionar un colegio",
-                password : "Ingrese una contraseña",
-                email : "Ingrese un correo valido",
+                colegio : "Seleccione su colegio",
+                password : "Una contraseña es requerida",
+                email : "Ingrese un correo electrónico valido",
                 repeatpassword : {
                     required : "Vuelva a escribir la contraseña",
                     equalTo: "Las contraseñas no coinciden"
                 },
-                name : "El campo \"Nombre\" es requerido",
+                name : "El nombre del responsable es requerido",
                 terminos : "Debe aceptar terminos y condiciones" 
             }
         });                       
@@ -41,16 +41,16 @@
             var image = new Image();
             var reader = new FileReader();
             reader.onload = (e) => {
-             label.css({
-                 "background-image" : "url('"+e.target.result+"')",
-                 "background-size" : "100%"
-             })
-             if(elemt.data('mirror') !== undefined){
-                 jQuery(elemt.data('mirror')).attr("src", e.target.result);
-             }
-         };
-         reader.readAsDataURL(files[0]);
-     }else{
+               label.css({
+                   "background-image" : "url('"+e.target.result+"')",
+                   "background-size" : "100%"
+               })
+               if(elemt.data('mirror') !== undefined){
+                   jQuery(elemt.data('mirror')).attr("src", e.target.result);
+               }
+           };
+           reader.readAsDataURL(files[0]);
+       }else{
         label.after("<p class='msg error'>El peso máximo de la imagen debe ser de 3 Megas.</p>")
     }
 }
@@ -79,38 +79,38 @@
                     @endif
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="colegio" class="mb-0">Nombre del colegio: *</label>
-                            <input type="text" class="form-control text-sm rounded mb-3" name="colegio" id="colegio" value="{{old('colegio')}}" required>
+                            <label for="colegio" class="mt-3 mb-0">Colegio: *</label>
+                            <input type="text" class="form-control text-sm rounded" name="colegio" id="colegio" value="{{old('colegio')}}" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="password" class="mb-0">Contraseña: *</label>
-                            <input type="password" name="password" class="form-control text-sm rounded mb-3" id="password" required>
+                            <label for="password" class="mt-3 mb-0">Contraseña: *</label>
+                            <input type="password" name="password" class="form-control text-sm rounded" id="password" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="correo" class="mb-0">Correo: *</label>
-                            <input type="email" class="form-control text-sm rounded mb-3" name="email" id="correo" value="{{old('email')}}" required>
+                            <label for="correo" class="mt-3 mb-0">Correo electrónico: *</label>
+                            <input type="email" class="form-control text-sm rounded" name="email" id="correo" value="{{old('email')}}" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="repeatpassword" class="mb-0">Repetir contraseña: *</label>
-                            <input type="password" name="repeatpassword" class="form-control text-sm rounded mb-3" id="repeatpassword" required>
+                            <label for="repeatpassword" class="mt-3 mb-0">Repetir contraseña: *</label>
+                            <input type="password" name="repeatpassword" class="form-control text-sm rounded" id="repeatpassword" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">                                 
-                            <label for="name" class="mb-0">Responsable: *</label>
-                            <input type="text" class="form-control text-sm rounded mb-3" name="name" id="name" value="{{old('name')}}" required>
+                            <label for="name" class="mt-3 mb-0">Nombre del responsable: *</label>
+                            <input type="text" class="form-control text-sm rounded" name="name" id="name" value="{{old('name')}}" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="" class="mb-0">Subir foto: *</label>
+                            <label for="" class="mt-3 mb-0">Foto:</label>
                             <input type="file" name="foto" class="file-update" id="foto">
                             <label for="foto">Subir imagen <i class="fa fa-upload"></i></label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="terminos" class="col-11 pl-0">Acepto <a href="" class="text-white">Términos y condiciones</a></label>
+                            <label for="terminos" class="col-11 pl-0 mt-3 mb-0">Acepto <a href="" class="text-white">Términos y condiciones</a></label>
                             <input type="checkbox" name="terminos" id="terminos" class="box" required>
                         </div>
                         <div class="col-md-6 text-right">
