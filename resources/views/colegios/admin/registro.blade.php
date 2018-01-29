@@ -19,7 +19,7 @@
                 }
             },
             messages : {
-                colegio : "Seleccione su colegio",
+                colegio : "El nombre del colegio es requerido",
                 password : "Una contraseña es requerida",
                 email : "Ingrese un correo electrónico valido",
                 repeatpassword : {
@@ -79,7 +79,7 @@
                     @endif
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="colegio" class="mt-3 mb-0">Colegio: *</label>
+                            <label for="colegio" class="mt-3 mb-0">Nombre del colegio: *</label>
                             <input type="text" class="form-control text-sm rounded" name="colegio" id="colegio" value="{{old('colegio')}}" required>
                         </div>
                         <div class="col-md-6">
