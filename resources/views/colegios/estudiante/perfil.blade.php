@@ -21,7 +21,7 @@
                 <p><strong>Curso:</strong> {{Auth::user()->course}}</p>
                 
                 <form action="/editStudent" method="post" enctype="multipart/form-data" class="form-group">
-                   
+                    {{csrf_field()}}
                     <label class="label-control">Nombre</label>
                     <input type="text" name="name" class="form-control" value="{{Auth::user()->first_name}}">
                    

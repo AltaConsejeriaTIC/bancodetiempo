@@ -44,3 +44,5 @@ Route::get("/perfil", function(){
         return $student->profile();        
     }
 });
+
+Route::post("/editStudent", "Colegios\StudentController@edit");

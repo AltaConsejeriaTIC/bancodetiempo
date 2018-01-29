@@ -21,4 +21,28 @@ class StudentController extends Controller
     public function profile(){
         return view("colegios/estudiante/perfil");
     }
+    
+    public function edit(Request $request){
+        $this->validate($request, [
+            "name" => "required",
+            "last_name" => "required",
+            "email" => "required",
+            "document" => "required",
+            "aboutMe" => "required",
+            "date" => "required",
+            "course" => "required",
+        ]);
+        
+        Auth::user()->update([
+            "first_name" => $request->name,
+            "last_name" => $request->last_name,
+            "email2" => $request->email,
+            "document" => $request->document,
+            "aboutMe" => $request->aboutMe,
+            "birthDate" => $request->date,
+            "course" => $request->course,
+        ]);
+        
+        return redirect()->back();
+    }
 }
