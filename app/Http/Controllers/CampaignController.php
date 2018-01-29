@@ -62,6 +62,8 @@ class CampaignController extends Controller
             'image' => $uploadedImage,
             'state_id' => 1,
             'allows_registration' => 0,
+            'location' => $request->location,
+            'coordinates' => $request->coordinates,
         ]);
         return redirect()->back();
     }
