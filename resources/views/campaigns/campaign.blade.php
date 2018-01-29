@@ -67,7 +67,11 @@
                    @php
                        $coordinates = json_decode($campaign->coordinates);
                    @endphp
-                    <p class='paragraph1'><strong>Lugar: </strong><a href="http://maps.google.com/?q={{$coordinates->lat}},{{$coordinates->lng}}" target="_blank">{{$campaign->location}}</a></p>
+                    @if($campaign->coordinates == '')
+                        <p class='paragraph1'><strong>Lugar: </strong>{{$campaign->location}}</p>
+                    @else
+                        <p class='paragraph1'><strong>Lugar: </strong><a href="http://maps.google.com/?q={{$coordinates->lat}},{{$coordinates->lng}}" target="_blank">{{$campaign->location}}</a></p>
+                    @endif
                 </div>
             </div>
             @endif

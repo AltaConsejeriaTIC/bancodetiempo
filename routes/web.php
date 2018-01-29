@@ -49,7 +49,7 @@ Route::get('/how', function(){
 })->middleware('notAdmin');
 
 Route::get('/tags','TagsController@jsonTags');
-Route::get('/categories','CategoryController@jsonCategories');
+
 Route::get('/setRanking', function(){
     $users = App\Models\Service::all();
     foreach($users as $user){

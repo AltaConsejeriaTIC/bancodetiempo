@@ -40,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapAdminRoutes();
         $this->mapUserRoutes();
         $this->mapUserServiceRoutes();
+        $this->mapWebService();
     }
 
     /**
@@ -115,6 +116,17 @@ class RouteServiceProvider extends ServiceProvider
             'domain' => env('APP_DOMAIN', "cambalachea.co"),
         ], function ($router) {
             require base_path('routes/service.php');
+        });
+    }
+    
+    protected function mapWebService()
+    {
+        Route::group([
+            'middleware' => ['web'],
+            'namespace' => $this->namespace,
+            'domain' => env('APP_DOMAIN', "cambalachea.co"),
+        ], function ($router) {
+            require base_path('routes/webService.php');
         });
     }
 }

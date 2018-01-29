@@ -32,7 +32,7 @@
                         <div class="col-xs-12 form-group not-padding">
                             <label for="lugar" class="label-control">Lugar</label>
                             <input type="hidden" name="coordinates" id='coordinates'>
-                            <input type="text" name="location" class="form-control" id="place">
+                            <input type="text" name="location" class="form-control validation"  data-validations='["required"]' id="place">
                             <div id="map_canvas" class="map"></div>
                             <a href="#suggestedSitesTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-map-marker" aria-hidden="true"></i> Ver listado de sitios sugeridos</a>
                         </div>

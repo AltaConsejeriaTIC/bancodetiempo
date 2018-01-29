@@ -13,14 +13,22 @@ jQuery(document).ready(function () {
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
     var input = document.getElementById('place');
+    
 
     var autocomplete = new google.maps.places.Autocomplete(input);
+    
 
     var circle = new google.maps.Circle({
         center: {lat: 4.638958, lng: -74.0929484},
         radius: 20000
     });
     autocomplete.setBounds(circle.getBounds());
+    
+    var map2 = new google.maps.Map(document.getElementById("map_canvas_edit"), myOptions);
+
+    var input2 = document.getElementById('place_edit');
+    var autocomplete2 = new google.maps.places.Autocomplete(input2);
+    autocomplete2.setBounds(circle.getBounds());
 
     var infowindow = new google.maps.InfoWindow
     ({
