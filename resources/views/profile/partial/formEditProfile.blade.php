@@ -65,7 +65,7 @@
             <label for="birthdate" class="paragraph10">Fecha de nacimiento</label>
         </div>
         <div class="row not-margin">
-            <input type='text' name='birthDate' class='datepick validation col-md-12' data-validations='["required", "minYear:18", "dateFormat"]' placeholder="aaaa-mm-dd" value='{{Auth::user()->birthDate}}'>
+            <input type='text' name='birthDate' class='datepick validation col-md-12' data-validations='["required", @if(Auth::user()->group == 0) "minYear:18", @endif "dateFormat"]' placeholder="aaaa-mm-dd" value='{{Auth::user()->birthDate}}'>
             <div class="msg" errors='birthDate'>
                 <p error='required'>Este campo es obligatorio.</p>
                 <p error='min'>Debes ser mayor de edad para registrarte en Cambalachea.</p>
