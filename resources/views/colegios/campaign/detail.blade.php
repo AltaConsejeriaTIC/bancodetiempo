@@ -19,6 +19,30 @@
     </script>
 @endsection
 
+@section('script')
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('#modal_inscripcion').on('show.bs.modal', function (event) {
+              var button = jQuery(event.relatedTarget)
+              var campaign = button.data('campaign');
+              var name = button.data('name');
+              var modal = jQuery(this)
+              modal.find('#campaign_name').text(name)
+              modal.find('#campaign_id').val(campaign)
+            })
+            
+            jQuery('#modal_cancelar_inscripcion').on('show.bs.modal', function (event) {
+              var button = jQuery(event.relatedTarget)
+              var campaign = button.data('campaign');
+              var name = button.data('name');
+              var modal = jQuery(this)
+              modal.find('#campaign_name').text(name)
+              modal.find('#campaign_id').val(campaign)
+            })
+        })
+    </script>
+@endsection
+
 @section('content')
 
     @include('colegios.navAdmin')
@@ -106,66 +130,19 @@
                 </div>
                 <div class="space20"></div>
             </div>
-            <div class="row">
-            @if(Auth::check() && $campaign->state_id == 1 && $campaign->user->id != Auth::user()->id)
-                @if($campaign->allows_registration == 0)
-                    @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)                            
-                        <div class="col-xs-12 text-center">
-                            <button class='button1 background-active-color text-center'
-                                    v-on:click='myData.preinscription = true'>{{ trans("campaigns.preInscription") }}
-                            </button>
-                        </div>                            
-                    @else
-                        <div class="col-xs-12 text-center">
-                            <button class='button1 cancel-button text-center'
-                                    v-on:click='myData.cancelpreinscription = true'>{{ trans("campaigns.cancelInscription") }}
-                            </button>
-                        </div>
-                    @endif
-                    
-                    <div class="space20"></div>
-                    <div class="col-xs-12 text-center donation">
-                        @php
-                            $credits = Session::get('credits')   
-                        @endphp
-                            @if(isset($credits))
-                                <p>¡Haz donado {{$credits}} dorados a esta campaña!</p>
-                            @endif
-                            <button class='button1 background-active-color text-center'
-                                    v-on:click='myData.donation = true'>¡Donar Dorados!
-                            </button>
+            @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)   
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary" data-target="#modal_inscripcion" data-toggle="modal" data-campaign='{{$campaign->id}}' data-name='{{$campaign->name}}'>Inscribirme</button>
                     </div>
-                    <div class="space20"></div>
-                    
-                @else
-                        
-                    @if($campaign->participants->where('participant_id', Auth::id())->where("confirmed", 1)->count() == 0)
-                        <div class="col-xs-12">
-                            <p class='paragraph4'>{{ trans("campaigns.textInscription") }}</p>
-                        </div>
-
-                        <div class="col-xs-12 text-center">
-                            <button class='button1 background-active-color text-center' v-on:click='myData.inscription = true'>{{ trans("campaigns.inscription") }}</button>
-                        </div>
-                        <br>
-                    @else
-                        <div class="col-xs-12 text-center">
-                            <button class='button1 cancel-button text-center'
-                                    v-on:click='myData.cancelpreinscription = true'>Cancelar Inscripción
-                            </button>
-                        </div>
-                    @endif
-                @endif
-            @endif
-
-            @if($campaign->state_id == 12 && $campaign->user->id == Auth::user()->id)
-                <div class="col-xs-12 text-center">
-                    <button class='button1 background-active-color text-center' v-on:click='myData.pay = true'>{{ trans("campaigns.pay") }}</button>
                 </div>
-                <br>
-                @include("campaigns/partial/pay")
+            @else    
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-danger" data-target="#modal_cancelar_inscripcion" data-toggle="modal" data-campaign='{{$campaign->id}}' data-name='{{$campaign->name}}'>Cancelar inscripción</button>
+                    </div>
+                </div>
             @endif
-            </div>
             
             <br>
             @if(Auth::check())
@@ -268,12 +245,58 @@
             <div class="space15"></div>
         </article>
     </div>
-    @if(Auth::check())
-        @include("campaigns/partial/donation")
-        @include("campaigns/partial/inscription")
-        @include("campaigns/partial/preinscription")
-        @include("campaigns/partial/cancelpreinscription")
-        
-    @endif
-    @include('services/partial/modalMail', ['service' => $campaign])
+    
+<div class="modal fade" id="modal_inscripcion" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content py-2">
+        <button type="button" class="close text-right px-3" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      
+    <form action="/student/inscription" method="post">
+        {{csrf_field()}}
+      <div class="modal-body">
+            <h4 class="text-center">Inscribirme a la campaña</h4>
+            <input type="hidden" class="form-control" id="campaign_id" name="campaign_id">
+            <p class="text-center">¿Deseas <strong>inscribirse</strong> a la campaña<br> "<strong id="campaign_name"></strong>"? </p>
+      </div>      
+       <div class="row justify-content-center"> 
+            <button type='submit' class="btn btn-info bg-cambalachea col-10">Inscribirme</button>
+       </div>
+        <div class="row justify-content-center py-2"> 
+            <button type="button" class="btn btn-outline-info col-10" data-dismiss="modal">Cancelar</button>
+       </div>        
+      
+    </form>
+    </div>
+  </div>
+</div>
+    
+<div class="modal fade" id="modal_cancelar_inscripcion" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content py-2">
+        <button type="button" class="close text-right px-3" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      
+    <form action="/student/unregistration" method="post">
+        {{csrf_field()}}
+      <div class="modal-body">
+            <h4 class="text-center">Cancelar inscripción a la campaña</h4>
+            <input type="hidden" class="form-control" id="campaign_id" name="campaign_id">
+            <p class="text-center">¿Deseas <strong>cancelar la inscripción</strong> a la campaña "<strong id="campaign_name"></strong>"? </p>
+      </div>      
+       <div class="row justify-content-center"> 
+            <button type='submit' class="btn btn-info bg-cambalachea col-10">Cancelar inscripción</button>
+       </div>
+        <div class="row justify-content-center py-2"> 
+            <button type="button" class="btn btn-outline-info col-10" data-dismiss="modal">Cancelar</button>
+       </div>        
+      
+    </form>
+    </div>
+  </div>
+</div>
+
+
 @endsection

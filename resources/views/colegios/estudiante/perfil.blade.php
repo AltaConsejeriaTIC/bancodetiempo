@@ -1,7 +1,7 @@
 @extends('layouts.appColegios')
 @section('content')
 
-@include('colegios.navAdmin')
+@include('colegios.navStudent')
 
 <div>
     <div class="container">

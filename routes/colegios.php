@@ -32,6 +32,7 @@ Route::post("/addCampaignToSchool", "Colegios\AdminController@addCampaignToSchoo
 Route::post("/removeCampaignToSchool", "Colegios\AdminController@removeCampaignToSchool");
 
 Route::get("/panel-estudiante", "Colegios\StudentController@index");
+Route::get("/compromisos", "Colegios\StudentController@compromises");
 
 Route::get("/campaign/{campaignId}", "Colegios\CampaignsController@showCampaign");
 Route::get("/perfil", function(){
@@ -46,3 +47,5 @@ Route::get("/perfil", function(){
 });
 
 Route::post("/editStudent", "Colegios\StudentController@edit");
+Route::post("/student/inscription", "Colegios\StudentController@inscriptionCampaign");
+Route::post("/student/unregistration", "Colegios\StudentController@unregistrationCampaign");

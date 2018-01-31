@@ -117,20 +117,43 @@
 }
 
 .btn_campaign_add {
-	position: absolute;
-	z-index: 1;
-	border-radius: 50%;
-	width: 30px;
-	height: 30px;
-	padding: 0px;
-	right: 0%;
+	position: absolute !important;
+    z-index: 1;
+    right: 5%;
+    top: 5%;
 }
 .btn_campaign_remove {
-	position: absolute;
-	z-index: 1;
-	border-radius: 50%;
-	width: 30px;
-	height: 30px;
-	padding: 0px;
-	right: 0%;
+	position: absolute !important;
+    z-index: 1;
+    right: 5%;
+    top: 5%;
+}
+
+button.btn-switch {
+    width: 50px;
+    height: 20px;
+    background: #efefef;
+    border: 1px solid #dcdcdc;
+    border-radius: 20px;
+    position: relative;
+}
+button.btn-switch.enable{
+    background: #37bf4b;   
+}
+button.btn-switch:before {
+    content: "";
+    width: 45%;
+    background: #fff;
+    height: 125%;
+    display: block;
+    position: absolute;
+    top: -10%;
+    left: 0%;
+    border-radius: 50%;
+    border: 1px solid #dcdcdc;
+}
+
+button.btn-switch.enable:before {
+    left: 55%;
+    border: 1px solid #37bf4b;
 }
