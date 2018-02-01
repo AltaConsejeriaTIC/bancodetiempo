@@ -42,11 +42,14 @@
 	background-color: #15b515;
 	border-color: #15b515;
 }
+.text-xs{
+	font-size: 0.6rem;
+}
 .text-sm{
 	font-size: 0.9rem;
 }
-.text-xs{
-	font-size: 0.6rem;
+.text-md{
+	font-size: 1.1rem;
 }
 .text-lg{
 	font-size: 1.5rem;
@@ -57,7 +60,6 @@
 .file-update {
 	display: none;
 }
-
 .file-update + label {
 	width: 100%;
 	background: #fff;
@@ -65,11 +67,18 @@
 	text-align: center;
 	padding: 30px;
 }
-
 .panel{
 	background: #f2f5f6;
 }
-
+.campaign-detail h3,h6{
+	font-family: 'Montserrat', sans-serif;
+}
+.campaign-photo img{
+	max-height: 25rem;
+}
+.state span{
+	color: #7ac943;
+}
 .campaign-box {
 	height: 250px;
 	margin: 10px auto;
@@ -85,13 +94,11 @@
 	max-height: 45px;
 	min-height: 45px;
 }
-
 .campaign-box .title {
 	min-height: 45px;
 	max-height: 45px;
 	overflow: hidden;
 }
-
 .campaign-box .cover {
 	height: 100%;
 	display: block;
@@ -99,23 +106,19 @@
 	background-position: 50%;
 	background-repeat: no-repeat;
 }
-
 .campaign-box .content {
 	display: block;
 	position: relative;
 	height: 150px;
 }
-
 .campaign-box .description, .campaign-box .title {
 	min-height: 45px;
 	max-height: 45px;
 	overflow: hidden;
 }
-
 .campaign-box .line {
 	border-top: 1px solid #003459;
 }
-
 .btn_campaign_add {
 	position: absolute !important;
     z-index: 1;
@@ -128,7 +131,6 @@
     right: 5%;
     top: 5%;
 }
-
 button.btn-switch {
     width: 50px;
     height: 20px;
@@ -152,7 +154,6 @@ button.btn-switch:before {
     border-radius: 50%;
     border: 1px solid #dcdcdc;
 }
-
 button.btn-switch.enable:before {
     left: 55%;
     border: 1px solid #37bf4b;
