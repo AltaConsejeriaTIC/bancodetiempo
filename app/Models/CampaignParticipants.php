@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Models\Campaigns;
 
 class CampaignParticipants extends Model
 {
@@ -18,5 +19,9 @@ class CampaignParticipants extends Model
     public function participant()
     {
         return $this->belongsTo(User::class);
+    }
+    public function campaign()
+    {
+        return $this->belongsTo(Campaigns::class, "campaigns_id", "id");
     }
 }

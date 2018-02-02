@@ -14,7 +14,7 @@ class CreateViewsReports extends Migration
     public function up()
     {
 
-        DB::unprepared("CREATE VIEW allData AS
+        /**DB::unprepared("CREATE VIEW allData AS
                         SELECT
                         u.id as id,
                         u.first_name as firstname,
@@ -47,7 +47,7 @@ class CreateViewsReports extends Migration
                         LEFT JOIN tags as t ON t.id = ts.tag_id
                         LEFT JOIN deals as d ON d.service_id = s.id
                         LEFT JOIN users as ud ON ud.id = d.user_id
-                        LEFT JOIN groups as g ON g.admin_id = u.id");
+                        LEFT JOIN groups as g ON g.admin_id = u.id");**/
 
     }
 
@@ -58,7 +58,7 @@ class CreateViewsReports extends Migration
      */
     public function down()
     {
-        DB::unprepared("DROP VIEW allData");
+        //DB::unprepared("DROP VIEW allData");
 
     }
 }

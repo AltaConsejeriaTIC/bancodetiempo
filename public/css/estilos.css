@@ -64,10 +64,11 @@ button.btn-notificationPush {
     width: 100%;
     padding: 5px;
     color: #fff;
-    background: red;
+    background: #ad3a38;
     border: 0px;
     left: 0px;
     text-decoration: underline;
     cursor: pointer;
     z-index: 1002;
+    font-weight: bold;
 } 

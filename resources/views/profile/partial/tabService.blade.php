@@ -5,9 +5,7 @@
               <i class="fa fa-plus-square icons" aria-hidden="true"></i>
               <p>{{ trans("profile.newService") }}</p>
             </button>
-            {!! Form::open(['url' => '/service/save', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form', 'class' => 'form-custom col-xs-12 col-sm-12', 'form-validation' => '']) !!}
-              <newservice v-cloak></newservice>
-            {!! Form::close() !!}
+            @include('services.partial.modalNewService')
         </div>
     </div>
 </article>

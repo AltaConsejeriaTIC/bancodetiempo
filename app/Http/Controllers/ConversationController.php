@@ -184,7 +184,31 @@ class ConversationController extends Controller{
         ]);
     }
     
-    static function sendNotificationPush($addressee, $service){
+    static function sendNotificationPush($addressee, $service, $type = 0){
+        
+        $message = '';
+        $title = '';
+        
+        switch($type){
+            case 0:
+                $message = Auth::user()->first_name ." ha respondido en la oferta ".$service->name;
+                $title = "Nuevo mensaje en Bogotá Cambalachea";
+            break;
+            case 1:
+                $message = Auth::user()->first_name ." ha enviado una propuesta para la oferta ".$service->name;
+                $title = "Nueva propuesta en Bogotá Cambalachea";
+            break;
+            case 2:
+                $message = Auth::user()->first_name ." ha rechazado la propuesta para la oferta ".$service->name;
+                $title = "Propuesta rechazada en Bogotá Cambalachea";
+            break;
+            case 3:
+                $message = Auth::user()->first_name ." ha aceptado la propuesta para la oferta ".$service->name;
+                $title = "Propuesta aceptada en Bogotá Cambalachea";
+            break;
+        }
+        
+        
         
         foreach($addressee->tokens as $token){
             
@@ -200,8 +224,8 @@ class ConversationController extends Controller{
               CURLOPT_CUSTOMREQUEST => "POST",
               CURLOPT_POSTFIELDS => '{
                                         "notification": {
-                                        "title": "Nuevo mensaje en Bogotá Cambalachea",
-                                        "body": "'.Auth::user()->first_name.' ha respondido en la oferta '.$service->name.'",
+                                        "title": "'.$title.'",
+                                        "body": "'.$message.'",
                                         "icon": "https://scontent-mia3-2.xx.fbcdn.net/v/t1.0-1/p200x200/18199351_292705817842611_4689648123779858983_n.png?oh=62a22d446953b10a4eaa34fc618d4e04&oe=5A8F4810",
                                         "click_action": "'.url("/").'/inbox"
                                         },

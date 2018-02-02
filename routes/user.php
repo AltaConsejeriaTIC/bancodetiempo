@@ -56,3 +56,4 @@ Route::get('/hiddenMessagesCompleteProfile', function(){
 });
 
 Route::get("/saveTokenPushUser", "UsersController@saveTokenPush");
+Route::get('/tokenInServer', 'UsersController@tokenInServer');

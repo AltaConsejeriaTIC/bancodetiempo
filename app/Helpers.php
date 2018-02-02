@@ -3,6 +3,7 @@ namespace App;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Conversations;
 use Illuminate\Http\Request;
+use App\Models\CampaignColegio;
 class Helpers{
 	
 	static function getNotificationsUser(){		
@@ -141,7 +142,32 @@ class Helpers{
         return $interval->format('%a');
 
     }
-
-
+    
+    static function countDealsFinished($user){
+        $total = 0;
+        if($user->conversations->count() != 0){
+            foreach($user->conversations as $conversation){
+                foreach($conversation->deals as $deal){
+                    if($deal->state_id == 10){
+                        $total += 1;
+                    }
+                }
+            }
+        }
+        return $total;
+                                                
+    }
+    
+    static function rangoFecha($fecha){
+        if($fecha != ''){
+            $fecha = explode("|", $fecha);
+            $fecha1 = date("m/d/Y", strtotime($fecha[0]));
+            $fecha2 = date("m/d/Y", strtotime($fecha[1]));
+            return $fecha1." - ".$fecha2;
+        }else{
+            return "";
+        }
+    }
+    
 }
 ?>

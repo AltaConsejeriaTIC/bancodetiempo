@@ -60,7 +60,22 @@
                     <p class="description">{{$campaign->description}}</p>
                 </div>
             </div>
-
+            
+            @if($campaign->location != '')
+            <div class="row">
+                <div class="col-xs-12">
+                   @php
+                       $coordinates = json_decode($campaign->coordinates);
+                   @endphp
+                    @if($campaign->coordinates == '')
+                        <p class='paragraph1'><strong>Lugar: </strong>{{$campaign->location}}</p>
+                    @else
+                        <p class='paragraph1'><strong>Lugar: </strong><a href="http://maps.google.com/?q={{$coordinates->lat}},{{$coordinates->lng}}" target="_blank">{{$campaign->location}}</a></p>
+                    @endif
+                </div>
+            </div>
+            @endif
+            
             <div class="row">
                 <div class="col-xs-12">
                     <p class='paragraph1'><strong>Fecha: </strong>{{date("F j Y", strtotime($campaign->date))}}</p>
@@ -118,7 +133,9 @@
                     
                     <div class="space20"></div>
                     <div class="col-xs-12 text-center donation">
-                        @php($credits = Session::get('credits'))
+                        @php
+                           $credits = Session::get('credits')
+                        @endphp
                             @if(isset($credits))
                                 <p>¡Haz donado {{$credits}} dorados a esta campaña!</p>
                             @endif
@@ -210,18 +227,33 @@
 
             <div class="row">
                 <div class="partakers col-xs-12">
-                    <div>
-                        <h1 class="">Asistentes a la campaña:</h1>
-                        <a>{{$campaign->participants->where("confirmed", 1)->count()}} personas asistirán</a>
-                    </div>
-
-                    <div class="space15"></div>
-
-                    @foreach($campaign->participants->where("confirmed", 1) as $participant)
-                        <div class="col-xs-4">
-                            @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                    @if($campaign->allows_registration == 0)
+                        <div>
+                            <h1 class="">Preinscritos a la campaña:</h1>
+                            <a>{{$campaign->participants->count()}} personas preinscritas</a>
                         </div>
-                    @endforeach
+
+                        <div class="space15"></div>
+
+                        @foreach($campaign->participants as $participant)
+                            <div class="col-xs-4">
+                                @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                            </div>
+                        @endforeach
+                    @else
+                        <div>
+                            <h1 class="">Asistentes a la campaña:</h1>
+                            <a>{{$campaign->participants->where("confirmed", 1)->count()}} personas asistirán</a>
+                        </div>
+
+                        <div class="space15"></div>
+
+                        @foreach($campaign->participants->where("confirmed", 1) as $participant)
+                            <div class="col-xs-4">
+                                @include('partial/imageProfile', array('cover' => $participant->participant->avatar, 'id' =>$participant->participant->id, 'border' => '#0f6784', 'borderSize' => '3px'))
+                            </div>
+                        @endforeach                    
+                    @endif
                 </div>
             </div>
 

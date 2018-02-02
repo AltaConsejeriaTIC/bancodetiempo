@@ -1,38 +1,35 @@
 @extends('layouts.layoutLoginAdmin')
 
 @section('content')
-  <div class="container">
-    <div class="row">
-      <div class="col-md-9 col-md-offset-1">
-        <div class="panel panel-default">
-          <div class="panel-heading">Inciar Sesión</div>
-          <div class="panel-body">
+  <div class="container vh100">
+    <div class="row justify-content-center middle">
+      <div class="col-md-4 bg-white-middle p-5 bg-opacity">
+          <h4>Iniciar sesión</h4>
+          <div>
             @include('admin.partial.errors')
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}" novalidate="novalidate">
-              
-              
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}" novalidate="novalidate">            
               {{ csrf_field() }}
               
-              <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">E-Mail</label>
+              <div class="row form-group {{ $errors->has('email') ? ' has-error' : '' }}">
 
-                <div class="col-md-6">
+                <div class="col-12">
+                    <label for="email" class="">E-Mail</label>
                   <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
                 </div>
               </div>
 
-              <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                <label for="password" class="col-md-4 control-label">Contraseña</label>
+              <div class="row form-group {{ $errors->has('password') ? ' has-error' : '' }}">
 
-                <div class="col-md-6">
+                <div class="col-12">
+                    <label for="password">Contraseña</label>
                   <input id="password" type="password" class="form-control" name="password" required>
                 </div>
               </div>           
 
-              <div class="form-group">
-                <div class="col-md-8 col-md-offset-4">
+              <div class="form-group row justify-content-center">
+                <div class="col-md-6">
                   
-                  <button type="submit" class="btn btn-raised btn-primary">
+                  <button type="submit" class="btn btn-raised btn-primary col-12">
                       Iniciar Sesión
                   </button>
                   
@@ -46,7 +43,6 @@
         </div>
       </div>
     </div>
-	</div>
 @endsection
 
 

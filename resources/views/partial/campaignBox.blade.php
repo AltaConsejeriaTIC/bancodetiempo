@@ -3,12 +3,10 @@
     <div class='campaign-box'>
         @if(isset($edit))
             <div class="col-md-5 col-xs-5 icons-button-content">
-                <button class="icons-button" @click="myData.editCampaign{{$campaign->id}}=true"><i
-                            class="fa fa-pencil"></i></button>
+                <button class="icons-button showEditCampaign" data-toggle="modal" data-target="#campaignEdit" data-campaign='{{$campaign->id}}'><i class="fa fa-pencil"></i></button>
                 <button class="icons-button" @click="myData.deleteCampaign{{$campaign->id}}=true"><i
                             class="fa fa-trash-o"></i></button>
             </div>
-            @include('campaigns/partial/editCampaign', array("$campaign" => $campaign))
             @include('campaigns/partial/deleteCampaign', array("$campaign" => $campaign))
         @endif
         <div class="col-md-4 col-xs-4 not-padding cover">
@@ -16,7 +14,7 @@
                 <i class="iconGroups fa fa-users"  data-toggle="tooltip" title='Esta campaña pertenece a un grupo'></i>
             @endif
             <a href="/campaign/{{$campaign->id}}">
-                <div class="cover" style="background-image : url('/getImg?img={{$campaign->image}}&w=400')">
+                <div class="cover" style="background-image : url('{{env('APP_URL')}}/getImg?img={{$campaign->image}}&w=400')">
                 </div>
             </a>
         </div>
