@@ -8,7 +8,7 @@ jQuery.ajax({
     async : false,
     context: this,
     success : function(data){
-        categories =  JSON.parse(data);
+        categories =  data;
     }
 });
 

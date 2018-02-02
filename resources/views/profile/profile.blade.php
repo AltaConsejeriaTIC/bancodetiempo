@@ -53,9 +53,6 @@
     <script>
         jQuery(document).ready(function(){
             jQuery(".showEditCampaign").on("click", showEditCampaign)
-            jQuery("#imageCampaign").change(function(){
-                jQuery(this).attr("data-validations", "['required']");
-            })
         });
         function showEditCampaign(){
             var campaign = jQuery(this).data('campaign');

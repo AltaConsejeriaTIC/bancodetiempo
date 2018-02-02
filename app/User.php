@@ -17,6 +17,7 @@ use App\Models\Groups;
 use App\Models\NetworkAccounts;
 use App\Models\TokensPush;
 use App\Models\ColegioUsuario;
+use App\Models\CampaignParticipants;
 
 class User extends Authenticatable
 {
@@ -43,7 +44,9 @@ class User extends Authenticatable
         'privacy_policy', 
         'ranking', 
         'document', 
-        'course'
+        'course',
+        'group',
+        'plataforma'
     ];
 
     /**
@@ -101,9 +104,7 @@ class User extends Authenticatable
 
     public function user_score()
     {
-
         return $this->hasMany(UserScore::class);
-
     }
 
     public function state()
@@ -121,6 +122,10 @@ class User extends Authenticatable
 
         return $this->hasMany(Reports::class);
 
+    }
+    
+    public function campaignParticipants(){
+        return $this->hasMany(CampaignParticipants::class, "participant_id", "id");
     }
     
     public function colegioUsuario()

@@ -49,3 +49,5 @@ Route::get("/perfil", function(){
 Route::post("/editStudent", "Colegios\StudentController@edit");
 Route::post("/student/inscription", "Colegios\StudentController@inscriptionCampaign");
 Route::post("/student/unregistration", "Colegios\StudentController@unregistrationCampaign");
+
+Route::get("/listadoEstudiantes", "Colegios\StudentController@listStudents");

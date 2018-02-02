@@ -82,4 +82,10 @@ class StudentController extends Controller
         
         return view("colegios/estudiante/compromisos", compact("campaigns"));
     }
+    
+    public function listStudents(){
+        $students = User::select("users.*")->where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id)->paginate("10");
+        
+        return view("colegios/admin/listStudents", compact("students"));
+    }
 }

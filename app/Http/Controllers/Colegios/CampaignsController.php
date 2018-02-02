@@ -10,6 +10,16 @@ use App\Models\CampaignColegio;
 use Illuminate\Support\Facades\Auth;
 class CampaignsController extends Controller
 {
+    public function __construct(){
+        $this->middleware(function ($request, $next) {
+            if(Auth::check()){
+                return $next($request);
+            }else{
+                return redirect("/");
+            }
+        });
+    }
+    
     public function showCampaign(Request $request, $campaignId){
         $campaign = Campaigns::findOrFail($campaignId);
         if($campaign->state_id == 3){

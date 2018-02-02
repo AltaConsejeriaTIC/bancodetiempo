@@ -128,16 +128,20 @@
 				<p class="description">{{$campaign->description}}</p>
 			</div>
 		</div>
-		@if($campaign->location != '')
-		<div class="row">
-			<div class="col-xs-12">
-				@php
-				$coordinates = json_decode($campaign->coordinates);
-				@endphp
-				<p class='paragraph1'><strong>Luga	r: </strong><a href="http://maps.google.com/?q={{$coordinates->lat}},{{$coordinates->lng}}" target="_blank">{{$campaign->location}}</a></p>
-			</div>
-		</div>
-		@endif
+		 @if($campaign->location != '')
+            <div class="row">
+                <div class="col-xs-12">
+                   @php
+                       $coordinates = json_decode($campaign->coordinates);
+                   @endphp
+                    @if($campaign->coordinates == '')
+                        <p class='paragraph1'><strong>Lugar: </strong>{{$campaign->location}}</p>
+                    @else
+                        <p class='paragraph1'><strong>Lugar: </strong><a href="http://maps.google.com/?q={{$coordinates->lat}},{{$coordinates->lng}}" target="_blank">{{$campaign->location}}</a></p>
+                    @endif
+                </div>
+            </div>
+        @endif
 		<div class="row">
 			<div class="col-xs-12">
 				<p class='paragraph1'><strong>Fecha: </strong>{{date("F j Y", strtotime($campaign->date))}}</p>

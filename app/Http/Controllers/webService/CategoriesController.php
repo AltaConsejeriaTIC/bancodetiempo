@@ -10,6 +10,6 @@ class CategoriesController extends Controller
 {
     public function allCategories(Request $request){
         $categories = Category::orderBy("category", "asc")->get();
-        return json_encode($categories->toArray());
+        return response()->json($categories->toArray());
     }
 }

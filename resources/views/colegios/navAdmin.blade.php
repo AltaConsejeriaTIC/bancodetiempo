@@ -8,9 +8,19 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Colegio {{Auth::user()->colegio()->name}}</a>
+        <a class="nav-link" href="#">{{Auth::user()->colegio()->name}}</a>
       </li>
     </ul>
+    
+    <div class="col-5">
+        <div class="row justify-content-end">
+            <div class="col-4"></div>
+            <div class="col-4 text-right">
+                <a href="/listadoEstudiantes" class="btn btn-outline-primary bg-white">Listado estudiantes</a>
+            </div>
+        </div>
+    </div>
+    
     <div>
         <div class="row justify-content-end">
             <div class="col-12">
