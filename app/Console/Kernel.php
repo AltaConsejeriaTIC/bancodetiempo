@@ -45,7 +45,6 @@ class Kernel extends ConsoleKernel
             $deals = new DealsController();
             $deals->refuseDeal();
         })->everyMinute();
-
         $schedule->call(function (){
             $campaign = new CampaignController();
             $campaign->enableInscriptions();
@@ -60,6 +59,7 @@ class Kernel extends ConsoleKernel
             $deals = new DealsController();
             $deals->changeDealsForRanking();
         })->everyMinute();
+        
 
     }
 

@@ -217,9 +217,11 @@ class CampaignController extends Controller
                 "state_id" => 12
             ]);
         }
+        
     }
 
     public function enableInscriptions(){
+        
         $campaigns = Campaigns::where("date_donations", "<=" ,date("Y-m-d H:i:59"))->where('allows_registration', 0)->where("state_id", 1)->get();
         foreach ($campaigns as $campaign) {
             $campaign->update([
