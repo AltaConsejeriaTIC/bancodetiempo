@@ -29,13 +29,12 @@ class StudentController extends Controller
         $this->validate($request, [
             "name" => "required",
             "last_name" => "required",
-            "email" => "required",
             "document" => "required",
             "aboutMe" => "required",
             "date" => "required",
             "course" => "required",
         ]);
-        
+       
         Auth::user()->update([
             "first_name" => $request->name,
             "last_name" => $request->last_name,
