@@ -5,11 +5,27 @@
 
 <div>
     <div class="container">
+        
         <div class="row">
             <div class="col-4">
                 <img src="{{route("getImage")}}?img={{Auth::user()->avatar}}&w=200" alt="avatar" class="img-thumbnail"><br>
                 <h4>{{Auth::User()->first_name}} {{Auth::User()->last_name}}</h4>
                 <h6>Estudiante</h6>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <h5>Mi meta</h5>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"  style="width: {{is_null(Auth::user()->credits) ? '0%' : ((80*Auth::user()->credits)/100).'%'}}">
+                                <div style="font-size: 0.4rem;">
+                                    {{is_null(Auth::user()->credits) ? '0' : Auth::user()->credits}}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             <div class="col-6">
                 <p><strong>Intereses:</strong> {{Auth::user()->aboutMe}}</p>
