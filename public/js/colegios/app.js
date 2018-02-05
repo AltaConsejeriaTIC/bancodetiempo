@@ -2,6 +2,7 @@ jQuery(document).ready(function(){
     jQuery(".btn_campaign_add").on("click", passCampaignModal);
     jQuery(".btn_campaign_remove").on("click", passCampaignModalRemove);
     jQuery("[hide-in]").each(hideIn)
+    jQuery("#filtroEstudiantes input").change(filtrar)
 })
 
 function passCampaignModal(){
@@ -21,4 +22,7 @@ function hideIn(){
     setTimeout(function(){
         el.slideUp();
     }, _in)
+}
+function filtrar(){
+    jQuery("#filtroEstudiantes").submit();
 }

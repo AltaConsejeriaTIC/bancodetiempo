@@ -24,6 +24,7 @@
         
         <div class="row">
             <div class="col-12">
+            <form action="/listadoEstudiantes" method="get" id='filtroEstudiantes'>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -37,19 +38,19 @@
                             <th>Campañas</th>
                         </tr>
                         <tr>
-                            <th><input type="text"></th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Curso</th>
-                            <th>Correo</th>
+                            <th><input type="text" name="documento" value="{{Request::get('documento')}}"></th>
+                            <th><input type="text" name="nombre" value="{{Request::get('nombre')}}"></th>
+                            <th><input type="text" name="apellido" value="{{Request::get('apellido')}}"></th>
+                            <th><input type="text" name="curso" value="{{Request::get('curso')}}"></th>
+                            <th><input type="text" name="email" value="{{Request::get('email')}}"></th>
                             <th>Horas completadas</th>
                             <th>Horas Comprometidas</th>
-                            <th>Campañas</th>
+                            <td>Campañas</td>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($students as $student)
-                        <tr  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <tr  data-toggle="collapse" data-target="#collapseDetail{{$student->id}}" aria-expanded="false" aria-controls="collapseExample">
                             <td>{{$student->document}}</td>
                             <td>{{$student->first_name}}</td>
                             <td>{{$student->last_name}}</td>
@@ -80,16 +81,57 @@
                                 @endforeach
                             </td>
                         </tr>
-                        <tr class="collapse" id="collapseExample">
+                        <tr class="collapse" id="collapseDetail{{$student->id}}">
                           <td colspan="8">
-                            <div>
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                            <div class="row">
+                                <div class="col-4">
+                                    <h5>Intereses</h5>
+                                    <p>{{$student->aboutMe}}</p>
+                                </div>
+                                <div class="col-8">
+                                    <h5>Historial Campañas</h5>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                Campaña
+                                            </div>
+                                            <div class="col-3">Estado</div>
+                                            <div class="col-2">Horas</div>
+                                            <div class="col-3">Fecha</div>
+                                        </div>
+                                    @foreach($student->campaignParticipants as $campaignParticipant)
+                                        <div class="row">
+                                            <div class="col-4">
+                                                {{$campaignParticipant->campaign->name}}
+                                            </div>
+                                            <div class="col-3">
+                                                @if($campaignParticipant->campaign->state_id == 1)
+                                                    Inscrito
+                                                @else
+                                                    @if($campaignParticipant->campaign->state_id == 10 && $campaignParticipant->presence == 1)
+                                                        Asitió
+                                                    @elseif($campaignParticipant->campaign->state_id == 10 && $campaignParticipant->presence == 0)
+                                                       No asistió
+                                                    @else                                                    
+                                                        Inscrito
+                                                    @endif
+                                                @endif
+                                            </div>
+                                            <div class="col-2">
+                                                {{$campaignParticipant->campaign->hours}}
+                                            </div>
+                                            <div class="col-3">
+                                                {{$campaignParticipant->campaign->date}}
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                           </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+            </form>
             </div>
         </div>
         

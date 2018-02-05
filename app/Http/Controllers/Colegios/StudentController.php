@@ -83,8 +83,29 @@ class StudentController extends Controller
         return view("colegios/estudiante/compromisos", compact("campaigns"));
     }
     
-    public function listStudents(){
-        $students = User::select("users.*")->where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id)->paginate("10");
+    public function listStudents(Request $request){
+        if(Auth::user()->role_id == 2){
+            return redirect("/");
+        }
+        $students = User::select("users.*")->where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id);
+        
+        if($request->has("documento") && $request->documento != ''){
+            $students = $students->where("document", $request->documento);
+        }
+        if($request->has("nombre") && $request->nombre != ''){
+            $students = $students->where("first_name", "like" ,"%".$request->nombre."%");
+        }
+        if($request->has("apellido") && $request->apellido != ''){
+            $students = $students->where("last_name", "like" ,"%".$request->apellido."%");
+        }
+        if($request->has("curso") && $request->curso != ''){
+            $students = $students->where("course", $request->curso);
+        }
+        if($request->has("email") && $request->email != ''){
+            $students = $students->where("email", "like", "%".$request->email2."%");
+        }
+        //dd($students);
+        $students = $students->paginate("10");
         
         return view("colegios/admin/listStudents", compact("students"));
     }
