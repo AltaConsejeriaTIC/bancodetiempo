@@ -9,6 +9,8 @@ use App\Models\CampaignColegio;
 use App\Models\Campaigns;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CampaignParticipants;
+use Maatwebsite\Excel\Facades\Excel;
+
 class StudentController extends Controller
 {
     public function index(){
@@ -87,7 +89,7 @@ class StudentController extends Controller
         if(Auth::user()->role_id == 2){
             return redirect("/");
         }
-        $students = User::select("users.*")->where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id);
+        $students = User::select("users.first_name", "users.last_name", "users.email2", "users.gender", "users.birthDate", "users.aboutMe", "users.credits", "users.document", "users.course", "users.created_at")->where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id);
         
         if($request->has("documento") && $request->documento != ''){
             $students = $students->where("document", $request->documento);
@@ -105,6 +107,21 @@ class StudentController extends Controller
             $students = $students->where("email", "like", "%".$request->email2."%");
         }
         //dd($students);
+        
+        if($request->download == 1){
+            Excel::create('Litado estudiantes' . date("Y-m-d"), function ($excel) use ($students) {
+                $excel->sheet('participantes', function ($sheet) use ($students) {
+                    
+                    $sheet->appendRow(array_keys($students->get()->last()->toArray()));
+                    
+                    foreach($students->get() as $student){
+                        $sheet->appendRow($student->toArray());
+                    }
+
+                });
+            })->download('xls');
+        }
+        
         $students = $students->paginate("10");
         
         return view("colegios/admin/listStudents", compact("students"));

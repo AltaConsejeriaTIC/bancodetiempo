@@ -19,12 +19,14 @@
             </div>
             <div class="col-4 text-right">
                 <button type="button" class="btn btn-success">Hay {{$students->total()}} estudiantes inscritos</button>
+                <button type="button" class="btn btn-light" id='downloadListStudent'><i class="fa fa-download"></i></button>
             </div>        
         </div>
         
         <div class="row">
             <div class="col-12">
             <form action="/listadoEstudiantes" method="get" id='filtroEstudiantes'>
+               <input type="hidden" name="download" id="download" value="0">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
