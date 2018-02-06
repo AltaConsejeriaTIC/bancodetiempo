@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro');
-.navbar label{
+body {
 	font-family: 'Source Sans Pro', sans-serif;
 }
 .navbar .form-control{
@@ -42,6 +42,20 @@
 	background-color: #15b515;
 	border-color: #15b515;
 }
+.c-dark-blue{
+	color: #153557;
+}
+.bg-dark-blue{
+	background-color: #153557;
+}
+.montserrat{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+}
+.montserrat-bold{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+}
 .text-xs{
 	font-size: 0.6rem;
 }
@@ -53,9 +67,6 @@
 }
 .text-lg{
 	font-size: 1.5rem;
-}
-.btn{
-	border-radius: 0px;
 }
 .file-update {
 	display: none;
@@ -70,11 +81,15 @@
 .panel{
 	background: #f2f5f6;
 }
-.campaign-detail h3,h6{
+h1,h2,h3,h4,h5,h6{
 	font-family: 'Montserrat', sans-serif;
 }
-.campaign-photo img{
-	max-height: 25rem;
+hr{
+	border-top: 1px solid #000;
+}
+.campaign-photo {
+	height: 25rem;
+	background-position: center;
 }
 .state span{
 	color: #7ac943;
@@ -121,54 +136,54 @@
 }
 .btn_campaign_add {
 	position: absolute !important;
-    z-index: 1;
-    right: 5%;
-    top: 5%;
+	z-index: 1;
+	right: 5%;
+	top: 5%;
 }
 .btn_campaign_remove {
 	position: absolute !important;
-    z-index: 1;
-    right: 5%;
-    top: 5%;
+	z-index: 1;
+	right: 5%;
+	top: 5%;
 }
 button.btn-switch {
-    width: 50px;
-    height: 20px;
-    background: #efefef;
-    border: 1px solid #dcdcdc;
-    border-radius: 20px;
-    position: relative;
+	width: 50px;
+	height: 20px;
+	background: #efefef;
+	border: 1px solid #dcdcdc;
+	border-radius: 20px;
+	position: relative;
 }
 button.btn-switch.enable{
-    background: #37bf4b;   
+	background: #37bf4b;   
 }
 button.btn-switch:before {
-    content: "";
-    width: 45%;
-    background: #fff;
-    height: 125%;
-    display: block;
-    position: absolute;
-    top: -10%;
-    left: 0%;
-    border-radius: 50%;
-    border: 1px solid #dcdcdc;
+	content: "";
+	width: 45%;
+	background: #fff;
+	height: 125%;
+	display: block;
+	position: absolute;
+	top: -10%;
+	left: 0%;
+	border-radius: 50%;
+	border: 1px solid #dcdcdc;
 }
 button.btn-switch.enable:before {
-    left: 55%;
-    border: 1px solid #37bf4b;
+	left: 55%;
+	border: 1px solid #37bf4b;
 }
 
 
 .iconGroups {
-    position: absolute;
-    z-index: 1;
-    color: #fff;
-    font-size: 20px;
-    top: 2%;
-    left: 2%;
-    background: rgba(0,0,0,.6);
-    border: 1px solid #18aada;
-    padding: 10px;
-    border-radius: 5px;
+	position: absolute;
+	z-index: 1;
+	color: #fff;
+	font-size: 20px;
+	top: 2%;
+	left: 2%;
+	background: rgba(0,0,0,.6);
+	border: 1px solid #18aada;
+	padding: 10px;
+	border-radius: 5px;
 }
