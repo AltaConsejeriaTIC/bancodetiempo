@@ -43,37 +43,3 @@
         </div>
     </div>
 </nav>
-
-    
- <!--   
-    
-    <div class="col-12 mt-3">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="text-white justify-content-center row" style="cursor:pointer" data-toggle="dropdown">
-                    <p class="col-12 align-middle text-center">Hola <strong>{{Auth::user()->first_name . " " . Auth::user()->last_name}}</strong></p>
-                    <div class="col-3">
-                        @include('partial/imageProfile', array('cover' => Auth::user()->avatar.'&w=200', 'id' => 'myAvatar', 'border' => '#fff', 'borderSize' => '1px'))
-                    </div>                    
-                </div>
-                <div class="col-12">
-                    <div class="row justify-content-end">
-                        <div class="col-8">
-                            <div class="dropdown-menu">
-                                <ul class="nav">
-                                    <a class='dropdown-item' href="/perfil">Mi perfil</a>
-                                    <a class='dropdown-item'>Cambiar contraseña</a>
-                                    <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Cerrar sesión</a>
-                                    <form id="frm-logout" action="/logout" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-</nav>-->

@@ -48,7 +48,11 @@
 
 @section('content')
 
-@include('colegios.navAdmin')
+@if(Auth::user()->role_id == 1)
+    @include('colegios.navAdmin')
+@else
+    @include('colegios.nav')
+@endif
 <div class="container campaign-detail pt-5">
 	<div class="row">
 		<div class="col-sm-8">
@@ -97,7 +101,6 @@
 						</a>
 					</h6>
 				</div>
-				@include("colegios/campaign/report")
 				@endif
 			</div>
 		</div>
@@ -114,30 +117,28 @@
 			<p><small>Amabilidad, respeto y confianza</small></p>
 			@for($cont = 1 ; $cont <= 5 ; $cont++)
 			@if($cont <= $campaign->user->ranking)
-			<i class="fa fa-star fa-2x c-dark-blue" aria-hidden="true"></i>
-			@else
-			<i class="fa fa-star-o fa-2x c-dark-blue" aria-hidden="true"></i>
+                <i class="fa fa-star fa-2x c-dark-blue" aria-hidden="true"></i>
+            @else
+                <i class="fa fa-star-o fa-2x c-dark-blue" aria-hidden="true"></i>
 			@endif
 			@endfor
 			<hr>
 			<p>{{$campaign->user->aboutMe}}</p>
-			<p>¿Te interesa esta oferta?</p>
-			<button type="button" class="btn bg-dark-blue text-white mt-4">Comunicate con {{$campaign->user->first_name}}</button>
 			<div class="d-block d-sm-none">
 				<hr>
 				@if(Auth::check())
-				<div class="text-muted" v-if='{{Auth::check()}}'>
-					<h6>
-						<a href="" title="Reportar Contenido" data-toggle="modal" data-target="#update-dialog{{$campaign->id}}" class="text-secondary">
-							<i class="fa fa-exclamation-triangle fa-lg d-inline-block mr-3" aria-hidden="true"></i>Reportar Contenido
-						</a>
-					</h6>
-				</div>
-				@include("colegios/campaign/report")
+                    <div class="text-muted">
+                        <h6>
+                            <a href="" title="Reportar Contenido" data-toggle="modal" data-target="#update-dialog{{$campaign->id}}" class="text-secondary">
+                                <i class="fa fa-exclamation-triangle fa-lg d-inline-block mr-3" aria-hidden="true"></i>Reportar Contenido
+                            </a>
+                        </h6>
+                    </div>
 				@endif
 			</div>
 		</div>
 	</div>
 </div>
+@include("colegios/campaign/report")
 
 @endsection

@@ -1,5 +1,5 @@
 @php
-$state = (Auth::user()->state_id == 1
+$state = (Auth::user()->state_id == 1)
 @endphp
 <nav class='navbar navbar-default navbar-static-top nav2'>
     <div class="container">

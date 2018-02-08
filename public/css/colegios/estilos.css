@@ -89,7 +89,8 @@ hr{
 }
 .campaign-photo {
 	height: 25rem;
-	background-position: center;
+	background-position: center 0%;
+    background-size: cover;
 }
 .state span{
 	color: #7ac943;
