@@ -34,7 +34,7 @@
 							<div class="tab-pane fade @if(is_null(Request::get('tab'))) show active @endif  @if(Request::get('tab') == 'todas') show active @endif" id="todas" role="tabpanel" aria-labelledby="todas-tab">
 								<div class="row">
 									@foreach($todas as $campaign)
-									<div class='col-6'>
+									<div class='col-12 col-md-6'>
 										@include("colegios/partial/buttonsCampaign")
 										@include('colegios/campaignBox')
 									</div>

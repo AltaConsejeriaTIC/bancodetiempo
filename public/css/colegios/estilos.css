@@ -187,3 +187,8 @@ button.btn-switch.enable:before {
 	padding: 10px;
 	border-radius: 5px;
 }
+
+.nav-link.active, .nav-link.show {
+    color: #003459;
+    border-bottom: 1px solid #003459;
+}

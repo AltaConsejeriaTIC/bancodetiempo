@@ -103,7 +103,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="documento" class="mt-3 mb-0">Numero de documeto: *</label>
+                            <label for="documento" class="mt-3 mb-0">Numero de documento: *</label>
                             <input type="text" class="form-control text-sm rounded" name="documento" id="documento" value="{{old('documento')}}" required>
                         </div>
                         <div class="col-md-6">
@@ -131,7 +131,8 @@
                                     <label for="curso" class="mt-3 mb-0">Curso: *</label><br>
                                     <select class="form-control form-control-sm" name="curso" id="curso" required>
                                         <option value=""></option>
-                                        <option value="10">Decimo</option>
+                                        <option value="9">Noveno</option>
+                                        <option value="10">Décimo</option>
                                         <option value="11">Once</option>
                                     </select> 
                                 </div>
