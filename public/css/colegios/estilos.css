@@ -20,6 +20,10 @@ body {
 	height: 600px;
 	font-family: 'Montserrat', sans-serif;
 }
+.school-register{
+	background-color: white;
+	border-radius: 5px;
+}
 .registroAdmin{
 	background-image: url("/images/fondoColegios.jpg");
 	background-color: #003459;
@@ -38,15 +42,17 @@ body {
 .bg-white-opacity{
 	background: rgba(250,250,250,0.4);
 }
-.bg-register-btn{
+.bg-green{
 	background-color: #15b515;
-	border-color: #15b515;
 }
 .c-dark-blue{
 	color: #153557;
 }
 .bg-dark-blue{
 	background-color: #153557;
+}
+.bg-light-gray{
+	background-color: #f2f5f6;
 }
 .montserrat{
 	font-family: 'Montserrat', sans-serif;
@@ -77,6 +83,8 @@ body {
 	color: #adadaf;
 	text-align: center;
 	padding: 30px;
+	border-radius: .25rem;
+	border: 1px solid #ced4da;
 }
 .panel{
 	background: #f2f5f6;
