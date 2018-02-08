@@ -49,7 +49,7 @@
 							<div class="tab-pane fade  @if(Request::get('tab') == 'habilitadas') show active @endif" id="habilitadas" role="tabpanel" aria-labelledby="habilitadas-tab">
 								<div class="row">
 									@foreach($enabled as $campaign)
-									<div class='col-6'>
+									<div class='col-12 col-md-6'>
 										@include("colegios/partial/buttonsCampaign")
 										@include('colegios/campaignBox')
 									</div>
@@ -64,7 +64,7 @@
 							<div class="tab-pane fade  @if(Request::get('tab') == 'inhabilitadas') show active @endif" id="inhabilitadas" role="tabpanel" aria-labelledby="inhabilitadas-tab">
 								<div class="row">
 									@foreach($disabled as $campaign)
-									<div class='col-6'>
+									<div class='col-12 col-md-6'>
 										@include("colegios/partial/buttonsCampaign")
 										@include('colegios/campaignBox')
 									</div>

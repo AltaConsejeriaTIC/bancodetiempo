@@ -72,10 +72,6 @@ footer a{
   width: 100%;
 }
 
-.logoFooter{
-    display: flex;
-    align-items: center;
-}
 .col-md-offset-2{
     margin: auto;
 }

@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function __construct(){
-        $this->middleware('adminColegios');
+        $this->middleware("auth");
+        $this->middleware('adminColegios');        
     }
     
     public function index(){

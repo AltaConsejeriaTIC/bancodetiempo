@@ -51,7 +51,7 @@
 @if(Auth::user()->role_id == 1)
     @include('colegios.navAdmin')
 @else
-    @include('colegios.nav')
+    @include('colegios.navStudent')
 @endif
 <div class="container campaign-detail pt-5">
 	<div class="row">
@@ -140,5 +140,9 @@
 	</div>
 </div>
 @include("colegios/campaign/report")
-
+<div class="row">
+    <div class="col-12">
+        @include("footer")
+    </div>
+</div>
 @endsection

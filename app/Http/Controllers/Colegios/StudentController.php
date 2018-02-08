@@ -13,6 +13,13 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
+    
+    public function __construct(){
+        
+        $this->middleware("auth");
+        
+    }
+    
     public function index(){
         
         $listEnabled =  CampaignColegio::select("campaign_id")->where("colegio_id", Auth::user()->colegio()->id)->get();

@@ -48,6 +48,9 @@ body {
 .bg-dark-blue{
 	background-color: #153557;
 }
+.bg-darkBlue{
+    background-color: #3e708f;
+}
 .montserrat{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;

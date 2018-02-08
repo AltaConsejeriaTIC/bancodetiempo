@@ -37,7 +37,7 @@
                
                <div class="row">
                    
-                   <div class="col-6">
+                   <div class="col-12 col-lg-6">
                        <h5>Mis campañas</h5>
                        <div class="row">
                            @foreach($campaigns as $campaign)
@@ -48,8 +48,8 @@
                            @endforeach
                        </div>
                    </div>
-                   <div class="col-6">
-                       <h5>Calandario</h5>
+                   <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                       <h5>Calendario</h5>
                        <div class="row">
                            @foreach($campaigns as $campaign)
                                 <div class='col-12'>
