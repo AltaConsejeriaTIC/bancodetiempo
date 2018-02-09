@@ -44,7 +44,13 @@
 
 
 <div class="container py-4">
-    <div class="row">
+
+    <div class="row rounded-top border border-secondary py-3 bg-light">
+        <div class="col-12">
+            <h4>Perfil</h4>
+        </div>
+    </div>
+    <div class="row  border border-secondary py-4">
         <div class="col-12 col-lg-5">
            <div class="row justify-content-center">
              <div class="col-12 text-center">
@@ -106,48 +112,49 @@
                </div>
            </div>
 
-           <hr class="d-lg-none">
 
        </div>
 
         <div class="col-12 col-lg-7 py-4 d-none" id="editarPerfil">
-            <form action="/editStudent" method="post" enctype="multipart/form-data" class="form-group">
-                {{csrf_field()}}
-                <input type="file" name="avatar" id='avatar' class="d-none">
-                <label class="label-control">Nombre</label>
-                <input type="text" name="name" class="form-control" value="{{Auth::user()->first_name}}" required>
+            <div class="row">
+                <form action="/editStudent" method="post" enctype="multipart/form-data" class="form-group col-8">
+                    {{csrf_field()}}
+                    <input type="file" name="avatar" id='avatar' class="d-none">
+                    <label class="label-control">Nombre</label>
+                    <input type="text" name="name" class="form-control" value="{{Auth::user()->first_name}}" required>
 
-                <label class="label-control">Apellido</label>
-                <input type="text" name="last_name" class="form-control" value="{{Auth::user()->last_name}}" required>
+                    <label class="label-control">Apellido</label>
+                    <input type="text" name="last_name" class="form-control" value="{{Auth::user()->last_name}}" required>
 
-                <label class="label-control">Correo electronico</label>
-                <input type="email" name="email" class="form-control" value="{{Auth::user()->email2}}" required>
+                    <label class="label-control">Correo electronico</label>
+                    <input type="email" name="email" class="form-control" value="{{Auth::user()->email2}}" required>
 
-                <label class="label-control">Número identificación</label>
-                <input type="text" name="document" class="form-control" value="{{Auth::user()->document}}" required>
+                    <label class="label-control">Número identificación</label>
+                    <input type="text" name="document" class="form-control" value="{{Auth::user()->document}}" required>
 
-                <label class="label-control">Intereses</label>
-                <textarea name="aboutMe" class="form-control" required>{{Auth::user()->aboutMe}}</textarea>
+                    <label class="label-control">Intereses</label>
+                    <textarea name="aboutMe" class="form-control" required>{{Auth::user()->aboutMe}}</textarea>
 
-                <label class="label-control">Fecha nacimiento</label>
-                <input type="date" name="date" class="form-control"  value="{{Auth::user()->birthDate}}" required>
+                    <label class="label-control">Fecha nacimiento</label>
+                    <input type="date" name="date" class="form-control"  value="{{Auth::user()->birthDate}}" required>
 
-                <label class="label-control">Curso</label>
-                <select name="course" class="form-control" required>
-                    <option value=""></option>
-                    <option value="10" @if(Auth::user()->course == 10) selected @endif>Decimo</option>
-                    <option value="11" @if(Auth::user()->course == 11) selected @endif>Once</option>
-                </select>
+                    <label class="label-control">Curso</label>
+                    <select name="course" class="form-control" required>
+                        <option value=""></option>
+                        <option value="10" @if(Auth::user()->course == 10) selected @endif>Decimo</option>
+                        <option value="11" @if(Auth::user()->course == 11) selected @endif>Once</option>
+                    </select>
 
-                <button type="submit" class="btn btn-primary bg-cambalachea col-12 my-3">Completar</button>
-                <button type="button" class="btn bg-white btn-outline-secondary col-12" data-hide='#editarPerfil, #updateAvatar' data-show='#perfil'>Cancelar</button>
+                    <button type="submit" class="btn btn-primary bg-cambalachea col-12 my-3">Completar</button>
+                    <button type="button" class="btn bg-white btn-outline-secondary col-12" data-hide='#editarPerfil, #updateAvatar' data-show='#perfil'>Cancelar</button>
 
-            </form>
+                </form>
+            </div>
         </div>
            
     </div>
     
-    <div class="row mt-lg-5">
+    <div class="row pt-2  border border-secondary border-top-0 rounded-bottom">
         <div class="col-12">
             <h4>Historial campañas</h4>
         </div>
