@@ -1,4 +1,43 @@
 @extends('layouts.appColegios')
+
+@section('script')
+    <script>
+        jQuery(document).ready(function(){
+            jQuery("[data-show]").on("click", showElement);
+            jQuery("#avatar").change(previewImage);
+        })
+
+        function showElement(){
+            var el = jQuery(this).data("show");
+            var elhide = jQuery(this).data("hide");
+            el = jQuery(el);
+            elhide = jQuery(elhide)
+            el.removeClass("d-none")
+            elhide.addClass("d-none")
+        }
+
+        function previewImage(e){
+            var elemt = jQuery(e.target);
+            var id =  e.target.id;
+            var files = e.target.files;
+            var label = jQuery("#img_myAvatarPerfil image");
+            if(files[0].size < 2000000){
+                label.siblings(".error").remove();
+                var image = new Image();
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                 label.attr({
+                     "xlink:href" : e.target.result,
+                 })
+             };
+             reader.readAsDataURL(files[0]);
+         }else{
+            label.after("<p class='msg error'>El peso máximo de la imagen debe ser de 3 Megas.</p>")
+        }
+    }
+    </script>
+@endsection
+
 @section('content')
 
 @include('colegios.navStudent')
@@ -6,10 +45,10 @@
 
 <div class="container py-4">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-lg-5">
            <div class="row justify-content-center">
              <div class="col-12 text-center">
-                 <button type="button" class="btn bg-white float-right" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                 <button type="button" class="btn bg-white float-right" data-show='#editarPerfil, #updateAvatar' data-hide='#perfil'>
                       <i class="fa fa-edit"></i>
                   </button>
              </div>
@@ -18,6 +57,7 @@
                    @include('partial/imageProfile', array('cover' => 'getImg?img='.Auth::user()->avatar.'&w=200', 'id' => 'myAvatarPerfil', 'border' => '#003459', 'borderSize' => '2px'))
                    <h4>{{Auth::User()->first_name}} {{Auth::User()->last_name}}</h4>
                     <h6>Estudiante</h6>
+                    <label for="avatar" id='updateAvatar' class="btn btn-primary bg-cambalachea d-none">Actualizar foto</label>
                </div>
                <div class="col-10">
                     <h5>Mi meta</h5>
@@ -33,7 +73,7 @@
            </div>
         </div>
        
-       <div class="col-12 py-4">
+       <div class="col-12 col-lg-7 py-4" id='perfil'>
 
            <div class="row">
                <div class="col-12">
@@ -66,23 +106,59 @@
                </div>
            </div>
 
-           <hr>
+           <hr class="d-lg-none">
 
        </div>
+
+        <div class="col-12 col-lg-7 py-4 d-none" id="editarPerfil">
+            <form action="/editStudent" method="post" enctype="multipart/form-data" class="form-group">
+                {{csrf_field()}}
+                <input type="file" name="avatar" id='avatar' class="d-none">
+                <label class="label-control">Nombre</label>
+                <input type="text" name="name" class="form-control" value="{{Auth::user()->first_name}}" required>
+
+                <label class="label-control">Apellido</label>
+                <input type="text" name="last_name" class="form-control" value="{{Auth::user()->last_name}}" required>
+
+                <label class="label-control">Correo electronico</label>
+                <input type="email" name="email" class="form-control" value="{{Auth::user()->email2}}" required>
+
+                <label class="label-control">Número identificación</label>
+                <input type="text" name="document" class="form-control" value="{{Auth::user()->document}}" required>
+
+                <label class="label-control">Intereses</label>
+                <textarea name="aboutMe" class="form-control" required>{{Auth::user()->aboutMe}}</textarea>
+
+                <label class="label-control">Fecha nacimiento</label>
+                <input type="date" name="date" class="form-control"  value="{{Auth::user()->birthDate}}" required>
+
+                <label class="label-control">Curso</label>
+                <select name="course" class="form-control" required>
+                    <option value=""></option>
+                    <option value="10" @if(Auth::user()->course == 10) selected @endif>Decimo</option>
+                    <option value="11" @if(Auth::user()->course == 11) selected @endif>Once</option>
+                </select>
+
+                <button type="submit" class="btn btn-primary bg-cambalachea col-12 my-3">Completar</button>
+                <button type="button" class="btn bg-white btn-outline-secondary col-12" data-hide='#editarPerfil, #updateAvatar' data-show='#perfil'>Cancelar</button>
+
+            </form>
+        </div>
            
     </div>
     
-    <div class="row">
+    <div class="row mt-lg-5">
         <div class="col-12">
             <h4>Historial campañas</h4>
         </div>
-        <div class="col-12">
+        <div class="col-12 col-lg-8">
             <div class="jumbotron p-1">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Campaña</th>
                             <th>Estado</th>
+                            <th class="d-none"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,43 +187,7 @@
         </div>
     </div>
     
-    <div class="row">
-        <div class="col-6">
 
-            <form action="/editStudent" method="post" enctype="multipart/form-data" class="form-group">
-                {{csrf_field()}}
-                <label class="label-control">Nombre</label>
-                <input type="text" name="name" class="form-control" value="{{Auth::user()->first_name}}" required>
-
-                <label class="label-control">Apellido</label>
-                <input type="text" name="last_name" class="form-control" value="{{Auth::user()->last_name}}" required>
-
-                <label class="label-control">Correo electronico</label>
-                <input type="email" name="email" class="form-control" value="{{Auth::user()->email2}}" required>
-
-                <label class="label-control">Número identificación</label>
-                <input type="text" name="document" class="form-control" value="{{Auth::user()->document}}" required>
-
-                <label class="label-control">Intereses</label>
-                <textarea name="aboutMe" class="form-control" required>{{Auth::user()->aboutMe}}</textarea>
-
-                <label class="label-control">Fecha nacimiento</label>
-                <input type="date" name="date" class="form-control"  value="{{Auth::user()->birthDate}}" required>
-
-                <label class="label-control">Curso</label>
-                <select name="course" class="form-control" required>
-                    <option value=""></option>
-                    <option value="10" @if(Auth::user()->course == 10) selected @endif>Decimo</option>
-                    <option value="11" @if(Auth::user()->course == 11) selected @endif>Once</option>
-                </select>
-
-                <button type="submit" class="btn btn-primary">Completar</button>
-                <button type="button" class="btn bg-white btn-outline-secondary">Cancelar</button>
-
-            </form>
-        </div>     
-
-    </div>
 </div>
 
 @include("footer")

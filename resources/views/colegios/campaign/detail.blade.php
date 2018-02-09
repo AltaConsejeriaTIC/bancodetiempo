@@ -63,7 +63,9 @@
 					<h3 class="font-weight-bold mt-3">{{$campaign->name}}</h3>
 				</div>
 				<div class="col-1 mt-4">
-					@include("colegios/partial/buttonsCampaign")
+				    @if(Auth::user()->role_id == 1)
+					    @include("colegios/partial/buttonsCampaign")
+					@endif
 				</div>
 			</div>
 			@if($campaign->allows_registration == 0)
@@ -124,6 +126,23 @@
 			@endfor
 			<hr>
 			<p>{{$campaign->user->aboutMe}}</p>
+			@if(Auth::user()->role_id == 2)
+                @if($campaign->participants->where('participant_id', Auth::id())->count() == 0)
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-primary" data-target="#modal_inscripcion" data-toggle="modal" data-campaign='{{$campaign->id}}' data-name='{{$campaign->name}}'>Inscribirme</button>
+                        </div>
+                    </div>
+                    @else
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-danger" data-target="#modal_cancelar_inscripcion" data-toggle="modal" data-campaign='{{$campaign->id}}' data-name='{{$campaign->name}}'>Cancelar inscripción</button>
+                        </div>
+                    </div>
+                @endif
+            @endif
+
+
 			<div class="d-block d-sm-none">
 				<hr>
 				@if(Auth::check())
@@ -145,4 +164,52 @@
         @include("footer")
     </div>
 </div>
+@if(Auth::user()->role_id == 2)
+    <div class="modal fade" id="modal_inscripcion" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content py-2">
+                <button type="button" class="close text-right px-3" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form action="/student/inscription" method="post">
+                    {{csrf_field()}}
+                    <div class="modal-body">
+                        <h4 class="text-center">Inscribirme a la campaña</h4>
+                        <input type="hidden" class="form-control" id="campaign_id" name="campaign_id">
+                        <p class="text-center">¿Deseas <strong>inscribirse</strong> a la campaña<br> "<strong id="campaign_name"></strong>"? </p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <button type='submit' class="btn btn-info bg-cambalachea col-10">Inscribirme</button>
+                    </div>
+                    <div class="row justify-content-center py-2">
+                        <button type="button" class="btn btn-outline-info col-10" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_cancelar_inscripcion" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content py-2">
+                <button type="button" class="close text-right px-3" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form action="/student/unregistration" method="post">
+                    {{csrf_field()}}
+                    <div class="modal-body">
+                        <h4 class="text-center">Cancelar inscripción a la campaña</h4>
+                        <input type="hidden" class="form-control" id="campaign_id" name="campaign_id">
+                        <p class="text-center">¿Deseas <strong>cancelar la inscripción</strong> a la campaña "<strong id="campaign_name"></strong>"? </p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <button type='submit' class="btn btn-info bg-cambalachea col-10">Cancelar inscripción</button>
+                    </div>
+                    <div class="row justify-content-center py-2">
+                        <button type="button" class="btn btn-outline-info col-10" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endif
 @endsection

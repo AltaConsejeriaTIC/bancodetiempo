@@ -10,7 +10,7 @@ use App\Models\Campaigns;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CampaignParticipants;
 use Maatwebsite\Excel\Facades\Excel;
-
+use App\Helpers;
 class StudentController extends Controller
 {
     
@@ -52,6 +52,13 @@ class StudentController extends Controller
             "course" => $request->course,
         ]);
         
+        if(!is_null($request->file("avatar"))){
+            $cover = Helpers::uploadImage($request->file('avatar'), 'user' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::id() . '/cover/');
+            Auth::user()->update([
+                "avatar" => $cover
+            ]);
+        }
+
         return redirect()->back();
     }
     
