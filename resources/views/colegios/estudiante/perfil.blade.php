@@ -165,12 +165,13 @@
                         <tr>
                             <th>Campaña</th>
                             <th>Estado</th>
-                            <th class="d-none"></th>
+                            <th class="d-none d-lg-table-cell">Horas</th>
+                            <th class="d-none d-lg-table-cell">Fecha</th>
                         </tr>
                     </thead>
                     <tbody>
                        
-                        @foreach(Auth::user()->campaignParticipants as $campaign)
+                        @foreach(Auth::user()->campaignParticipants->sortByDesc("date") as $campaign)
                             <tr>
                                 <td>{{$campaign->campaign->name}}</td>
                                 <td>
@@ -186,6 +187,8 @@
                                         @endif
                                     @endif
                                 </td>
+                                <td class="d-none d-lg-table-cell">{{$campaign->campaign->hours}}</td>
+                                <td class="d-none d-lg-table-cell">{{date("d/m/Y", strtotime($campaign->campaign->date))}}</td>
                             </tr>
                         @endforeach
                     </tbody>
