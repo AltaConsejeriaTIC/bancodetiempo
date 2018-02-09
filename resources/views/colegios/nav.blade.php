@@ -18,8 +18,9 @@
 					<label for="" class="text-white text-sm d-block">Contraseña</label>
 					<input type="password" name="password" class="form-control rounded text-sm">
 					<br class="d-none d-sm-block">
-					<!-- <a class="text-white text-xs position-absolute">¿Alvidaste la contraseña?</a> -->
-					<a class="text-white text-xs">¿Olvidaste la contraseña?</a>
+					<!-- ################### PARA DESCOMENTAR CUANDO SE NECESITE ################### -->
+					<!-- <a class="text-white text-xs">¿Olvidaste la contraseña?</a> -->
+					<a class="text-xs">&nbsp;</a> <!-- ### QUITAR ESTA LINEA CUANDO SE DESCOMENTE LA DE ARRIBA ###-->
 				</div>
 				<div class="col-md mt-md-3">
 					<button type="submit" class="btn bg-login-btn text-white rounded text-sm">Iniciar sesión</button>

@@ -205,3 +205,6 @@ button.btn-switch.enable:before {
     color: #003459;
     border-bottom: 1px solid #003459;
 }
+#calendar {
+	background-color: white;
+}
