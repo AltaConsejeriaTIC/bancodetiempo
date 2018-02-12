@@ -91,7 +91,6 @@ class StudentController extends Controller
     }
     
     public function compromises(){
-        
         $listCampaigns = CampaignParticipants::select("campaigns_id")->where("participant_id", Auth::id())->get();
         $campaigns = Campaigns::whereIn("id", $listCampaigns)->where("state_id", 1)->orderBy("date", "asc")->get();
         
@@ -102,7 +101,7 @@ class StudentController extends Controller
         if(Auth::user()->role_id == 2){
             return redirect("/");
         }
-        $students = User::select("users.first_name", "users.last_name", "users.email2", "users.gender", "users.birthDate", "users.aboutMe", "users.credits", "users.document", "users.course", "users.created_at")->where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id);
+        $students = User::select("users.*")->where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id);
         
         if($request->has("documento") && $request->documento != ''){
             $students = $students->where("document", $request->documento);

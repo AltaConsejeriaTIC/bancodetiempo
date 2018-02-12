@@ -6,10 +6,10 @@
 <div>
     <div class="container">
         <div class="row py-5">
-            <div class="col-4">
+            <div class="col-12 col-lg-4">
                 <h4>Listado estudiantes</h4>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="Buscar estudiante" aria-label="Buscar estudiante" aria-describedby="basic-addon2">
                   <div class="input-group-append">
@@ -17,7 +17,7 @@
                   </div>
                 </div>
             </div>
-            <div class="col-4 text-right">
+            <div class="col-12 col-md-4 text-center text-lg-right">
                 <button type="button" class="btn btn-success">Hay {{$students->total()}} estudiantes inscritos</button>
                 <button type="button" class="btn btn-light" id='downloadListStudent'><i class="fa fa-download"></i></button>
             </div>        
@@ -25,9 +25,9 @@
         
         <div class="row">
             <div class="col-12">
-            <form action="/listadoEstudiantes" method="get" id='filtroEstudiantes'>
+            <form action="/listadoEstudiantes" method="get" id='filtroEstudiantes' class="table-responsive">
                <input type="hidden" name="download" id="download" value="0">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Documento</th>
@@ -38,16 +38,6 @@
                             <th>Horas completadas</th>
                             <th>Horas Comprometidas</th>
                             <th>Campañas</th>
-                        </tr>
-                        <tr>
-                            <th><input type="text" name="documento" value="{{Request::get('documento')}}"></th>
-                            <th><input type="text" name="nombre" value="{{Request::get('nombre')}}"></th>
-                            <th><input type="text" name="apellido" value="{{Request::get('apellido')}}"></th>
-                            <th><input type="text" name="curso" value="{{Request::get('curso')}}"></th>
-                            <th><input type="text" name="email" value="{{Request::get('email')}}"></th>
-                            <th>Horas completadas</th>
-                            <th>Horas Comprometidas</th>
-                            <td>Campañas</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,12 +75,12 @@
                         </tr>
                         <tr class="collapse" id="collapseDetail{{$student->id}}">
                           <td colspan="8">
-                            <div class="row">
-                                <div class="col-4">
+                            <div class="row px-3">
+                                <div class="col-4 bg-light p-3">
                                     <h5>Intereses</h5>
                                     <p>{{$student->aboutMe}}</p>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-7 ml-3 bg-light p-3">
                                     <h5>Historial Campañas</h5>
                                         <div class="row">
                                             <div class="col-4">

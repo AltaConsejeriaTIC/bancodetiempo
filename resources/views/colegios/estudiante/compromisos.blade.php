@@ -111,33 +111,7 @@
 		</div>	
 	</div>
 </div>
-<!-- <div class="panel">
-	<div class="container">
-		<div class="row py-5">			
-			<div class="col-12 col-lg-6 mt-3 mt-lg-0">
-				<h5>Calendario</h5>
-				<div class="row">
-					@foreach($campaigns as $campaign)
-					<div class='col-12'>
-						<div class="row bg-white  py-3">
-							<div class="col-3">
-								<h2>{{ date("d", strtotime($campaign->date)) }}</h2>
-								<h5>{{ date("F", strtotime($campaign->date)) }}</h5>
-							</div>
-							<div class="col-9 text-center">
-								<button type="button" class="btn btn-info col-8">
-									{{$campaign->name}}<br>
-									{{ date("H:i", strtotime($campaign->date)) }}
-								</button>
-							</div>
-						</div>
-					</div>
-					@endforeach
-				</div>
-			</div>
-		</div>
-	</div>
-</div> -->
+
 @include("footer")
 
 @endsection
