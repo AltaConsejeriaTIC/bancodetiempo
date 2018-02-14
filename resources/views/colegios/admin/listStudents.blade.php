@@ -112,7 +112,7 @@
                                                 {{$campaignParticipant->campaign->hours}}
                                             </div>
                                             <div class="col-3">
-                                                {{$campaignParticipant->campaign->date}}
+                                                {{date("d/m/Y", strtotime($campaignParticipant->campaign->date))}}
                                             </div>
                                         </div>
                                     @endforeach

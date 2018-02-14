@@ -101,7 +101,7 @@ class StudentController extends Controller
         if(Auth::user()->role_id == 2){
             return redirect("/");
         }
-        $students = User::select("users.*")->where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id);
+        $students = User::where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id);
         
         if($request->has("documento") && $request->documento != ''){
             $students = $students->where("document", $request->documento);
@@ -124,6 +124,8 @@ class StudentController extends Controller
             Excel::create('Litado estudiantes' . date("Y-m-d"), function ($excel) use ($students) {
                 $excel->sheet('participantes', function ($sheet) use ($students) {
                     
+                    $students->select("users.document as Documento", "users.first_name as Nombre", "users.last_name as Apellido", "users.course as curso", "users.email2 as Email", "users.gender as Genero", "users.aboutMe as Intereses", "users.credits as Horas_Completadas", "users.created_at as Fecha_Creacion");
+
                     $sheet->appendRow(array_keys($students->get()->last()->toArray()));
                     
                     foreach($students->get() as $student){
@@ -134,7 +136,7 @@ class StudentController extends Controller
             })->download('xls');
         }
         
-        $students = $students->paginate("10");
+        $students = $students->select("users.*")->paginate("10");
         
         return view("colegios/admin/listStudents", compact("students"));
     }
