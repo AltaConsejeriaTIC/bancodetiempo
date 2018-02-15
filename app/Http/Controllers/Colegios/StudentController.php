@@ -124,12 +124,44 @@ class StudentController extends Controller
             Excel::create('Litado estudiantes' . date("Y-m-d"), function ($excel) use ($students) {
                 $excel->sheet('participantes', function ($sheet) use ($students) {
                     
-                    $students->select("users.document as Documento", "users.first_name as Nombre", "users.last_name as Apellido", "users.course as curso", "users.email2 as Email", "users.gender as Genero", "users.aboutMe as Intereses", "users.credits as Horas_Completadas", "users.created_at as Fecha_Creacion");
+                    $students->select('users.*');
 
-                    $sheet->appendRow(array_keys($students->get()->last()->toArray()));
+                    $sheet->appendRow(["Documento", "Nombre", "Apellido", "Curso", "Email", "Genero", "Intereses", "Horas Completadas", "Fecha Creacion", "Nombre campaña", "Horas campaña", "Fecha campaña", "Lugar campaña", "Estado campaña", "Asistencia"]);
                     
                     foreach($students->get() as $student){
-                        $sheet->appendRow($student->toArray());
+                        $dataStudent = [$student->document, $student->first_name, $student->last_name, $student->course, $student->email2, $student->gender, $student->aboutMe, $student->credits, $student->created_at];
+
+
+
+                        if($student->campaignParticipants->count() == 0){
+                            $sheet->appendRow($dataStudent);
+                        }
+                        foreach($student->campaignParticipants as $key => $campaignsParticipant){
+                            $campaign = [$campaignsParticipant->campaign->name, $campaignsParticipant->campaign->hours, $campaignsParticipant->campaign->date, $campaignsParticipant->campaign->location, $campaignsParticipant->campaign->state->state];
+
+                            if($campaignsParticipant->campaign->state_id == 1){
+                                $campaign[] = 'Inscrito';
+                            }else{
+                                if($campaignsParticipant->campaign->state_id == 10 && $campaignsParticipant->presence == 1){
+                                    $campaign[] = 'Asitió';
+                                }elseif($campaignsParticipant->campaign->state_id == 10 && $campaignsParticipant->presence == 0){
+                                   $campaign[] = 'No asistió';
+                                }else{
+                                    $campaign[] = 'Inscrito';
+                                }
+                            }
+
+                            if($key == 0){
+                                 $sheet->appendRow(array_merge($dataStudent, $campaign));
+                            }else{
+                                $campaigns = [];
+                                for($x=0;$x<count($dataStudent);$x++){
+                                    $campaigns[] = "";
+                                }
+                                $sheet->appendRow(array_merge($campaigns, $campaign));
+                            }
+                        }
+
                     }
 
                 });
