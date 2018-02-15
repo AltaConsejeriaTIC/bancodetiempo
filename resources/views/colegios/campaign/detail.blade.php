@@ -78,7 +78,7 @@
 			@endif
 			@endif
 			<p class="mt-4">{{$campaign->description}}</p>
-			<p class="mt-4"><b>Fecha: </b>{{date("F j Y", strtotime($campaign->date))}}</p>
+			<p class="mt-4"><b>Fecha: </b>{{ ucfirst(trans("date.month".date("m", strtotime($campaign->date)))) }} {{date("j Y", strtotime($campaign->date))}}</p>
 			<p><b>Hora: </b>{{date("g:i a", strtotime($campaign->date))}}</p>
 			@if($campaign->location != '')
 			@php
