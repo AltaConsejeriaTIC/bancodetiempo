@@ -62,7 +62,7 @@
                                 @php $campaignsNext = 0; @endphp
                                 @foreach($student->campaignParticipants as $campaignParticipant)
                                     @php 
-                                        $campaignsNext += $campaignParticipant->campaign->state_id == 1 ? 1 : 0;
+                                        $campaignsNext += $campaignParticipant->campaign->state_id == 1 ? $campaignParticipant->campaign->hours : 0;
                                     @endphp
                                 @endforeach
                                 {{$campaignsNext}}
