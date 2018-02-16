@@ -208,3 +208,10 @@ button.btn-switch.enable:before {
 #calendar {
 	background-color: white;
 }
+
+[aria-expanded="true"]{
+    background-color: #009fe5 !important;
+}
+[aria-expanded="true"] td{
+    color: #fff;
+}

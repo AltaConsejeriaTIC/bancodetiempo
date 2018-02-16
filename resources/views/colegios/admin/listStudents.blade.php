@@ -29,7 +29,8 @@
                <input type="hidden" name="download" id="download" value="0">
                 <table class="table table-striped">
                     <thead>
-                        <tr>
+                        <tr class="d-none d-lg-table-row">
+                            <th></th>
                             <th>Documento</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
@@ -42,7 +43,8 @@
                     </thead>
                     <tbody>
                         @foreach($students as $student)
-                        <tr  data-toggle="collapse" data-target="#collapseDetail{{$student->id}}" aria-expanded="false" aria-controls="collapseExample">
+                        <tr class='d-none d-lg-table-row' data-toggle="collapse" data-target="#collapseDetail{{$student->id}}" aria-expanded="false" aria-controls="collapseExample">
+                            <td class="text-center" style="cursor:pointer"><i class="fa fa-caret-down"></i></td>
                             <td>{{$student->document}}</td>
                             <td>{{$student->first_name}}</td>
                             <td>{{$student->last_name}}</td>
@@ -73,14 +75,28 @@
                                 @endforeach
                             </td>
                         </tr>
+                        <tr class="d-table-row d-lg-none" data-toggle="collapse" data-target="#collapseDetail{{$student->id}}" aria-expanded="false" aria-controls="collapseExample">
+                            <td width="35%" class="align-bottom">
+                                <img src="{{$student->avatar}}" alt="" width="100%" class="mb-5 rounded-circle">
+                                <p class="text-center"><i class="fa fa-caret-down text-lg"></i></p>
+
+                            </td>
+                            <td>
+                                <p><strong>Nombre:</strong> {{$student->first_name}} {{$student->last_name}}</p>
+                                <p><strong>Email:</strong> {{$student->email2}}</p>
+                                <p><strong>Curso:</strong> {{$student->course}}</p>
+                                <p><strong>Documento:</strong> {{$student->document}}</p>
+                                <p><strong>Horas completadas:</strong> {{$student->credits}}</p>
+                            </td>
+                        </tr>
                         <tr class="collapse" id="collapseDetail{{$student->id}}">
                           <td colspan="8">
                             <div class="row px-3">
-                                <div class="col-4 bg-light p-3">
+                                <div class="col-12 col-lg-4 bg-light p-3">
                                     <h5>Intereses</h5>
                                     <p>{{$student->aboutMe}}</p>
                                 </div>
-                                <div class="col-7 ml-3 bg-light p-3">
+                                <div class="col-12 col-lg-7 ml-lg-3 bg-light p-3">
                                     <h5>Historial Campañas</h5>
                                         <div class="row">
                                             <div class="col-4">
