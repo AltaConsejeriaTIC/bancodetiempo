@@ -51,13 +51,14 @@ class AdminController extends Controller
         $students = ColegioUsuario::where("colegio_id", Auth::user()->colegio()->id)->get();
 
         foreach($students as $student){
+            if(CampaignParticipants::where("campaigns_id", $request->campaign_id)->where("participant_id", $student->user_id)->get()->count() > 0){
+                CampaignParticipants::where("campaigns_id", $request->campaign_id)->where("participant_id", $student->user_id)->delete();
+                $campaign = Campaigns::find($request->campaign_id);
+                $campaign->update([
+                    'credits' => $campaign->credits-$campaign->hours
+                ]);
+            }
 
-            CampaignParticipants::where("campaigns_id", $request->campaign_id)->where("participant_id", $student->user_id)->delete();
-            $campaign = Campaigns::find($request->campaign_id);
-
-            $campaign->update([
-                'credits' => $campaign->credits-$campaign->hours
-            ]);
 
         }
 
