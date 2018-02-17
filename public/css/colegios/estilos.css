@@ -186,8 +186,6 @@ button.btn-switch.enable:before {
 	left: 55%;
 	border: 1px solid #37bf4b;
 }
-
-
 .iconGroups {
 	position: absolute;
 	z-index: 1;
@@ -200,15 +198,23 @@ button.btn-switch.enable:before {
 	padding: 10px;
 	border-radius: 5px;
 }
-
 .nav-link.active, .nav-link.show {
     color: #003459;
     border-bottom: 1px solid #003459;
 }
 #calendar {
 	background-color: white;
+	padding: 1rem;
 }
-
+#calendar h2 {
+	font-size: 1.5rem;
+}
+#calendar .fc-left {
+	margin-bottom: 0.5rem;
+}
+#calendar .fc-right {
+	margin-bottom: 0.5rem;
+}
 [aria-expanded="true"]{
     background-color: #009fe5 !important;
 }
