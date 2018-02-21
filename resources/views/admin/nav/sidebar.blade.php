@@ -15,27 +15,30 @@
                   <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Reportes <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="products">
-                    <li><a href="/homeAdminUser">Usuarios</a></li>
-                    <li><a href="/listServiceAdmin">Ofertas</a></li>
-                    <li><a href="/historyDonations">Donaciones</a></li>
-                    <li><a href="/listDeals">Tratos</a></li>
+                    <li><a href="/admin/list/users">Usuarios</a></li>
+                    <li><a href="/admin/services">Ofertas</a></li>
+                    <li><a href="/admin/historyDonations">Donaciones</a></li>
+                    <li><a href="/admin/listDeals">Tratos</a></li>
                 </ul>
 
                 <li data-toggle="collapse" data-target="#new" class="collapsed">
                   <a href="#"><i class="fa fa-desktop fa-lg"></i> Secciones administrables <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="new">
-                     <li><a href="/homeAdminCategory">Categorias</a></li>
-                  <li><a href="/admin/suggestedSites">Sitios sugeridos</a></li>
-                  <li><a href="/homeAdminContents">Paginas administrables</a></li>
-                  <li><a href="/admin/dynamicContent">Modulos administrables</a></li>
+                    <li><a href="/admin/list/categories">Categorias</a></li>
+                    <li><a href="/admin/suggestedSites">Sitios sugeridos</a></li>
+                    <li><a href="/admin/content">Paginas administrables</a></li>
+                    <li><a href="/admin/dynamicContent">Modulos administrables</a></li>
                 </ul>
 
-                 <li>
+                 <li data-toggle="collapse" data-target="#profile" class="collapsed">
                   <a href="#">
-                      <i class="fa fa-user fa-lg"></i> Profile
+                      <i class="fa fa-user fa-lg"></i> Profile  <span class="arrow"></span>
                   </a>
                   </li>
+                  <ul class="sub-menu collapse" id="profile">
+                    <li><a href="/admin/changePassword">Cambiar contraseña</a></li>
+                  </ul>
 
                  <li>
                   <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

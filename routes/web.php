@@ -27,7 +27,7 @@ Route::get('/validateLogout', 'LoginController@validateLogout');
 Auth::routes();
 
 //Route Access Admin Panel
-Route::get('admin','AdminController@AdminLogin')->middleware('guest');
+Route::get('admin','Admin\LoginController@index')->middleware('guest');
 
 //Guest views
 Route::get('/service/{serviceid}', 'ServiceController@showService')->middleware('userPending', 'notAdmin');

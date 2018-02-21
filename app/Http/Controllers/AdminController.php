@@ -25,15 +25,7 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function AdminLogin()
-    {
-        return view('admin/login');
-    }
 
-    public function homeAdmin()
-    {
-        return view('admin/homeAdmin');
-    }
 
     public function store(Request $request)
     {
@@ -86,56 +78,7 @@ class AdminController extends Controller
         }
     }
 
-    public function index()
-    {
-        $contents = AdminContent::orderBy('created_at', 'desc')->paginate(6);
-        return view('admin/contents/list', compact('contents'));
-    }
 
-    public function updateContent(Request $request)
-    {
-        $cont = AdminContent::find($request->id);
-        $cont->name = $request->name;
-        $cont->description = $request->input('content');
-
-        if ($cont->save()) {
-            Session::flash('success', '¡El contenido ' . $request->category . ' Se Registró con Exito!');
-            return redirect('homeAdminContents');
-        }
-    }
-
-    public function update(Request $request)
-    {
-        try {
-            $rules = [
-                'first_name' => 'required|min:3|alpha_spaces',
-                'last_name' => 'required|min:3|alpha_spaces',
-                'email' => 'required|email'
-            ];
-
-            $validator = Validator::make($request->all(), $rules);
-
-            if ($validator->fails()) {
-                return redirect()->back()->withInput()->withErrors($validator->errors());
-            } else {
-                $user = User::find($request->id);
-                $user->first_name = $request->first_name;
-                $user->last_name = $request->last_name;
-                $user->email = $request->email;
-                $user->password = bcrypt('secret');
-                $user->state_id = $request->state_id;
-
-                if ($user->save()) {
-                    Session::flash('success', '¡El Usuario con E-Mail ' . $request->email . ' Se Actualizó con Exito!');
-                    return redirect('homeAdminUser');
-                } else {
-                    Session::flash('error', '¡El Usuario con E-Mail ' . $request->email . ' NO se Actualizó!');
-                    return redirect('homeAdminUser');
-                }
-            }
-        } catch (Exception $e) {
-        }
-    }
 
     public function adminGroups(Request $request)
     {
@@ -204,47 +147,7 @@ class AdminController extends Controller
      * Redirect View Change Password User Admin.
      */
 
-    public function changePassword()
-    {
-        return view('admin/changePasswordAdmin');
-    }
 
-    /**
-     * Method Change Password User Admin.
-     */
-    public function changePasswordAdmin(Request $request)
-    {
-        $rules = [
-            'last_password' => 'required|min:6',
-            'new_password' => 'required|min:6',
-            'confirm_password' => 'required|min:6'
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withInput()->withErrors($validator->errors());
-        } else {
-
-            $user = User::find(\Auth::user()->id);
-
-            if (hash::check($request->last_password, $user->password)) {
-                if ($request->new_password == $request->confirm_password) {
-                    $user->password = bcrypt($request->new_password);
-                    $user->save();
-                    \Session::flash('success', 'Contraseña Actualizada Satisfactoriamente');
-                    return redirect('homeAdmin');
-                } else {
-                    \Session::flash('error', 'Las contraseñas no coinciden');
-                }
-            } else {
-                \Session::flash('error', 'La contraseña suministrada no es la correcta');
-            }
-
-
-            return redirect('changePassword');
-        }
-    }
 
     public function historyDonations(Request $request)
     {

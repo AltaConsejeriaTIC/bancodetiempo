@@ -10,7 +10,7 @@ use Session;
 
 class ServicesController extends Controller
 {
-    public function homeAdminServices(Request $request){
+    public function index(Request $request){
         $services = Service::orderBy('services.created_at', 'desc');
         $services = $request->findName != '' ? $services->where('services.name', 'LIKE', "%$request->findName%") : $services;
         $services = $request->findUser != '' ? $services->join("users", "users.id", "services.user_id")->where('users.first_name', 'LIKE', "%$request->findUser%")->orWhere("users.last_name", "like", "%$request->findUser%") : $services;

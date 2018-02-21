@@ -35,7 +35,7 @@ function rangoFecha(fecha){
 function modalDetailUsers(){
     var user = jQuery(this).data("user");
     jQuery.ajax({
-        url : "getDetailUsers",
+        url : "/getDetailUsers",
         method : "get",
         data : {user : user},
         success : function(data){
@@ -111,7 +111,7 @@ function updateUser(){
     }
     console.log(data)
     jQuery.ajax({
-        url : "updateUser",
+        url : "/updateUser",
         method : "post",
         data: data,
         success : function(response){
