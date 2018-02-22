@@ -34,7 +34,7 @@ class CampaignController extends Controller
                 'image' => $cover,
                 'user_id' => Auth::id(),
                 'hours' => $request->input('hoursCampaign'),
-                'credits' => 0,
+                'credits' => 20,
                 'category_id' => $request->input('categoryCampaign'),
                 'date_donations' => $date_finish_donations,
                 'date' => $request->input('dateCampaign')." ".$request->input('timeCampaign'),

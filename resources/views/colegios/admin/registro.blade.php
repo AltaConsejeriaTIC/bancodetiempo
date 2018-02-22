@@ -41,16 +41,16 @@
             var image = new Image();
             var reader = new FileReader();
             reader.onload = (e) => {
-               label.css({
-                   "background-image" : "url('"+e.target.result+"')",
-                   "background-size" : "100%"
-               })
-               if(elemt.data('mirror') !== undefined){
-                   jQuery(elemt.data('mirror')).attr("src", e.target.result);
-               }
-           };
-           reader.readAsDataURL(files[0]);
-       }else{
+             label.css({
+                 "background-image" : "url('"+e.target.result+"')",
+                 "background-size" : "100%"
+             })
+             if(elemt.data('mirror') !== undefined){
+                 jQuery(elemt.data('mirror')).attr("src", e.target.result);
+             }
+         };
+         reader.readAsDataURL(files[0]);
+     }else{
         label.after("<p class='msg error'>El peso máximo de la imagen debe ser de 3 Megas.</p>")
     }
 }
@@ -63,10 +63,11 @@
 <div class="registroAdmin">
     <div class="container py-5">
         <div class="row justify-content-center py-5">
-            <div class="col-lg-9 bg-white-opacity rounded p-4">
-                <h6 class="text-white font-weight-bold mb-0">Abre una cuenta</h6>
-                <p class='text-white'>Administrador</p>
-                <form action="/registro-admin" method="post" enctype="multipart/form-data" class="text-white" id="registroAdmin">
+            <div class="col-lg-9 bg-light-gray rounded px-4 pb-4 pt-2 mx-2">
+                <p class="text-right">* El campo es obligatorio</p>
+                <h6 class="font-weight-bold mb-0">Abre una cuenta</h6>
+                <p>Administrador</p>
+                <form action="/registro-admin" method="post" enctype="multipart/form-data" id="registroAdmin">
                     {{csrf_field()}}
                     @if ($errors->any())
                     <div class="alert alert-danger">
@@ -108,11 +109,13 @@
                             <label for="foto">Subir imagen <i class="fa fa-upload"></i></label>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row justify-content-end">
                         <div class="col-md-6">
-                            <label for="terminos" class="col-11 pl-0 mt-3 mb-0">Acepto <a href="" class="text-white">Términos y condiciones</a></label>
                             <input type="checkbox" name="terminos" id="terminos" class="box" required>
+                            <label for="terminos" class="col-11 pl-0 mt-3 mb-0">Acepto <a href="" class="text-dark">Términos y condiciones</a></label>
                         </div>
+                    </div>
+                    <div class="row justify-content-end">
                         <div class="col-md-6 text-right">
                             <button type="submit" class="btn btn-info rounded mt-3">Crear cuenta</button>
                         </div>

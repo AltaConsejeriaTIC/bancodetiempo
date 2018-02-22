@@ -1,13 +1,13 @@
 @extends('layouts.appAdmin')
 @section('estilos')
-    <link rel="stylesheet" href="/css/daterangepicker.css">
-    <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/css/lib/daterangepicker.css">
+    <link rel="stylesheet" href="/css/lib/bootstrap-datepicker.min.css">
 @endsection
 @section('script')
-    <script src="/js/admin.js"></script>
-    <script src="/js/bootstrap-datepicker.min.js"></script>
-    <script src="/js/moment.js"></script>
-    <script src="/js/daterangepicker.js"></script>
+    <script src="/js/admin/user.js"></script>
+    <script src="/js/lib/bootstrap-datepicker.min.js"></script>
+    <script src="/js/lib/moment.js"></script>
+    <script src="/js/lib/daterangepicker.js"></script>
     <script>
         var token = "{{ csrf_token() }}";
         jQuery(document).ready(function(){

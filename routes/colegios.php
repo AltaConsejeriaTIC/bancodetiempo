@@ -51,3 +51,7 @@ Route::post("/student/inscription", "Colegios\StudentController@inscriptionCampa
 Route::post("/student/unregistration", "Colegios\StudentController@unregistrationCampaign");
 
 Route::get("/listadoEstudiantes", "Colegios\StudentController@listStudents");
+
+Route::post('/campaign-report/create/{campaignid}', 'CampaignController@report');
+
+Route::get('/getImg', 'ImageController@getImage');

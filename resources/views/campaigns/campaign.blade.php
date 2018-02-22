@@ -78,7 +78,7 @@
             
             <div class="row">
                 <div class="col-xs-12">
-                    <p class='paragraph1'><strong>Fecha: </strong>{{date("F j Y", strtotime($campaign->date))}}</p>
+                    <p class='paragraph1'><strong>Fecha: </strong>{{ ucfirst(trans("date.month".date("m", strtotime($campaign->date)))) }} {{date("j Y", strtotime($campaign->date))}}</p>
                 </div>
             </div>
             <div class="row">

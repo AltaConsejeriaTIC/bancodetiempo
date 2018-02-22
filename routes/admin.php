@@ -1,26 +1,33 @@
 <?php
 
+
 //Routes Admin Panel
-Route::get('homeAdmin', 'AdminController@homeAdmin');
+Route::get('home', 'Admin\HomeController@index');
 
-Route::resource('homeAdminUser', 'Admin\UserController@showList');
 
-Route::resource('adminUser', 'AdminController');
-Route::put('adminUser/update', ['as' => 'adminUser/update', 'uses'=>'AdminController@update']);
-
-Route::resource('homeAdminCategory', 'CategoryController');
-Route::post('homeAdminCategory/show', ['as' => 'homeAdminCategory/show', 'uses'=>'CategoryController@show']);
-Route::put('homeAdminCategory/update', ['as' => 'homeAdminCategory/update', 'uses'=>'CategoryController@update']);
-Route::post('homeAdminCategory/delete', ['as' => 'homeAdminCategory/delete', 'uses'=>'CategoryController@delete']);
-
-Route::get('changePassword', 'AdminController@changePassword');
-Route::post('changePassword', ['as' => 'changePassword', 'uses'=>'AdminController@changePasswordAdmin']);
-
-Route::resource('homeAdminContents', 'AdminController');
-Route::put('AdminController/updateContent', ['as' => 'homeAdminContents/update', 'uses'=>'AdminController@updateContent']);
-
+//reportes
+Route::get('list/users', 'Admin\UserController@showList');
+    Route::get("getDetailUsers", 'Admin\UserController@getDetail');
+    Route::post("updateUser", 'Admin\UserController@updateUser');
 Route::get('historyDonations', 'AdminController@historyDonations');
-Route::post('historyDonations', 'AdminController@historyDonations');
+    Route::post('historyDonations', 'AdminController@historyDonations');
+Route::get('services', 'Admin\ServicesController@index');
+    Route::get("getDetailService", "Admin\ServicesController@getDetail");
+
+//contenidos
+Route::get('content', 'Admin\ContentController@index');
+    Route::put('AdminController/updateContent', ['as' => 'homeAdminContents/update', 'uses'=>'Admin\ContentController@updateContent']);
+Route::get('list/categories', 'Admin\CategoriesController@index');
+    Route::post("/category/changeField", 'Admin\CategoriesController@changeField');
+
+
+//profile
+Route::get('changePassword', 'Admin\ProfileController@changePassword');
+Route::post('changePassword', 'Admin\ProfileController@changePasswordAdmin')->name("changePassword");
+
+
+
+
 
 Route::get('listServiceAdmin', 'ServiceAdminController@listServiceAdmin');
 Route::post('admin/service/save', 'ServiceAdminController@create');
@@ -56,13 +63,12 @@ Route::post("/admin/suggestedSites/editSite", 'Admin\SuggestedSitiesController@e
 Route::post("/admin/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController@deleteSite');
 
 
-Route::get("getDetailUsers", 'Admin\UserController@getDetail');
-Route::post("updateUser", 'Admin\UserController@updateUser');
+
 
 
 /** Services **/
 
-Route::get('homeAdminServices', 'Admin\ServicesController@homeAdminServices');
+
 Route::get('homeAdminServices/reported', 'Admin\ServicesController@showServicesReported');
 Route::post('homeAdminServices', ['as' => 'homeAdminServices', 'uses'=>'Admin\ServicesController@homeAdminServices']);
 Route::post('homeAdminServices/reported', ['as' => 'homeAdminServices/reported', 'uses'=>'Admin\ServicesController@showServicesReported']);

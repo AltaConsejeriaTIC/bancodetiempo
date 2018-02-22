@@ -3,16 +3,17 @@
 @include('colegios.nav')
 
 <div class="inicio py-5">
-    <div class="container pt-5">
-        <div class="row justify-content-center pt-5">
-            <div class="col-12 col-md-8 bg-white-opacity rounded p-4">
-                <h5 class="text-white font-weight-bold ml-5">Abre una cuenta</h5>
-                <div class="row">
-                    <div class="col-md text-center">
-                        <a href="/registro-estudiante" class="btn btn-success bg-register-btn rounded text-lg font-weight-bold px-4 my-2">¡Soy estudiante!</a>
-                    </div>
-                    <div class="col-md text-center">
-                        <a href="/registro-admin" class="btn btn-success bg-register-btn rounded text-lg font-weight-bold px-4 my-2">¡Soy administrador!</a>
+    <div class="container pt-5 px-sm-5">
+        <div class="row pt-5">
+            <div class="col-lg-7">
+                <h2 class="text-white mb-5"><b>Cumple tu servicio social</b> de<br>una manera <b>más facil</b>...</h2>
+            </div>
+            <div class="col-lg-5">
+                <div class="school-register p-3">
+                    <h6 class="ml-2">¿Eres nuevo?</h6>
+                    <div class="row justify-content-center">
+                        <a href="/registro-admin" class="btn bg-green text-white col-sm-8 m-2"><h4 class="m-0"><b>¡Soy Colegio!</b></h4></a>
+                        <a href="/registro-estudiante" class="btn bg-green text-white col-sm-8 m-2"><h4 class="m-0"><b>¡Soy Estudiante!</b></h4></a>
                     </div>
                 </div>
             </div>

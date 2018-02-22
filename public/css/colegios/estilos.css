@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro');
-.navbar label{
+body {
 	font-family: 'Source Sans Pro', sans-serif;
 }
 .navbar .form-control{
@@ -20,6 +20,10 @@
 	height: 600px;
 	font-family: 'Montserrat', sans-serif;
 }
+.school-register{
+	background-color: white;
+	border-radius: 5px;
+}
 .registroAdmin{
 	background-image: url("/images/fondoColegios.jpg");
 	background-color: #003459;
@@ -38,9 +42,29 @@
 .bg-white-opacity{
 	background: rgba(250,250,250,0.4);
 }
-.bg-register-btn{
+.bg-green{
 	background-color: #15b515;
-	border-color: #15b515;
+}
+.c-dark-blue{
+	color: #153557;
+}
+.bg-dark-blue{
+	background-color: #153557;
+}
+
+.bg-darkBlue{
+    background-color: #3e708f;
+}
+.bg-light-gray{
+	background-color: #f2f5f6;
+}
+.montserrat{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+}
+.montserrat-bold{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
 }
 .text-xs{
 	font-size: 0.6rem;
@@ -54,9 +78,6 @@
 .text-lg{
 	font-size: 1.5rem;
 }
-.btn{
-	border-radius: 0px;
-}
 .file-update {
 	display: none;
 }
@@ -66,15 +87,22 @@
 	color: #adadaf;
 	text-align: center;
 	padding: 30px;
+	border-radius: .25rem;
+	border: 1px solid #ced4da;
 }
 .panel{
 	background: #f2f5f6;
 }
-.campaign-detail h3,h6{
+h1,h2,h3,h4,h5,h6{
 	font-family: 'Montserrat', sans-serif;
 }
-.campaign-photo img{
-	max-height: 25rem;
+hr{
+	border-top: 1px solid #000;
+}
+.campaign-photo {
+	height: 25rem;
+	background-position: center 0%;
+    background-size: cover;
 }
 .state span{
 	color: #7ac943;
@@ -121,54 +149,75 @@
 }
 .btn_campaign_add {
 	position: absolute !important;
-    z-index: 1;
-    right: 5%;
-    top: 5%;
+	z-index: 1;
+	right: 5%;
+	top: 5%;
 }
 .btn_campaign_remove {
 	position: absolute !important;
-    z-index: 1;
-    right: 5%;
-    top: 5%;
+	z-index: 1;
+	right: 5%;
+	top: 5%;
 }
 button.btn-switch {
-    width: 50px;
-    height: 20px;
-    background: #efefef;
-    border: 1px solid #dcdcdc;
-    border-radius: 20px;
-    position: relative;
+	width: 50px;
+	height: 20px;
+	background: #efefef;
+	border: 1px solid #dcdcdc;
+	border-radius: 20px;
+	position: relative;
 }
 button.btn-switch.enable{
-    background: #37bf4b;   
+	background: #37bf4b;
 }
 button.btn-switch:before {
-    content: "";
-    width: 45%;
-    background: #fff;
-    height: 125%;
-    display: block;
-    position: absolute;
-    top: -10%;
-    left: 0%;
-    border-radius: 50%;
-    border: 1px solid #dcdcdc;
+	content: "";
+	width: 45%;
+	background: #fff;
+	height: 125%;
+	display: block;
+	position: absolute;
+	top: -10%;
+	left: 0%;
+	border-radius: 50%;
+	border: 1px solid #dcdcdc;
 }
 button.btn-switch.enable:before {
-    left: 55%;
-    border: 1px solid #37bf4b;
+	left: 55%;
+	border: 1px solid #37bf4b;
 }
-
-
 .iconGroups {
-    position: absolute;
-    z-index: 1;
+	position: absolute;
+	z-index: 1;
+	color: #fff;
+	font-size: 20px;
+	top: 2%;
+	left: 2%;
+	background: rgba(0,0,0,.6);
+	border: 1px solid #18aada;
+	padding: 10px;
+	border-radius: 5px;
+}
+.nav-link.active, .nav-link.show {
+    color: #003459;
+    border-bottom: 1px solid #003459;
+}
+#calendar {
+	background-color: white;
+	padding: 1rem;
+}
+#calendar h2 {
+	font-size: 1.5rem;
+}
+#calendar .fc-left {
+	margin-bottom: 0.5rem;
+}
+#calendar .fc-right {
+	margin-bottom: 0.5rem;
+}
+[aria-expanded="true"]{
+    background-color: #009fe5 !important;
+}
+[aria-expanded="true"] td{
     color: #fff;
-    font-size: 20px;
-    top: 2%;
-    left: 2%;
-    background: rgba(0,0,0,.6);
-    border: 1px solid #18aada;
-    padding: 10px;
-    border-radius: 5px;
 }
