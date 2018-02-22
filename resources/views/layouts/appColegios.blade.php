@@ -22,7 +22,7 @@
     
     <script src="/js/jquery-1.12.3.min.js" ></script>
     <script src="/js/tether.min.js" ></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/lib/bootstrap.min.js"></script>
     <script src="/js/colegios/app.js"></script>
      @yield('script')
 </body>
