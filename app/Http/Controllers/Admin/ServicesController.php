@@ -12,12 +12,44 @@ class ServicesController extends Controller
 {
     public function index(Request $request){
         $services = Service::orderBy('services.created_at', 'desc');
-        $services = $request->findName != '' ? $services->where('services.name', 'LIKE', "%$request->findName%") : $services;
-        $services = $request->findUser != '' ? $services->join("users", "users.id", "services.user_id")->where('users.first_name', 'LIKE', "%$request->findUser%")->orWhere("users.last_name", "like", "%$request->findUser%") : $services;
-        $services = $request->findDateCreateStart != '' && $request->findDateCreateFinish != '' ? $services->whereBetween('services.created_at', [$request->findDateCreateStart, $request->findDateCreateFinish]) : $services;
+
+        if($request->name != ''){
+            $services->where("name", "like", "%$request->name%");
+        }
+        if($request->description != ''){
+            $services->where("description", "like", "%$request->description%");
+        }
+        if($request->state != ''){
+            $services->where("state_id", $request->state);
+        }
+        if($request->fecha != ''){
+            $fecha = explode("|", $request->fecha);
+            $services->whereBetween("created_at", $fecha);
+        }
+        if($request->creator != ''){
+            $services->select("services.*")->join('users', 'users.id', "=", "services.user_id")->whereRaw("(users.first_name like '%$request->creator%' OR users.last_name like '%$request->creator%')");
+        }
+
         $services = $services->paginate(6);
         $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
         return view('admin/services/list', compact('services', 'states'));
+    }
+
+    public function getDetail(Request $request){
+        $response = [];
+        $service = Service::where("id", $request->service);
+        if(is_null($service)){
+            $response["status"] = "failed";
+            $response["message"] = "El servicio solicitado no existe";
+        }
+
+        $response = $service->get(["name", "description", "value", "virtually", "presently", "image", "ranking", "created_at"])->last();
+        $lastService = $service->get()->last();
+        $response["state"] = $lastService->state->state;
+        $response["category"] = $lastService->category->category;
+        $response["user_name"] = $lastService->user->first_name." ".$lastService->user->last_name;
+
+        return response()->json($response->toArray());
     }
 
     public function showServicesReported(Request $request){

@@ -4,9 +4,9 @@ jQuery(document).ready(function(){
 
 function busqueda(){
     var controls = jQuery(".control");
-    
+
     url = window.location.origin+window.location.pathname+"?";
-    
+
     controls.each(function(x){
         if(x > 0){
             url += "&"
@@ -21,7 +21,7 @@ function busqueda(){
     console.log(url)
     jQuery("#download").val("")
     window.location.href = url;
-    
+
 }
 
 function download(){
@@ -35,7 +35,7 @@ function rangoFecha(fecha){
 function modalDetailUsers(){
     var user = jQuery(this).data("user");
     jQuery.ajax({
-        url : "/getDetailUsers",
+        url : "/admin/getDetailUsers",
         method : "get",
         data : {user : user},
         success : function(data){
@@ -81,7 +81,7 @@ function serviciosOfrecidos(data){
             "<td>"+data[x].categoria+"</td>"+
             "<td>"+data[x].estado+"</td>"+
             "</tr>";
-        
+
     }
     return html;
 }
@@ -95,7 +95,7 @@ function serviciosAdquiridos(data){
             "<td>"+data[x].categoria+"</td>"+
             "<td>"+data[x].estado+"</td>"+
             "</tr>";
-        
+
     }
     return html;
 }
