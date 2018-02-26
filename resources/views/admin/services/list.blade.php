@@ -4,24 +4,13 @@
     <link rel="stylesheet" href="/css/lib/bootstrap-datepicker.min.css">
 @endsection
 @section('script')
-    <script src="/js/admin/service.js"></script>
     <script src="/js/lib/bootstrap-datepicker.min.js"></script>
     <script src="/js/lib/moment.js"></script>
     <script src="/js/lib/daterangepicker.js"></script>
     <script>
         var token = "{{ csrf_token() }}";
-        jQuery(document).ready(function(){
-            jQuery('#rango-fecha').daterangepicker({
-                buttonClasses: ['btn', 'btn-sm'],
-                applyClass: 'btn-success',
-                cancelClass: 'btn-inverse',
-            }, function(start, end, label) {
-                rangoFecha(start.format('YYYY-MM-DD') + '|' + end.format('YYYY-MM-DD') );
-                busqueda();
-            });
-            jQuery("#table-services tbody tr").on("click", modalDetailService)
-        })
     </script>
+    <script src="/js/admin/service.js"></script>
 @endsection
 @section('content') 
 
@@ -46,11 +35,10 @@
 							  	    <th>Description</th>
                                     <th>Propietario</th>
                                     <th>Estado</th>
+                                    <th>Tratos realizados</th>
                                     <th>Fecha creación</th>
 							  	</tr>
-						    </thead>
-						    <tbody>
-                                <tr>
+							  	<tr>
                                     <th rowspan="1" colspan="1">
                                         <input type="text" class="form-control control" placeholder="Nombres" name='name' value="{{Request::get('name')}}">
                                     </th>
@@ -68,16 +56,23 @@
                                             <option value="3" @if(Request::get('state') == 3) selected @endif>Bloqueado</option>
                                         </select>
                                     </th>
+                                    <th>
+                                        <input type="number" class="form-control control" placeholder="Tratos" name='deals' value="{{Request::get('deals')}}">
+                                    </th>
                                     <th rowspan="1" colspan="1">
                                         <input class="form-control" type="text" name="fecha" id="rango-fecha" value="{{App\Helpers::rangoFecha(Request::get('fecha'))}}">
                                     </th>
                                 </tr>
+						    </thead>
+						    <tbody>
+
 						      @foreach($services as $service)
 						        <tr data-service='{{$service->id}}'>
 						        	<td>{{ $service->name }}</td>
 									<td><p>{{ str_limit($service->description, 50) }}</p></td>
 						        	<td>{{ $service->user->first_name." ".$service->user->last_name}}</td>
 						        	<td>{{ $service->state->state }}</td>
+						        	<td>{{ $service->deals->where("state_id", 10)->count() }}</td>
 						        	<td>{{ $service->created_at }}</td>
 						        </tr>
 

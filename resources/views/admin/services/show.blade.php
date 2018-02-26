@@ -11,12 +11,19 @@
         <div class="row">
             <div class="col-3">
                 <img src="" id="d-cover">
+                <hr>
+                <h4 id="d-user-name"></h4>
+                <img src="" id="d-avatar">
             </div>
             <div class="col-6">
                 <h4>Descripción</h4>
                 <p id="d-description"></p>
                 <h4>Modalidad</h4>
                 <p><span id="d-modalidad-p" class="d-none">Precencial</span> <span id="d-modalidad-v" class="d-none">Virtual</span></p>
+                <h4>Valor</h4>
+                <p><span id="d-value"></span> Dorados</p>
+                <h4>Estado</h4>
+                <p><span id="d-state"></span> <button type="button" id='editState' class="btn btn-primary"><i class="fa fa-edit"></i></button></p>
             </div>
             <div class="col-3">
                 <div class="progress" id="d-animacion">
@@ -30,10 +37,30 @@
                 </div>
             </div>
         </div>
+        <div class="row py-4">
+            <table class="table table-hover">
+               <thead>
+                   <tr>
+                       <th>Demandante</th>
+                       <th>Dorados</th>
+                       <th>Lugar</th>
+                       <th>Fecha</th>
+                       <th>Descripción</th>
+                       <th>Estado</th>
+                       <th>Fecha creación</th>
+                   </tr>
+               </thead>
+
+               <tbody id="d-deals">
+
+               </tbody>
+
+            </table>
+        </div>
       </div>
       <div class="modal-footer">
+        <input type="hidden" id="d-id">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

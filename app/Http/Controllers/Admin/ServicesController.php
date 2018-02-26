@@ -29,10 +29,13 @@ class ServicesController extends Controller
         if($request->creator != ''){
             $services->select("services.*")->join('users', 'users.id', "=", "services.user_id")->whereRaw("(users.first_name like '%$request->creator%' OR users.last_name like '%$request->creator%')");
         }
+        if($request->deals != ''){
+            $services->select("services.*")->whereRaw("(select count(*) from deals where state_id = 10 AND service_id = services.id) = ".$request->deals);
+        }
 
         $services = $services->paginate(6);
-        $states = State::whereIn('id', array(1, 3))->pluck('state', 'id');
-        return view('admin/services/list', compact('services', 'states'));
+
+        return view('admin/services/list', compact('services'));
     }
 
     public function getDetail(Request $request){
@@ -48,6 +51,13 @@ class ServicesController extends Controller
         $response["state"] = $lastService->state->state;
         $response["category"] = $lastService->category->category;
         $response["user_name"] = $lastService->user->first_name." ".$lastService->user->last_name;
+        $response["avatar"] = $lastService->user->avatar;
+        $deals = $lastService->deals->toArray();
+        foreach($lastService->deals as $key => $deal){
+            $deals[$key]["user"] = $deal->user->toArray();
+            $deals[$key]["state"] = $deal->state->state;
+        }
+        $response["deals"] = $deals;
 
         return response()->json($response->toArray());
     }
@@ -59,13 +69,22 @@ class ServicesController extends Controller
         $states = State::whereIn('id', array(1, 2))->pluck('state', 'id');
         return view('admin/services/list', compact('services', 'states'));
     }
-    public function updateServiceState(Request $request){
-        $service = Service::find($request->id);
-        $service->state_id = $request->state_id;
-        if ($service->save()) {
-            Session::flash('success', '¡El estado de la oferta ha cambiado con exito!');
-            return redirect('homeAdminServices');
+    public function changeState(Request $request){
+        $response = [];
+        $service = Service::find($request->service);
+        if(is_null($service)){
+            $response["status"] = "failed";
+            $response["message"] = "El servicio no existe";
+        }else{
+            $service->update([
+                "state_id" => $request->state
+            ]);
+            $response["status"] = "success";
+            $response["message"] = "Estado cambio con exito";
+            $response["state"] = $service->state->state;
         }
+
+        return response()->json($response);
 
     }
 }

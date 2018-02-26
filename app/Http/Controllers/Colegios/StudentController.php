@@ -121,7 +121,7 @@ class StudentController extends Controller
         //dd($students);
         
         if($request->download == 1){
-            Excel::create('Litado estudiantes' . date("Y-m-d"), function ($excel) use ($students) {
+            Excel::create('Listado estudiantes' . date("Y-m-d"), function ($excel) use ($students) {
                 $excel->sheet('participantes', function ($sheet) use ($students) {
                     
                     $students->select('users.*');
@@ -129,9 +129,8 @@ class StudentController extends Controller
                     $sheet->appendRow(["Documento", "Nombre", "Apellido", "Curso", "Email", "Genero", "Intereses", "Horas Completadas", "Fecha Creacion", "Nombre campaña", "Horas campaña", "Fecha campaña", "Lugar campaña", "Estado campaña", "Asistencia"]);
                     
                     foreach($students->get() as $student){
-                        $dataStudent = [$student->document, $student->first_name, $student->last_name, $student->course, $student->email2, $student->gender, $student->aboutMe, $student->credits, $student->created_at];
-
-
+                        $gender = $student->gender == "male" ? "Hombre" : "Mujer";
+                        $dataStudent = [$student->document, $student->first_name, $student->last_name, $student->course, $student->email2, $gender, $student->aboutMe, $student->credits, $student->created_at];
 
                         if($student->campaignParticipants->count() == 0){
                             $sheet->appendRow($dataStudent);

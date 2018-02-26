@@ -13,6 +13,7 @@ Route::get('historyDonations', 'AdminController@historyDonations');
     Route::post('historyDonations', 'AdminController@historyDonations');
 Route::get('services', 'Admin\ServicesController@index');
     Route::get("getDetailService", "Admin\ServicesController@getDetail");
+    Route::post("changeState", "Admin\ServicesController@changeState");
 
 //contenidos
 Route::get('content', 'Admin\ContentController@index');
