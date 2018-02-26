@@ -24,7 +24,26 @@
         <div class="container-fluid">
             <h4>Lista de Ofertas Registrados en el Sistema</h4>
             <div class="box box-block bg-white">
-                <h5 class="mb-1">Hay {!! $services->total() !!} Ofertas Registradas</h5>
+                <h5 class="mb-1">Ofertas</h5>
+
+                <div class="row">
+                    <div class="col-3 form-group">
+                        Tipo usuario:
+                        <select name="tipo" id="tipo" class="form-control control">
+                            <option value="">Todos</option>
+                            <option value="1" @if(Request::get('tipo') == 1) selected @endif>Personas</option>
+                            <option value="2" @if(Request::get('tipo') == 2) selected @endif>Grupos</option>
+                        </select>
+                    </div>
+                    <div class="col-7 text-right">
+                        <button type="button" class="fa fa-download btn btn-info" onClick='download();busqueda();'></button>
+                    </div>
+                    <div class="col-2">
+                        <p class="btn btn-outline-success">
+                            Total: {!! $services->total() !!}
+                        </p>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-12">
