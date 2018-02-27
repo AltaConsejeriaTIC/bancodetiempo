@@ -41,9 +41,17 @@
                                         <option value="1" @if(Request::get('tipo') == 1) selected @endif>Personas</option>
                                         <option value="2" @if(Request::get('tipo') == 2) selected @endif>Grupos</option>
                                     </select>
+                                    <br>
+                                    Plataforma:
+                                    <select name="plataforma" id="pataforma" class="form-control control">
+                                        <option value="">Todos</option>
+                                        <option value="1" @if(Request::get('plataforma') == 1) selected @endif>Cambalachea</option>
+                                        <option value="2" @if(Request::get('plataforma') == 2) selected @endif>Colegios Cambalachea</option>
+                                    </select>
+
                                 </div>
                                 <div class="col-7 text-right">
-                                    <button type="button" class="fa fa-download btn btn-info" onClick='download();busqueda();'></button>
+                                    <button type="button" class="fa fa-download btn btn-info"  data-toggle="modal" data-target="#downloadModal"></button>
                                 </div>
                                 <div class="col-2">
                                     <p class="btn btn-outline-success">
@@ -111,6 +119,7 @@
 					     <input type="hidden" class="" name="page" value="{{Request::get('page')}}">
 					     <input type="hidden" class="control" name="fecha" id="rangoFecha" value="{{Request::get('fecha')}}">
 					     <input type="hidden" class="control" name="download" id="download" value="">
+					     <input type="hidden" class="control" name="tipoReporte" id="tipoReporte" value="">
 					    <div class="col-12 pagination pg-bluegrey">             
 							{!! $users->appends(["tipo" => Request::get('tipo'), "name" => Request::get('name'),"lastName" => Request::get('lastName'), "email" => Request::get('email'), "state" => Request::get('state')])->render('vendor.pagination.bootstrap-4') !!}         
 						</div>
@@ -235,5 +244,27 @@
 </div>
 
 @include('admin/users/update')
+
+<div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="download" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Descargar reporte</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <input type="radio" name="downloadType" value="0" checked> Listado de usuarios<br>
+            <input type="radio" name="downloadType" value="1"> Listado de usuarios con servicios ofertados<br>
+            <input type="radio" name="downloadType" value="2"> Listado de usuarios con servicios adquiridos<br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="download();busqueda();">Descargar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection
