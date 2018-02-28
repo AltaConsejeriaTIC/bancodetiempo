@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Deal;
 use App\Models\State;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -13,45 +14,45 @@ class DealsController extends Controller
 {
     public function showList(Request $request){
 
-        $filterService = $request->input('filterService');
-        $filterApplicant = $request->input('filterApplicant');
-        $filterOfferer = $request->input('filterOfferer');
-        $filterState = $request->input('filterState');
-        $orderDateCreate = $request->input('orderDateCreate');
-        $filtrerDateCreateStart = $request->input('filtrerDateCreateStart');
-        $filtrerDateCreateFinish= $request->input('filtrerDateCreateFinish');
-        $download = $request->input('download');
+        $deals = Deal::select("deals.*")->join('services', 'services.id', '=', 'deals.service_id')->join("users", "users.id", "=", "deals.user_id")->join("users as offerer", "offerer.id", "=", "services.user_id");
+
+        if($request->name != ''){
+            $deals->where("services.name", "LIKE", "%$request->name%");
+        }
+        if($request->applicant != ''){
+            $deals->whereRaw("(users.first_name LIKE '%$request->applicant%' OR users.last_name LIKE '%$request->applicant%')");
+        }
+        if($request->typeApplicant != ''){
+            $deals->where("users.group", $request->typeApplicant == 2 ? 1 : 0);
+        }
+        if($request->ofertant != ''){
+            $deals->whereRaw("(offerer.first_name LIKE '%$request->ofertant%' OR offerer.last_name LIKE '%$request->ofertant%')");
+        }
+        if($request->typeOfertant != ''){
+            $deals->where("offerer.group", $request->typeOfertant == 2 ? 1 : 0);
+        }
+        if($request->category != ''){
+            $deals->where("services.category_id", $request->category);
+        }
+        if($request->state != ''){
+            $deals->where("deals.state_id", $request->state);
+        }
+        if($request->fecha != ''){
+            $fecha = explode("|", $request->fecha);
+            $deals->whereBetween("deals.date", $fecha);
+        }
+
+        if($request->download != ''){
+            $this->exportExcel($deals->get());
+        }
+
+        $deals = $deals->paginate(12);
 
         $states = State::statesForDeals()->get();
 
-        $deals = Deal::select("deals.*")
-                        ->join('services', 'services.id', '=', 'deals.service_id')
-                        ->join("users", "users.id", "=", "deals.user_id")
-                        ->join("users as offerer", "offerer.id", "=", "services.user_id");
-        if($filterService != ''){
-            $deals->where("services.name", "LIKE", "%$filterService%");
-        }
-        if($filterApplicant != ''){
-            $deals->whereRaw("(users.first_name LIKE '%$filterApplicant%' OR users.last_name LIKE '%$filterApplicant%')");
-        }
-        if($filterOfferer != ''){
-            $deals->whereRaw("(offerer.first_name LIKE '%$filterOfferer%' OR offerer.last_name LIKE '%$filterOfferer%')");
-        }
-        if($filterState != ''){
-            $deals->where("deals.state_id", $filterState);
-        }
-        if($filtrerDateCreateStart != '' && $filtrerDateCreateFinish != ''){
-            $deals->whereBetween('deals.created_at', [$filtrerDateCreateStart, $filtrerDateCreateFinish]);
-        }
-        if($orderDateCreate != ''){
-            $deals->orderBy("deals.created_at", $orderDateCreate);
-        }
-         if($download == 1){
-            $this->exportExcel($deals->get());
-        }
-        //dd($deals);
-        $deals = $deals->paginate(12);
-        return view("admin/deals/list", compact("deals", "states"));
+        $categories = Category::all();
+
+        return view("admin/deals/list", compact("deals", "states", "categories"));
     }
 
     private function exportExcel($deals){
@@ -62,8 +63,11 @@ class DealsController extends Controller
             $data[] = [
                 'Servicio' => $deal->service->name,
                 'Demandante' => $deal->user->first_name." ".$deal->user->last_name,
+                'Tipo Demandante' => $deal->user->group == 1 ? "Grupo" : "Persona",
                 'Ofertante' => $deal->service->user->first_name." ".$deal->service->user->last_name,
-                'Estado' => $deal->dealStates->last()->state->state,
+                'Tipo Ofertante' => $deal->service->user->group  == 1 ? "Grupo" : "Persona",
+                'Categoria' => $deal->service->category->category,
+                'Estado' => $deal->state->state,
                 'Descripcion' => $deal->description,
                 'Dorados' => $deal->value,
                 'Lugar' => $deal->location,
