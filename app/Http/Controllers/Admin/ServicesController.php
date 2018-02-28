@@ -21,7 +21,7 @@ class ServicesController extends Controller
             $services->where("description", "like", "%$request->description%");
         }
         if($request->state != ''){
-            $services->where("state_id", $request->state);
+            $services->where("services.state_id", $request->state);
         }
         if($request->fecha != ''){
             $fecha = explode("|", $request->fecha);
@@ -44,7 +44,7 @@ class ServicesController extends Controller
             $this->exportExcel($services->get());
         }
 
-        $services = $services->paginate(6);
+        $services = $services->paginate(12);
 
         return view('admin/services/list', compact('services'));
     }
@@ -54,6 +54,25 @@ class ServicesController extends Controller
         $data = [];
 
         foreach($services as $service){
+
+            $header = [
+                        'Nombres',
+                        'Descripcion',
+                        'Estado',
+                        'Fecha creacion',
+                        'Modalidad',
+                        'Categoria',
+                        'Ranking',
+                        'Propietario',
+                        "Interesado",
+                        'Dorados trato',
+                        'Lugar trato',
+                        "Fecha trato",
+                        'Descripcion trato',
+                        "Estado trato",
+                        "Fecha creacion trato"
+                      ];
+
             $data[] = [
                 'Nombres' => $service->name,
                 'Descripcion' => $service->description,
@@ -92,10 +111,11 @@ class ServicesController extends Controller
             }
         }
 
-        Excel::create('ServiciosCambalachea' ." ". date("Y-m-d"), function ($excel) use ($data) {
-            $excel->sheet('Servicios', function ($sheet) use ($data) {
+        Excel::create('ServiciosCambalachea' ." ". date("Y-m-d"), function ($excel) use ($data, $header) {
+            $excel->sheet('Servicios', function ($sheet) use ($data, $header) {
 
                 $sheet->fromArray($data);
+                $sheet->row(1, $header);
 
             });
         })->download('xls');

@@ -104,7 +104,7 @@
 				           <input type="hidden" class="" name="page" value="{{Request::get('page')}}">
 					       <input type="hidden" class="control" name="fecha" id="rangoFecha" value="{{Request::get('fecha')}}">
 					       <input type="hidden" class="control" name="download" id="download" value="">
-							{!! $services->render() !!}
+							{!! $services->appends(["name" => Request("name"), "description" => Request("description"), "creator" => Request("creator"), "state" => Request("state"), "deals" => Request("deals"), "fecha" => Request("fecha")])->render('vendor.pagination.bootstrap-4') !!}
 						</div>
                 </div>
             </div>

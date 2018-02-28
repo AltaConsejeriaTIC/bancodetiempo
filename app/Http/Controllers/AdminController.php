@@ -149,29 +149,7 @@ class AdminController extends Controller
 
 
 
-    public function historyDonations(Request $request)
-    {
-        $findDonor = $request->input('findDonor', '');
-        $findCampaign = $request->input('findcampaign', '');
-        $history = HistoryDonations::select("history_donations.*")->orderBy('updated_at', 'desc');
 
-        if ($findDonor != '') {
-            $history->join('users', 'users.id', 'history_donations.donor_id')->where("users.first_name", 'LIKE', "%$findDonor%")->orWhere("users.last_name", 'LIKE', "%$findDonor%");
-        }
-
-        if ($findCampaign != '') {
-            $history->join('campaigns', 'campaigns.id', 'history_donations.campaign_id')->where("campaigns.name", 'LIKE', "%$findCampaign%");
-        }
-
-        if ($request->input('download') == 'true') {
-            $this->exportExcel($history);
-        }
-
-        $history = $history->paginate(12);
-
-        return view("admin/history/donations", compact('history'));
-
-    }
 
     private function exportExcel($history)
     {

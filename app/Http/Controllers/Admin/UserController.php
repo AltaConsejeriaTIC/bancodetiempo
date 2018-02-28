@@ -173,7 +173,7 @@ class UserController extends Controller
                                 $data[$k]['Modalidad Servicio'] = ($deal->service->virtually == 0 ? "" : "Virtual")." ".($deal->service->presently == 0 ? "" : "Presencial");
                                 $data[$k]['Categoria Servicio'] = $deal->service->category->category;
                                 $data[$k]['Ranking Servicio'] = is_null($deal->service->ranking) ? "0" : "".$deal->service->ranking."";
-                                $data[$k]['Ofertante Servicio'] = $deal->user->first_name." ".$deal->user->last_name;
+                                $data[$k]['Ofertante Servicio'] = $deal->service->user->first_name." ".$deal->user->last_name;
                                 $data[$k]['Fecha Trato'] = $deal->date." ".$deal->time;
                                 $data[$k]['Lugar Trato'] = $deal->location;
                                 $data[$k]['Dorados Trato'] = "".$deal->value."";

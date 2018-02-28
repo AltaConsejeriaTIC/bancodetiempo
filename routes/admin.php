@@ -9,8 +9,9 @@ Route::get('home', 'Admin\HomeController@index');
 Route::get('list/users', 'Admin\UserController@showList');
     Route::get("getDetailUsers", 'Admin\UserController@getDetail');
     Route::post("updateUser", 'Admin\UserController@updateUser');
-Route::get('historyDonations', 'AdminController@historyDonations');
-    Route::post('historyDonations', 'AdminController@historyDonations');
+
+Route::get('historyDonations', 'Admin\DonationsController@historyDonations');
+
 Route::get('services', 'Admin\ServicesController@index');
     Route::get("getDetailService", "Admin\ServicesController@getDetail");
     Route::post("changeState", "Admin\ServicesController@changeState");
