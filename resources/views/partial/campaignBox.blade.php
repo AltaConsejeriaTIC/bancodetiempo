@@ -13,6 +13,9 @@
             @if($campaign->user->group == 1)
                 <i class="iconGroups fa fa-users"  data-toggle="tooltip" title='Esta campaña pertenece a un grupo'></i>
             @endif
+            @if($campaign->state_id == 10 || $campaign->state_id == 12)
+                <span class="tag">Finalizado</span>
+            @endif
             <a href="/campaign/{{$campaign->id}}">
                 <div class="cover" style="background-image : url('{{env('APP_URL')}}/getImg?img={{$campaign->image}}&w=400')">
                 </div>
