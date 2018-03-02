@@ -4,24 +4,13 @@
     <link rel="stylesheet" href="/css/lib/bootstrap-datepicker.min.css">
 @endsection
 @section('script')
-    <script src="/js/admin/service.js"></script>
     <script src="/js/lib/bootstrap-datepicker.min.js"></script>
     <script src="/js/lib/moment.js"></script>
     <script src="/js/lib/daterangepicker.js"></script>
     <script>
         var token = "{{ csrf_token() }}";
-        jQuery(document).ready(function(){
-            jQuery('#rango-fecha').daterangepicker({
-                buttonClasses: ['btn', 'btn-sm'],
-                applyClass: 'btn-success',
-                cancelClass: 'btn-inverse',
-            }, function(start, end, label) {
-                rangoFecha(start.format('YYYY-MM-DD') + '|' + end.format('YYYY-MM-DD') );
-                busqueda();
-            });
-            jQuery("#table-services tbody tr").on("click", modalDetailService)
-        })
     </script>
+    <script src="/js/admin/service.js"></script>
 @endsection
 @section('content') 
 
@@ -35,7 +24,26 @@
         <div class="container-fluid">
             <h4>Lista de Ofertas Registrados en el Sistema</h4>
             <div class="box box-block bg-white">
-                <h5 class="mb-1">Hay {!! $services->total() !!} Ofertas Registradas</h5>
+                <h5 class="mb-1">Ofertas</h5>
+
+                <div class="row">
+                    <div class="col-3 form-group">
+                        Tipo usuario:
+                        <select name="tipo" id="tipo" class="form-control control">
+                            <option value="">Todos</option>
+                            <option value="1" @if(Request::get('tipo') == 1) selected @endif>Personas</option>
+                            <option value="2" @if(Request::get('tipo') == 2) selected @endif>Grupos</option>
+                        </select>
+                    </div>
+                    <div class="col-7 text-right">
+                        <button type="button" class="fa fa-download btn btn-info" onClick='download();busqueda();'></button>
+                    </div>
+                    <div class="col-2">
+                        <p class="btn btn-outline-success">
+                            Total: {!! $services->total() !!}
+                        </p>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -46,11 +54,10 @@
 							  	    <th>Description</th>
                                     <th>Propietario</th>
                                     <th>Estado</th>
+                                    <th>Tratos realizados</th>
                                     <th>Fecha creación</th>
 							  	</tr>
-						    </thead>
-						    <tbody>
-                                <tr>
+							  	<tr>
                                     <th rowspan="1" colspan="1">
                                         <input type="text" class="form-control control" placeholder="Nombres" name='name' value="{{Request::get('name')}}">
                                     </th>
@@ -68,16 +75,23 @@
                                             <option value="3" @if(Request::get('state') == 3) selected @endif>Bloqueado</option>
                                         </select>
                                     </th>
+                                    <th>
+                                        <input type="number" class="form-control control" placeholder="Tratos" name='deals' value="{{Request::get('deals')}}">
+                                    </th>
                                     <th rowspan="1" colspan="1">
                                         <input class="form-control" type="text" name="fecha" id="rango-fecha" value="{{App\Helpers::rangoFecha(Request::get('fecha'))}}">
                                     </th>
                                 </tr>
+						    </thead>
+						    <tbody>
+
 						      @foreach($services as $service)
 						        <tr data-service='{{$service->id}}'>
 						        	<td>{{ $service->name }}</td>
 									<td><p>{{ str_limit($service->description, 50) }}</p></td>
 						        	<td>{{ $service->user->first_name." ".$service->user->last_name}}</td>
 						        	<td>{{ $service->state->state }}</td>
+						        	<td>{{ $service->deals->where("state_id", 10)->count() }}</td>
 						        	<td>{{ $service->created_at }}</td>
 						        </tr>
 
@@ -90,7 +104,7 @@
 				           <input type="hidden" class="" name="page" value="{{Request::get('page')}}">
 					       <input type="hidden" class="control" name="fecha" id="rangoFecha" value="{{Request::get('fecha')}}">
 					       <input type="hidden" class="control" name="download" id="download" value="">
-							{!! $services->render() !!}
+							{!! $services->appends(["name" => Request("name"), "description" => Request("description"), "creator" => Request("creator"), "state" => Request("state"), "deals" => Request("deals"), "fecha" => Request("fecha")])->render('vendor.pagination.bootstrap-4') !!}
 						</div>
                 </div>
             </div>

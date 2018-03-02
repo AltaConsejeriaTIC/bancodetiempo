@@ -20,11 +20,13 @@ function busqueda(){
     })
     console.log(url)
     jQuery("#download").val("")
+    jQuery("#tipoReporte").val("")
     window.location.href = url;
 
 }
 
 function download(){
+    jQuery("#tipoReporte").val(jQuery("[name='downloadType']:checked").val())
     jQuery("#download").val(1)
 }
 

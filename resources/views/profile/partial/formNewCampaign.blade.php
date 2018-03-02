@@ -20,11 +20,10 @@
                         <label for="descriptionCampaign" class="paragraph10">{{ trans("groups.descriptionCampaign") }}</label>
                     </div>
                     <div class="row">
-                        <textarea name='descriptionCampaign' rows='8' class="col-xs-12 col-sm-12 col-md-12 validation"
-                                  data-validations='["required", "min:50"]'></textarea>
+                        <textarea name='descriptionCampaign' rows='8' class="col-xs-12 col-sm-12 col-md-12 validation"  data-validations='["required", "min:50"]'></textarea>
                         <div class="msg" errors='descriptionCampaign'>
                             <p error='required'>Este campo es obligatorio.</p>
-                            <p error='min'>Debes escribir almenos 50 caracteres.</p>
+                            <p error='min'>Debes escribir al menos 50 caracteres.</p>
                         </div>
                     </div>
 

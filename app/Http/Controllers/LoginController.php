@@ -8,6 +8,8 @@ use App\User;
 use App\Models\NetworkAccounts;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\URL;
+use App\Models\LastSession;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller{
     protected $providerData;
@@ -39,6 +41,7 @@ class LoginController extends Controller{
         }else{
             Session()->put('GAEvent', ['event' => 'login', 'provider' => $this->providerData['provider']]);
             Auth()->login($user);
+            LastSession::create(["user_id" => Auth::id()]);
             return redirect(Session::get('last_url'));
         }
     }
