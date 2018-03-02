@@ -285,7 +285,7 @@ class CampaignController extends Controller
     }
 
     public function showListAllCampaigns(Request $request){
-        $campaigns = Campaigns::getCampaignsActive()->paginate(4);
+        $campaigns = Campaigns::orderBy("created_at", "desc")->paginate(4);
         return view('campaigns.list', compact('campaigns'));
     }
 

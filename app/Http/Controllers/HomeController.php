@@ -17,8 +17,8 @@ class HomeController extends Controller
         if (Auth::check()){
             return redirect('/home');
         }else{
-            $lastServices = Service::getServicesActive()->get()->take(6);
-            $lastCampaigns = Campaigns::getCampaignsActive()->get()->take(6);
+            $lastServices = Service::getServicesActive()->orderBy('services.created_at', 'desc')->get()->take(6);
+            $lastCampaigns = Campaigns::orderBy("created_at", "desc")->get()->take(6);
             return view('home/welcome', compact('lastServices', 'lastCampaigns'));
         }
     }
@@ -27,11 +27,11 @@ class HomeController extends Controller
     {
         $filter = '';
         $categories = Category::getCategoriesInUse();
-        $services = service::getServicesActive()->orderBy('services.created_at', 'desc')->get();
-        $featured = Service::getServicesActive()->orderBy('services.ranking', 'desc')->get();
-        $virtual = Service::getServicesActive()->where('virtually', 1)->orderBy('services.created_at', 'desc')->get();
-        $faceToFace = Service::getServicesActive()->where('presently', 1)->orderBy('services.created_at', 'desc')->get();
-        $campaigns = Campaigns::getCampaignsActive()->paginate(4);
+        $services = service::getServicesActive()->orderBy('services.created_at', 'desc')->paginate(6, ["*"], "services");
+        $featured = Service::getServicesActive()->orderBy('services.ranking', 'desc')->paginate(6, ["*"], "featured");
+        $virtual = Service::getServicesActive()->where('virtually', 1)->orderBy('services.created_at', 'desc')->paginate(6, ["*"], "virtual");
+        $faceToFace = Service::getServicesActive()->where('presently', 1)->orderBy('services.created_at', 'desc')->paginate(6, ["*"], "facetoface");
+        $campaigns = Campaigns::orderBy("created_at", "desc")->paginate(4, ["*"], "campaigns");
 
         JavaScript::put([
             'categoriesJs' => $categories,
