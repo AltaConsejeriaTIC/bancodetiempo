@@ -27,7 +27,12 @@ class HomeController extends Controller
     {
         $filter = '';
         $categories = Category::getCategoriesInUse();
-        $services = service::getServicesActive()->orderBy('services.created_at', 'desc')->paginate(6, ["*"], "services");
+        $premierService = service::find(1181);
+        $services = service::getServicesActive()->orderBy('services.created_at', 'desc');
+        if(!is_null($premierService)){
+            $services = $services->where("services.id", "!=", 1181);
+        }
+        $services = $services->paginate(is_null($premierService) ? 6 : 5, ["*"], "services");
         $featured = Service::getServicesActive()->orderBy('services.ranking', 'desc')->paginate(6, ["*"], "featured");
         $virtual = Service::getServicesActive()->where('virtually', 1)->orderBy('services.created_at', 'desc')->paginate(6, ["*"], "virtual");
         $faceToFace = Service::getServicesActive()->where('presently', 1)->orderBy('services.created_at', 'desc')->paginate(6, ["*"], "facetoface");
@@ -37,7 +42,7 @@ class HomeController extends Controller
             'categoriesJs' => $categories,
         ]);
 
-        return view('home/home', compact('services', 'featured', 'categories', 'campaigns', 'virtual', 'faceToFace'));
+        return view('home/home', compact('services', 'featured', 'categories', 'campaigns', 'virtual', 'faceToFace', 'premierService'));
     }
 
 
