@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller{
     protected $providerData;
+
+    public function loginWithPass(Request $request){
+        Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+        return redirect('/');
+
+    }
+
     public function login($provider){
         Session::put('last_url', str_replace("http://" . $_SERVER['HTTP_HOST'], "", URL::previous()));
         $function = "redirect" . ucwords($provider);

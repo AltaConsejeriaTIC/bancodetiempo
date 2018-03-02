@@ -18,6 +18,8 @@ Route::get('/index', 'HomeController@indexNotRegister');
 Route::get('/home', 'HomeController@index')->middleware('userPending', 'notAdmin');
 Route::get('/content/{name}', 'ContentController@index');
 
+Route::post('/loginWithPass', 'LoginController@loginWithPass');
+
 //Social Loging
 
 Route::get('/loginRedes/{proveedor}', 'LoginController@login');
