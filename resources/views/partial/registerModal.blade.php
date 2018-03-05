@@ -42,7 +42,7 @@
                             </ul>
                             <div class="tab-content">
                                 <div id="register" class="tab-pane fade in active">
-                                <form action="/register" method="post" enctype="multipart/form-data">
+                                <form action="/RegisterWithPass" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -113,3 +113,9 @@
         </div>
     </div>
 </generalmodal>
+
+@if(count($errors->all()) > 0)
+    <script>
+        alert("{{implode("\n", $errors->all())}}");
+    </script>
+@endif
