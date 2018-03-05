@@ -27,6 +27,7 @@ class UsersController extends Controller
             'provider_id' => $providerData['id'],
             'provider' => $providerData['provider']
         ]);
+
         $email = is_null($providerData['email']) ? $providerData['id'] . "@cambalachea.co" : $providerData['email'];
         $user = User::create([
                 'email' => $email,
@@ -57,6 +58,7 @@ class UsersController extends Controller
     }
 
     private function getAvatar($url, $user){
+
         $this->createDirUser($user);
         $img = 'resources/user/user_' . $user->id . '/img' . $user->id . \date('YmdHis') . '.jpg';
         $file = fopen($img, "w+");

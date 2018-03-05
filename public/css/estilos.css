@@ -72,3 +72,6 @@ button.btn-notificationPush {
     z-index: 1002;
     font-weight: bold;
 } 
+.modal-container{
+    max-height: 95vh;
+}
