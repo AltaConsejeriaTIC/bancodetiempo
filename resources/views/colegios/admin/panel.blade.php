@@ -5,7 +5,7 @@
 <div class="panel">
 	<div class="container">
 		<div class="row py-5">
-			<div class="col-12">   
+			<div class="col-12">
 				<h4>Nuevas Campañas</h4>
 				<p>Selecciona las campañas que quieras que tus estudiantes vean para inscribirse</p>
 			</div>

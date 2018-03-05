@@ -73,7 +73,7 @@
 
         <article class="row tab-content">
             <div id='all' class="tab-pane fade all @if(Request('tab') == 'all' || is_null(Request('tab'))) active in @endif">
-                @include('home.partial.listService', ['_services' => $services])
+                @include('home.partial.listService', ['_services' => $services, "printPremier" => true])
                 <div class="col-xs-12 text-center">
                     {!! $services->appends(["tab" => "all", "featured" => $featured->currentPage(), "virtual" => $virtual->currentPage(), "facetoface" => $faceToFace->currentPage()])->render('vendor.pagination.bootstrap-4') !!}
                 </div>

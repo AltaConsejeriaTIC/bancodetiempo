@@ -43,7 +43,7 @@
 				title: '{{$campaign->name}}',
 				start: '{{ date("Y-m-d", strtotime($campaign->date)) }}'
 			},
-			@endforeach			
+			@endforeach
 			]
 		})
 	});
@@ -87,7 +87,7 @@
 				<div id='calendar'></div>
 			</div>
 		</div>
-	</div>	
+	</div>
 </div>
 <div class="modal fade" id="modal_cancelar_inscripcion" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
@@ -101,15 +101,15 @@
 					<h4 class="text-center">Cancelar inscripción a la campaña</h4>
 					<input type="hidden" class="form-control" id="campaign_id" name="campaign_id">
 					<p class="text-center">¿Deseas <strong>cancelar la inscripción</strong> a la campaña "<strong id="campaign_name"></strong>"? </p>
-				</div>      
-				<div class="row justify-content-center"> 
+				</div>
+				<div class="row justify-content-center">
 					<button type='submit' class="btn btn-info bg-cambalachea col-10">Cancelar inscripción</button>
 				</div>
-				<div class="row justify-content-center py-2"> 
+				<div class="row justify-content-center py-2">
 					<button type="button" class="btn btn-outline-info col-10" data-dismiss="modal">Cancelar</button>
-				</div>        
+				</div>
 			</form>
-		</div>	
+		</div>
 	</div>
 </div>
 

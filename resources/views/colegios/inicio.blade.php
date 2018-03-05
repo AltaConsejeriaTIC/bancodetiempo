@@ -12,8 +12,8 @@
                 <div class="school-register p-3">
                     <h6 class="ml-2">¿Eres nuevo?</h6>
                     <div class="row justify-content-center">
-                        <a href="/registro-admin" class="btn bg-green text-white col-sm-8 m-2"><h4 class="m-0"><b>¡Soy Colegio!</b></h4></a>                        
-                        <a href="/registro-estudiante" class="btn bg-green text-white col-sm-8 m-2"><h4 class="m-0"><b>¡Soy Estudiante!</b></h4></a>                        
+                        <a href="/registro-admin" class="btn bg-green text-white col-sm-8 m-2"><h4 class="m-0"><b>¡Soy Colegio!</b></h4></a>
+                        <a href="/registro-estudiante" class="btn bg-green text-white col-sm-8 m-2"><h4 class="m-0"><b>¡Soy Estudiante!</b></h4></a>
                     </div>
                 </div>
             </div>

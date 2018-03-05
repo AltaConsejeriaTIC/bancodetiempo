@@ -169,7 +169,7 @@ button.btn-switch {
 	position: relative;
 }
 button.btn-switch.enable{
-	background: #37bf4b;   
+	background: #37bf4b;
 }
 button.btn-switch:before {
 	content: "";

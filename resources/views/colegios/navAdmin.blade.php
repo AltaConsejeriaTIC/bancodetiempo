@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-12 col-md-2 col-lg-1 px-md-0 text-center" data-toggle="dropdown">
                     <div class="row justify-content-center">
-                        <div class="col-4 col-md-6 col-lg-10">                            
+                        <div class="col-4 col-md-6 col-lg-10">
                             @include('partial/imageProfile', array('cover' => 'getImg?img='.Auth::user()->avatar.'&w=200', 'id' => 'myAvatar', 'border' => '#fff', 'borderSize' => '1px'))
                         </div>
                     </div>
@@ -37,9 +37,9 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
-            
+
         </div>
     </div>
 </nav>

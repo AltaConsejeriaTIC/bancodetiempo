@@ -13,13 +13,13 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Helpers;
 class StudentController extends Controller
 {
-    
+
     public function __construct(){
-        
+
         $this->middleware("auth");
-        
+
     }
-    
+
     public function index(){
         
         $listEnabled =  CampaignColegio::select("campaign_id")->where("colegio_id", Auth::user()->colegio()->id)->get();
@@ -41,7 +41,7 @@ class StudentController extends Controller
             "date" => "required",
             "course" => "required",
         ]);
-       
+
         Auth::user()->update([
             "first_name" => $request->name,
             "last_name" => $request->last_name,
@@ -102,7 +102,7 @@ class StudentController extends Controller
             return redirect("/");
         }
         $students = User::where("plataforma", 2)->where("role_id", 2)->join("colegio_usuarios", "colegio_usuarios.user_id", "=", "users.id")->where("colegio_usuarios.colegio_id", Auth::user()->colegio()->id);
-        
+
         if($request->has("documento") && $request->documento != ''){
             $students = $students->where("document", $request->documento);
         }
@@ -119,15 +119,15 @@ class StudentController extends Controller
             $students = $students->where("email", "like", "%".$request->email2."%");
         }
         //dd($students);
-        
+
         if($request->download == 1){
             Excel::create('Listado estudiantes' . date("Y-m-d"), function ($excel) use ($students) {
                 $excel->sheet('participantes', function ($sheet) use ($students) {
-                    
+
                     $students->select('users.*');
 
                     $sheet->appendRow(["Documento", "Nombre", "Apellido", "Curso", "Email", "Genero", "Intereses", "Horas Completadas", "Fecha Creacion", "Nombre campaña", "Horas campaña", "Fecha campaña", "Lugar campaña", "Estado campaña", "Asistencia"]);
-                    
+
                     foreach($students->get() as $student){
                         $gender = $student->gender == "male" ? "Hombre" : "Mujer";
                         $dataStudent = [$student->document, $student->first_name, $student->last_name, $student->course, $student->email2, $gender, $student->aboutMe, $student->credits, $student->created_at];
@@ -166,7 +166,7 @@ class StudentController extends Controller
                 });
             })->download('xls');
         }
-        
+
         $students = $students->select("users.*")->paginate("10");
         
         return view("colegios/admin/listStudents", compact("students"));

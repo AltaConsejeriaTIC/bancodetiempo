@@ -119,7 +119,7 @@
                                                         Asitió
                                                     @elseif($campaignParticipant->campaign->state_id == 10 && $campaignParticipant->presence == 0)
                                                        No asistió
-                                                    @else                                                    
+                                                    @else
                                                         Inscrito
                                                     @endif
                                                 @endif
