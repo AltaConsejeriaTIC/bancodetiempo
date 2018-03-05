@@ -6,7 +6,7 @@
   
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                  <a href="/homeAdmin">
+                  <a href="/">
                       <i class="fa fa-dashboard fa-lg"></i> Inicio
                   </a>
                 </li>
