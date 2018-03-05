@@ -29,7 +29,24 @@ Route::get('list/categories', 'Admin\CategoriesController@index');
 Route::get('changePassword', 'Admin\ProfileController@changePassword');
 Route::post('changePassword', 'Admin\ProfileController@changePasswordAdmin')->name("changePassword");
 
+//sitios sugeridos
 
+
+Route::get("/suggestedSites", 'Admin\SuggestedSitiesController@index');
+Route::post("/suggestedSites/newCategory", 'Admin\SuggestedSitiesController@createCategory');
+Route::post("/suggestedSites/editCategory", 'Admin\SuggestedSitiesController@editCategory');
+Route::post("/suggestedSites/deleteCategory", 'Admin\SuggestedSitiesController@deleteCategory');
+
+Route::post("/suggestedSites/newSite", 'Admin\SuggestedSitiesController@createSite');
+Route::post("/suggestedSites/editSite", 'Admin\SuggestedSitiesController@editSite');
+Route::post("/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController@deleteSite');
+
+
+//contenidos dinamicos
+
+Route::get("/dynamicContent", 'Admin\DynamicContentController@showList');
+Route::get("/dynamicContent/{content_id}", 'Admin\DynamicContentController@editContent');
+Route::post("/dynamicContent/edit", 'Admin\DynamicContentController@saveContent');
 
 
 
@@ -52,19 +69,6 @@ Route::post('/admin/reports/delete', 'Admin\ReportsController@deleteReport');
 Route::get('/admin/report/{report_id}', 'Admin\ReportsController@showReport');
 Route::resource('/admin/downloadReport', 'Admin\ReportsController@downloadReport');
 
-
-Route::get("/admin/dynamicContent", 'Admin\DynamicContentController@showList');
-Route::get("/admin/dynamicContent/{content_id}", 'Admin\DynamicContentController@editContent');
-Route::post("/admin/dynamicContent/edit", 'Admin\DynamicContentController@saveContent');
-
-Route::get("/admin/suggestedSites", 'Admin\SuggestedSitiesController@index');
-Route::post("/admin/suggestedSites/newCategory", 'Admin\SuggestedSitiesController@createCategory');
-Route::post("/admin/suggestedSites/editCategory", 'Admin\SuggestedSitiesController@editCategory');
-Route::post("/admin/suggestedSites/deleteCategory", 'Admin\SuggestedSitiesController@deleteCategory');
-
-Route::post("/admin/suggestedSites/newSite", 'Admin\SuggestedSitiesController@createSite');
-Route::post("/admin/suggestedSites/editSite", 'Admin\SuggestedSitiesController@editSite');
-Route::post("/admin/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController@deleteSite');
 
 
 

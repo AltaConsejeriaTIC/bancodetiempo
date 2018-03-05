@@ -13,7 +13,7 @@
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="Buscar estudiante" aria-label="Buscar estudiante" aria-describedby="basic-addon2">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-outline-secondary d-none" type="button"><i class="fa fa-search"></i></button>
                   </div>
                 </div>
             </div>
