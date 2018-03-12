@@ -67,7 +67,7 @@
 
         <article class="row tab-content">
             <div id='all' class='tab-pane fade in active all'>
-                @include('home.partial.listService', ['services' => $services, 'page' => 1, 'route' => 'listService', 'box' => 'all'])
+                @include('home.partial.listService', ['services' => $services, 'page' => 1, 'route' => 'listService', 'box' => 'all', "printPremier" => true])
             </div>
 
             <div id='featured' class="tab-pane fade featured">

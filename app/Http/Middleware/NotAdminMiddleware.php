@@ -17,7 +17,7 @@ class NotAdminMiddleware
     {
         if(Auth::check()){
             if(Auth::user()->role_id != 2){
-                return redirect("/homeAdmin");
+                return redirect("/admin/home");
             }
         }
         

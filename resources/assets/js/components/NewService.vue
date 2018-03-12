@@ -28,7 +28,7 @@
 	            				<label for="descriptionService" class="paragraph10">Descripción de la oferta</label>
 	            			</div>
 	            			<div class="row">
-	            				<textarea class="countCharacters col-xs-12 col-sm-12 col-md-12 validation" rows="8" name="descriptionService" id='descriptionService' v-model='descriptionService' placeholder="Ej. Ofrezco una hora de una clase de Yoga para principiantes. Podemos acordar un lugar de encuentro cercano al campus de Universidad Nacional. Puedo realizar la sesión los lunes o los miércoles de 6:00 am a 7:00 pm."  data-validations='["required", "min:50", "max:250"]'></textarea>                    
+	            				<textarea class="countCharacters col-xs-12 col-sm-12 col-md-12 validation" rows="8" name="descriptionService" id='descriptionService' v-model='descriptionService' placeholder="Ej. Ofrezco una hora de una clase de Yoga para principiantes. Podemos acordar un lugar de encuentro cercano al campus de Universidad Nacional. Puedo realizar la sesión los lunes o los miércoles de 6:00 am a 7:00 pm."  data-validations='["required", "min:50"]'></textarea>                    
 	            				<div class="msg" errors='descriptionService'>
 	            					<p error='required'>Este campo es obligatorio.</p>
 	            					<p error='min'>Este campo debe ser mínimo de 50 caracteres.</p>

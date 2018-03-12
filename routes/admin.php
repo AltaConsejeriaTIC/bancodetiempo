@@ -1,32 +1,60 @@
 <?php
 
+
 //Routes Admin Panel
-Route::get('homeAdmin', 'AdminController@homeAdmin');
+Route::get('home', 'Admin\HomeController@index');
 
-Route::resource('homeAdminUser', 'Admin\UserController@showList');
 
-Route::resource('adminUser', 'AdminController');
-Route::put('adminUser/update', ['as' => 'adminUser/update', 'uses'=>'AdminController@update']);
+//reportes
+Route::get('list/users', 'Admin\UserController@showList');
+    Route::get("getDetailUsers", 'Admin\UserController@getDetail');
+    Route::post("updateUser", 'Admin\UserController@updateUser');
 
-Route::resource('homeAdminCategory', 'CategoryController');
-Route::post('homeAdminCategory/show', ['as' => 'homeAdminCategory/show', 'uses'=>'CategoryController@show']);
-Route::put('homeAdminCategory/update', ['as' => 'homeAdminCategory/update', 'uses'=>'CategoryController@update']);
-Route::post('homeAdminCategory/delete', ['as' => 'homeAdminCategory/delete', 'uses'=>'CategoryController@delete']);
+Route::get('historyDonations', 'Admin\DonationsController@historyDonations');
 
-Route::get('changePassword', 'AdminController@changePassword');
-Route::post('changePassword', ['as' => 'changePassword', 'uses'=>'AdminController@changePasswordAdmin']);
+Route::get('services', 'Admin\ServicesController@index');
+    Route::get("getDetailService", "Admin\ServicesController@getDetail");
+    Route::post("changeState", "Admin\ServicesController@changeState");
 
-Route::resource('homeAdminContents', 'AdminController');
-Route::put('AdminController/updateContent', ['as' => 'homeAdminContents/update', 'uses'=>'AdminController@updateContent']);
+Route::get('listDeals', 'Admin\DealsController@showList');
 
-Route::get('historyDonations', 'AdminController@historyDonations');
-Route::post('historyDonations', 'AdminController@historyDonations');
+//contenidos
+Route::get('content', 'Admin\ContentController@index');
+    Route::put('AdminController/updateContent', ['as' => 'homeAdminContents/update', 'uses'=>'Admin\ContentController@updateContent']);
+Route::get('list/categories', 'Admin\CategoriesController@index');
+    Route::post("/category/changeField", 'Admin\CategoriesController@changeField');
+
+
+//profile
+Route::get('changePassword', 'Admin\ProfileController@changePassword');
+Route::post('changePassword', 'Admin\ProfileController@changePasswordAdmin')->name("changePassword");
+
+//sitios sugeridos
+
+
+Route::get("/suggestedSites", 'Admin\SuggestedSitiesController@index');
+Route::post("/suggestedSites/newCategory", 'Admin\SuggestedSitiesController@createCategory');
+Route::post("/suggestedSites/editCategory", 'Admin\SuggestedSitiesController@editCategory');
+Route::post("/suggestedSites/deleteCategory", 'Admin\SuggestedSitiesController@deleteCategory');
+
+Route::post("/suggestedSites/newSite", 'Admin\SuggestedSitiesController@createSite');
+Route::post("/suggestedSites/editSite", 'Admin\SuggestedSitiesController@editSite');
+Route::post("/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController@deleteSite');
+
+
+//contenidos dinamicos
+
+Route::get("/dynamicContent", 'Admin\DynamicContentController@showList');
+Route::get("/dynamicContent/{content_id}", 'Admin\DynamicContentController@editContent');
+Route::post("/dynamicContent/edit", 'Admin\DynamicContentController@saveContent');
+
+
 
 Route::get('listServiceAdmin', 'ServiceAdminController@listServiceAdmin');
 Route::post('admin/service/save', 'ServiceAdminController@create');
 Route::put('admin/service/update', 'ServiceAdminController@update');
 
-Route::resource('listDeals', 'Admin\DealsController@showList');
+
 
 Route::resource('adminCampaigns', 'Admin\CampaignsController@showList');
 Route::post('adminCampaigns/update', 'Admin\CampaignsController@updateCampaignState');
@@ -42,23 +70,13 @@ Route::get('/admin/report/{report_id}', 'Admin\ReportsController@showReport');
 Route::resource('/admin/downloadReport', 'Admin\ReportsController@downloadReport');
 
 
-Route::get("/admin/dynamicContent", 'Admin\DynamicContentController@showList');
-Route::get("/admin/dynamicContent/{content_id}", 'Admin\DynamicContentController@editContent');
-Route::post("/admin/dynamicContent/edit", 'Admin\DynamicContentController@saveContent');
 
-Route::get("/admin/suggestedSites", 'Admin\SuggestedSitiesController@index');
-Route::post("/admin/suggestedSites/newCategory", 'Admin\SuggestedSitiesController@createCategory');
-Route::post("/admin/suggestedSites/editCategory", 'Admin\SuggestedSitiesController@editCategory');
-Route::post("/admin/suggestedSites/deleteCategory", 'Admin\SuggestedSitiesController@deleteCategory');
 
-Route::post("/admin/suggestedSites/newSite", 'Admin\SuggestedSitiesController@createSite');
-Route::post("/admin/suggestedSites/editSite", 'Admin\SuggestedSitiesController@editSite');
-Route::post("/admin/suggestedSites/deleteSite", 'Admin\SuggestedSitiesController@deleteSite');
 
 
 /** Services **/
 
-Route::get('homeAdminServices', 'Admin\ServicesController@homeAdminServices');
+
 Route::get('homeAdminServices/reported', 'Admin\ServicesController@showServicesReported');
 Route::post('homeAdminServices', ['as' => 'homeAdminServices', 'uses'=>'Admin\ServicesController@homeAdminServices']);
 Route::post('homeAdminServices/reported', ['as' => 'homeAdminServices/reported', 'uses'=>'Admin\ServicesController@showServicesReported']);

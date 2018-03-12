@@ -12,10 +12,14 @@ use App\Http\Controllers\Profile\ProfileController;
 | to using a Closure or controller method. Build something great!
 |
 */
+
 Route::get('/', 'HomeController@indexNotRegister');
 Route::get('/index', 'HomeController@indexNotRegister');
 Route::get('/home', 'HomeController@index')->middleware('userPending', 'notAdmin');
 Route::get('/content/{name}', 'ContentController@index');
+
+Route::post('/loginWithPass', 'LoginController@loginWithPass');
+Route::post('/RegisterWithPass', 'RegisterController@registerWithPass');
 
 //Social Loging
 
@@ -26,7 +30,7 @@ Route::get('/validateLogout', 'LoginController@validateLogout');
 Auth::routes();
 
 //Route Access Admin Panel
-Route::get('admin','AdminController@AdminLogin')->middleware('guest');
+Route::get('admin','Admin\LoginController@index')->middleware('guest');
 
 //Guest views
 Route::get('/service/{serviceid}', 'ServiceController@showService')->middleware('userPending', 'notAdmin');
@@ -48,7 +52,7 @@ Route::get('/how', function(){
 })->middleware('notAdmin');
 
 Route::get('/tags','TagsController@jsonTags');
-Route::get('/categories','CategoryController@jsonCategories');
+
 Route::get('/setRanking', function(){
     $users = App\Models\Service::all();
     foreach($users as $user){
@@ -65,8 +69,9 @@ Route::resource('/listServiceWords', 'ServiceController@getListServiceWords');
 Route::get('campaign/{campaignId}', 'CampaignController@show')->middleware('userPending', 'notAdmin');
 Route::get('campaigns/list', 'CampaignController@showListAllCampaigns');
 
-Route::get('/getImg', 'ImageController@getImage');
+Route::get('/getImg', 'ImageController@getImage')->name("getImage");
 
 Route::get('/finalizeRegister', 'RegisterController@finalizeRegister');
 Route::put('profile/completeRegister', 'UsersController@completeRegister');
+
 

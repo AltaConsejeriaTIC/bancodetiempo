@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 
 @include('nav',array('type' => 2))
@@ -44,4 +45,41 @@
 </div>
 
 @include("profile/partial/formNewCampaign")
+@include('campaigns/partial/editCampaign')
+
+@section('script')
+    <script src="{{ asset('js/mapsFunctions.js') }}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPGPS5eThFsyJBtOl7RYlaFEp4HLRKKWA&libraries=places"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery(".showEditCampaign").on("click", showEditCampaign)
+        });
+        function showEditCampaign(){
+            var campaign = jQuery(this).data('campaign');
+            jQuery.ajax({
+                url : "getCampaign/"+campaign,
+                method : "get",
+                success : function(data){
+                    console.log(data)
+                    jQuery("#campaignEdit").find("#nameCampaign").val(data.name)
+                    jQuery("#campaignEdit").find("#descriptionCampaign").val(data.description)
+                    jQuery("#campaignEdit").find("#coordinates_edit").val(data.coordinates)
+                    jQuery("#campaignEdit").find("#place_edit").val(data.location)
+                    jQuery("#campaignEdit").find("#hoursCampaign").val(data.hours)
+                    jQuery("#campaignEdit").find("#dateCampaign").val(data.date.split(" ")[0])
+                    jQuery("#campaignEdit").find("#timeCampaign").val(data.date.split(" ")[1].slice(0, -3))
+                    jQuery("#campaignEdit").find("#categoryCampaign option").each(function(){
+                        if(jQuery(this).val() == data.category_id){
+                            jQuery(this).prop("selected", true)
+                        }
+                    });
+                    jQuery("#previewCampaign").css({"background-image" : "url('"+data.image+"')"});
+                    jQuery("#campaignEdit").find("#campaignId").val(data.id)
+                }
+            });
+            var el = jQuery("#campaignEdit");
+        }
+    </script>
+@endsection
+
 @endsection

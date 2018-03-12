@@ -10,7 +10,8 @@
         "laravel/socialite": "^2.0",
         "fzaninotto/faker": "~1.5.0",
         "styde/seeder": "^1.0",
-        "laracasts/utilities": "^2.1"
+        "laracasts/utilities": "^2.1",
+        "doctrine/dbal" : "2.*"
     },
     "require-dev": {    
         "laravelcollective/html":"^5.3.0",    

@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
+use App\Models\Conversations;
 use App\Models\State;
 use App\Models\Role;
 use App\Models\InterestUser;
@@ -15,6 +16,8 @@ use App\Models\UserScore;
 use App\Models\Groups;
 use App\Models\NetworkAccounts;
 use App\Models\TokensPush;
+use App\Models\ColegioUsuario;
+use App\Models\CampaignParticipants;
 
 class User extends Authenticatable
 {
@@ -26,7 +29,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'email2', 'password', 'avatar', 'state_id', 'gender', 'credits', 'birthDate', 'aboutMe', 'role_id', 'privacy_policy', 'ranking'
+        'first_name', 
+        'last_name', 
+        'email', 
+        'email2', 
+        'password', 
+        'avatar', 
+        'state_id', 
+        'gender', 
+        'credits', 
+        'birthDate', 
+        'aboutMe', 
+        'role_id', 
+        'privacy_policy', 
+        'ranking', 
+        'document', 
+        'course',
+        'group',
+        'plataforma'
     ];
 
     /**
@@ -78,15 +98,13 @@ class User extends Authenticatable
     public function conversations()
     {
 
-        return $this->hasMany(conversations::class);
+        return $this->hasMany(conversations::class, "applicant_id", "id");
 
     }
 
     public function user_score()
     {
-
         return $this->hasMany(UserScore::class);
-
     }
 
     public function state()
@@ -104,6 +122,23 @@ class User extends Authenticatable
 
         return $this->hasMany(Reports::class);
 
+    }
+    
+    public function campaignParticipants(){
+        return $this->hasMany(CampaignParticipants::class, "participant_id", "id");
+    }
+    
+    public function colegioUsuario()
+    {
+        return $this->belongsTo(ColegioUsuario::class, "id", "user_id");
+    }
+    
+    public function colegio(){
+        return $this->ColegioUsuario->colegio;
+    }
+    
+    public function setBirthDateAttribute($value){
+        $this->attributes['birthDate'] = date("Y-m-d", strtotime($value));
     }
 
     static function recommendedServices()

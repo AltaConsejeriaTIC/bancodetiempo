@@ -3,9 +3,11 @@
 /vendor
 /.idea
 /public/resources/user
+laradock/
 Homestead.json
 Homestead.yaml
 .env
+.gitmodules
 composer.lock
 .project
 .settings/

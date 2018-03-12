@@ -100,7 +100,7 @@ class ServiceController extends Controller
     {
         $this->validate($request, [
             'serviceName' => 'required|max:100',
-            'descriptionService' => 'required|max:250|min:50',
+            'descriptionService' => 'required|min:50',
             'valueService' => 'required|numeric|min:1|max:10',
             'modalityServiceVirtually' => 'required_without:modalityServicePresently',
             'modalityServicePresently' => 'required_without:modalityServiceVirtually',
@@ -112,7 +112,16 @@ class ServiceController extends Controller
     public function create(Request $request)
     {
 
-        $this->validateForm($request);
+        $this->validate($request, [
+            'serviceName' => 'required|max:100',
+            'descriptionService' => 'required|min:50',
+            'valueService' => 'required|numeric|min:1|max:10',
+            'modalityServiceVirtually' => 'required_without:modalityServicePresently',
+            'modalityServicePresently' => 'required_without:modalityServiceVirtually',
+            'categoryService' => 'required',
+            'imageService' => 'image|max:2000'
+        ]);
+
         $category = Category::find($request->input('categoryService'));
         $service = Service::create([
             'name' => $request->input('serviceName'),

@@ -8,9 +8,18 @@ use App\User;
 use App\Models\NetworkAccounts;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\URL;
+use App\Models\LastSession;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller{
     protected $providerData;
+
+    public function loginWithPass(Request $request){
+        Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+        return redirect('/');
+
+    }
+
     public function login($provider){
         Session::put('last_url', str_replace("http://" . $_SERVER['HTTP_HOST'], "", URL::previous()));
         $function = "redirect" . ucwords($provider);
@@ -39,6 +48,7 @@ class LoginController extends Controller{
         }else{
             Session()->put('GAEvent', ['event' => 'login', 'provider' => $this->providerData['provider']]);
             Auth()->login($user);
+            LastSession::create(["user_id" => Auth::id()]);
             return redirect(Session::get('last_url'));
         }
     }

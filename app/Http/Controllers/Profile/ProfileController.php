@@ -19,6 +19,7 @@ use App\Models\Campaigns;
 use JavaScript;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AttainmentsController;
+use App\Models\CategoriesSites;
 
 class ProfileController extends Controller
 {
@@ -26,7 +27,8 @@ class ProfileController extends Controller
         $user = User::find(auth::user()->id);
         $services = Service::where("user_id" , Auth::id())->where('state_id' , 1)->orderBy("created_at","desc")->get();
         $campaigns = Campaigns::campaignsUser(Auth::user()->id)->get();
-        return view('profile/profile', compact('services', 'campaigns'));
+       $categoriesSites = CategoriesSites::all();
+        return view('profile/profile', compact('services', 'campaigns', 'categoriesSites'));
     }
 
     public function showProfileUser($user_id){

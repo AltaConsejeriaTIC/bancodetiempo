@@ -1,0 +1,1 @@
+<button type="button" class="btn-switch @if($campaign->campaignEnableInSchool()) enable btn_campaign_remove @else btn_campaign_add @endif" data-campaign='{{$campaign->id}}' data-name='{{$campaign->name}}' data-toggle="modal"  @if(!$campaign->campaignEnableInSchool()) data-target="#modal_habilitar" @else data-target="#modal_deshabilitar" @endif></button>

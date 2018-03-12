@@ -12,6 +12,7 @@ use App\Models\UserScore;
 use App\Models\Service;
 use App\Models\ServiceScore;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\ConversationController;
 
 class DealsController extends Controller
 {
@@ -41,10 +42,14 @@ class DealsController extends Controller
 
             $email = new EmailController;
             if($conversation->applicant_id == Auth::id()){
+                $addressee = $conversation->service->user;
                 $email->sendMailDeal($conversation->service->user_id,$conversation->applicant_id, $conversation->service, "new");
             }else{
+                $addressee = $conversation->applicant;
                 $email->sendMailDeal($conversation->applicant_id,$conversation->service->user_id, $conversation->service, "new");
             }
+            
+            ConversationController::sendNotificationPush($addressee, $conversation->service, 1);
             
             return '{"state" : "ok"}';
 
@@ -57,6 +62,17 @@ class DealsController extends Controller
         $deal->update([
             'state_id' => 8
         ]);
+        
+        $conversation = Conversations::find($request->conversation);
+        
+        if($conversation->applicant_id == Auth::id()){
+            $addressee = $conversation->service->user;
+        }else{
+            $addressee = $conversation->applicant;
+        }
+        
+        ConversationController::sendNotificationPush($addressee, $conversation->service, 2);
+        
         return '{"state" : "ok"}';
     }
     
@@ -74,6 +90,15 @@ class DealsController extends Controller
                 $email->sendMailDeal($conversation->service->user_id,$conversation->applicant_id, $conversation->service, "acepted");
             }
         }
+        
+        if($conversation->applicant_id == Auth::id()){
+            $addressee = $conversation->service->user;
+        }else{
+            $addressee = $conversation->applicant;
+        }
+        
+        ConversationController::sendNotificationPush($addressee, $conversation->service, 3);
+        
         return '{"state" : "ok"}';
     }
 
@@ -171,7 +196,8 @@ class DealsController extends Controller
     }
 
     public function exchangeForTime(){
-        $date = new \DateTime(date('Y').'-'.date('m').'-'.(date('d')-3));
+        $date = new \DateTime(date('Y-m').(date('-d')-3));
+        
         $deals = Deal::where('date', '<=', $date->format('Y-m-d'))->where('time', '<=', date("H:i:s"))->where("state_id", 12)->get();
         foreach($deals as $deal){
             if($deal->response_applicant == null && $deal->response_offerer == null){
@@ -190,13 +216,14 @@ class DealsController extends Controller
     }    
     
     public function refuseDeal(){
-        $date = new \DateTime(date('Y-m').'-'.(date('d')-3)." ".date("H:i:s"));
+        $date = new \DateTime(date('Y-m').(date('-d')-3)." ".date("H:i:s"));
         $deals = Deal::where('created_at', '<=', $date->format('Y-m-d H:i:s'))->whereRaw("date <= '".date("Y-m-d")."' AND time <= '".date("H:i:s")."'")->where("state_id", 4)->get();
         foreach($deals as $deal){
             $deal->update([
                 "state_id" => 8
             ]);            
         }
+        
     }  
     
     public function changeDealsForRanking(){

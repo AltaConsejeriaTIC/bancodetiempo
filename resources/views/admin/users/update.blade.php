@@ -1,40 +1,46 @@
-<div id="update-dialog{{$user->id}}" class="modal fade" tabindex="-1" style="display: none;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title titleContent">Actualizar Usuario</h4>
-      </div>
-      {!!Form::model($user, ['route' => 'adminUser/update', 'method'=> 'put'])!!}
-				<div class="modal-body">									
-					<div class="row">            
-            {!!Form::hidden('id', $user->id)!!}
-						<div class="form-group col-md-10">
-              {!! Form::label('first_name','Nombres')!!}
-              {!! Form::text('first_name', null, ['class' => 'form-control', 'required' => 'required'])!!}                           
+<div id="update-dialog" class="modal fade" tabindex="-1" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title titleContent">Actualizar Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-
-            <div class="form-group col-md-10">
-              {!! Form::label('last_name','Apellidos')!!}
-              {!! Form::text('last_name',null, ['class' => 'form-control', 'required' => 'required'])!!}                          
+            <div class="modal-body">									
+                <form action="" id="updateUser">
+                    {{csrf_field()}}
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <input type="text" name="name" value="" id="i-name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <input type="text" name="lastname" value="" id="i-lastname" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <input type="text" name="email" value="" id="i-email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <select  name="state" id="i-state" class="form-control">
+                                <option value="1">Activo</option>
+                                <option value="2">Inactivo</option>
+                                <option value="3">Bloqueado</option>
+                                <option value="4">Pendiente</option>
+                            </select>
+                        </div>
+                    </div>
+               <input type="hidden" name="id" id="i-id">				
+                </form>
             </div>
-
-            <div class="form-group col-md-10">
-              {!! Form::label('email','E-mail')!!}
-              {!! Form::email('email',null, ['class' => 'form-control', 'required' => 'required'])!!}              
+            <div class="modal-footer">	
+                <button type="button" class="btn btn-raised btn-success" title="Actualizar" onclick="updateUser();"><i class="fa fa-check"></i></button>					
             </div>
-
-            <div class="form-group col-md-10">
-              {!! Form::label('state','Estado')!!}
-              {!!Form::select('state_id', $states, null, ['class' => 'form-control', 'required' => 'required'])!!}              
-            </div>
-            					  
-				  </div>
-				<div class="modal-footer">					
-					<button type="submit" class="btn btn-raised btn-success" title="Actualizar"><i class="material-icons">done_all</i></button>					
-				</div>
-				</div>
-			{!! Form::close()!!}
+        </div>
     </div>
-  </div>
 </div>

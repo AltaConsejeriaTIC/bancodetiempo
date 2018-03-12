@@ -31,7 +31,7 @@ Route::post('/aceptDeal', 'DealsController@aceptDeal');
 Route::post('/addObservation', 'DealsController@saveObservation');
 
 Route::post('/report/create/{serviceid?}', 'ReportsController@create');
-Route::post('/campaign-report/create/{campaignid?}', 'CampaignController@report');
+Route::post('/campaign-report/create/{campaignid}', 'CampaignController@report')->name("reportCamapign");
 
 Route::get('/find/users', 'UsersController@findUsers');
 
@@ -56,3 +56,4 @@ Route::get('/hiddenMessagesCompleteProfile', function(){
 });
 
 Route::get("/saveTokenPushUser", "UsersController@saveTokenPush");
+Route::get('/tokenInServer', 'UsersController@tokenInServer');

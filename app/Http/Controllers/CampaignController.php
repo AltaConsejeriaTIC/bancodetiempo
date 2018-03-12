@@ -24,6 +24,7 @@ class CampaignController extends Controller
         return view('campaigns/campaign', compact('campaign', 'listTypes'));
     }
     public function create(Request $request){
+        
         $cover = Helpers::uploadImage($request->file('imageCampaign'), 'campaign' . date("Ymd") . rand(000, 999), 'resources/user/user_' . Auth::User()->id . '/campaigns/');
         $date_finish_donations = $this->getDateDonations($request->input('dateCampaign'), $request->input('timeCampaign'),$request->input('hoursCampaign'));
         if ($cover) {
@@ -33,11 +34,13 @@ class CampaignController extends Controller
                 'image' => $cover,
                 'user_id' => Auth::id(),
                 'hours' => $request->input('hoursCampaign'),
-                'credits' => 0,
+                'credits' => 20,
                 'category_id' => $request->input('categoryCampaign'),
                 'date_donations' => $date_finish_donations,
                 'date' => $request->input('dateCampaign')." ".$request->input('timeCampaign'),
-                'state_id' => 1
+                'state_id' => 1,
+                'location' => $request->location,
+                'coordinates' => $request->coordinates,
             ]);
         }
         return redirect()->back();
@@ -59,6 +62,8 @@ class CampaignController extends Controller
             'image' => $uploadedImage,
             'state_id' => 1,
             'allows_registration' => 0,
+            'location' => $request->location,
+            'coordinates' => $request->coordinates,
         ]);
         return redirect()->back();
     }
@@ -212,9 +217,11 @@ class CampaignController extends Controller
                 "state_id" => 12
             ]);
         }
+        
     }
 
     public function enableInscriptions(){
+        
         $campaigns = Campaigns::where("date_donations", "<=" ,date("Y-m-d H:i:59"))->where('allows_registration', 0)->where("state_id", 1)->get();
         foreach ($campaigns as $campaign) {
             $campaign->update([
@@ -278,7 +285,7 @@ class CampaignController extends Controller
     }
 
     public function showListAllCampaigns(Request $request){
-        $campaigns = Campaigns::getCampaignsActive()->paginate(4);
+        $campaigns = Campaigns::orderBy("created_at", "desc")->paginate(4);
         return view('campaigns.list', compact('campaigns'));
     }
 

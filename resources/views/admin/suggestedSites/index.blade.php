@@ -105,6 +105,7 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="{{ asset('js/jquery-ui.js') }}"></script>
+<script src="{{ asset('js/admin/transition.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
     var map;

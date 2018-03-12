@@ -1,76 +1,67 @@
-
-<div id="show-dialog{{$service->id}}" class="modal fade" tabindex="-1" style="display: none;">
-  <div class="modal-dialog">
+<div class="modal fade" id="serviceDetail" tabindex="-1" role="dialog" aria-labelledby="serviceDetail" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="panel-heading modal-title titleContent text-center">Información de la Oferta<br>{{$service->name}}  </h4>
-        </div>
-        <div class="modal-body">
-            <div class="panel panel-primary modalPanel">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <img src="{{$service->image}}" alt="">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><strong>Descripción</strong></p>
-                            <p class="paragraph1">{{$service->description}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><strong>Ranking</strong></p>
-                            <p>{{$service->ranking}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><strong>Valor</strong></p>
-                            <p>{{$service->value}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><strong>Madalidad</strong></p>
-                            <p>@if($service->virtually == 1) Virtual @endif  @if($service->presently == 1) Presencial @endif</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><strong>Categoria</strong></p>
-                            <p>{{$service->category->category}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><strong>Usuario</strong></p>
-                            <p>{{$service->user->first_name." ".$service->user->last_name}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><strong>Estado</strong></p>
-                            <p>{{$service->state->state}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><strong>Fecha de creación</strong></p>
-                            <p>{{$service->created_at}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><strong>Ultima actualización</strong></p>
-                            <p>{{$service->updated_at}}</p>
-                        </div>
-                    </div>
+      <div class="modal-header">
+        <h5 class="modal-title text-capitalize" id="d-name"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-3">
+                <img src="" id="d-cover">
+                <hr>
+                <h4 id="d-user-name"></h4>
+                <img src="" id="d-avatar">
+            </div>
+            <div class="col-6">
+                <h4>Descripción</h4>
+                <p id="d-description"></p>
+                <h4>Modalidad</h4>
+                <p><span id="d-modalidad-p" class="d-none">Precencial</span> <span id="d-modalidad-v" class="d-none">Virtual</span></p>
+                <h4>Valor</h4>
+                <p><span id="d-value"></span> Dorados</p>
+                <h4>Estado</h4>
+                <p><span id="d-state"></span> <button type="button" id='editState' class="btn btn-primary"><i class="fa fa-edit"></i></button></p>
+            </div>
+            <div class="col-3">
+                <div class="progress" id="d-animacion">
+                    <span class="progress-left">
+                        <span class="progress-bar"></span>
+                    </span>
+                    <span class="progress-right">
+                        <span class="progress-bar"></span>
+                    </span>
+                    <div class="progress-value" id="d-ranking"></div>
                 </div>
             </div>
         </div>
+        <div class="row py-4">
+            <table class="table table-hover">
+               <thead>
+                   <tr>
+                       <th>Demandante</th>
+                       <th>Dorados</th>
+                       <th>Lugar</th>
+                       <th>Fecha</th>
+                       <th>Descripción</th>
+                       <th>Estado</th>
+                       <th>Fecha creación</th>
+                   </tr>
+               </thead>
+
+               <tbody id="d-deals">
+
+               </tbody>
+
+            </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" id="d-id">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>

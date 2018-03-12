@@ -13,14 +13,22 @@ jQuery(document).ready(function () {
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
     var input = document.getElementById('place');
+    
 
     var autocomplete = new google.maps.places.Autocomplete(input);
+    
 
     var circle = new google.maps.Circle({
         center: {lat: 4.638958, lng: -74.0929484},
         radius: 20000
     });
     autocomplete.setBounds(circle.getBounds());
+    
+    var map2 = new google.maps.Map(document.getElementById("map_canvas_edit"), myOptions);
+
+    var input2 = document.getElementById('place_edit');
+    var autocomplete2 = new google.maps.places.Autocomplete(input2);
+    autocomplete2.setBounds(circle.getBounds());
 
     var infowindow = new google.maps.InfoWindow
     ({
@@ -71,6 +79,44 @@ jQuery(document).ready(function () {
 
         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
         infowindow.open(map, marker);
+    });
+
+    google.maps.event.addListener(autocomplete2, 'place_changed', function () {
+
+        infowindow.close();
+        var place = autocomplete2.getPlace();
+        document.getElementById('coordinates_edit').value = "{\"lat\" : " + place.geometry.location.lat() + ", \"lng\" : " + place.geometry.location.lng() + "}";
+        if (place.geometry.viewport) {
+            map2.fitBounds(place.geometry.viewport);
+        }
+        else {
+            map2.setCenter(place.geometry.location);
+            map2.setZoom(15);  // Why 17? Because it looks good.
+        }
+
+        var image = new google.maps.MarkerImage(
+            place.icon,
+            new google.maps.Size(71, 71),
+            new google.maps.Point(0, 0),
+            new google.maps.Point(17, 34),
+            new google.maps.Size(35, 35));
+        marker.setIcon(image);
+        marker.setPosition(place.geometry.location
+        );
+
+        var address = '';
+        if (place.address_components) {
+            address = [(place.address_components[0] &&
+            place.address_components[0].short_name || ''),
+                (place.address_components[1] &&
+                place.address_components[1].short_name || ''),
+                (place.address_components[2] &&
+                place.address_components[2].short_name || '')
+            ].join(' ');
+        }
+
+        infowindow.setContent('<div><strong>' + place2.name + '</strong><br>' + address);
+        infowindow.open(map2, marker);
     });
 
 });
