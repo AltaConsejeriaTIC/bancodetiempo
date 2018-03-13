@@ -13,6 +13,7 @@ class ImageController extends Controller
 	protected $mime = '';
 	protected $image = '';
     public function getImage(Request $request){	
+		
     	$this->route = $request->input('img', '/images/no-image.png');
     	if(!file_exists($this->route)){
     		$this->route = 'images/no-image.png';
@@ -58,17 +59,19 @@ class ImageController extends Controller
 	}
 	
 	private function resize($image){
-				
+		
 		$thumb = imagecreatetruecolor($this->resize[0], $this->resize[1]);
 		
-		imageAlphaBlending($thumb, true);
-		imagesavealpha($thumb, true);
-		$trans_colour = imagecolorallocatealpha($thumb, 0, 0, 0, 127);
-		imagefill($thumb, 0, 0, $trans_colour);
+		//imageAlphaBlending($thumb, true);
+		//imagesavealpha($thumb, true);
+		//$trans_colour = imagecolorallocatealpha($thumb, 0, 0, 0, 127);
+		//imagefill($thumb, 0, 0, $trans_colour);
 		
-		imagecopyresized($thumb, $image, 0, 0, 0, 0, $this->resize[0], $this->resize[1], $this->imageSize[0], $this->imageSize[1]);
+		//imagecopyresized($thumb, $image, 0, 0, 0, 0, $this->resize[0], $this->resize[1], $this->imageSize[0], $this->imageSize[1]);
 		
-		return $thumb;
+		//$function = 'image'.$this->imageType;
+
+		return $image;
 	}
 	
 	private function getType(){
